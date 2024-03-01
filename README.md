@@ -4,4 +4,4 @@ The Data Layer is a component of the [foundation](https://github.com/robmllze/fo
 
 ## Notes
 
-Rename `_data@foundation` to `_data` before using it in your project.
+Rename `_data-foundation` to `_data` before using it in your project.
