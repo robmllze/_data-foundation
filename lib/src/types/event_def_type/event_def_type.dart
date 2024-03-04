@@ -10,8 +10,20 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export 'package:xyz_config/xyz_config.dart';
-export 'package:xyz_gen_annotations/xyz_gen_annotations.dart';
-export 'package:xyz_utils/xyz_utils.dart';
+import '/_common.dart';
 
-export 'src/_all_src.g.dart';
+part '_event_def_type.g.dart';
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@GenerateTypeUtils()
+enum EventDefType {
+  CONNECTION_REQUEST_ACCEPTED,
+  CONNECTION_REQUEST_REJECTED,
+  CONNECTION_REQUEST,
+  MESSAGE,
+  PING,
+  RELATIONSHIP_CHANGED,
+  RELATIONSHIP_REMOVED,
+  RELATIONSHIP_DISABLED,
+}

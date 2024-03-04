@@ -10,8 +10,15 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export 'package:xyz_config/xyz_config.dart';
-export 'package:xyz_gen_annotations/xyz_gen_annotations.dart';
-export 'package:xyz_utils/xyz_utils.dart';
+import '/_common.dart';
 
-export 'src/_all_src.g.dart';
+part '_access_status_type.g.dart';
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@GenerateTypeUtils()
+enum AccessStatusType {
+  ACCESS_ACCEPTED,
+  ACCESS_REJECTED,
+  ACCESS_REQUESTED,
+}

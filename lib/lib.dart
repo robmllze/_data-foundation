@@ -10,8 +10,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export 'package:xyz_config/xyz_config.dart';
-export 'package:xyz_gen_annotations/xyz_gen_annotations.dart';
-export 'package:xyz_utils/xyz_utils.dart';
+library;
 
 export 'src/_all_src.g.dart';
