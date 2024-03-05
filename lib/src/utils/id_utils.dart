@@ -1,12 +1,12 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// X|Y|Z & Dev 
+// X|Y|Z & Dev
 //
 // Copyright Ⓒ Robert Mollentze, xyzand.dev
-// 
+//
 // Licensing details can be found in the LICENSE file in the root directory.
-// 
+//
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
@@ -19,7 +19,7 @@ final class IdUtils {
   //
   //
 
-  static const ACCESS_ID_PREFIX = "A";
+  static const PUB_ID_PREFIX = "P";
   static const EVENT_ID_PPREFIX = "E";
   static const PROVIDER_ID_PREFIX = "P";
   static const RELATIONSHIP_ID_PPREFIX = "R";
@@ -39,7 +39,7 @@ final class IdUtils {
   }
 
   static bool isPubId(String id) {
-    return id.startsWith("$ACCESS_ID_PREFIX-");
+    return id.startsWith("$PUB_ID_PREFIX-");
   }
 
   //
@@ -87,12 +87,11 @@ final class IdUtils {
   }
 
   static String mapUserIdToPubId({required String userId}) {
-    return "$ACCESS_ID_PREFIX-${_mapString1("${userId.substring(1, 4)}$userId")}";
+    return "$PUB_ID_PREFIX-${_mapString1("${userId.substring(1, 4)}$userId")}";
   }
 
   static String mapPubIdToUserId({required String userPubId}) {
-    return _unmapString1(userPubId.substring("$ACCESS_ID_PREFIX-".length))
-        .substring(3);
+    return _unmapString1(userPubId.substring("$PUB_ID_PREFIX-".length)).substring(3);
   }
 }
 
@@ -100,7 +99,8 @@ final class IdUtils {
 
 String _mapString1(String input) {
   return String.fromCharCodes(
-      input.codeUnits.map((c) => _mapChar1(c, input.length)),);
+    input.codeUnits.map((c) => _mapChar1(c, input.length)),
+  );
 }
 
 int _mapChar1(int charCode, int shift) {
@@ -119,7 +119,8 @@ int _mapChar1(int charCode, int shift) {
 
 String _unmapString1(String input) {
   return String.fromCharCodes(
-      input.codeUnits.map((c) => _unmapChar1(c, input.length)),);
+    input.codeUnits.map((c) => _unmapChar1(c, input.length)),
+  );
 }
 
 int _unmapChar1(int charCode, int shift) {
