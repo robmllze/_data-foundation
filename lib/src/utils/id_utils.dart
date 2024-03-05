@@ -100,7 +100,7 @@ final class IdUtils {
 
 String _mapString1(String input) {
   return String.fromCharCodes(
-      input.codeUnits.map((c) => _mapChar1(c, input.length)));
+      input.codeUnits.map((c) => _mapChar1(c, input.length)),);
 }
 
 int _mapChar1(int charCode, int shift) {
@@ -119,7 +119,7 @@ int _mapChar1(int charCode, int shift) {
 
 String _unmapString1(String input) {
   return String.fromCharCodes(
-      input.codeUnits.map((c) => _unmapChar1(c, input.length)));
+      input.codeUnits.map((c) => _unmapChar1(c, input.length)),);
 }
 
 int _unmapChar1(int charCode, int shift) {
