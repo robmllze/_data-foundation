@@ -35,6 +35,7 @@ class ModelUser extends _ModelUser {
   static const K_RELATIONSHIP_IDS = "relationship_ids";
   static const K_SMS_SUBSCRIPTIONS = "sms_subscriptions";
   static const K_USER_PUB_ID = "user_pub_id";
+  static const K_USER_TYPES = "user_types";
   static const K_WHEN_LAST_LOGGED_IN = "when_last_logged_in";
 
   Set<String>? connectionUids;
@@ -44,6 +45,7 @@ class ModelUser extends _ModelUser {
   Set<String>? relationshipIds;
   Set<String>? smsSubscriptions;
   String? userPubId;
+  Set<UserType>? userTypes;
   DateTime? whenLastLoggedIn;
 
   //
@@ -59,6 +61,7 @@ class ModelUser extends _ModelUser {
     this.relationshipIds,
     this.smsSubscriptions,
     this.userPubId,
+    this.userTypes,
     this.whenLastLoggedIn,
   }) {
     this.id = id;
@@ -77,6 +80,7 @@ class ModelUser extends _ModelUser {
     this.relationshipIds,
     this.smsSubscriptions,
     this.userPubId,
+    this.userTypes,
     this.whenLastLoggedIn,
   }) {
     this.id = id;
@@ -174,6 +178,14 @@ class ModelUser extends _ModelUser {
             ?.toSet()
             .cast(),
         userPubId: otherData?[K_USER_PUB_ID]?.toString().trim().nullIfEmpty,
+        userTypes: letSet(otherData?[K_USER_TYPES])
+            ?.map(
+              (final p0) => UserType.values.valueOf(letAs<String>(p0)),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.toSet()
+            .cast(),
         whenLastLoggedIn: () {
           final a = otherData?[K_WHEN_LAST_LOGGED_IN];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -234,6 +246,13 @@ class ModelUser extends _ModelUser {
             .nullIfEmpty
             ?.toList(),
         K_USER_PUB_ID: userPubId?.toString().trim().nullIfEmpty,
+        K_USER_TYPES: userTypes
+            ?.map(
+              (final p0) => p0?.name,
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.toList(),
         K_WHEN_LAST_LOGGED_IN: whenLastLoggedIn?.toUtc()?.toIso8601String(),
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -291,6 +310,7 @@ class ModelUser extends _ModelUser {
           ? this.smsSubscriptions = other.smsSubscriptions
           : null;
       other.userPubId != null ? this.userPubId = other.userPubId : null;
+      other.userTypes != null ? this.userTypes = other.userTypes : null;
       other.whenLastLoggedIn != null
           ? this.whenLastLoggedIn = other.whenLastLoggedIn
           : null;

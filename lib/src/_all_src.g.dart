@@ -24,5 +24,6 @@ export "types/access_status_type/access_status_type.dart";
 export "types/access_type/access_type.dart";
 export "types/event_def_type/event_def_type.dart";
 export "types/relationship_def_type/relationship_def_type.dart";
+export "types/user_type/user_type.dart";
 export "utils/id_utils.dart";
 export "utils/model_ref.dart";

@@ -10,11 +10,16 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export "package:xyz_config/xyz_config.dart";
-export "package:xyz_gen_annotations/xyz_gen_annotations.dart";
-export "package:xyz_utils/xyz_utils.dart";
+import "/_common.dart";
 
-export "src/models/_all_models.g.dart";
-export "src/types/_all_types.g.dart";
+part "_user_type.g.dart";
 
-export "src/_all_src.g.dart";
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@GenerateTypeUtils()
+enum UserType {
+  ADMIN,
+  ORGANIZATION,
+  PROVIDER,
+  PUBLIC,
+}
