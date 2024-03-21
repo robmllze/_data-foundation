@@ -10,7 +10,8 @@
 ## ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ##.title~
 
-# Sync this code with https://github.com/robmllze/_data-foundation.
+# Sync this folder with https://github.com/robmllze/_data-foundation. You must
+# run it from the _data/ folder and not from the root of your project.
 git init
 git add .
 git commit -m "upstream"
