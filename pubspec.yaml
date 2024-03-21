@@ -26,9 +26,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  xyz_config: ^0.21.0
-  xyz_gen_annotations: ^0.12.0
-  xyz_utils: ^0.48.2
+  xyz_config: ^0.24.0
+  xyz_gen_annotations: ^0.15.0
+  xyz_utils: ^0.51.0
 
   uuid: 4.3.3
 
