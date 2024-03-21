@@ -10,7 +10,8 @@
 ## ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ##.title~
 
-# Sync this folder with https://github.com/robmllze/_data-foundation.
+# Sync this folder with https://github.com/robmllze/_data-foundation. You can
+# change 'main' to another branch if necessary.
 cd _data
 git init
 git add .
