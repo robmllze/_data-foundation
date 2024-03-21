@@ -18,8 +18,8 @@ extension AccessStatusTypeUtils on AccessStatusType {
   }
 
   AccessStatusType get previous {
-    final index =
-        (this.index - 1 + AccessStatusType.values.length) % AccessStatusType.values.length;
+    final index = (this.index - 1 + AccessStatusType.values.length) %
+        AccessStatusType.values.length;
     return AccessStatusType.values[index];
   }
 
@@ -28,6 +28,11 @@ extension AccessStatusTypeUtils on AccessStatusType {
   }
 
   String get friendlyName {
-    return this.name.toSnakeCase().split('_').map((e) => e.capitalize()).join(' ');
+    return this
+        .name
+        .toSnakeCase()
+        .split('_')
+        .map((e) => e.capitalize())
+        .join(' ');
   }
 }

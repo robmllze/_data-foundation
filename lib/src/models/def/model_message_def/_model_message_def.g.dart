@@ -118,7 +118,8 @@ class ModelMessageDef extends _ModelMessageDef {
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         message: otherData?[K_MESSAGE]?.toString().trim().nullIfEmpty,
         receiverUid: otherData?[K_RECEIVER_UID]?.toString().trim().nullIfEmpty,
-        relationshipId: otherData?[K_RELATIONSHIP_ID]?.toString().trim().nullIfEmpty,
+        relationshipId:
+            otherData?[K_RELATIONSHIP_ID]?.toString().trim().nullIfEmpty,
         senderUid: otherData?[K_SENDER_UID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
@@ -182,7 +183,9 @@ class ModelMessageDef extends _ModelMessageDef {
       other.id != null ? this.id = other.id : null;
       other.message != null ? this.message = other.message : null;
       other.receiverUid != null ? this.receiverUid = other.receiverUid : null;
-      other.relationshipId != null ? this.relationshipId = other.relationshipId : null;
+      other.relationshipId != null
+          ? this.relationshipId = other.relationshipId
+          : null;
       other.senderUid != null ? this.senderUid = other.senderUid : null;
     }
   }

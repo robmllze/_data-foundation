@@ -120,10 +120,16 @@ class ModelUserPub extends _ModelUserPub {
     try {
       return ModelUserPub.unsafe(
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
-        displayNameSearchable:
-            otherData?[K_DISPLAY_NAME_SEARCHABLE]?.toString().trim().nullIfEmpty?.toLowerCase(),
-        emailSearchable:
-            otherData?[K_EMAIL_SEARCHABLE]?.toString().trim().nullIfEmpty?.toLowerCase(),
+        displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase(),
+        emailSearchable: otherData?[K_EMAIL_SEARCHABLE]
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         userId: otherData?[K_USER_ID]?.toString().trim().nullIfEmpty,
         whenDeleted: letInt(otherData?[K_WHEN_DELETED]),
@@ -148,7 +154,8 @@ class ModelUserPub extends _ModelUserPub {
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME_SEARCHABLE:
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
-        K_EMAIL_SEARCHABLE: emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_EMAIL_SEARCHABLE:
+            emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_USER_ID: userId?.toString().trim().nullIfEmpty,
         K_WHEN_DELETED: whenDeleted,
@@ -192,7 +199,9 @@ class ModelUserPub extends _ModelUserPub {
       other.displayNameSearchable != null
           ? this.displayNameSearchable = other.displayNameSearchable
           : null;
-      other.emailSearchable != null ? this.emailSearchable = other.emailSearchable : null;
+      other.emailSearchable != null
+          ? this.emailSearchable = other.emailSearchable
+          : null;
       other.id != null ? this.id = other.id : null;
       other.userId != null ? this.userId = other.userId : null;
       other.whenDeleted != null ? this.whenDeleted = other.whenDeleted : null;

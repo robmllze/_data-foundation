@@ -18,8 +18,8 @@ extension RelationshipDefTypeUtils on RelationshipDefType {
   }
 
   RelationshipDefType get previous {
-    final index =
-        (this.index - 1 + RelationshipDefType.values.length) % RelationshipDefType.values.length;
+    final index = (this.index - 1 + RelationshipDefType.values.length) %
+        RelationshipDefType.values.length;
     return RelationshipDefType.values[index];
   }
 
@@ -28,6 +28,11 @@ extension RelationshipDefTypeUtils on RelationshipDefType {
   }
 
   String get friendlyName {
-    return this.name.toSnakeCase().split('_').map((e) => e.capitalize()).join(' ');
+    return this
+        .name
+        .toSnakeCase()
+        .split('_')
+        .map((e) => e.capitalize())
+        .join(' ');
   }
 }

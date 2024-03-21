@@ -290,18 +290,30 @@ class ModelUser extends _ModelUser {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUser.fromJson(otherData);
-      other.connectionUids != null ? this.connectionUids = other.connectionUids : null;
+      other.connectionUids != null
+          ? this.connectionUids = other.connectionUids
+          : null;
       other.didSendWelcomeEmail != null
           ? this.didSendWelcomeEmail = other.didSendWelcomeEmail
           : null;
-      other.emailSubscriptions != null ? this.emailSubscriptions = other.emailSubscriptions : null;
+      other.emailSubscriptions != null
+          ? this.emailSubscriptions = other.emailSubscriptions
+          : null;
       other.id != null ? this.id = other.id : null;
-      other.pushSubscriptions != null ? this.pushSubscriptions = other.pushSubscriptions : null;
-      other.relationshipIds != null ? this.relationshipIds = other.relationshipIds : null;
-      other.smsSubscriptions != null ? this.smsSubscriptions = other.smsSubscriptions : null;
+      other.pushSubscriptions != null
+          ? this.pushSubscriptions = other.pushSubscriptions
+          : null;
+      other.relationshipIds != null
+          ? this.relationshipIds = other.relationshipIds
+          : null;
+      other.smsSubscriptions != null
+          ? this.smsSubscriptions = other.smsSubscriptions
+          : null;
       other.userPubId != null ? this.userPubId = other.userPubId : null;
       other.userTypes != null ? this.userTypes = other.userTypes : null;
-      other.whenLastLoggedIn != null ? this.whenLastLoggedIn = other.whenLastLoggedIn : null;
+      other.whenLastLoggedIn != null
+          ? this.whenLastLoggedIn = other.whenLastLoggedIn
+          : null;
     }
   }
 }

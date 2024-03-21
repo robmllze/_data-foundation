@@ -18,7 +18,8 @@ extension UserTypeUtils on UserType {
   }
 
   UserType get previous {
-    final index = (this.index - 1 + UserType.values.length) % UserType.values.length;
+    final index =
+        (this.index - 1 + UserType.values.length) % UserType.values.length;
     return UserType.values[index];
   }
 
@@ -27,6 +28,11 @@ extension UserTypeUtils on UserType {
   }
 
   String get friendlyName {
-    return this.name.toSnakeCase().split('_').map((e) => e.capitalize()).join(' ');
+    return this
+        .name
+        .toSnakeCase()
+        .split('_')
+        .map((e) => e.capitalize())
+        .join(' ');
   }
 }

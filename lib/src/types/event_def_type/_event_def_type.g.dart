@@ -18,7 +18,8 @@ extension EventDefTypeUtils on EventDefType {
   }
 
   EventDefType get previous {
-    final index = (this.index - 1 + EventDefType.values.length) % EventDefType.values.length;
+    final index = (this.index - 1 + EventDefType.values.length) %
+        EventDefType.values.length;
     return EventDefType.values[index];
   }
 
@@ -27,6 +28,11 @@ extension EventDefTypeUtils on EventDefType {
   }
 
   String get friendlyName {
-    return this.name.toSnakeCase().split('_').map((e) => e.capitalize()).join(' ');
+    return this
+        .name
+        .toSnakeCase()
+        .split('_')
+        .map((e) => e.capitalize())
+        .join(' ');
   }
 }

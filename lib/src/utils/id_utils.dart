@@ -91,7 +91,8 @@ final class IdUtils {
   }
 
   static String mapPubIdToUserId({required String userPubId}) {
-    return _unmapString1(userPubId.substring('$PUB_ID_PREFIX-'.length)).substring(3);
+    return _unmapString1(userPubId.substring('$PUB_ID_PREFIX-'.length))
+        .substring(3);
   }
 }
 

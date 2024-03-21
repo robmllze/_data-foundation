@@ -19,7 +19,8 @@ part of 'model_connection_request_rejected_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelConnectionRequestRejectedDef extends _ModelConnectionRequestRejectedDef {
+class ModelConnectionRequestRejectedDef
+    extends _ModelConnectionRequestRejectedDef {
   //
   //
   //
@@ -112,8 +113,10 @@ class ModelConnectionRequestRejectedDef extends _ModelConnectionRequestRejectedD
     try {
       return ModelConnectionRequestRejectedDef.unsafe(
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        receiverPubId: otherData?[K_RECEIVER_PUB_ID]?.toString().trim().nullIfEmpty,
-        relationshipId: otherData?[K_RELATIONSHIP_ID]?.toString().trim().nullIfEmpty,
+        receiverPubId:
+            otherData?[K_RECEIVER_PUB_ID]?.toString().trim().nullIfEmpty,
+        relationshipId:
+            otherData?[K_RELATIONSHIP_ID]?.toString().trim().nullIfEmpty,
         senderPubId: otherData?[K_SENDER_PUB_ID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
@@ -174,8 +177,12 @@ class ModelConnectionRequestRejectedDef extends _ModelConnectionRequestRejectedD
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelConnectionRequestRejectedDef.fromJson(otherData);
       other.id != null ? this.id = other.id : null;
-      other.receiverPubId != null ? this.receiverPubId = other.receiverPubId : null;
-      other.relationshipId != null ? this.relationshipId = other.relationshipId : null;
+      other.receiverPubId != null
+          ? this.receiverPubId = other.receiverPubId
+          : null;
+      other.relationshipId != null
+          ? this.relationshipId = other.relationshipId
+          : null;
       other.senderPubId != null ? this.senderPubId = other.senderPubId : null;
     }
   }

@@ -18,7 +18,8 @@ extension AccessTypeUtils on AccessType {
   }
 
   AccessType get previous {
-    final index = (this.index - 1 + AccessType.values.length) % AccessType.values.length;
+    final index =
+        (this.index - 1 + AccessType.values.length) % AccessType.values.length;
     return AccessType.values[index];
   }
 
@@ -27,6 +28,11 @@ extension AccessTypeUtils on AccessType {
   }
 
   String get friendlyName {
-    return this.name.toSnakeCase().split('_').map((e) => e.capitalize()).join(' ');
+    return this
+        .name
+        .toSnakeCase()
+        .split('_')
+        .map((e) => e.capitalize())
+        .join(' ');
   }
 }

@@ -149,7 +149,8 @@ class ModelEvent extends _ModelEvent {
             .nonNulls
             .nullIfEmpty
             ?.cast(),
-        defType: EventDefType.values.valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
+        defType:
+            EventDefType.values.valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         pubIds: letSet(otherData?[K_PUB_IDS])
             ?.map(
@@ -370,11 +371,15 @@ class ModelEvent extends _ModelEvent {
       other.id != null ? this.id = other.id : null;
       other.pubIds != null ? this.pubIds = other.pubIds : null;
       other.timeout != null ? this.timeout = other.timeout : null;
-      other.whenArchived != null ? this.whenArchived = other.whenArchived : null;
+      other.whenArchived != null
+          ? this.whenArchived = other.whenArchived
+          : null;
       other.whenHidden != null ? this.whenHidden = other.whenHidden : null;
       other.whenLiked != null ? this.whenLiked = other.whenLiked : null;
       other.whenRead != null ? this.whenRead = other.whenRead : null;
-      other.whenReceived != null ? this.whenReceived = other.whenReceived : null;
+      other.whenReceived != null
+          ? this.whenReceived = other.whenReceived
+          : null;
       other.whenSent != null ? this.whenSent = other.whenSent : null;
     }
   }

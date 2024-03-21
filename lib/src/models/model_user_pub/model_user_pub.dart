@@ -33,6 +33,8 @@ abstract class _ModelUserPub extends ThisModel<ModelUserPub> {
 
   DateTime? get dateDeleted {
     final whenDeleted = this.model.whenDeleted;
-    return whenDeleted != null ? DateTime.fromMillisecondsSinceEpoch(whenDeleted) : null;
+    return whenDeleted != null
+        ? DateTime.fromMillisecondsSinceEpoch(whenDeleted)
+        : null;
   }
 }

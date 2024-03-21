@@ -133,7 +133,8 @@ class ModelRelationship extends _ModelRelationship {
             .nonNulls
             .nullIfEmpty
             ?.cast(),
-        defType: RelationshipDefType.values.valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
+        defType: RelationshipDefType.values
+            .valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         memberIds: letSet(otherData?[K_MEMBER_IDS])
             ?.map(
@@ -285,7 +286,9 @@ class ModelRelationship extends _ModelRelationship {
       other.defType != null ? this.defType = other.defType : null;
       other.id != null ? this.id = other.id : null;
       other.memberIds != null ? this.memberIds = other.memberIds : null;
-      other.whenDisabled != null ? this.whenDisabled = other.whenDisabled : null;
+      other.whenDisabled != null
+          ? this.whenDisabled = other.whenDisabled
+          : null;
       other.whenEnabled != null ? this.whenEnabled = other.whenEnabled : null;
       other.whenNoted != null ? this.whenNoted = other.whenNoted : null;
     }
