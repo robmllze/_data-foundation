@@ -83,11 +83,11 @@ final class IdUtils {
   //
 
   static String _newId(String prefix) {
-    return "${prefix.toUpperCase()}-${const Uuid().v1().replaceAll("-", "")}";
+    return '${prefix.toUpperCase()}-${const Uuid().v1().replaceAll('-', '')}';
   }
 
   static String mapUserIdToPubId({required String userId}) {
-    return "$PUB_ID_PREFIX-${_mapString1("${userId.substring(1, 4)}$userId")}";
+    return '$PUB_ID_PREFIX-${_mapString1('${userId.substring(1, 4)}$userId')}';
   }
 
   static String mapPubIdToUserId({required String userPubId}) {
@@ -105,13 +105,13 @@ String _mapString1(String input) {
 
 int _mapChar1(int charCode, int shift) {
   if (charCode >= 48 && charCode <= 57) {
-    // "0"-"9"
+    // '0'-'9'
     return 48 + (charCode - 48 + shift) % 10;
   } else if (charCode >= 65 && charCode <= 90) {
-    // "A"-"Z"
+    // 'A'-'Z'
     return 65 + (charCode - 65 + shift) % 26;
   } else if (charCode >= 97 && charCode <= 122) {
-    // "a"-"z"
+    // 'a'-'z'
     return 97 + (charCode - 97 + shift) % 26;
   }
   return charCode;
@@ -125,13 +125,13 @@ String _unmapString1(String input) {
 
 int _unmapChar1(int charCode, int shift) {
   if (charCode >= 48 && charCode <= 57) {
-    // "0"-"9"
+    // '0'-'9'
     return 48 + (charCode - 48 - shift + 10) % 10;
   } else if (charCode >= 65 && charCode <= 90) {
-    // "A"-"Z"
+    // 'A'-'Z'
     return 65 + (charCode - 65 - shift + 26) % 26;
   } else if (charCode >= 97 && charCode <= 122) {
-    // "a"-"z"
+    // 'a'-'z'
     return 97 + (charCode - 97 - shift + 26) % 26;
   }
   return charCode;
