@@ -1,7 +1,7 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// X|Y|Z & Dev
+// 🇽🇾🇿 & Dev
 //
 // Copyright Ⓒ Robert Mollentze, xyzand.dev
 //
@@ -10,7 +10,7 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import "package:uuid/uuid.dart" show Uuid;
+import 'package:uuid/uuid.dart' show Uuid;
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -19,10 +19,10 @@ final class IdUtils {
   //
   //
 
-  static const PUB_ID_PREFIX = "P";
-  static const EVENT_ID_PPREFIX = "E";
-  static const PROVIDER_ID_PREFIX = "P";
-  static const RELATIONSHIP_ID_PPREFIX = "R";
+  static const PUB_ID_PREFIX = 'P';
+  static const EVENT_ID_PPREFIX = 'E';
+  static const PROVIDER_ID_PREFIX = 'P';
+  static const RELATIONSHIP_ID_PPREFIX = 'R';
 
   //
   //
@@ -39,7 +39,7 @@ final class IdUtils {
   }
 
   static bool isPubId(String id) {
-    return id.startsWith("$PUB_ID_PREFIX-");
+    return id.startsWith('$PUB_ID_PREFIX-');
   }
 
   //
@@ -51,7 +51,7 @@ final class IdUtils {
   }
 
   static bool isEventId(String id) {
-    return id.startsWith("$EVENT_ID_PPREFIX-");
+    return id.startsWith('$EVENT_ID_PPREFIX-');
   }
 
   //
@@ -63,7 +63,7 @@ final class IdUtils {
   }
 
   static bool isProviderId(String id) {
-    return id.startsWith("$PROVIDER_ID_PREFIX-");
+    return id.startsWith('$PROVIDER_ID_PREFIX-');
   }
 
   //
@@ -75,7 +75,7 @@ final class IdUtils {
   }
 
   static bool isRelationshipId(String id) {
-    return id.startsWith("$RELATIONSHIP_ID_PPREFIX-");
+    return id.startsWith('$RELATIONSHIP_ID_PPREFIX-');
   }
 
   //
@@ -91,7 +91,7 @@ final class IdUtils {
   }
 
   static String mapPubIdToUserId({required String userPubId}) {
-    return _unmapString1(userPubId.substring("$PUB_ID_PREFIX-".length)).substring(3);
+    return _unmapString1(userPubId.substring('$PUB_ID_PREFIX-'.length)).substring(3);
   }
 }
 

@@ -1,16 +1,16 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// X|Y|Z & Dev 
+// 🇽🇾🇿 & Dev
 //
 // Copyright Ⓒ Robert Mollentze, xyzand.dev
-// 
+//
 // Licensing details can be found in the LICENSE file in the root directory.
-// 
+//
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import "utils/model_ref.dart";
+import 'utils/model_ref.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -32,8 +32,8 @@ final class Schema {
   }) {
     return DataRef(
       id: userId,
-      tableName: "users",
-      collectionPath: "users",
+      tableName: 'users',
+      collectionPath: 'users',
     );
   }
 
@@ -44,8 +44,8 @@ final class Schema {
   }) {
     return DataRef(
       id: userPubId,
-      tableName: "user_pubs",
-      collectionPath: "user_pubs",
+      tableName: 'user_pubs',
+      collectionPath: 'user_pubs',
     );
   }
 
@@ -57,8 +57,8 @@ final class Schema {
   }) {
     return DataRef(
       id: eventId,
-      tableName: "user_events",
-      collectionPath: "user_pubs/$userPubId/events",
+      tableName: 'user_events',
+      collectionPath: 'user_pubs/$userPubId/events',
     );
   }
 
@@ -69,8 +69,8 @@ final class Schema {
   }) {
     return DataRef(
       id: relationshipId,
-      tableName: "relationships",
-      collectionPath: "relationships",
+      tableName: 'relationships',
+      collectionPath: 'relationships',
     );
   }
 
@@ -82,8 +82,8 @@ final class Schema {
   }) {
     return DataRef(
       id: eventId,
-      tableName: "relationship_events",
-      collectionPath: "relationships/$relationshipId/events",
+      tableName: 'relationship_events',
+      collectionPath: 'relationships/$relationshipId/events',
     );
   }
 
@@ -95,8 +95,8 @@ final class Schema {
   }) {
     return DataRef(
       id: messageId,
-      tableName: "relationship_messages",
-      collectionPath: "relationships/$relationshipId/messages",
+      tableName: 'relationship_messages',
+      collectionPath: 'relationships/$relationshipId/messages',
     );
   }
   // Projects.
@@ -106,8 +106,8 @@ final class Schema {
   }) {
     return DataRef(
       id: projectId,
-      tableName: "projects",
-      collectionPath: "projects",
+      tableName: 'projects',
+      collectionPath: 'projects',
     );
   }
 
@@ -118,8 +118,8 @@ final class Schema {
   }) {
     return DataRef(
       id: projectPubId,
-      tableName: "project_pubs",
-      collectionPath: "project_pubs",
+      tableName: 'project_pubs',
+      collectionPath: 'project_pubs',
     );
   }
 
@@ -131,8 +131,8 @@ final class Schema {
   }) {
     return DataRef(
       id: eventId,
-      tableName: "project_events",
-      collectionPath: "project_pubs/$projectPubId/events",
+      tableName: 'project_events',
+      collectionPath: 'project_pubs/$projectPubId/events',
     );
   }
 
@@ -144,8 +144,8 @@ final class Schema {
   }) {
     return DataRef(
       id: messageId,
-      tableName: "project_messages",
-      collectionPath: "project_pubs/$projectPubId/messages",
+      tableName: 'project_messages',
+      collectionPath: 'project_pubs/$projectPubId/messages',
     );
   }
 
@@ -156,8 +156,8 @@ final class Schema {
   }) {
     return DataRef(
       id: jobId,
-      tableName: "jobs",
-      collectionPath: "jobs",
+      tableName: 'jobs',
+      collectionPath: 'jobs',
     );
   }
 
@@ -168,8 +168,8 @@ final class Schema {
   }) {
     return DataRef(
       id: jobPubId,
-      tableName: "job_pubs",
-      collectionPath: "job_pubs",
+      tableName: 'job_pubs',
+      collectionPath: 'job_pubs',
     );
   }
 
@@ -181,8 +181,8 @@ final class Schema {
   }) {
     return DataRef(
       id: eventId,
-      tableName: "job_events",
-      collectionPath: "job_pubs/$jobPubId/events",
+      tableName: 'job_events',
+      collectionPath: 'job_pubs/$jobPubId/events',
     );
   }
 
@@ -194,8 +194,8 @@ final class Schema {
   }) {
     return DataRef(
       id: messageId,
-      tableName: "job_messages",
-      collectionPath: "job_pubs/$jobPubId/messages",
+      tableName: 'job_messages',
+      collectionPath: 'job_pubs/$jobPubId/messages',
     );
   }
 
@@ -206,8 +206,8 @@ final class Schema {
   }) {
     return DataRef(
       id: organizationId,
-      tableName: "organizations",
-      collectionPath: "organizations",
+      tableName: 'organizations',
+      collectionPath: 'organizations',
     );
   }
 
@@ -218,8 +218,8 @@ final class Schema {
   }) {
     return DataRef(
       id: organizationPubId,
-      tableName: "organization_pubs",
-      collectionPath: "organization_pubs",
+      tableName: 'organization_pubs',
+      collectionPath: 'organization_pubs',
     );
   }
 
@@ -231,8 +231,8 @@ final class Schema {
   }) {
     return DataRef(
       id: eventId,
-      tableName: "organization_events",
-      collectionPath: "organization_pubs/$organizationPubId/events",
+      tableName: 'organization_events',
+      collectionPath: 'organization_pubs/$organizationPubId/events',
     );
   }
 
@@ -243,8 +243,8 @@ final class Schema {
   }) {
     return DataRef(
       id: organizationGroupId,
-      tableName: "organization_groups",
-      collectionPath: "organization_groups",
+      tableName: 'organization_groups',
+      collectionPath: 'organization_groups',
     );
   }
 }

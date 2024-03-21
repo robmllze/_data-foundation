@@ -1,7 +1,7 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// X|Y|Z & Dev
+// 🇽🇾🇿 & Dev
 //
 // Copyright Ⓒ Robert Mollentze, xyzand.dev
 //
@@ -10,11 +10,11 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export "package:xyz_config/xyz_config.dart";
-export "package:xyz_gen_annotations/xyz_gen_annotations.dart";
-export "package:xyz_utils/xyz_utils.dart";
+export 'package:xyz_config/xyz_config.dart';
+export 'package:xyz_gen_annotations/xyz_gen_annotations.dart';
+export 'package:xyz_utils/xyz_utils.dart';
 
-export "src/models/_all_models.g.dart";
-export "src/types/_all_types.g.dart";
+export 'src/models/_all_models.g.dart';
+export 'src/types/_all_types.g.dart';
 
-export "src/_all_src.g.dart";
+export 'src/_all_src.g.dart';

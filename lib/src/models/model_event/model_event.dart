@@ -1,34 +1,34 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// X|Y|Z & Dev 
+// 🇽🇾🇿 & Dev
 //
 // Copyright Ⓒ Robert Mollentze, xyzand.dev
-// 
+//
 // Licensing details can be found in the LICENSE file in the root directory.
-// 
+//
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import "/_common.dart";
+import '/_common.dart';
 
-part "_model_event.g.dart";
+part '_model_event.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    "pubIds": "Set<String>?",
-    "timeout": "int?",
-    "def": "Map<String, dynamic>?",
-    "defType": "EventDefType?",
-    "whenArchived": "Map<String, DateTime>?",
-    "whenHidden": "Map<String, DateTime>?",
-    "whenLiked": "Map<String, DateTime>?",
-    "whenRead": "Map<String, DateTime>?",
-    "whenReceived": "Map<String, DateTime>?",
-    "whenSent": "Map<String, DateTime>?",
+    'pubIds': 'Set<String>?',
+    'timeout': 'int?',
+    'def': 'Map<String, dynamic>?',
+    'defType': 'EventDefType?',
+    'whenArchived': 'Map<String, DateTime>?',
+    'whenHidden': 'Map<String, DateTime>?',
+    'whenLiked': 'Map<String, DateTime>?',
+    'whenRead': 'Map<String, DateTime>?',
+    'whenReceived': 'Map<String, DateTime>?',
+    'whenSent': 'Map<String, DateTime>?',
   },
 )
 abstract class _ModelEvent extends ThisModel<ModelEvent> {
