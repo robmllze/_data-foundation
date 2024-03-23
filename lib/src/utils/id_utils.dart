@@ -17,10 +17,11 @@ final class IdUtils {
   //
   //
 
-  static const PUB_ID_PREFIX = 'P';
   static const EVENT_ID_PPREFIX = 'E';
+  static const ORGANIZATION_PUB_ID_PPREFIX = 'O';
   static const PROVIDER_ID_PREFIX = 'P';
   static const RELATIONSHIP_ID_PPREFIX = 'R';
+  static const USER_PUB_ID_PREFIX = 'P';
 
   //
   //
@@ -32,12 +33,16 @@ final class IdUtils {
   //
   //
 
-  static String newPubId({required String userId}) {
-    return mapUserIdToPubId(userId: userId);
+  static String newUserPubId({required String userId}) {
+    return toUserPubId(userId: userId);
   }
 
-  static bool isPubId(String id) {
-    return id.startsWith('$PUB_ID_PREFIX-');
+  static String toUserPubId({required String userId}) {
+    return '$USER_PUB_ID_PREFIX-${_mapString1('${userId.substring(1, 4)}$userId')}';
+  }
+
+  static String toUserId({required String userPubId}) {
+    return _unmapString1(userPubId.substring('$USER_PUB_ID_PREFIX-'.length)).substring(3);
   }
 
   //
@@ -45,11 +50,7 @@ final class IdUtils {
   //
 
   static String newEventId() {
-    return _newId(EVENT_ID_PPREFIX);
-  }
-
-  static bool isEventId(String id) {
-    return id.startsWith('$EVENT_ID_PPREFIX-');
+    return newId(EVENT_ID_PPREFIX);
   }
 
   //
@@ -57,11 +58,7 @@ final class IdUtils {
   //
 
   static String newProviderId() {
-    return _newId(PROVIDER_ID_PREFIX);
-  }
-
-  static bool isProviderId(String id) {
-    return id.startsWith('$PROVIDER_ID_PREFIX-');
+    return newId(PROVIDER_ID_PREFIX);
   }
 
   //
@@ -69,27 +66,32 @@ final class IdUtils {
   //
 
   static String newRelationshipId() {
-    return _newId(RELATIONSHIP_ID_PPREFIX);
-  }
-
-  static bool isRelationshipId(String id) {
-    return id.startsWith('$RELATIONSHIP_ID_PPREFIX-');
+    return newId(RELATIONSHIP_ID_PPREFIX);
   }
 
   //
   //
   //
 
-  static String _newId(String prefix) {
-    return '${prefix.toUpperCase()}-${const Uuid().v1().replaceAll('-', '')}';
+  static String newOrganizationPubId() {
+    return newId(ORGANIZATION_PUB_ID_PPREFIX);
   }
 
-  static String mapUserIdToPubId({required String userId}) {
-    return '$PUB_ID_PREFIX-${_mapString1('${userId.substring(1, 4)}$userId')}';
+  static String toOrganizationPubId({required String organizationId}) {
+    return '$ORGANIZATION_PUB_ID_PPREFIX-${_mapString1('${organizationId.substring(1, 4)}$organizationId')}';
   }
 
-  static String mapPubIdToUserId({required String userPubId}) {
-    return _unmapString1(userPubId.substring('$PUB_ID_PREFIX-'.length)).substring(3);
+  static String toOrganizationId({required String organizationPubId}) {
+    return _unmapString1(organizationPubId.substring('$ORGANIZATION_PUB_ID_PPREFIX-'.length))
+        .substring(3);
+  }
+
+  //
+  //
+  //
+
+  static String newId([String prefix = '']) {
+    return '${prefix.isNotEmpty ? "${prefix.toUpperCase()}-" : ""}${const Uuid().v1().replaceAll('-', '')}';
   }
 }
 
