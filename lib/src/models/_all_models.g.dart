@@ -16,6 +16,8 @@ export 'def/model_relationship_disabled_def/model_relationship_disabled_def.dart
 export 'def/model_relationship_removed_def/model_relationship_removed_def.dart';
 export 'def/model_user_and_user_def/model_user_and_user_def.dart';
 export 'model_event/model_event.dart';
+export 'model_organization/model_organization.dart';
+export 'model_organization_pub/model_organization_pub.dart';
 export 'model_relationship/model_relationship.dart';
 export 'model_screen_configuration/model_screen_configuration.dart';
 export 'model_user/model_user.dart';
