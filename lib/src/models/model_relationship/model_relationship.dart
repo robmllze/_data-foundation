@@ -3,8 +3,6 @@
 //
 // 🇽🇾🇿 & Dev
 //
-// Copyright Ⓒ Robert Mollentze, xyzand.dev
-//
 // Licensing details can be found in the LICENSE file in the root directory.
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
@@ -103,8 +101,7 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
   }
 
   /// Whether this relationship is marked as "enabled" for the Member with [memberId].
-  bool isMarkedAsEnabledFor(String memberId) =>
-      this.model.whenEnabled?[memberId] == null;
+  bool isMarkedAsEnabledFor(String memberId) => this.model.whenEnabled?[memberId] == null;
 
   /// Marks this relationship as "disabled" for the Member with [memberId].
   ///
@@ -120,8 +117,7 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
   }
 
   /// Whether this relationship is marked as "disabled" for the Member with [memberId].
-  bool isMarkedAsDisabledFor(String memberId) =>
-      this.model.whenDisabled?[memberId] == null;
+  bool isMarkedAsDisabledFor(String memberId) => this.model.whenDisabled?[memberId] == null;
 
   /// Whether this relationship involves the Member with [memberId].
   bool involvesMember(String memberId) {

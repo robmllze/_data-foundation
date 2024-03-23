@@ -3,8 +3,6 @@
 //
 // 🇽🇾🇿 & Dev
 //
-// Copyright Ⓒ Robert Mollentze, xyzand.dev
-//
 // Licensing details can be found in the LICENSE file in the root directory.
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
@@ -91,8 +89,7 @@ final class IdUtils {
   }
 
   static String mapPubIdToUserId({required String userPubId}) {
-    return _unmapString1(userPubId.substring('$PUB_ID_PREFIX-'.length))
-        .substring(3);
+    return _unmapString1(userPubId.substring('$PUB_ID_PREFIX-'.length)).substring(3);
   }
 }
 
