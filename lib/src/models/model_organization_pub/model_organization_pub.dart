@@ -24,4 +24,4 @@ part '_model_organization_pub.g.dart';
   shouldInherit: true,
 )
 // ignore: unused_element
-abstract class _ModelOrganizationPub extends ThisModel<ModelOrganizationPub> {}
+abstract class _ModelOrganizationPub extends Model {}

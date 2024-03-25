@@ -17,8 +17,8 @@ abstract final class UserAndUserPermissionUtils {
   //
   //
 
-  static ModelUserAndUserPermissions get _false {
-    return ModelUserAndUserPermissions(
+  static ModelUserPermissions get _false {
+    return ModelUserPermissions(
       editorPermit: false,
       editorRequest: false,
       minimalPermit: false,
@@ -32,91 +32,91 @@ abstract final class UserAndUserPermissionUtils {
     );
   }
 
-  static ModelUserAndUserPermissions get empty {
-    return ModelUserAndUserPermissions();
+  static ModelUserPermissions get empty {
+    return ModelUserPermissions();
   }
 
-  static ModelUserAndUserPermissions get addMinimal {
-    return ModelUserAndUserPermissions(minimalPermit: true, minimalRequest: true);
+  static ModelUserPermissions get addMinimal {
+    return ModelUserPermissions(minimalPermit: true, minimalRequest: true);
   }
 
-  static ModelUserAndUserPermissions get removeMinimal {
-    return ModelUserAndUserPermissions(minimalPermit: false, minimalRequest: false);
+  static ModelUserPermissions get removeMinimal {
+    return ModelUserPermissions(minimalPermit: false, minimalRequest: false);
   }
 
-  static ModelUserAndUserPermissions get addMessaging {
-    return ModelUserAndUserPermissions(messagingPermit: true, messagingRequest: true);
+  static ModelUserPermissions get addMessaging {
+    return ModelUserPermissions(messagingPermit: true, messagingRequest: true);
   }
 
-  static ModelUserAndUserPermissions get removeMessaging {
-    return ModelUserAndUserPermissions(messagingPermit: false, messagingRequest: false);
+  static ModelUserPermissions get removeMessaging {
+    return ModelUserPermissions(messagingPermit: false, messagingRequest: false);
   }
 
-  static ModelUserAndUserPermissions get addReadOnlyPermit {
-    return ModelUserAndUserPermissions(readOnlyPermit: true);
+  static ModelUserPermissions get addReadOnlyPermit {
+    return ModelUserPermissions(readOnlyPermit: true);
   }
 
-  static ModelUserAndUserPermissions get removeReadOnlyPermit {
-    return ModelUserAndUserPermissions(readOnlyPermit: false);
+  static ModelUserPermissions get removeReadOnlyPermit {
+    return ModelUserPermissions(readOnlyPermit: false);
   }
 
-  static ModelUserAndUserPermissions get addReadOnlyRequest {
-    return ModelUserAndUserPermissions(readOnlyRequest: true);
+  static ModelUserPermissions get addReadOnlyRequest {
+    return ModelUserPermissions(readOnlyRequest: true);
   }
 
-  static ModelUserAndUserPermissions get removeReadOnlyRequest {
-    return ModelUserAndUserPermissions(readOnlyRequest: false);
+  static ModelUserPermissions get removeReadOnlyRequest {
+    return ModelUserPermissions(readOnlyRequest: false);
   }
 
-  static ModelUserAndUserPermissions get addEditorPermit {
-    return ModelUserAndUserPermissions(readOnlyPermit: true, editorPermit: true);
+  static ModelUserPermissions get addEditorPermit {
+    return ModelUserPermissions(readOnlyPermit: true, editorPermit: true);
   }
 
-  static ModelUserAndUserPermissions get removeEditorPermit {
-    return ModelUserAndUserPermissions(readOnlyPermit: false, editorPermit: false);
+  static ModelUserPermissions get removeEditorPermit {
+    return ModelUserPermissions(readOnlyPermit: false, editorPermit: false);
   }
 
-  static ModelUserAndUserPermissions get addEditorRequest {
-    return ModelUserAndUserPermissions(readOnlyRequest: true, editorRequest: true);
+  static ModelUserPermissions get addEditorRequest {
+    return ModelUserPermissions(readOnlyRequest: true, editorRequest: true);
   }
 
-  static ModelUserAndUserPermissions get removeEditorRequest {
-    return ModelUserAndUserPermissions(readOnlyRequest: false, editorRequest: false);
+  static ModelUserPermissions get removeEditorRequest {
+    return ModelUserPermissions(readOnlyRequest: false, editorRequest: false);
   }
 
   //
   //
   //
 
-  static ModelUserAndUserPermissions get addNotificationPermit {
-    return ModelUserAndUserPermissions(notificationPermit: true);
+  static ModelUserPermissions get addNotificationPermit {
+    return ModelUserPermissions(notificationPermit: true);
   }
 
-  static ModelUserAndUserPermissions get addNotificationRequest {
-    return ModelUserAndUserPermissions(notificationRequest: true);
+  static ModelUserPermissions get addNotificationRequest {
+    return ModelUserPermissions(notificationRequest: true);
   }
 
-  static ModelUserAndUserPermissions get blocked {
+  static ModelUserPermissions get blocked {
     return _false;
   }
 
-  static ModelUserAndUserPermissions get minimal {
+  static ModelUserPermissions get minimal {
     return blocked.copyWith(addMinimal).copyWith(addMessaging);
   }
 
-  static ModelUserAndUserPermissions get readOnlyRequest {
+  static ModelUserPermissions get readOnlyRequest {
     return minimal.copyWith(addReadOnlyRequest);
   }
 
-  static ModelUserAndUserPermissions get readOnlyPermit {
+  static ModelUserPermissions get readOnlyPermit {
     return minimal.copyWith(addReadOnlyPermit);
   }
 
-  static ModelUserAndUserPermissions get editorRequest {
+  static ModelUserPermissions get editorRequest {
     return minimal.copyWith(addEditorRequest);
   }
 
-  static ModelUserAndUserPermissions get editorPermit {
+  static ModelUserPermissions get editorPermit {
     return minimal.copyWith(addEditorPermit);
   }
 
@@ -124,7 +124,7 @@ abstract final class UserAndUserPermissionUtils {
   //
   //
 
-  static ModelUserAndUserPermissions permitFromAccesType(AccessType accessType) {
+  static ModelUserPermissions permitFromAccesType(AccessType accessType) {
     switch (accessType) {
       case AccessType.EDITOR:
         return editorPermit;
@@ -135,7 +135,7 @@ abstract final class UserAndUserPermissionUtils {
     }
   }
 
-  static ModelUserAndUserPermissions requestFromAccesType(AccessType accessType) {
+  static ModelUserPermissions requestFromAccesType(AccessType accessType) {
     switch (accessType) {
       case AccessType.EDITOR:
         return editorRequest;

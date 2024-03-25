@@ -10,15 +10,16 @@
 
 import '/_common.dart';
 
-part '_model_user_and_user_def.g.dart';
+part '_model_rel_disabled_def.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'permissions': 'ModelUserAndUserPermissions?',
+    'relationshipId': 'String?',
+    'senderPubId': 'String?',
+    'receiverPubId': 'String?',
   },
 )
-// ignore: unused_element
-abstract class _ModelUserAndUserDef extends ThisModel<ModelUserAndUserDef> {}
+abstract class _ModelRelDisabledDef extends Model {}

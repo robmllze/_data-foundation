@@ -23,4 +23,4 @@ part '_model_organization.g.dart';
   shouldInherit: true,
 )
 // ignore: unused_element
-abstract class _ModelOrganization extends ThisModel<ModelOrganization> {}
+abstract class _ModelOrganization extends Model {}

@@ -34,7 +34,7 @@ abstract class _ModelEvent extends ThisModel<ModelEvent> {
   //
   //
 
-  String? get senderPubId => super.model.whenSent?.keys.firstOrNull;
+  String? get senderPubId => this.model.whenSent?.keys.firstOrNull;
 
   //
   //
@@ -74,10 +74,10 @@ abstract class _ModelEvent extends ThisModel<ModelEvent> {
   DateTime? get lastReceived => getLastDate(this.datesRecieved);
   DateTime? get lastSent => getLastDate(this.datesSent);
 
-  bool get isArchived => super.model.whenArchived?.isNotEmpty == true;
-  bool get isHidden => super.model.whenHidden?.isNotEmpty == true;
-  bool get isLiked => super.model.whenLiked?.isNotEmpty == true;
-  bool get isRead => super.model.whenRead?.isNotEmpty == true;
-  bool get isReceived => super.model.whenReceived?.isNotEmpty == true;
-  bool get isSent => super.model.whenSent?.isNotEmpty == true;
+  bool get isArchived => this.model.whenArchived?.isNotEmpty == true;
+  bool get isHidden => this.model.whenHidden?.isNotEmpty == true;
+  bool get isLiked => this.model.whenLiked?.isNotEmpty == true;
+  bool get isRead => this.model.whenRead?.isNotEmpty == true;
+  bool get isReceived => this.model.whenReceived?.isNotEmpty == true;
+  bool get isSent => this.model.whenSent?.isNotEmpty == true;
 }

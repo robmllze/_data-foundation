@@ -15,17 +15,17 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_relationship_changed_def.dart';
+part of 'model_rel_removed_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelRelationshipChangedDef extends _ModelRelationshipChangedDef {
+class ModelRelRemovedDef extends _ModelRelRemovedDef {
   //
   //
   //
 
-  static const CLASS = 'ModelRelationshipChangedDef';
-  static const MODEL_ID = 'model_relationship_changed_def';
+  static const CLASS = 'ModelRelRemovedDef';
+  static const MODEL_ID = 'model_rel_removed_def';
 
   static const K_ID = 'id';
   static const K_RECEIVER_PUB_ID = 'receiver_pub_id';
@@ -40,7 +40,7 @@ class ModelRelationshipChangedDef extends _ModelRelationshipChangedDef {
   //
   //
 
-  ModelRelationshipChangedDef({
+  ModelRelRemovedDef({
     String? id,
     this.receiverPubId,
     this.relationshipId,
@@ -53,7 +53,7 @@ class ModelRelationshipChangedDef extends _ModelRelationshipChangedDef {
   //
   //
 
-  ModelRelationshipChangedDef.unsafe({
+  ModelRelRemovedDef.unsafe({
     String? id,
     this.receiverPubId,
     this.relationshipId,
@@ -66,35 +66,35 @@ class ModelRelationshipChangedDef extends _ModelRelationshipChangedDef {
   //
   //
 
-  factory ModelRelationshipChangedDef.from(
+  factory ModelRelRemovedDef.from(
     Model? other,
   ) {
-    return ModelRelationshipChangedDef.unsafe()..updateWith(other);
+    return ModelRelRemovedDef.unsafe()..updateWith(other);
   }
 
   //
   //
   //
 
-  factory ModelRelationshipChangedDef.of(
-    ModelRelationshipChangedDef? other,
+  factory ModelRelRemovedDef.of(
+    ModelRelRemovedDef? other,
   ) {
-    return ModelRelationshipChangedDef.unsafe()..updateWith(other);
+    return ModelRelRemovedDef.unsafe()..updateWith(other);
   }
 
   //
   //
   //
 
-  factory ModelRelationshipChangedDef.fromJsonString(
+  factory ModelRelRemovedDef.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelRelationshipChangedDef.fromJson(decoded);
+        return ModelRelRemovedDef.fromJson(decoded);
       } else {
-        return ModelRelationshipChangedDef.unsafe();
+        return ModelRelRemovedDef.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -106,11 +106,11 @@ class ModelRelationshipChangedDef extends _ModelRelationshipChangedDef {
   //
   //
 
-  factory ModelRelationshipChangedDef.fromJson(
+  factory ModelRelRemovedDef.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelRelationshipChangedDef.unsafe(
+      return ModelRelRemovedDef.unsafe(
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         receiverPubId:
             otherData?[K_RECEIVER_PUB_ID]?.toString().trim().nullIfEmpty,
@@ -153,7 +153,7 @@ class ModelRelationshipChangedDef extends _ModelRelationshipChangedDef {
 
   @override
   T empty<T extends Model>() {
-    return ModelRelationshipChangedDef.unsafe() as T;
+    return ModelRelRemovedDef.unsafe() as T;
   }
 
   //
@@ -162,7 +162,7 @@ class ModelRelationshipChangedDef extends _ModelRelationshipChangedDef {
 
   @override
   T copy<T extends Model>() {
-    return (ModelRelationshipChangedDef.unsafe()..updateWith(this)) as T;
+    return (ModelRelRemovedDef.unsafe()..updateWith(this)) as T;
   }
 
   //
@@ -174,7 +174,7 @@ class ModelRelationshipChangedDef extends _ModelRelationshipChangedDef {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelRelationshipChangedDef.fromJson(otherData);
+      final other = ModelRelRemovedDef.fromJson(otherData);
       other.id != null ? this.id = other.id : null;
       other.receiverPubId != null
           ? this.receiverPubId = other.receiverPubId

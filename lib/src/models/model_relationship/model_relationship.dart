@@ -75,8 +75,8 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
   ///
   /// It is useful for tracking if this relationship is new to a Member or not.
   void markAsNotedFor(String memberId) {
-    super.model.whenNoted = {
-      ...?super.model.whenNoted,
+    this.model.whenNoted = {
+      ...?this.model.whenNoted,
       memberId: DateTime.now(),
     };
   }
@@ -94,8 +94,8 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
   /// If not explicitly marked as enabled or disabled then the relationship is
   /// assumed to be enabled.
   void markAsEnabledFor(String memberId) {
-    super.model.whenEnabled = {
-      ...?super.model.whenEnabled,
+    this.model.whenEnabled = {
+      ...?this.model.whenEnabled,
       memberId: DateTime.now(),
     };
   }
@@ -110,8 +110,8 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
   ///
   /// It is useful for temporarily disabling a relationship for a Member.
   void markAsDisabledFor(String memberId) {
-    super.model.whenDisabled = {
-      ...?super.model.whenDisabled,
+    this.model.whenDisabled = {
+      ...?this.model.whenDisabled,
       memberId: DateTime.now(),
     };
   }
@@ -121,12 +121,12 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
 
   /// Whether this relationship involves the Member with [memberId].
   bool involvesMember(String memberId) {
-    return super.model.memberIds?.contains(memberId) == true;
+    return this.model.memberIds?.contains(memberId) == true;
   }
 
   /// Returns the Member IDs of the other Members in this relationship.
   Iterable<String>? getOtherMemberIds(String currentMemberId) {
-    return super.model.memberIds?.where((e) => e != currentMemberId);
+    return this.model.memberIds?.where((e) => e != currentMemberId);
   }
 
   /// Calls [callback] for each Member in this relationship.

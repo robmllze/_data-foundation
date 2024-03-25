@@ -10,16 +10,24 @@
 
 import '/_common.dart';
 
-part '_model_relationship_removed_def.g.dart';
+part '_model_user_permissions.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'relationshipId': 'String?',
-    'senderPubId': 'String?',
-    'receiverPubId': 'String?',
+    'minimalPermit': 'bool?',
+    'minimalRequest': 'bool?',
+    'editorPermit': 'bool?',
+    'editorRequest': 'bool?',
+    'messagingPermit': 'bool?',
+    'messagingRequest': 'bool?',
+    'notificationPermit': 'bool?',
+    'notificationRequest': 'bool?',
+    'readOnlyPermit': 'bool?',
+    'readOnlyRequest': 'bool?',
   },
 )
-abstract class _ModelRelationshipRemovedDef extends Model {}
+// ignore: unused_element
+abstract class _ModelUserPermissions extends Model {}

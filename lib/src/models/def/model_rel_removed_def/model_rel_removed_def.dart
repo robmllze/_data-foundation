@@ -10,7 +10,7 @@
 
 import '/_common.dart';
 
-part '_model_relationship_changed_def.g.dart';
+part '_model_rel_removed_def.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -22,4 +22,4 @@ part '_model_relationship_changed_def.g.dart';
     'receiverPubId': 'String?',
   },
 )
-abstract class _ModelRelationshipChangedDef extends Model {}
+abstract class _ModelRelRemovedDef extends Model {}

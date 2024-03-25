@@ -15,17 +15,17 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_relationship_disabled_def.dart';
+part of 'model_rel_disabled_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelRelationshipDisabledDef extends _ModelRelationshipDisabledDef {
+class ModelRelDisabledDef extends _ModelRelDisabledDef {
   //
   //
   //
 
-  static const CLASS = 'ModelRelationshipDisabledDef';
-  static const MODEL_ID = 'model_relationship_disabled_def';
+  static const CLASS = 'ModelRelDisabledDef';
+  static const MODEL_ID = 'model_rel_disabled_def';
 
   static const K_ID = 'id';
   static const K_RECEIVER_PUB_ID = 'receiver_pub_id';
@@ -40,7 +40,7 @@ class ModelRelationshipDisabledDef extends _ModelRelationshipDisabledDef {
   //
   //
 
-  ModelRelationshipDisabledDef({
+  ModelRelDisabledDef({
     String? id,
     this.receiverPubId,
     this.relationshipId,
@@ -53,7 +53,7 @@ class ModelRelationshipDisabledDef extends _ModelRelationshipDisabledDef {
   //
   //
 
-  ModelRelationshipDisabledDef.unsafe({
+  ModelRelDisabledDef.unsafe({
     String? id,
     this.receiverPubId,
     this.relationshipId,
@@ -66,35 +66,35 @@ class ModelRelationshipDisabledDef extends _ModelRelationshipDisabledDef {
   //
   //
 
-  factory ModelRelationshipDisabledDef.from(
+  factory ModelRelDisabledDef.from(
     Model? other,
   ) {
-    return ModelRelationshipDisabledDef.unsafe()..updateWith(other);
+    return ModelRelDisabledDef.unsafe()..updateWith(other);
   }
 
   //
   //
   //
 
-  factory ModelRelationshipDisabledDef.of(
-    ModelRelationshipDisabledDef? other,
+  factory ModelRelDisabledDef.of(
+    ModelRelDisabledDef? other,
   ) {
-    return ModelRelationshipDisabledDef.unsafe()..updateWith(other);
+    return ModelRelDisabledDef.unsafe()..updateWith(other);
   }
 
   //
   //
   //
 
-  factory ModelRelationshipDisabledDef.fromJsonString(
+  factory ModelRelDisabledDef.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelRelationshipDisabledDef.fromJson(decoded);
+        return ModelRelDisabledDef.fromJson(decoded);
       } else {
-        return ModelRelationshipDisabledDef.unsafe();
+        return ModelRelDisabledDef.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -106,11 +106,11 @@ class ModelRelationshipDisabledDef extends _ModelRelationshipDisabledDef {
   //
   //
 
-  factory ModelRelationshipDisabledDef.fromJson(
+  factory ModelRelDisabledDef.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelRelationshipDisabledDef.unsafe(
+      return ModelRelDisabledDef.unsafe(
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         receiverPubId:
             otherData?[K_RECEIVER_PUB_ID]?.toString().trim().nullIfEmpty,
@@ -153,7 +153,7 @@ class ModelRelationshipDisabledDef extends _ModelRelationshipDisabledDef {
 
   @override
   T empty<T extends Model>() {
-    return ModelRelationshipDisabledDef.unsafe() as T;
+    return ModelRelDisabledDef.unsafe() as T;
   }
 
   //
@@ -162,7 +162,7 @@ class ModelRelationshipDisabledDef extends _ModelRelationshipDisabledDef {
 
   @override
   T copy<T extends Model>() {
-    return (ModelRelationshipDisabledDef.unsafe()..updateWith(this)) as T;
+    return (ModelRelDisabledDef.unsafe()..updateWith(this)) as T;
   }
 
   //
@@ -174,7 +174,7 @@ class ModelRelationshipDisabledDef extends _ModelRelationshipDisabledDef {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelRelationshipDisabledDef.fromJson(otherData);
+      final other = ModelRelDisabledDef.fromJson(otherData);
       other.id != null ? this.id = other.id : null;
       other.receiverPubId != null
           ? this.receiverPubId = other.receiverPubId

@@ -31,15 +31,20 @@ part '_model_screen_configuration.g.dart';
   },
 )
 abstract class _ModelScreenConfiguration extends ThisModel<ModelScreenConfiguration> {
-  //
-  //
-  //
-
   T? arg<T>(dynamic key) => letAs<T>(model.arguments?[key]);
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
+/// Creates a [ModelScreenConfiguration] from the current base URL.
+ModelScreenConfiguration currentBaseConfiguration() {
+  return ModelScreenConfiguration(
+    arguments: Uri.base.queryParameters,
+    path: Uri.base.path,
+  );
+}
+
+/// Creates a [ModelScreenConfiguration] from a [Uri].
 ModelScreenConfiguration urlToScreenConfiguration({
   required Uri url,
   required bool isAccessibleOnlyIfLoggedIn,

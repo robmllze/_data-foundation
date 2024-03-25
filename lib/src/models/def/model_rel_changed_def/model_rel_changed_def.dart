@@ -10,24 +10,16 @@
 
 import '/_common.dart';
 
-part '_model_user_and_user_permissions.g.dart';
+part '_model_rel_changed_def.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'minimalPermit': 'bool?',
-    'minimalRequest': 'bool?',
-    'editorPermit': 'bool?',
-    'editorRequest': 'bool?',
-    'messagingPermit': 'bool?',
-    'messagingRequest': 'bool?',
-    'notificationPermit': 'bool?',
-    'notificationRequest': 'bool?',
-    'readOnlyPermit': 'bool?',
-    'readOnlyRequest': 'bool?',
+    'relationshipId': 'String?',
+    'senderPubId': 'String?',
+    'receiverPubId': 'String?',
   },
 )
-// ignore: unused_element
-abstract class _ModelUserAndUserPermissions extends ThisModel<ModelUserAndUserPermissions> {}
+abstract class _ModelRelChangedDef extends Model {}
