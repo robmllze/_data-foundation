@@ -19,7 +19,7 @@ part of 'model_message_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelMessageDef extends _ModelMessageDef {
+class ModelMessageDef extends Model {
   //
   //
   //

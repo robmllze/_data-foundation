@@ -19,7 +19,7 @@ part of 'model_user.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelUser extends _ModelUser {
+class ModelUser extends Model {
   //
   //
   //
@@ -27,7 +27,6 @@ class ModelUser extends _ModelUser {
   static const CLASS = 'ModelUser';
   static const MODEL_ID = 'model_user';
 
-  static const K_CONNECTION_UIDS = 'connection_uids';
   static const K_DID_SEND_WELCOME_EMAIL = 'did_send_welcome_email';
   static const K_EMAIL_SUBSCRIPTIONS = 'email_subscriptions';
   static const K_ID = 'id';
@@ -38,7 +37,6 @@ class ModelUser extends _ModelUser {
   static const K_USER_TYPES = 'user_types';
   static const K_WHEN_LAST_LOGGED_IN = 'when_last_logged_in';
 
-  Set<String>? connectionUids;
   bool? didSendWelcomeEmail;
   Set<String>? emailSubscriptions;
   Set<String>? pushSubscriptions;
@@ -54,7 +52,6 @@ class ModelUser extends _ModelUser {
 
   ModelUser({
     String? id,
-    this.connectionUids,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pushSubscriptions,
@@ -73,7 +70,6 @@ class ModelUser extends _ModelUser {
 
   ModelUser.unsafe({
     String? id,
-    this.connectionUids,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pushSubscriptions,
@@ -135,14 +131,6 @@ class ModelUser extends _ModelUser {
   ) {
     try {
       return ModelUser.unsafe(
-        connectionUids: letSet(otherData?[K_CONNECTION_UIDS])
-            ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
         didSendWelcomeEmail: letBool(otherData?[K_DID_SEND_WELCOME_EMAIL]),
         emailSubscriptions: letSet(otherData?[K_EMAIL_SUBSCRIPTIONS])
             ?.map(
@@ -208,13 +196,6 @@ class ModelUser extends _ModelUser {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CONNECTION_UIDS: connectionUids
-            ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
         K_DID_SEND_WELCOME_EMAIL: didSendWelcomeEmail,
         K_EMAIL_SUBSCRIPTIONS: emailSubscriptions
             ?.map(
@@ -290,9 +271,6 @@ class ModelUser extends _ModelUser {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUser.fromJson(otherData);
-      other.connectionUids != null
-          ? this.connectionUids = other.connectionUids
-          : null;
       other.didSendWelcomeEmail != null
           ? this.didSendWelcomeEmail = other.didSendWelcomeEmail
           : null;

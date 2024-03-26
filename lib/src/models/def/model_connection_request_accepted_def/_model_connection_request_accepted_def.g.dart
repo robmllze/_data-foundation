@@ -19,8 +19,7 @@ part of 'model_connection_request_accepted_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelConnectionRequestAcceptedDef
-    extends _ModelConnectionRequestAcceptedDef {
+class ModelConnectionRequestAcceptedDef extends Model {
   //
   //
   //

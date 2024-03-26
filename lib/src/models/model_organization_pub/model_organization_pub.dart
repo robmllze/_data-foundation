@@ -21,7 +21,6 @@ part '_model_organization_pub.g.dart';
     'display_name_searchable': 'String?',
     'organization_id': 'String?',
   },
-  shouldInherit: true,
 )
 // ignore: unused_element
-abstract class _ModelOrganizationPub extends Model {}
+abstract class _ModelOrganizationPub {}

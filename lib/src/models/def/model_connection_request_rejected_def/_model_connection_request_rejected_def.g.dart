@@ -19,8 +19,7 @@ part of 'model_connection_request_rejected_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelConnectionRequestRejectedDef
-    extends _ModelConnectionRequestRejectedDef {
+class ModelConnectionRequestRejectedDef extends Model {
   //
   //
   //

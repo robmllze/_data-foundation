@@ -15,28 +15,28 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_user_rel_def.dart';
+part of 'model_connections_rel_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelUserRelDef extends _ModelUserRelDef {
+class ModelConnectionsRelDef extends Model {
   //
   //
   //
 
-  static const CLASS = 'ModelUserRelDef';
-  static const MODEL_ID = 'model_user_rel_def';
+  static const CLASS = 'ModelConnectionsRelDef';
+  static const MODEL_ID = 'model_connections_rel_def';
 
   static const K_ID = 'id';
   static const K_PERMISSIONS = 'permissions';
 
-  ModelUserPermissions? permissions;
+  ModelConnectionPermissions? permissions;
 
   //
   //
   //
 
-  ModelUserRelDef({
+  ModelConnectionsRelDef({
     String? id,
     this.permissions,
   }) {
@@ -47,7 +47,7 @@ class ModelUserRelDef extends _ModelUserRelDef {
   //
   //
 
-  ModelUserRelDef.unsafe({
+  ModelConnectionsRelDef.unsafe({
     String? id,
     this.permissions,
   }) {
@@ -58,35 +58,35 @@ class ModelUserRelDef extends _ModelUserRelDef {
   //
   //
 
-  factory ModelUserRelDef.from(
+  factory ModelConnectionsRelDef.from(
     Model? other,
   ) {
-    return ModelUserRelDef.unsafe()..updateWith(other);
+    return ModelConnectionsRelDef.unsafe()..updateWith(other);
   }
 
   //
   //
   //
 
-  factory ModelUserRelDef.of(
-    ModelUserRelDef? other,
+  factory ModelConnectionsRelDef.of(
+    ModelConnectionsRelDef? other,
   ) {
-    return ModelUserRelDef.unsafe()..updateWith(other);
+    return ModelConnectionsRelDef.unsafe()..updateWith(other);
   }
 
   //
   //
   //
 
-  factory ModelUserRelDef.fromJsonString(
+  factory ModelConnectionsRelDef.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelUserRelDef.fromJson(decoded);
+        return ModelConnectionsRelDef.fromJson(decoded);
       } else {
-        return ModelUserRelDef.unsafe();
+        return ModelConnectionsRelDef.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -98,15 +98,15 @@ class ModelUserRelDef extends _ModelUserRelDef {
   //
   //
 
-  factory ModelUserRelDef.fromJson(
+  factory ModelConnectionsRelDef.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelUserRelDef.unsafe(
+      return ModelConnectionsRelDef.unsafe(
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         permissions: () {
           final a = letMap<String, dynamic>(otherData?[K_PERMISSIONS]);
-          return a != null ? ModelUserPermissions.fromJson(a) : null;
+          return a != null ? ModelConnectionPermissions.fromJson(a) : null;
         }(),
       );
     } catch (e) {
@@ -142,7 +142,7 @@ class ModelUserRelDef extends _ModelUserRelDef {
 
   @override
   T empty<T extends Model>() {
-    return ModelUserRelDef.unsafe() as T;
+    return ModelConnectionsRelDef.unsafe() as T;
   }
 
   //
@@ -151,7 +151,7 @@ class ModelUserRelDef extends _ModelUserRelDef {
 
   @override
   T copy<T extends Model>() {
-    return (ModelUserRelDef.unsafe()..updateWith(this)) as T;
+    return (ModelConnectionsRelDef.unsafe()..updateWith(this)) as T;
   }
 
   //
@@ -163,7 +163,7 @@ class ModelUserRelDef extends _ModelUserRelDef {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelUserRelDef.fromJson(otherData);
+      final other = ModelConnectionsRelDef.fromJson(otherData);
       other.id != null ? this.id = other.id : null;
       other.permissions != null ? this.permissions = other.permissions : null;
     }

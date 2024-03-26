@@ -19,7 +19,7 @@ part of 'model_organization.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelOrganization extends _ModelOrganization {
+class ModelOrganization extends Model {
   //
   //
   //

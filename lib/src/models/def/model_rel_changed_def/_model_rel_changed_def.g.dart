@@ -19,7 +19,7 @@ part of 'model_rel_changed_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelRelChangedDef extends _ModelRelChangedDef {
+class ModelRelChangedDef extends Model {
   //
   //
   //

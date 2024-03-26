@@ -20,7 +20,6 @@ part '_model_organization.g.dart';
     'relationship_ids': 'Set<String>?',
     'organization_pub_id': 'String?',
   },
-  shouldInherit: true,
 )
 // ignore: unused_element
-abstract class _ModelOrganization extends Model {}
+abstract class _ModelOrganization {}

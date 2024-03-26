@@ -7,7 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export 'rel_def/model_admin_org_rel_def/model_admin_org_rel_def.dart';
 export 'model_connection_request_accepted_def/model_connection_request_accepted_def.dart';
 export 'model_connection_request_def/model_connection_request_def.dart';
 export 'model_connection_request_rejected_def/model_connection_request_rejected_def.dart';
@@ -15,4 +14,5 @@ export 'model_message_def/model_message_def.dart';
 export 'model_rel_changed_def/model_rel_changed_def.dart';
 export 'model_rel_disabled_def/model_rel_disabled_def.dart';
 export 'model_rel_removed_def/model_rel_removed_def.dart';
-export 'rel_def/model_user_rel_def/model_user_rel_def.dart';
+export 'model_user_and_org_rel_def/model_user_and_org_rel_def.dart';
+export 'rel_def/model_connections_rel_def/model_connections_rel_def.dart';

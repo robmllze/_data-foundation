@@ -16,11 +16,9 @@ part '_relationship_def_type.g.dart';
 
 @GenerateTypeUtils()
 enum RelationshipDefType {
-  ADMIN_AND_ORGANIATION,
-  ORGANIZATION_AND_USER,
-  ORGANIZATION_GROUP,
-  PROVIDER_AND_USER,
-  PROVIDER_GROUP,
-  USER_AND_USER,
-  USER_GROUP,
+  /// A relationship between a user and an organization.
+  USER_AND_ORGANIZATION,
+
+  /// A relationship between a connections, i.e. a user and another user.
+  CONNECTIONS,
 }

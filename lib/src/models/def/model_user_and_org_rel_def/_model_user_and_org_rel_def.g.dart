@@ -15,33 +15,33 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_admin_org_rel_def.dart';
+part of 'model_user_and_org_rel_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelAdminOrgRelDef extends _ModelAdminOrgRelDef {
+class ModelUserAndOrgRelDef extends Model {
   //
   //
   //
 
-  static const CLASS = 'ModelAdminOrgRelDef';
-  static const MODEL_ID = 'model_admin_org_rel_def';
+  static const CLASS = 'ModelUserAndOrgRelDef';
+  static const MODEL_ID = 'model_user_and_org_rel_def';
 
-  static const K_ADMIN_PUB_ID = 'admin_pub_id';
   static const K_ID = 'id';
   static const K_ORGANIZATION_PUB_ID = 'organization_pub_id';
+  static const K_USER_PUB_ID = 'user_pub_id';
 
-  String? adminPubId;
   String? organizationPubId;
+  String? userPubId;
 
   //
   //
   //
 
-  ModelAdminOrgRelDef({
+  ModelUserAndOrgRelDef({
     String? id,
-    this.adminPubId,
     this.organizationPubId,
+    this.userPubId,
   }) {
     this.id = id;
   }
@@ -50,10 +50,10 @@ class ModelAdminOrgRelDef extends _ModelAdminOrgRelDef {
   //
   //
 
-  ModelAdminOrgRelDef.unsafe({
+  ModelUserAndOrgRelDef.unsafe({
     String? id,
-    this.adminPubId,
     this.organizationPubId,
+    this.userPubId,
   }) {
     this.id = id;
   }
@@ -62,35 +62,35 @@ class ModelAdminOrgRelDef extends _ModelAdminOrgRelDef {
   //
   //
 
-  factory ModelAdminOrgRelDef.from(
+  factory ModelUserAndOrgRelDef.from(
     Model? other,
   ) {
-    return ModelAdminOrgRelDef.unsafe()..updateWith(other);
+    return ModelUserAndOrgRelDef.unsafe()..updateWith(other);
   }
 
   //
   //
   //
 
-  factory ModelAdminOrgRelDef.of(
-    ModelAdminOrgRelDef? other,
+  factory ModelUserAndOrgRelDef.of(
+    ModelUserAndOrgRelDef? other,
   ) {
-    return ModelAdminOrgRelDef.unsafe()..updateWith(other);
+    return ModelUserAndOrgRelDef.unsafe()..updateWith(other);
   }
 
   //
   //
   //
 
-  factory ModelAdminOrgRelDef.fromJsonString(
+  factory ModelUserAndOrgRelDef.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelAdminOrgRelDef.fromJson(decoded);
+        return ModelUserAndOrgRelDef.fromJson(decoded);
       } else {
-        return ModelAdminOrgRelDef.unsafe();
+        return ModelUserAndOrgRelDef.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -102,15 +102,15 @@ class ModelAdminOrgRelDef extends _ModelAdminOrgRelDef {
   //
   //
 
-  factory ModelAdminOrgRelDef.fromJson(
+  factory ModelUserAndOrgRelDef.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelAdminOrgRelDef.unsafe(
-        adminPubId: otherData?[K_ADMIN_PUB_ID]?.toString().trim().nullIfEmpty,
+      return ModelUserAndOrgRelDef.unsafe(
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         organizationPubId:
             otherData?[K_ORGANIZATION_PUB_ID]?.toString().trim().nullIfEmpty,
+        userPubId: otherData?[K_USER_PUB_ID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -129,9 +129,9 @@ class ModelAdminOrgRelDef extends _ModelAdminOrgRelDef {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_ADMIN_PUB_ID: adminPubId?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_ORGANIZATION_PUB_ID: organizationPubId?.toString().trim().nullIfEmpty,
+        K_USER_PUB_ID: userPubId?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -146,7 +146,7 @@ class ModelAdminOrgRelDef extends _ModelAdminOrgRelDef {
 
   @override
   T empty<T extends Model>() {
-    return ModelAdminOrgRelDef.unsafe() as T;
+    return ModelUserAndOrgRelDef.unsafe() as T;
   }
 
   //
@@ -155,7 +155,7 @@ class ModelAdminOrgRelDef extends _ModelAdminOrgRelDef {
 
   @override
   T copy<T extends Model>() {
-    return (ModelAdminOrgRelDef.unsafe()..updateWith(this)) as T;
+    return (ModelUserAndOrgRelDef.unsafe()..updateWith(this)) as T;
   }
 
   //
@@ -167,12 +167,12 @@ class ModelAdminOrgRelDef extends _ModelAdminOrgRelDef {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelAdminOrgRelDef.fromJson(otherData);
-      other.adminPubId != null ? this.adminPubId = other.adminPubId : null;
+      final other = ModelUserAndOrgRelDef.fromJson(otherData);
       other.id != null ? this.id = other.id : null;
       other.organizationPubId != null
           ? this.organizationPubId = other.organizationPubId
           : null;
+      other.userPubId != null ? this.userPubId = other.userPubId : null;
     }
   }
 }

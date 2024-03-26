@@ -18,6 +18,5 @@ part '_user_type.g.dart';
 enum UserType {
   ADMIN,
   ORGANIZATION,
-  PROVIDER,
-  PUBLIC,
+  USER,
 }

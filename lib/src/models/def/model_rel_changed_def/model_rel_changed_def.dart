@@ -15,11 +15,11 @@ part '_model_rel_changed_def.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
-  shouldInherit: true,
   fields: {
     'relationshipId': 'String?',
     'senderPubId': 'String?',
     'receiverPubId': 'String?',
   },
 )
-abstract class _ModelRelChangedDef extends Model {}
+// ignore: unused_element
+abstract class _ModelRelChangedDef {}

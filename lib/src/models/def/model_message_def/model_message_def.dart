@@ -15,7 +15,6 @@ part '_model_message_def.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
-  shouldInherit: true,
   fields: {
     'message': 'String?',
     'relationshipId': 'String?',
@@ -23,4 +22,5 @@ part '_model_message_def.g.dart';
     'receiverUid': 'String?',
   },
 )
-abstract class _ModelMessageDef extends Model {}
+// ignore: unused_element
+abstract class _ModelMessageDef {}

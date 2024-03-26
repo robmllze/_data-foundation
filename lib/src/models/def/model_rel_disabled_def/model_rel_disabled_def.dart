@@ -15,11 +15,11 @@ part '_model_rel_disabled_def.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
-  shouldInherit: true,
   fields: {
     'relationshipId': 'String?',
     'senderPubId': 'String?',
     'receiverPubId': 'String?',
   },
 )
-abstract class _ModelRelDisabledDef extends Model {}
+// ignore: unused_element
+abstract class _ModelRelDisabledDef {}

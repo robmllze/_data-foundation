@@ -19,7 +19,7 @@ part of 'model_rel_disabled_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelRelDisabledDef extends _ModelRelDisabledDef {
+class ModelRelDisabledDef extends Model {
   //
   //
   //

@@ -19,7 +19,7 @@ part of 'model_organization_pub.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelOrganizationPub extends _ModelOrganizationPub {
+class ModelOrganizationPub extends Model {
   //
   //
   //

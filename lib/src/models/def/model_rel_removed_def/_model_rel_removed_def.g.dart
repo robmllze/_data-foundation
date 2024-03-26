@@ -19,7 +19,7 @@ part of 'model_rel_removed_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelRelRemovedDef extends _ModelRelRemovedDef {
+class ModelRelRemovedDef extends Model {
   //
   //
   //

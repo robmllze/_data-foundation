@@ -10,15 +10,23 @@
 
 import '/_common.dart';
 
-part '_model_user_rel_def.g.dart';
+part '_model_connection_permissions.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
-  shouldInherit: true,
   fields: {
-    'permissions': 'ModelUserPermissions?',
+    'minimalPermit': 'bool?',
+    'minimalRequest': 'bool?',
+    'editorPermit': 'bool?',
+    'editorRequest': 'bool?',
+    'messagingPermit': 'bool?',
+    'messagingRequest': 'bool?',
+    'notificationPermit': 'bool?',
+    'notificationRequest': 'bool?',
+    'readOnlyPermit': 'bool?',
+    'readOnlyRequest': 'bool?',
   },
 )
 // ignore: unused_element
-abstract class _ModelUserRelDef extends Model {}
+abstract class _ModelConnectionPermissions {}

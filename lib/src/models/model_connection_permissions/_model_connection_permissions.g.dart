@@ -15,17 +15,17 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_user_permissions.dart';
+part of 'model_connection_permissions.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelUserPermissions extends _ModelUserPermissions {
+class ModelConnectionPermissions extends Model {
   //
   //
   //
 
-  static const CLASS = 'ModelUserPermissions';
-  static const MODEL_ID = 'model_user_permissions';
+  static const CLASS = 'ModelConnectionPermissions';
+  static const MODEL_ID = 'model_connection_permissions';
 
   static const K_EDITOR_PERMIT = 'editor_permit';
   static const K_EDITOR_REQUEST = 'editor_request';
@@ -54,7 +54,7 @@ class ModelUserPermissions extends _ModelUserPermissions {
   //
   //
 
-  ModelUserPermissions({
+  ModelConnectionPermissions({
     String? id,
     this.editorPermit,
     this.editorRequest,
@@ -74,7 +74,7 @@ class ModelUserPermissions extends _ModelUserPermissions {
   //
   //
 
-  ModelUserPermissions.unsafe({
+  ModelConnectionPermissions.unsafe({
     String? id,
     this.editorPermit,
     this.editorRequest,
@@ -94,35 +94,35 @@ class ModelUserPermissions extends _ModelUserPermissions {
   //
   //
 
-  factory ModelUserPermissions.from(
+  factory ModelConnectionPermissions.from(
     Model? other,
   ) {
-    return ModelUserPermissions.unsafe()..updateWith(other);
+    return ModelConnectionPermissions.unsafe()..updateWith(other);
   }
 
   //
   //
   //
 
-  factory ModelUserPermissions.of(
-    ModelUserPermissions? other,
+  factory ModelConnectionPermissions.of(
+    ModelConnectionPermissions? other,
   ) {
-    return ModelUserPermissions.unsafe()..updateWith(other);
+    return ModelConnectionPermissions.unsafe()..updateWith(other);
   }
 
   //
   //
   //
 
-  factory ModelUserPermissions.fromJsonString(
+  factory ModelConnectionPermissions.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelUserPermissions.fromJson(decoded);
+        return ModelConnectionPermissions.fromJson(decoded);
       } else {
-        return ModelUserPermissions.unsafe();
+        return ModelConnectionPermissions.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -134,11 +134,11 @@ class ModelUserPermissions extends _ModelUserPermissions {
   //
   //
 
-  factory ModelUserPermissions.fromJson(
+  factory ModelConnectionPermissions.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelUserPermissions.unsafe(
+      return ModelConnectionPermissions.unsafe(
         editorPermit: letBool(otherData?[K_EDITOR_PERMIT]),
         editorRequest: letBool(otherData?[K_EDITOR_REQUEST]),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
@@ -193,7 +193,7 @@ class ModelUserPermissions extends _ModelUserPermissions {
 
   @override
   T empty<T extends Model>() {
-    return ModelUserPermissions.unsafe() as T;
+    return ModelConnectionPermissions.unsafe() as T;
   }
 
   //
@@ -202,7 +202,7 @@ class ModelUserPermissions extends _ModelUserPermissions {
 
   @override
   T copy<T extends Model>() {
-    return (ModelUserPermissions.unsafe()..updateWith(this)) as T;
+    return (ModelConnectionPermissions.unsafe()..updateWith(this)) as T;
   }
 
   //
@@ -214,7 +214,7 @@ class ModelUserPermissions extends _ModelUserPermissions {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelUserPermissions.fromJson(otherData);
+      final other = ModelConnectionPermissions.fromJson(otherData);
       other.editorPermit != null
           ? this.editorPermit = other.editorPermit
           : null;

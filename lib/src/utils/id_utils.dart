@@ -18,10 +18,9 @@ final class IdUtils {
   //
 
   static const EVENT_ID_PPREFIX = 'E';
-  static const ORGANIZATION_PUB_ID_PPREFIX = 'O';
-  static const PROVIDER_ID_PREFIX = 'P';
+  static const ORGANIZATION_PUB_ID_PPREFIX = 'OP';
   static const RELATIONSHIP_ID_PPREFIX = 'R';
-  static const USER_PUB_ID_PREFIX = 'P';
+  static const USER_PUB_ID_PREFIX = 'UP';
 
   //
   //
@@ -51,14 +50,6 @@ final class IdUtils {
 
   static String newEventId() {
     return newId(EVENT_ID_PPREFIX);
-  }
-
-  //
-  //
-  //
-
-  static String newProviderId() {
-    return newId(PROVIDER_ID_PREFIX);
   }
 
   //
