@@ -17,6 +17,7 @@ final class IdUtils {
   //
   //
 
+  static const SEPARATOR = '-';
   static const EVENT_ID_PPREFIX = 'E';
   static const ORGANIZATION_PUB_ID_PPREFIX = 'OP';
   static const RELATIONSHIP_ID_PPREFIX = 'R';
@@ -37,11 +38,11 @@ final class IdUtils {
   }
 
   static String toUserPubId({required String userId}) {
-    return '$USER_PUB_ID_PREFIX-${_mapString1('${userId.substring(1, 4)}$userId')}';
+    return '$USER_PUB_ID_PREFIX$SEPARATOR${_mapString1('${userId.substring(1, 4)}$userId')}';
   }
 
   static String toUserId({required String userPubId}) {
-    return _unmapString1(userPubId.substring('$USER_PUB_ID_PREFIX-'.length)).substring(3);
+    return _unmapString1(userPubId.substring('$USER_PUB_ID_PREFIX$SEPARATOR'.length)).substring(3);
   }
 
   //
@@ -69,11 +70,12 @@ final class IdUtils {
   }
 
   static String toOrganizationPubId({required String organizationId}) {
-    return '$ORGANIZATION_PUB_ID_PPREFIX-${_mapString1('${organizationId.substring(1, 4)}$organizationId')}';
+    return '$ORGANIZATION_PUB_ID_PPREFIX$SEPARATOR${_mapString1('${organizationId.substring(1, 4)}$organizationId')}';
   }
 
   static String toOrganizationId({required String organizationPubId}) {
-    return _unmapString1(organizationPubId.substring('$ORGANIZATION_PUB_ID_PPREFIX-'.length))
+    return _unmapString1(
+            organizationPubId.substring('$ORGANIZATION_PUB_ID_PPREFIX$SEPARATOR'.length))
         .substring(3);
   }
 
@@ -82,7 +84,12 @@ final class IdUtils {
   //
 
   static String newId([String prefix = '']) {
-    return '${prefix.isNotEmpty ? "${prefix.toUpperCase()}-" : ""}${const Uuid().v1().replaceAll('-', '')}';
+    return '${prefix.isNotEmpty ? "${prefix.toUpperCase()}$SEPARATOR" : ""}${const Uuid().v1().replaceAll('-', '')}';
+  }
+
+  static String getPrefix(String id) {
+    final parts = id.split(SEPARATOR);
+    return parts.length > 1 ? parts[0] : '';
   }
 }
 
