@@ -69,7 +69,11 @@ class ModelRelChangedDef extends Model {
   factory ModelRelChangedDef.from(
     Model? other,
   ) {
-    return ModelRelChangedDef.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelRelChangedDef.fromDataModel(other);
+    } else {
+      return ModelRelChangedDef.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -122,6 +126,16 @@ class ModelRelChangedDef extends Model {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelRelChangedDef.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelRelChangedDef.fromJson(other?.data ?? {});
   }
 
   //

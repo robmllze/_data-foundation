@@ -89,7 +89,11 @@ class ModelUser extends Model {
   factory ModelUser.from(
     Model? other,
   ) {
-    return ModelUser.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelUser.fromDataModel(other);
+    } else {
+      return ModelUser.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -183,6 +187,16 @@ class ModelUser extends Model {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelUser.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelUser.fromJson(other?.data ?? {});
   }
 
   //

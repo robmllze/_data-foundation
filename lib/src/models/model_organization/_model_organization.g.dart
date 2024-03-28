@@ -65,7 +65,11 @@ class ModelOrganization extends Model {
   factory ModelOrganization.from(
     Model? other,
   ) {
-    return ModelOrganization.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelOrganization.fromDataModel(other);
+    } else {
+      return ModelOrganization.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -123,6 +127,16 @@ class ModelOrganization extends Model {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelOrganization.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelOrganization.fromJson(other?.data ?? {});
   }
 
   //

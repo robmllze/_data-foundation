@@ -19,7 +19,7 @@ part '_model_event.g.dart';
   fields: {
     'pubIds': 'Set<String>?',
     'timeout': 'int?',
-    'def': 'Map<String, dynamic>?',
+    'def': 'GenericModel?',
     'defType': 'EventDefType?',
     'whenArchived': 'Map<String, DateTime>?',
     'whenHidden': 'Map<String, DateTime>?',

@@ -69,7 +69,11 @@ class ModelConnectionRequestAcceptedDef extends Model {
   factory ModelConnectionRequestAcceptedDef.from(
     Model? other,
   ) {
-    return ModelConnectionRequestAcceptedDef.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelConnectionRequestAcceptedDef.fromDataModel(other);
+    } else {
+      return ModelConnectionRequestAcceptedDef.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -122,6 +126,16 @@ class ModelConnectionRequestAcceptedDef extends Model {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelConnectionRequestAcceptedDef.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelConnectionRequestAcceptedDef.fromJson(other?.data ?? {});
   }
 
   //

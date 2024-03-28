@@ -39,7 +39,7 @@ class ModelEvent extends _ModelEvent {
   static const K_WHEN_RECEIVED = 'when_received';
   static const K_WHEN_SENT = 'when_sent';
 
-  Map<String, dynamic>? def;
+  GenericModel? def;
   EventDefType? defType;
   Set<String>? pubIds;
   int? timeout;
@@ -97,7 +97,11 @@ class ModelEvent extends _ModelEvent {
   factory ModelEvent.from(
     Model? other,
   ) {
-    return ModelEvent.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelEvent.fromDataModel(other);
+    } else {
+      return ModelEvent.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -139,16 +143,10 @@ class ModelEvent extends _ModelEvent {
   ) {
     try {
       return ModelEvent.unsafe(
-        def: letMap(otherData?[K_DEF])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1,
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
+        def: () {
+          final a = letMap<String, dynamic>(otherData?[K_DEF]);
+          return a != null ? GenericModel.fromJson(a) : null;
+        }(),
         defType:
             EventDefType.values.valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
@@ -250,6 +248,16 @@ class ModelEvent extends _ModelEvent {
   //
   //
 
+  factory ModelEvent.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelEvent.fromJson(other?.data ?? {});
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,
@@ -257,15 +265,7 @@ class ModelEvent extends _ModelEvent {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_DEF: def
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1,
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
+        K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_PUB_IDS: pubIds

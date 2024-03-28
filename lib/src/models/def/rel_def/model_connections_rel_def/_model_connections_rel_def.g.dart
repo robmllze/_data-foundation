@@ -61,7 +61,11 @@ class ModelConnectionsRelDef extends Model {
   factory ModelConnectionsRelDef.from(
     Model? other,
   ) {
-    return ModelConnectionsRelDef.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelConnectionsRelDef.fromDataModel(other);
+    } else {
+      return ModelConnectionsRelDef.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -113,6 +117,16 @@ class ModelConnectionsRelDef extends Model {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelConnectionsRelDef.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelConnectionsRelDef.fromJson(other?.data ?? {});
   }
 
   //

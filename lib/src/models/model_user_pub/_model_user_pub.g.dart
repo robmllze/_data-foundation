@@ -77,7 +77,11 @@ class ModelUserPub extends _ModelUserPub {
   factory ModelUserPub.from(
     Model? other,
   ) {
-    return ModelUserPub.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelUserPub.fromDataModel(other);
+    } else {
+      return ModelUserPub.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -138,6 +142,16 @@ class ModelUserPub extends _ModelUserPub {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelUserPub.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelUserPub.fromJson(other?.data ?? {});
   }
 
   //

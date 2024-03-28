@@ -96,7 +96,11 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   factory ModelScreenConfiguration.from(
     Model? other,
   ) {
-    return ModelScreenConfiguration.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelScreenConfiguration.fromDataModel(other);
+    } else {
+      return ModelScreenConfiguration.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -165,6 +169,16 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelScreenConfiguration.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelScreenConfiguration.fromJson(other?.data ?? {});
   }
 
   //

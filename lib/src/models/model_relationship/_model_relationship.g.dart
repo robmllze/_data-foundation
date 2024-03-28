@@ -35,7 +35,7 @@ class ModelRelationship extends _ModelRelationship {
   static const K_WHEN_ENABLED = 'when_enabled';
   static const K_WHEN_NOTED = 'when_noted';
 
-  Map<String, dynamic>? def;
+  GenericModel? def;
   RelationshipDefType? defType;
   Set<String>? memberIds;
   Map<String, DateTime>? whenDisabled;
@@ -81,7 +81,11 @@ class ModelRelationship extends _ModelRelationship {
   factory ModelRelationship.from(
     Model? other,
   ) {
-    return ModelRelationship.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelRelationship.fromDataModel(other);
+    } else {
+      return ModelRelationship.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -123,16 +127,10 @@ class ModelRelationship extends _ModelRelationship {
   ) {
     try {
       return ModelRelationship.unsafe(
-        def: letMap(otherData?[K_DEF])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1,
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
+        def: () {
+          final a = letMap<String, dynamic>(otherData?[K_DEF]);
+          return a != null ? GenericModel.fromJson(a) : null;
+        }(),
         defType: RelationshipDefType.values
             .valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
@@ -194,6 +192,16 @@ class ModelRelationship extends _ModelRelationship {
   //
   //
 
+  factory ModelRelationship.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelRelationship.fromJson(other?.data ?? {});
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,
@@ -201,15 +209,7 @@ class ModelRelationship extends _ModelRelationship {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_DEF: def
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1,
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
+        K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_MEMBER_IDS: memberIds

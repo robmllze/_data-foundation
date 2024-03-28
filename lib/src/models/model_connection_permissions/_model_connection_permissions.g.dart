@@ -97,7 +97,11 @@ class ModelConnectionPermissions extends Model {
   factory ModelConnectionPermissions.from(
     Model? other,
   ) {
-    return ModelConnectionPermissions.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelConnectionPermissions.fromDataModel(other);
+    } else {
+      return ModelConnectionPermissions.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -155,6 +159,16 @@ class ModelConnectionPermissions extends Model {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelConnectionPermissions.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelConnectionPermissions.fromJson(other?.data ?? {});
   }
 
   //

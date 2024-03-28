@@ -69,7 +69,11 @@ class ModelRelRemovedDef extends Model {
   factory ModelRelRemovedDef.from(
     Model? other,
   ) {
-    return ModelRelRemovedDef.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelRelRemovedDef.fromDataModel(other);
+    } else {
+      return ModelRelRemovedDef.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -122,6 +126,16 @@ class ModelRelRemovedDef extends Model {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelRelRemovedDef.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelRelRemovedDef.fromJson(other?.data ?? {});
   }
 
   //

@@ -69,7 +69,11 @@ class ModelOrganizationPub extends Model {
   factory ModelOrganizationPub.from(
     Model? other,
   ) {
-    return ModelOrganizationPub.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelOrganizationPub.fromDataModel(other);
+    } else {
+      return ModelOrganizationPub.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -124,6 +128,16 @@ class ModelOrganizationPub extends Model {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelOrganizationPub.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelOrganizationPub.fromJson(other?.data ?? {});
   }
 
   //

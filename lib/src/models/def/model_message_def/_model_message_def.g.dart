@@ -73,7 +73,11 @@ class ModelMessageDef extends Model {
   factory ModelMessageDef.from(
     Model? other,
   ) {
-    return ModelMessageDef.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelMessageDef.fromDataModel(other);
+    } else {
+      return ModelMessageDef.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -126,6 +130,16 @@ class ModelMessageDef extends Model {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelMessageDef.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelMessageDef.fromJson(other?.data ?? {});
   }
 
   //

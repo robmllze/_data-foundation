@@ -65,7 +65,11 @@ class ModelUserAndOrgRelDef extends Model {
   factory ModelUserAndOrgRelDef.from(
     Model? other,
   ) {
-    return ModelUserAndOrgRelDef.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelUserAndOrgRelDef.fromDataModel(other);
+    } else {
+      return ModelUserAndOrgRelDef.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -116,6 +120,16 @@ class ModelUserAndOrgRelDef extends Model {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelUserAndOrgRelDef.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelUserAndOrgRelDef.fromJson(other?.data ?? {});
   }
 
   //

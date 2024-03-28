@@ -69,7 +69,11 @@ class ModelConnectionRequestDef extends Model {
   factory ModelConnectionRequestDef.from(
     Model? other,
   ) {
-    return ModelConnectionRequestDef.unsafe()..updateWith(other);
+    if (other is DataModel) {
+      return ModelConnectionRequestDef.fromDataModel(other);
+    } else {
+      return ModelConnectionRequestDef.unsafe()..updateWith(other);
+    }
   }
 
   //
@@ -122,6 +126,16 @@ class ModelConnectionRequestDef extends Model {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  factory ModelConnectionRequestDef.fromDataModel(
+    DataModel? other,
+  ) {
+    return ModelConnectionRequestDef.fromJson(other?.data ?? {});
   }
 
   //

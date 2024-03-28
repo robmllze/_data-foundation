@@ -18,7 +18,7 @@ part '_model_relationship.g.dart';
   shouldInherit: true,
   fields: {
     'memberIds': 'Set<String>?',
-    'def': 'Map<String, dynamic>?',
+    'def': 'GenericModel?',
     'defType': 'RelationshipDefType?',
     'whenNoted': 'Map<String, DateTime>?',
     'whenEnabled': 'Map<String, DateTime>?',
