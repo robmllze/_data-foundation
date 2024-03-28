@@ -75,7 +75,7 @@ final class IdUtils {
 
   static String toOrganizationId({required String organizationPubId}) {
     return _unmapString1(
-            organizationPubId.substring('$ORGANIZATION_PUB_ID_PPREFIX$SEPARATOR'.length))
+            organizationPubId.substring('$ORGANIZATION_PUB_ID_PPREFIX$SEPARATOR'.length),)
         .substring(3);
   }
 
