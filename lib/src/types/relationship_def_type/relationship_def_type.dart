@@ -20,7 +20,7 @@ enum RelationshipDefType {
   USER_AND_ORGANIZATION,
 
   /// A relationship between a connections, i.e. a user and another user.
-  CONNECTIONS,
+  USER_AND_USER,
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -31,7 +31,7 @@ RelationshipDefType? findRelationshipDefTypeFromMemberIds(Set<String>? memberIds
 
     // Contains at least 1 memberId with the USER_PUB_ID_PREFIX prefix.
     if (prefixes.contains(IdUtils.USER_PUB_ID_PREFIX) && prefixes.length == 1) {
-      return RelationshipDefType.CONNECTIONS;
+      return RelationshipDefType.USER_AND_USER;
     }
     // Contains at least 1 memberId with the USER_PUB_ID_PREFIX, and ontains at
     // least 1 memberId with the ORGANIZATION_PUB_ID_PPREFIX.

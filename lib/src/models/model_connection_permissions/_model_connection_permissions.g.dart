@@ -97,8 +97,8 @@ class ModelConnectionPermissions extends Model {
   factory ModelConnectionPermissions.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelConnectionPermissions.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelConnectionPermissions.fromGenericModel(other);
     } else {
       return ModelConnectionPermissions.unsafe()..updateWith(other);
     }
@@ -165,8 +165,8 @@ class ModelConnectionPermissions extends Model {
   //
   //
 
-  factory ModelConnectionPermissions.fromDataModel(
-    DataModel? other,
+  factory ModelConnectionPermissions.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelConnectionPermissions.fromJson(other?.data ?? {});
   }

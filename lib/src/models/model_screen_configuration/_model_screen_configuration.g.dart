@@ -96,8 +96,8 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   factory ModelScreenConfiguration.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelScreenConfiguration.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelScreenConfiguration.fromGenericModel(other);
     } else {
       return ModelScreenConfiguration.unsafe()..updateWith(other);
     }
@@ -175,8 +175,8 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
   //
 
-  factory ModelScreenConfiguration.fromDataModel(
-    DataModel? other,
+  factory ModelScreenConfiguration.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelScreenConfiguration.fromJson(other?.data ?? {});
   }

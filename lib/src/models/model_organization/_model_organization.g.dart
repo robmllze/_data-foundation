@@ -65,8 +65,8 @@ class ModelOrganization extends Model {
   factory ModelOrganization.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelOrganization.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelOrganization.fromGenericModel(other);
     } else {
       return ModelOrganization.unsafe()..updateWith(other);
     }
@@ -133,8 +133,8 @@ class ModelOrganization extends Model {
   //
   //
 
-  factory ModelOrganization.fromDataModel(
-    DataModel? other,
+  factory ModelOrganization.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelOrganization.fromJson(other?.data ?? {});
   }

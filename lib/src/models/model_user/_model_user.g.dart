@@ -89,8 +89,8 @@ class ModelUser extends Model {
   factory ModelUser.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelUser.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelUser.fromGenericModel(other);
     } else {
       return ModelUser.unsafe()..updateWith(other);
     }
@@ -193,8 +193,8 @@ class ModelUser extends Model {
   //
   //
 
-  factory ModelUser.fromDataModel(
-    DataModel? other,
+  factory ModelUser.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelUser.fromJson(other?.data ?? {});
   }

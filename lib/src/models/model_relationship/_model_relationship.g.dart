@@ -81,8 +81,8 @@ class ModelRelationship extends _ModelRelationship {
   factory ModelRelationship.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelRelationship.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelRelationship.fromGenericModel(other);
     } else {
       return ModelRelationship.unsafe()..updateWith(other);
     }
@@ -192,8 +192,8 @@ class ModelRelationship extends _ModelRelationship {
   //
   //
 
-  factory ModelRelationship.fromDataModel(
-    DataModel? other,
+  factory ModelRelationship.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelRelationship.fromJson(other?.data ?? {});
   }

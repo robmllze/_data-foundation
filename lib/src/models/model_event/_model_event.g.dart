@@ -97,8 +97,8 @@ class ModelEvent extends _ModelEvent {
   factory ModelEvent.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelEvent.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelEvent.fromGenericModel(other);
     } else {
       return ModelEvent.unsafe()..updateWith(other);
     }
@@ -248,8 +248,8 @@ class ModelEvent extends _ModelEvent {
   //
   //
 
-  factory ModelEvent.fromDataModel(
-    DataModel? other,
+  factory ModelEvent.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelEvent.fromJson(other?.data ?? {});
   }

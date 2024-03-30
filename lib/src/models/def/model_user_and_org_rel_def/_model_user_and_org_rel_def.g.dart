@@ -65,8 +65,8 @@ class ModelUserAndOrgRelDef extends Model {
   factory ModelUserAndOrgRelDef.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelUserAndOrgRelDef.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelUserAndOrgRelDef.fromGenericModel(other);
     } else {
       return ModelUserAndOrgRelDef.unsafe()..updateWith(other);
     }
@@ -126,8 +126,8 @@ class ModelUserAndOrgRelDef extends Model {
   //
   //
 
-  factory ModelUserAndOrgRelDef.fromDataModel(
-    DataModel? other,
+  factory ModelUserAndOrgRelDef.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelUserAndOrgRelDef.fromJson(other?.data ?? {});
   }

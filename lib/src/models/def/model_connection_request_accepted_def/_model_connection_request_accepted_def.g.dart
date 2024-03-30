@@ -69,8 +69,8 @@ class ModelConnectionRequestAcceptedDef extends Model {
   factory ModelConnectionRequestAcceptedDef.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelConnectionRequestAcceptedDef.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelConnectionRequestAcceptedDef.fromGenericModel(other);
     } else {
       return ModelConnectionRequestAcceptedDef.unsafe()..updateWith(other);
     }
@@ -132,8 +132,8 @@ class ModelConnectionRequestAcceptedDef extends Model {
   //
   //
 
-  factory ModelConnectionRequestAcceptedDef.fromDataModel(
-    DataModel? other,
+  factory ModelConnectionRequestAcceptedDef.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelConnectionRequestAcceptedDef.fromJson(other?.data ?? {});
   }

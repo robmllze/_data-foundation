@@ -69,8 +69,8 @@ class ModelRelDisabledDef extends Model {
   factory ModelRelDisabledDef.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelRelDisabledDef.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelRelDisabledDef.fromGenericModel(other);
     } else {
       return ModelRelDisabledDef.unsafe()..updateWith(other);
     }
@@ -132,8 +132,8 @@ class ModelRelDisabledDef extends Model {
   //
   //
 
-  factory ModelRelDisabledDef.fromDataModel(
-    DataModel? other,
+  factory ModelRelDisabledDef.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelRelDisabledDef.fromJson(other?.data ?? {});
   }

@@ -29,16 +29,22 @@ class ModelInvitationLinkDetails extends Model {
 
   static const K_DEF = 'def';
   static const K_DEF_TYPE = 'def_type';
-  static const K_FROM_PUB_ID = 'from_pub_id';
+  static const K_FROM = 'from';
   static const K_ID = 'id';
+  static const K_INVITATION_LINK = 'invitation_link';
   static const K_STATUS = 'status';
-  static const K_TO_PUB_ID = 'to_pub_id';
+  static const K_TO = 'to';
+  static const K_WHEN_CREATED = 'when_created';
+  static const K_WHEN_EXPIRE = 'when_expire';
 
   GenericModel? def;
   InvitationDefType? defType;
-  String? fromPubId;
+  ModelUserPub? from;
+  Uri? invitationLink;
   InvitationStatusType? status;
-  String? toPubId;
+  Set<ModelUserPub>? to;
+  DateTime? whenCreated;
+  DateTime? whenExpire;
 
   //
   //
@@ -48,9 +54,12 @@ class ModelInvitationLinkDetails extends Model {
     String? id,
     this.def,
     this.defType,
-    this.fromPubId,
+    this.from,
+    this.invitationLink,
     this.status,
-    this.toPubId,
+    this.to,
+    this.whenCreated,
+    this.whenExpire,
   }) {
     this.id = id;
   }
@@ -63,9 +72,12 @@ class ModelInvitationLinkDetails extends Model {
     String? id,
     this.def,
     this.defType,
-    this.fromPubId,
+    this.from,
+    this.invitationLink,
     this.status,
-    this.toPubId,
+    this.to,
+    this.whenCreated,
+    this.whenExpire,
   }) {
     this.id = id;
   }
@@ -77,8 +89,8 @@ class ModelInvitationLinkDetails extends Model {
   factory ModelInvitationLinkDetails.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelInvitationLinkDetails.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelInvitationLinkDetails.fromGenericModel(other);
     } else {
       return ModelInvitationLinkDetails.unsafe()..updateWith(other);
     }
@@ -129,11 +141,36 @@ class ModelInvitationLinkDetails extends Model {
         }(),
         defType: InvitationDefType.values
             .valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
-        fromPubId: otherData?[K_FROM_PUB_ID]?.toString().trim().nullIfEmpty,
+        from: () {
+          final a = letMap<String, dynamic>(otherData?[K_FROM]);
+          return a != null ? ModelUserPub.fromJson(a) : null;
+        }(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
+        invitationLink: () {
+          final a = otherData?[K_INVITATION_LINK];
+          return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
+        }(),
         status: InvitationStatusType.values
             .valueOf(letAs<String>(otherData?[K_STATUS])),
-        toPubId: otherData?[K_TO_PUB_ID]?.toString().trim().nullIfEmpty,
+        to: letSet(otherData?[K_TO])
+            ?.map(
+              (final p0) => () {
+                final a = letMap<String, dynamic>(p0);
+                return a != null ? ModelUserPub.fromJson(a) : null;
+              }(),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.toSet()
+            .cast(),
+        whenCreated: () {
+          final a = otherData?[K_WHEN_CREATED];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        whenExpire: () {
+          final a = otherData?[K_WHEN_EXPIRE];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
       );
     } catch (e) {
       assert(false, e);
@@ -145,8 +182,8 @@ class ModelInvitationLinkDetails extends Model {
   //
   //
 
-  factory ModelInvitationLinkDetails.fromDataModel(
-    DataModel? other,
+  factory ModelInvitationLinkDetails.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelInvitationLinkDetails.fromJson(other?.data ?? {});
   }
@@ -164,10 +201,19 @@ class ModelInvitationLinkDetails extends Model {
       final withNulls = <String, dynamic>{
         K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
-        K_FROM_PUB_ID: fromPubId?.toString().trim().nullIfEmpty,
+        K_FROM: from?.toJson(),
         K_ID: id?.toString().trim().nullIfEmpty,
+        K_INVITATION_LINK: invitationLink?.toString(),
         K_STATUS: status?.name,
-        K_TO_PUB_ID: toPubId?.toString().trim().nullIfEmpty,
+        K_TO: to
+            ?.map(
+              (final p0) => p0?.toJson(),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.toList(),
+        K_WHEN_CREATED: whenCreated?.toUtc()?.toIso8601String(),
+        K_WHEN_EXPIRE: whenExpire?.toUtc()?.toIso8601String(),
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -206,10 +252,15 @@ class ModelInvitationLinkDetails extends Model {
       final other = ModelInvitationLinkDetails.fromJson(otherData);
       other.def != null ? this.def = other.def : null;
       other.defType != null ? this.defType = other.defType : null;
-      other.fromPubId != null ? this.fromPubId = other.fromPubId : null;
+      other.from != null ? this.from = other.from : null;
       other.id != null ? this.id = other.id : null;
+      other.invitationLink != null
+          ? this.invitationLink = other.invitationLink
+          : null;
       other.status != null ? this.status = other.status : null;
-      other.toPubId != null ? this.toPubId = other.toPubId : null;
+      other.to != null ? this.to = other.to : null;
+      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
+      other.whenExpire != null ? this.whenExpire = other.whenExpire : null;
     }
   }
 }

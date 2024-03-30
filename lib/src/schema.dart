@@ -23,6 +23,18 @@ final class Schema {
   //
   //
 
+  // Invitations.
+
+  static DataRef invitationsRef({
+    String? invitationId,
+  }) {
+    return DataRef(
+      id: invitationId,
+      tableName: 'invitations',
+      collectionPath: 'invitations',
+    );
+  }
+
   // Users.
 
   static DataRef usersRef({

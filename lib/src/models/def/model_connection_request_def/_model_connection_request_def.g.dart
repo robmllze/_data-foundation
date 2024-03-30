@@ -69,8 +69,8 @@ class ModelConnectionRequestDef extends Model {
   factory ModelConnectionRequestDef.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelConnectionRequestDef.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelConnectionRequestDef.fromGenericModel(other);
     } else {
       return ModelConnectionRequestDef.unsafe()..updateWith(other);
     }
@@ -132,8 +132,8 @@ class ModelConnectionRequestDef extends Model {
   //
   //
 
-  factory ModelConnectionRequestDef.fromDataModel(
-    DataModel? other,
+  factory ModelConnectionRequestDef.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelConnectionRequestDef.fromJson(other?.data ?? {});
   }

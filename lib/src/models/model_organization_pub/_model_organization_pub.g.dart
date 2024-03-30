@@ -69,8 +69,8 @@ class ModelOrganizationPub extends Model {
   factory ModelOrganizationPub.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelOrganizationPub.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelOrganizationPub.fromGenericModel(other);
     } else {
       return ModelOrganizationPub.unsafe()..updateWith(other);
     }
@@ -134,8 +134,8 @@ class ModelOrganizationPub extends Model {
   //
   //
 
-  factory ModelOrganizationPub.fromDataModel(
-    DataModel? other,
+  factory ModelOrganizationPub.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelOrganizationPub.fromJson(other?.data ?? {});
   }

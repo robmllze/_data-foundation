@@ -73,8 +73,8 @@ class ModelMessageDef extends Model {
   factory ModelMessageDef.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelMessageDef.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelMessageDef.fromGenericModel(other);
     } else {
       return ModelMessageDef.unsafe()..updateWith(other);
     }
@@ -136,8 +136,8 @@ class ModelMessageDef extends Model {
   //
   //
 
-  factory ModelMessageDef.fromDataModel(
-    DataModel? other,
+  factory ModelMessageDef.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelMessageDef.fromJson(other?.data ?? {});
   }

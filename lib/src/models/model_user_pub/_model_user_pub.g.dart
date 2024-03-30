@@ -77,8 +77,8 @@ class ModelUserPub extends _ModelUserPub {
   factory ModelUserPub.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelUserPub.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelUserPub.fromGenericModel(other);
     } else {
       return ModelUserPub.unsafe()..updateWith(other);
     }
@@ -148,8 +148,8 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
-  factory ModelUserPub.fromDataModel(
-    DataModel? other,
+  factory ModelUserPub.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelUserPub.fromJson(other?.data ?? {});
   }

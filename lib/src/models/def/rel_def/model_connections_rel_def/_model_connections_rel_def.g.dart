@@ -61,8 +61,8 @@ class ModelConnectionsRelDef extends Model {
   factory ModelConnectionsRelDef.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelConnectionsRelDef.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelConnectionsRelDef.fromGenericModel(other);
     } else {
       return ModelConnectionsRelDef.unsafe()..updateWith(other);
     }
@@ -123,8 +123,8 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
-  factory ModelConnectionsRelDef.fromDataModel(
-    DataModel? other,
+  factory ModelConnectionsRelDef.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelConnectionsRelDef.fromJson(other?.data ?? {});
   }

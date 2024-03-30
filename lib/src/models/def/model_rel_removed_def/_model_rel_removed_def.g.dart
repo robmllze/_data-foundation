@@ -69,8 +69,8 @@ class ModelRelRemovedDef extends Model {
   factory ModelRelRemovedDef.from(
     Model? other,
   ) {
-    if (other is DataModel) {
-      return ModelRelRemovedDef.fromDataModel(other);
+    if (other is GenericModel) {
+      return ModelRelRemovedDef.fromGenericModel(other);
     } else {
       return ModelRelRemovedDef.unsafe()..updateWith(other);
     }
@@ -132,8 +132,8 @@ class ModelRelRemovedDef extends Model {
   //
   //
 
-  factory ModelRelRemovedDef.fromDataModel(
-    DataModel? other,
+  factory ModelRelRemovedDef.fromGenericModel(
+    GenericModel? other,
   ) {
     return ModelRelRemovedDef.fromJson(other?.data ?? {});
   }

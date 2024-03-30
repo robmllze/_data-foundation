@@ -15,11 +15,14 @@ part '_model_invitation_link_details.g.dart';
 
 @GenerateModel(
   fields: {
-    'status': 'InvitationStatusType?',
     'def_type': 'InvitationDefType?',
     'def': 'GenericModel?',
-    'to_pub_id': 'String?',
-    'from_pub_id': 'String?',
+    'from': 'ModelUserPub?',
+    'status': 'InvitationStatusType?',
+    'to': 'Set<ModelUserPub>?',
+    'when_created': 'DateTime?',
+    'when_expire': 'DateTime?',
+    'invitation_link': 'Uri?',
   },
 )
 // ignore: unused_element
