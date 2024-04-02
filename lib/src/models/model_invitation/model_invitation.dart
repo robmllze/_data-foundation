@@ -20,8 +20,8 @@ part '_model_invitation.g.dart';
     'def': 'GenericModel?',
     'expires_at': 'DateTime?',
     'invitationLink': 'Uri?',
-    'invitees': 'Set<ModelUserPub>?',
-    'inviter': 'ModelUserPub?',
+    'inviteePubIds': 'Set<String>?',
+    'inviterPubId': 'String?',
     'status': 'InvitationStatusType?',
   },
 )
