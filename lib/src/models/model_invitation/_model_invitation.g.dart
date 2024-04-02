@@ -15,51 +15,51 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_invitation_link_details.dart';
+part of 'model_invitation.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelInvitationLinkDetails extends Model {
+class ModelInvitation extends Model {
   //
   //
   //
 
-  static const CLASS = 'ModelInvitationLinkDetails';
-  static const MODEL_ID = 'model_invitation_link_details';
+  static const CLASS = 'ModelInvitation';
+  static const MODEL_ID = 'model_invitation';
 
+  static const K_CREATED_AT = 'created_at';
   static const K_DEF = 'def';
   static const K_DEF_TYPE = 'def_type';
-  static const K_FROM = 'from';
+  static const K_EXPIRES_AT = 'expires_at';
   static const K_ID = 'id';
   static const K_INVITATION_LINK = 'invitation_link';
+  static const K_INVITEES = 'invitees';
+  static const K_INVITER = 'inviter';
   static const K_STATUS = 'status';
-  static const K_TO = 'to';
-  static const K_WHEN_CREATED = 'when_created';
-  static const K_WHEN_EXPIRE = 'when_expire';
 
+  DateTime? createdAt;
   GenericModel? def;
   InvitationDefType? defType;
-  ModelUserPub? from;
+  DateTime? expiresAt;
   Uri? invitationLink;
+  Set<ModelUserPub>? invitees;
+  ModelUserPub? inviter;
   InvitationStatusType? status;
-  Set<ModelUserPub>? to;
-  DateTime? whenCreated;
-  DateTime? whenExpire;
 
   //
   //
   //
 
-  ModelInvitationLinkDetails({
+  ModelInvitation({
     String? id,
+    this.createdAt,
     this.def,
     this.defType,
-    this.from,
+    this.expiresAt,
     this.invitationLink,
+    this.invitees,
+    this.inviter,
     this.status,
-    this.to,
-    this.whenCreated,
-    this.whenExpire,
   }) {
     this.id = id;
   }
@@ -68,16 +68,16 @@ class ModelInvitationLinkDetails extends Model {
   //
   //
 
-  ModelInvitationLinkDetails.unsafe({
+  ModelInvitation.unsafe({
     String? id,
+    this.createdAt,
     this.def,
     this.defType,
-    this.from,
+    this.expiresAt,
     this.invitationLink,
+    this.invitees,
+    this.inviter,
     this.status,
-    this.to,
-    this.whenCreated,
-    this.whenExpire,
   }) {
     this.id = id;
   }
@@ -86,13 +86,13 @@ class ModelInvitationLinkDetails extends Model {
   //
   //
 
-  factory ModelInvitationLinkDetails.from(
+  factory ModelInvitation.from(
     Model? other,
   ) {
     if (other is GenericModel) {
-      return ModelInvitationLinkDetails.fromGenericModel(other);
+      return ModelInvitation.fromGenericModel(other);
     } else {
-      return ModelInvitationLinkDetails.unsafe()..updateWith(other);
+      return ModelInvitation.unsafe()..updateWith(other);
     }
   }
 
@@ -100,25 +100,25 @@ class ModelInvitationLinkDetails extends Model {
   //
   //
 
-  factory ModelInvitationLinkDetails.of(
-    ModelInvitationLinkDetails? other,
+  factory ModelInvitation.of(
+    ModelInvitation? other,
   ) {
-    return ModelInvitationLinkDetails.unsafe()..updateWith(other);
+    return ModelInvitation.unsafe()..updateWith(other);
   }
 
   //
   //
   //
 
-  factory ModelInvitationLinkDetails.fromJsonString(
+  factory ModelInvitation.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelInvitationLinkDetails.fromJson(decoded);
+        return ModelInvitation.fromJson(decoded);
       } else {
-        return ModelInvitationLinkDetails.unsafe();
+        return ModelInvitation.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -130,29 +130,31 @@ class ModelInvitationLinkDetails extends Model {
   //
   //
 
-  factory ModelInvitationLinkDetails.fromJson(
+  factory ModelInvitation.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelInvitationLinkDetails.unsafe(
+      return ModelInvitation.unsafe(
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
         def: () {
           final a = letMap<String, dynamic>(otherData?[K_DEF]);
           return a != null ? GenericModel.fromJson(a) : null;
         }(),
         defType: InvitationDefType.values
             .valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
-        from: () {
-          final a = letMap<String, dynamic>(otherData?[K_FROM]);
-          return a != null ? ModelUserPub.fromJson(a) : null;
+        expiresAt: () {
+          final a = otherData?[K_EXPIRES_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         invitationLink: () {
           final a = otherData?[K_INVITATION_LINK];
           return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
         }(),
-        status: InvitationStatusType.values
-            .valueOf(letAs<String>(otherData?[K_STATUS])),
-        to: letSet(otherData?[K_TO])
+        invitees: letSet(otherData?[K_INVITEES])
             ?.map(
               (final p0) => () {
                 final a = letMap<String, dynamic>(p0);
@@ -163,14 +165,12 @@ class ModelInvitationLinkDetails extends Model {
             .nullIfEmpty
             ?.toSet()
             .cast(),
-        whenCreated: () {
-          final a = otherData?[K_WHEN_CREATED];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        inviter: () {
+          final a = letMap<String, dynamic>(otherData?[K_INVITER]);
+          return a != null ? ModelUserPub.fromJson(a) : null;
         }(),
-        whenExpire: () {
-          final a = otherData?[K_WHEN_EXPIRE];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
+        status: InvitationStatusType.values
+            .valueOf(letAs<String>(otherData?[K_STATUS])),
       );
     } catch (e) {
       assert(false, e);
@@ -182,10 +182,10 @@ class ModelInvitationLinkDetails extends Model {
   //
   //
 
-  factory ModelInvitationLinkDetails.fromGenericModel(
+  factory ModelInvitation.fromGenericModel(
     GenericModel? other,
   ) {
-    return ModelInvitationLinkDetails.fromJson(other?.data ?? {});
+    return ModelInvitation.fromJson(other?.data ?? {});
   }
 
   //
@@ -199,21 +199,21 @@ class ModelInvitationLinkDetails extends Model {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
         K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
-        K_FROM: from?.toJson(),
+        K_EXPIRES_AT: expiresAt?.toUtc()?.toIso8601String(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_INVITATION_LINK: invitationLink?.toString(),
-        K_STATUS: status?.name,
-        K_TO: to
+        K_INVITEES: invitees
             ?.map(
               (final p0) => p0?.toJson(),
             )
             .nonNulls
             .nullIfEmpty
             ?.toList(),
-        K_WHEN_CREATED: whenCreated?.toUtc()?.toIso8601String(),
-        K_WHEN_EXPIRE: whenExpire?.toUtc()?.toIso8601String(),
+        K_INVITER: inviter?.toJson(),
+        K_STATUS: status?.name,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -228,7 +228,7 @@ class ModelInvitationLinkDetails extends Model {
 
   @override
   T empty<T extends Model>() {
-    return ModelInvitationLinkDetails.unsafe() as T;
+    return ModelInvitation.unsafe() as T;
   }
 
   //
@@ -237,7 +237,7 @@ class ModelInvitationLinkDetails extends Model {
 
   @override
   T copy<T extends Model>() {
-    return (ModelInvitationLinkDetails.unsafe()..updateWith(this)) as T;
+    return (ModelInvitation.unsafe()..updateWith(this)) as T;
   }
 
   //
@@ -249,18 +249,18 @@ class ModelInvitationLinkDetails extends Model {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelInvitationLinkDetails.fromJson(otherData);
+      final other = ModelInvitation.fromJson(otherData);
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
       other.def != null ? this.def = other.def : null;
       other.defType != null ? this.defType = other.defType : null;
-      other.from != null ? this.from = other.from : null;
+      other.expiresAt != null ? this.expiresAt = other.expiresAt : null;
       other.id != null ? this.id = other.id : null;
       other.invitationLink != null
           ? this.invitationLink = other.invitationLink
           : null;
+      other.invitees != null ? this.invitees = other.invitees : null;
+      other.inviter != null ? this.inviter = other.inviter : null;
       other.status != null ? this.status = other.status : null;
-      other.to != null ? this.to = other.to : null;
-      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
-      other.whenExpire != null ? this.whenExpire = other.whenExpire : null;
     }
   }
 }

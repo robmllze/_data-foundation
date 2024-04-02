@@ -9,21 +9,21 @@
 
 import '/_common.dart';
 
-part '_model_invitation_link_details.g.dart';
+part '_model_invitation.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   fields: {
+    'created_at': 'DateTime?',
     'def_type': 'InvitationDefType?',
     'def': 'GenericModel?',
-    'from': 'ModelUserPub?',
+    'expires_at': 'DateTime?',
+    'invitationLink': 'Uri?',
+    'invitees': 'Set<ModelUserPub>?',
+    'inviter': 'ModelUserPub?',
     'status': 'InvitationStatusType?',
-    'to': 'Set<ModelUserPub>?',
-    'when_created': 'DateTime?',
-    'when_expire': 'DateTime?',
-    'invitation_link': 'Uri?',
   },
 )
 // ignore: unused_element
-abstract class _ModelInvitationLinkDetails {}
+abstract class _ModelInvitation {}

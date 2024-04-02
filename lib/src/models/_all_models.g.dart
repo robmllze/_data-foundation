@@ -18,7 +18,7 @@ export 'def/model_user_and_org_rel_def/model_user_and_org_rel_def.dart';
 export 'def/rel_def/model_connections_rel_def/model_connections_rel_def.dart';
 export 'model_connection_permissions/model_connection_permissions.dart';
 export 'model_event/model_event.dart';
-export 'model_invitation_link_details/model_invitation_link_details.dart';
+export 'model_invitation/model_invitation.dart';
 export 'model_organization/model_organization.dart';
 export 'model_organization_pub/model_organization_pub.dart';
 export 'model_relationship/model_relationship.dart';
