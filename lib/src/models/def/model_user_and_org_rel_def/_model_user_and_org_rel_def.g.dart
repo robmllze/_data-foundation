@@ -65,11 +65,9 @@ class ModelUserAndOrgRelDef extends Model {
   factory ModelUserAndOrgRelDef.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelUserAndOrgRelDef.fromGenericModel(other);
-    } else {
-      return ModelUserAndOrgRelDef.unsafe()..updateWith(other);
-    }
+    return ModelUserAndOrgRelDef.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -79,7 +77,7 @@ class ModelUserAndOrgRelDef extends Model {
   factory ModelUserAndOrgRelDef.of(
     ModelUserAndOrgRelDef? other,
   ) {
-    return ModelUserAndOrgRelDef.unsafe()..updateWith(other);
+    return ModelUserAndOrgRelDef.fromJson(other?.toJson());
   }
 
   //
@@ -126,10 +124,19 @@ class ModelUserAndOrgRelDef extends Model {
   //
   //
 
-  factory ModelUserAndOrgRelDef.fromGenericModel(
-    GenericModel? other,
+  factory ModelUserAndOrgRelDef.fromUri(
+    Uri? uri,
   ) {
-    return ModelUserAndOrgRelDef.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelUserAndOrgRelDef.fromJson(uri.queryParameters);
+      } else {
+        return ModelUserAndOrgRelDef.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -189,4 +196,10 @@ class ModelUserAndOrgRelDef extends Model {
       other.userPubId != null ? this.userPubId = other.userPubId : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

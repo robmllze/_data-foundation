@@ -97,11 +97,9 @@ class ModelEvent extends _ModelEvent {
   factory ModelEvent.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelEvent.fromGenericModel(other);
-    } else {
-      return ModelEvent.unsafe()..updateWith(other);
-    }
+    return ModelEvent.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -111,7 +109,7 @@ class ModelEvent extends _ModelEvent {
   factory ModelEvent.of(
     ModelEvent? other,
   ) {
-    return ModelEvent.unsafe()..updateWith(other);
+    return ModelEvent.fromJson(other?.toJson());
   }
 
   //
@@ -248,10 +246,19 @@ class ModelEvent extends _ModelEvent {
   //
   //
 
-  factory ModelEvent.fromGenericModel(
-    GenericModel? other,
+  factory ModelEvent.fromUri(
+    Uri? uri,
   ) {
-    return ModelEvent.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelEvent.fromJson(uri.queryParameters);
+      } else {
+        return ModelEvent.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -383,4 +390,10 @@ class ModelEvent extends _ModelEvent {
       other.whenSent != null ? this.whenSent = other.whenSent : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

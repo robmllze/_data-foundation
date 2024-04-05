@@ -69,11 +69,9 @@ class ModelConnectionRequestDef extends Model {
   factory ModelConnectionRequestDef.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelConnectionRequestDef.fromGenericModel(other);
-    } else {
-      return ModelConnectionRequestDef.unsafe()..updateWith(other);
-    }
+    return ModelConnectionRequestDef.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -83,7 +81,7 @@ class ModelConnectionRequestDef extends Model {
   factory ModelConnectionRequestDef.of(
     ModelConnectionRequestDef? other,
   ) {
-    return ModelConnectionRequestDef.unsafe()..updateWith(other);
+    return ModelConnectionRequestDef.fromJson(other?.toJson());
   }
 
   //
@@ -132,10 +130,19 @@ class ModelConnectionRequestDef extends Model {
   //
   //
 
-  factory ModelConnectionRequestDef.fromGenericModel(
-    GenericModel? other,
+  factory ModelConnectionRequestDef.fromUri(
+    Uri? uri,
   ) {
-    return ModelConnectionRequestDef.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelConnectionRequestDef.fromJson(uri.queryParameters);
+      } else {
+        return ModelConnectionRequestDef.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -199,4 +206,10 @@ class ModelConnectionRequestDef extends Model {
       other.senderPubId != null ? this.senderPubId = other.senderPubId : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

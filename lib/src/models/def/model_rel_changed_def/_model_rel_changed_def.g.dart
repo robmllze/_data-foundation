@@ -69,11 +69,9 @@ class ModelRelChangedDef extends Model {
   factory ModelRelChangedDef.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelRelChangedDef.fromGenericModel(other);
-    } else {
-      return ModelRelChangedDef.unsafe()..updateWith(other);
-    }
+    return ModelRelChangedDef.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -83,7 +81,7 @@ class ModelRelChangedDef extends Model {
   factory ModelRelChangedDef.of(
     ModelRelChangedDef? other,
   ) {
-    return ModelRelChangedDef.unsafe()..updateWith(other);
+    return ModelRelChangedDef.fromJson(other?.toJson());
   }
 
   //
@@ -132,10 +130,19 @@ class ModelRelChangedDef extends Model {
   //
   //
 
-  factory ModelRelChangedDef.fromGenericModel(
-    GenericModel? other,
+  factory ModelRelChangedDef.fromUri(
+    Uri? uri,
   ) {
-    return ModelRelChangedDef.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelRelChangedDef.fromJson(uri.queryParameters);
+      } else {
+        return ModelRelChangedDef.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -199,4 +206,10 @@ class ModelRelChangedDef extends Model {
       other.senderPubId != null ? this.senderPubId = other.senderPubId : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

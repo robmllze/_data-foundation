@@ -89,11 +89,9 @@ class ModelUser extends Model {
   factory ModelUser.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelUser.fromGenericModel(other);
-    } else {
-      return ModelUser.unsafe()..updateWith(other);
-    }
+    return ModelUser.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -103,7 +101,7 @@ class ModelUser extends Model {
   factory ModelUser.of(
     ModelUser? other,
   ) {
-    return ModelUser.unsafe()..updateWith(other);
+    return ModelUser.fromJson(other?.toJson());
   }
 
   //
@@ -193,10 +191,19 @@ class ModelUser extends Model {
   //
   //
 
-  factory ModelUser.fromGenericModel(
-    GenericModel? other,
+  factory ModelUser.fromUri(
+    Uri? uri,
   ) {
-    return ModelUser.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelUser.fromJson(uri.queryParameters);
+      } else {
+        return ModelUser.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -308,4 +315,10 @@ class ModelUser extends Model {
           : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

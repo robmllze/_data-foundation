@@ -69,11 +69,9 @@ class ModelConnectionRequestRejectedDef extends Model {
   factory ModelConnectionRequestRejectedDef.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelConnectionRequestRejectedDef.fromGenericModel(other);
-    } else {
-      return ModelConnectionRequestRejectedDef.unsafe()..updateWith(other);
-    }
+    return ModelConnectionRequestRejectedDef.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -83,7 +81,7 @@ class ModelConnectionRequestRejectedDef extends Model {
   factory ModelConnectionRequestRejectedDef.of(
     ModelConnectionRequestRejectedDef? other,
   ) {
-    return ModelConnectionRequestRejectedDef.unsafe()..updateWith(other);
+    return ModelConnectionRequestRejectedDef.fromJson(other?.toJson());
   }
 
   //
@@ -132,10 +130,19 @@ class ModelConnectionRequestRejectedDef extends Model {
   //
   //
 
-  factory ModelConnectionRequestRejectedDef.fromGenericModel(
-    GenericModel? other,
+  factory ModelConnectionRequestRejectedDef.fromUri(
+    Uri? uri,
   ) {
-    return ModelConnectionRequestRejectedDef.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelConnectionRequestRejectedDef.fromJson(uri.queryParameters);
+      } else {
+        return ModelConnectionRequestRejectedDef.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -199,4 +206,10 @@ class ModelConnectionRequestRejectedDef extends Model {
       other.senderPubId != null ? this.senderPubId = other.senderPubId : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

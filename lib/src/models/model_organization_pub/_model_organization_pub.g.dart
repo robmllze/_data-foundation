@@ -69,11 +69,9 @@ class ModelOrganizationPub extends Model {
   factory ModelOrganizationPub.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelOrganizationPub.fromGenericModel(other);
-    } else {
-      return ModelOrganizationPub.unsafe()..updateWith(other);
-    }
+    return ModelOrganizationPub.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -83,7 +81,7 @@ class ModelOrganizationPub extends Model {
   factory ModelOrganizationPub.of(
     ModelOrganizationPub? other,
   ) {
-    return ModelOrganizationPub.unsafe()..updateWith(other);
+    return ModelOrganizationPub.fromJson(other?.toJson());
   }
 
   //
@@ -134,10 +132,19 @@ class ModelOrganizationPub extends Model {
   //
   //
 
-  factory ModelOrganizationPub.fromGenericModel(
-    GenericModel? other,
+  factory ModelOrganizationPub.fromUri(
+    Uri? uri,
   ) {
-    return ModelOrganizationPub.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelOrganizationPub.fromJson(uri.queryParameters);
+      } else {
+        return ModelOrganizationPub.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -202,4 +209,10 @@ class ModelOrganizationPub extends Model {
           : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

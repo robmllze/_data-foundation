@@ -81,11 +81,9 @@ class ModelRelationship extends _ModelRelationship {
   factory ModelRelationship.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelRelationship.fromGenericModel(other);
-    } else {
-      return ModelRelationship.unsafe()..updateWith(other);
-    }
+    return ModelRelationship.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -95,7 +93,7 @@ class ModelRelationship extends _ModelRelationship {
   factory ModelRelationship.of(
     ModelRelationship? other,
   ) {
-    return ModelRelationship.unsafe()..updateWith(other);
+    return ModelRelationship.fromJson(other?.toJson());
   }
 
   //
@@ -192,10 +190,19 @@ class ModelRelationship extends _ModelRelationship {
   //
   //
 
-  factory ModelRelationship.fromGenericModel(
-    GenericModel? other,
+  factory ModelRelationship.fromUri(
+    Uri? uri,
   ) {
-    return ModelRelationship.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelRelationship.fromJson(uri.queryParameters);
+      } else {
+        return ModelRelationship.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -293,4 +300,10 @@ class ModelRelationship extends _ModelRelationship {
       other.whenNoted != null ? this.whenNoted = other.whenNoted : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

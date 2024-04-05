@@ -89,11 +89,9 @@ class ModelInvitation extends Model {
   factory ModelInvitation.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelInvitation.fromGenericModel(other);
-    } else {
-      return ModelInvitation.unsafe()..updateWith(other);
-    }
+    return ModelInvitation.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -103,7 +101,7 @@ class ModelInvitation extends Model {
   factory ModelInvitation.of(
     ModelInvitation? other,
   ) {
-    return ModelInvitation.unsafe()..updateWith(other);
+    return ModelInvitation.fromJson(other?.toJson());
   }
 
   //
@@ -177,10 +175,19 @@ class ModelInvitation extends Model {
   //
   //
 
-  factory ModelInvitation.fromGenericModel(
-    GenericModel? other,
+  factory ModelInvitation.fromUri(
+    Uri? uri,
   ) {
-    return ModelInvitation.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelInvitation.fromJson(uri.queryParameters);
+      } else {
+        return ModelInvitation.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -262,4 +269,10 @@ class ModelInvitation extends Model {
       other.status != null ? this.status = other.status : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

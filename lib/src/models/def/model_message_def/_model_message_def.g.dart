@@ -73,11 +73,9 @@ class ModelMessageDef extends Model {
   factory ModelMessageDef.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelMessageDef.fromGenericModel(other);
-    } else {
-      return ModelMessageDef.unsafe()..updateWith(other);
-    }
+    return ModelMessageDef.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -87,7 +85,7 @@ class ModelMessageDef extends Model {
   factory ModelMessageDef.of(
     ModelMessageDef? other,
   ) {
-    return ModelMessageDef.unsafe()..updateWith(other);
+    return ModelMessageDef.fromJson(other?.toJson());
   }
 
   //
@@ -136,10 +134,19 @@ class ModelMessageDef extends Model {
   //
   //
 
-  factory ModelMessageDef.fromGenericModel(
-    GenericModel? other,
+  factory ModelMessageDef.fromUri(
+    Uri? uri,
   ) {
-    return ModelMessageDef.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelMessageDef.fromJson(uri.queryParameters);
+      } else {
+        return ModelMessageDef.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -203,4 +210,10 @@ class ModelMessageDef extends Model {
       other.senderUid != null ? this.senderUid = other.senderUid : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

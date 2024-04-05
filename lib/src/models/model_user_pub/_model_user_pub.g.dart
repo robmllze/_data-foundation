@@ -77,11 +77,9 @@ class ModelUserPub extends _ModelUserPub {
   factory ModelUserPub.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelUserPub.fromGenericModel(other);
-    } else {
-      return ModelUserPub.unsafe()..updateWith(other);
-    }
+    return ModelUserPub.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -91,7 +89,7 @@ class ModelUserPub extends _ModelUserPub {
   factory ModelUserPub.of(
     ModelUserPub? other,
   ) {
-    return ModelUserPub.unsafe()..updateWith(other);
+    return ModelUserPub.fromJson(other?.toJson());
   }
 
   //
@@ -148,10 +146,19 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
-  factory ModelUserPub.fromGenericModel(
-    GenericModel? other,
+  factory ModelUserPub.fromUri(
+    Uri? uri,
   ) {
-    return ModelUserPub.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelUserPub.fromJson(uri.queryParameters);
+      } else {
+        return ModelUserPub.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -221,4 +228,10 @@ class ModelUserPub extends _ModelUserPub {
       other.whenDeleted != null ? this.whenDeleted = other.whenDeleted : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

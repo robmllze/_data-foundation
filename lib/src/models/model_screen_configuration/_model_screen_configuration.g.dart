@@ -96,11 +96,9 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   factory ModelScreenConfiguration.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelScreenConfiguration.fromGenericModel(other);
-    } else {
-      return ModelScreenConfiguration.unsafe()..updateWith(other);
-    }
+    return ModelScreenConfiguration.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -110,7 +108,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   factory ModelScreenConfiguration.of(
     ModelScreenConfiguration? other,
   ) {
-    return ModelScreenConfiguration.unsafe()..updateWith(other);
+    return ModelScreenConfiguration.fromJson(other?.toJson());
   }
 
   //
@@ -175,10 +173,19 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
   //
 
-  factory ModelScreenConfiguration.fromGenericModel(
-    GenericModel? other,
+  factory ModelScreenConfiguration.fromUri(
+    Uri? uri,
   ) {
-    return ModelScreenConfiguration.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelScreenConfiguration.fromJson(uri.queryParameters);
+      } else {
+        return ModelScreenConfiguration.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -270,4 +277,10 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       other.title != null ? this.title = other.title : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }

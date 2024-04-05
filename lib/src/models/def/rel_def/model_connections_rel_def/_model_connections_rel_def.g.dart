@@ -61,11 +61,9 @@ class ModelConnectionsRelDef extends Model {
   factory ModelConnectionsRelDef.from(
     Model? other,
   ) {
-    if (other is GenericModel) {
-      return ModelConnectionsRelDef.fromGenericModel(other);
-    } else {
-      return ModelConnectionsRelDef.unsafe()..updateWith(other);
-    }
+    return ModelConnectionsRelDef.fromJson(
+      other is GenericModel ? other.data : other?.toJson(),
+    );
   }
 
   //
@@ -75,7 +73,7 @@ class ModelConnectionsRelDef extends Model {
   factory ModelConnectionsRelDef.of(
     ModelConnectionsRelDef? other,
   ) {
-    return ModelConnectionsRelDef.unsafe()..updateWith(other);
+    return ModelConnectionsRelDef.fromJson(other?.toJson());
   }
 
   //
@@ -123,10 +121,19 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
-  factory ModelConnectionsRelDef.fromGenericModel(
-    GenericModel? other,
+  factory ModelConnectionsRelDef.fromUri(
+    Uri? uri,
   ) {
-    return ModelConnectionsRelDef.fromJson(other?.data ?? {});
+    try {
+      if (uri != null && uri.path == MODEL_ID) {
+        return ModelConnectionsRelDef.fromJson(uri.queryParameters);
+      } else {
+        return ModelConnectionsRelDef.unsafe();
+      }
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
 
   //
@@ -182,4 +189,10 @@ class ModelConnectionsRelDef extends Model {
       other.permissions != null ? this.permissions = other.permissions : null;
     }
   }
+
+  //
+  //
+  //
+
+  String get modelId => MODEL_ID;
 }
