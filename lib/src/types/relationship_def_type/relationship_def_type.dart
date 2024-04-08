@@ -16,10 +16,22 @@ part '_relationship_def_type.g.dart';
 
 @GenerateTypeUtils()
 enum RelationshipDefType {
-  /// A relationship between a user and an organization.
-  USER_AND_ORGANIZATION,
+  /// An organization creates or owns projects.
+  ORGANIZATION_AND_PROJECT,
 
-  /// A relationship between a connections, i.e. a user and another user.
+  /// A user creates or joins an organization.
+  ORGANIZATION_AND_USER,
+
+  /// A job is created within a project.
+  JOB_AND_PROJECT,
+
+  /// A user is assigned to a job.
+  JOB_AND_USER,
+
+  /// A user joins or is associated with a project.
+  PROJECT_AND_USER,
+
+  /// A user is connected to another user, representing a direct relationship.
   USER_AND_USER,
 }
 
@@ -38,7 +50,7 @@ RelationshipDefType? findRelationshipDefTypeFromMemberIds(Set<String>? memberIds
     if (prefixes.contains(IdUtils.USER_PUB_ID_PREFIX) &&
         prefixes.contains(IdUtils.ORGANIZATION_PUB_ID_PPREFIX) &&
         prefixes.length == 2) {
-      return RelationshipDefType.USER_AND_ORGANIZATION;
+      return RelationshipDefType.ORGANIZATION_AND_USER;
     }
   }
   return null;
