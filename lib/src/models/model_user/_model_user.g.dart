@@ -30,19 +30,17 @@ class ModelUser extends Model {
   static const K_DID_SEND_WELCOME_EMAIL = 'did_send_welcome_email';
   static const K_EMAIL_SUBSCRIPTIONS = 'email_subscriptions';
   static const K_ID = 'id';
+  static const K_PID = 'pid';
   static const K_PUSH_SUBSCRIPTIONS = 'push_subscriptions';
-  static const K_RELATIONSHIP_IDS = 'relationship_ids';
   static const K_SMS_SUBSCRIPTIONS = 'sms_subscriptions';
-  static const K_USER_PUB_ID = 'user_pub_id';
   static const K_USER_TYPES = 'user_types';
   static const K_WHEN_LAST_LOGGED_IN = 'when_last_logged_in';
 
   bool? didSendWelcomeEmail;
   Set<String>? emailSubscriptions;
+  String? pid;
   Set<String>? pushSubscriptions;
-  Set<String>? relationshipIds;
   Set<String>? smsSubscriptions;
-  String? userPubId;
   Set<UserType>? userTypes;
   DateTime? whenLastLoggedIn;
 
@@ -54,10 +52,9 @@ class ModelUser extends Model {
     String? id,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
+    this.pid,
     this.pushSubscriptions,
-    this.relationshipIds,
     this.smsSubscriptions,
-    this.userPubId,
     this.userTypes,
     this.whenLastLoggedIn,
   }) {
@@ -72,10 +69,9 @@ class ModelUser extends Model {
     String? id,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
+    this.pid,
     this.pushSubscriptions,
-    this.relationshipIds,
     this.smsSubscriptions,
-    this.userPubId,
     this.userTypes,
     this.whenLastLoggedIn,
   }) {
@@ -143,15 +139,8 @@ class ModelUser extends Model {
             ?.toSet()
             .cast(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
+        pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
         pushSubscriptions: letSet(otherData?[K_PUSH_SUBSCRIPTIONS])
-            ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
-        relationshipIds: letSet(otherData?[K_RELATIONSHIP_IDS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
@@ -167,7 +156,6 @@ class ModelUser extends Model {
             .nullIfEmpty
             ?.toSet()
             .cast(),
-        userPubId: otherData?[K_USER_PUB_ID]?.toString().trim().nullIfEmpty,
         userTypes: letSet(otherData?[K_USER_TYPES])
             ?.map(
               (final p0) => UserType.values.valueOf(letAs<String>(p0)),
@@ -226,14 +214,8 @@ class ModelUser extends Model {
             .nullIfEmpty
             ?.toList(),
         K_ID: id?.toString().trim().nullIfEmpty,
+        K_PID: pid?.toString().trim().nullIfEmpty,
         K_PUSH_SUBSCRIPTIONS: pushSubscriptions
-            ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
-        K_RELATIONSHIP_IDS: relationshipIds
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
@@ -247,7 +229,6 @@ class ModelUser extends Model {
             .nonNulls
             .nullIfEmpty
             ?.toList(),
-        K_USER_PUB_ID: userPubId?.toString().trim().nullIfEmpty,
         K_USER_TYPES: userTypes
             ?.map(
               (final p0) => p0?.name,
@@ -299,16 +280,13 @@ class ModelUser extends Model {
           ? this.emailSubscriptions = other.emailSubscriptions
           : null;
       other.id != null ? this.id = other.id : null;
+      other.pid != null ? this.pid = other.pid : null;
       other.pushSubscriptions != null
           ? this.pushSubscriptions = other.pushSubscriptions
-          : null;
-      other.relationshipIds != null
-          ? this.relationshipIds = other.relationshipIds
           : null;
       other.smsSubscriptions != null
           ? this.smsSubscriptions = other.smsSubscriptions
           : null;
-      other.userPubId != null ? this.userPubId = other.userPubId : null;
       other.userTypes != null ? this.userTypes = other.userTypes : null;
       other.whenLastLoggedIn != null
           ? this.whenLastLoggedIn = other.whenLastLoggedIn

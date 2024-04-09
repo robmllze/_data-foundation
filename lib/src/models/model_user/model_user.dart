@@ -18,8 +18,7 @@ part '_model_user.g.dart';
   fields: {
     'user_types': 'Set<UserType>?',
     'when_last_logged_in': 'DateTime?',
-    'user_pub_id': 'String?',
-    'relationship_ids': 'Set<String>?',
+    'pid': 'String?',
     'did_send_welcome_email': 'bool?',
     'email_subscriptions': 'Set<String>?',
     'push_subscriptions': 'Set<String>?',

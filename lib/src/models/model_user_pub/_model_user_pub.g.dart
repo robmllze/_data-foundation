@@ -27,18 +27,18 @@ class ModelUserPub extends _ModelUserPub {
   static const CLASS = 'ModelUserPub';
   static const MODEL_ID = 'model_user_pub';
 
+  static const K_DELETED_AT = 'deleted_at';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_EMAIL_SEARCHABLE = 'email_searchable';
   static const K_ID = 'id';
   static const K_USER_ID = 'user_id';
-  static const K_WHEN_DELETED = 'when_deleted';
 
+  DateTime? deletedAt;
   String? displayName;
   String? displayNameSearchable;
   String? emailSearchable;
   String? userId;
-  int? whenDeleted;
 
   //
   //
@@ -46,11 +46,11 @@ class ModelUserPub extends _ModelUserPub {
 
   ModelUserPub({
     String? id,
+    this.deletedAt,
     this.displayName,
     this.displayNameSearchable,
     this.emailSearchable,
     this.userId,
-    this.whenDeleted,
   }) {
     this.id = id;
   }
@@ -61,11 +61,11 @@ class ModelUserPub extends _ModelUserPub {
 
   ModelUserPub.unsafe({
     String? id,
+    this.deletedAt,
     this.displayName,
     this.displayNameSearchable,
     this.emailSearchable,
     this.userId,
-    this.whenDeleted,
   }) {
     this.id = id;
   }
@@ -121,6 +121,10 @@ class ModelUserPub extends _ModelUserPub {
   ) {
     try {
       return ModelUserPub.unsafe(
+        deletedAt: () {
+          final a = otherData?[K_DELETED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
         displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
             ?.toString()
@@ -134,7 +138,6 @@ class ModelUserPub extends _ModelUserPub {
             ?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         userId: otherData?[K_USER_ID]?.toString().trim().nullIfEmpty,
-        whenDeleted: letInt(otherData?[K_WHEN_DELETED]),
       );
     } catch (e) {
       assert(false, e);
@@ -172,6 +175,7 @@ class ModelUserPub extends _ModelUserPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME_SEARCHABLE:
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
@@ -179,7 +183,6 @@ class ModelUserPub extends _ModelUserPub {
             emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_USER_ID: userId?.toString().trim().nullIfEmpty,
-        K_WHEN_DELETED: whenDeleted,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -216,6 +219,7 @@ class ModelUserPub extends _ModelUserPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUserPub.fromJson(otherData);
+      other.deletedAt != null ? this.deletedAt = other.deletedAt : null;
       other.displayName != null ? this.displayName = other.displayName : null;
       other.displayNameSearchable != null
           ? this.displayNameSearchable = other.displayNameSearchable
@@ -225,7 +229,6 @@ class ModelUserPub extends _ModelUserPub {
           : null;
       other.id != null ? this.id = other.id : null;
       other.userId != null ? this.userId = other.userId : null;
-      other.whenDeleted != null ? this.whenDeleted = other.whenDeleted : null;
     }
   }
 

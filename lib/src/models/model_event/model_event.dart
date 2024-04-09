@@ -17,16 +17,16 @@ part '_model_event.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'pubIds': 'Set<String>?',
+    'pids': 'Set<String>?',
     'timeout': 'int?',
     'def': 'GenericModel?',
-    'defType': 'EventDefType?',
-    'whenArchived': 'Map<String, DateTime>?',
-    'whenHidden': 'Map<String, DateTime>?',
-    'whenLiked': 'Map<String, DateTime>?',
-    'whenRead': 'Map<String, DateTime>?',
-    'whenReceived': 'Map<String, DateTime>?',
-    'whenSent': 'Map<String, DateTime>?',
+    'def_type': 'EventDefType?',
+    'when_archived': 'Map<String, DateTime>?',
+    'when_hidden': 'Map<String, DateTime>?',
+    'when_liked': 'Map<String, DateTime>?',
+    'when_read': 'Map<String, DateTime>?',
+    'when_received': 'Map<String, DateTime>?',
+    'when_sent': 'Map<String, DateTime>?',
   },
 )
 abstract class _ModelEvent extends ThisModel<ModelEvent> {
@@ -34,7 +34,7 @@ abstract class _ModelEvent extends ThisModel<ModelEvent> {
   //
   //
 
-  String? get senderPubId => this.model.whenSent?.keys.firstOrNull;
+  String? get senderPid => this.model.whenSent?.keys.firstOrNull;
 
   //
   //

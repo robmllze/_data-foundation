@@ -28,13 +28,13 @@ class ModelRelRemovedDef extends Model {
   static const MODEL_ID = 'model_rel_removed_def';
 
   static const K_ID = 'id';
-  static const K_RECEIVER_PUB_ID = 'receiver_pub_id';
+  static const K_RECEIVER_PID = 'receiver_pid';
   static const K_RELATIONSHIP_ID = 'relationship_id';
-  static const K_SENDER_PUB_ID = 'sender_pub_id';
+  static const K_SENDER_PID = 'sender_pid';
 
-  String? receiverPubId;
+  String? receiverPid;
   String? relationshipId;
-  String? senderPubId;
+  String? senderPid;
 
   //
   //
@@ -42,9 +42,9 @@ class ModelRelRemovedDef extends Model {
 
   ModelRelRemovedDef({
     String? id,
-    this.receiverPubId,
+    this.receiverPid,
     this.relationshipId,
-    this.senderPubId,
+    this.senderPid,
   }) {
     this.id = id;
   }
@@ -55,9 +55,9 @@ class ModelRelRemovedDef extends Model {
 
   ModelRelRemovedDef.unsafe({
     String? id,
-    this.receiverPubId,
+    this.receiverPid,
     this.relationshipId,
-    this.senderPubId,
+    this.senderPid,
   }) {
     this.id = id;
   }
@@ -114,11 +114,10 @@ class ModelRelRemovedDef extends Model {
     try {
       return ModelRelRemovedDef.unsafe(
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        receiverPubId:
-            otherData?[K_RECEIVER_PUB_ID]?.toString().trim().nullIfEmpty,
+        receiverPid: otherData?[K_RECEIVER_PID]?.toString().trim().nullIfEmpty,
         relationshipId:
             otherData?[K_RELATIONSHIP_ID]?.toString().trim().nullIfEmpty,
-        senderPubId: otherData?[K_SENDER_PUB_ID]?.toString().trim().nullIfEmpty,
+        senderPid: otherData?[K_SENDER_PID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -157,9 +156,9 @@ class ModelRelRemovedDef extends Model {
     try {
       final withNulls = <String, dynamic>{
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_RECEIVER_PUB_ID: receiverPubId?.toString().trim().nullIfEmpty,
+        K_RECEIVER_PID: receiverPid?.toString().trim().nullIfEmpty,
         K_RELATIONSHIP_ID: relationshipId?.toString().trim().nullIfEmpty,
-        K_SENDER_PUB_ID: senderPubId?.toString().trim().nullIfEmpty,
+        K_SENDER_PID: senderPid?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -197,13 +196,11 @@ class ModelRelRemovedDef extends Model {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelRelRemovedDef.fromJson(otherData);
       other.id != null ? this.id = other.id : null;
-      other.receiverPubId != null
-          ? this.receiverPubId = other.receiverPubId
-          : null;
+      other.receiverPid != null ? this.receiverPid = other.receiverPid : null;
       other.relationshipId != null
           ? this.relationshipId = other.relationshipId
           : null;
-      other.senderPubId != null ? this.senderPubId = other.senderPubId : null;
+      other.senderPid != null ? this.senderPid = other.senderPid : null;
     }
   }
 

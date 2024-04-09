@@ -29,10 +29,10 @@ class ModelProject extends Model {
 
   static const K_CREATED_AT = 'created_at';
   static const K_ID = 'id';
-  static const K_PROJECT_PUB_ID = 'project_pub_id';
+  static const K_PID = 'pid';
 
   DateTime? createdAt;
-  String? projectPubId;
+  String? pid;
 
   //
   //
@@ -41,7 +41,7 @@ class ModelProject extends Model {
   ModelProject({
     String? id,
     this.createdAt,
-    this.projectPubId,
+    this.pid,
   }) {
     this.id = id;
   }
@@ -53,7 +53,7 @@ class ModelProject extends Model {
   ModelProject.unsafe({
     String? id,
     this.createdAt,
-    this.projectPubId,
+    this.pid,
   }) {
     this.id = id;
   }
@@ -114,8 +114,7 @@ class ModelProject extends Model {
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        projectPubId:
-            otherData?[K_PROJECT_PUB_ID]?.toString().trim().nullIfEmpty,
+        pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -155,7 +154,7 @@ class ModelProject extends Model {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_PROJECT_PUB_ID: projectPubId?.toString().trim().nullIfEmpty,
+        K_PID: pid?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -194,9 +193,7 @@ class ModelProject extends Model {
       final other = ModelProject.fromJson(otherData);
       other.createdAt != null ? this.createdAt = other.createdAt : null;
       other.id != null ? this.id = other.id : null;
-      other.projectPubId != null
-          ? this.projectPubId = other.projectPubId
-          : null;
+      other.pid != null ? this.pid = other.pid : null;
     }
   }
 

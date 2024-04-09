@@ -33,8 +33,8 @@ class ModelInvitation extends Model {
   static const K_EXPIRES_AT = 'expires_at';
   static const K_ID = 'id';
   static const K_INVITATION_LINK = 'invitation_link';
-  static const K_INVITEE_PUB_IDS = 'invitee_pub_ids';
-  static const K_INVITER_PUB_ID = 'inviter_pub_id';
+  static const K_INVITEE_PIDS = 'invitee_pids';
+  static const K_INVITER_PID = 'inviter_pid';
   static const K_STATUS = 'status';
 
   DateTime? createdAt;
@@ -42,8 +42,8 @@ class ModelInvitation extends Model {
   InvitationDefType? defType;
   DateTime? expiresAt;
   Uri? invitationLink;
-  Set<String>? inviteePubIds;
-  String? inviterPubId;
+  Set<String>? inviteePids;
+  String? inviterPid;
   InvitationStatusType? status;
 
   //
@@ -57,8 +57,8 @@ class ModelInvitation extends Model {
     this.defType,
     this.expiresAt,
     this.invitationLink,
-    this.inviteePubIds,
-    this.inviterPubId,
+    this.inviteePids,
+    this.inviterPid,
     this.status,
   }) {
     this.id = id;
@@ -75,8 +75,8 @@ class ModelInvitation extends Model {
     this.defType,
     this.expiresAt,
     this.invitationLink,
-    this.inviteePubIds,
-    this.inviterPubId,
+    this.inviteePids,
+    this.inviterPid,
     this.status,
   }) {
     this.id = id;
@@ -152,7 +152,7 @@ class ModelInvitation extends Model {
           final a = otherData?[K_INVITATION_LINK];
           return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
         }(),
-        inviteePubIds: letSet(otherData?[K_INVITEE_PUB_IDS])
+        inviteePids: letSet(otherData?[K_INVITEE_PIDS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
@@ -160,8 +160,7 @@ class ModelInvitation extends Model {
             .nullIfEmpty
             ?.toSet()
             .cast(),
-        inviterPubId:
-            otherData?[K_INVITER_PUB_ID]?.toString().trim().nullIfEmpty,
+        inviterPid: otherData?[K_INVITER_PID]?.toString().trim().nullIfEmpty,
         status: InvitationStatusType.values
             .valueOf(letAs<String>(otherData?[K_STATUS])),
       );
@@ -207,14 +206,14 @@ class ModelInvitation extends Model {
         K_EXPIRES_AT: expiresAt?.toUtc()?.toIso8601String(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_INVITATION_LINK: invitationLink?.toString(),
-        K_INVITEE_PUB_IDS: inviteePubIds
+        K_INVITEE_PIDS: inviteePids
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
             ?.toList(),
-        K_INVITER_PUB_ID: inviterPubId?.toString().trim().nullIfEmpty,
+        K_INVITER_PID: inviterPid?.toString().trim().nullIfEmpty,
         K_STATUS: status?.name,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -260,12 +259,8 @@ class ModelInvitation extends Model {
       other.invitationLink != null
           ? this.invitationLink = other.invitationLink
           : null;
-      other.inviteePubIds != null
-          ? this.inviteePubIds = other.inviteePubIds
-          : null;
-      other.inviterPubId != null
-          ? this.inviterPubId = other.inviterPubId
-          : null;
+      other.inviteePids != null ? this.inviteePids = other.inviteePids : null;
+      other.inviterPid != null ? this.inviterPid = other.inviterPid : null;
       other.status != null ? this.status = other.status : null;
     }
   }

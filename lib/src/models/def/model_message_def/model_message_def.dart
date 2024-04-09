@@ -17,9 +17,9 @@ part '_model_message_def.g.dart';
 @GenerateModel(
   fields: {
     'message': 'String?',
-    'relationshipId': 'String?',
-    'senderUid': 'String?',
-    'receiverUid': 'String?',
+    'relationship_id': 'String?',
+    'sender_pid': 'String?',
+    'receiver_pid': 'String?',
   },
 )
 // ignore: unused_element

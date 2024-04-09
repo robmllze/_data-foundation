@@ -17,20 +17,11 @@ part '_model_user_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'userId': 'String?',
-    'displayName': 'String?',
-    'displayNameSearchable': 'LowerCase-String?',
-    'emailSearchable': 'LowerCase-String?',
-    'whenDeleted': 'int?',
+    'user_id': 'String?',
+    'display_name': 'String?',
+    'display_name_searchable': 'LowerCase-String?',
+    'email_searchable': 'LowerCase-String?',
+    'deleted_at': 'DateTime?',
   },
 )
-abstract class _ModelUserPub extends ThisModel<ModelUserPub> {
-  //
-  //
-  //
-
-  DateTime? get dateDeleted {
-    final whenDeleted = this.model.whenDeleted;
-    return whenDeleted != null ? DateTime.fromMillisecondsSinceEpoch(whenDeleted) : null;
-  }
-}
+abstract class _ModelUserPub extends Model {}

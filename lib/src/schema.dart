@@ -50,10 +50,10 @@ final class Schema {
   // User Pubs.
 
   static DataRef userPubsRef({
-    String? userPubId,
+    String? userPid,
   }) {
     return DataRef(
-      id: userPubId,
+      id: userPid,
       tableName: 'user_pubs',
       collectionPath: 'user_pubs',
     );
@@ -62,13 +62,13 @@ final class Schema {
   // User Events.
 
   static DataRef userEventsRef({
-    String? userPubId,
+    String? userPid,
     String? eventId,
   }) {
     return DataRef(
       id: eventId,
       tableName: 'user_events',
-      collectionPath: 'user_pubs/$userPubId/events',
+      collectionPath: 'user_pubs/$userPid/events',
     );
   }
 
@@ -124,10 +124,10 @@ final class Schema {
   // Project Pubs.
 
   static DataRef projectPubsRef({
-    String? projectPubId,
+    String? projectPid,
   }) {
     return DataRef(
-      id: projectPubId,
+      id: projectPid,
       tableName: 'project_pubs',
       collectionPath: 'project_pubs',
     );
@@ -136,26 +136,26 @@ final class Schema {
   // Project Events.
 
   static DataRef projectEventsRef({
-    String? projectPubId,
+    String? projectPid,
     String? eventId,
   }) {
     return DataRef(
       id: eventId,
       tableName: 'project_events',
-      collectionPath: 'project_pubs/$projectPubId/events',
+      collectionPath: 'project_pubs/$projectPid/events',
     );
   }
 
   // Project Messages.
 
   static DataRef projectMessagesRef({
-    String? projectPubId,
+    String? projectPid,
     String? messageId,
   }) {
     return DataRef(
       id: messageId,
       tableName: 'project_messages',
-      collectionPath: 'project_pubs/$projectPubId/messages',
+      collectionPath: 'project_pubs/$projectPid/messages',
     );
   }
 
@@ -174,10 +174,10 @@ final class Schema {
   // Job Pubs.
 
   static DataRef jobPubsRef({
-    String? jobPubId,
+    String? jobPid,
   }) {
     return DataRef(
-      id: jobPubId,
+      id: jobPid,
       tableName: 'job_pubs',
       collectionPath: 'job_pubs',
     );
@@ -186,26 +186,26 @@ final class Schema {
   // Job Events.
 
   static DataRef jobEventsRef({
-    String? jobPubId,
+    String? jobPid,
     String? eventId,
   }) {
     return DataRef(
       id: eventId,
       tableName: 'job_events',
-      collectionPath: 'job_pubs/$jobPubId/events',
+      collectionPath: 'job_pubs/$jobPid/events',
     );
   }
 
   // Job Messages.
 
   static DataRef jobMessagesRef({
-    String? jobPubId,
+    String? jobPid,
     String? messageId,
   }) {
     return DataRef(
       id: messageId,
       tableName: 'job_messages',
-      collectionPath: 'job_pubs/$jobPubId/messages',
+      collectionPath: 'job_pubs/$jobPid/messages',
     );
   }
 
@@ -224,10 +224,10 @@ final class Schema {
   // Organization Pubs.
 
   static DataRef organizationPubsRef({
-    String? organizationPubId,
+    String? organizationPid,
   }) {
     return DataRef(
-      id: organizationPubId,
+      id: organizationPid,
       tableName: 'organization_pubs',
       collectionPath: 'organization_pubs',
     );
@@ -236,13 +236,13 @@ final class Schema {
   // Organization Events.
 
   static DataRef organizationEventsRef({
-    String? organizationPubId,
+    String? organizationPid,
     String? eventId,
   }) {
     return DataRef(
       id: eventId,
       tableName: 'organization_events',
-      collectionPath: 'organization_pubs/$organizationPubId/events',
+      collectionPath: 'organization_pubs/$organizationPid/events',
     );
   }
 

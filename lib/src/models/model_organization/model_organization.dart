@@ -18,7 +18,7 @@ part '_model_organization.g.dart';
 @GenerateModel(
   fields: {
     'relationship_ids': 'Set<String>?',
-    'organization_pub_id': 'String?',
+    'organization_pid': 'String?',
   },
 )
 // ignore: unused_element

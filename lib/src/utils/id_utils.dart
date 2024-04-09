@@ -19,9 +19,9 @@ final class IdUtils {
 
   static const SEPARATOR = '-';
   static const EVENT_ID_PPREFIX = 'E';
-  static const ORGANIZATION_PUB_ID_PPREFIX = 'OP';
+  static const ORGANIZATION_PID_PPREFIX = 'PO';
   static const RELATIONSHIP_ID_PPREFIX = 'R';
-  static const USER_PUB_ID_PREFIX = 'UP';
+  static const USER_PID_PREFIX = 'PU';
 
   //
   //
@@ -33,16 +33,16 @@ final class IdUtils {
   //
   //
 
-  static String newUserPubId({required String userId}) {
-    return toUserPubId(userId: userId);
+  static String newUserPid({required String userId}) {
+    return toUserPid(userId: userId);
   }
 
-  static String toUserPubId({required String userId}) {
-    return '$USER_PUB_ID_PREFIX$SEPARATOR${_mapString1('${userId.substring(1, 4)}$userId')}';
+  static String toUserPid({required String userId}) {
+    return '$USER_PID_PREFIX$SEPARATOR${_mapString1('${userId.substring(1, 4)}$userId')}';
   }
 
-  static String toUserId({required String userPubId}) {
-    return _unmapString1(userPubId.substring('$USER_PUB_ID_PREFIX$SEPARATOR'.length)).substring(3);
+  static String toUserId({required String userPid}) {
+    return _unmapString1(userPid.substring('$USER_PID_PREFIX$SEPARATOR'.length)).substring(3);
   }
 
   //
@@ -65,18 +65,18 @@ final class IdUtils {
   //
   //
 
-  static String newOrganizationPubId() {
-    return newId(ORGANIZATION_PUB_ID_PPREFIX);
+  static String newOrganizationPid() {
+    return newId(ORGANIZATION_PID_PPREFIX);
   }
 
-  static String toOrganizationPubId({required String organizationId}) {
-    return '$ORGANIZATION_PUB_ID_PPREFIX$SEPARATOR${_mapString1('${organizationId.substring(1, 4)}$organizationId')}';
+  static String toOrganizationPid({required String organizationId}) {
+    return '$ORGANIZATION_PID_PPREFIX$SEPARATOR${_mapString1('${organizationId.substring(1, 4)}$organizationId')}';
   }
 
-  static String toOrganizationId({required String organizationPubId}) {
+  static String toOrganizationId({required String organizationPid}) {
     return _unmapString1(
-            organizationPubId.substring('$ORGANIZATION_PUB_ID_PPREFIX$SEPARATOR'.length),)
-        .substring(3);
+      organizationPid.substring('$ORGANIZATION_PID_PPREFIX$SEPARATOR'.length),
+    ).substring(3);
   }
 
   //
@@ -134,6 +134,3 @@ int _unmapChar1(int charCode, int shift) {
   }
   return charCode;
 }
-
-
-

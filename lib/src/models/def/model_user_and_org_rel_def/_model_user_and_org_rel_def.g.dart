@@ -28,11 +28,11 @@ class ModelUserAndOrgRelDef extends Model {
   static const MODEL_ID = 'model_user_and_org_rel_def';
 
   static const K_ID = 'id';
-  static const K_ORGANIZATION_PUB_ID = 'organization_pub_id';
-  static const K_USER_PUB_ID = 'user_pub_id';
+  static const K_ORGANIZATION_PID = 'organization_pid';
+  static const K_USER_PID = 'user_pid';
 
-  String? organizationPubId;
-  String? userPubId;
+  String? organizationPid;
+  String? userPid;
 
   //
   //
@@ -40,8 +40,8 @@ class ModelUserAndOrgRelDef extends Model {
 
   ModelUserAndOrgRelDef({
     String? id,
-    this.organizationPubId,
-    this.userPubId,
+    this.organizationPid,
+    this.userPid,
   }) {
     this.id = id;
   }
@@ -52,8 +52,8 @@ class ModelUserAndOrgRelDef extends Model {
 
   ModelUserAndOrgRelDef.unsafe({
     String? id,
-    this.organizationPubId,
-    this.userPubId,
+    this.organizationPid,
+    this.userPid,
   }) {
     this.id = id;
   }
@@ -110,9 +110,9 @@ class ModelUserAndOrgRelDef extends Model {
     try {
       return ModelUserAndOrgRelDef.unsafe(
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        organizationPubId:
-            otherData?[K_ORGANIZATION_PUB_ID]?.toString().trim().nullIfEmpty,
-        userPubId: otherData?[K_USER_PUB_ID]?.toString().trim().nullIfEmpty,
+        organizationPid:
+            otherData?[K_ORGANIZATION_PID]?.toString().trim().nullIfEmpty,
+        userPid: otherData?[K_USER_PID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -151,8 +151,8 @@ class ModelUserAndOrgRelDef extends Model {
     try {
       final withNulls = <String, dynamic>{
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_ORGANIZATION_PUB_ID: organizationPubId?.toString().trim().nullIfEmpty,
-        K_USER_PUB_ID: userPubId?.toString().trim().nullIfEmpty,
+        K_ORGANIZATION_PID: organizationPid?.toString().trim().nullIfEmpty,
+        K_USER_PID: userPid?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -190,10 +190,10 @@ class ModelUserAndOrgRelDef extends Model {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUserAndOrgRelDef.fromJson(otherData);
       other.id != null ? this.id = other.id : null;
-      other.organizationPubId != null
-          ? this.organizationPubId = other.organizationPubId
+      other.organizationPid != null
+          ? this.organizationPid = other.organizationPid
           : null;
-      other.userPubId != null ? this.userPubId = other.userPubId : null;
+      other.userPid != null ? this.userPid = other.userPid : null;
     }
   }
 

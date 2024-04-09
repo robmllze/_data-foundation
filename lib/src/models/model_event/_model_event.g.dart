@@ -30,7 +30,7 @@ class ModelEvent extends _ModelEvent {
   static const K_DEF = 'def';
   static const K_DEF_TYPE = 'def_type';
   static const K_ID = 'id';
-  static const K_PUB_IDS = 'pub_ids';
+  static const K_PIDS = 'pids';
   static const K_TIMEOUT = 'timeout';
   static const K_WHEN_ARCHIVED = 'when_archived';
   static const K_WHEN_HIDDEN = 'when_hidden';
@@ -41,7 +41,7 @@ class ModelEvent extends _ModelEvent {
 
   GenericModel? def;
   EventDefType? defType;
-  Set<String>? pubIds;
+  Set<String>? pids;
   int? timeout;
   Map<String, DateTime>? whenArchived;
   Map<String, DateTime>? whenHidden;
@@ -58,7 +58,7 @@ class ModelEvent extends _ModelEvent {
     String? id,
     this.def,
     this.defType,
-    this.pubIds,
+    this.pids,
     this.timeout,
     this.whenArchived,
     this.whenHidden,
@@ -78,7 +78,7 @@ class ModelEvent extends _ModelEvent {
     String? id,
     this.def,
     this.defType,
-    this.pubIds,
+    this.pids,
     this.timeout,
     this.whenArchived,
     this.whenHidden,
@@ -148,7 +148,7 @@ class ModelEvent extends _ModelEvent {
         defType:
             EventDefType.values.valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        pubIds: letSet(otherData?[K_PUB_IDS])
+        pids: letSet(otherData?[K_PIDS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
@@ -275,7 +275,7 @@ class ModelEvent extends _ModelEvent {
         K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_PUB_IDS: pubIds
+        K_PIDS: pids
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
@@ -376,7 +376,7 @@ class ModelEvent extends _ModelEvent {
       other.def != null ? this.def = other.def : null;
       other.defType != null ? this.defType = other.defType : null;
       other.id != null ? this.id = other.id : null;
-      other.pubIds != null ? this.pubIds = other.pubIds : null;
+      other.pids != null ? this.pids = other.pids : null;
       other.timeout != null ? this.timeout = other.timeout : null;
       other.whenArchived != null
           ? this.whenArchived = other.whenArchived

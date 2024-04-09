@@ -17,7 +17,7 @@ part '_model_job.g.dart';
 
 @GenerateModel(
   fields: {
-    'job_pub_id': 'String?',
+    'pid': 'String?',
     'created_at': 'DateTime?',
   },
 )

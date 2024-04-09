@@ -19,9 +19,9 @@ part '_model_invitation.g.dart';
     'def_type': 'InvitationDefType?',
     'def': 'GenericModel?',
     'expires_at': 'DateTime?',
-    'invitationLink': 'Uri?',
-    'inviteePubIds': 'Set<String>?',
-    'inviterPubId': 'String?',
+    'invitation_link': 'Uri?',
+    'invitee_pids': 'Set<String>?',
+    'inviter_pid': 'String?',
     'status': 'InvitationStatusType?',
   },
 )

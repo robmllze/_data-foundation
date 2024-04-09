@@ -17,12 +17,12 @@ part '_model_relationship.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'memberIds': 'Set<String>?',
+    'member_pids': 'Set<String>?',
     'def': 'GenericModel?',
-    'defType': 'RelationshipDefType?',
-    'whenNoted': 'Map<String, DateTime>?',
-    'whenEnabled': 'Map<String, DateTime>?',
-    'whenDisabled': 'Map<String, DateTime>?',
+    'def_type': 'RelationshipDefType?',
+    'when_noted': 'Map<String, DateTime>?',
+    'when_enabled': 'Map<String, DateTime>?',
+    'when_disabled': 'Map<String, DateTime>?',
   },
 )
 abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
@@ -121,17 +121,17 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
 
   /// Whether this relationship involves the Member with [memberId].
   bool involvesMember(String memberId) {
-    return this.model.memberIds?.contains(memberId) == true;
+    return this.model.memberPids?.contains(memberId) == true;
   }
 
   /// Returns the Member IDs of the other Members in this relationship.
-  Iterable<String>? getOtherMemberIds(String currentMemberId) {
-    return this.model.memberIds?.where((e) => e != currentMemberId);
+  Iterable<String>? getOtherMemberPids(String currentMemberId) {
+    return this.model.memberPids?.where((e) => e != currentMemberId);
   }
 
   /// Calls [callback] for each Member in this relationship.
   void forEachMember(void Function(String) callback) async {
-    final memberId = this.model.memberIds;
+    final memberId = this.model.memberPids;
     final hasMembers = memberId?.isNotEmpty == true;
     assert(hasMembers);
     if (hasMembers) {

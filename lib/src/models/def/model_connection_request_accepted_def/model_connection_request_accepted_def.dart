@@ -16,9 +16,9 @@ part '_model_connection_request_accepted_def.g.dart';
 
 @GenerateModel(
   fields: {
-    'relationshipId': 'String?',
-    'senderPubId': 'String?',
-    'receiverPubId': 'String?',
+    'relationship_id': 'String?',
+    'sender_pid': 'String?',
+    'receiver_pid': 'String?',
   },
 )
 // ignore: unused_element

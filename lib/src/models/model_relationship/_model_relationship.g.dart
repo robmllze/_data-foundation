@@ -30,14 +30,14 @@ class ModelRelationship extends _ModelRelationship {
   static const K_DEF = 'def';
   static const K_DEF_TYPE = 'def_type';
   static const K_ID = 'id';
-  static const K_MEMBER_IDS = 'member_ids';
+  static const K_MEMBER_PIDS = 'member_pids';
   static const K_WHEN_DISABLED = 'when_disabled';
   static const K_WHEN_ENABLED = 'when_enabled';
   static const K_WHEN_NOTED = 'when_noted';
 
   GenericModel? def;
   RelationshipDefType? defType;
-  Set<String>? memberIds;
+  Set<String>? memberPids;
   Map<String, DateTime>? whenDisabled;
   Map<String, DateTime>? whenEnabled;
   Map<String, DateTime>? whenNoted;
@@ -50,7 +50,7 @@ class ModelRelationship extends _ModelRelationship {
     String? id,
     this.def,
     this.defType,
-    this.memberIds,
+    this.memberPids,
     this.whenDisabled,
     this.whenEnabled,
     this.whenNoted,
@@ -66,7 +66,7 @@ class ModelRelationship extends _ModelRelationship {
     String? id,
     this.def,
     this.defType,
-    this.memberIds,
+    this.memberPids,
     this.whenDisabled,
     this.whenEnabled,
     this.whenNoted,
@@ -132,7 +132,7 @@ class ModelRelationship extends _ModelRelationship {
         defType: RelationshipDefType.values
             .valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        memberIds: letSet(otherData?[K_MEMBER_IDS])
+        memberPids: letSet(otherData?[K_MEMBER_PIDS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
@@ -219,7 +219,7 @@ class ModelRelationship extends _ModelRelationship {
         K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_MEMBER_IDS: memberIds
+        K_MEMBER_PIDS: memberPids
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
@@ -292,7 +292,7 @@ class ModelRelationship extends _ModelRelationship {
       other.def != null ? this.def = other.def : null;
       other.defType != null ? this.defType = other.defType : null;
       other.id != null ? this.id = other.id : null;
-      other.memberIds != null ? this.memberIds = other.memberIds : null;
+      other.memberPids != null ? this.memberPids = other.memberPids : null;
       other.whenDisabled != null
           ? this.whenDisabled = other.whenDisabled
           : null;

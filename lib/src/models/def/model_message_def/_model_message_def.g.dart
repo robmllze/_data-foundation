@@ -29,14 +29,14 @@ class ModelMessageDef extends Model {
 
   static const K_ID = 'id';
   static const K_MESSAGE = 'message';
-  static const K_RECEIVER_UID = 'receiver_uid';
+  static const K_RECEIVER_PID = 'receiver_pid';
   static const K_RELATIONSHIP_ID = 'relationship_id';
-  static const K_SENDER_UID = 'sender_uid';
+  static const K_SENDER_PID = 'sender_pid';
 
   String? message;
-  String? receiverUid;
+  String? receiverPid;
   String? relationshipId;
-  String? senderUid;
+  String? senderPid;
 
   //
   //
@@ -45,9 +45,9 @@ class ModelMessageDef extends Model {
   ModelMessageDef({
     String? id,
     this.message,
-    this.receiverUid,
+    this.receiverPid,
     this.relationshipId,
-    this.senderUid,
+    this.senderPid,
   }) {
     this.id = id;
   }
@@ -59,9 +59,9 @@ class ModelMessageDef extends Model {
   ModelMessageDef.unsafe({
     String? id,
     this.message,
-    this.receiverUid,
+    this.receiverPid,
     this.relationshipId,
-    this.senderUid,
+    this.senderPid,
   }) {
     this.id = id;
   }
@@ -119,10 +119,10 @@ class ModelMessageDef extends Model {
       return ModelMessageDef.unsafe(
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         message: otherData?[K_MESSAGE]?.toString().trim().nullIfEmpty,
-        receiverUid: otherData?[K_RECEIVER_UID]?.toString().trim().nullIfEmpty,
+        receiverPid: otherData?[K_RECEIVER_PID]?.toString().trim().nullIfEmpty,
         relationshipId:
             otherData?[K_RELATIONSHIP_ID]?.toString().trim().nullIfEmpty,
-        senderUid: otherData?[K_SENDER_UID]?.toString().trim().nullIfEmpty,
+        senderPid: otherData?[K_SENDER_PID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -162,9 +162,9 @@ class ModelMessageDef extends Model {
       final withNulls = <String, dynamic>{
         K_ID: id?.toString().trim().nullIfEmpty,
         K_MESSAGE: message?.toString().trim().nullIfEmpty,
-        K_RECEIVER_UID: receiverUid?.toString().trim().nullIfEmpty,
+        K_RECEIVER_PID: receiverPid?.toString().trim().nullIfEmpty,
         K_RELATIONSHIP_ID: relationshipId?.toString().trim().nullIfEmpty,
-        K_SENDER_UID: senderUid?.toString().trim().nullIfEmpty,
+        K_SENDER_PID: senderPid?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -203,11 +203,11 @@ class ModelMessageDef extends Model {
       final other = ModelMessageDef.fromJson(otherData);
       other.id != null ? this.id = other.id : null;
       other.message != null ? this.message = other.message : null;
-      other.receiverUid != null ? this.receiverUid = other.receiverUid : null;
+      other.receiverPid != null ? this.receiverPid = other.receiverPid : null;
       other.relationshipId != null
           ? this.relationshipId = other.relationshipId
           : null;
-      other.senderUid != null ? this.senderUid = other.senderUid : null;
+      other.senderPid != null ? this.senderPid = other.senderPid : null;
     }
   }
 

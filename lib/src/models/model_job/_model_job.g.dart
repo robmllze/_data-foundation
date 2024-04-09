@@ -29,10 +29,10 @@ class ModelJob extends Model {
 
   static const K_CREATED_AT = 'created_at';
   static const K_ID = 'id';
-  static const K_JOB_PUB_ID = 'job_pub_id';
+  static const K_PID = 'pid';
 
   DateTime? createdAt;
-  String? jobPubId;
+  String? pid;
 
   //
   //
@@ -41,7 +41,7 @@ class ModelJob extends Model {
   ModelJob({
     String? id,
     this.createdAt,
-    this.jobPubId,
+    this.pid,
   }) {
     this.id = id;
   }
@@ -53,7 +53,7 @@ class ModelJob extends Model {
   ModelJob.unsafe({
     String? id,
     this.createdAt,
-    this.jobPubId,
+    this.pid,
   }) {
     this.id = id;
   }
@@ -114,7 +114,7 @@ class ModelJob extends Model {
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        jobPubId: otherData?[K_JOB_PUB_ID]?.toString().trim().nullIfEmpty,
+        pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -154,7 +154,7 @@ class ModelJob extends Model {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_JOB_PUB_ID: jobPubId?.toString().trim().nullIfEmpty,
+        K_PID: pid?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -193,7 +193,7 @@ class ModelJob extends Model {
       final other = ModelJob.fromJson(otherData);
       other.createdAt != null ? this.createdAt = other.createdAt : null;
       other.id != null ? this.id = other.id : null;
-      other.jobPubId != null ? this.jobPubId = other.jobPubId : null;
+      other.pid != null ? this.pid = other.pid : null;
     }
   }
 

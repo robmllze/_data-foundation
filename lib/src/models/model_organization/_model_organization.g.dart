@@ -28,10 +28,10 @@ class ModelOrganization extends Model {
   static const MODEL_ID = 'model_organization';
 
   static const K_ID = 'id';
-  static const K_ORGANIZATION_PUB_ID = 'organization_pub_id';
+  static const K_ORGANIZATION_PID = 'organization_pid';
   static const K_RELATIONSHIP_IDS = 'relationship_ids';
 
-  String? organizationPubId;
+  String? organizationPid;
   Set<String>? relationshipIds;
 
   //
@@ -40,7 +40,7 @@ class ModelOrganization extends Model {
 
   ModelOrganization({
     String? id,
-    this.organizationPubId,
+    this.organizationPid,
     this.relationshipIds,
   }) {
     this.id = id;
@@ -52,7 +52,7 @@ class ModelOrganization extends Model {
 
   ModelOrganization.unsafe({
     String? id,
-    this.organizationPubId,
+    this.organizationPid,
     this.relationshipIds,
   }) {
     this.id = id;
@@ -110,8 +110,8 @@ class ModelOrganization extends Model {
     try {
       return ModelOrganization.unsafe(
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        organizationPubId:
-            otherData?[K_ORGANIZATION_PUB_ID]?.toString().trim().nullIfEmpty,
+        organizationPid:
+            otherData?[K_ORGANIZATION_PID]?.toString().trim().nullIfEmpty,
         relationshipIds: letSet(otherData?[K_RELATIONSHIP_IDS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -158,7 +158,7 @@ class ModelOrganization extends Model {
     try {
       final withNulls = <String, dynamic>{
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_ORGANIZATION_PUB_ID: organizationPubId?.toString().trim().nullIfEmpty,
+        K_ORGANIZATION_PID: organizationPid?.toString().trim().nullIfEmpty,
         K_RELATIONSHIP_IDS: relationshipIds
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -203,8 +203,8 @@ class ModelOrganization extends Model {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelOrganization.fromJson(otherData);
       other.id != null ? this.id = other.id : null;
-      other.organizationPubId != null
-          ? this.organizationPubId = other.organizationPubId
+      other.organizationPid != null
+          ? this.organizationPid = other.organizationPid
           : null;
       other.relationshipIds != null
           ? this.relationshipIds = other.relationshipIds

@@ -17,7 +17,7 @@ part '_model_project.g.dart';
 
 @GenerateModel(
   fields: {
-    'project_pub_id': 'String?',
+    'pid': 'String?',
     'created_at': 'DateTime?',
   },
 )

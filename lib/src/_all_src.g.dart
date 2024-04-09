@@ -19,8 +19,12 @@ export 'models/def/rel_def/model_connections_rel_def/model_connections_rel_def.d
 export 'models/model_connection_permissions/model_connection_permissions.dart';
 export 'models/model_event/model_event.dart';
 export 'models/model_invitation/model_invitation.dart';
+export 'models/model_job/model_job.dart';
+export 'models/model_job_pub/model_job_pub.dart';
 export 'models/model_organization/model_organization.dart';
 export 'models/model_organization_pub/model_organization_pub.dart';
+export 'models/model_project/model_project.dart';
+export 'models/model_project_pub/model_project_pub.dart';
 export 'models/model_relationship/model_relationship.dart';
 export 'models/model_screen_configuration/model_screen_configuration.dart';
 export 'models/model_user/model_user.dart';

@@ -17,8 +17,8 @@ part '_model_user_and_org_rel_def.g.dart';
 
 @GenerateModel(
   fields: {
-    'organization_pub_id': 'String?',
-    'user_pub_id': 'String?',
+    'organization_pid': 'String?',
+    'user_pid': 'String?',
   },
 )
 // ignore: unused_element
