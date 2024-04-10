@@ -19,8 +19,10 @@ final class IdUtils {
 
   static const SEPARATOR = '-';
   static const EVENT_ID_PPREFIX = 'E';
-  static const ORGANIZATION_PID_PPREFIX = 'PO';
   static const RELATIONSHIP_ID_PPREFIX = 'R';
+  static const JOB_PID_PPREFIX = 'PJ';
+  static const ORGANIZATION_PID_PPREFIX = 'PO';
+  static const PROJECT_PID_PPREFIX = 'PP';
   static const USER_PID_PREFIX = 'PU';
 
   //
@@ -76,6 +78,42 @@ final class IdUtils {
   static String toOrganizationId({required String organizationPid}) {
     return _unmapString1(
       organizationPid.substring('$ORGANIZATION_PID_PPREFIX$SEPARATOR'.length),
+    ).substring(3);
+  }
+
+  //
+  //
+  //
+
+  static String newProjectPid() {
+    return newId(PROJECT_PID_PPREFIX);
+  }
+
+  static String toProjectPid({required String projectId}) {
+    return '$PROJECT_PID_PPREFIX$SEPARATOR${_mapString1('${projectId.substring(1, 4)}$projectId')}';
+  }
+
+  static String toProjectId({required String projectPid}) {
+    return _unmapString1(
+      projectPid.substring('$PROJECT_PID_PPREFIX$SEPARATOR'.length),
+    ).substring(3);
+  }
+
+  //
+  //
+  //
+
+  static String newJobPid() {
+    return newId(JOB_PID_PPREFIX);
+  }
+
+  static String toJobPid({required String jobId}) {
+    return '$JOB_PID_PPREFIX$SEPARATOR${_mapString1('${jobId.substring(1, 4)}$jobId')}';
+  }
+
+  static String toJobId({required String jobPid}) {
+    return _unmapString1(
+      jobPid.substring('$JOB_PID_PPREFIX$SEPARATOR'.length),
     ).substring(3);
   }
 
