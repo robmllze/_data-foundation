@@ -68,60 +68,60 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
     return false;
   }
 
-  /// Marks this relationship as "noted" for the Member with [memberId].
+  /// Marks this relationship as "noted" for the Member with [memberPid].
   ///
   /// This can be used to indicate that the Member has noted, acknowledged or
   /// read this relationship.
   ///
   /// It is useful for tracking if this relationship is new to a Member or not.
-  void markAsNotedFor(String memberId) {
+  void markAsNotedFor(String memberPid) {
     this.model.whenNoted = {
       ...?this.model.whenNoted,
-      memberId: DateTime.now(),
+      memberPid: DateTime.now(),
     };
   }
 
-  /// Whether this relationship is marked as "noted" for the Member with [memberId].
-  bool isMarkedAsNotedFor(String memberId) {
-    return this.model.whenNoted?[memberId] == null;
+  /// Whether this relationship is marked as "noted" for the Member with [memberPid].
+  bool isMarkedAsNotedFor(String memberPid) {
+    return this.model.whenNoted?[memberPid] == null;
   }
 
-  /// Marks this relationship as "enabled" for the Member with [memberId].
+  /// Marks this relationship as "enabled" for the Member with [memberPid].
   ///
   /// This can be used to indicate that the relationship is "enabled" for the
   /// Member.
   ///
   /// If not explicitly marked as enabled or disabled then the relationship is
   /// assumed to be enabled.
-  void markAsEnabledFor(String memberId) {
+  void markAsEnabledFor(String memberPid) {
     this.model.whenEnabled = {
       ...?this.model.whenEnabled,
-      memberId: DateTime.now(),
+      memberPid: DateTime.now(),
     };
   }
 
-  /// Whether this relationship is marked as "enabled" for the Member with [memberId].
-  bool isMarkedAsEnabledFor(String memberId) => this.model.whenEnabled?[memberId] == null;
+  /// Whether this relationship is marked as "enabled" for the Member with [memberPid].
+  bool isMarkedAsEnabledFor(String memberPid) => this.model.whenEnabled?[memberPid] == null;
 
-  /// Marks this relationship as "disabled" for the Member with [memberId].
+  /// Marks this relationship as "disabled" for the Member with [memberPid].
   ///
   /// This can be used to indicate that the relationship is "disabled" for the
   /// Member.
   ///
   /// It is useful for temporarily disabling a relationship for a Member.
-  void markAsDisabledFor(String memberId) {
+  void markAsDisabledFor(String memberPid) {
     this.model.whenDisabled = {
       ...?this.model.whenDisabled,
-      memberId: DateTime.now(),
+      memberPid: DateTime.now(),
     };
   }
 
-  /// Whether this relationship is marked as "disabled" for the Member with [memberId].
-  bool isMarkedAsDisabledFor(String memberId) => this.model.whenDisabled?[memberId] == null;
+  /// Whether this relationship is marked as "disabled" for the Member with [memberPid].
+  bool isMarkedAsDisabledFor(String memberPid) => this.model.whenDisabled?[memberPid] == null;
 
-  /// Whether this relationship involves the Member with [memberId].
-  bool involvesMember(String memberId) {
-    return this.model.memberPids?.contains(memberId) == true;
+  /// Whether this relationship involves the Member with [memberPid].
+  bool involvesMember(String memberPid) {
+    return this.model.memberPids?.contains(memberPid) == true;
   }
 
   /// Returns the Member IDs of the other Members in this relationship.
@@ -131,11 +131,11 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
 
   /// Calls [callback] for each Member in this relationship.
   void forEachMember(void Function(String) callback) async {
-    final memberId = this.model.memberPids;
-    final hasMembers = memberId?.isNotEmpty == true;
+    final memberPid = this.model.memberPids;
+    final hasMembers = memberPid?.isNotEmpty == true;
     assert(hasMembers);
     if (hasMembers) {
-      for (final e in memberId!) {
+      for (final e in memberPid!) {
         callback(e);
       }
     }
