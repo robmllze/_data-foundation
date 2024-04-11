@@ -143,6 +143,17 @@ class ModelUserAndOrgRelDef extends Model {
   //
   //
 
+  static ModelUserAndOrgRelDef? fromPool({
+    required Iterable<ModelUserAndOrgRelDef>? pool,
+    required String? id,
+  }) {
+    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,

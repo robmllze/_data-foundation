@@ -145,6 +145,17 @@ class ModelJob extends Model {
   //
   //
 
+  static ModelJob? fromPool({
+    required Iterable<ModelJob>? pool,
+    required String? id,
+  }) {
+    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,

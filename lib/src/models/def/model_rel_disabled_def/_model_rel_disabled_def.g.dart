@@ -148,6 +148,17 @@ class ModelRelDisabledDef extends Model {
   //
   //
 
+  static ModelRelDisabledDef? fromPool({
+    required Iterable<ModelRelDisabledDef>? pool,
+    required String? id,
+  }) {
+    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,

@@ -209,6 +209,17 @@ class ModelRelationship extends _ModelRelationship {
   //
   //
 
+  static ModelRelationship? fromPool({
+    required Iterable<ModelRelationship>? pool,
+    required String? id,
+  }) {
+    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,

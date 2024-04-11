@@ -148,6 +148,17 @@ class ModelRelChangedDef extends Model {
   //
   //
 
+  static ModelRelChangedDef? fromPool({
+    required Iterable<ModelRelChangedDef>? pool,
+    required String? id,
+  }) {
+    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,

@@ -148,6 +148,17 @@ class ModelConnectionRequestDef extends Model {
   //
   //
 
+  static ModelConnectionRequestDef? fromPool({
+    required Iterable<ModelConnectionRequestDef>? pool,
+    required String? id,
+  }) {
+    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,

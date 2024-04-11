@@ -198,6 +198,17 @@ class ModelUser extends Model {
   //
   //
 
+  static ModelUser? fromPool({
+    required Iterable<ModelUser>? pool,
+    required String? id,
+  }) {
+    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,

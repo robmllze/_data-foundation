@@ -153,6 +153,17 @@ class ModelMessageDef extends Model {
   //
   //
 
+  static ModelMessageDef? fromPool({
+    required Iterable<ModelMessageDef>? pool,
+    required String? id,
+  }) {
+    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,

@@ -182,6 +182,17 @@ class ModelConnectionPermissions extends Model {
   //
   //
 
+  static ModelConnectionPermissions? fromPool({
+    required Iterable<ModelConnectionPermissions>? pool,
+    required String? id,
+  }) {
+    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,

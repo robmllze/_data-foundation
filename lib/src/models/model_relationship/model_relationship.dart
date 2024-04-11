@@ -130,7 +130,7 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
   }
 
   /// Calls [callback] for each Member in this relationship.
-  void forEachMember(void Function(String) callback) async {
+  void forEachMember(void Function(String memberPid) callback) async {
     final memberPid = this.model.memberPids;
     final hasMembers = memberPid?.isNotEmpty == true;
     assert(hasMembers);
@@ -139,5 +139,18 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
         callback(e);
       }
     }
+  }
+
+  /// Extracts the member PIDS from this relationship that start with any of
+  /// the [memberPidPrefixes].
+  Set<String> extractMemberPids({
+    required Iterable<String> memberPidPrefixes,
+  }) {
+    return this
+            .model
+            .memberPids
+            ?.where((a) => memberPidPrefixes.any((b) => a.startsWith(b)))
+            .toSet() ??
+        {};
   }
 }

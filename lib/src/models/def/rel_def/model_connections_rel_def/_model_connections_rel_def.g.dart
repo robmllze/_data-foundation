@@ -140,6 +140,17 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
+  static ModelConnectionsRelDef? fromPool({
+    required Iterable<ModelConnectionsRelDef>? pool,
+    required String? id,
+  }) {
+    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
+  }
+
+  //
+  //
+  //
+
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,
