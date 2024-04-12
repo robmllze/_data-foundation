@@ -20,13 +20,14 @@ part '_model_screen_configuration.g.dart';
   shouldInherit: true,
   fields: {
     'arguments': 'Map<dynamic, dynamic>?',
-    'is_accessible_only_if_logged_in': 'bool?',
     'is_accessible_only_if_logged_in_and_verified': 'bool?',
+    'is_accessible_only_if_logged_in': 'bool?',
     'is_accessible_only_if_logged_out': 'bool?',
     'is_redirectable': 'bool?',
     'makeup': 'dynamic',
     'navigation_controls_widget': 'Widget?',
     'path': 'String?',
+    'previous_configuration': 'ModelScreenConfiguration?',
     'title': 'String?',
   },
 )

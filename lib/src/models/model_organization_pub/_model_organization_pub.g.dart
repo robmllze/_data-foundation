@@ -27,11 +27,13 @@ class ModelOrganizationPub extends Model {
   static const CLASS = 'ModelOrganizationPub';
   static const MODEL_ID = 'model_organization_pub';
 
+  static const K_DESCRIPTION = 'description';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
   static const K_ORGANIZATION_ID = 'organization_id';
 
+  String? description;
   String? displayName;
   String? displayNameSearchable;
   String? organizationId;
@@ -42,6 +44,7 @@ class ModelOrganizationPub extends Model {
 
   ModelOrganizationPub({
     String? id,
+    this.description,
     this.displayName,
     this.displayNameSearchable,
     this.organizationId,
@@ -55,6 +58,7 @@ class ModelOrganizationPub extends Model {
 
   ModelOrganizationPub.unsafe({
     String? id,
+    this.description,
     this.displayName,
     this.displayNameSearchable,
     this.organizationId,
@@ -113,6 +117,7 @@ class ModelOrganizationPub extends Model {
   ) {
     try {
       return ModelOrganizationPub.unsafe(
+        description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
         displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
             ?.toString()
@@ -169,6 +174,7 @@ class ModelOrganizationPub extends Model {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME_SEARCHABLE:
             displayNameSearchable?.toString().trim().nullIfEmpty,
@@ -210,6 +216,7 @@ class ModelOrganizationPub extends Model {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelOrganizationPub.fromJson(otherData);
+      other.description != null ? this.description = other.description : null;
       other.displayName != null ? this.displayName = other.displayName : null;
       other.displayNameSearchable != null
           ? this.displayNameSearchable = other.displayNameSearchable

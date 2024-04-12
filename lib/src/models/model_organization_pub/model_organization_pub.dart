@@ -20,6 +20,7 @@ part '_model_organization_pub.g.dart';
     'display_name': 'String?',
     'display_name_searchable': 'String?',
     'organization_id': 'String?',
+    'description': 'String?',
   },
 )
 // ignore: unused_element

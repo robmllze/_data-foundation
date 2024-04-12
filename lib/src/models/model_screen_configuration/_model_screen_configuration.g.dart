@@ -39,6 +39,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   static const K_MAKEUP = 'makeup';
   static const K_NAVIGATION_CONTROLS_WIDGET = 'navigation_controls_widget';
   static const K_PATH = 'path';
+  static const K_PREVIOUS_CONFIGURATION = 'previous_configuration';
   static const K_TITLE = 'title';
 
   Map<dynamic, dynamic>? arguments;
@@ -49,6 +50,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   dynamic makeup;
   Widget? navigationControlsWidget;
   String? path;
+  ModelScreenConfiguration? previousConfiguration;
   String? title;
 
   //
@@ -65,6 +67,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     this.makeup,
     this.navigationControlsWidget,
     this.path,
+    this.previousConfiguration,
     this.title,
   }) {
     this.id = id;
@@ -84,6 +87,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     this.makeup,
     this.navigationControlsWidget,
     this.path,
+    this.previousConfiguration,
     this.title,
   }) {
     this.id = id;
@@ -161,6 +165,11 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
         makeup: otherData?[K_MAKEUP],
         navigationControlsWidget: otherData?[K_NAVIGATION_CONTROLS_WIDGET],
         path: otherData?[K_PATH]?.toString().trim().nullIfEmpty,
+        previousConfiguration: () {
+          final a =
+              letMap<String, dynamic>(otherData?[K_PREVIOUS_CONFIGURATION]);
+          return a != null ? ModelScreenConfiguration.fromJson(a) : null;
+        }(),
         title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
@@ -228,6 +237,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
         K_MAKEUP: makeup,
         K_NAVIGATION_CONTROLS_WIDGET: navigationControlsWidget,
         K_PATH: path?.toString().trim().nullIfEmpty,
+        K_PREVIOUS_CONFIGURATION: previousConfiguration?.toJson(),
         K_TITLE: title?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -285,6 +295,9 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
           ? this.navigationControlsWidget = other.navigationControlsWidget
           : null;
       other.path != null ? this.path = other.path : null;
+      other.previousConfiguration != null
+          ? this.previousConfiguration = other.previousConfiguration
+          : null;
       other.title != null ? this.title = other.title : null;
     }
   }
