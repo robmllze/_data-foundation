@@ -47,6 +47,10 @@ final class IdUtils {
     return _unmapString1(userPid.substring('$USER_PID_PREFIX$SEPARATOR'.length)).substring(3);
   }
 
+  static bool isUserPid(String id) {
+    return id.startsWith(USER_PID_PREFIX);
+  }
+
   //
   //
   //
@@ -55,12 +59,20 @@ final class IdUtils {
     return newId(EVENT_ID_PPREFIX);
   }
 
+  static bool isEventId(String id) {
+    return id.startsWith(EVENT_ID_PPREFIX);
+  }
+
   //
   //
   //
 
   static String newRelationshipId() {
     return newId(RELATIONSHIP_ID_PPREFIX);
+  }
+
+  static bool isRelationshipId(String id) {
+    return id.startsWith(RELATIONSHIP_ID_PPREFIX);
   }
 
   //
@@ -81,6 +93,10 @@ final class IdUtils {
     ).substring(3);
   }
 
+  static bool isOrganizationPid(String id) {
+    return id.startsWith(ORGANIZATION_PID_PPREFIX);
+  }
+
   //
   //
   //
@@ -99,6 +115,10 @@ final class IdUtils {
     ).substring(3);
   }
 
+  static bool isProjectPid(String id) {
+    return id.startsWith(PROJECT_PID_PPREFIX);
+  }
+
   //
   //
   //
@@ -115,6 +135,10 @@ final class IdUtils {
     return _unmapString1(
       jobPid.substring('$JOB_PID_PPREFIX$SEPARATOR'.length),
     ).substring(3);
+  }
+
+  static bool isJobPid(String id) {
+    return id.startsWith(JOB_PID_PPREFIX);
   }
 
   //

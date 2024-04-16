@@ -8,7 +8,11 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-class DataRef {
+import 'package:equatable/equatable.dart';
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+class DataRef extends Equatable {
   //
   //
   //
@@ -45,4 +49,31 @@ class DataRef {
 
   // The key of the model for databases like DynamoDB.
   String get key => '${this.tableName}/${this.id}';
+
+  //
+  //
+  //
+
+  DataRef copyWith({
+    String? id,
+    String? tableName,
+    String? collectionPath,
+  }) {
+    return DataRef(
+      id: id ?? this.id,
+      tableName: tableName ?? this.tableName,
+      collectionPath: collectionPath ?? this.collectionPath,
+    );
+  }
+
+  //
+  //
+  //
+  
+  @override
+  List<Object?> get props => [
+    id,
+    tableName,
+    collectionPath,
+  ];
 }
