@@ -20,6 +20,7 @@ part '_model_project_pub.g.dart';
     'project_id': 'String?',
     'description': 'String?',
     'display_name': 'String?',
+    'display_name_searchable': 'LowerCase-String?',
     'closed_at': 'DateTime?',
     'opened_at': 'DateTime?',
   },

@@ -27,15 +27,19 @@ class ModelOrganizationPub extends Model {
   static const CLASS = 'ModelOrganizationPub';
   static const MODEL_ID = 'model_organization_pub';
 
+  static const K_CLOSED_AT = 'closed_at';
   static const K_DESCRIPTION = 'description';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
+  static const K_OPENED_AT = 'opened_at';
   static const K_ORGANIZATION_ID = 'organization_id';
 
+  DateTime? closedAt;
   String? description;
   String? displayName;
   String? displayNameSearchable;
+  DateTime? openedAt;
   String? organizationId;
 
   //
@@ -44,9 +48,11 @@ class ModelOrganizationPub extends Model {
 
   ModelOrganizationPub({
     String? id,
+    this.closedAt,
     this.description,
     this.displayName,
     this.displayNameSearchable,
+    this.openedAt,
     this.organizationId,
   }) {
     this.id = id;
@@ -58,9 +64,11 @@ class ModelOrganizationPub extends Model {
 
   ModelOrganizationPub.unsafe({
     String? id,
+    this.closedAt,
     this.description,
     this.displayName,
     this.displayNameSearchable,
+    this.openedAt,
     this.organizationId,
   }) {
     this.id = id;
@@ -117,13 +125,22 @@ class ModelOrganizationPub extends Model {
   ) {
     try {
       return ModelOrganizationPub.unsafe(
+        closedAt: () {
+          final a = otherData?[K_CLOSED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
         displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
             ?.toString()
             .trim()
-            .nullIfEmpty,
+            .nullIfEmpty
+            ?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
+        openedAt: () {
+          final a = otherData?[K_OPENED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
         organizationId:
             otherData?[K_ORGANIZATION_ID]?.toString().trim().nullIfEmpty,
       );
@@ -174,11 +191,13 @@ class ModelOrganizationPub extends Model {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CLOSED_AT: closedAt?.toUtc()?.toIso8601String(),
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME_SEARCHABLE:
-            displayNameSearchable?.toString().trim().nullIfEmpty,
+            displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
+        K_OPENED_AT: openedAt?.toUtc()?.toIso8601String(),
         K_ORGANIZATION_ID: organizationId?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -216,12 +235,14 @@ class ModelOrganizationPub extends Model {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelOrganizationPub.fromJson(otherData);
+      other.closedAt != null ? this.closedAt = other.closedAt : null;
       other.description != null ? this.description = other.description : null;
       other.displayName != null ? this.displayName = other.displayName : null;
       other.displayNameSearchable != null
           ? this.displayNameSearchable = other.displayNameSearchable
           : null;
       other.id != null ? this.id = other.id : null;
+      other.openedAt != null ? this.openedAt = other.openedAt : null;
       other.organizationId != null
           ? this.organizationId = other.organizationId
           : null;

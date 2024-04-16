@@ -27,11 +27,13 @@ class ModelOrganization extends Model {
   static const CLASS = 'ModelOrganization';
   static const MODEL_ID = 'model_organization';
 
+  static const K_CREATED_AT = 'created_at';
   static const K_ID = 'id';
-  static const K_ORGANIZATION_PID = 'organization_pid';
+  static const K_PID = 'pid';
   static const K_RELATIONSHIP_IDS = 'relationship_ids';
 
-  String? organizationPid;
+  DateTime? createdAt;
+  String? pid;
   Set<String>? relationshipIds;
 
   //
@@ -40,7 +42,8 @@ class ModelOrganization extends Model {
 
   ModelOrganization({
     String? id,
-    this.organizationPid,
+    this.createdAt,
+    this.pid,
     this.relationshipIds,
   }) {
     this.id = id;
@@ -52,7 +55,8 @@ class ModelOrganization extends Model {
 
   ModelOrganization.unsafe({
     String? id,
-    this.organizationPid,
+    this.createdAt,
+    this.pid,
     this.relationshipIds,
   }) {
     this.id = id;
@@ -109,9 +113,12 @@ class ModelOrganization extends Model {
   ) {
     try {
       return ModelOrganization.unsafe(
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        organizationPid:
-            otherData?[K_ORGANIZATION_PID]?.toString().trim().nullIfEmpty,
+        pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
         relationshipIds: letSet(otherData?[K_RELATIONSHIP_IDS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -168,8 +175,9 @@ class ModelOrganization extends Model {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_ORGANIZATION_PID: organizationPid?.toString().trim().nullIfEmpty,
+        K_PID: pid?.toString().trim().nullIfEmpty,
         K_RELATIONSHIP_IDS: relationshipIds
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -213,10 +221,9 @@ class ModelOrganization extends Model {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelOrganization.fromJson(otherData);
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
       other.id != null ? this.id = other.id : null;
-      other.organizationPid != null
-          ? this.organizationPid = other.organizationPid
-          : null;
+      other.pid != null ? this.pid = other.pid : null;
       other.relationshipIds != null
           ? this.relationshipIds = other.relationshipIds
           : null;

@@ -20,7 +20,7 @@ part '_model_invitation.g.dart';
     'def': 'GenericModel?',
     'expires_at': 'DateTime?',
     'invitation_link': 'Uri?',
-    'invitee_pids': 'Set<String>?',
+    'invitee_emails': 'Set<String>?',
     'inviter_pid': 'String?',
     'status': 'InvitationStatusType?',
   },

@@ -30,6 +30,7 @@ class ModelProjectPub extends Model {
   static const K_CLOSED_AT = 'closed_at';
   static const K_DESCRIPTION = 'description';
   static const K_DISPLAY_NAME = 'display_name';
+  static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
   static const K_OPENED_AT = 'opened_at';
   static const K_PROJECT_ID = 'project_id';
@@ -37,6 +38,7 @@ class ModelProjectPub extends Model {
   DateTime? closedAt;
   String? description;
   String? displayName;
+  String? displayNameSearchable;
   DateTime? openedAt;
   String? projectId;
 
@@ -49,6 +51,7 @@ class ModelProjectPub extends Model {
     this.closedAt,
     this.description,
     this.displayName,
+    this.displayNameSearchable,
     this.openedAt,
     this.projectId,
   }) {
@@ -64,6 +67,7 @@ class ModelProjectPub extends Model {
     this.closedAt,
     this.description,
     this.displayName,
+    this.displayNameSearchable,
     this.openedAt,
     this.projectId,
   }) {
@@ -127,6 +131,11 @@ class ModelProjectPub extends Model {
         }(),
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
+        displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         openedAt: () {
           final a = otherData?[K_OPENED_AT];
@@ -184,6 +193,8 @@ class ModelProjectPub extends Model {
         K_CLOSED_AT: closedAt?.toUtc()?.toIso8601String(),
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
+        K_DISPLAY_NAME_SEARCHABLE:
+            displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_OPENED_AT: openedAt?.toUtc()?.toIso8601String(),
         K_PROJECT_ID: projectId?.toString().trim().nullIfEmpty,
@@ -226,6 +237,9 @@ class ModelProjectPub extends Model {
       other.closedAt != null ? this.closedAt = other.closedAt : null;
       other.description != null ? this.description = other.description : null;
       other.displayName != null ? this.displayName = other.displayName : null;
+      other.displayNameSearchable != null
+          ? this.displayNameSearchable = other.displayNameSearchable
+          : null;
       other.id != null ? this.id = other.id : null;
       other.openedAt != null ? this.openedAt = other.openedAt : null;
       other.projectId != null ? this.projectId = other.projectId : null;

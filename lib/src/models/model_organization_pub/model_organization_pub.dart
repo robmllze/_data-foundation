@@ -17,10 +17,12 @@ part '_model_organization_pub.g.dart';
 
 @GenerateModel(
   fields: {
-    'display_name': 'String?',
-    'display_name_searchable': 'String?',
-    'organization_id': 'String?',
     'description': 'String?',
+    'display_name': 'String?',
+    'display_name_searchable': 'LowerCase-String?',
+    'organization_id': 'String?',
+    'closed_at': 'DateTime?',
+    'opened_at': 'DateTime?',
   },
 )
 // ignore: unused_element

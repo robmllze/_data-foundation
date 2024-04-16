@@ -33,7 +33,7 @@ class ModelInvitation extends Model {
   static const K_EXPIRES_AT = 'expires_at';
   static const K_ID = 'id';
   static const K_INVITATION_LINK = 'invitation_link';
-  static const K_INVITEE_PIDS = 'invitee_pids';
+  static const K_INVITEE_EMAILS = 'invitee_emails';
   static const K_INVITER_PID = 'inviter_pid';
   static const K_STATUS = 'status';
 
@@ -42,7 +42,7 @@ class ModelInvitation extends Model {
   InvitationDefType? defType;
   DateTime? expiresAt;
   Uri? invitationLink;
-  Set<String>? inviteePids;
+  Set<String>? inviteeEmails;
   String? inviterPid;
   InvitationStatusType? status;
 
@@ -57,7 +57,7 @@ class ModelInvitation extends Model {
     this.defType,
     this.expiresAt,
     this.invitationLink,
-    this.inviteePids,
+    this.inviteeEmails,
     this.inviterPid,
     this.status,
   }) {
@@ -75,7 +75,7 @@ class ModelInvitation extends Model {
     this.defType,
     this.expiresAt,
     this.invitationLink,
-    this.inviteePids,
+    this.inviteeEmails,
     this.inviterPid,
     this.status,
   }) {
@@ -152,7 +152,7 @@ class ModelInvitation extends Model {
           final a = otherData?[K_INVITATION_LINK];
           return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
         }(),
-        inviteePids: letSet(otherData?[K_INVITEE_PIDS])
+        inviteeEmails: letSet(otherData?[K_INVITEE_EMAILS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
@@ -217,7 +217,7 @@ class ModelInvitation extends Model {
         K_EXPIRES_AT: expiresAt?.toUtc()?.toIso8601String(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_INVITATION_LINK: invitationLink?.toString(),
-        K_INVITEE_PIDS: inviteePids
+        K_INVITEE_EMAILS: inviteeEmails
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
@@ -270,7 +270,9 @@ class ModelInvitation extends Model {
       other.invitationLink != null
           ? this.invitationLink = other.invitationLink
           : null;
-      other.inviteePids != null ? this.inviteePids = other.inviteePids : null;
+      other.inviteeEmails != null
+          ? this.inviteeEmails = other.inviteeEmails
+          : null;
       other.inviterPid != null ? this.inviterPid = other.inviterPid : null;
       other.status != null ? this.status = other.status : null;
     }
