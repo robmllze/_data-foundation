@@ -27,6 +27,8 @@ class ModelEvent extends _ModelEvent {
   static const CLASS = 'ModelEvent';
   static const MODEL_ID = 'model_event';
 
+  static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY_ID = 'created_by_id';
   static const K_DEF = 'def';
   static const K_DEF_TYPE = 'def_type';
   static const K_ID = 'id';
@@ -39,6 +41,8 @@ class ModelEvent extends _ModelEvent {
   static const K_WHEN_RECEIVED = 'when_received';
   static const K_WHEN_SENT = 'when_sent';
 
+  DateTime? createdAt;
+  String? createdById;
   GenericModel? def;
   EventDefType? defType;
   Set<String>? pids;
@@ -56,6 +60,8 @@ class ModelEvent extends _ModelEvent {
 
   ModelEvent({
     String? id,
+    this.createdAt,
+    this.createdById,
     this.def,
     this.defType,
     this.pids,
@@ -76,6 +82,8 @@ class ModelEvent extends _ModelEvent {
 
   ModelEvent.unsafe({
     String? id,
+    this.createdAt,
+    this.createdById,
     this.def,
     this.defType,
     this.pids,
@@ -141,6 +149,11 @@ class ModelEvent extends _ModelEvent {
   ) {
     try {
       return ModelEvent.unsafe(
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        createdById: otherData?[K_CREATED_BY_ID]?.toString().trim().nullIfEmpty,
         def: () {
           final a = letMap<String, dynamic>(otherData?[K_DEF]);
           return a != null ? GenericModel.fromJson(a) : null;
@@ -283,6 +296,8 @@ class ModelEvent extends _ModelEvent {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY_ID: createdById?.toString().trim().nullIfEmpty,
         K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
         K_ID: id?.toString().trim().nullIfEmpty,
@@ -384,6 +399,8 @@ class ModelEvent extends _ModelEvent {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelEvent.fromJson(otherData);
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdById != null ? this.createdById = other.createdById : null;
       other.def != null ? this.def = other.def : null;
       other.defType != null ? this.defType = other.defType : null;
       other.id != null ? this.id = other.id : null;

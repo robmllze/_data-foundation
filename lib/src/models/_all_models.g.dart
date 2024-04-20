@@ -14,7 +14,6 @@ export 'def/model_message_def/model_message_def.dart';
 export 'def/model_rel_changed_def/model_rel_changed_def.dart';
 export 'def/model_rel_disabled_def/model_rel_disabled_def.dart';
 export 'def/model_rel_removed_def/model_rel_removed_def.dart';
-export 'def/model_user_and_org_rel_def/model_user_and_org_rel_def.dart';
 export 'def/rel_def/model_connections_rel_def/model_connections_rel_def.dart';
 export 'model_connection_permissions/model_connection_permissions.dart';
 export 'model_event/model_event.dart';

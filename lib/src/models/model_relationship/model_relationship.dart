@@ -17,16 +17,23 @@ part '_model_relationship.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'member_pids': 'Set<String>?',
-    'def': 'GenericModel?',
+    'created_at': 'DateTime?',
+    'created_by_pid': 'String?',
     'def_type': 'RelationshipDefType?',
-    'when_noted': 'Map<String, DateTime>?',
-    'when_enabled': 'Map<String, DateTime>?',
+    'def': 'GenericModel?',
+    'member_pids': 'Set<String>?',
     'when_disabled': 'Map<String, DateTime>?',
-    'createdAt': 'DateTime?',
+    'when_enabled': 'Map<String, DateTime>?',
+    'when_noted': 'Map<String, DateTime>?',
   },
 )
 abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
+  //
+  //
+  //
+
+  bool isCreatedBy({required String pid}) => this.model.createdByPid == pid;
+
   //
   //
   //

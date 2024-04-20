@@ -19,7 +19,7 @@ part of 'model_job.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelJob extends Model {
+class ModelJob extends _ModelJob {
   //
   //
   //
@@ -28,10 +28,12 @@ class ModelJob extends Model {
   static const MODEL_ID = 'model_job';
 
   static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY_ID = 'created_by_id';
   static const K_ID = 'id';
   static const K_PID = 'pid';
 
   DateTime? createdAt;
+  String? createdById;
   String? pid;
 
   //
@@ -41,6 +43,7 @@ class ModelJob extends Model {
   ModelJob({
     String? id,
     this.createdAt,
+    this.createdById,
     this.pid,
   }) {
     this.id = id;
@@ -53,6 +56,7 @@ class ModelJob extends Model {
   ModelJob.unsafe({
     String? id,
     this.createdAt,
+    this.createdById,
     this.pid,
   }) {
     this.id = id;
@@ -113,6 +117,7 @@ class ModelJob extends Model {
           final a = otherData?[K_CREATED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
+        createdById: otherData?[K_CREATED_BY_ID]?.toString().trim().nullIfEmpty,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
       );
@@ -164,6 +169,7 @@ class ModelJob extends Model {
     try {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY_ID: createdById?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_PID: pid?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
@@ -203,6 +209,7 @@ class ModelJob extends Model {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelJob.fromJson(otherData);
       other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdById != null ? this.createdById = other.createdById : null;
       other.id != null ? this.id = other.id : null;
       other.pid != null ? this.pid = other.pid : null;
     }

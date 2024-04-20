@@ -7,8 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:xyz_gen_annotations/xyz_gen_annotations.dart';
-
 import '/_common.dart';
 
 part '_model_project.g.dart';
@@ -16,10 +14,17 @@ part '_model_project.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
+  shouldInherit: true,
   fields: {
     'pid': 'String?',
     'created_at': 'DateTime?',
+    'created_by_id': 'String?',
   },
 )
-// ignore: unused_element
-abstract class _ModelProject {}
+abstract class _ModelProject extends ThisModel<ModelProject> {
+  //
+  //
+  //
+
+  bool isCreatedBy({required String id}) => this.model.createdById == id;
+}

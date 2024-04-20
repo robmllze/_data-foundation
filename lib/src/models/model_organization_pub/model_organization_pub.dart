@@ -7,8 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:xyz_gen_annotations/xyz_gen_annotations.dart';
-
 import '/_common.dart';
 
 part '_model_organization_pub.g.dart';
@@ -16,14 +14,22 @@ part '_model_organization_pub.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
+  shouldInherit: true,
   fields: {
-    'description': 'String?',
-    'display_name': 'String?',
-    'display_name_searchable': 'LowerCase-String?',
-    'organization_id': 'String?',
     'closed_at': 'DateTime?',
+    'created_at': 'DateTime?',
+    'created_by_pid': 'String?',
+    'description': 'String?',
+    'display_name_searchable': 'LowerCase-String?',
+    'display_name': 'String?',
     'opened_at': 'DateTime?',
+    'organization_id': 'String?',
   },
 )
-// ignore: unused_element
-abstract class _ModelOrganizationPub {}
+abstract class _ModelOrganizationPub extends ThisModel<ModelOrganizationPub> {
+  //
+  //
+  //
+
+  bool isCreatedBy({required String pid}) => this.model.createdByPid == pid;
+}

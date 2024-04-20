@@ -7,8 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:xyz_gen_annotations/xyz_gen_annotations.dart';
-
 import '/_common.dart';
 
 part '_model_organization.g.dart';
@@ -16,11 +14,17 @@ part '_model_organization.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
+  shouldInherit: true,
   fields: {
-    'relationship_ids': 'Set<String>?',
-    'pid': 'String?',
     'created_at': 'DateTime?',
+    'created_by_id': 'String?',
+    'pid': 'String?',
   },
 )
-// ignore: unused_element
-abstract class _ModelOrganization {}
+abstract class _ModelOrganization extends ThisModel<ModelOrganization> {
+  //
+  //
+  //
+
+  bool isCreatedBy({required String id}) => this.model.createdById == id;
+}

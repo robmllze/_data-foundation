@@ -19,7 +19,7 @@ part of 'model_user.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelUser extends Model {
+class ModelUser extends _ModelUser {
   //
   //
   //
@@ -27,6 +27,7 @@ class ModelUser extends Model {
   static const CLASS = 'ModelUser';
   static const MODEL_ID = 'model_user';
 
+  static const K_CREATED_AT = 'created_at';
   static const K_DID_SEND_WELCOME_EMAIL = 'did_send_welcome_email';
   static const K_EMAIL_SUBSCRIPTIONS = 'email_subscriptions';
   static const K_ID = 'id';
@@ -36,6 +37,7 @@ class ModelUser extends Model {
   static const K_USER_TYPES = 'user_types';
   static const K_WHEN_LAST_LOGGED_IN = 'when_last_logged_in';
 
+  DateTime? createdAt;
   bool? didSendWelcomeEmail;
   Set<String>? emailSubscriptions;
   String? pid;
@@ -50,6 +52,7 @@ class ModelUser extends Model {
 
   ModelUser({
     String? id,
+    this.createdAt,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pid,
@@ -67,6 +70,7 @@ class ModelUser extends Model {
 
   ModelUser.unsafe({
     String? id,
+    this.createdAt,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pid,
@@ -129,6 +133,10 @@ class ModelUser extends Model {
   ) {
     try {
       return ModelUser.unsafe(
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
         didSendWelcomeEmail: letBool(otherData?[K_DID_SEND_WELCOME_EMAIL]),
         emailSubscriptions: letSet(otherData?[K_EMAIL_SUBSCRIPTIONS])
             ?.map(
@@ -216,6 +224,7 @@ class ModelUser extends Model {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
         K_DID_SEND_WELCOME_EMAIL: didSendWelcomeEmail,
         K_EMAIL_SUBSCRIPTIONS: emailSubscriptions
             ?.map(
@@ -284,6 +293,7 @@ class ModelUser extends Model {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUser.fromJson(otherData);
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
       other.didSendWelcomeEmail != null
           ? this.didSendWelcomeEmail = other.didSendWelcomeEmail
           : null;

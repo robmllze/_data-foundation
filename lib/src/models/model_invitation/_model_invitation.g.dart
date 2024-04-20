@@ -19,7 +19,7 @@ part of 'model_invitation.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelInvitation extends Model {
+class ModelInvitation extends _ModelInvitation {
   //
   //
   //
@@ -28,23 +28,25 @@ class ModelInvitation extends Model {
   static const MODEL_ID = 'model_invitation';
 
   static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY_PID = 'created_by_pid';
   static const K_DEF = 'def';
   static const K_DEF_TYPE = 'def_type';
   static const K_EXPIRES_AT = 'expires_at';
   static const K_ID = 'id';
   static const K_INVITATION_LINK = 'invitation_link';
+  static const K_INVITEE_ACCEPTED_EMAILS = 'invitee_accepted_emails';
   static const K_INVITEE_EMAILS = 'invitee_emails';
-  static const K_INVITER_PID = 'inviter_pid';
-  static const K_STATUS = 'status';
+  static const K_INVITEE_REJECTED_EMAILS = 'invitee_rejected_emails';
 
   DateTime? createdAt;
+  String? createdByPid;
   GenericModel? def;
   InvitationDefType? defType;
   DateTime? expiresAt;
   Uri? invitationLink;
+  Set<String>? inviteeAcceptedEmails;
   Set<String>? inviteeEmails;
-  String? inviterPid;
-  InvitationStatusType? status;
+  Set<String>? inviteeRejectedEmails;
 
   //
   //
@@ -53,13 +55,14 @@ class ModelInvitation extends Model {
   ModelInvitation({
     String? id,
     this.createdAt,
+    this.createdByPid,
     this.def,
     this.defType,
     this.expiresAt,
     this.invitationLink,
+    this.inviteeAcceptedEmails,
     this.inviteeEmails,
-    this.inviterPid,
-    this.status,
+    this.inviteeRejectedEmails,
   }) {
     this.id = id;
   }
@@ -71,13 +74,14 @@ class ModelInvitation extends Model {
   ModelInvitation.unsafe({
     String? id,
     this.createdAt,
+    this.createdByPid,
     this.def,
     this.defType,
     this.expiresAt,
     this.invitationLink,
+    this.inviteeAcceptedEmails,
     this.inviteeEmails,
-    this.inviterPid,
-    this.status,
+    this.inviteeRejectedEmails,
   }) {
     this.id = id;
   }
@@ -137,6 +141,8 @@ class ModelInvitation extends Model {
           final a = otherData?[K_CREATED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
+        createdByPid:
+            otherData?[K_CREATED_BY_PID]?.toString().trim().nullIfEmpty,
         def: () {
           final a = letMap<String, dynamic>(otherData?[K_DEF]);
           return a != null ? GenericModel.fromJson(a) : null;
@@ -152,6 +158,14 @@ class ModelInvitation extends Model {
           final a = otherData?[K_INVITATION_LINK];
           return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
         }(),
+        inviteeAcceptedEmails: letSet(otherData?[K_INVITEE_ACCEPTED_EMAILS])
+            ?.map(
+              (final p0) => p0?.toString().trim().nullIfEmpty,
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.toSet()
+            .cast(),
         inviteeEmails: letSet(otherData?[K_INVITEE_EMAILS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -160,9 +174,14 @@ class ModelInvitation extends Model {
             .nullIfEmpty
             ?.toSet()
             .cast(),
-        inviterPid: otherData?[K_INVITER_PID]?.toString().trim().nullIfEmpty,
-        status: InvitationStatusType.values
-            .valueOf(letAs<String>(otherData?[K_STATUS])),
+        inviteeRejectedEmails: letSet(otherData?[K_INVITEE_REJECTED_EMAILS])
+            ?.map(
+              (final p0) => p0?.toString().trim().nullIfEmpty,
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.toSet()
+            .cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -212,11 +231,19 @@ class ModelInvitation extends Model {
     try {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY_PID: createdByPid?.toString().trim().nullIfEmpty,
         K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
         K_EXPIRES_AT: expiresAt?.toUtc()?.toIso8601String(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_INVITATION_LINK: invitationLink?.toString(),
+        K_INVITEE_ACCEPTED_EMAILS: inviteeAcceptedEmails
+            ?.map(
+              (final p0) => p0?.toString().trim().nullIfEmpty,
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.toList(),
         K_INVITEE_EMAILS: inviteeEmails
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -224,8 +251,13 @@ class ModelInvitation extends Model {
             .nonNulls
             .nullIfEmpty
             ?.toList(),
-        K_INVITER_PID: inviterPid?.toString().trim().nullIfEmpty,
-        K_STATUS: status?.name,
+        K_INVITEE_REJECTED_EMAILS: inviteeRejectedEmails
+            ?.map(
+              (final p0) => p0?.toString().trim().nullIfEmpty,
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.toList(),
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -263,6 +295,9 @@ class ModelInvitation extends Model {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelInvitation.fromJson(otherData);
       other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdByPid != null
+          ? this.createdByPid = other.createdByPid
+          : null;
       other.def != null ? this.def = other.def : null;
       other.defType != null ? this.defType = other.defType : null;
       other.expiresAt != null ? this.expiresAt = other.expiresAt : null;
@@ -270,11 +305,15 @@ class ModelInvitation extends Model {
       other.invitationLink != null
           ? this.invitationLink = other.invitationLink
           : null;
+      other.inviteeAcceptedEmails != null
+          ? this.inviteeAcceptedEmails = other.inviteeAcceptedEmails
+          : null;
       other.inviteeEmails != null
           ? this.inviteeEmails = other.inviteeEmails
           : null;
-      other.inviterPid != null ? this.inviterPid = other.inviterPid : null;
-      other.status != null ? this.status = other.status : null;
+      other.inviteeRejectedEmails != null
+          ? this.inviteeRejectedEmails = other.inviteeRejectedEmails
+          : null;
     }
   }
 

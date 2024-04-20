@@ -27,6 +27,7 @@ class ModelUserPub extends _ModelUserPub {
   static const CLASS = 'ModelUserPub';
   static const MODEL_ID = 'model_user_pub';
 
+  static const K_CREATED_AT = 'created_at';
   static const K_DELETED_AT = 'deleted_at';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
@@ -34,6 +35,7 @@ class ModelUserPub extends _ModelUserPub {
   static const K_ID = 'id';
   static const K_USER_ID = 'user_id';
 
+  DateTime? createdAt;
   DateTime? deletedAt;
   String? displayName;
   String? displayNameSearchable;
@@ -46,6 +48,7 @@ class ModelUserPub extends _ModelUserPub {
 
   ModelUserPub({
     String? id,
+    this.createdAt,
     this.deletedAt,
     this.displayName,
     this.displayNameSearchable,
@@ -61,6 +64,7 @@ class ModelUserPub extends _ModelUserPub {
 
   ModelUserPub.unsafe({
     String? id,
+    this.createdAt,
     this.deletedAt,
     this.displayName,
     this.displayNameSearchable,
@@ -121,6 +125,10 @@ class ModelUserPub extends _ModelUserPub {
   ) {
     try {
       return ModelUserPub.unsafe(
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
         deletedAt: () {
           final a = otherData?[K_DELETED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -186,6 +194,7 @@ class ModelUserPub extends _ModelUserPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
         K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME_SEARCHABLE:
@@ -230,6 +239,7 @@ class ModelUserPub extends _ModelUserPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUserPub.fromJson(otherData);
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
       other.deletedAt != null ? this.deletedAt = other.deletedAt : null;
       other.displayName != null ? this.displayName = other.displayName : null;
       other.displayNameSearchable != null

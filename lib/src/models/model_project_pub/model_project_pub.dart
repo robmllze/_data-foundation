@@ -7,8 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:xyz_gen_annotations/xyz_gen_annotations.dart';
-
 import '/_common.dart';
 
 part '_model_project_pub.g.dart';
@@ -16,14 +14,22 @@ part '_model_project_pub.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
+  shouldInherit: true,
   fields: {
-    'project_id': 'String?',
-    'description': 'String?',
-    'display_name': 'String?',
-    'display_name_searchable': 'LowerCase-String?',
     'closed_at': 'DateTime?',
+    'created_at': 'DateTime?',
+    'created_by_pid': 'String?',
+    'description': 'String?',
+    'display_name_searchable': 'LowerCase-String?',
+    'display_name': 'String?',
     'opened_at': 'DateTime?',
+    'project_id': 'String?',
   },
 )
-// ignore: unused_element
-abstract class _ModelProjectPub {}
+abstract class _ModelProjectPub extends ThisModel<ModelProjectPub> {
+  //
+  //
+  //
+
+  bool isCreatedBy({required String pid}) => this.model.createdByPid == pid;
+}

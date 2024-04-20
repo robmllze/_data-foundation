@@ -7,8 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:xyz_gen_annotations/xyz_gen_annotations.dart';
-
 import '/_common.dart';
 
 part '_model_job_pub.g.dart';
@@ -16,14 +14,22 @@ part '_model_job_pub.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
+  shouldInherit: true,
   fields: {
-    'job_id': 'String?',
-    'description': 'String?',
-    'display_name': 'String?',
-    'display_name_searchable': 'LowerCase-String?',
     'closed_at': 'DateTime?',
+    'created_at': 'DateTime?',
+    'created_by_pid': 'String?',
+    'description': 'String?',
+    'display_name_searchable': 'LowerCase-String?',
+    'display_name': 'String?',
+    'job_id': 'String?',
     'opened_at': 'DateTime?',
   },
 )
-// ignore: unused_element
-abstract class _ModelJobPub {}
+abstract class _ModelJobPub extends ThisModel<ModelJobPub> {
+  //
+  //
+  //
+
+  bool isCreatedBy({required String pid}) => this.model.createdByPid == pid;
+}

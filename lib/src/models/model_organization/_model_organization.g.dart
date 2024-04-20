@@ -19,7 +19,7 @@ part of 'model_organization.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelOrganization extends Model {
+class ModelOrganization extends _ModelOrganization {
   //
   //
   //
@@ -28,13 +28,13 @@ class ModelOrganization extends Model {
   static const MODEL_ID = 'model_organization';
 
   static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY_ID = 'created_by_id';
   static const K_ID = 'id';
   static const K_PID = 'pid';
-  static const K_RELATIONSHIP_IDS = 'relationship_ids';
 
   DateTime? createdAt;
+  String? createdById;
   String? pid;
-  Set<String>? relationshipIds;
 
   //
   //
@@ -43,8 +43,8 @@ class ModelOrganization extends Model {
   ModelOrganization({
     String? id,
     this.createdAt,
+    this.createdById,
     this.pid,
-    this.relationshipIds,
   }) {
     this.id = id;
   }
@@ -56,8 +56,8 @@ class ModelOrganization extends Model {
   ModelOrganization.unsafe({
     String? id,
     this.createdAt,
+    this.createdById,
     this.pid,
-    this.relationshipIds,
   }) {
     this.id = id;
   }
@@ -117,16 +117,9 @@ class ModelOrganization extends Model {
           final a = otherData?[K_CREATED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
+        createdById: otherData?[K_CREATED_BY_ID]?.toString().trim().nullIfEmpty,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
-        relationshipIds: letSet(otherData?[K_RELATIONSHIP_IDS])
-            ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -176,15 +169,9 @@ class ModelOrganization extends Model {
     try {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY_ID: createdById?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_PID: pid?.toString().trim().nullIfEmpty,
-        K_RELATIONSHIP_IDS: relationshipIds
-            ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -222,11 +209,9 @@ class ModelOrganization extends Model {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelOrganization.fromJson(otherData);
       other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdById != null ? this.createdById = other.createdById : null;
       other.id != null ? this.id = other.id : null;
       other.pid != null ? this.pid = other.pid : null;
-      other.relationshipIds != null
-          ? this.relationshipIds = other.relationshipIds
-          : null;
     }
   }
 

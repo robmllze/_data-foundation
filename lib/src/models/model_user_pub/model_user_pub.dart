@@ -17,11 +17,12 @@ part '_model_user_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'user_id': 'String?',
-    'display_name': 'String?',
-    'display_name_searchable': 'LowerCase-String?',
-    'email_searchable': 'LowerCase-String?',
+    'created_at': 'DateTime?',
     'deleted_at': 'DateTime?',
+    'display_name_searchable': 'LowerCase-String?',
+    'display_name': 'String?',
+    'email_searchable': 'LowerCase-String?',
+    'user_id': 'String?',
   },
 )
-abstract class _ModelUserPub extends Model {}
+abstract class _ModelUserPub extends ThisModel<ModelUserPub> {}

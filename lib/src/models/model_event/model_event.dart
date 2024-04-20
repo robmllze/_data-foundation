@@ -17,10 +17,12 @@ part '_model_event.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
+    'created_at': 'DateTime?',
+    'created_by_id': 'String?',
+    'def_type': 'EventDefType?',
+    'def': 'GenericModel?',
     'pids': 'Set<String>?',
     'timeout': 'int?',
-    'def': 'GenericModel?',
-    'def_type': 'EventDefType?',
     'when_archived': 'Map<String, DateTime>?',
     'when_hidden': 'Map<String, DateTime>?',
     'when_liked': 'Map<String, DateTime>?',
@@ -30,6 +32,12 @@ part '_model_event.g.dart';
   },
 )
 abstract class _ModelEvent extends ThisModel<ModelEvent> {
+  //
+  //
+  //
+
+  bool isCreatedBy(String userPid) => this.model.createdById == userPid;
+
   //
   //
   //

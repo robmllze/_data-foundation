@@ -19,7 +19,7 @@ part of 'model_project_pub.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelProjectPub extends Model {
+class ModelProjectPub extends _ModelProjectPub {
   //
   //
   //
@@ -28,6 +28,8 @@ class ModelProjectPub extends Model {
   static const MODEL_ID = 'model_project_pub';
 
   static const K_CLOSED_AT = 'closed_at';
+  static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY_PID = 'created_by_pid';
   static const K_DESCRIPTION = 'description';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
@@ -36,6 +38,8 @@ class ModelProjectPub extends Model {
   static const K_PROJECT_ID = 'project_id';
 
   DateTime? closedAt;
+  DateTime? createdAt;
+  String? createdByPid;
   String? description;
   String? displayName;
   String? displayNameSearchable;
@@ -49,6 +53,8 @@ class ModelProjectPub extends Model {
   ModelProjectPub({
     String? id,
     this.closedAt,
+    this.createdAt,
+    this.createdByPid,
     this.description,
     this.displayName,
     this.displayNameSearchable,
@@ -65,6 +71,8 @@ class ModelProjectPub extends Model {
   ModelProjectPub.unsafe({
     String? id,
     this.closedAt,
+    this.createdAt,
+    this.createdByPid,
     this.description,
     this.displayName,
     this.displayNameSearchable,
@@ -129,6 +137,12 @@ class ModelProjectPub extends Model {
           final a = otherData?[K_CLOSED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        createdByPid:
+            otherData?[K_CREATED_BY_PID]?.toString().trim().nullIfEmpty,
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
         displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
@@ -191,6 +205,8 @@ class ModelProjectPub extends Model {
     try {
       final withNulls = <String, dynamic>{
         K_CLOSED_AT: closedAt?.toUtc()?.toIso8601String(),
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY_PID: createdByPid?.toString().trim().nullIfEmpty,
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME_SEARCHABLE:
@@ -235,6 +251,10 @@ class ModelProjectPub extends Model {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelProjectPub.fromJson(otherData);
       other.closedAt != null ? this.closedAt = other.closedAt : null;
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdByPid != null
+          ? this.createdByPid = other.createdByPid
+          : null;
       other.description != null ? this.description = other.description : null;
       other.displayName != null ? this.displayName = other.displayName : null;
       other.displayNameSearchable != null

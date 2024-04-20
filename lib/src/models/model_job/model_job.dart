@@ -7,8 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:xyz_gen_annotations/xyz_gen_annotations.dart';
-
 import '/_common.dart';
 
 part '_model_job.g.dart';
@@ -16,10 +14,17 @@ part '_model_job.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
+  shouldInherit: true,
   fields: {
     'pid': 'String?',
     'created_at': 'DateTime?',
+    'created_by_id': 'String?',
   },
 )
-// ignore: unused_element
-abstract class _ModelJob {}
+abstract class _ModelJob extends ThisModel<ModelJob> {
+  //
+  //
+  //
+
+  bool isCreatedBy({required String id}) => this.model.createdById == id;
+}

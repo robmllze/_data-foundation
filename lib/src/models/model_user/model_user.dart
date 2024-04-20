@@ -15,15 +15,16 @@ part '_model_user.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
+  shouldInherit: true,
   fields: {
-    'user_types': 'Set<UserType>?',
-    'when_last_logged_in': 'DateTime?',
-    'pid': 'String?',
+    'created_at': 'DateTime?',
     'did_send_welcome_email': 'bool?',
     'email_subscriptions': 'Set<String>?',
+    'pid': 'String?',
     'push_subscriptions': 'Set<String>?',
     'sms_subscriptions': 'Set<String>?',
+    'user_types': 'Set<UserType>?',
+    'when_last_logged_in': 'DateTime?',
   },
 )
-// ignore: unused_element
-abstract class _ModelUser {}
+abstract class _ModelUser extends ThisModel<ModelUser> {}

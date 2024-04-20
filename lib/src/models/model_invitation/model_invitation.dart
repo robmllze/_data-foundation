@@ -14,16 +14,23 @@ part '_model_invitation.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
+  shouldInherit: true,
   fields: {
     'created_at': 'DateTime?',
+    'created_by_pid': 'String?',
     'def_type': 'InvitationDefType?',
     'def': 'GenericModel?',
     'expires_at': 'DateTime?',
     'invitation_link': 'Uri?',
     'invitee_emails': 'Set<String>?',
-    'inviter_pid': 'String?',
-    'status': 'InvitationStatusType?',
+    'invitee_accepted_emails': 'Set<String>?',
+    'invitee_rejected_emails': 'Set<String>?',
   },
 )
-// ignore: unused_element
-abstract class _ModelInvitation {}
+abstract class _ModelInvitation extends ThisModel<ModelInvitation> {
+  //
+  //
+  //
+
+  bool isCreatedBy({required String pid}) => this.model.createdByPid == pid;
+}
