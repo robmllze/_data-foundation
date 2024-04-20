@@ -33,4 +33,6 @@ abstract class _ModelInvitation extends ThisModel<ModelInvitation> {
   //
 
   bool isCreatedBy({required String pid}) => this.model.createdByPid == pid;
+
+  bool get isExpired => this.model.expiresAt?.isBefore(DateTime.now()) ?? false;
 }
