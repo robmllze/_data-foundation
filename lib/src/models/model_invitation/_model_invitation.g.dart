@@ -212,6 +212,16 @@ class ModelInvitation extends _ModelInvitation {
   //
   //
 
+  static ModelInvitation? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelInvitation.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelInvitation? fromPool({
     required Iterable<ModelInvitation>? pool,
     required String? id,

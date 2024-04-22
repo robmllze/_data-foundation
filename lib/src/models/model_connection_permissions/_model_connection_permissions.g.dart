@@ -182,6 +182,16 @@ class ModelConnectionPermissions extends Model {
   //
   //
 
+  static ModelConnectionPermissions? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelConnectionPermissions.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelConnectionPermissions? fromPool({
     required Iterable<ModelConnectionPermissions>? pool,
     required String? id,

@@ -148,6 +148,16 @@ class ModelRelDisabledDef extends Model {
   //
   //
 
+  static ModelRelDisabledDef? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelRelDisabledDef.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelRelDisabledDef? fromPool({
     required Iterable<ModelRelDisabledDef>? pool,
     required String? id,

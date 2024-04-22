@@ -34,7 +34,6 @@ class ModelUser extends _ModelUser {
   static const K_PID = 'pid';
   static const K_PUSH_SUBSCRIPTIONS = 'push_subscriptions';
   static const K_SMS_SUBSCRIPTIONS = 'sms_subscriptions';
-  static const K_USER_TYPES = 'user_types';
   static const K_WHEN_LAST_LOGGED_IN = 'when_last_logged_in';
 
   DateTime? createdAt;
@@ -43,7 +42,6 @@ class ModelUser extends _ModelUser {
   String? pid;
   Set<String>? pushSubscriptions;
   Set<String>? smsSubscriptions;
-  Set<UserType>? userTypes;
   DateTime? whenLastLoggedIn;
 
   //
@@ -58,7 +56,6 @@ class ModelUser extends _ModelUser {
     this.pid,
     this.pushSubscriptions,
     this.smsSubscriptions,
-    this.userTypes,
     this.whenLastLoggedIn,
   }) {
     this.id = id;
@@ -76,7 +73,6 @@ class ModelUser extends _ModelUser {
     this.pid,
     this.pushSubscriptions,
     this.smsSubscriptions,
-    this.userTypes,
     this.whenLastLoggedIn,
   }) {
     this.id = id;
@@ -164,14 +160,6 @@ class ModelUser extends _ModelUser {
             .nullIfEmpty
             ?.toSet()
             .cast(),
-        userTypes: letSet(otherData?[K_USER_TYPES])
-            ?.map(
-              (final p0) => UserType.values.valueOf(letAs<String>(p0)),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
         whenLastLoggedIn: () {
           final a = otherData?[K_WHEN_LAST_LOGGED_IN];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -200,6 +188,16 @@ class ModelUser extends _ModelUser {
       assert(false, e);
       rethrow;
     }
+  }
+
+  //
+  //
+  //
+
+  static ModelUser? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelUser.from(other) : null;
   }
 
   //
@@ -245,13 +243,6 @@ class ModelUser extends _ModelUser {
         K_SMS_SUBSCRIPTIONS: smsSubscriptions
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
-        K_USER_TYPES: userTypes
-            ?.map(
-              (final p0) => p0?.name,
             )
             .nonNulls
             .nullIfEmpty
@@ -308,7 +299,6 @@ class ModelUser extends _ModelUser {
       other.smsSubscriptions != null
           ? this.smsSubscriptions = other.smsSubscriptions
           : null;
-      other.userTypes != null ? this.userTypes = other.userTypes : null;
       other.whenLastLoggedIn != null
           ? this.whenLastLoggedIn = other.whenLastLoggedIn
           : null;

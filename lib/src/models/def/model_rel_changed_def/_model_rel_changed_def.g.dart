@@ -148,6 +148,16 @@ class ModelRelChangedDef extends Model {
   //
   //
 
+  static ModelRelChangedDef? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelRelChangedDef.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelRelChangedDef? fromPool({
     required Iterable<ModelRelChangedDef>? pool,
     required String? id,

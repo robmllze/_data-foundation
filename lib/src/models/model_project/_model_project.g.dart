@@ -150,6 +150,16 @@ class ModelProject extends _ModelProject {
   //
   //
 
+  static ModelProject? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelProject.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelProject? fromPool({
     required Iterable<ModelProject>? pool,
     required String? id,

@@ -278,6 +278,16 @@ class ModelEvent extends _ModelEvent {
   //
   //
 
+  static ModelEvent? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelEvent.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelEvent? fromPool({
     required Iterable<ModelEvent>? pool,
     required String? id,

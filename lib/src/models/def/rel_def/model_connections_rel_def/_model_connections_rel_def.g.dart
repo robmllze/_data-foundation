@@ -140,6 +140,16 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
+  static ModelConnectionsRelDef? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelConnectionsRelDef.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelConnectionsRelDef? fromPool({
     required Iterable<ModelConnectionsRelDef>? pool,
     required String? id,

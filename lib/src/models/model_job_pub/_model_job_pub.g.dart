@@ -186,6 +186,16 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
 
+  static ModelJobPub? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelJobPub.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelJobPub? fromPool({
     required Iterable<ModelJobPub>? pool,
     required String? id,

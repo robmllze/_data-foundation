@@ -150,6 +150,16 @@ class ModelOrganization extends _ModelOrganization {
   //
   //
 
+  static ModelOrganization? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelOrganization.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelOrganization? fromPool({
     required Iterable<ModelOrganization>? pool,
     required String? id,

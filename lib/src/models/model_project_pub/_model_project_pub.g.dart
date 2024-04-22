@@ -186,6 +186,16 @@ class ModelProjectPub extends _ModelProjectPub {
   //
   //
 
+  static ModelProjectPub? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelProjectPub.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelProjectPub? fromPool({
     required Iterable<ModelProjectPub>? pool,
     required String? id,

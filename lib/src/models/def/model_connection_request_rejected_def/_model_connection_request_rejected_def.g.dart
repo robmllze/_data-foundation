@@ -148,6 +148,16 @@ class ModelConnectionRequestRejectedDef extends Model {
   //
   //
 
+  static ModelConnectionRequestRejectedDef? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelConnectionRequestRejectedDef.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelConnectionRequestRejectedDef? fromPool({
     required Iterable<ModelConnectionRequestRejectedDef>? pool,
     required String? id,

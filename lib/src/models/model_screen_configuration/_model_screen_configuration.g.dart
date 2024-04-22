@@ -201,6 +201,16 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
   //
 
+  static ModelScreenConfiguration? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelScreenConfiguration.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelScreenConfiguration? fromPool({
     required Iterable<ModelScreenConfiguration>? pool,
     required String? id,

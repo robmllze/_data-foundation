@@ -153,6 +153,16 @@ class ModelMessageDef extends Model {
   //
   //
 
+  static ModelMessageDef? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelMessageDef.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelMessageDef? fromPool({
     required Iterable<ModelMessageDef>? pool,
     required String? id,

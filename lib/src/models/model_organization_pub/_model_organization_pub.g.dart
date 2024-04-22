@@ -187,6 +187,16 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
 
+  static ModelOrganizationPub? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelOrganizationPub.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelOrganizationPub? fromPool({
     required Iterable<ModelOrganizationPub>? pool,
     required String? id,

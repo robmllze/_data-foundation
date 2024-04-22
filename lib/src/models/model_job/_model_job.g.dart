@@ -150,6 +150,16 @@ class ModelJob extends _ModelJob {
   //
   //
 
+  static ModelJob? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelJob.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelJob? fromPool({
     required Iterable<ModelJob>? pool,
     required String? id,

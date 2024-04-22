@@ -12,4 +12,3 @@ export 'access_type/access_type.dart';
 export 'event_def_type/event_def_type.dart';
 export 'invitation_def_type/invitation_def_type.dart';
 export 'relationship_def_type/relationship_def_type.dart';
-export 'user_type/user_type.dart';

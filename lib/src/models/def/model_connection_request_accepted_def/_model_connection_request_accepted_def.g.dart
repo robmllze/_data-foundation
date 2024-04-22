@@ -148,6 +148,16 @@ class ModelConnectionRequestAcceptedDef extends Model {
   //
   //
 
+  static ModelConnectionRequestAcceptedDef? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelConnectionRequestAcceptedDef.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelConnectionRequestAcceptedDef? fromPool({
     required Iterable<ModelConnectionRequestAcceptedDef>? pool,
     required String? id,

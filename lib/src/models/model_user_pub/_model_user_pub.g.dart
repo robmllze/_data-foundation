@@ -176,6 +176,16 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
+  static ModelUserPub? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelUserPub.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelUserPub? fromPool({
     required Iterable<ModelUserPub>? pool,
     required String? id,

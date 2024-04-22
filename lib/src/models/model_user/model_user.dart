@@ -23,7 +23,6 @@ part '_model_user.g.dart';
     'pid': 'String?',
     'push_subscriptions': 'Set<String>?',
     'sms_subscriptions': 'Set<String>?',
-    'user_types': 'Set<UserType>?',
     'when_last_logged_in': 'DateTime?',
   },
 )

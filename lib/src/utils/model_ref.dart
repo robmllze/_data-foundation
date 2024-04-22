@@ -69,11 +69,18 @@ class DataRef extends Equatable {
   //
   //
   //
-  
+
   @override
   List<Object?> get props => [
-    id,
-    tableName,
-    collectionPath,
-  ];
+        id,
+        tableName,
+        collectionPath,
+      ];
+
+  //
+  //
+  //
+
+  @override
+  String toString() => [collectionPath, tableName, id].nonNulls.join('/');
 }

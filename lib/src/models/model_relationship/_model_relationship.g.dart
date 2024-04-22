@@ -223,6 +223,16 @@ class ModelRelationship extends _ModelRelationship {
   //
   //
 
+  static ModelRelationship? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelRelationship.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelRelationship? fromPool({
     required Iterable<ModelRelationship>? pool,
     required String? id,

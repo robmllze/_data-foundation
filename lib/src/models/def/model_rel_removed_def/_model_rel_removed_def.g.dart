@@ -148,6 +148,16 @@ class ModelRelRemovedDef extends Model {
   //
   //
 
+  static ModelRelRemovedDef? convert(
+    Model? other,
+  ) {
+    return other != null ? ModelRelRemovedDef.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   static ModelRelRemovedDef? fromPool({
     required Iterable<ModelRelRemovedDef>? pool,
     required String? id,
