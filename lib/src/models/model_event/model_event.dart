@@ -8,6 +8,8 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'package:xyz_config/_common.dart';
+
 import '/_common.dart';
 
 part '_model_event.g.dart';
@@ -18,7 +20,7 @@ part '_model_event.g.dart';
   shouldInherit: true,
   fields: {
     'created_at': 'DateTime?',
-    'created_by_id': 'String?',
+    'creator_id': 'String?',
     'def_type': 'EventDefType?',
     'def': 'GenericModel?',
     'pids': 'Set<String>?',
@@ -36,7 +38,7 @@ abstract class _ModelEvent extends ThisModel<ModelEvent> {
   //
   //
 
-  bool isCreatedBy(String userPid) => this.model.createdById == userPid;
+  bool isCreatedBy(String userPid) => this.model.creatorId == userPid;
 
   //
   //

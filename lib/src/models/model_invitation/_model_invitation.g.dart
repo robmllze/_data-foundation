@@ -28,7 +28,7 @@ class ModelInvitation extends _ModelInvitation {
   static const MODEL_ID = 'model_invitation';
 
   static const K_CREATED_AT = 'created_at';
-  static const K_CREATED_BY_PID = 'created_by_pid';
+  static const K_CREATOR_PID = 'creator_pid';
   static const K_DEF = 'def';
   static const K_DEF_TYPE = 'def_type';
   static const K_EXPIRES_AT = 'expires_at';
@@ -39,7 +39,7 @@ class ModelInvitation extends _ModelInvitation {
   static const K_INVITEE_REJECTED_EMAILS = 'invitee_rejected_emails';
 
   DateTime? createdAt;
-  String? createdByPid;
+  String? creatorPid;
   GenericModel? def;
   InvitationDefType? defType;
   DateTime? expiresAt;
@@ -55,7 +55,7 @@ class ModelInvitation extends _ModelInvitation {
   ModelInvitation({
     String? id,
     this.createdAt,
-    this.createdByPid,
+    this.creatorPid,
     this.def,
     this.defType,
     this.expiresAt,
@@ -74,7 +74,7 @@ class ModelInvitation extends _ModelInvitation {
   ModelInvitation.unsafe({
     String? id,
     this.createdAt,
-    this.createdByPid,
+    this.creatorPid,
     this.def,
     this.defType,
     this.expiresAt,
@@ -141,8 +141,7 @@ class ModelInvitation extends _ModelInvitation {
           final a = otherData?[K_CREATED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
-        createdByPid:
-            otherData?[K_CREATED_BY_PID]?.toString().trim().nullIfEmpty,
+        creatorPid: otherData?[K_CREATOR_PID]?.toString().trim().nullIfEmpty,
         def: () {
           final a = letMap<String, dynamic>(otherData?[K_DEF]);
           return a != null ? GenericModel.fromJson(a) : null;
@@ -241,7 +240,7 @@ class ModelInvitation extends _ModelInvitation {
     try {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY_PID: createdByPid?.toString().trim().nullIfEmpty,
+        K_CREATOR_PID: creatorPid?.toString().trim().nullIfEmpty,
         K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
         K_EXPIRES_AT: expiresAt?.toUtc()?.toIso8601String(),
@@ -305,9 +304,7 @@ class ModelInvitation extends _ModelInvitation {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelInvitation.fromJson(otherData);
       other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdByPid != null
-          ? this.createdByPid = other.createdByPid
-          : null;
+      other.creatorPid != null ? this.creatorPid = other.creatorPid : null;
       other.def != null ? this.def = other.def : null;
       other.defType != null ? this.defType = other.defType : null;
       other.expiresAt != null ? this.expiresAt = other.expiresAt : null;

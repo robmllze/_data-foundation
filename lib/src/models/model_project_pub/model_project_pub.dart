@@ -18,7 +18,7 @@ part '_model_project_pub.g.dart';
   fields: {
     'closed_at': 'DateTime?',
     'created_at': 'DateTime?',
-    'created_by_pid': 'String?',
+    'creator_pid': 'String?',
     'description': 'String?',
     'display_name_searchable': 'LowerCase-String?',
     'display_name': 'String?',
@@ -31,5 +31,5 @@ abstract class _ModelProjectPub extends ThisModel<ModelProjectPub> {
   //
   //
 
-  bool isCreatedBy({required String pid}) => this.model.createdByPid == pid;
+  bool isCreatedBy({required String pid}) => this.model.creatorPid == pid;
 }

@@ -18,12 +18,14 @@ part '_model_job_pub.g.dart';
   fields: {
     'closed_at': 'DateTime?',
     'created_at': 'DateTime?',
-    'created_by_pid': 'String?',
+    'creator_pid': 'String?',
     'description': 'String?',
     'display_name_searchable': 'LowerCase-String?',
     'display_name': 'String?',
     'job_id': 'String?',
     'opened_at': 'DateTime?',
+    'user_checkins': 'Map<DateTime?, String>?',
+    'user_checkouts': 'Map<DateTime?, String>?',
   },
 )
 abstract class _ModelJobPub extends ThisModel<ModelJobPub> {
@@ -31,5 +33,5 @@ abstract class _ModelJobPub extends ThisModel<ModelJobPub> {
   //
   //
 
-  bool isCreatedBy({required String pid}) => this.model.createdByPid == pid;
+  bool isCreatedBy({required String pid}) => this.model.creatorPid == pid;
 }

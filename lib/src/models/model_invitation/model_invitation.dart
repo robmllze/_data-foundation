@@ -17,7 +17,7 @@ part '_model_invitation.g.dart';
   shouldInherit: true,
   fields: {
     'created_at': 'DateTime?',
-    'created_by_pid': 'String?',
+    'creator_pid': 'String?',
     'def_type': 'InvitationDefType?',
     'def': 'GenericModel?',
     'expires_at': 'DateTime?',
@@ -32,7 +32,7 @@ abstract class _ModelInvitation extends ThisModel<ModelInvitation> {
   //
   //
 
-  bool isCreatedBy({required String pid}) => this.model.createdByPid == pid;
+  bool isCreatedBy({required String pid}) => this.model.creatorPid == pid;
 
   bool get isExpired => this.model.expiresAt?.isBefore(DateTime.now()) ?? false;
 }

@@ -28,18 +28,22 @@ class ModelUser extends _ModelUser {
   static const MODEL_ID = 'model_user';
 
   static const K_CREATED_AT = 'created_at';
+  static const K_CREATOR_ID = 'creator_id';
   static const K_DID_SEND_WELCOME_EMAIL = 'did_send_welcome_email';
   static const K_EMAIL_SUBSCRIPTIONS = 'email_subscriptions';
   static const K_ID = 'id';
   static const K_PID = 'pid';
+  static const K_PID_SEED = 'pid_seed';
   static const K_PUSH_SUBSCRIPTIONS = 'push_subscriptions';
   static const K_SMS_SUBSCRIPTIONS = 'sms_subscriptions';
   static const K_WHEN_LAST_LOGGED_IN = 'when_last_logged_in';
 
   DateTime? createdAt;
+  String? creatorId;
   bool? didSendWelcomeEmail;
   Set<String>? emailSubscriptions;
   String? pid;
+  String? pidSeed;
   Set<String>? pushSubscriptions;
   Set<String>? smsSubscriptions;
   DateTime? whenLastLoggedIn;
@@ -51,9 +55,11 @@ class ModelUser extends _ModelUser {
   ModelUser({
     String? id,
     this.createdAt,
+    this.creatorId,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pid,
+    this.pidSeed,
     this.pushSubscriptions,
     this.smsSubscriptions,
     this.whenLastLoggedIn,
@@ -68,9 +74,11 @@ class ModelUser extends _ModelUser {
   ModelUser.unsafe({
     String? id,
     this.createdAt,
+    this.creatorId,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pid,
+    this.pidSeed,
     this.pushSubscriptions,
     this.smsSubscriptions,
     this.whenLastLoggedIn,
@@ -133,6 +141,7 @@ class ModelUser extends _ModelUser {
           final a = otherData?[K_CREATED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
+        creatorId: otherData?[K_CREATOR_ID]?.toString().trim().nullIfEmpty,
         didSendWelcomeEmail: letBool(otherData?[K_DID_SEND_WELCOME_EMAIL]),
         emailSubscriptions: letSet(otherData?[K_EMAIL_SUBSCRIPTIONS])
             ?.map(
@@ -144,6 +153,7 @@ class ModelUser extends _ModelUser {
             .cast(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
+        pidSeed: otherData?[K_PID_SEED]?.toString().trim().nullIfEmpty,
         pushSubscriptions: letSet(otherData?[K_PUSH_SUBSCRIPTIONS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -223,6 +233,7 @@ class ModelUser extends _ModelUser {
     try {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATOR_ID: creatorId?.toString().trim().nullIfEmpty,
         K_DID_SEND_WELCOME_EMAIL: didSendWelcomeEmail,
         K_EMAIL_SUBSCRIPTIONS: emailSubscriptions
             ?.map(
@@ -233,6 +244,7 @@ class ModelUser extends _ModelUser {
             ?.toList(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_PID: pid?.toString().trim().nullIfEmpty,
+        K_PID_SEED: pidSeed?.toString().trim().nullIfEmpty,
         K_PUSH_SUBSCRIPTIONS: pushSubscriptions
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -285,6 +297,7 @@ class ModelUser extends _ModelUser {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUser.fromJson(otherData);
       other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.creatorId != null ? this.creatorId = other.creatorId : null;
       other.didSendWelcomeEmail != null
           ? this.didSendWelcomeEmail = other.didSendWelcomeEmail
           : null;
@@ -293,6 +306,7 @@ class ModelUser extends _ModelUser {
           : null;
       other.id != null ? this.id = other.id : null;
       other.pid != null ? this.pid = other.pid : null;
+      other.pidSeed != null ? this.pidSeed = other.pidSeed : null;
       other.pushSubscriptions != null
           ? this.pushSubscriptions = other.pushSubscriptions
           : null;

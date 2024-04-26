@@ -29,7 +29,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
 
   static const K_CLOSED_AT = 'closed_at';
   static const K_CREATED_AT = 'created_at';
-  static const K_CREATED_BY_PID = 'created_by_pid';
+  static const K_CREATOR_PID = 'creator_pid';
   static const K_DESCRIPTION = 'description';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
@@ -39,7 +39,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
 
   DateTime? closedAt;
   DateTime? createdAt;
-  String? createdByPid;
+  String? creatorPid;
   String? description;
   String? displayName;
   String? displayNameSearchable;
@@ -54,7 +54,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     String? id,
     this.closedAt,
     this.createdAt,
-    this.createdByPid,
+    this.creatorPid,
     this.description,
     this.displayName,
     this.displayNameSearchable,
@@ -72,7 +72,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     String? id,
     this.closedAt,
     this.createdAt,
-    this.createdByPid,
+    this.creatorPid,
     this.description,
     this.displayName,
     this.displayNameSearchable,
@@ -141,8 +141,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           final a = otherData?[K_CREATED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
-        createdByPid:
-            otherData?[K_CREATED_BY_PID]?.toString().trim().nullIfEmpty,
+        creatorPid: otherData?[K_CREATOR_PID]?.toString().trim().nullIfEmpty,
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
         displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
@@ -217,7 +216,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       final withNulls = <String, dynamic>{
         K_CLOSED_AT: closedAt?.toUtc()?.toIso8601String(),
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY_PID: createdByPid?.toString().trim().nullIfEmpty,
+        K_CREATOR_PID: creatorPid?.toString().trim().nullIfEmpty,
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME_SEARCHABLE:
@@ -263,9 +262,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       final other = ModelOrganizationPub.fromJson(otherData);
       other.closedAt != null ? this.closedAt = other.closedAt : null;
       other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdByPid != null
-          ? this.createdByPid = other.createdByPid
-          : null;
+      other.creatorPid != null ? this.creatorPid = other.creatorPid : null;
       other.description != null ? this.description = other.description : null;
       other.displayName != null ? this.displayName = other.displayName : null;
       other.displayNameSearchable != null

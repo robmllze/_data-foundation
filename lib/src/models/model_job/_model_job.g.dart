@@ -28,13 +28,15 @@ class ModelJob extends _ModelJob {
   static const MODEL_ID = 'model_job';
 
   static const K_CREATED_AT = 'created_at';
-  static const K_CREATED_BY_ID = 'created_by_id';
+  static const K_CREATOR_ID = 'creator_id';
   static const K_ID = 'id';
   static const K_PID = 'pid';
+  static const K_PID_SEED = 'pid_seed';
 
   DateTime? createdAt;
-  String? createdById;
+  String? creatorId;
   String? pid;
+  String? pidSeed;
 
   //
   //
@@ -43,8 +45,9 @@ class ModelJob extends _ModelJob {
   ModelJob({
     String? id,
     this.createdAt,
-    this.createdById,
+    this.creatorId,
     this.pid,
+    this.pidSeed,
   }) {
     this.id = id;
   }
@@ -56,8 +59,9 @@ class ModelJob extends _ModelJob {
   ModelJob.unsafe({
     String? id,
     this.createdAt,
-    this.createdById,
+    this.creatorId,
     this.pid,
+    this.pidSeed,
   }) {
     this.id = id;
   }
@@ -117,9 +121,10 @@ class ModelJob extends _ModelJob {
           final a = otherData?[K_CREATED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
-        createdById: otherData?[K_CREATED_BY_ID]?.toString().trim().nullIfEmpty,
+        creatorId: otherData?[K_CREATOR_ID]?.toString().trim().nullIfEmpty,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
+        pidSeed: otherData?[K_PID_SEED]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -179,9 +184,10 @@ class ModelJob extends _ModelJob {
     try {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY_ID: createdById?.toString().trim().nullIfEmpty,
+        K_CREATOR_ID: creatorId?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_PID: pid?.toString().trim().nullIfEmpty,
+        K_PID_SEED: pidSeed?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -219,9 +225,10 @@ class ModelJob extends _ModelJob {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelJob.fromJson(otherData);
       other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdById != null ? this.createdById = other.createdById : null;
+      other.creatorId != null ? this.creatorId = other.creatorId : null;
       other.id != null ? this.id = other.id : null;
       other.pid != null ? this.pid = other.pid : null;
+      other.pidSeed != null ? this.pidSeed = other.pidSeed : null;
     }
   }
 

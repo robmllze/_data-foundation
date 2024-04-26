@@ -26,7 +26,9 @@ dependencies:
   xyz_gen_annotations: ^0.21.0
   xyz_utils: ^0.52.0
 
-  uuid: 4.3.3
+  uuid: 4.4.0
+  crypto: 3.0.3
+
   equatable: any
 
 ## -----------------------------------------------------------------------------

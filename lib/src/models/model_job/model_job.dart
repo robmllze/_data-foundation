@@ -16,9 +16,10 @@ part '_model_job.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'pid': 'String?',
     'created_at': 'DateTime?',
-    'created_by_id': 'String?',
+    'creator_id': 'String?',
+    'pid_seed': 'String?',
+    'pid': 'String?',
   },
 )
 abstract class _ModelJob extends ThisModel<ModelJob> {
@@ -26,5 +27,5 @@ abstract class _ModelJob extends ThisModel<ModelJob> {
   //
   //
 
-  bool isCreatedBy({required String id}) => this.model.createdById == id;
+  bool isCreatedBy({required String id}) => this.model.creatorId == id;
 }

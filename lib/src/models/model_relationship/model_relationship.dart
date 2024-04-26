@@ -18,7 +18,7 @@ part '_model_relationship.g.dart';
   shouldInherit: true,
   fields: {
     'created_at': 'DateTime?',
-    'created_by_pid': 'String?',
+    'creator_pid': 'String?',
     'def_type': 'RelationshipDefType?',
     'def': 'GenericModel?',
     'member_pids': 'Set<String>?',
@@ -32,7 +32,7 @@ abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
   //
   //
 
-  bool isCreatedBy({required String pid}) => this.model.createdByPid == pid;
+  bool isCreatedBy({required String pid}) => this.model.creatorPid == pid;
 
   //
   //

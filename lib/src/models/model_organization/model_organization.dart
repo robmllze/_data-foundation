@@ -17,7 +17,8 @@ part '_model_organization.g.dart';
   shouldInherit: true,
   fields: {
     'created_at': 'DateTime?',
-    'created_by_id': 'String?',
+    'creator_id': 'String?',
+    'pid_seed': 'String?',
     'pid': 'String?',
   },
 )
@@ -26,5 +27,5 @@ abstract class _ModelOrganization extends ThisModel<ModelOrganization> {
   //
   //
 
-  bool isCreatedBy({required String id}) => this.model.createdById == id;
+  bool isCreatedBy({required String id}) => this.model.creatorId == id;
 }
