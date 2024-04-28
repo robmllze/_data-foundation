@@ -9,6 +9,7 @@
 //.title~
 
 import 'package:uuid/uuid.dart';
+import 'package:xyz_security/xyz_security.dart';
 
 import '/_common.dart';
 
@@ -32,7 +33,7 @@ class IdUtility {
 
   final String seed;
 
-  late final mapper = BijectiveBase36IdMapper(seed: this.seed);
+  late final mapper = BijectiveUuidMapper(seed: this.seed);
 
   //
   //
@@ -45,11 +46,11 @@ class IdUtility {
   //
 
   String idToPid({
-    required String id36,
+    required String id,
     String prefix = '',
   }) {
     final a = prefix.nullIfEmpty;
-    final b = mapper.mapId(id36);
+    final b = mapper.map(id);
     final pid = [a, b].nonNulls.join('_');
     return pid;
   }
@@ -58,9 +59,9 @@ class IdUtility {
   //
   //
 
-  String pidToId({required String pid36}) {
-    final [_, b] = pid36.split('_');
-    final id = mapper.reverseMapId(b);
+  String pidToId({required String pid}) {
+    final [_, b] = pid.split('_');
+    final id = mapper.unmap(b);
     return id;
   }
 
@@ -81,7 +82,7 @@ class IdUtility {
   }) {
     final src = newUuidV4();
     final result = IdUtility(seed: seed ?? src).idToPid(
-      id36: src,
+      id: src,
       prefix: prefix,
     );
     return result;
@@ -133,18 +134,18 @@ class IdUtility {
   }
 
   String idToUserPid({required String userId}) {
-    return this.idToPid(id36: userId, prefix: USER_PID_PREFIX);
+    return this.idToPid(id: userId, prefix: USER_PID_PREFIX);
   }
 
   String idToJobPid({required String jobId}) {
-    return this.idToPid(id36: jobId, prefix: JOB_PID_PPREFIX);
+    return this.idToPid(id: jobId, prefix: JOB_PID_PPREFIX);
   }
 
   String idToProjectPid({required String projectId}) {
-    return this.idToPid(id36: projectId, prefix: PROJECT_PID_PPREFIX);
+    return this.idToPid(id: projectId, prefix: PROJECT_PID_PPREFIX);
   }
 
   String idToOrganizationPid({required String organizationId}) {
-    return this.idToPid(id36: organizationId, prefix: ORGANIZATION_PID_PPREFIX);
+    return this.idToPid(id: organizationId, prefix: ORGANIZATION_PID_PPREFIX);
   }
 }
