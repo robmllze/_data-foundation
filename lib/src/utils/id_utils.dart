@@ -24,7 +24,7 @@ final class IdUtils {
 
   /// Base 62 character list.
   /// Contains all the characters used in the base 62 encoding in a random order.
-  /// They include 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.
+  /// They include 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
   /// Do not change this after release.
   static const BASE_62_CHAR_LIST = 'G62h4u5vkE1AolqVg7CsINSQOYayPWeRMxz3dKwrmtcn8UpXiL0fjDJHBZbT9F';
 
@@ -80,7 +80,7 @@ final class IdUtils {
   }) {
     final src = newUuidV4();
     final result = idToPid(
-      seedId: seedId ?? src,
+      seedId: seedId ?? const Uuid().v4(),
       id: src,
       prefix: prefix,
     );
