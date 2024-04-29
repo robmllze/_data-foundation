@@ -23,7 +23,6 @@ part '_model_project_pub.g.dart';
     'display_name_searchable': 'LowerCase-String?',
     'display_name': 'String?',
     'opened_at': 'DateTime?',
-    'project_id': 'String?',
   },
 )
 abstract class _ModelProjectPub extends ThisModel<ModelProjectPub> {

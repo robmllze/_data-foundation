@@ -35,7 +35,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
   static const K_OPENED_AT = 'opened_at';
-  static const K_ORGANIZATION_ID = 'organization_id';
 
   DateTime? closedAt;
   DateTime? createdAt;
@@ -44,7 +43,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   String? displayName;
   String? displayNameSearchable;
   DateTime? openedAt;
-  String? organizationId;
 
   //
   //
@@ -59,7 +57,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     this.displayName,
     this.displayNameSearchable,
     this.openedAt,
-    this.organizationId,
   }) {
     this.id = id;
   }
@@ -77,7 +74,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     this.displayName,
     this.displayNameSearchable,
     this.openedAt,
-    this.organizationId,
   }) {
     this.id = id;
   }
@@ -154,8 +150,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           final a = otherData?[K_OPENED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
-        organizationId:
-            otherData?[K_ORGANIZATION_ID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -223,7 +217,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_OPENED_AT: openedAt?.toUtc()?.toIso8601String(),
-        K_ORGANIZATION_ID: organizationId?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -270,9 +263,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           : null;
       other.id != null ? this.id = other.id : null;
       other.openedAt != null ? this.openedAt = other.openedAt : null;
-      other.organizationId != null
-          ? this.organizationId = other.organizationId
-          : null;
     }
   }
 

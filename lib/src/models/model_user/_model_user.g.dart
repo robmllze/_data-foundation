@@ -33,8 +33,8 @@ class ModelUser extends _ModelUser {
   static const K_EMAIL_SUBSCRIPTIONS = 'email_subscriptions';
   static const K_ID = 'id';
   static const K_PID = 'pid';
-  static const K_PID_SEED = 'pid_seed';
   static const K_PUSH_SUBSCRIPTIONS = 'push_subscriptions';
+  static const K_SEED_ID = 'seed_id';
   static const K_SMS_SUBSCRIPTIONS = 'sms_subscriptions';
   static const K_WHEN_LAST_LOGGED_IN = 'when_last_logged_in';
 
@@ -43,8 +43,8 @@ class ModelUser extends _ModelUser {
   bool? didSendWelcomeEmail;
   Set<String>? emailSubscriptions;
   String? pid;
-  String? pidSeed;
   Set<String>? pushSubscriptions;
+  String? seedId;
   Set<String>? smsSubscriptions;
   DateTime? whenLastLoggedIn;
 
@@ -59,8 +59,8 @@ class ModelUser extends _ModelUser {
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pid,
-    this.pidSeed,
     this.pushSubscriptions,
+    this.seedId,
     this.smsSubscriptions,
     this.whenLastLoggedIn,
   }) {
@@ -78,8 +78,8 @@ class ModelUser extends _ModelUser {
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pid,
-    this.pidSeed,
     this.pushSubscriptions,
+    this.seedId,
     this.smsSubscriptions,
     this.whenLastLoggedIn,
   }) {
@@ -153,7 +153,6 @@ class ModelUser extends _ModelUser {
             .cast(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
-        pidSeed: otherData?[K_PID_SEED]?.toString().trim().nullIfEmpty,
         pushSubscriptions: letSet(otherData?[K_PUSH_SUBSCRIPTIONS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -162,6 +161,7 @@ class ModelUser extends _ModelUser {
             .nullIfEmpty
             ?.toSet()
             .cast(),
+        seedId: otherData?[K_SEED_ID]?.toString().trim().nullIfEmpty,
         smsSubscriptions: letSet(otherData?[K_SMS_SUBSCRIPTIONS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -244,7 +244,6 @@ class ModelUser extends _ModelUser {
             ?.toList(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_PID: pid?.toString().trim().nullIfEmpty,
-        K_PID_SEED: pidSeed?.toString().trim().nullIfEmpty,
         K_PUSH_SUBSCRIPTIONS: pushSubscriptions
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -252,6 +251,7 @@ class ModelUser extends _ModelUser {
             .nonNulls
             .nullIfEmpty
             ?.toList(),
+        K_SEED_ID: seedId?.toString().trim().nullIfEmpty,
         K_SMS_SUBSCRIPTIONS: smsSubscriptions
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -306,10 +306,10 @@ class ModelUser extends _ModelUser {
           : null;
       other.id != null ? this.id = other.id : null;
       other.pid != null ? this.pid = other.pid : null;
-      other.pidSeed != null ? this.pidSeed = other.pidSeed : null;
       other.pushSubscriptions != null
           ? this.pushSubscriptions = other.pushSubscriptions
           : null;
+      other.seedId != null ? this.seedId = other.seedId : null;
       other.smsSubscriptions != null
           ? this.smsSubscriptions = other.smsSubscriptions
           : null;

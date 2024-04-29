@@ -18,7 +18,7 @@ part '_model_organization.g.dart';
   fields: {
     'created_at': 'DateTime?',
     'creator_id': 'String?',
-    'pid_seed': 'String?',
+    'seed_id': 'String?',
     'pid': 'String?',
   },
 )

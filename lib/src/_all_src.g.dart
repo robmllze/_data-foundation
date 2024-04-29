@@ -34,6 +34,6 @@ export 'types/access_type/access_type.dart';
 export 'types/event_def_type/event_def_type.dart';
 export 'types/invitation_def_type/invitation_def_type.dart';
 export 'types/relationship_def_type/relationship_def_type.dart';
-export 'utils/id_utility.dart';
+export 'utils/id_utils.dart';
 export 'utils/model_ref.dart';
 export 'utils/user_and_user_perrmission_utils.dart';

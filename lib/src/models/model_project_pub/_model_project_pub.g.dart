@@ -35,7 +35,6 @@ class ModelProjectPub extends _ModelProjectPub {
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
   static const K_OPENED_AT = 'opened_at';
-  static const K_PROJECT_ID = 'project_id';
 
   DateTime? closedAt;
   DateTime? createdAt;
@@ -44,7 +43,6 @@ class ModelProjectPub extends _ModelProjectPub {
   String? displayName;
   String? displayNameSearchable;
   DateTime? openedAt;
-  String? projectId;
 
   //
   //
@@ -59,7 +57,6 @@ class ModelProjectPub extends _ModelProjectPub {
     this.displayName,
     this.displayNameSearchable,
     this.openedAt,
-    this.projectId,
   }) {
     this.id = id;
   }
@@ -77,7 +74,6 @@ class ModelProjectPub extends _ModelProjectPub {
     this.displayName,
     this.displayNameSearchable,
     this.openedAt,
-    this.projectId,
   }) {
     this.id = id;
   }
@@ -154,7 +150,6 @@ class ModelProjectPub extends _ModelProjectPub {
           final a = otherData?[K_OPENED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
-        projectId: otherData?[K_PROJECT_ID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -222,7 +217,6 @@ class ModelProjectPub extends _ModelProjectPub {
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_OPENED_AT: openedAt?.toUtc()?.toIso8601String(),
-        K_PROJECT_ID: projectId?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -269,7 +263,6 @@ class ModelProjectPub extends _ModelProjectPub {
           : null;
       other.id != null ? this.id = other.id : null;
       other.openedAt != null ? this.openedAt = other.openedAt : null;
-      other.projectId != null ? this.projectId = other.projectId : null;
     }
   }
 

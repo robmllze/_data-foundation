@@ -34,7 +34,6 @@ class ModelJobPub extends _ModelJobPub {
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
-  static const K_JOB_ID = 'job_id';
   static const K_OPENED_AT = 'opened_at';
   static const K_USER_CHECKINS = 'user_checkins';
   static const K_USER_CHECKOUTS = 'user_checkouts';
@@ -45,7 +44,6 @@ class ModelJobPub extends _ModelJobPub {
   String? description;
   String? displayName;
   String? displayNameSearchable;
-  String? jobId;
   DateTime? openedAt;
   Map<DateTime?, String>? userCheckins;
   Map<DateTime?, String>? userCheckouts;
@@ -62,7 +60,6 @@ class ModelJobPub extends _ModelJobPub {
     this.description,
     this.displayName,
     this.displayNameSearchable,
-    this.jobId,
     this.openedAt,
     this.userCheckins,
     this.userCheckouts,
@@ -82,7 +79,6 @@ class ModelJobPub extends _ModelJobPub {
     this.description,
     this.displayName,
     this.displayNameSearchable,
-    this.jobId,
     this.openedAt,
     this.userCheckins,
     this.userCheckouts,
@@ -158,7 +154,6 @@ class ModelJobPub extends _ModelJobPub {
             .nullIfEmpty
             ?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        jobId: otherData?[K_JOB_ID]?.toString().trim().nullIfEmpty,
         openedAt: () {
           final a = otherData?[K_OPENED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -255,7 +250,6 @@ class ModelJobPub extends _ModelJobPub {
         K_DISPLAY_NAME_SEARCHABLE:
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_JOB_ID: jobId?.toString().trim().nullIfEmpty,
         K_OPENED_AT: openedAt?.toUtc()?.toIso8601String(),
         K_USER_CHECKINS: userCheckins
             ?.map(
@@ -320,7 +314,6 @@ class ModelJobPub extends _ModelJobPub {
           ? this.displayNameSearchable = other.displayNameSearchable
           : null;
       other.id != null ? this.id = other.id : null;
-      other.jobId != null ? this.jobId = other.jobId : null;
       other.openedAt != null ? this.openedAt = other.openedAt : null;
       other.userCheckins != null
           ? this.userCheckins = other.userCheckins

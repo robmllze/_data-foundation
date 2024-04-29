@@ -31,12 +31,12 @@ class ModelOrganization extends _ModelOrganization {
   static const K_CREATOR_ID = 'creator_id';
   static const K_ID = 'id';
   static const K_PID = 'pid';
-  static const K_PID_SEED = 'pid_seed';
+  static const K_SEED_ID = 'seed_id';
 
   DateTime? createdAt;
   String? creatorId;
   String? pid;
-  String? pidSeed;
+  String? seedId;
 
   //
   //
@@ -47,7 +47,7 @@ class ModelOrganization extends _ModelOrganization {
     this.createdAt,
     this.creatorId,
     this.pid,
-    this.pidSeed,
+    this.seedId,
   }) {
     this.id = id;
   }
@@ -61,7 +61,7 @@ class ModelOrganization extends _ModelOrganization {
     this.createdAt,
     this.creatorId,
     this.pid,
-    this.pidSeed,
+    this.seedId,
   }) {
     this.id = id;
   }
@@ -124,7 +124,7 @@ class ModelOrganization extends _ModelOrganization {
         creatorId: otherData?[K_CREATOR_ID]?.toString().trim().nullIfEmpty,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
-        pidSeed: otherData?[K_PID_SEED]?.toString().trim().nullIfEmpty,
+        seedId: otherData?[K_SEED_ID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -187,7 +187,7 @@ class ModelOrganization extends _ModelOrganization {
         K_CREATOR_ID: creatorId?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_PID: pid?.toString().trim().nullIfEmpty,
-        K_PID_SEED: pidSeed?.toString().trim().nullIfEmpty,
+        K_SEED_ID: seedId?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -228,7 +228,7 @@ class ModelOrganization extends _ModelOrganization {
       other.creatorId != null ? this.creatorId = other.creatorId : null;
       other.id != null ? this.id = other.id : null;
       other.pid != null ? this.pid = other.pid : null;
-      other.pidSeed != null ? this.pidSeed = other.pidSeed : null;
+      other.seedId != null ? this.seedId = other.seedId : null;
     }
   }
 

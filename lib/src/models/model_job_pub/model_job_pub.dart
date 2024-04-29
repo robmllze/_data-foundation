@@ -22,7 +22,6 @@ part '_model_job_pub.g.dart';
     'description': 'String?',
     'display_name_searchable': 'LowerCase-String?',
     'display_name': 'String?',
-    'job_id': 'String?',
     'opened_at': 'DateTime?',
     'user_checkins': 'Map<DateTime?, String>?',
     'user_checkouts': 'Map<DateTime?, String>?',

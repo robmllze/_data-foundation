@@ -33,14 +33,12 @@ class ModelUserPub extends _ModelUserPub {
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_EMAIL_SEARCHABLE = 'email_searchable';
   static const K_ID = 'id';
-  static const K_USER_ID = 'user_id';
 
   DateTime? createdAt;
   DateTime? deletedAt;
   String? displayName;
   String? displayNameSearchable;
   String? emailSearchable;
-  String? userId;
 
   //
   //
@@ -53,7 +51,6 @@ class ModelUserPub extends _ModelUserPub {
     this.displayName,
     this.displayNameSearchable,
     this.emailSearchable,
-    this.userId,
   }) {
     this.id = id;
   }
@@ -69,7 +66,6 @@ class ModelUserPub extends _ModelUserPub {
     this.displayName,
     this.displayNameSearchable,
     this.emailSearchable,
-    this.userId,
   }) {
     this.id = id;
   }
@@ -145,7 +141,6 @@ class ModelUserPub extends _ModelUserPub {
             .nullIfEmpty
             ?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        userId: otherData?[K_USER_ID]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -212,7 +207,6 @@ class ModelUserPub extends _ModelUserPub {
         K_EMAIL_SEARCHABLE:
             emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_USER_ID: userId?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -259,7 +253,6 @@ class ModelUserPub extends _ModelUserPub {
           ? this.emailSearchable = other.emailSearchable
           : null;
       other.id != null ? this.id = other.id : null;
-      other.userId != null ? this.userId = other.userId : null;
     }
   }
 
