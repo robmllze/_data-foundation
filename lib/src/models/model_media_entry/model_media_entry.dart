@@ -19,7 +19,7 @@ part '_model_media_entry.g.dart';
     ...KFields.when_created,
     ...KFields.title,
     ...KFields.title_searchable,
-    'description': 'String?',
+    ...KFields.description,
     'file_name': 'String?',
     'mime_type': 'String?',
     'url': 'Uri?',

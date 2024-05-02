@@ -16,8 +16,7 @@ part '_model_invitation.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'created_at': 'DateTime?',
-    'creator_pid': 'String?',
+    ...KFields.when_created,
     'def_type': 'InvitationDefType?',
     'def': 'GenericModel?',
     'expires_at': 'DateTime?',
@@ -27,13 +26,7 @@ part '_model_invitation.g.dart';
     'invitee_rejected_emails': 'Set<String>?',
   },
 )
-abstract class _ModelInvitation extends ThisModel<ModelInvitation> {
-  //
-  //
-  //
-
-  bool isCreatedBy({required String pid}) => this.model.creatorPid == pid;
-
+abstract class _ModelInvitation extends CrudModel<ModelInvitation> {
   //
   //
   //

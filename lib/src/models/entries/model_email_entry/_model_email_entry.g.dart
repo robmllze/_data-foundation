@@ -28,7 +28,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
   static const MODEL_ID = 'model_email_entry';
 
   static const K_DESCRIPTION = 'description';
-  static const K_EMAIL = 'email';
   static const K_EMAIL_SEARCHABLE = 'email_searchable';
   static const K_ID = 'id';
   static const K_TITLE = 'title';
@@ -36,7 +35,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
   static const K_WHEN_CREATED = 'when_created';
 
   String? description;
-  String? email;
   String? emailSearchable;
   String? title;
   String? titleSearchable;
@@ -49,7 +47,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
   ModelEmailEntry({
     String? id,
     this.description,
-    this.email,
     this.emailSearchable,
     this.title,
     this.titleSearchable,
@@ -65,7 +62,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
   ModelEmailEntry.unsafe({
     String? id,
     this.description,
-    this.email,
     this.emailSearchable,
     this.title,
     this.titleSearchable,
@@ -126,7 +122,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
     try {
       return ModelEmailEntry.unsafe(
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
-        email: otherData?[K_EMAIL]?.toString().trim().nullIfEmpty,
         emailSearchable: otherData?[K_EMAIL_SEARCHABLE]
             ?.toString()
             .trim()
@@ -211,7 +206,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
     try {
       final withNulls = <String, dynamic>{
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
-        K_EMAIL: email?.toString().trim().nullIfEmpty,
         K_EMAIL_SEARCHABLE:
             emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
@@ -264,7 +258,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelEmailEntry.fromJson(otherData);
       other.description != null ? this.description = other.description : null;
-      other.email != null ? this.email = other.email : null;
       other.emailSearchable != null
           ? this.emailSearchable = other.emailSearchable
           : null;

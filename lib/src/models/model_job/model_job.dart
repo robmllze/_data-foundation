@@ -16,16 +16,9 @@ part '_model_job.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'created_at': 'DateTime?',
-    'creator_id': 'String?',
-    'pid': 'String?',
-    'seed': 'String?',
+    ...KFields.when_created,
+    ...KFields.pid,
+    ...KFields.seed,
   },
 )
-abstract class _ModelJob extends ThisModel<ModelJob> {
-  //
-  //
-  //
-
-  bool isCreatedBy({required String id}) => this.model.creatorId == id;
-}
+abstract class _ModelJob extends CrudModel<ModelJob> {}

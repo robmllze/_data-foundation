@@ -29,7 +29,6 @@ class ModelUserPub extends _ModelUserPub {
 
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
-  static const K_EMAIL = 'email';
   static const K_EMAIL_SEARCHABLE = 'email_searchable';
   static const K_ID = 'id';
   static const K_UPLOADED_MEDIA = 'uploaded_media';
@@ -38,7 +37,6 @@ class ModelUserPub extends _ModelUserPub {
 
   String? displayName;
   String? displayNameSearchable;
-  String? email;
   String? emailSearchable;
   Map<DateTime, ModelMediaEntry>? uploadedMedia;
   Map<String, DateTime>? whenCreated;
@@ -52,7 +50,6 @@ class ModelUserPub extends _ModelUserPub {
     String? id,
     this.displayName,
     this.displayNameSearchable,
-    this.email,
     this.emailSearchable,
     this.uploadedMedia,
     this.whenCreated,
@@ -69,7 +66,6 @@ class ModelUserPub extends _ModelUserPub {
     String? id,
     this.displayName,
     this.displayNameSearchable,
-    this.email,
     this.emailSearchable,
     this.uploadedMedia,
     this.whenCreated,
@@ -135,7 +131,6 @@ class ModelUserPub extends _ModelUserPub {
             .trim()
             .nullIfEmpty
             ?.toLowerCase(),
-        email: otherData?[K_EMAIL]?.toString().trim().nullIfEmpty,
         emailSearchable: otherData?[K_EMAIL_SEARCHABLE]
             ?.toString()
             .trim()
@@ -245,7 +240,6 @@ class ModelUserPub extends _ModelUserPub {
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME_SEARCHABLE:
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
-        K_EMAIL: email?.toString().trim().nullIfEmpty,
         K_EMAIL_SEARCHABLE:
             emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
@@ -316,7 +310,6 @@ class ModelUserPub extends _ModelUserPub {
       other.displayNameSearchable != null
           ? this.displayNameSearchable = other.displayNameSearchable
           : null;
-      other.email != null ? this.email = other.email : null;
       other.emailSearchable != null
           ? this.emailSearchable = other.emailSearchable
           : null;

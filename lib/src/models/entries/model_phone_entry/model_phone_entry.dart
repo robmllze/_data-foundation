@@ -19,7 +19,7 @@ part '_model_phone_entry.g.dart';
     ...KFields.title,
     ...KFields.title_searchable,
     ...KFields.when_created,
-    'description': 'String?',
+    ...KFields.description,
     'country_code': 'String?',
     'number_without_country_code': 'String?',
     'full_number': 'String?',
