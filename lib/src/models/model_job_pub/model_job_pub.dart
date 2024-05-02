@@ -16,24 +16,40 @@ part '_model_job_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'closed_at': 'DateTime?',
-    'created_at': 'DateTime?',
-    'creator_pid': 'String?',
-    'description': 'String?',
-    'display_name_searchable': 'LowerCase-String?',
-    'display_name': 'String?',
-    'opened_at': 'DateTime?',
-    'primary_address': 'ModelAddress?',
-    'other_addresses': 'Map<DateTime?, ModelAddress>?',
-    'checkin_notes': 'Map<DateTime?, ModelNote>?',
-    'checkout_notes': 'Map<DateTime?, ModelNote>?',
-    'uploaded_media': 'Map<DateTime, ModelMedia>?',
+    ...KFields.display_name,
+    ...KFields.display_name_searchable,
+    ...KFields.description,
+    ...KFields.when_created,
+    ...KFields.when_deleted,
+    ...KFields.uploaded_media,
+    ...KFields.primary_address,
+    ...KFields.other_addresses,
+    ...KFields.primary_email,
+    ...KFields.other_emails,
+    ...KFields.primary_phone,
+    ...KFields.other_phones,
+    'when_opened': 'Map<String, DateTime>?',
+    'when_closed': 'Map<String, DateTime>?',
   },
 )
-abstract class _ModelJobPub extends ThisModel<ModelJobPub> {
+abstract class _ModelJobPub extends CrudModel<ModelJobPub> {
   //
   //
   //
 
-  bool isCreatedBy({required String pid}) => this.model.creatorPid == pid;
+  // Opened.
+  Iterable<DateTime> get datesOpened => this.model.whenOpened?.values ?? [];
+  DateTime? get openedAt => getFirstDate(this.datesOpened);
+  String? get openedById =>
+      this.model.whenOpened?.entries.firstWhereOrNull((e) => e.value == this.openedAt)?.key;
+  bool get isOpened => this.model.whenOpened != null;
+  bool isOpenedBy({required String id}) => this.whenCreated?.keys.contains(id) == true;
+
+  // Closed.
+  Iterable<DateTime> get datesClosed => this.model.whenClosed?.values ?? [];
+  DateTime? get closedAt => getFirstDate(this.datesClosed);
+  String? get closedById =>
+      this.model.whenClosed?.entries.firstWhereOrNull((e) => e.value == this.closedAt)?.key;
+  bool get isClosed => this.model.whenClosed != null;
+  bool isClosedBy({required String id}) => this.whenCreated?.keys.contains(id) == true;
 }

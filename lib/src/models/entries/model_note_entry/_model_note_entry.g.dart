@@ -15,42 +15,39 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_note.dart';
+part of 'model_note_entry.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelNote extends _ModelNote {
+class ModelNoteEntry extends _ModelNoteEntry {
   //
   //
   //
 
-  static const CLASS = 'ModelNote';
-  static const MODEL_ID = 'model_note';
+  static const CLASS = 'ModelNoteEntry';
+  static const MODEL_ID = 'model_note_entry';
 
   static const K_BODY = 'body';
-  static const K_CREATED_AT = 'created_at';
-  static const K_CREATOR_ID = 'creator_id';
-  static const K_DISPLAY_NAME = 'display_name';
-  static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
+  static const K_TITLE = 'title';
+  static const K_TITLE_SEARCHABLE = 'title_searchable';
+  static const K_WHEN_CREATED = 'when_created';
 
   String? body;
-  DateTime? createdAt;
-  String? creatorId;
-  String? displayName;
-  String? displayNameSearchable;
+  String? title;
+  String? titleSearchable;
+  Map<String, DateTime>? whenCreated;
 
   //
   //
   //
 
-  ModelNote({
+  ModelNoteEntry({
     String? id,
     this.body,
-    this.createdAt,
-    this.creatorId,
-    this.displayName,
-    this.displayNameSearchable,
+    this.title,
+    this.titleSearchable,
+    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -59,13 +56,12 @@ class ModelNote extends _ModelNote {
   //
   //
 
-  ModelNote.unsafe({
+  ModelNoteEntry.unsafe({
     String? id,
     this.body,
-    this.createdAt,
-    this.creatorId,
-    this.displayName,
-    this.displayNameSearchable,
+    this.title,
+    this.titleSearchable,
+    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -74,10 +70,10 @@ class ModelNote extends _ModelNote {
   //
   //
 
-  factory ModelNote.from(
+  factory ModelNoteEntry.from(
     Model? other,
   ) {
-    return ModelNote.fromJson(
+    return ModelNoteEntry.fromJson(
       other is GenericModel ? other.data : other?.toJson(),
     );
   }
@@ -86,25 +82,25 @@ class ModelNote extends _ModelNote {
   //
   //
 
-  factory ModelNote.of(
-    ModelNote? other,
+  factory ModelNoteEntry.of(
+    ModelNoteEntry? other,
   ) {
-    return ModelNote.fromJson(other?.toJson());
+    return ModelNoteEntry.fromJson(other?.toJson());
   }
 
   //
   //
   //
 
-  factory ModelNote.fromJsonString(
+  factory ModelNoteEntry.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelNote.fromJson(decoded);
+        return ModelNoteEntry.fromJson(decoded);
       } else {
-        return ModelNote.unsafe();
+        return ModelNoteEntry.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -116,24 +112,32 @@ class ModelNote extends _ModelNote {
   //
   //
 
-  factory ModelNote.fromJson(
+  factory ModelNoteEntry.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelNote.unsafe(
+      return ModelNoteEntry.unsafe(
         body: otherData?[K_BODY]?.toString().trim().nullIfEmpty,
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        creatorId: otherData?[K_CREATOR_ID]?.toString().trim().nullIfEmpty,
-        displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
-        displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
+        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
+        title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
+        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
             ?.toString()
             .trim()
             .nullIfEmpty
             ?.toLowerCase(),
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
+        whenCreated: letMap(otherData?[K_WHEN_CREATED])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                () {
+                  final a = p1;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -145,14 +149,14 @@ class ModelNote extends _ModelNote {
   //
   //
 
-  factory ModelNote.fromUri(
+  factory ModelNoteEntry.fromUri(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == MODEL_ID) {
-        return ModelNote.fromJson(uri.queryParameters);
+        return ModelNoteEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelNote.unsafe();
+        return ModelNoteEntry.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -164,18 +168,18 @@ class ModelNote extends _ModelNote {
   //
   //
 
-  static ModelNote? convert(
+  static ModelNoteEntry? convert(
     Model? other,
   ) {
-    return other != null ? ModelNote.from(other) : null;
+    return other != null ? ModelNoteEntry.from(other) : null;
   }
 
   //
   //
   //
 
-  static ModelNote? fromPool({
-    required Iterable<ModelNote>? pool,
+  static ModelNoteEntry? fromPool({
+    required Iterable<ModelNoteEntry>? pool,
     required String? id,
   }) {
     return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
@@ -193,12 +197,19 @@ class ModelNote extends _ModelNote {
     try {
       final withNulls = <String, dynamic>{
         K_BODY: body?.toString().trim().nullIfEmpty,
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATOR_ID: creatorId?.toString().trim().nullIfEmpty,
-        K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
-        K_DISPLAY_NAME_SEARCHABLE:
-            displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
+        K_TITLE: title?.toString().trim().nullIfEmpty,
+        K_TITLE_SEARCHABLE:
+            titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_WHEN_CREATED: whenCreated
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                p1?.toUtc()?.toIso8601String(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -213,7 +224,7 @@ class ModelNote extends _ModelNote {
 
   @override
   T empty<T extends Model>() {
-    return ModelNote.unsafe() as T;
+    return ModelNoteEntry.unsafe() as T;
   }
 
   //
@@ -222,7 +233,7 @@ class ModelNote extends _ModelNote {
 
   @override
   T copy<T extends Model>() {
-    return (ModelNote.unsafe()..updateWith(this)) as T;
+    return (ModelNoteEntry.unsafe()..updateWith(this)) as T;
   }
 
   //
@@ -234,15 +245,14 @@ class ModelNote extends _ModelNote {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelNote.fromJson(otherData);
+      final other = ModelNoteEntry.fromJson(otherData);
       other.body != null ? this.body = other.body : null;
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.creatorId != null ? this.creatorId = other.creatorId : null;
-      other.displayName != null ? this.displayName = other.displayName : null;
-      other.displayNameSearchable != null
-          ? this.displayNameSearchable = other.displayNameSearchable
-          : null;
       other.id != null ? this.id = other.id : null;
+      other.title != null ? this.title = other.title : null;
+      other.titleSearchable != null
+          ? this.titleSearchable = other.titleSearchable
+          : null;
+      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
     }
   }
 

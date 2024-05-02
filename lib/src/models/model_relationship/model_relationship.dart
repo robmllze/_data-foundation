@@ -17,24 +17,17 @@ part '_model_relationship.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'created_at': 'DateTime?',
-    'creator_pid': 'String?',
+    ...KFields.when_created,
+    ...KFields.uploaded_media,
     'def_type': 'RelationshipDefType?',
     'def': 'GenericModel?',
     'member_pids': 'Set<String>?',
     'when_disabled': 'Map<String, DateTime>?',
     'when_enabled': 'Map<String, DateTime>?',
     'when_noted': 'Map<String, DateTime>?',
-    'uploaded_media': 'Map<DateTime, ModelMedia>?',
   },
 )
-abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
-  //
-  //
-  //
-
-  bool isCreatedBy({required String pid}) => this.model.creatorPid == pid;
-
+abstract class _ModelRelationship extends CrudModel<ModelRelationship> {
   //
   //
   //

@@ -17,12 +17,12 @@ part '_model_user_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'created_at': 'DateTime?',
-    'deleted_at': 'DateTime?',
-    'display_name_searchable': 'LowerCase-String?',
-    'display_name': 'String?',
-    'email_searchable': 'LowerCase-String?',
-    'uploaded_media': 'Map<DateTime, ModelMedia>?',
+    ...KFields.display_name,
+    ...KFields.display_name_searchable,
+    ...KFields.email_searchable,
+    ...KFields.when_created,
+    ...KFields.when_deleted,
+    ...KFields.uploaded_media,
   },
 )
-abstract class _ModelUserPub extends ThisModel<ModelUserPub> {}
+abstract class _ModelUserPub extends CrudModel<ModelUserPub> {}

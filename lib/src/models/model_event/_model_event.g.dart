@@ -27,29 +27,27 @@ class ModelEvent extends _ModelEvent {
   static const CLASS = 'ModelEvent';
   static const MODEL_ID = 'model_event';
 
-  static const K_CREATED_AT = 'created_at';
-  static const K_CREATOR_ID = 'creator_id';
   static const K_DEF = 'def';
   static const K_DEF_TYPE = 'def_type';
   static const K_ID = 'id';
-  static const K_PIDS = 'pids';
+  static const K_MEMBER_PIDS = 'member_pids';
   static const K_TIMEOUT = 'timeout';
   static const K_UPLOADED_MEDIA = 'uploaded_media';
   static const K_WHEN_ARCHIVED = 'when_archived';
+  static const K_WHEN_CREATED = 'when_created';
   static const K_WHEN_HIDDEN = 'when_hidden';
   static const K_WHEN_LIKED = 'when_liked';
   static const K_WHEN_READ = 'when_read';
   static const K_WHEN_RECEIVED = 'when_received';
   static const K_WHEN_SENT = 'when_sent';
 
-  DateTime? createdAt;
-  String? creatorId;
   GenericModel? def;
   EventDefType? defType;
-  Set<String>? pids;
+  Set<String>? memberPids;
   int? timeout;
-  Map<DateTime, ModelMedia>? uploadedMedia;
+  Map<DateTime, ModelMediaEntry>? uploadedMedia;
   Map<String, DateTime>? whenArchived;
+  Map<String, DateTime>? whenCreated;
   Map<String, DateTime>? whenHidden;
   Map<String, DateTime>? whenLiked;
   Map<String, DateTime>? whenRead;
@@ -62,14 +60,13 @@ class ModelEvent extends _ModelEvent {
 
   ModelEvent({
     String? id,
-    this.createdAt,
-    this.creatorId,
     this.def,
     this.defType,
-    this.pids,
+    this.memberPids,
     this.timeout,
     this.uploadedMedia,
     this.whenArchived,
+    this.whenCreated,
     this.whenHidden,
     this.whenLiked,
     this.whenRead,
@@ -85,14 +82,13 @@ class ModelEvent extends _ModelEvent {
 
   ModelEvent.unsafe({
     String? id,
-    this.createdAt,
-    this.creatorId,
     this.def,
     this.defType,
-    this.pids,
+    this.memberPids,
     this.timeout,
     this.uploadedMedia,
     this.whenArchived,
+    this.whenCreated,
     this.whenHidden,
     this.whenLiked,
     this.whenRead,
@@ -153,11 +149,6 @@ class ModelEvent extends _ModelEvent {
   ) {
     try {
       return ModelEvent.unsafe(
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        creatorId: otherData?[K_CREATOR_ID]?.toString().trim().nullIfEmpty,
         def: () {
           final a = letMap<String, dynamic>(otherData?[K_DEF]);
           return a != null ? GenericModel.fromJson(a) : null;
@@ -165,7 +156,7 @@ class ModelEvent extends _ModelEvent {
         defType:
             EventDefType.values.valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        pids: letSet(otherData?[K_PIDS])
+        memberPids: letSet(otherData?[K_MEMBER_PIDS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
@@ -183,7 +174,7 @@ class ModelEvent extends _ModelEvent {
                 }(),
                 () {
                   final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelMedia.fromJson(a) : null;
+                  return a != null ? ModelMediaEntry.fromJson(a) : null;
                 }(),
               ),
             )
@@ -191,6 +182,19 @@ class ModelEvent extends _ModelEvent {
             .nullIfEmpty
             ?.cast(),
         whenArchived: letMap(otherData?[K_WHEN_ARCHIVED])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                () {
+                  final a = p1;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
+        whenCreated: letMap(otherData?[K_WHEN_CREATED])
             ?.map(
               (final p0, final p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
@@ -326,12 +330,10 @@ class ModelEvent extends _ModelEvent {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATOR_ID: creatorId?.toString().trim().nullIfEmpty,
         K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_PIDS: pids
+        K_MEMBER_PIDS: memberPids
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
             )
@@ -349,6 +351,15 @@ class ModelEvent extends _ModelEvent {
             .nonNulls
             .nullIfEmpty,
         K_WHEN_ARCHIVED: whenArchived
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                p1?.toUtc()?.toIso8601String(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
+        K_WHEN_CREATED: whenCreated
             ?.map(
               (final p0, final p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
@@ -438,12 +449,10 @@ class ModelEvent extends _ModelEvent {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelEvent.fromJson(otherData);
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.creatorId != null ? this.creatorId = other.creatorId : null;
       other.def != null ? this.def = other.def : null;
       other.defType != null ? this.defType = other.defType : null;
       other.id != null ? this.id = other.id : null;
-      other.pids != null ? this.pids = other.pids : null;
+      other.memberPids != null ? this.memberPids = other.memberPids : null;
       other.timeout != null ? this.timeout = other.timeout : null;
       other.uploadedMedia != null
           ? this.uploadedMedia = other.uploadedMedia
@@ -451,6 +460,7 @@ class ModelEvent extends _ModelEvent {
       other.whenArchived != null
           ? this.whenArchived = other.whenArchived
           : null;
+      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
       other.whenHidden != null ? this.whenHidden = other.whenHidden : null;
       other.whenLiked != null ? this.whenLiked = other.whenLiked : null;
       other.whenRead != null ? this.whenRead = other.whenRead : null;

@@ -9,27 +9,17 @@
 
 import '/_common.dart';
 
-part '_model_media.g.dart';
+part '_model_note_entry.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'created_at': 'DateTime?',
-    'creator_id': 'String?',
-    'description': 'String?',
-    'display_name_searchable': 'LowerCase-String?',
-    'display_name': 'String?',
-    'file_name': 'String?',
-    'mime_type': 'String?',
-    'url': 'String?',
+    ...KFields.title,
+    ...KFields.title_searchable,
+    ...KFields.when_created,
+    'body': 'String?',
   },
 )
-abstract class _ModelMedia extends ThisModel<ModelMedia> {
-  //
-  //
-  //
-
-  bool isCreatedBy({required String id}) => this.model.creatorId == id;
-}
+abstract class _ModelNoteEntry extends CrudModel<ModelNoteEntry> {}

@@ -16,16 +16,21 @@ part '_model_project.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'created_at': 'DateTime?',
-    'creator_id': 'String?',
-    'pid': 'String?',
-    'seed': 'String?',
+    ...KFields.when_created,
+    ...KFields.pid,
+    ...KFields.seed,
   },
 )
-abstract class _ModelProject extends ThisModel<ModelProject> {
-  //
-  //
-  //
+abstract class _ModelProject extends CrudModel<ModelProject> {
+  // Opened.
+  Map<DateTime, String>? get whenOpened => null;
+  DateTime? get lastOpenedAt => getLastDate(this.whenOpened?.keys);
+  String? get lastOpenerId => this.whenOpened?[this.lastOpenedAt];
 
-  bool isCreatedBy({required String id}) => this.model.creatorId == id;
+  bool isOpenedBy({required String id}) => this.whenOpened?.values.contains(id) == true;
+
+  // Closed.
+  Map<DateTime, String>? get whenClosed => null;
+  DateTime? get lastClosedAt => getLastDate(this.whenClosed?.keys);
+  String? get lastCloserId => this.whenClosed?[this.lastClosedAt];
 }

@@ -27,8 +27,6 @@ class ModelUser extends _ModelUser {
   static const CLASS = 'ModelUser';
   static const MODEL_ID = 'model_user';
 
-  static const K_CREATED_AT = 'created_at';
-  static const K_CREATOR_ID = 'creator_id';
   static const K_DID_SEND_WELCOME_EMAIL = 'did_send_welcome_email';
   static const K_EMAIL_SUBSCRIPTIONS = 'email_subscriptions';
   static const K_ID = 'id';
@@ -37,17 +35,17 @@ class ModelUser extends _ModelUser {
   static const K_SEED = 'seed';
   static const K_SMS_SUBSCRIPTIONS = 'sms_subscriptions';
   static const K_UPLOADED_MEDIA = 'uploaded_media';
+  static const K_WHEN_CREATED = 'when_created';
   static const K_WHEN_LAST_LOGGED_IN = 'when_last_logged_in';
 
-  DateTime? createdAt;
-  String? creatorId;
   bool? didSendWelcomeEmail;
   Set<String>? emailSubscriptions;
   String? pid;
   Set<String>? pushSubscriptions;
   String? seed;
   Set<String>? smsSubscriptions;
-  Map<DateTime, ModelMedia>? uploadedMedia;
+  Map<DateTime, ModelMediaEntry>? uploadedMedia;
+  Map<String, DateTime>? whenCreated;
   DateTime? whenLastLoggedIn;
 
   //
@@ -56,8 +54,6 @@ class ModelUser extends _ModelUser {
 
   ModelUser({
     String? id,
-    this.createdAt,
-    this.creatorId,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pid,
@@ -65,6 +61,7 @@ class ModelUser extends _ModelUser {
     this.seed,
     this.smsSubscriptions,
     this.uploadedMedia,
+    this.whenCreated,
     this.whenLastLoggedIn,
   }) {
     this.id = id;
@@ -76,8 +73,6 @@ class ModelUser extends _ModelUser {
 
   ModelUser.unsafe({
     String? id,
-    this.createdAt,
-    this.creatorId,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pid,
@@ -85,6 +80,7 @@ class ModelUser extends _ModelUser {
     this.seed,
     this.smsSubscriptions,
     this.uploadedMedia,
+    this.whenCreated,
     this.whenLastLoggedIn,
   }) {
     this.id = id;
@@ -141,11 +137,6 @@ class ModelUser extends _ModelUser {
   ) {
     try {
       return ModelUser.unsafe(
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        creatorId: otherData?[K_CREATOR_ID]?.toString().trim().nullIfEmpty,
         didSendWelcomeEmail: letBool(otherData?[K_DID_SEND_WELCOME_EMAIL]),
         emailSubscriptions: letSet(otherData?[K_EMAIL_SUBSCRIPTIONS])
             ?.map(
@@ -183,7 +174,20 @@ class ModelUser extends _ModelUser {
                 }(),
                 () {
                   final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelMedia.fromJson(a) : null;
+                  return a != null ? ModelMediaEntry.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
+        whenCreated: letMap(otherData?[K_WHEN_CREATED])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                () {
+                  final a = p1;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
                 }(),
               ),
             )
@@ -252,8 +256,6 @@ class ModelUser extends _ModelUser {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATOR_ID: creatorId?.toString().trim().nullIfEmpty,
         K_DID_SEND_WELCOME_EMAIL: didSendWelcomeEmail,
         K_EMAIL_SUBSCRIPTIONS: emailSubscriptions
             ?.map(
@@ -284,6 +286,15 @@ class ModelUser extends _ModelUser {
               (final p0, final p1) => MapEntry(
                 p0?.toUtc()?.toIso8601String(),
                 p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
+        K_WHEN_CREATED: whenCreated
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                p1?.toUtc()?.toIso8601String(),
               ),
             )
             .nonNulls
@@ -325,8 +336,6 @@ class ModelUser extends _ModelUser {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUser.fromJson(otherData);
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.creatorId != null ? this.creatorId = other.creatorId : null;
       other.didSendWelcomeEmail != null
           ? this.didSendWelcomeEmail = other.didSendWelcomeEmail
           : null;
@@ -345,6 +354,7 @@ class ModelUser extends _ModelUser {
       other.uploadedMedia != null
           ? this.uploadedMedia = other.uploadedMedia
           : null;
+      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
       other.whenLastLoggedIn != null
           ? this.whenLastLoggedIn = other.whenLastLoggedIn
           : null;

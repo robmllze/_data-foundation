@@ -16,22 +16,37 @@ part '_model_project_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'closed_at': 'DateTime?',
-    'created_at': 'DateTime?',
-    'creator_pid': 'String?',
-    'description': 'String?',
-    'display_name_searchable': 'LowerCase-String?',
-    'display_name': 'String?',
-    'opened_at': 'DateTime?',
-    'other_addresses': 'Map<DateTime?, ModelAddress>?',
-    'primary_address': 'ModelAddress?',
-    'uploaded_media': 'Map<DateTime, ModelMedia>?',
+    ...KFields.display_name,
+    ...KFields.display_name_searchable,
+    ...KFields.description,
+    ...KFields.when_created,
+    ...KFields.when_deleted,
+    ...KFields.uploaded_media,
+    ...KFields.primary_address,
+    ...KFields.other_addresses,
+    ...KFields.primary_email,
+    ...KFields.other_emails,
+    ...KFields.primary_phone,
+    ...KFields.other_phones,
+    'when_opened': 'Map<String, DateTime>?',
+    'when_closed': 'Map<String, DateTime>?',
   },
 )
-abstract class _ModelProjectPub extends ThisModel<ModelProjectPub> {
+abstract class _ModelProjectPub extends CrudModel<ModelProjectPub> {
   //
   //
   //
 
-  bool isCreatedBy({required String pid}) => this.model.creatorPid == pid;
+  // Opened.
+  DateTime? get openedAt => getFirstDate(this.model.whenOpened?.values);
+  String? get openedById =>
+      this.model.whenOpened?.entries.firstWhereOrNull((e) => e.value == this.createdAt)?.key;
+  bool get isOpened => this.model.whenOpened?.nullIfEmpty != null;
+  bool isOpenedBy(String id) => this.model.whenOpened?.keys.contains(id) == true;
+
+  // Closed.
+  DateTime? get closedAt => getFirstDate(this.model.whenClosed?.values);
+  String? get closedById =>
+      this.model.whenClosed?.entries.firstWhereOrNull((e) => e.value == this.createdAt)?.key;
+  bool isClosedBy(String id) => this.model.whenOpened?.keys.contains(id) == true;
 }

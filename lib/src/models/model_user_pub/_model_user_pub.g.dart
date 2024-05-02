@@ -27,20 +27,22 @@ class ModelUserPub extends _ModelUserPub {
   static const CLASS = 'ModelUserPub';
   static const MODEL_ID = 'model_user_pub';
 
-  static const K_CREATED_AT = 'created_at';
-  static const K_DELETED_AT = 'deleted_at';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
+  static const K_EMAIL = 'email';
   static const K_EMAIL_SEARCHABLE = 'email_searchable';
   static const K_ID = 'id';
   static const K_UPLOADED_MEDIA = 'uploaded_media';
+  static const K_WHEN_CREATED = 'when_created';
+  static const K_WHEN_DELETED = 'when_deleted';
 
-  DateTime? createdAt;
-  DateTime? deletedAt;
   String? displayName;
   String? displayNameSearchable;
+  String? email;
   String? emailSearchable;
-  Map<DateTime, ModelMedia>? uploadedMedia;
+  Map<DateTime, ModelMediaEntry>? uploadedMedia;
+  Map<String, DateTime>? whenCreated;
+  Map<String, DateTime>? whenDeleted;
 
   //
   //
@@ -48,12 +50,13 @@ class ModelUserPub extends _ModelUserPub {
 
   ModelUserPub({
     String? id,
-    this.createdAt,
-    this.deletedAt,
     this.displayName,
     this.displayNameSearchable,
+    this.email,
     this.emailSearchable,
     this.uploadedMedia,
+    this.whenCreated,
+    this.whenDeleted,
   }) {
     this.id = id;
   }
@@ -64,12 +67,13 @@ class ModelUserPub extends _ModelUserPub {
 
   ModelUserPub.unsafe({
     String? id,
-    this.createdAt,
-    this.deletedAt,
     this.displayName,
     this.displayNameSearchable,
+    this.email,
     this.emailSearchable,
     this.uploadedMedia,
+    this.whenCreated,
+    this.whenDeleted,
   }) {
     this.id = id;
   }
@@ -125,20 +129,13 @@ class ModelUserPub extends _ModelUserPub {
   ) {
     try {
       return ModelUserPub.unsafe(
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        deletedAt: () {
-          final a = otherData?[K_DELETED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
         displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
             ?.toString()
             .trim()
             .nullIfEmpty
             ?.toLowerCase(),
+        email: otherData?[K_EMAIL]?.toString().trim().nullIfEmpty,
         emailSearchable: otherData?[K_EMAIL_SEARCHABLE]
             ?.toString()
             .trim()
@@ -154,7 +151,33 @@ class ModelUserPub extends _ModelUserPub {
                 }(),
                 () {
                   final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelMedia.fromJson(a) : null;
+                  return a != null ? ModelMediaEntry.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
+        whenCreated: letMap(otherData?[K_WHEN_CREATED])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                () {
+                  final a = p1;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
+        whenDeleted: letMap(otherData?[K_WHEN_DELETED])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                () {
+                  final a = p1;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
                 }(),
               ),
             )
@@ -219,11 +242,10 @@ class ModelUserPub extends _ModelUserPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME_SEARCHABLE:
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_EMAIL: email?.toString().trim().nullIfEmpty,
         K_EMAIL_SEARCHABLE:
             emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
@@ -232,6 +254,24 @@ class ModelUserPub extends _ModelUserPub {
               (final p0, final p1) => MapEntry(
                 p0?.toUtc()?.toIso8601String(),
                 p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
+        K_WHEN_CREATED: whenCreated
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                p1?.toUtc()?.toIso8601String(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
+        K_WHEN_DELETED: whenDeleted
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                p1?.toUtc()?.toIso8601String(),
               ),
             )
             .nonNulls
@@ -272,12 +312,11 @@ class ModelUserPub extends _ModelUserPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUserPub.fromJson(otherData);
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.deletedAt != null ? this.deletedAt = other.deletedAt : null;
       other.displayName != null ? this.displayName = other.displayName : null;
       other.displayNameSearchable != null
           ? this.displayNameSearchable = other.displayNameSearchable
           : null;
+      other.email != null ? this.email = other.email : null;
       other.emailSearchable != null
           ? this.emailSearchable = other.emailSearchable
           : null;
@@ -285,6 +324,8 @@ class ModelUserPub extends _ModelUserPub {
       other.uploadedMedia != null
           ? this.uploadedMedia = other.uploadedMedia
           : null;
+      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
+      other.whenDeleted != null ? this.whenDeleted = other.whenDeleted : null;
     }
   }
 

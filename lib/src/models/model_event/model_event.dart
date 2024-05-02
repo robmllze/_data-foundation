@@ -17,34 +17,21 @@ part '_model_event.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'created_at': 'DateTime?',
-    'creator_id': 'String?',
+    ...KFields.when_created,
+    ...KFields.when_read,
+    ...KFields.member_pids,
+    ...KFields.uploaded_media,
     'def_type': 'EventDefType?',
     'def': 'GenericModel?',
-    'pids': 'Set<String>?',
     'timeout': 'int?',
     'when_archived': 'Map<String, DateTime>?',
     'when_hidden': 'Map<String, DateTime>?',
     'when_liked': 'Map<String, DateTime>?',
-    'when_read': 'Map<String, DateTime>?',
     'when_received': 'Map<String, DateTime>?',
     'when_sent': 'Map<String, DateTime>?',
-    'uploaded_media': 'Map<DateTime, ModelMedia>?',
   },
 )
-abstract class _ModelEvent extends ThisModel<ModelEvent> {
-  //
-  //
-  //
-
-  bool isCreatedBy(String userPid) => this.model.creatorId == userPid;
-
-  //
-  //
-  //
-
-  String? get senderPid => this.model.whenSent?.keys.firstOrNull;
-
+abstract class _ModelEvent extends CrudModel<ModelEvent> {
   //
   //
   //
@@ -54,39 +41,43 @@ abstract class _ModelEvent extends ThisModel<ModelEvent> {
     return timeout != null && timeout < DateTime.now().millisecondsSinceEpoch;
   }
 
-  //
-  //
-  //
+  // Archived.
+  Iterable<DateTime> get datesArchived => this.model.whenArchived?.values ?? [];
+  DateTime? get archivedAt => getFirstDate(this.datesArchived);
+  String? get archivedById =>
+      this.model.whenArchived?.entries.firstWhereOrNull((e) => e.value == this.createdAt)?.key;
+  bool get isArchived => this.model.whenArchived?.nullIfEmpty != null;
+  bool isArchivedBy({required String id}) => this.whenCreated?.keys.contains(id) == true;
 
-  Iterable<DateTime>? get datesArchived => this.model.whenArchived?.values;
-  Iterable<DateTime>? get datesHidden => this.model.whenHidden?.values;
-  Iterable<DateTime>? get datesLiked => this.model.whenLiked?.values;
-  Iterable<DateTime>? get datesRead => this.model.whenRead?.values;
-  Iterable<DateTime>? get datesRecieved => this.model.whenReceived?.values;
-  Iterable<DateTime>? get datesSent => this.model.whenSent?.values;
+  // Hidden.
+  Iterable<DateTime> get datesHidden => this.model.whenHidden?.values ?? [];
+  DateTime? get hiddenAt => getFirstDate(this.datesHidden);
+  String? get hiddenById =>
+      this.model.whenHidden?.entries.firstWhereOrNull((e) => e.value == this.createdAt)?.key;
+  bool get isHidden => this.model.whenHidden?.nullIfEmpty != null;
+  bool isHiddenBy({required String id}) => this.whenCreated?.keys.contains(id) == true;
 
-  //
-  //
-  //
+  // Liked.
+  Iterable<DateTime> get datesLiked => this.model.whenLiked?.values ?? [];
+  DateTime? get likedAt => getFirstDate(this.datesLiked);
+  String? get likedById =>
+      this.model.whenLiked?.entries.firstWhereOrNull((e) => e.value == this.createdAt)?.key;
+  bool get isLiked => this.model.whenLiked?.nullIfEmpty != null;
+  bool isLikedBy({required String id}) => this.whenCreated?.keys.contains(id) == true;
 
-  DateTime? get firstArchived => getFirstDate(this.datesArchived);
-  DateTime? get firstHidden => getFirstDate(this.datesHidden);
-  DateTime? get firstLiked => getFirstDate(this.datesLiked);
-  DateTime? get firstRead => getFirstDate(this.datesRead);
-  DateTime? get firstReceived => getFirstDate(this.datesRecieved);
-  DateTime? get firstSent => getFirstDate(this.datesSent);
+  // Received.
+  Iterable<DateTime> get datesReceived => this.model.whenReceived?.values ?? [];
+  DateTime? get receivedAt => getFirstDate(this.datesReceived);
+  String? get receivedById =>
+      this.model.whenReceived?.entries.firstWhereOrNull((e) => e.value == this.createdAt)?.key;
+  bool get isReceived => this.model.whenReceived?.nullIfEmpty != null;
+  bool isReceivedBy({required String id}) => this.whenCreated?.keys.contains(id) == true;
 
-  DateTime? get lastArchived => getLastDate(this.datesArchived);
-  DateTime? get lastHidden => getLastDate(this.datesHidden);
-  DateTime? get lastLiked => getLastDate(this.datesLiked);
-  DateTime? get lastRead => getLastDate(this.datesRead);
-  DateTime? get lastReceived => getLastDate(this.datesRecieved);
-  DateTime? get lastSent => getLastDate(this.datesSent);
-
-  bool get isArchived => this.model.whenArchived?.isNotEmpty == true;
-  bool get isHidden => this.model.whenHidden?.isNotEmpty == true;
-  bool get isLiked => this.model.whenLiked?.isNotEmpty == true;
-  bool get isRead => this.model.whenRead?.isNotEmpty == true;
-  bool get isReceived => this.model.whenReceived?.isNotEmpty == true;
-  bool get isSent => this.model.whenSent?.isNotEmpty == true;
+  // Sent.
+  Iterable<DateTime> get datesSent => this.model.whenSent?.values ?? [];
+  DateTime? get sentAt => getFirstDate(this.datesSent);
+  String? get sentById =>
+      this.model.whenSent?.entries.firstWhereOrNull((e) => e.value == this.createdAt)?.key;
+  bool get isSent => this.model.whenSent?.nullIfEmpty != null;
+  bool isSentBy({required String id}) => this.whenCreated?.keys.contains(id) == true;
 }

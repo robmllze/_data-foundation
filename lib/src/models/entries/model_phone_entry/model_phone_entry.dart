@@ -9,17 +9,16 @@
 
 import '/_common.dart';
 
-part '_model_phone_number.g.dart';
+part '_model_phone_entry.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'created_at': 'DateTime?',
-    'creator_id': 'String?',
-    'display_name': 'String?',
-    'display_name_searchable': 'LowerCase-String?',
+    ...KFields.title,
+    ...KFields.title_searchable,
+    ...KFields.when_created,
     'description': 'String?',
     'country_code': 'String?',
     'number_without_country_code': 'String?',
@@ -28,10 +27,4 @@ part '_model_phone_number.g.dart';
     'type': 'String?',
   },
 )
-abstract class _ModelPhoneNumber extends ThisModel<ModelPhoneNumber> {
-  //
-  //
-  //
-
-  bool isCreatedBy({required String id}) => this.model.creatorId == id;
-}
+abstract class _ModelPhoneEntry extends CrudModel<ModelPhoneEntry> {}

@@ -15,51 +15,48 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_media.dart';
+part of 'model_media_entry.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelMedia extends _ModelMedia {
+class ModelMediaEntry extends _ModelMediaEntry {
   //
   //
   //
 
-  static const CLASS = 'ModelMedia';
-  static const MODEL_ID = 'model_media';
+  static const CLASS = 'ModelMediaEntry';
+  static const MODEL_ID = 'model_media_entry';
 
-  static const K_CREATED_AT = 'created_at';
-  static const K_CREATOR_ID = 'creator_id';
   static const K_DESCRIPTION = 'description';
-  static const K_DISPLAY_NAME = 'display_name';
-  static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_FILE_NAME = 'file_name';
   static const K_ID = 'id';
   static const K_MIME_TYPE = 'mime_type';
+  static const K_TITLE = 'title';
+  static const K_TITLE_SEARCHABLE = 'title_searchable';
   static const K_URL = 'url';
+  static const K_WHEN_CREATED = 'when_created';
 
-  DateTime? createdAt;
-  String? creatorId;
   String? description;
-  String? displayName;
-  String? displayNameSearchable;
   String? fileName;
   String? mimeType;
-  String? url;
+  String? title;
+  String? titleSearchable;
+  Uri? url;
+  Map<String, DateTime>? whenCreated;
 
   //
   //
   //
 
-  ModelMedia({
+  ModelMediaEntry({
     String? id,
-    this.createdAt,
-    this.creatorId,
     this.description,
-    this.displayName,
-    this.displayNameSearchable,
     this.fileName,
     this.mimeType,
+    this.title,
+    this.titleSearchable,
     this.url,
+    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -68,16 +65,15 @@ class ModelMedia extends _ModelMedia {
   //
   //
 
-  ModelMedia.unsafe({
+  ModelMediaEntry.unsafe({
     String? id,
-    this.createdAt,
-    this.creatorId,
     this.description,
-    this.displayName,
-    this.displayNameSearchable,
     this.fileName,
     this.mimeType,
+    this.title,
+    this.titleSearchable,
     this.url,
+    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -86,10 +82,10 @@ class ModelMedia extends _ModelMedia {
   //
   //
 
-  factory ModelMedia.from(
+  factory ModelMediaEntry.from(
     Model? other,
   ) {
-    return ModelMedia.fromJson(
+    return ModelMediaEntry.fromJson(
       other is GenericModel ? other.data : other?.toJson(),
     );
   }
@@ -98,25 +94,25 @@ class ModelMedia extends _ModelMedia {
   //
   //
 
-  factory ModelMedia.of(
-    ModelMedia? other,
+  factory ModelMediaEntry.of(
+    ModelMediaEntry? other,
   ) {
-    return ModelMedia.fromJson(other?.toJson());
+    return ModelMediaEntry.fromJson(other?.toJson());
   }
 
   //
   //
   //
 
-  factory ModelMedia.fromJsonString(
+  factory ModelMediaEntry.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelMedia.fromJson(decoded);
+        return ModelMediaEntry.fromJson(decoded);
       } else {
-        return ModelMedia.unsafe();
+        return ModelMediaEntry.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -128,27 +124,38 @@ class ModelMedia extends _ModelMedia {
   //
   //
 
-  factory ModelMedia.fromJson(
+  factory ModelMediaEntry.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelMedia.unsafe(
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        creatorId: otherData?[K_CREATOR_ID]?.toString().trim().nullIfEmpty,
+      return ModelMediaEntry.unsafe(
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
-        displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
-        displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
+        fileName: otherData?[K_FILE_NAME]?.toString().trim().nullIfEmpty,
+        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
+        mimeType: otherData?[K_MIME_TYPE]?.toString().trim().nullIfEmpty,
+        title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
+        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
             ?.toString()
             .trim()
             .nullIfEmpty
             ?.toLowerCase(),
-        fileName: otherData?[K_FILE_NAME]?.toString().trim().nullIfEmpty,
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        mimeType: otherData?[K_MIME_TYPE]?.toString().trim().nullIfEmpty,
-        url: otherData?[K_URL]?.toString().trim().nullIfEmpty,
+        url: () {
+          final a = otherData?[K_URL];
+          return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
+        }(),
+        whenCreated: letMap(otherData?[K_WHEN_CREATED])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                () {
+                  final a = p1;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -160,14 +167,14 @@ class ModelMedia extends _ModelMedia {
   //
   //
 
-  factory ModelMedia.fromUri(
+  factory ModelMediaEntry.fromUri(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == MODEL_ID) {
-        return ModelMedia.fromJson(uri.queryParameters);
+        return ModelMediaEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelMedia.unsafe();
+        return ModelMediaEntry.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -179,18 +186,18 @@ class ModelMedia extends _ModelMedia {
   //
   //
 
-  static ModelMedia? convert(
+  static ModelMediaEntry? convert(
     Model? other,
   ) {
-    return other != null ? ModelMedia.from(other) : null;
+    return other != null ? ModelMediaEntry.from(other) : null;
   }
 
   //
   //
   //
 
-  static ModelMedia? fromPool({
-    required Iterable<ModelMedia>? pool,
+  static ModelMediaEntry? fromPool({
+    required Iterable<ModelMediaEntry>? pool,
     required String? id,
   }) {
     return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
@@ -207,16 +214,23 @@ class ModelMedia extends _ModelMedia {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATOR_ID: creatorId?.toString().trim().nullIfEmpty,
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
-        K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
-        K_DISPLAY_NAME_SEARCHABLE:
-            displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_FILE_NAME: fileName?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_MIME_TYPE: mimeType?.toString().trim().nullIfEmpty,
-        K_URL: url?.toString().trim().nullIfEmpty,
+        K_TITLE: title?.toString().trim().nullIfEmpty,
+        K_TITLE_SEARCHABLE:
+            titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_URL: url?.toString(),
+        K_WHEN_CREATED: whenCreated
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                p1?.toUtc()?.toIso8601String(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -231,7 +245,7 @@ class ModelMedia extends _ModelMedia {
 
   @override
   T empty<T extends Model>() {
-    return ModelMedia.unsafe() as T;
+    return ModelMediaEntry.unsafe() as T;
   }
 
   //
@@ -240,7 +254,7 @@ class ModelMedia extends _ModelMedia {
 
   @override
   T copy<T extends Model>() {
-    return (ModelMedia.unsafe()..updateWith(this)) as T;
+    return (ModelMediaEntry.unsafe()..updateWith(this)) as T;
   }
 
   //
@@ -252,18 +266,17 @@ class ModelMedia extends _ModelMedia {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelMedia.fromJson(otherData);
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.creatorId != null ? this.creatorId = other.creatorId : null;
+      final other = ModelMediaEntry.fromJson(otherData);
       other.description != null ? this.description = other.description : null;
-      other.displayName != null ? this.displayName = other.displayName : null;
-      other.displayNameSearchable != null
-          ? this.displayNameSearchable = other.displayNameSearchable
-          : null;
       other.fileName != null ? this.fileName = other.fileName : null;
       other.id != null ? this.id = other.id : null;
       other.mimeType != null ? this.mimeType = other.mimeType : null;
+      other.title != null ? this.title = other.title : null;
+      other.titleSearchable != null
+          ? this.titleSearchable = other.titleSearchable
+          : null;
       other.url != null ? this.url = other.url : null;
+      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
     }
   }
 

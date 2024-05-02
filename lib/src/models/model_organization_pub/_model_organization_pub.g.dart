@@ -27,28 +27,32 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   static const CLASS = 'ModelOrganizationPub';
   static const MODEL_ID = 'model_organization_pub';
 
-  static const K_CLOSED_AT = 'closed_at';
-  static const K_CREATED_AT = 'created_at';
-  static const K_CREATOR_PID = 'creator_pid';
   static const K_DESCRIPTION = 'description';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
-  static const K_OPENED_AT = 'opened_at';
   static const K_OTHER_ADDRESSES = 'other_addresses';
+  static const K_OTHER_EMAILS = 'other_emails';
+  static const K_OTHER_PHONES = 'other_phones';
   static const K_PRIMARY_ADDRESS = 'primary_address';
+  static const K_PRIMARY_EMAIL = 'primary_email';
+  static const K_PRIMARY_PHONE = 'primary_phone';
   static const K_UPLOADED_MEDIA = 'uploaded_media';
+  static const K_WHEN_CREATED = 'when_created';
+  static const K_WHEN_DELETED = 'when_deleted';
 
-  DateTime? closedAt;
-  DateTime? createdAt;
-  String? creatorPid;
   String? description;
   String? displayName;
   String? displayNameSearchable;
-  DateTime? openedAt;
-  Map<DateTime?, ModelAddress>? otherAddresses;
-  ModelAddress? primaryAddress;
-  Map<DateTime, ModelMedia>? uploadedMedia;
+  Map<DateTime?, ModelAddressEntry>? otherAddresses;
+  Map<DateTime?, ModelEmailEntry>? otherEmails;
+  Map<DateTime?, ModelPhoneEntry>? otherPhones;
+  ModelAddressEntry? primaryAddress;
+  ModelEmailEntry? primaryEmail;
+  ModelPhoneEntry? primaryPhone;
+  Map<DateTime, ModelMediaEntry>? uploadedMedia;
+  Map<String, DateTime>? whenCreated;
+  Map<String, DateTime>? whenDeleted;
 
   //
   //
@@ -56,16 +60,18 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
 
   ModelOrganizationPub({
     String? id,
-    this.closedAt,
-    this.createdAt,
-    this.creatorPid,
     this.description,
     this.displayName,
     this.displayNameSearchable,
-    this.openedAt,
     this.otherAddresses,
+    this.otherEmails,
+    this.otherPhones,
     this.primaryAddress,
+    this.primaryEmail,
+    this.primaryPhone,
     this.uploadedMedia,
+    this.whenCreated,
+    this.whenDeleted,
   }) {
     this.id = id;
   }
@@ -76,16 +82,18 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
 
   ModelOrganizationPub.unsafe({
     String? id,
-    this.closedAt,
-    this.createdAt,
-    this.creatorPid,
     this.description,
     this.displayName,
     this.displayNameSearchable,
-    this.openedAt,
     this.otherAddresses,
+    this.otherEmails,
+    this.otherPhones,
     this.primaryAddress,
+    this.primaryEmail,
+    this.primaryPhone,
     this.uploadedMedia,
+    this.whenCreated,
+    this.whenDeleted,
   }) {
     this.id = id;
   }
@@ -141,15 +149,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   ) {
     try {
       return ModelOrganizationPub.unsafe(
-        closedAt: () {
-          final a = otherData?[K_CLOSED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        creatorPid: otherData?[K_CREATOR_PID]?.toString().trim().nullIfEmpty,
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
         displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
@@ -158,10 +157,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
             .nullIfEmpty
             ?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        openedAt: () {
-          final a = otherData?[K_OPENED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
         otherAddresses: letMap(otherData?[K_OTHER_ADDRESSES])
             ?.map(
               (final p0, final p1) => MapEntry(
@@ -171,7 +166,39 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
                 }(),
                 () {
                   final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelAddress.fromJson(a) : null;
+                  return a != null ? ModelAddressEntry.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
+        otherEmails: letMap(otherData?[K_OTHER_EMAILS])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                () {
+                  final a = p0;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+                () {
+                  final a = letMap<String, dynamic>(p1);
+                  return a != null ? ModelEmailEntry.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
+        otherPhones: letMap(otherData?[K_OTHER_PHONES])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                () {
+                  final a = p0;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+                () {
+                  final a = letMap<String, dynamic>(p1);
+                  return a != null ? ModelPhoneEntry.fromJson(a) : null;
                 }(),
               ),
             )
@@ -180,7 +207,15 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
             ?.cast(),
         primaryAddress: () {
           final a = letMap<String, dynamic>(otherData?[K_PRIMARY_ADDRESS]);
-          return a != null ? ModelAddress.fromJson(a) : null;
+          return a != null ? ModelAddressEntry.fromJson(a) : null;
+        }(),
+        primaryEmail: () {
+          final a = letMap<String, dynamic>(otherData?[K_PRIMARY_EMAIL]);
+          return a != null ? ModelEmailEntry.fromJson(a) : null;
+        }(),
+        primaryPhone: () {
+          final a = letMap<String, dynamic>(otherData?[K_PRIMARY_PHONE]);
+          return a != null ? ModelPhoneEntry.fromJson(a) : null;
         }(),
         uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
             ?.map(
@@ -191,7 +226,33 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
                 }(),
                 () {
                   final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelMedia.fromJson(a) : null;
+                  return a != null ? ModelMediaEntry.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
+        whenCreated: letMap(otherData?[K_WHEN_CREATED])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                () {
+                  final a = p1;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
+        whenDeleted: letMap(otherData?[K_WHEN_DELETED])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                () {
+                  final a = p1;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
                 }(),
               ),
             )
@@ -256,15 +317,11 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CLOSED_AT: closedAt?.toUtc()?.toIso8601String(),
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATOR_PID: creatorPid?.toString().trim().nullIfEmpty,
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME_SEARCHABLE:
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_OPENED_AT: openedAt?.toUtc()?.toIso8601String(),
         K_OTHER_ADDRESSES: otherAddresses
             ?.map(
               (final p0, final p1) => MapEntry(
@@ -274,12 +331,50 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
             )
             .nonNulls
             .nullIfEmpty,
+        K_OTHER_EMAILS: otherEmails
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toUtc()?.toIso8601String(),
+                p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
+        K_OTHER_PHONES: otherPhones
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toUtc()?.toIso8601String(),
+                p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
         K_PRIMARY_ADDRESS: primaryAddress?.toJson(),
+        K_PRIMARY_EMAIL: primaryEmail?.toJson(),
+        K_PRIMARY_PHONE: primaryPhone?.toJson(),
         K_UPLOADED_MEDIA: uploadedMedia
             ?.map(
               (final p0, final p1) => MapEntry(
                 p0?.toUtc()?.toIso8601String(),
                 p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
+        K_WHEN_CREATED: whenCreated
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                p1?.toUtc()?.toIso8601String(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
+        K_WHEN_DELETED: whenDeleted
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toString().trim().nullIfEmpty,
+                p1?.toUtc()?.toIso8601String(),
               ),
             )
             .nonNulls
@@ -320,25 +415,31 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelOrganizationPub.fromJson(otherData);
-      other.closedAt != null ? this.closedAt = other.closedAt : null;
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.creatorPid != null ? this.creatorPid = other.creatorPid : null;
       other.description != null ? this.description = other.description : null;
       other.displayName != null ? this.displayName = other.displayName : null;
       other.displayNameSearchable != null
           ? this.displayNameSearchable = other.displayNameSearchable
           : null;
       other.id != null ? this.id = other.id : null;
-      other.openedAt != null ? this.openedAt = other.openedAt : null;
       other.otherAddresses != null
           ? this.otherAddresses = other.otherAddresses
           : null;
+      other.otherEmails != null ? this.otherEmails = other.otherEmails : null;
+      other.otherPhones != null ? this.otherPhones = other.otherPhones : null;
       other.primaryAddress != null
           ? this.primaryAddress = other.primaryAddress
+          : null;
+      other.primaryEmail != null
+          ? this.primaryEmail = other.primaryEmail
+          : null;
+      other.primaryPhone != null
+          ? this.primaryPhone = other.primaryPhone
           : null;
       other.uploadedMedia != null
           ? this.uploadedMedia = other.uploadedMedia
           : null;
+      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
+      other.whenDeleted != null ? this.whenDeleted = other.whenDeleted : null;
     }
   }
 

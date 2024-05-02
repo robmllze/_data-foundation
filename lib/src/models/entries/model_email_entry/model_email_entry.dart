@@ -9,24 +9,18 @@
 
 import '/_common.dart';
 
-part '_model_note.g.dart';
+part '_model_email_entry.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    'body': 'String?',
-    'created_at': 'DateTime?',
-    'creator_id': 'String?',
-    'display_name_searchable': 'LowerCase-String?',
-    'display_name': 'String?',
+    ...KFields.title,
+    ...KFields.title_searchable,
+    ...KFields.when_created,
+    ...KFields.email_searchable,
+    ...KFields.description,
   },
 )
-abstract class _ModelNote extends ThisModel<ModelNote> {
-  //
-  //
-  //
-
-  bool isCreatedBy({required String id}) => this.model.creatorId == id;
-}
+abstract class _ModelEmailEntry extends CrudModel<ModelEmailEntry> {}

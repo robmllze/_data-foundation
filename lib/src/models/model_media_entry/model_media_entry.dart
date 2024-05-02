@@ -9,25 +9,20 @@
 
 import '/_common.dart';
 
-part '_model_organization_pub.g.dart';
+part '_model_media_entry.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.display_name,
-    ...KFields.display_name_searchable,
-    ...KFields.description,
     ...KFields.when_created,
-    ...KFields.when_deleted,
-    ...KFields.uploaded_media,
-    ...KFields.primary_address,
-    ...KFields.other_addresses,
-    ...KFields.primary_email,
-    ...KFields.other_emails,
-    ...KFields.primary_phone,
-    ...KFields.other_phones,
+    ...KFields.title,
+    ...KFields.title_searchable,
+    'description': 'String?',
+    'file_name': 'String?',
+    'mime_type': 'String?',
+    'url': 'Uri?',
   },
 )
-abstract class _ModelOrganizationPub extends CrudModel<ModelOrganizationPub> {}
+abstract class _ModelMediaEntry extends CrudModel<ModelMediaEntry> {}

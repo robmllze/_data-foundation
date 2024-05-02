@@ -15,35 +15,44 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_project.dart';
+part of 'model_email_entry.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelProject extends _ModelProject {
+class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
   //
 
-  static const CLASS = 'ModelProject';
-  static const MODEL_ID = 'model_project';
+  static const CLASS = 'ModelEmailEntry';
+  static const MODEL_ID = 'model_email_entry';
 
+  static const K_DESCRIPTION = 'description';
+  static const K_EMAIL = 'email';
+  static const K_EMAIL_SEARCHABLE = 'email_searchable';
   static const K_ID = 'id';
-  static const K_PID = 'pid';
-  static const K_SEED = 'seed';
+  static const K_TITLE = 'title';
+  static const K_TITLE_SEARCHABLE = 'title_searchable';
   static const K_WHEN_CREATED = 'when_created';
 
-  String? pid;
-  String? seed;
+  String? description;
+  String? email;
+  String? emailSearchable;
+  String? title;
+  String? titleSearchable;
   Map<String, DateTime>? whenCreated;
 
   //
   //
   //
 
-  ModelProject({
+  ModelEmailEntry({
     String? id,
-    this.pid,
-    this.seed,
+    this.description,
+    this.email,
+    this.emailSearchable,
+    this.title,
+    this.titleSearchable,
     this.whenCreated,
   }) {
     this.id = id;
@@ -53,10 +62,13 @@ class ModelProject extends _ModelProject {
   //
   //
 
-  ModelProject.unsafe({
+  ModelEmailEntry.unsafe({
     String? id,
-    this.pid,
-    this.seed,
+    this.description,
+    this.email,
+    this.emailSearchable,
+    this.title,
+    this.titleSearchable,
     this.whenCreated,
   }) {
     this.id = id;
@@ -66,10 +78,10 @@ class ModelProject extends _ModelProject {
   //
   //
 
-  factory ModelProject.from(
+  factory ModelEmailEntry.from(
     Model? other,
   ) {
-    return ModelProject.fromJson(
+    return ModelEmailEntry.fromJson(
       other is GenericModel ? other.data : other?.toJson(),
     );
   }
@@ -78,25 +90,25 @@ class ModelProject extends _ModelProject {
   //
   //
 
-  factory ModelProject.of(
-    ModelProject? other,
+  factory ModelEmailEntry.of(
+    ModelEmailEntry? other,
   ) {
-    return ModelProject.fromJson(other?.toJson());
+    return ModelEmailEntry.fromJson(other?.toJson());
   }
 
   //
   //
   //
 
-  factory ModelProject.fromJsonString(
+  factory ModelEmailEntry.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelProject.fromJson(decoded);
+        return ModelEmailEntry.fromJson(decoded);
       } else {
-        return ModelProject.unsafe();
+        return ModelEmailEntry.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -108,14 +120,25 @@ class ModelProject extends _ModelProject {
   //
   //
 
-  factory ModelProject.fromJson(
+  factory ModelEmailEntry.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelProject.unsafe(
+      return ModelEmailEntry.unsafe(
+        description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
+        email: otherData?[K_EMAIL]?.toString().trim().nullIfEmpty,
+        emailSearchable: otherData?[K_EMAIL_SEARCHABLE]
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
-        seed: otherData?[K_SEED]?.toString().trim().nullIfEmpty,
+        title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
+        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase(),
         whenCreated: letMap(otherData?[K_WHEN_CREATED])
             ?.map(
               (final p0, final p1) => MapEntry(
@@ -140,14 +163,14 @@ class ModelProject extends _ModelProject {
   //
   //
 
-  factory ModelProject.fromUri(
+  factory ModelEmailEntry.fromUri(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == MODEL_ID) {
-        return ModelProject.fromJson(uri.queryParameters);
+        return ModelEmailEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelProject.unsafe();
+        return ModelEmailEntry.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -159,18 +182,18 @@ class ModelProject extends _ModelProject {
   //
   //
 
-  static ModelProject? convert(
+  static ModelEmailEntry? convert(
     Model? other,
   ) {
-    return other != null ? ModelProject.from(other) : null;
+    return other != null ? ModelEmailEntry.from(other) : null;
   }
 
   //
   //
   //
 
-  static ModelProject? fromPool({
-    required Iterable<ModelProject>? pool,
+  static ModelEmailEntry? fromPool({
+    required Iterable<ModelEmailEntry>? pool,
     required String? id,
   }) {
     return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
@@ -187,9 +210,14 @@ class ModelProject extends _ModelProject {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
+        K_EMAIL: email?.toString().trim().nullIfEmpty,
+        K_EMAIL_SEARCHABLE:
+            emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_PID: pid?.toString().trim().nullIfEmpty,
-        K_SEED: seed?.toString().trim().nullIfEmpty,
+        K_TITLE: title?.toString().trim().nullIfEmpty,
+        K_TITLE_SEARCHABLE:
+            titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_WHEN_CREATED: whenCreated
             ?.map(
               (final p0, final p1) => MapEntry(
@@ -213,7 +241,7 @@ class ModelProject extends _ModelProject {
 
   @override
   T empty<T extends Model>() {
-    return ModelProject.unsafe() as T;
+    return ModelEmailEntry.unsafe() as T;
   }
 
   //
@@ -222,7 +250,7 @@ class ModelProject extends _ModelProject {
 
   @override
   T copy<T extends Model>() {
-    return (ModelProject.unsafe()..updateWith(this)) as T;
+    return (ModelEmailEntry.unsafe()..updateWith(this)) as T;
   }
 
   //
@@ -234,10 +262,17 @@ class ModelProject extends _ModelProject {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelProject.fromJson(otherData);
+      final other = ModelEmailEntry.fromJson(otherData);
+      other.description != null ? this.description = other.description : null;
+      other.email != null ? this.email = other.email : null;
+      other.emailSearchable != null
+          ? this.emailSearchable = other.emailSearchable
+          : null;
       other.id != null ? this.id = other.id : null;
-      other.pid != null ? this.pid = other.pid : null;
-      other.seed != null ? this.seed = other.seed : null;
+      other.title != null ? this.title = other.title : null;
+      other.titleSearchable != null
+          ? this.titleSearchable = other.titleSearchable
+          : null;
       other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
     }
   }
