@@ -144,13 +144,22 @@ class ModelUserPub extends _ModelUserPub {
         }(),
         deletedBy: otherData?[K_DELETED_BY]?.toString().trim().nullIfEmpty,
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
-        displayNameSearchable: #x0,
-        email:
-            otherData?[K_EMAIL]?.toString().trim().nullIfEmpty?.toLowerCase(),
+        displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ' '),
+        email: otherData?[K_EMAIL]
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ' '),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         uploadedMediaIds: letSet(otherData?[K_UPLOADED_MEDIA_IDS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -219,12 +228,22 @@ class ModelUserPub extends _ModelUserPub {
         K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
         K_DELETED_BY: deletedBy?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
-        K_DISPLAY_NAME_SEARCHABLE: #x0,
-        K_EMAIL: email?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_DISPLAY_NAME_SEARCHABLE: displayNameSearchable
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ' '),
+        K_EMAIL: email
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ' '),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_UPLOADED_MEDIA_IDS: uploadedMediaIds
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty

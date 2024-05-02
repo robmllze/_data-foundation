@@ -180,7 +180,7 @@ class ModelEvent extends _ModelEvent {
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         memberPids: letSet(otherData?[K_MEMBER_PIDS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -189,7 +189,7 @@ class ModelEvent extends _ModelEvent {
         timeout: letInt(otherData?[K_TIMEOUT]),
         uploadedMediaIds: letSet(otherData?[K_UPLOADED_MEDIA_IDS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -197,7 +197,7 @@ class ModelEvent extends _ModelEvent {
             .cast(),
         whenArchived: letMap(otherData?[K_WHEN_ARCHIVED])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 () {
                   final a = p1;
@@ -210,7 +210,7 @@ class ModelEvent extends _ModelEvent {
             ?.cast(),
         whenHidden: letMap(otherData?[K_WHEN_HIDDEN])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 () {
                   final a = p1;
@@ -223,7 +223,7 @@ class ModelEvent extends _ModelEvent {
             ?.cast(),
         whenLiked: letMap(otherData?[K_WHEN_LIKED])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 () {
                   final a = p1;
@@ -236,7 +236,7 @@ class ModelEvent extends _ModelEvent {
             ?.cast(),
         whenRead: letMap(otherData?[K_WHEN_READ])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 () {
                   final a = p1;
@@ -249,7 +249,7 @@ class ModelEvent extends _ModelEvent {
             ?.cast(),
         whenReceived: letMap(otherData?[K_WHEN_RECEIVED])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 () {
                   final a = p1;
@@ -262,7 +262,7 @@ class ModelEvent extends _ModelEvent {
             ?.cast(),
         whenSent: letMap(otherData?[K_WHEN_SENT])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 () {
                   final a = p1;
@@ -340,7 +340,7 @@ class ModelEvent extends _ModelEvent {
         K_ID: id?.toString().trim().nullIfEmpty,
         K_MEMBER_PIDS: memberPids
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -348,14 +348,14 @@ class ModelEvent extends _ModelEvent {
         K_TIMEOUT: timeout,
         K_UPLOADED_MEDIA_IDS: uploadedMediaIds
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
             ?.toList(),
         K_WHEN_ARCHIVED: whenArchived
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 p1?.toUtc()?.toIso8601String(),
               ),
@@ -364,7 +364,7 @@ class ModelEvent extends _ModelEvent {
             .nullIfEmpty,
         K_WHEN_HIDDEN: whenHidden
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 p1?.toUtc()?.toIso8601String(),
               ),
@@ -373,7 +373,7 @@ class ModelEvent extends _ModelEvent {
             .nullIfEmpty,
         K_WHEN_LIKED: whenLiked
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 p1?.toUtc()?.toIso8601String(),
               ),
@@ -382,7 +382,7 @@ class ModelEvent extends _ModelEvent {
             .nullIfEmpty,
         K_WHEN_READ: whenRead
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 p1?.toUtc()?.toIso8601String(),
               ),
@@ -391,7 +391,7 @@ class ModelEvent extends _ModelEvent {
             .nullIfEmpty,
         K_WHEN_RECEIVED: whenReceived
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 p1?.toUtc()?.toIso8601String(),
               ),
@@ -400,7 +400,7 @@ class ModelEvent extends _ModelEvent {
             .nullIfEmpty,
         K_WHEN_SENT: whenSent
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 p1?.toUtc()?.toIso8601String(),
               ),

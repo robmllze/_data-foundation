@@ -169,11 +169,16 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         deletedBy: otherData?[K_DELETED_BY]?.toString().trim().nullIfEmpty,
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
-        displayNameSearchable: #x0,
+        displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ' '),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         otherAddresses: letMap(otherData?[K_OTHER_ADDRESSES])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 () {
                   final a = p0;
                   return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -189,7 +194,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
             ?.cast(),
         otherEmails: letMap(otherData?[K_OTHER_EMAILS])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 () {
                   final a = p0;
                   return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -205,7 +210,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
             ?.cast(),
         otherPhones: letMap(otherData?[K_OTHER_PHONES])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 () {
                   final a = p0;
                   return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -233,7 +238,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         }(),
         uploadedMediaIds: letSet(otherData?[K_UPLOADED_MEDIA_IDS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -303,11 +308,16 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         K_DELETED_BY: deletedBy?.toString().trim().nullIfEmpty,
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
-        K_DISPLAY_NAME_SEARCHABLE: #x0,
+        K_DISPLAY_NAME_SEARCHABLE: displayNameSearchable
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ' '),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_OTHER_ADDRESSES: otherAddresses
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toUtc()?.toIso8601String(),
                 p1?.toJson(),
               ),
@@ -316,7 +326,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
             .nullIfEmpty,
         K_OTHER_EMAILS: otherEmails
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toUtc()?.toIso8601String(),
                 p1?.toJson(),
               ),
@@ -325,7 +335,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
             .nullIfEmpty,
         K_OTHER_PHONES: otherPhones
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toUtc()?.toIso8601String(),
                 p1?.toJson(),
               ),
@@ -337,7 +347,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         K_PRIMARY_PHONE: primaryPhone?.toJson(),
         K_UPLOADED_MEDIA_IDS: uploadedMediaIds
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty

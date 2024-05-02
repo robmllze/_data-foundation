@@ -22,9 +22,9 @@ part '_model_invitation.g.dart';
     'def_type': 'InvitationDefType?',
     'def': 'GenericModel?',
     'invitation_link': 'Uri?',
-    'invitee_emails': 'Set<String>?',
-    'invitee_accepted_emails': 'Set<String>?',
-    'invitee_rejected_emails': 'Set<String>?',
+    'invitee_emails': 'Set<Searchable-String>?',
+    'invitee_accepted_emails': 'Set<Searchable-String>?',
+    'invitee_rejected_emails': 'Set<Searchable-String>?',
   },
 )
 abstract class _ModelInvitation extends ThisModel<ModelInvitation> {

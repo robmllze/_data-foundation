@@ -162,7 +162,7 @@ class ModelUser extends _ModelUser {
         didSendWelcomeEmail: letBool(otherData?[K_DID_SEND_WELCOME_EMAIL]),
         emailSubscriptions: letSet(otherData?[K_EMAIL_SUBSCRIPTIONS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -172,7 +172,7 @@ class ModelUser extends _ModelUser {
         pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
         pushSubscriptions: letSet(otherData?[K_PUSH_SUBSCRIPTIONS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -181,7 +181,7 @@ class ModelUser extends _ModelUser {
         seed: otherData?[K_SEED]?.toString().trim().nullIfEmpty,
         smsSubscriptions: letSet(otherData?[K_SMS_SUBSCRIPTIONS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -189,7 +189,7 @@ class ModelUser extends _ModelUser {
             .cast(),
         uploadedMediaIds: letSet(otherData?[K_UPLOADED_MEDIA_IDS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -264,7 +264,7 @@ class ModelUser extends _ModelUser {
         K_DID_SEND_WELCOME_EMAIL: didSendWelcomeEmail,
         K_EMAIL_SUBSCRIPTIONS: emailSubscriptions
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -273,7 +273,7 @@ class ModelUser extends _ModelUser {
         K_PID: pid?.toString().trim().nullIfEmpty,
         K_PUSH_SUBSCRIPTIONS: pushSubscriptions
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -281,14 +281,14 @@ class ModelUser extends _ModelUser {
         K_SEED: seed?.toString().trim().nullIfEmpty,
         K_SMS_SUBSCRIPTIONS: smsSubscriptions
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
             ?.toList(),
         K_UPLOADED_MEDIA_IDS: uploadedMediaIds
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty

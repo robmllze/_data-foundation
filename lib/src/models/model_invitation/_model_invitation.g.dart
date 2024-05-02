@@ -159,7 +159,12 @@ class ModelInvitation extends _ModelInvitation {
         }(),
         inviteeAcceptedEmails: letSet(otherData?[K_INVITEE_ACCEPTED_EMAILS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0
+                  ?.toString()
+                  .trim()
+                  .nullIfEmpty
+                  ?.toLowerCase()
+                  .replaceAll(r'[^\w]', ' '),
             )
             .nonNulls
             .nullIfEmpty
@@ -167,7 +172,12 @@ class ModelInvitation extends _ModelInvitation {
             .cast(),
         inviteeEmails: letSet(otherData?[K_INVITEE_EMAILS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0
+                  ?.toString()
+                  .trim()
+                  .nullIfEmpty
+                  ?.toLowerCase()
+                  .replaceAll(r'[^\w]', ' '),
             )
             .nonNulls
             .nullIfEmpty
@@ -175,7 +185,12 @@ class ModelInvitation extends _ModelInvitation {
             .cast(),
         inviteeRejectedEmails: letSet(otherData?[K_INVITEE_REJECTED_EMAILS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0
+                  ?.toString()
+                  .trim()
+                  .nullIfEmpty
+                  ?.toLowerCase()
+                  .replaceAll(r'[^\w]', ' '),
             )
             .nonNulls
             .nullIfEmpty
@@ -248,21 +263,36 @@ class ModelInvitation extends _ModelInvitation {
         K_INVITATION_LINK: invitationLink?.toString(),
         K_INVITEE_ACCEPTED_EMAILS: inviteeAcceptedEmails
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0
+                  ?.toString()
+                  .trim()
+                  .nullIfEmpty
+                  ?.toLowerCase()
+                  .replaceAll(r'[^\w]', ' '),
             )
             .nonNulls
             .nullIfEmpty
             ?.toList(),
         K_INVITEE_EMAILS: inviteeEmails
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0
+                  ?.toString()
+                  .trim()
+                  .nullIfEmpty
+                  ?.toLowerCase()
+                  .replaceAll(r'[^\w]', ' '),
             )
             .nonNulls
             .nullIfEmpty
             ?.toList(),
         K_INVITEE_REJECTED_EMAILS: inviteeRejectedEmails
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0
+                  ?.toString()
+                  .trim()
+                  .nullIfEmpty
+                  ?.toLowerCase()
+                  .replaceAll(r'[^\w]', ' '),
             )
             .nonNulls
             .nullIfEmpty

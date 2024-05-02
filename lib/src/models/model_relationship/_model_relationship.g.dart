@@ -164,7 +164,7 @@ class ModelRelationship extends _ModelRelationship {
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         memberPids: letSet(otherData?[K_MEMBER_PIDS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -172,7 +172,7 @@ class ModelRelationship extends _ModelRelationship {
             .cast(),
         uploadedMediaIds: letSet(otherData?[K_UPLOADED_MEDIA_IDS])
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
@@ -180,7 +180,7 @@ class ModelRelationship extends _ModelRelationship {
             .cast(),
         whenDisabled: letMap(otherData?[K_WHEN_DISABLED])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 () {
                   final a = p1;
@@ -193,7 +193,7 @@ class ModelRelationship extends _ModelRelationship {
             ?.cast(),
         whenEnabled: letMap(otherData?[K_WHEN_ENABLED])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 () {
                   final a = p1;
@@ -206,7 +206,7 @@ class ModelRelationship extends _ModelRelationship {
             ?.cast(),
         whenNoted: letMap(otherData?[K_WHEN_NOTED])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 () {
                   final a = p1;
@@ -284,21 +284,21 @@ class ModelRelationship extends _ModelRelationship {
         K_ID: id?.toString().trim().nullIfEmpty,
         K_MEMBER_PIDS: memberPids
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
             ?.toList(),
         K_UPLOADED_MEDIA_IDS: uploadedMediaIds
             ?.map(
-              (final p0) => p0?.toString().trim().nullIfEmpty,
+              (p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
             ?.toList(),
         K_WHEN_DISABLED: whenDisabled
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 p1?.toUtc()?.toIso8601String(),
               ),
@@ -307,7 +307,7 @@ class ModelRelationship extends _ModelRelationship {
             .nullIfEmpty,
         K_WHEN_ENABLED: whenEnabled
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 p1?.toUtc()?.toIso8601String(),
               ),
@@ -316,7 +316,7 @@ class ModelRelationship extends _ModelRelationship {
             .nullIfEmpty,
         K_WHEN_NOTED: whenNoted
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0?.toString().trim().nullIfEmpty,
                 p1?.toUtc()?.toIso8601String(),
               ),

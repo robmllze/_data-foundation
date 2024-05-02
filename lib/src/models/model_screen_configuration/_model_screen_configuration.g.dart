@@ -146,7 +146,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       return ModelScreenConfiguration.unsafe(
         arguments: letMap(otherData?[K_ARGUMENTS])
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0,
                 p1,
               ),
@@ -231,7 +231,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       final withNulls = <String, dynamic>{
         K_ARGUMENTS: arguments
             ?.map(
-              (final p0, final p1) => MapEntry(
+              (p0, p1) => MapEntry(
                 p0,
                 p1,
               ),

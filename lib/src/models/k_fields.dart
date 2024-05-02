@@ -27,15 +27,11 @@ abstract final class KFields {
   static const title = {'title': 'String?'};
   static const title_searchable = {'title_searchable': 'Searchable-String?'};
 
-  static const email = {'email': 'LowerCase-String?'};
+  static const email = {'email': 'Searchable-String?'};
 
   static const created_at = {'created_at': 'DateTime?'};
   static const created_by = {'created_by': 'String?'};
   static const expires_at = {'expires_at': 'DateTime?'};
-
-  // static const when_read = {'when_read': 'Map<String, DateTime>?'};
-  // static const when_updated = {'when_updated': 'Map<String, DateTime>?'};
-
   static const deleted_at = {'deleted_at': 'DateTime?'};
   static const deleted_by = {'deleted_by': 'String?'};
 

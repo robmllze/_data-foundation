@@ -131,11 +131,20 @@ class ModelEmailEntry extends _ModelEmailEntry {
         }(),
         createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
-        email:
-            otherData?[K_EMAIL]?.toString().trim().nullIfEmpty?.toLowerCase(),
+        email: otherData?[K_EMAIL]
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ' '),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
-        titleSearchable: #x0,
+        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ' '),
       );
     } catch (e) {
       assert(false, e);
@@ -197,10 +206,20 @@ class ModelEmailEntry extends _ModelEmailEntry {
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
         K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
-        K_EMAIL: email?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_EMAIL: email
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ' '),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_TITLE: title?.toString().trim().nullIfEmpty,
-        K_TITLE_SEARCHABLE: #x0,
+        K_TITLE_SEARCHABLE: titleSearchable
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ' '),
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
