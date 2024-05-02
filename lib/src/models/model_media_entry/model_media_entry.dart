@@ -16,7 +16,8 @@ part '_model_media_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.when_created,
+    ...KFields.created_at,
+    ...KFields.created_by,
     ...KFields.title,
     ...KFields.title_searchable,
     ...KFields.description,
@@ -25,4 +26,4 @@ part '_model_media_entry.g.dart';
     'url': 'Uri?',
   },
 )
-abstract class _ModelMediaEntry extends CrudModel<ModelMediaEntry> {}
+abstract class _ModelMediaEntry extends ThisModel<ModelMediaEntry> {}

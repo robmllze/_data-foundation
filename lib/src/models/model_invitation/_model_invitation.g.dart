@@ -27,6 +27,8 @@ class ModelInvitation extends _ModelInvitation {
   static const CLASS = 'ModelInvitation';
   static const MODEL_ID = 'model_invitation';
 
+  static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY = 'created_by';
   static const K_DEF = 'def';
   static const K_DEF_TYPE = 'def_type';
   static const K_EXPIRES_AT = 'expires_at';
@@ -35,8 +37,9 @@ class ModelInvitation extends _ModelInvitation {
   static const K_INVITEE_ACCEPTED_EMAILS = 'invitee_accepted_emails';
   static const K_INVITEE_EMAILS = 'invitee_emails';
   static const K_INVITEE_REJECTED_EMAILS = 'invitee_rejected_emails';
-  static const K_WHEN_CREATED = 'when_created';
 
+  DateTime? createdAt;
+  String? createdBy;
   GenericModel? def;
   InvitationDefType? defType;
   DateTime? expiresAt;
@@ -44,7 +47,6 @@ class ModelInvitation extends _ModelInvitation {
   Set<String>? inviteeAcceptedEmails;
   Set<String>? inviteeEmails;
   Set<String>? inviteeRejectedEmails;
-  Map<String, DateTime>? whenCreated;
 
   //
   //
@@ -52,6 +54,8 @@ class ModelInvitation extends _ModelInvitation {
 
   ModelInvitation({
     String? id,
+    this.createdAt,
+    this.createdBy,
     this.def,
     this.defType,
     this.expiresAt,
@@ -59,7 +63,6 @@ class ModelInvitation extends _ModelInvitation {
     this.inviteeAcceptedEmails,
     this.inviteeEmails,
     this.inviteeRejectedEmails,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -70,6 +73,8 @@ class ModelInvitation extends _ModelInvitation {
 
   ModelInvitation.unsafe({
     String? id,
+    this.createdAt,
+    this.createdBy,
     this.def,
     this.defType,
     this.expiresAt,
@@ -77,7 +82,6 @@ class ModelInvitation extends _ModelInvitation {
     this.inviteeAcceptedEmails,
     this.inviteeEmails,
     this.inviteeRejectedEmails,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -133,6 +137,11 @@ class ModelInvitation extends _ModelInvitation {
   ) {
     try {
       return ModelInvitation.unsafe(
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
         def: () {
           final a = letMap<String, dynamic>(otherData?[K_DEF]);
           return a != null ? GenericModel.fromJson(a) : null;
@@ -172,19 +181,6 @@ class ModelInvitation extends _ModelInvitation {
             .nullIfEmpty
             ?.toSet()
             .cast(),
-        whenCreated: letMap(otherData?[K_WHEN_CREATED])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -243,6 +239,8 @@ class ModelInvitation extends _ModelInvitation {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
         K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
         K_EXPIRES_AT: expiresAt?.toUtc()?.toIso8601String(),
@@ -269,15 +267,6 @@ class ModelInvitation extends _ModelInvitation {
             .nonNulls
             .nullIfEmpty
             ?.toList(),
-        K_WHEN_CREATED: whenCreated
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -314,6 +303,8 @@ class ModelInvitation extends _ModelInvitation {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelInvitation.fromJson(otherData);
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdBy != null ? this.createdBy = other.createdBy : null;
       other.def != null ? this.def = other.def : null;
       other.defType != null ? this.defType = other.defType : null;
       other.expiresAt != null ? this.expiresAt = other.expiresAt : null;
@@ -330,7 +321,6 @@ class ModelInvitation extends _ModelInvitation {
       other.inviteeRejectedEmails != null
           ? this.inviteeRejectedEmails = other.inviteeRejectedEmails
           : null;
-      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
     }
   }
 

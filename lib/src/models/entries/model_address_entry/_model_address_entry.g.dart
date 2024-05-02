@@ -31,6 +31,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
   static const K_ADDRESS_LINE_2 = 'address_line_2';
   static const K_CITY = 'city';
   static const K_COUNTRY = 'country';
+  static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY = 'created_by';
   static const K_ID = 'id';
   static const K_NAME = 'name';
   static const K_NOTES = 'notes';
@@ -38,19 +40,19 @@ class ModelAddressEntry extends _ModelAddressEntry {
   static const K_STATE_OR_PROVINCE = 'state_or_province';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
-  static const K_WHEN_CREATED = 'when_created';
 
   String? addressLine1;
   String? addressLine2;
   String? city;
   String? country;
+  DateTime? createdAt;
+  String? createdBy;
   String? name;
   String? notes;
   String? postalCode;
   String? stateOrProvince;
   String? title;
   String? titleSearchable;
-  Map<String, DateTime>? whenCreated;
 
   //
   //
@@ -62,13 +64,14 @@ class ModelAddressEntry extends _ModelAddressEntry {
     this.addressLine2,
     this.city,
     this.country,
+    this.createdAt,
+    this.createdBy,
     this.name,
     this.notes,
     this.postalCode,
     this.stateOrProvince,
     this.title,
     this.titleSearchable,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -83,13 +86,14 @@ class ModelAddressEntry extends _ModelAddressEntry {
     this.addressLine2,
     this.city,
     this.country,
+    this.createdAt,
+    this.createdBy,
     this.name,
     this.notes,
     this.postalCode,
     this.stateOrProvince,
     this.title,
     this.titleSearchable,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -151,6 +155,11 @@ class ModelAddressEntry extends _ModelAddressEntry {
             otherData?[K_ADDRESS_LINE_2]?.toString().trim().nullIfEmpty,
         city: otherData?[K_CITY]?.toString().trim().nullIfEmpty,
         country: otherData?[K_COUNTRY]?.toString().trim().nullIfEmpty,
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         name: otherData?[K_NAME]?.toString().trim().nullIfEmpty,
         notes: otherData?[K_NOTES]?.toString().trim().nullIfEmpty,
@@ -163,19 +172,6 @@ class ModelAddressEntry extends _ModelAddressEntry {
             .trim()
             .nullIfEmpty
             ?.toLowerCase(),
-        whenCreated: letMap(otherData?[K_WHEN_CREATED])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -238,6 +234,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
         K_ADDRESS_LINE_2: addressLine2?.toString().trim().nullIfEmpty,
         K_CITY: city?.toString().trim().nullIfEmpty,
         K_COUNTRY: country?.toString().trim().nullIfEmpty,
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_NAME: name?.toString().trim().nullIfEmpty,
         K_NOTES: notes?.toString().trim().nullIfEmpty,
@@ -246,15 +244,6 @@ class ModelAddressEntry extends _ModelAddressEntry {
         K_TITLE: title?.toString().trim().nullIfEmpty,
         K_TITLE_SEARCHABLE:
             titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
-        K_WHEN_CREATED: whenCreated
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -299,6 +288,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
           : null;
       other.city != null ? this.city = other.city : null;
       other.country != null ? this.country = other.country : null;
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdBy != null ? this.createdBy = other.createdBy : null;
       other.id != null ? this.id = other.id : null;
       other.name != null ? this.name = other.name : null;
       other.notes != null ? this.notes = other.notes : null;
@@ -310,7 +301,6 @@ class ModelAddressEntry extends _ModelAddressEntry {
       other.titleSearchable != null
           ? this.titleSearchable = other.titleSearchable
           : null;
-      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
     }
   }
 

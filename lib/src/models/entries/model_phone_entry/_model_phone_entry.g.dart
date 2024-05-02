@@ -28,6 +28,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   static const MODEL_ID = 'model_phone_entry';
 
   static const K_COUNTRY_CODE = 'country_code';
+  static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY = 'created_by';
   static const K_DESCRIPTION = 'description';
   static const K_EXTENSION = 'extension';
   static const K_FULL_NUMBER = 'full_number';
@@ -36,9 +38,10 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
   static const K_TYPE = 'type';
-  static const K_WHEN_CREATED = 'when_created';
 
   String? countryCode;
+  DateTime? createdAt;
+  String? createdBy;
   String? description;
   String? extension;
   String? fullNumber;
@@ -46,7 +49,6 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   String? title;
   String? titleSearchable;
   String? type;
-  Map<String, DateTime>? whenCreated;
 
   //
   //
@@ -55,6 +57,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   ModelPhoneEntry({
     String? id,
     this.countryCode,
+    this.createdAt,
+    this.createdBy,
     this.description,
     this.extension,
     this.fullNumber,
@@ -62,7 +66,6 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     this.title,
     this.titleSearchable,
     this.type,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -74,6 +77,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   ModelPhoneEntry.unsafe({
     String? id,
     this.countryCode,
+    this.createdAt,
+    this.createdBy,
     this.description,
     this.extension,
     this.fullNumber,
@@ -81,7 +86,6 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     this.title,
     this.titleSearchable,
     this.type,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -138,6 +142,11 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     try {
       return ModelPhoneEntry.unsafe(
         countryCode: otherData?[K_COUNTRY_CODE]?.toString().trim().nullIfEmpty,
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
         extension: otherData?[K_EXTENSION]?.toString().trim().nullIfEmpty,
         fullNumber: otherData?[K_FULL_NUMBER]?.toString().trim().nullIfEmpty,
@@ -153,19 +162,6 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
             .nullIfEmpty
             ?.toLowerCase(),
         type: otherData?[K_TYPE]?.toString().trim().nullIfEmpty,
-        whenCreated: letMap(otherData?[K_WHEN_CREATED])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -225,6 +221,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     try {
       final withNulls = <String, dynamic>{
         K_COUNTRY_CODE: countryCode?.toString().trim().nullIfEmpty,
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
         K_EXTENSION: extension?.toString().trim().nullIfEmpty,
         K_FULL_NUMBER: fullNumber?.toString().trim().nullIfEmpty,
@@ -235,15 +233,6 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
         K_TITLE_SEARCHABLE:
             titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_TYPE: type?.toString().trim().nullIfEmpty,
-        K_WHEN_CREATED: whenCreated
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -281,6 +270,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelPhoneEntry.fromJson(otherData);
       other.countryCode != null ? this.countryCode = other.countryCode : null;
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdBy != null ? this.createdBy = other.createdBy : null;
       other.description != null ? this.description = other.description : null;
       other.extension != null ? this.extension = other.extension : null;
       other.fullNumber != null ? this.fullNumber = other.fullNumber : null;
@@ -293,7 +284,6 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
           ? this.titleSearchable = other.titleSearchable
           : null;
       other.type != null ? this.type = other.type : null;
-      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
     }
   }
 

@@ -16,12 +16,15 @@ part '_model_project.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.when_created,
+    ...KFields.created_at,
+    ...KFields.created_by,
+    ...KFields.deleted_at,
+    ...KFields.deleted_by,
     ...KFields.pid,
     ...KFields.seed,
   },
 )
-abstract class _ModelProject extends CrudModel<ModelProject> {
+abstract class _ModelProject extends ThisModel<ModelProject> {
   // Opened.
   Map<DateTime, String>? get whenOpened => null;
   DateTime? get lastOpenedAt => getLastDate(this.whenOpened?.keys);

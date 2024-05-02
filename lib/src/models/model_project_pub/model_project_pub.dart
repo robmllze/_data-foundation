@@ -19,9 +19,11 @@ part '_model_project_pub.g.dart';
     ...KFields.display_name,
     ...KFields.display_name_searchable,
     ...KFields.description,
-    ...KFields.when_created,
-    ...KFields.when_deleted,
-    ...KFields.uploaded_media,
+    ...KFields.created_at,
+    ...KFields.created_by,
+    ...KFields.deleted_at,
+    ...KFields.deleted_by,
+    ...KFields.uploaded_media_ids,
     ...KFields.primary_address,
     ...KFields.other_addresses,
     ...KFields.primary_email,
@@ -32,7 +34,7 @@ part '_model_project_pub.g.dart';
     'when_closed': 'Map<String, DateTime>?',
   },
 )
-abstract class _ModelProjectPub extends CrudModel<ModelProjectPub> {
+abstract class _ModelProjectPub extends ThisModel<ModelProjectPub> {
   //
   //
   //
@@ -40,13 +42,13 @@ abstract class _ModelProjectPub extends CrudModel<ModelProjectPub> {
   // Opened.
   DateTime? get openedAt => getFirstDate(this.model.whenOpened?.values);
   String? get openedById =>
-      this.model.whenOpened?.entries.firstWhereOrNull((e) => e.value == this.createdAt)?.key;
+      this.model.whenOpened?.entries.firstWhereOrNull((e) => e.value == this.model.createdAt)?.key;
   bool get isOpened => this.model.whenOpened?.nullIfEmpty != null;
   bool isOpenedBy(String id) => this.model.whenOpened?.keys.contains(id) == true;
 
   // Closed.
   DateTime? get closedAt => getFirstDate(this.model.whenClosed?.values);
   String? get closedById =>
-      this.model.whenClosed?.entries.firstWhereOrNull((e) => e.value == this.createdAt)?.key;
+      this.model.whenClosed?.entries.firstWhereOrNull((e) => e.value == this.model.createdAt)?.key;
   bool isClosedBy(String id) => this.model.whenOpened?.keys.contains(id) == true;
 }

@@ -18,8 +18,11 @@ part '_model_user.g.dart';
   shouldInherit: true,
   fields: {
     ...KFields.pid,
-    ...KFields.when_created,
-    ...KFields.uploaded_media,
+    ...KFields.created_at,
+    ...KFields.created_by,
+    ...KFields.deleted_at,
+    ...KFields.deleted_by,
+    ...KFields.uploaded_media_ids,
     ...KFields.seed,
     'did_send_welcome_email': 'bool?',
     'email_subscriptions': 'Set<String>?',
@@ -28,4 +31,4 @@ part '_model_user.g.dart';
     'when_last_logged_in': 'DateTime?',
   },
 )
-abstract class _ModelUser extends CrudModel<ModelUser> {}
+abstract class _ModelUser extends ThisModel<ModelUser> {}

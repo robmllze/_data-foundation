@@ -18,7 +18,8 @@ part '_model_address_entry.g.dart';
   fields: {
     ...KFields.title,
     ...KFields.title_searchable,
-    ...KFields.when_created,
+    ...KFields.created_at,
+    ...KFields.created_by,
     // Name of the recipient.
     'name': 'String?',
     // Primary address field (street address or P.O. box).
@@ -37,4 +38,4 @@ part '_model_address_entry.g.dart';
     'notes': 'String?',
   },
 )
-abstract class _ModelAddressEntry extends CrudModel<ModelAddressEntry> {}
+abstract class _ModelAddressEntry extends ThisModel<ModelAddressEntry> {}

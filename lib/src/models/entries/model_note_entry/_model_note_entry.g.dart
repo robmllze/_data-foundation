@@ -28,15 +28,17 @@ class ModelNoteEntry extends _ModelNoteEntry {
   static const MODEL_ID = 'model_note_entry';
 
   static const K_BODY = 'body';
+  static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY = 'created_by';
   static const K_ID = 'id';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
-  static const K_WHEN_CREATED = 'when_created';
 
   String? body;
+  DateTime? createdAt;
+  String? createdBy;
   String? title;
   String? titleSearchable;
-  Map<String, DateTime>? whenCreated;
 
   //
   //
@@ -45,9 +47,10 @@ class ModelNoteEntry extends _ModelNoteEntry {
   ModelNoteEntry({
     String? id,
     this.body,
+    this.createdAt,
+    this.createdBy,
     this.title,
     this.titleSearchable,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -59,9 +62,10 @@ class ModelNoteEntry extends _ModelNoteEntry {
   ModelNoteEntry.unsafe({
     String? id,
     this.body,
+    this.createdAt,
+    this.createdBy,
     this.title,
     this.titleSearchable,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -118,6 +122,11 @@ class ModelNoteEntry extends _ModelNoteEntry {
     try {
       return ModelNoteEntry.unsafe(
         body: otherData?[K_BODY]?.toString().trim().nullIfEmpty,
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
         titleSearchable: otherData?[K_TITLE_SEARCHABLE]
@@ -125,19 +134,6 @@ class ModelNoteEntry extends _ModelNoteEntry {
             .trim()
             .nullIfEmpty
             ?.toLowerCase(),
-        whenCreated: letMap(otherData?[K_WHEN_CREATED])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -197,19 +193,12 @@ class ModelNoteEntry extends _ModelNoteEntry {
     try {
       final withNulls = <String, dynamic>{
         K_BODY: body?.toString().trim().nullIfEmpty,
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_TITLE: title?.toString().trim().nullIfEmpty,
         K_TITLE_SEARCHABLE:
             titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
-        K_WHEN_CREATED: whenCreated
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -247,12 +236,13 @@ class ModelNoteEntry extends _ModelNoteEntry {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelNoteEntry.fromJson(otherData);
       other.body != null ? this.body = other.body : null;
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdBy != null ? this.createdBy = other.createdBy : null;
       other.id != null ? this.id = other.id : null;
       other.title != null ? this.title = other.title : null;
       other.titleSearchable != null
           ? this.titleSearchable = other.titleSearchable
           : null;
-      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
     }
   }
 

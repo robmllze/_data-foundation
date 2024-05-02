@@ -27,21 +27,27 @@ class ModelRelationship extends _ModelRelationship {
   static const CLASS = 'ModelRelationship';
   static const MODEL_ID = 'model_relationship';
 
+  static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY = 'created_by';
   static const K_DEF = 'def';
   static const K_DEF_TYPE = 'def_type';
+  static const K_DELETED_AT = 'deleted_at';
+  static const K_DELETED_BY = 'deleted_by';
   static const K_ID = 'id';
   static const K_MEMBER_PIDS = 'member_pids';
-  static const K_UPLOADED_MEDIA = 'uploaded_media';
-  static const K_WHEN_CREATED = 'when_created';
+  static const K_UPLOADED_MEDIA_IDS = 'uploaded_media_ids';
   static const K_WHEN_DISABLED = 'when_disabled';
   static const K_WHEN_ENABLED = 'when_enabled';
   static const K_WHEN_NOTED = 'when_noted';
 
+  DateTime? createdAt;
+  String? createdBy;
   GenericModel? def;
   RelationshipDefType? defType;
+  DateTime? deletedAt;
+  String? deletedBy;
   Set<String>? memberPids;
-  Map<DateTime, ModelMediaEntry>? uploadedMedia;
-  Map<String, DateTime>? whenCreated;
+  Set<String?>? uploadedMediaIds;
   Map<String, DateTime>? whenDisabled;
   Map<String, DateTime>? whenEnabled;
   Map<String, DateTime>? whenNoted;
@@ -52,11 +58,14 @@ class ModelRelationship extends _ModelRelationship {
 
   ModelRelationship({
     String? id,
+    this.createdAt,
+    this.createdBy,
     this.def,
     this.defType,
+    this.deletedAt,
+    this.deletedBy,
     this.memberPids,
-    this.uploadedMedia,
-    this.whenCreated,
+    this.uploadedMediaIds,
     this.whenDisabled,
     this.whenEnabled,
     this.whenNoted,
@@ -70,11 +79,14 @@ class ModelRelationship extends _ModelRelationship {
 
   ModelRelationship.unsafe({
     String? id,
+    this.createdAt,
+    this.createdBy,
     this.def,
     this.defType,
+    this.deletedAt,
+    this.deletedBy,
     this.memberPids,
-    this.uploadedMedia,
-    this.whenCreated,
+    this.uploadedMediaIds,
     this.whenDisabled,
     this.whenEnabled,
     this.whenNoted,
@@ -133,12 +145,22 @@ class ModelRelationship extends _ModelRelationship {
   ) {
     try {
       return ModelRelationship.unsafe(
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
         def: () {
           final a = letMap<String, dynamic>(otherData?[K_DEF]);
           return a != null ? GenericModel.fromJson(a) : null;
         }(),
         defType: RelationshipDefType.values
             .valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
+        deletedAt: () {
+          final a = otherData?[K_DELETED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        deletedBy: otherData?[K_DELETED_BY]?.toString().trim().nullIfEmpty,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         memberPids: letSet(otherData?[K_MEMBER_PIDS])
             ?.map(
@@ -148,35 +170,14 @@ class ModelRelationship extends _ModelRelationship {
             .nullIfEmpty
             ?.toSet()
             .cast(),
-        uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
+        uploadedMediaIds: letSet(otherData?[K_UPLOADED_MEDIA_IDS])
             ?.map(
-              (final p0, final p1) => MapEntry(
-                () {
-                  final a = p0;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-                () {
-                  final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelMediaEntry.fromJson(a) : null;
-                }(),
-              ),
+              (final p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
-            ?.cast(),
-        whenCreated: letMap(otherData?[K_WHEN_CREATED])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
+            ?.toSet()
+            .cast(),
         whenDisabled: letMap(otherData?[K_WHEN_DISABLED])
             ?.map(
               (final p0, final p1) => MapEntry(
@@ -274,8 +275,12 @@ class ModelRelationship extends _ModelRelationship {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
         K_DEF: def?.toJson(),
         K_DEF_TYPE: defType?.name,
+        K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
+        K_DELETED_BY: deletedBy?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_MEMBER_PIDS: memberPids
             ?.map(
@@ -284,24 +289,13 @@ class ModelRelationship extends _ModelRelationship {
             .nonNulls
             .nullIfEmpty
             ?.toList(),
-        K_UPLOADED_MEDIA: uploadedMedia
+        K_UPLOADED_MEDIA_IDS: uploadedMediaIds
             ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toUtc()?.toIso8601String(),
-                p1?.toJson(),
-              ),
+              (final p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
-            .nullIfEmpty,
-        K_WHEN_CREATED: whenCreated
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
+            .nullIfEmpty
+            ?.toList(),
         K_WHEN_DISABLED: whenDisabled
             ?.map(
               (final p0, final p1) => MapEntry(
@@ -365,14 +359,17 @@ class ModelRelationship extends _ModelRelationship {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelRelationship.fromJson(otherData);
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdBy != null ? this.createdBy = other.createdBy : null;
       other.def != null ? this.def = other.def : null;
       other.defType != null ? this.defType = other.defType : null;
+      other.deletedAt != null ? this.deletedAt = other.deletedAt : null;
+      other.deletedBy != null ? this.deletedBy = other.deletedBy : null;
       other.id != null ? this.id = other.id : null;
       other.memberPids != null ? this.memberPids = other.memberPids : null;
-      other.uploadedMedia != null
-          ? this.uploadedMedia = other.uploadedMedia
+      other.uploadedMediaIds != null
+          ? this.uploadedMediaIds = other.uploadedMediaIds
           : null;
-      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
       other.whenDisabled != null
           ? this.whenDisabled = other.whenDisabled
           : null;

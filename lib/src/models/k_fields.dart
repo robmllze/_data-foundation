@@ -30,12 +30,17 @@ abstract final class KFields {
   static const email = {'email': 'String?'};
   static const email_searchable = {'email_searchable': 'LowerCase-String?'};
 
-  static const when_created = {'when_created': 'Map<String, DateTime>?'};
-  static const when_read = {'when_read': 'Map<String, DateTime>?'};
-  static const when_updated = {'when_updated': 'Map<String, DateTime>?'};
-  static const when_deleted = {'when_deleted': 'Map<String, DateTime>?'};
+  static const created_at = {'created_at': 'DateTime?'};
+  static const created_by = {'created_by': 'String?'};
+  static const expires_at = {'expires_at': 'DateTime?'};
 
-  static const uploaded_media = {'uploaded_media': 'Map<DateTime, ModelMediaEntry>?'};
+  // static const when_read = {'when_read': 'Map<String, DateTime>?'};
+  // static const when_updated = {'when_updated': 'Map<String, DateTime>?'};
+
+  static const deleted_at = {'deleted_at': 'DateTime?'};
+  static const deleted_by = {'deleted_by': 'String?'};
+
+  static const uploaded_media_ids = {'uploaded_media_ids': 'Set<String?>?'};
 
   static const primary_address = {'primary_address': 'ModelAddressEntry?'};
   static const other_addresses = {'other_addresses': 'Map<DateTime?, ModelAddressEntry>?'};

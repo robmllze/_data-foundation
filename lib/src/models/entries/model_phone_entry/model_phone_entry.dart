@@ -18,7 +18,8 @@ part '_model_phone_entry.g.dart';
   fields: {
     ...KFields.title,
     ...KFields.title_searchable,
-    ...KFields.when_created,
+    ...KFields.created_at,
+    ...KFields.created_by,
     ...KFields.description,
     'country_code': 'String?',
     'number_without_country_code': 'String?',
@@ -27,4 +28,4 @@ part '_model_phone_entry.g.dart';
     'type': 'String?',
   },
 )
-abstract class _ModelPhoneEntry extends CrudModel<ModelPhoneEntry> {}
+abstract class _ModelPhoneEntry extends ThisModel<ModelPhoneEntry> {}

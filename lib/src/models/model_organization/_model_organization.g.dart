@@ -27,14 +27,20 @@ class ModelOrganization extends _ModelOrganization {
   static const CLASS = 'ModelOrganization';
   static const MODEL_ID = 'model_organization';
 
+  static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY = 'created_by';
+  static const K_DELETED_AT = 'deleted_at';
+  static const K_DELETED_BY = 'deleted_by';
   static const K_ID = 'id';
   static const K_PID = 'pid';
   static const K_SEED = 'seed';
-  static const K_WHEN_CREATED = 'when_created';
 
+  DateTime? createdAt;
+  String? createdBy;
+  DateTime? deletedAt;
+  String? deletedBy;
   String? pid;
   String? seed;
-  Map<String, DateTime>? whenCreated;
 
   //
   //
@@ -42,9 +48,12 @@ class ModelOrganization extends _ModelOrganization {
 
   ModelOrganization({
     String? id,
+    this.createdAt,
+    this.createdBy,
+    this.deletedAt,
+    this.deletedBy,
     this.pid,
     this.seed,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -55,9 +64,12 @@ class ModelOrganization extends _ModelOrganization {
 
   ModelOrganization.unsafe({
     String? id,
+    this.createdAt,
+    this.createdBy,
+    this.deletedAt,
+    this.deletedBy,
     this.pid,
     this.seed,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -113,22 +125,19 @@ class ModelOrganization extends _ModelOrganization {
   ) {
     try {
       return ModelOrganization.unsafe(
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
+        deletedAt: () {
+          final a = otherData?[K_DELETED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        deletedBy: otherData?[K_DELETED_BY]?.toString().trim().nullIfEmpty,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
         seed: otherData?[K_SEED]?.toString().trim().nullIfEmpty,
-        whenCreated: letMap(otherData?[K_WHEN_CREATED])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -187,18 +196,13 @@ class ModelOrganization extends _ModelOrganization {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
+        K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
+        K_DELETED_BY: deletedBy?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_PID: pid?.toString().trim().nullIfEmpty,
         K_SEED: seed?.toString().trim().nullIfEmpty,
-        K_WHEN_CREATED: whenCreated
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -235,10 +239,13 @@ class ModelOrganization extends _ModelOrganization {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelOrganization.fromJson(otherData);
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdBy != null ? this.createdBy = other.createdBy : null;
+      other.deletedAt != null ? this.deletedAt = other.deletedAt : null;
+      other.deletedBy != null ? this.deletedBy = other.deletedBy : null;
       other.id != null ? this.id = other.id : null;
       other.pid != null ? this.pid = other.pid : null;
       other.seed != null ? this.seed = other.seed : null;
-      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
     }
   }
 

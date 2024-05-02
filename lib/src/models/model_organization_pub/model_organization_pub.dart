@@ -19,9 +19,11 @@ part '_model_organization_pub.g.dart';
     ...KFields.display_name,
     ...KFields.display_name_searchable,
     ...KFields.description,
-    ...KFields.when_created,
-    ...KFields.when_deleted,
-    ...KFields.uploaded_media,
+    ...KFields.created_at,
+    ...KFields.created_by,
+    ...KFields.deleted_at,
+    ...KFields.deleted_by,
+    ...KFields.uploaded_media_ids,
     ...KFields.primary_address,
     ...KFields.other_addresses,
     ...KFields.primary_email,
@@ -30,4 +32,4 @@ part '_model_organization_pub.g.dart';
     ...KFields.other_phones,
   },
 )
-abstract class _ModelOrganizationPub extends CrudModel<ModelOrganizationPub> {}
+abstract class _ModelOrganizationPub extends ThisModel<ModelOrganizationPub> {}

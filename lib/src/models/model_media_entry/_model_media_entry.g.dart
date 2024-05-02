@@ -27,6 +27,8 @@ class ModelMediaEntry extends _ModelMediaEntry {
   static const CLASS = 'ModelMediaEntry';
   static const MODEL_ID = 'model_media_entry';
 
+  static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY = 'created_by';
   static const K_DESCRIPTION = 'description';
   static const K_FILE_NAME = 'file_name';
   static const K_ID = 'id';
@@ -34,15 +36,15 @@ class ModelMediaEntry extends _ModelMediaEntry {
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
   static const K_URL = 'url';
-  static const K_WHEN_CREATED = 'when_created';
 
+  DateTime? createdAt;
+  String? createdBy;
   String? description;
   String? fileName;
   String? mimeType;
   String? title;
   String? titleSearchable;
   Uri? url;
-  Map<String, DateTime>? whenCreated;
 
   //
   //
@@ -50,13 +52,14 @@ class ModelMediaEntry extends _ModelMediaEntry {
 
   ModelMediaEntry({
     String? id,
+    this.createdAt,
+    this.createdBy,
     this.description,
     this.fileName,
     this.mimeType,
     this.title,
     this.titleSearchable,
     this.url,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -67,13 +70,14 @@ class ModelMediaEntry extends _ModelMediaEntry {
 
   ModelMediaEntry.unsafe({
     String? id,
+    this.createdAt,
+    this.createdBy,
     this.description,
     this.fileName,
     this.mimeType,
     this.title,
     this.titleSearchable,
     this.url,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -129,6 +133,11 @@ class ModelMediaEntry extends _ModelMediaEntry {
   ) {
     try {
       return ModelMediaEntry.unsafe(
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
         fileName: otherData?[K_FILE_NAME]?.toString().trim().nullIfEmpty,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
@@ -143,19 +152,6 @@ class ModelMediaEntry extends _ModelMediaEntry {
           final a = otherData?[K_URL];
           return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
         }(),
-        whenCreated: letMap(otherData?[K_WHEN_CREATED])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -214,6 +210,8 @@ class ModelMediaEntry extends _ModelMediaEntry {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
         K_FILE_NAME: fileName?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
@@ -222,15 +220,6 @@ class ModelMediaEntry extends _ModelMediaEntry {
         K_TITLE_SEARCHABLE:
             titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_URL: url?.toString(),
-        K_WHEN_CREATED: whenCreated
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -267,6 +256,8 @@ class ModelMediaEntry extends _ModelMediaEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelMediaEntry.fromJson(otherData);
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdBy != null ? this.createdBy = other.createdBy : null;
       other.description != null ? this.description = other.description : null;
       other.fileName != null ? this.fileName = other.fileName : null;
       other.id != null ? this.id = other.id : null;
@@ -276,7 +267,6 @@ class ModelMediaEntry extends _ModelMediaEntry {
           ? this.titleSearchable = other.titleSearchable
           : null;
       other.url != null ? this.url = other.url : null;
-      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
     }
   }
 

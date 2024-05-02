@@ -17,8 +17,11 @@ part '_model_relationship.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.when_created,
-    ...KFields.uploaded_media,
+    ...KFields.created_at,
+    ...KFields.created_by,
+    ...KFields.deleted_at,
+    ...KFields.deleted_by,
+    ...KFields.uploaded_media_ids,
     'def_type': 'RelationshipDefType?',
     'def': 'GenericModel?',
     'member_pids': 'Set<String>?',
@@ -27,7 +30,7 @@ part '_model_relationship.g.dart';
     'when_noted': 'Map<String, DateTime>?',
   },
 )
-abstract class _ModelRelationship extends CrudModel<ModelRelationship> {
+abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
   //
   //
   //

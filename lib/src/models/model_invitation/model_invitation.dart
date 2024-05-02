@@ -16,17 +16,18 @@ part '_model_invitation.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.when_created,
+    ...KFields.created_at,
+    ...KFields.created_by,
+    ...KFields.expires_at,
     'def_type': 'InvitationDefType?',
     'def': 'GenericModel?',
-    'expires_at': 'DateTime?',
     'invitation_link': 'Uri?',
     'invitee_emails': 'Set<String>?',
     'invitee_accepted_emails': 'Set<String>?',
     'invitee_rejected_emails': 'Set<String>?',
   },
 )
-abstract class _ModelInvitation extends CrudModel<ModelInvitation> {
+abstract class _ModelInvitation extends ThisModel<ModelInvitation> {
   //
   //
   //

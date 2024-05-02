@@ -27,6 +27,10 @@ class ModelUser extends _ModelUser {
   static const CLASS = 'ModelUser';
   static const MODEL_ID = 'model_user';
 
+  static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY = 'created_by';
+  static const K_DELETED_AT = 'deleted_at';
+  static const K_DELETED_BY = 'deleted_by';
   static const K_DID_SEND_WELCOME_EMAIL = 'did_send_welcome_email';
   static const K_EMAIL_SUBSCRIPTIONS = 'email_subscriptions';
   static const K_ID = 'id';
@@ -34,18 +38,20 @@ class ModelUser extends _ModelUser {
   static const K_PUSH_SUBSCRIPTIONS = 'push_subscriptions';
   static const K_SEED = 'seed';
   static const K_SMS_SUBSCRIPTIONS = 'sms_subscriptions';
-  static const K_UPLOADED_MEDIA = 'uploaded_media';
-  static const K_WHEN_CREATED = 'when_created';
+  static const K_UPLOADED_MEDIA_IDS = 'uploaded_media_ids';
   static const K_WHEN_LAST_LOGGED_IN = 'when_last_logged_in';
 
+  DateTime? createdAt;
+  String? createdBy;
+  DateTime? deletedAt;
+  String? deletedBy;
   bool? didSendWelcomeEmail;
   Set<String>? emailSubscriptions;
   String? pid;
   Set<String>? pushSubscriptions;
   String? seed;
   Set<String>? smsSubscriptions;
-  Map<DateTime, ModelMediaEntry>? uploadedMedia;
-  Map<String, DateTime>? whenCreated;
+  Set<String?>? uploadedMediaIds;
   DateTime? whenLastLoggedIn;
 
   //
@@ -54,14 +60,17 @@ class ModelUser extends _ModelUser {
 
   ModelUser({
     String? id,
+    this.createdAt,
+    this.createdBy,
+    this.deletedAt,
+    this.deletedBy,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pid,
     this.pushSubscriptions,
     this.seed,
     this.smsSubscriptions,
-    this.uploadedMedia,
-    this.whenCreated,
+    this.uploadedMediaIds,
     this.whenLastLoggedIn,
   }) {
     this.id = id;
@@ -73,14 +82,17 @@ class ModelUser extends _ModelUser {
 
   ModelUser.unsafe({
     String? id,
+    this.createdAt,
+    this.createdBy,
+    this.deletedAt,
+    this.deletedBy,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
     this.pid,
     this.pushSubscriptions,
     this.seed,
     this.smsSubscriptions,
-    this.uploadedMedia,
-    this.whenCreated,
+    this.uploadedMediaIds,
     this.whenLastLoggedIn,
   }) {
     this.id = id;
@@ -137,6 +149,16 @@ class ModelUser extends _ModelUser {
   ) {
     try {
       return ModelUser.unsafe(
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
+        deletedAt: () {
+          final a = otherData?[K_DELETED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        deletedBy: otherData?[K_DELETED_BY]?.toString().trim().nullIfEmpty,
         didSendWelcomeEmail: letBool(otherData?[K_DID_SEND_WELCOME_EMAIL]),
         emailSubscriptions: letSet(otherData?[K_EMAIL_SUBSCRIPTIONS])
             ?.map(
@@ -165,35 +187,14 @@ class ModelUser extends _ModelUser {
             .nullIfEmpty
             ?.toSet()
             .cast(),
-        uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
+        uploadedMediaIds: letSet(otherData?[K_UPLOADED_MEDIA_IDS])
             ?.map(
-              (final p0, final p1) => MapEntry(
-                () {
-                  final a = p0;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-                () {
-                  final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelMediaEntry.fromJson(a) : null;
-                }(),
-              ),
+              (final p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
             .nullIfEmpty
-            ?.cast(),
-        whenCreated: letMap(otherData?[K_WHEN_CREATED])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
+            ?.toSet()
+            .cast(),
         whenLastLoggedIn: () {
           final a = otherData?[K_WHEN_LAST_LOGGED_IN];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -256,6 +257,10 @@ class ModelUser extends _ModelUser {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
+        K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
+        K_DELETED_BY: deletedBy?.toString().trim().nullIfEmpty,
         K_DID_SEND_WELCOME_EMAIL: didSendWelcomeEmail,
         K_EMAIL_SUBSCRIPTIONS: emailSubscriptions
             ?.map(
@@ -281,24 +286,13 @@ class ModelUser extends _ModelUser {
             .nonNulls
             .nullIfEmpty
             ?.toList(),
-        K_UPLOADED_MEDIA: uploadedMedia
+        K_UPLOADED_MEDIA_IDS: uploadedMediaIds
             ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toUtc()?.toIso8601String(),
-                p1?.toJson(),
-              ),
+              (final p0) => p0?.toString().trim().nullIfEmpty,
             )
             .nonNulls
-            .nullIfEmpty,
-        K_WHEN_CREATED: whenCreated
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
+            .nullIfEmpty
+            ?.toList(),
         K_WHEN_LAST_LOGGED_IN: whenLastLoggedIn?.toUtc()?.toIso8601String(),
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -336,6 +330,10 @@ class ModelUser extends _ModelUser {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUser.fromJson(otherData);
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdBy != null ? this.createdBy = other.createdBy : null;
+      other.deletedAt != null ? this.deletedAt = other.deletedAt : null;
+      other.deletedBy != null ? this.deletedBy = other.deletedBy : null;
       other.didSendWelcomeEmail != null
           ? this.didSendWelcomeEmail = other.didSendWelcomeEmail
           : null;
@@ -351,10 +349,9 @@ class ModelUser extends _ModelUser {
       other.smsSubscriptions != null
           ? this.smsSubscriptions = other.smsSubscriptions
           : null;
-      other.uploadedMedia != null
-          ? this.uploadedMedia = other.uploadedMedia
+      other.uploadedMediaIds != null
+          ? this.uploadedMediaIds = other.uploadedMediaIds
           : null;
-      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
       other.whenLastLoggedIn != null
           ? this.whenLastLoggedIn = other.whenLastLoggedIn
           : null;

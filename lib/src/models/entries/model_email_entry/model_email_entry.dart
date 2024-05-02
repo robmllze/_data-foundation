@@ -18,9 +18,10 @@ part '_model_email_entry.g.dart';
   fields: {
     ...KFields.title,
     ...KFields.title_searchable,
-    ...KFields.when_created,
+    ...KFields.created_at,
+    ...KFields.created_by,
     ...KFields.email_searchable,
     ...KFields.description,
   },
 )
-abstract class _ModelEmailEntry extends CrudModel<ModelEmailEntry> {}
+abstract class _ModelEmailEntry extends ThisModel<ModelEmailEntry> {}

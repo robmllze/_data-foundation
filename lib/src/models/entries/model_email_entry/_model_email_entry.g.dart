@@ -27,18 +27,20 @@ class ModelEmailEntry extends _ModelEmailEntry {
   static const CLASS = 'ModelEmailEntry';
   static const MODEL_ID = 'model_email_entry';
 
+  static const K_CREATED_AT = 'created_at';
+  static const K_CREATED_BY = 'created_by';
   static const K_DESCRIPTION = 'description';
   static const K_EMAIL_SEARCHABLE = 'email_searchable';
   static const K_ID = 'id';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
-  static const K_WHEN_CREATED = 'when_created';
 
+  DateTime? createdAt;
+  String? createdBy;
   String? description;
   String? emailSearchable;
   String? title;
   String? titleSearchable;
-  Map<String, DateTime>? whenCreated;
 
   //
   //
@@ -46,11 +48,12 @@ class ModelEmailEntry extends _ModelEmailEntry {
 
   ModelEmailEntry({
     String? id,
+    this.createdAt,
+    this.createdBy,
     this.description,
     this.emailSearchable,
     this.title,
     this.titleSearchable,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -61,11 +64,12 @@ class ModelEmailEntry extends _ModelEmailEntry {
 
   ModelEmailEntry.unsafe({
     String? id,
+    this.createdAt,
+    this.createdBy,
     this.description,
     this.emailSearchable,
     this.title,
     this.titleSearchable,
-    this.whenCreated,
   }) {
     this.id = id;
   }
@@ -121,6 +125,11 @@ class ModelEmailEntry extends _ModelEmailEntry {
   ) {
     try {
       return ModelEmailEntry.unsafe(
+        createdAt: () {
+          final a = otherData?[K_CREATED_AT];
+          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
         emailSearchable: otherData?[K_EMAIL_SEARCHABLE]
             ?.toString()
@@ -134,19 +143,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
             .trim()
             .nullIfEmpty
             ?.toLowerCase(),
-        whenCreated: letMap(otherData?[K_WHEN_CREATED])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -205,6 +201,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
+        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
         K_EMAIL_SEARCHABLE:
             emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
@@ -212,15 +210,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
         K_TITLE: title?.toString().trim().nullIfEmpty,
         K_TITLE_SEARCHABLE:
             titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
-        K_WHEN_CREATED: whenCreated
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -257,6 +246,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelEmailEntry.fromJson(otherData);
+      other.createdAt != null ? this.createdAt = other.createdAt : null;
+      other.createdBy != null ? this.createdBy = other.createdBy : null;
       other.description != null ? this.description = other.description : null;
       other.emailSearchable != null
           ? this.emailSearchable = other.emailSearchable
@@ -266,7 +257,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
       other.titleSearchable != null
           ? this.titleSearchable = other.titleSearchable
           : null;
-      other.whenCreated != null ? this.whenCreated = other.whenCreated : null;
     }
   }
 

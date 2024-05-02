@@ -25,6 +25,22 @@ final class Schema {
   //
   //
 
+  // Media.
+
+  static DataRef mediaRef({
+    String? mediaId,
+  }) {
+    return DataRef(
+      id: mediaId,
+      tableName: 'media',
+      collectionPath: 'media',
+    );
+  }
+
+  //
+  //
+  //
+
   // Invitations.
 
   static DataRef invitationsRef({

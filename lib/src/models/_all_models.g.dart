@@ -7,7 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export 'crud_model.dart';
 export 'def/model_connection_request_accepted_def/model_connection_request_accepted_def.dart';
 export 'def/model_connection_request_def/model_connection_request_def.dart';
 export 'def/model_connection_request_rejected_def/model_connection_request_rejected_def.dart';

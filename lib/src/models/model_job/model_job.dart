@@ -16,9 +16,12 @@ part '_model_job.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.when_created,
+    ...KFields.created_at,
+    ...KFields.created_by,
+    ...KFields.deleted_at,
+    ...KFields.deleted_by,
     ...KFields.pid,
     ...KFields.seed,
   },
 )
-abstract class _ModelJob extends CrudModel<ModelJob> {}
+abstract class _ModelJob extends ThisModel<ModelJob> {}

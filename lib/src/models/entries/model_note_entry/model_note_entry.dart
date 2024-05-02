@@ -18,8 +18,9 @@ part '_model_note_entry.g.dart';
   fields: {
     ...KFields.title,
     ...KFields.title_searchable,
-    ...KFields.when_created,
+    ...KFields.created_at,
+    ...KFields.created_by,
     'body': 'String?',
   },
 )
-abstract class _ModelNoteEntry extends CrudModel<ModelNoteEntry> {}
+abstract class _ModelNoteEntry extends ThisModel<ModelNoteEntry> {}
