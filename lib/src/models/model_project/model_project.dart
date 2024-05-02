@@ -18,8 +18,9 @@ part '_model_project.g.dart';
   fields: {
     'created_at': 'DateTime?',
     'creator_id': 'String?',
-    'seed_id': 'String?',
     'pid': 'String?',
+    'seed': 'String?',
+    'uploaded_media': 'Map<DateTime, ModelMedia>?',
   },
 )
 abstract class _ModelProject extends ThisModel<ModelProject> {

@@ -22,6 +22,7 @@ part '_model_user_pub.g.dart';
     'display_name_searchable': 'LowerCase-String?',
     'display_name': 'String?',
     'email_searchable': 'LowerCase-String?',
+    'uploaded_media': 'Map<DateTime, ModelMedia>?',
   },
 )
 abstract class _ModelUserPub extends ThisModel<ModelUserPub> {}

@@ -33,6 +33,7 @@ class ModelRelationship extends _ModelRelationship {
   static const K_DEF_TYPE = 'def_type';
   static const K_ID = 'id';
   static const K_MEMBER_PIDS = 'member_pids';
+  static const K_UPLOADED_MEDIA = 'uploaded_media';
   static const K_WHEN_DISABLED = 'when_disabled';
   static const K_WHEN_ENABLED = 'when_enabled';
   static const K_WHEN_NOTED = 'when_noted';
@@ -42,6 +43,7 @@ class ModelRelationship extends _ModelRelationship {
   GenericModel? def;
   RelationshipDefType? defType;
   Set<String>? memberPids;
+  Map<DateTime, ModelMedia>? uploadedMedia;
   Map<String, DateTime>? whenDisabled;
   Map<String, DateTime>? whenEnabled;
   Map<String, DateTime>? whenNoted;
@@ -57,6 +59,7 @@ class ModelRelationship extends _ModelRelationship {
     this.def,
     this.defType,
     this.memberPids,
+    this.uploadedMedia,
     this.whenDisabled,
     this.whenEnabled,
     this.whenNoted,
@@ -75,6 +78,7 @@ class ModelRelationship extends _ModelRelationship {
     this.def,
     this.defType,
     this.memberPids,
+    this.uploadedMedia,
     this.whenDisabled,
     this.whenEnabled,
     this.whenNoted,
@@ -153,6 +157,22 @@ class ModelRelationship extends _ModelRelationship {
             .nullIfEmpty
             ?.toSet()
             .cast(),
+        uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                () {
+                  final a = p0;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+                () {
+                  final a = letMap<String, dynamic>(p1);
+                  return a != null ? ModelMedia.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
         whenDisabled: letMap(otherData?[K_WHEN_DISABLED])
             ?.map(
               (final p0, final p1) => MapEntry(
@@ -262,6 +282,15 @@ class ModelRelationship extends _ModelRelationship {
             .nonNulls
             .nullIfEmpty
             ?.toList(),
+        K_UPLOADED_MEDIA: uploadedMedia
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toUtc()?.toIso8601String(),
+                p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
         K_WHEN_DISABLED: whenDisabled
             ?.map(
               (final p0, final p1) => MapEntry(
@@ -331,6 +360,9 @@ class ModelRelationship extends _ModelRelationship {
       other.defType != null ? this.defType = other.defType : null;
       other.id != null ? this.id = other.id : null;
       other.memberPids != null ? this.memberPids = other.memberPids : null;
+      other.uploadedMedia != null
+          ? this.uploadedMedia = other.uploadedMedia
+          : null;
       other.whenDisabled != null
           ? this.whenDisabled = other.whenDisabled
           : null;

@@ -20,6 +20,8 @@ export 'model_event/model_event.dart';
 export 'model_invitation/model_invitation.dart';
 export 'model_job/model_job.dart';
 export 'model_job_pub/model_job_pub.dart';
+export 'model_media.dart/model_media.dart';
+export 'model_note/model_note.dart';
 export 'model_organization/model_organization.dart';
 export 'model_organization_pub/model_organization_pub.dart';
 export 'model_project/model_project.dart';

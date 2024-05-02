@@ -33,12 +33,14 @@ class ModelUserPub extends _ModelUserPub {
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_EMAIL_SEARCHABLE = 'email_searchable';
   static const K_ID = 'id';
+  static const K_UPLOADED_MEDIA = 'uploaded_media';
 
   DateTime? createdAt;
   DateTime? deletedAt;
   String? displayName;
   String? displayNameSearchable;
   String? emailSearchable;
+  Map<DateTime, ModelMedia>? uploadedMedia;
 
   //
   //
@@ -51,6 +53,7 @@ class ModelUserPub extends _ModelUserPub {
     this.displayName,
     this.displayNameSearchable,
     this.emailSearchable,
+    this.uploadedMedia,
   }) {
     this.id = id;
   }
@@ -66,6 +69,7 @@ class ModelUserPub extends _ModelUserPub {
     this.displayName,
     this.displayNameSearchable,
     this.emailSearchable,
+    this.uploadedMedia,
   }) {
     this.id = id;
   }
@@ -141,6 +145,22 @@ class ModelUserPub extends _ModelUserPub {
             .nullIfEmpty
             ?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
+        uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                () {
+                  final a = p0;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+                () {
+                  final a = letMap<String, dynamic>(p1);
+                  return a != null ? ModelMedia.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -207,6 +227,15 @@ class ModelUserPub extends _ModelUserPub {
         K_EMAIL_SEARCHABLE:
             emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
+        K_UPLOADED_MEDIA: uploadedMedia
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toUtc()?.toIso8601String(),
+                p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -253,6 +282,9 @@ class ModelUserPub extends _ModelUserPub {
           ? this.emailSearchable = other.emailSearchable
           : null;
       other.id != null ? this.id = other.id : null;
+      other.uploadedMedia != null
+          ? this.uploadedMedia = other.uploadedMedia
+          : null;
     }
   }
 

@@ -25,6 +25,7 @@ part '_model_relationship.g.dart';
     'when_disabled': 'Map<String, DateTime>?',
     'when_enabled': 'Map<String, DateTime>?',
     'when_noted': 'Map<String, DateTime>?',
+    'uploaded_media': 'Map<DateTime, ModelMedia>?',
   },
 )
 abstract class _ModelRelationship extends ThisModel<ModelRelationship> {

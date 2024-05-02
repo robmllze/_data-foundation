@@ -18,8 +18,9 @@ part '_model_job.g.dart';
   fields: {
     'created_at': 'DateTime?',
     'creator_id': 'String?',
-    'seed_id': 'String?',
     'pid': 'String?',
+    'seed': 'String?',
+    'uploaded_media': 'Map<DateTime, ModelMedia>?',
   },
 )
 abstract class _ModelJob extends ThisModel<ModelJob> {

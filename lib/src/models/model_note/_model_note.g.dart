@@ -15,51 +15,42 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_project_pub.dart';
+part of 'model_note.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelProjectPub extends _ModelProjectPub {
+class ModelNote extends _ModelNote {
   //
   //
   //
 
-  static const CLASS = 'ModelProjectPub';
-  static const MODEL_ID = 'model_project_pub';
+  static const CLASS = 'ModelNote';
+  static const MODEL_ID = 'model_note';
 
-  static const K_CLOSED_AT = 'closed_at';
+  static const K_BODY = 'body';
   static const K_CREATED_AT = 'created_at';
-  static const K_CREATOR_PID = 'creator_pid';
-  static const K_DESCRIPTION = 'description';
+  static const K_CREATOR_ID = 'creator_id';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
-  static const K_OPENED_AT = 'opened_at';
-  static const K_UPLOADED_MEDIA = 'uploaded_media';
 
-  DateTime? closedAt;
+  String? body;
   DateTime? createdAt;
-  String? creatorPid;
-  String? description;
+  String? creatorId;
   String? displayName;
   String? displayNameSearchable;
-  DateTime? openedAt;
-  Map<DateTime, ModelMedia>? uploadedMedia;
 
   //
   //
   //
 
-  ModelProjectPub({
+  ModelNote({
     String? id,
-    this.closedAt,
+    this.body,
     this.createdAt,
-    this.creatorPid,
-    this.description,
+    this.creatorId,
     this.displayName,
     this.displayNameSearchable,
-    this.openedAt,
-    this.uploadedMedia,
   }) {
     this.id = id;
   }
@@ -68,16 +59,13 @@ class ModelProjectPub extends _ModelProjectPub {
   //
   //
 
-  ModelProjectPub.unsafe({
+  ModelNote.unsafe({
     String? id,
-    this.closedAt,
+    this.body,
     this.createdAt,
-    this.creatorPid,
-    this.description,
+    this.creatorId,
     this.displayName,
     this.displayNameSearchable,
-    this.openedAt,
-    this.uploadedMedia,
   }) {
     this.id = id;
   }
@@ -86,10 +74,10 @@ class ModelProjectPub extends _ModelProjectPub {
   //
   //
 
-  factory ModelProjectPub.from(
+  factory ModelNote.from(
     Model? other,
   ) {
-    return ModelProjectPub.fromJson(
+    return ModelNote.fromJson(
       other is GenericModel ? other.data : other?.toJson(),
     );
   }
@@ -98,25 +86,25 @@ class ModelProjectPub extends _ModelProjectPub {
   //
   //
 
-  factory ModelProjectPub.of(
-    ModelProjectPub? other,
+  factory ModelNote.of(
+    ModelNote? other,
   ) {
-    return ModelProjectPub.fromJson(other?.toJson());
+    return ModelNote.fromJson(other?.toJson());
   }
 
   //
   //
   //
 
-  factory ModelProjectPub.fromJsonString(
+  factory ModelNote.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelProjectPub.fromJson(decoded);
+        return ModelNote.fromJson(decoded);
       } else {
-        return ModelProjectPub.unsafe();
+        return ModelNote.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -128,21 +116,17 @@ class ModelProjectPub extends _ModelProjectPub {
   //
   //
 
-  factory ModelProjectPub.fromJson(
+  factory ModelNote.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelProjectPub.unsafe(
-        closedAt: () {
-          final a = otherData?[K_CLOSED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
+      return ModelNote.unsafe(
+        body: otherData?[K_BODY]?.toString().trim().nullIfEmpty,
         createdAt: () {
           final a = otherData?[K_CREATED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
-        creatorPid: otherData?[K_CREATOR_PID]?.toString().trim().nullIfEmpty,
-        description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
+        creatorId: otherData?[K_CREATOR_ID]?.toString().trim().nullIfEmpty,
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
         displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
             ?.toString()
@@ -150,26 +134,6 @@ class ModelProjectPub extends _ModelProjectPub {
             .nullIfEmpty
             ?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        openedAt: () {
-          final a = otherData?[K_OPENED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                () {
-                  final a = p0;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-                () {
-                  final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelMedia.fromJson(a) : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -181,14 +145,14 @@ class ModelProjectPub extends _ModelProjectPub {
   //
   //
 
-  factory ModelProjectPub.fromUri(
+  factory ModelNote.fromUri(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == MODEL_ID) {
-        return ModelProjectPub.fromJson(uri.queryParameters);
+        return ModelNote.fromJson(uri.queryParameters);
       } else {
-        return ModelProjectPub.unsafe();
+        return ModelNote.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -200,18 +164,18 @@ class ModelProjectPub extends _ModelProjectPub {
   //
   //
 
-  static ModelProjectPub? convert(
+  static ModelNote? convert(
     Model? other,
   ) {
-    return other != null ? ModelProjectPub.from(other) : null;
+    return other != null ? ModelNote.from(other) : null;
   }
 
   //
   //
   //
 
-  static ModelProjectPub? fromPool({
-    required Iterable<ModelProjectPub>? pool,
+  static ModelNote? fromPool({
+    required Iterable<ModelNote>? pool,
     required String? id,
   }) {
     return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
@@ -228,24 +192,13 @@ class ModelProjectPub extends _ModelProjectPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CLOSED_AT: closedAt?.toUtc()?.toIso8601String(),
+        K_BODY: body?.toString().trim().nullIfEmpty,
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATOR_PID: creatorPid?.toString().trim().nullIfEmpty,
-        K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
+        K_CREATOR_ID: creatorId?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME_SEARCHABLE:
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_OPENED_AT: openedAt?.toUtc()?.toIso8601String(),
-        K_UPLOADED_MEDIA: uploadedMedia
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toUtc()?.toIso8601String(),
-                p1?.toJson(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -260,7 +213,7 @@ class ModelProjectPub extends _ModelProjectPub {
 
   @override
   T empty<T extends Model>() {
-    return ModelProjectPub.unsafe() as T;
+    return ModelNote.unsafe() as T;
   }
 
   //
@@ -269,7 +222,7 @@ class ModelProjectPub extends _ModelProjectPub {
 
   @override
   T copy<T extends Model>() {
-    return (ModelProjectPub.unsafe()..updateWith(this)) as T;
+    return (ModelNote.unsafe()..updateWith(this)) as T;
   }
 
   //
@@ -281,20 +234,15 @@ class ModelProjectPub extends _ModelProjectPub {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelProjectPub.fromJson(otherData);
-      other.closedAt != null ? this.closedAt = other.closedAt : null;
+      final other = ModelNote.fromJson(otherData);
+      other.body != null ? this.body = other.body : null;
       other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.creatorPid != null ? this.creatorPid = other.creatorPid : null;
-      other.description != null ? this.description = other.description : null;
+      other.creatorId != null ? this.creatorId = other.creatorId : null;
       other.displayName != null ? this.displayName = other.displayName : null;
       other.displayNameSearchable != null
           ? this.displayNameSearchable = other.displayNameSearchable
           : null;
       other.id != null ? this.id = other.id : null;
-      other.openedAt != null ? this.openedAt = other.openedAt : null;
-      other.uploadedMedia != null
-          ? this.uploadedMedia = other.uploadedMedia
-          : null;
     }
   }
 

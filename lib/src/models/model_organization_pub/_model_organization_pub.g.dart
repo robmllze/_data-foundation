@@ -35,6 +35,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
   static const K_OPENED_AT = 'opened_at';
+  static const K_UPLOADED_MEDIA = 'uploaded_media';
 
   DateTime? closedAt;
   DateTime? createdAt;
@@ -43,6 +44,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   String? displayName;
   String? displayNameSearchable;
   DateTime? openedAt;
+  Map<DateTime, ModelMedia>? uploadedMedia;
 
   //
   //
@@ -57,6 +59,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     this.displayName,
     this.displayNameSearchable,
     this.openedAt,
+    this.uploadedMedia,
   }) {
     this.id = id;
   }
@@ -74,6 +77,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     this.displayName,
     this.displayNameSearchable,
     this.openedAt,
+    this.uploadedMedia,
   }) {
     this.id = id;
   }
@@ -150,6 +154,22 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           final a = otherData?[K_OPENED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
+        uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                () {
+                  final a = p0;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+                () {
+                  final a = letMap<String, dynamic>(p1);
+                  return a != null ? ModelMedia.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -217,6 +237,15 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_OPENED_AT: openedAt?.toUtc()?.toIso8601String(),
+        K_UPLOADED_MEDIA: uploadedMedia
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toUtc()?.toIso8601String(),
+                p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -263,6 +292,9 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           : null;
       other.id != null ? this.id = other.id : null;
       other.openedAt != null ? this.openedAt = other.openedAt : null;
+      other.uploadedMedia != null
+          ? this.uploadedMedia = other.uploadedMedia
+          : null;
     }
   }
 

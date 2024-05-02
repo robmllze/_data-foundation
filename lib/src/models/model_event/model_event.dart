@@ -29,6 +29,7 @@ part '_model_event.g.dart';
     'when_read': 'Map<String, DateTime>?',
     'when_received': 'Map<String, DateTime>?',
     'when_sent': 'Map<String, DateTime>?',
+    'uploaded_media': 'Map<DateTime, ModelMedia>?',
   },
 )
 abstract class _ModelEvent extends ThisModel<ModelEvent> {

@@ -23,6 +23,7 @@ part '_model_organization_pub.g.dart';
     'display_name_searchable': 'LowerCase-String?',
     'display_name': 'String?',
     'opened_at': 'DateTime?',
+    'uploaded_media': 'Map<DateTime, ModelMedia>?',
   },
 )
 abstract class _ModelOrganizationPub extends ThisModel<ModelOrganizationPub> {

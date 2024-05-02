@@ -34,6 +34,7 @@ class ModelEvent extends _ModelEvent {
   static const K_ID = 'id';
   static const K_PIDS = 'pids';
   static const K_TIMEOUT = 'timeout';
+  static const K_UPLOADED_MEDIA = 'uploaded_media';
   static const K_WHEN_ARCHIVED = 'when_archived';
   static const K_WHEN_HIDDEN = 'when_hidden';
   static const K_WHEN_LIKED = 'when_liked';
@@ -47,6 +48,7 @@ class ModelEvent extends _ModelEvent {
   EventDefType? defType;
   Set<String>? pids;
   int? timeout;
+  Map<DateTime, ModelMedia>? uploadedMedia;
   Map<String, DateTime>? whenArchived;
   Map<String, DateTime>? whenHidden;
   Map<String, DateTime>? whenLiked;
@@ -66,6 +68,7 @@ class ModelEvent extends _ModelEvent {
     this.defType,
     this.pids,
     this.timeout,
+    this.uploadedMedia,
     this.whenArchived,
     this.whenHidden,
     this.whenLiked,
@@ -88,6 +91,7 @@ class ModelEvent extends _ModelEvent {
     this.defType,
     this.pids,
     this.timeout,
+    this.uploadedMedia,
     this.whenArchived,
     this.whenHidden,
     this.whenLiked,
@@ -170,6 +174,22 @@ class ModelEvent extends _ModelEvent {
             ?.toSet()
             .cast(),
         timeout: letInt(otherData?[K_TIMEOUT]),
+        uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                () {
+                  final a = p0;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+                () {
+                  final a = letMap<String, dynamic>(p1);
+                  return a != null ? ModelMedia.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
         whenArchived: letMap(otherData?[K_WHEN_ARCHIVED])
             ?.map(
               (final p0, final p1) => MapEntry(
@@ -319,6 +339,15 @@ class ModelEvent extends _ModelEvent {
             .nullIfEmpty
             ?.toList(),
         K_TIMEOUT: timeout,
+        K_UPLOADED_MEDIA: uploadedMedia
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toUtc()?.toIso8601String(),
+                p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
         K_WHEN_ARCHIVED: whenArchived
             ?.map(
               (final p0, final p1) => MapEntry(
@@ -416,6 +445,9 @@ class ModelEvent extends _ModelEvent {
       other.id != null ? this.id = other.id : null;
       other.pids != null ? this.pids = other.pids : null;
       other.timeout != null ? this.timeout = other.timeout : null;
+      other.uploadedMedia != null
+          ? this.uploadedMedia = other.uploadedMedia
+          : null;
       other.whenArchived != null
           ? this.whenArchived = other.whenArchived
           : null;

@@ -9,34 +9,24 @@
 
 import '/_common.dart';
 
-part '_model_invitation.g.dart';
+part '_model_note.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   shouldInherit: true,
   fields: {
+    'body': 'String?',
     'created_at': 'DateTime?',
-    'creator_pid': 'String?',
-    'def_type': 'InvitationDefType?',
-    'def': 'GenericModel?',
-    'expires_at': 'DateTime?',
-    'invitation_link': 'Uri?',
-    'invitee_emails': 'Set<String>?',
-    'invitee_accepted_emails': 'Set<String>?',
-    'invitee_rejected_emails': 'Set<String>?',
+    'creator_id': 'String?',
+    'display_name_searchable': 'LowerCase-String?',
+    'display_name': 'String?',
   },
 )
-abstract class _ModelInvitation extends ThisModel<ModelInvitation> {
+abstract class _ModelNote extends ThisModel<ModelNote> {
   //
   //
   //
 
-  bool isCreatedBy({required String pid}) => this.model.creatorPid == pid;
-
-  //
-  //
-  //
-
-  bool get isExpired => this.model.expiresAt?.isBefore(DateTime.now()) ?? false;
+  bool isCreatedBy({required String id}) => this.model.creatorId == id;
 }

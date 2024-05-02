@@ -34,8 +34,9 @@ class ModelUser extends _ModelUser {
   static const K_ID = 'id';
   static const K_PID = 'pid';
   static const K_PUSH_SUBSCRIPTIONS = 'push_subscriptions';
-  static const K_SEED_ID = 'seed_id';
+  static const K_SEED = 'seed';
   static const K_SMS_SUBSCRIPTIONS = 'sms_subscriptions';
+  static const K_UPLOADED_MEDIA = 'uploaded_media';
   static const K_WHEN_LAST_LOGGED_IN = 'when_last_logged_in';
 
   DateTime? createdAt;
@@ -44,8 +45,9 @@ class ModelUser extends _ModelUser {
   Set<String>? emailSubscriptions;
   String? pid;
   Set<String>? pushSubscriptions;
-  String? seedId;
+  String? seed;
   Set<String>? smsSubscriptions;
+  Map<DateTime, ModelMedia>? uploadedMedia;
   DateTime? whenLastLoggedIn;
 
   //
@@ -60,8 +62,9 @@ class ModelUser extends _ModelUser {
     this.emailSubscriptions,
     this.pid,
     this.pushSubscriptions,
-    this.seedId,
+    this.seed,
     this.smsSubscriptions,
+    this.uploadedMedia,
     this.whenLastLoggedIn,
   }) {
     this.id = id;
@@ -79,8 +82,9 @@ class ModelUser extends _ModelUser {
     this.emailSubscriptions,
     this.pid,
     this.pushSubscriptions,
-    this.seedId,
+    this.seed,
     this.smsSubscriptions,
+    this.uploadedMedia,
     this.whenLastLoggedIn,
   }) {
     this.id = id;
@@ -161,7 +165,7 @@ class ModelUser extends _ModelUser {
             .nullIfEmpty
             ?.toSet()
             .cast(),
-        seedId: otherData?[K_SEED_ID]?.toString().trim().nullIfEmpty,
+        seed: otherData?[K_SEED]?.toString().trim().nullIfEmpty,
         smsSubscriptions: letSet(otherData?[K_SMS_SUBSCRIPTIONS])
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -170,6 +174,22 @@ class ModelUser extends _ModelUser {
             .nullIfEmpty
             ?.toSet()
             .cast(),
+        uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                () {
+                  final a = p0;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+                () {
+                  final a = letMap<String, dynamic>(p1);
+                  return a != null ? ModelMedia.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
         whenLastLoggedIn: () {
           final a = otherData?[K_WHEN_LAST_LOGGED_IN];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -251,7 +271,7 @@ class ModelUser extends _ModelUser {
             .nonNulls
             .nullIfEmpty
             ?.toList(),
-        K_SEED_ID: seedId?.toString().trim().nullIfEmpty,
+        K_SEED: seed?.toString().trim().nullIfEmpty,
         K_SMS_SUBSCRIPTIONS: smsSubscriptions
             ?.map(
               (final p0) => p0?.toString().trim().nullIfEmpty,
@@ -259,6 +279,15 @@ class ModelUser extends _ModelUser {
             .nonNulls
             .nullIfEmpty
             ?.toList(),
+        K_UPLOADED_MEDIA: uploadedMedia
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toUtc()?.toIso8601String(),
+                p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
         K_WHEN_LAST_LOGGED_IN: whenLastLoggedIn?.toUtc()?.toIso8601String(),
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -309,9 +338,12 @@ class ModelUser extends _ModelUser {
       other.pushSubscriptions != null
           ? this.pushSubscriptions = other.pushSubscriptions
           : null;
-      other.seedId != null ? this.seedId = other.seedId : null;
+      other.seed != null ? this.seed = other.seed : null;
       other.smsSubscriptions != null
           ? this.smsSubscriptions = other.smsSubscriptions
+          : null;
+      other.uploadedMedia != null
+          ? this.uploadedMedia = other.uploadedMedia
           : null;
       other.whenLastLoggedIn != null
           ? this.whenLastLoggedIn = other.whenLastLoggedIn

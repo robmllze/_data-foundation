@@ -23,8 +23,9 @@ part '_model_job_pub.g.dart';
     'display_name_searchable': 'LowerCase-String?',
     'display_name': 'String?',
     'opened_at': 'DateTime?',
-    'user_checkins': 'Map<DateTime?, String>?',
-    'user_checkouts': 'Map<DateTime?, String>?',
+    'checkin_notes': 'Map<DateTime?, ModelNote>?',
+    'checkout_notes': 'Map<DateTime?, ModelNote>?',
+    'uploaded_media': 'Map<DateTime, ModelMedia>?',
   },
 )
 abstract class _ModelJobPub extends ThisModel<ModelJobPub> {

@@ -27,6 +27,8 @@ class ModelJobPub extends _ModelJobPub {
   static const CLASS = 'ModelJobPub';
   static const MODEL_ID = 'model_job_pub';
 
+  static const K_CHECKIN_NOTES = 'checkin_notes';
+  static const K_CHECKOUT_NOTES = 'checkout_notes';
   static const K_CLOSED_AT = 'closed_at';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATOR_PID = 'creator_pid';
@@ -35,9 +37,10 @@ class ModelJobPub extends _ModelJobPub {
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
   static const K_OPENED_AT = 'opened_at';
-  static const K_USER_CHECKINS = 'user_checkins';
-  static const K_USER_CHECKOUTS = 'user_checkouts';
+  static const K_UPLOADED_MEDIA = 'uploaded_media';
 
+  Map<DateTime?, ModelNote>? checkinNotes;
+  Map<DateTime?, ModelNote>? checkoutNotes;
   DateTime? closedAt;
   DateTime? createdAt;
   String? creatorPid;
@@ -45,8 +48,7 @@ class ModelJobPub extends _ModelJobPub {
   String? displayName;
   String? displayNameSearchable;
   DateTime? openedAt;
-  Map<DateTime?, String>? userCheckins;
-  Map<DateTime?, String>? userCheckouts;
+  Map<DateTime, ModelMedia>? uploadedMedia;
 
   //
   //
@@ -54,6 +56,8 @@ class ModelJobPub extends _ModelJobPub {
 
   ModelJobPub({
     String? id,
+    this.checkinNotes,
+    this.checkoutNotes,
     this.closedAt,
     this.createdAt,
     this.creatorPid,
@@ -61,8 +65,7 @@ class ModelJobPub extends _ModelJobPub {
     this.displayName,
     this.displayNameSearchable,
     this.openedAt,
-    this.userCheckins,
-    this.userCheckouts,
+    this.uploadedMedia,
   }) {
     this.id = id;
   }
@@ -73,6 +76,8 @@ class ModelJobPub extends _ModelJobPub {
 
   ModelJobPub.unsafe({
     String? id,
+    this.checkinNotes,
+    this.checkoutNotes,
     this.closedAt,
     this.createdAt,
     this.creatorPid,
@@ -80,8 +85,7 @@ class ModelJobPub extends _ModelJobPub {
     this.displayName,
     this.displayNameSearchable,
     this.openedAt,
-    this.userCheckins,
-    this.userCheckouts,
+    this.uploadedMedia,
   }) {
     this.id = id;
   }
@@ -137,6 +141,38 @@ class ModelJobPub extends _ModelJobPub {
   ) {
     try {
       return ModelJobPub.unsafe(
+        checkinNotes: letMap(otherData?[K_CHECKIN_NOTES])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                () {
+                  final a = p0;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+                () {
+                  final a = letMap<String, dynamic>(p1);
+                  return a != null ? ModelNote.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
+        checkoutNotes: letMap(otherData?[K_CHECKOUT_NOTES])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                () {
+                  final a = p0;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+                () {
+                  final a = letMap<String, dynamic>(p1);
+                  return a != null ? ModelNote.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
         closedAt: () {
           final a = otherData?[K_CLOSED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -158,27 +194,17 @@ class ModelJobPub extends _ModelJobPub {
           final a = otherData?[K_OPENED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
-        userCheckins: letMap(otherData?[K_USER_CHECKINS])
+        uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
             ?.map(
               (final p0, final p1) => MapEntry(
                 () {
                   final a = p0;
                   return a != null ? DateTime.tryParse(a)?.toUtc() : null;
                 }(),
-                p1?.toString().trim().nullIfEmpty,
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        userCheckouts: letMap(otherData?[K_USER_CHECKOUTS])
-            ?.map(
-              (final p0, final p1) => MapEntry(
                 () {
-                  final a = p0;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                  final a = letMap<String, dynamic>(p1);
+                  return a != null ? ModelMedia.fromJson(a) : null;
                 }(),
-                p1?.toString().trim().nullIfEmpty,
               ),
             )
             .nonNulls
@@ -242,6 +268,24 @@ class ModelJobPub extends _ModelJobPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CHECKIN_NOTES: checkinNotes
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toUtc()?.toIso8601String(),
+                p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
+        K_CHECKOUT_NOTES: checkoutNotes
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toUtc()?.toIso8601String(),
+                p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
         K_CLOSED_AT: closedAt?.toUtc()?.toIso8601String(),
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
         K_CREATOR_PID: creatorPid?.toString().trim().nullIfEmpty,
@@ -251,20 +295,11 @@ class ModelJobPub extends _ModelJobPub {
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_OPENED_AT: openedAt?.toUtc()?.toIso8601String(),
-        K_USER_CHECKINS: userCheckins
+        K_UPLOADED_MEDIA: uploadedMedia
             ?.map(
               (final p0, final p1) => MapEntry(
                 p0?.toUtc()?.toIso8601String(),
-                p1?.toString().trim().nullIfEmpty,
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_USER_CHECKOUTS: userCheckouts
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toUtc()?.toIso8601String(),
-                p1?.toString().trim().nullIfEmpty,
+                p1?.toJson(),
               ),
             )
             .nonNulls
@@ -305,6 +340,12 @@ class ModelJobPub extends _ModelJobPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelJobPub.fromJson(otherData);
+      other.checkinNotes != null
+          ? this.checkinNotes = other.checkinNotes
+          : null;
+      other.checkoutNotes != null
+          ? this.checkoutNotes = other.checkoutNotes
+          : null;
       other.closedAt != null ? this.closedAt = other.closedAt : null;
       other.createdAt != null ? this.createdAt = other.createdAt : null;
       other.creatorPid != null ? this.creatorPid = other.creatorPid : null;
@@ -315,11 +356,8 @@ class ModelJobPub extends _ModelJobPub {
           : null;
       other.id != null ? this.id = other.id : null;
       other.openedAt != null ? this.openedAt = other.openedAt : null;
-      other.userCheckins != null
-          ? this.userCheckins = other.userCheckins
-          : null;
-      other.userCheckouts != null
-          ? this.userCheckouts = other.userCheckouts
+      other.uploadedMedia != null
+          ? this.uploadedMedia = other.uploadedMedia
           : null;
     }
   }
