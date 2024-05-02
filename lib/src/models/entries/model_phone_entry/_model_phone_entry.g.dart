@@ -156,11 +156,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
             .trim()
             .nullIfEmpty,
         title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
-        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase(),
+        titleSearchable: #x0,
         type: otherData?[K_TYPE]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
@@ -230,8 +226,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
         K_NUMBER_WITHOUT_COUNTRY_CODE:
             numberWithoutCountryCode?.toString().trim().nullIfEmpty,
         K_TITLE: title?.toString().trim().nullIfEmpty,
-        K_TITLE_SEARCHABLE:
-            titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_TITLE_SEARCHABLE: #x0,
         K_TYPE: type?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;

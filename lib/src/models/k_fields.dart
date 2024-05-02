@@ -22,13 +22,12 @@ abstract final class KFields {
   static const pid = {'pid': 'String?'};
 
   static const display_name = {'display_name': 'String?'};
-  static const display_name_searchable = {'display_name_searchable': 'LowerCase-String?'};
+  static const display_name_searchable = {'display_name_searchable': 'Searchable-String?'};
 
   static const title = {'title': 'String?'};
-  static const title_searchable = {'title_searchable': 'LowerCase-String?'};
+  static const title_searchable = {'title_searchable': 'Searchable-String?'};
 
-  static const email = {'email': 'String?'};
-  static const email_searchable = {'email_searchable': 'LowerCase-String?'};
+  static const email = {'email': 'LowerCase-String?'};
 
   static const created_at = {'created_at': 'DateTime?'};
   static const created_by = {'created_by': 'String?'};

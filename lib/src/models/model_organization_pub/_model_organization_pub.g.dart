@@ -169,11 +169,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         deletedBy: otherData?[K_DELETED_BY]?.toString().trim().nullIfEmpty,
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
-        displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase(),
+        displayNameSearchable: #x0,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         otherAddresses: letMap(otherData?[K_OTHER_ADDRESSES])
             ?.map(
@@ -307,8 +303,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         K_DELETED_BY: deletedBy?.toString().trim().nullIfEmpty,
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
-        K_DISPLAY_NAME_SEARCHABLE:
-            displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_DISPLAY_NAME_SEARCHABLE: #x0,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_OTHER_ADDRESSES: otherAddresses
             ?.map(

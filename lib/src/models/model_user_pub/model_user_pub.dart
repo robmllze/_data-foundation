@@ -19,7 +19,7 @@ part '_model_user_pub.g.dart';
   fields: {
     ...KFields.display_name,
     ...KFields.display_name_searchable,
-    ...KFields.email_searchable,
+    ...KFields.email,
     ...KFields.created_at,
     ...KFields.created_by,
     ...KFields.deleted_at,

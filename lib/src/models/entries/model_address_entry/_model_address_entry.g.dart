@@ -167,11 +167,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
         stateOrProvince:
             otherData?[K_STATE_OR_PROVINCE]?.toString().trim().nullIfEmpty,
         title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
-        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase(),
+        titleSearchable: #x0,
       );
     } catch (e) {
       assert(false, e);
@@ -242,8 +238,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
         K_POSTAL_CODE: postalCode?.toString().trim().nullIfEmpty,
         K_STATE_OR_PROVINCE: stateOrProvince?.toString().trim().nullIfEmpty,
         K_TITLE: title?.toString().trim().nullIfEmpty,
-        K_TITLE_SEARCHABLE:
-            titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_TITLE_SEARCHABLE: #x0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {

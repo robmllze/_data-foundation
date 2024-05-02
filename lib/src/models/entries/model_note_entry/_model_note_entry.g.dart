@@ -129,11 +129,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
         createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
-        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase(),
+        titleSearchable: #x0,
       );
     } catch (e) {
       assert(false, e);
@@ -197,8 +193,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
         K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
         K_TITLE: title?.toString().trim().nullIfEmpty,
-        K_TITLE_SEARCHABLE:
-            titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_TITLE_SEARCHABLE: #x0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {

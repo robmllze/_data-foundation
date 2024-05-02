@@ -30,7 +30,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DESCRIPTION = 'description';
-  static const K_EMAIL_SEARCHABLE = 'email_searchable';
+  static const K_EMAIL = 'email';
   static const K_ID = 'id';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
@@ -38,7 +38,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
   DateTime? createdAt;
   String? createdBy;
   String? description;
-  String? emailSearchable;
+  String? email;
   String? title;
   String? titleSearchable;
 
@@ -51,7 +51,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     this.createdAt,
     this.createdBy,
     this.description,
-    this.emailSearchable,
+    this.email,
     this.title,
     this.titleSearchable,
   }) {
@@ -67,7 +67,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     this.createdAt,
     this.createdBy,
     this.description,
-    this.emailSearchable,
+    this.email,
     this.title,
     this.titleSearchable,
   }) {
@@ -131,18 +131,11 @@ class ModelEmailEntry extends _ModelEmailEntry {
         }(),
         createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
         description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
-        emailSearchable: otherData?[K_EMAIL_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase(),
+        email:
+            otherData?[K_EMAIL]?.toString().trim().nullIfEmpty?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
-        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase(),
+        titleSearchable: #x0,
       );
     } catch (e) {
       assert(false, e);
@@ -204,12 +197,10 @@ class ModelEmailEntry extends _ModelEmailEntry {
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
         K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
         K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
-        K_EMAIL_SEARCHABLE:
-            emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_EMAIL: email?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_TITLE: title?.toString().trim().nullIfEmpty,
-        K_TITLE_SEARCHABLE:
-            titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_TITLE_SEARCHABLE: #x0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -249,9 +240,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
       other.createdAt != null ? this.createdAt = other.createdAt : null;
       other.createdBy != null ? this.createdBy = other.createdBy : null;
       other.description != null ? this.description = other.description : null;
-      other.emailSearchable != null
-          ? this.emailSearchable = other.emailSearchable
-          : null;
+      other.email != null ? this.email = other.email : null;
       other.id != null ? this.id = other.id : null;
       other.title != null ? this.title = other.title : null;
       other.titleSearchable != null

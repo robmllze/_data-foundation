@@ -33,7 +33,7 @@ class ModelUserPub extends _ModelUserPub {
   static const K_DELETED_BY = 'deleted_by';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
-  static const K_EMAIL_SEARCHABLE = 'email_searchable';
+  static const K_EMAIL = 'email';
   static const K_ID = 'id';
   static const K_UPLOADED_MEDIA_IDS = 'uploaded_media_ids';
 
@@ -43,7 +43,7 @@ class ModelUserPub extends _ModelUserPub {
   String? deletedBy;
   String? displayName;
   String? displayNameSearchable;
-  String? emailSearchable;
+  String? email;
   Set<String?>? uploadedMediaIds;
 
   //
@@ -58,7 +58,7 @@ class ModelUserPub extends _ModelUserPub {
     this.deletedBy,
     this.displayName,
     this.displayNameSearchable,
-    this.emailSearchable,
+    this.email,
     this.uploadedMediaIds,
   }) {
     this.id = id;
@@ -76,7 +76,7 @@ class ModelUserPub extends _ModelUserPub {
     this.deletedBy,
     this.displayName,
     this.displayNameSearchable,
-    this.emailSearchable,
+    this.email,
     this.uploadedMediaIds,
   }) {
     this.id = id;
@@ -144,16 +144,9 @@ class ModelUserPub extends _ModelUserPub {
         }(),
         deletedBy: otherData?[K_DELETED_BY]?.toString().trim().nullIfEmpty,
         displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
-        displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase(),
-        emailSearchable: otherData?[K_EMAIL_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase(),
+        displayNameSearchable: #x0,
+        email:
+            otherData?[K_EMAIL]?.toString().trim().nullIfEmpty?.toLowerCase(),
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         uploadedMediaIds: letSet(otherData?[K_UPLOADED_MEDIA_IDS])
             ?.map(
@@ -226,10 +219,8 @@ class ModelUserPub extends _ModelUserPub {
         K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
         K_DELETED_BY: deletedBy?.toString().trim().nullIfEmpty,
         K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
-        K_DISPLAY_NAME_SEARCHABLE:
-            displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
-        K_EMAIL_SEARCHABLE:
-            emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_DISPLAY_NAME_SEARCHABLE: #x0,
+        K_EMAIL: email?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_UPLOADED_MEDIA_IDS: uploadedMediaIds
             ?.map(
@@ -282,9 +273,7 @@ class ModelUserPub extends _ModelUserPub {
       other.displayNameSearchable != null
           ? this.displayNameSearchable = other.displayNameSearchable
           : null;
-      other.emailSearchable != null
-          ? this.emailSearchable = other.emailSearchable
-          : null;
+      other.email != null ? this.email = other.email : null;
       other.id != null ? this.id = other.id : null;
       other.uploadedMediaIds != null
           ? this.uploadedMediaIds = other.uploadedMediaIds

@@ -20,7 +20,7 @@ part '_model_email_entry.g.dart';
     ...KFields.title_searchable,
     ...KFields.created_at,
     ...KFields.created_by,
-    ...KFields.email_searchable,
+    ...KFields.email,
     ...KFields.description,
   },
 )

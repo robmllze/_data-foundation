@@ -143,11 +143,7 @@ class ModelMediaEntry extends _ModelMediaEntry {
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         mimeType: otherData?[K_MIME_TYPE]?.toString().trim().nullIfEmpty,
         title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
-        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase(),
+        titleSearchable: #x0,
         url: () {
           final a = otherData?[K_URL];
           return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
@@ -217,8 +213,7 @@ class ModelMediaEntry extends _ModelMediaEntry {
         K_ID: id?.toString().trim().nullIfEmpty,
         K_MIME_TYPE: mimeType?.toString().trim().nullIfEmpty,
         K_TITLE: title?.toString().trim().nullIfEmpty,
-        K_TITLE_SEARCHABLE:
-            titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
+        K_TITLE_SEARCHABLE: #x0,
         K_URL: url?.toString(),
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
