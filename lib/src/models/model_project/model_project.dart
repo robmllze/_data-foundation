@@ -20,7 +20,6 @@ part '_model_project.g.dart';
     'creator_id': 'String?',
     'pid': 'String?',
     'seed': 'String?',
-    'uploaded_media': 'Map<DateTime, ModelMedia>?',
   },
 )
 abstract class _ModelProject extends ThisModel<ModelProject> {

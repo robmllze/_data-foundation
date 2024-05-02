@@ -23,6 +23,8 @@ part '_model_project_pub.g.dart';
     'display_name_searchable': 'LowerCase-String?',
     'display_name': 'String?',
     'opened_at': 'DateTime?',
+    'other_addresses': 'Map<DateTime?, ModelAddress>?',
+    'primary_address': 'ModelAddress?',
     'uploaded_media': 'Map<DateTime, ModelMedia>?',
   },
 )

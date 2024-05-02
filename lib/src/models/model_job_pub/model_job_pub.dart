@@ -23,6 +23,8 @@ part '_model_job_pub.g.dart';
     'display_name_searchable': 'LowerCase-String?',
     'display_name': 'String?',
     'opened_at': 'DateTime?',
+    'primary_address': 'ModelAddress?',
+    'other_addresses': 'Map<DateTime?, ModelAddress>?',
     'checkin_notes': 'Map<DateTime?, ModelNote>?',
     'checkout_notes': 'Map<DateTime?, ModelNote>?',
     'uploaded_media': 'Map<DateTime, ModelMedia>?',

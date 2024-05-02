@@ -35,6 +35,8 @@ class ModelProjectPub extends _ModelProjectPub {
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_ID = 'id';
   static const K_OPENED_AT = 'opened_at';
+  static const K_OTHER_ADDRESSES = 'other_addresses';
+  static const K_PRIMARY_ADDRESS = 'primary_address';
   static const K_UPLOADED_MEDIA = 'uploaded_media';
 
   DateTime? closedAt;
@@ -44,6 +46,8 @@ class ModelProjectPub extends _ModelProjectPub {
   String? displayName;
   String? displayNameSearchable;
   DateTime? openedAt;
+  Map<DateTime?, ModelAddress>? otherAddresses;
+  ModelAddress? primaryAddress;
   Map<DateTime, ModelMedia>? uploadedMedia;
 
   //
@@ -59,6 +63,8 @@ class ModelProjectPub extends _ModelProjectPub {
     this.displayName,
     this.displayNameSearchable,
     this.openedAt,
+    this.otherAddresses,
+    this.primaryAddress,
     this.uploadedMedia,
   }) {
     this.id = id;
@@ -77,6 +83,8 @@ class ModelProjectPub extends _ModelProjectPub {
     this.displayName,
     this.displayNameSearchable,
     this.openedAt,
+    this.otherAddresses,
+    this.primaryAddress,
     this.uploadedMedia,
   }) {
     this.id = id;
@@ -153,6 +161,26 @@ class ModelProjectPub extends _ModelProjectPub {
         openedAt: () {
           final a = otherData?[K_OPENED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+        }(),
+        otherAddresses: letMap(otherData?[K_OTHER_ADDRESSES])
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                () {
+                  final a = p0;
+                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+                }(),
+                () {
+                  final a = letMap<String, dynamic>(p1);
+                  return a != null ? ModelAddress.fromJson(a) : null;
+                }(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty
+            ?.cast(),
+        primaryAddress: () {
+          final a = letMap<String, dynamic>(otherData?[K_PRIMARY_ADDRESS]);
+          return a != null ? ModelAddress.fromJson(a) : null;
         }(),
         uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
             ?.map(
@@ -237,6 +265,16 @@ class ModelProjectPub extends _ModelProjectPub {
             displayNameSearchable?.toString().trim().nullIfEmpty?.toLowerCase(),
         K_ID: id?.toString().trim().nullIfEmpty,
         K_OPENED_AT: openedAt?.toUtc()?.toIso8601String(),
+        K_OTHER_ADDRESSES: otherAddresses
+            ?.map(
+              (final p0, final p1) => MapEntry(
+                p0?.toUtc()?.toIso8601String(),
+                p1?.toJson(),
+              ),
+            )
+            .nonNulls
+            .nullIfEmpty,
+        K_PRIMARY_ADDRESS: primaryAddress?.toJson(),
         K_UPLOADED_MEDIA: uploadedMedia
             ?.map(
               (final p0, final p1) => MapEntry(
@@ -292,6 +330,12 @@ class ModelProjectPub extends _ModelProjectPub {
           : null;
       other.id != null ? this.id = other.id : null;
       other.openedAt != null ? this.openedAt = other.openedAt : null;
+      other.otherAddresses != null
+          ? this.otherAddresses = other.otherAddresses
+          : null;
+      other.primaryAddress != null
+          ? this.primaryAddress = other.primaryAddress
+          : null;
       other.uploadedMedia != null
           ? this.uploadedMedia = other.uploadedMedia
           : null;

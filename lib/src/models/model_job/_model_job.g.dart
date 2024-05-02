@@ -32,13 +32,11 @@ class ModelJob extends _ModelJob {
   static const K_ID = 'id';
   static const K_PID = 'pid';
   static const K_SEED = 'seed';
-  static const K_UPLOADED_MEDIA = 'uploaded_media';
 
   DateTime? createdAt;
   String? creatorId;
   String? pid;
   String? seed;
-  Map<DateTime, ModelMedia>? uploadedMedia;
 
   //
   //
@@ -50,7 +48,6 @@ class ModelJob extends _ModelJob {
     this.creatorId,
     this.pid,
     this.seed,
-    this.uploadedMedia,
   }) {
     this.id = id;
   }
@@ -65,7 +62,6 @@ class ModelJob extends _ModelJob {
     this.creatorId,
     this.pid,
     this.seed,
-    this.uploadedMedia,
   }) {
     this.id = id;
   }
@@ -129,22 +125,6 @@ class ModelJob extends _ModelJob {
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
         pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
         seed: otherData?[K_SEED]?.toString().trim().nullIfEmpty,
-        uploadedMedia: letMap(otherData?[K_UPLOADED_MEDIA])
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                () {
-                  final a = p0;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-                () {
-                  final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelMedia.fromJson(a) : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
       );
     } catch (e) {
       assert(false, e);
@@ -208,15 +188,6 @@ class ModelJob extends _ModelJob {
         K_ID: id?.toString().trim().nullIfEmpty,
         K_PID: pid?.toString().trim().nullIfEmpty,
         K_SEED: seed?.toString().trim().nullIfEmpty,
-        K_UPLOADED_MEDIA: uploadedMedia
-            ?.map(
-              (final p0, final p1) => MapEntry(
-                p0?.toUtc()?.toIso8601String(),
-                p1?.toJson(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -258,9 +229,6 @@ class ModelJob extends _ModelJob {
       other.id != null ? this.id = other.id : null;
       other.pid != null ? this.pid = other.pid : null;
       other.seed != null ? this.seed = other.seed : null;
-      other.uploadedMedia != null
-          ? this.uploadedMedia = other.uploadedMedia
-          : null;
     }
   }
 

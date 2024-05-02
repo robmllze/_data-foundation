@@ -9,7 +9,7 @@
 
 import '/_common.dart';
 
-part '_model_job.g.dart';
+part '_model_phone_number.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -18,11 +18,17 @@ part '_model_job.g.dart';
   fields: {
     'created_at': 'DateTime?',
     'creator_id': 'String?',
-    'pid': 'String?',
-    'seed': 'String?',
+    'display_name': 'String?',
+    'display_name_searchable': 'LowerCase-String?',
+    'description': 'String?',
+    'country_code': 'String?',
+    'number_without_country_code': 'String?',
+    'full_number': 'String?',
+    'extension': 'String?',
+    'type': 'String?',
   },
 )
-abstract class _ModelJob extends ThisModel<ModelJob> {
+abstract class _ModelPhoneNumber extends ThisModel<ModelPhoneNumber> {
   //
   //
   //

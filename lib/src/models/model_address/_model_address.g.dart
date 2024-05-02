@@ -15,39 +15,57 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_organization.dart';
+part of 'model_address.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelOrganization extends _ModelOrganization {
+class ModelAddress extends _ModelAddress {
   //
   //
   //
 
-  static const CLASS = 'ModelOrganization';
-  static const MODEL_ID = 'model_organization';
+  static const CLASS = 'ModelAddress';
+  static const MODEL_ID = 'model_address';
 
+  static const K_ADDRESS_LINE_1 = 'address_line_1';
+  static const K_ADDRESS_LINE_2 = 'address_line_2';
+  static const K_CITY = 'city';
+  static const K_COUNTRY = 'country';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATOR_ID = 'creator_id';
   static const K_ID = 'id';
-  static const K_PID = 'pid';
-  static const K_SEED = 'seed';
+  static const K_NAME = 'name';
+  static const K_NOTES = 'notes';
+  static const K_POSTAL_CODE = 'postal_code';
+  static const K_STATE_OR_PROVINCE = 'state_or_province';
 
+  String? addressLine1;
+  String? addressLine2;
+  String? city;
+  String? country;
   DateTime? createdAt;
   String? creatorId;
-  String? pid;
-  String? seed;
+  String? name;
+  String? notes;
+  String? postalCode;
+  String? stateOrProvince;
 
   //
   //
   //
 
-  ModelOrganization({
+  ModelAddress({
     String? id,
+    this.addressLine1,
+    this.addressLine2,
+    this.city,
+    this.country,
     this.createdAt,
     this.creatorId,
-    this.pid,
-    this.seed,
+    this.name,
+    this.notes,
+    this.postalCode,
+    this.stateOrProvince,
   }) {
     this.id = id;
   }
@@ -56,12 +74,18 @@ class ModelOrganization extends _ModelOrganization {
   //
   //
 
-  ModelOrganization.unsafe({
+  ModelAddress.unsafe({
     String? id,
+    this.addressLine1,
+    this.addressLine2,
+    this.city,
+    this.country,
     this.createdAt,
     this.creatorId,
-    this.pid,
-    this.seed,
+    this.name,
+    this.notes,
+    this.postalCode,
+    this.stateOrProvince,
   }) {
     this.id = id;
   }
@@ -70,10 +94,10 @@ class ModelOrganization extends _ModelOrganization {
   //
   //
 
-  factory ModelOrganization.from(
+  factory ModelAddress.from(
     Model? other,
   ) {
-    return ModelOrganization.fromJson(
+    return ModelAddress.fromJson(
       other is GenericModel ? other.data : other?.toJson(),
     );
   }
@@ -82,25 +106,25 @@ class ModelOrganization extends _ModelOrganization {
   //
   //
 
-  factory ModelOrganization.of(
-    ModelOrganization? other,
+  factory ModelAddress.of(
+    ModelAddress? other,
   ) {
-    return ModelOrganization.fromJson(other?.toJson());
+    return ModelAddress.fromJson(other?.toJson());
   }
 
   //
   //
   //
 
-  factory ModelOrganization.fromJsonString(
+  factory ModelAddress.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelOrganization.fromJson(decoded);
+        return ModelAddress.fromJson(decoded);
       } else {
-        return ModelOrganization.unsafe();
+        return ModelAddress.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -112,19 +136,28 @@ class ModelOrganization extends _ModelOrganization {
   //
   //
 
-  factory ModelOrganization.fromJson(
+  factory ModelAddress.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelOrganization.unsafe(
+      return ModelAddress.unsafe(
+        addressLine1:
+            otherData?[K_ADDRESS_LINE_1]?.toString().trim().nullIfEmpty,
+        addressLine2:
+            otherData?[K_ADDRESS_LINE_2]?.toString().trim().nullIfEmpty,
+        city: otherData?[K_CITY]?.toString().trim().nullIfEmpty,
+        country: otherData?[K_COUNTRY]?.toString().trim().nullIfEmpty,
         createdAt: () {
           final a = otherData?[K_CREATED_AT];
           return a != null ? DateTime.tryParse(a)?.toUtc() : null;
         }(),
         creatorId: otherData?[K_CREATOR_ID]?.toString().trim().nullIfEmpty,
         id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
-        seed: otherData?[K_SEED]?.toString().trim().nullIfEmpty,
+        name: otherData?[K_NAME]?.toString().trim().nullIfEmpty,
+        notes: otherData?[K_NOTES]?.toString().trim().nullIfEmpty,
+        postalCode: otherData?[K_POSTAL_CODE]?.toString().trim().nullIfEmpty,
+        stateOrProvince:
+            otherData?[K_STATE_OR_PROVINCE]?.toString().trim().nullIfEmpty,
       );
     } catch (e) {
       assert(false, e);
@@ -136,14 +169,14 @@ class ModelOrganization extends _ModelOrganization {
   //
   //
 
-  factory ModelOrganization.fromUri(
+  factory ModelAddress.fromUri(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == MODEL_ID) {
-        return ModelOrganization.fromJson(uri.queryParameters);
+        return ModelAddress.fromJson(uri.queryParameters);
       } else {
-        return ModelOrganization.unsafe();
+        return ModelAddress.unsafe();
       }
     } catch (e) {
       assert(false, e);
@@ -155,18 +188,18 @@ class ModelOrganization extends _ModelOrganization {
   //
   //
 
-  static ModelOrganization? convert(
+  static ModelAddress? convert(
     Model? other,
   ) {
-    return other != null ? ModelOrganization.from(other) : null;
+    return other != null ? ModelAddress.from(other) : null;
   }
 
   //
   //
   //
 
-  static ModelOrganization? fromPool({
-    required Iterable<ModelOrganization>? pool,
+  static ModelAddress? fromPool({
+    required Iterable<ModelAddress>? pool,
     required String? id,
   }) {
     return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
@@ -183,11 +216,17 @@ class ModelOrganization extends _ModelOrganization {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_ADDRESS_LINE_1: addressLine1?.toString().trim().nullIfEmpty,
+        K_ADDRESS_LINE_2: addressLine2?.toString().trim().nullIfEmpty,
+        K_CITY: city?.toString().trim().nullIfEmpty,
+        K_COUNTRY: country?.toString().trim().nullIfEmpty,
         K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
         K_CREATOR_ID: creatorId?.toString().trim().nullIfEmpty,
         K_ID: id?.toString().trim().nullIfEmpty,
-        K_PID: pid?.toString().trim().nullIfEmpty,
-        K_SEED: seed?.toString().trim().nullIfEmpty,
+        K_NAME: name?.toString().trim().nullIfEmpty,
+        K_NOTES: notes?.toString().trim().nullIfEmpty,
+        K_POSTAL_CODE: postalCode?.toString().trim().nullIfEmpty,
+        K_STATE_OR_PROVINCE: stateOrProvince?.toString().trim().nullIfEmpty,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -202,7 +241,7 @@ class ModelOrganization extends _ModelOrganization {
 
   @override
   T empty<T extends Model>() {
-    return ModelOrganization.unsafe() as T;
+    return ModelAddress.unsafe() as T;
   }
 
   //
@@ -211,7 +250,7 @@ class ModelOrganization extends _ModelOrganization {
 
   @override
   T copy<T extends Model>() {
-    return (ModelOrganization.unsafe()..updateWith(this)) as T;
+    return (ModelAddress.unsafe()..updateWith(this)) as T;
   }
 
   //
@@ -223,12 +262,24 @@ class ModelOrganization extends _ModelOrganization {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelOrganization.fromJson(otherData);
+      final other = ModelAddress.fromJson(otherData);
+      other.addressLine1 != null
+          ? this.addressLine1 = other.addressLine1
+          : null;
+      other.addressLine2 != null
+          ? this.addressLine2 = other.addressLine2
+          : null;
+      other.city != null ? this.city = other.city : null;
+      other.country != null ? this.country = other.country : null;
       other.createdAt != null ? this.createdAt = other.createdAt : null;
       other.creatorId != null ? this.creatorId = other.creatorId : null;
       other.id != null ? this.id = other.id : null;
-      other.pid != null ? this.pid = other.pid : null;
-      other.seed != null ? this.seed = other.seed : null;
+      other.name != null ? this.name = other.name : null;
+      other.notes != null ? this.notes = other.notes : null;
+      other.postalCode != null ? this.postalCode = other.postalCode : null;
+      other.stateOrProvince != null
+          ? this.stateOrProvince = other.stateOrProvince
+          : null;
     }
   }
 
