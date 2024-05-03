@@ -17,12 +17,12 @@ part '_model_event.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.created_at,
-    ...KFields.created_by,
-    ...KFields.deleted_at,
-    ...KFields.deleted_by,
-    ...KFields.member_pids,
-    ...KFields.uploaded_media_ids,
+    ...CommonFields.created_at,
+    ...CommonFields.created_by,
+    ...CommonFields.deleted_at,
+    ...CommonFields.deleted_by,
+    ...CommonFields.member_pids,
+    ...CommonFields.uploaded_media_ids,
     'def_type': 'EventDefType?',
     'def': 'GenericModel?',
     'timeout': 'int?',

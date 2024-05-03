@@ -16,9 +16,9 @@ part '_model_invitation.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.created_at,
-    ...KFields.created_by,
-    ...KFields.expires_at,
+    ...CommonFields.created_at,
+    ...CommonFields.created_by,
+    ...CommonFields.expires_at,
     'def_type': 'InvitationDefType?',
     'def': 'GenericModel?',
     'invitation_link': 'Uri?',

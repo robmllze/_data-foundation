@@ -7,6 +7,7 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+export 'common_fields.dart';
 export 'def/model_connection_request_accepted_def/model_connection_request_accepted_def.dart';
 export 'def/model_connection_request_def/model_connection_request_def.dart';
 export 'def/model_connection_request_rejected_def/model_connection_request_rejected_def.dart';
@@ -17,15 +18,14 @@ export 'def/model_rel_removed_def/model_rel_removed_def.dart';
 export 'def/rel_def/model_connections_rel_def/model_connections_rel_def.dart';
 export 'entries/model_address_entry/model_address_entry.dart';
 export 'entries/model_email_entry/model_email_entry.dart';
+export 'entries/model_file_entry/model_file_entry.dart';
 export 'entries/model_note_entry/model_note_entry.dart';
 export 'entries/model_phone_entry/model_phone_entry.dart';
-export 'k_fields.dart';
 export 'model_connection_permissions/model_connection_permissions.dart';
 export 'model_event/model_event.dart';
 export 'model_invitation/model_invitation.dart';
 export 'model_job/model_job.dart';
 export 'model_job_pub/model_job_pub.dart';
-export 'model_media_entry/model_media_entry.dart';
 export 'model_organization/model_organization.dart';
 export 'model_organization_pub/model_organization_pub.dart';
 export 'model_project/model_project.dart';

@@ -17,11 +17,11 @@ part '_model_relationship.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.created_at,
-    ...KFields.created_by,
-    ...KFields.deleted_at,
-    ...KFields.deleted_by,
-    ...KFields.uploaded_media_ids,
+    ...CommonFields.created_at,
+    ...CommonFields.created_by,
+    ...CommonFields.deleted_at,
+    ...CommonFields.deleted_by,
+    ...CommonFields.uploaded_media_ids,
     'def_type': 'RelationshipDefType?',
     'def': 'GenericModel?',
     'member_pids': 'Set<String>?',

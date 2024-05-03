@@ -27,13 +27,13 @@ final class Schema {
 
   // Media.
 
-  static DataRef mediaRef({
-    String? mediaId,
+  static DataRef fileRef({
+    String? fileId,
   }) {
     return DataRef(
-      id: mediaId,
-      tableName: 'media',
-      collectionPath: 'media',
+      id: fileId,
+      tableName: 'files',
+      collectionPath: 'files',
     );
   }
 

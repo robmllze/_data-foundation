@@ -9,21 +9,21 @@
 
 import '/_common.dart';
 
-part '_model_media_entry.g.dart';
+part '_model_file_entry.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.created_at,
-    ...KFields.created_by,
-    ...KFields.title,
-    ...KFields.title_searchable,
-    ...KFields.description,
-    'file_name': 'String?',
-    'mime_type': 'String?',
-    'url': 'Uri?',
+    ...CommonFields.created_at,
+    ...CommonFields.created_by,
+    'type': 'String?',
+    'name': 'String?',
+    'download_url': 'Uri?',
+    'storage_path': 'String?',
+    'false_path': 'List<String>?',
+    'size': 'int?',
   },
 )
-abstract class _ModelMediaEntry extends ThisModel<ModelMediaEntry> {}
+abstract class _ModelFileEntry extends ThisModel<ModelFileEntry> {}

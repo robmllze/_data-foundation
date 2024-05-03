@@ -16,11 +16,11 @@ part '_model_phone_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.title,
-    ...KFields.title_searchable,
-    ...KFields.created_at,
-    ...KFields.created_by,
-    ...KFields.description,
+    ...CommonFields.title,
+    ...CommonFields.title_searchable,
+    ...CommonFields.created_at,
+    ...CommonFields.created_by,
+    ...CommonFields.description,
     'country_code': 'String?',
     'number_without_country_code': 'String?',
     'full_number': 'String?',

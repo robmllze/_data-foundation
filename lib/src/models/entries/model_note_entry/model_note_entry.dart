@@ -16,10 +16,10 @@ part '_model_note_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.title,
-    ...KFields.title_searchable,
-    ...KFields.created_at,
-    ...KFields.created_by,
+    ...CommonFields.title,
+    ...CommonFields.title_searchable,
+    ...CommonFields.created_at,
+    ...CommonFields.created_by,
     'body': 'String?',
   },
 )

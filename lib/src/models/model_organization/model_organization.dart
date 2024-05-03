@@ -16,12 +16,12 @@ part '_model_organization.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...KFields.created_at,
-    ...KFields.created_by,
-    ...KFields.deleted_at,
-    ...KFields.deleted_by,
-    ...KFields.pid,
-    ...KFields.seed,
+    ...CommonFields.created_at,
+    ...CommonFields.created_by,
+    ...CommonFields.deleted_at,
+    ...CommonFields.deleted_by,
+    ...CommonFields.pid,
+    ...CommonFields.seed,
   },
 )
 abstract class _ModelOrganization extends ThisModel<ModelOrganization> {}
