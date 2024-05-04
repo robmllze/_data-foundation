@@ -24,9 +24,6 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   //
   //
 
-  static const CLASS = 'ModelPhoneEntry';
-  static const MODEL_ID = 'model_phone_entry';
-
   static const K_COUNTRY_CODE = 'country_code';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
@@ -39,55 +36,92 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   static const K_TITLE_SEARCHABLE = 'title_searchable';
   static const K_TYPE = 'type';
 
-  String? countryCode;
-  DateTime? createdAt;
-  String? createdBy;
-  String? description;
-  String? extension;
-  String? fullNumber;
-  String? numberWithoutCountryCode;
-  String? title;
-  String? titleSearchable;
-  String? type;
+  static const CLASS = 'ModelPhoneEntry';
+
+  @override
+  String get $class => CLASS;
+
+  String? _countryCode;
+  DateTime? _createdAt;
+  String? _createdBy;
+  String? _description;
+  String? _extension;
+  String? _fullNumber;
+  String? _id;
+  String? _numberWithoutCountryCode;
+  String? _title;
+  String? _titleSearchable;
+  String? _type;
 
   //
   //
   //
 
-  ModelPhoneEntry({
-    String? id,
-    this.countryCode,
-    this.createdAt,
-    this.createdBy,
-    this.description,
-    this.extension,
-    this.fullNumber,
-    this.numberWithoutCountryCode,
-    this.title,
-    this.titleSearchable,
-    this.type,
+  ModelPhoneEntry.empty();
+
+  //
+  //
+  //
+
+  factory ModelPhoneEntry({
+    String? countryCode,
+    required DateTime createdAt,
+    required String createdBy,
+    String? description,
+    String? extension,
+    String? fullNumber,
+    required String id,
+    String? numberWithoutCountryCode,
+    String? title,
+    String? titleSearchable,
+    String? type,
   }) {
-    this.id = id;
+    return ModelPhoneEntry.b(
+      countryCode: countryCode,
+      createdAt: createdAt,
+      createdBy: createdBy,
+      description: description,
+      extension: extension,
+      fullNumber: fullNumber,
+      id: id,
+      numberWithoutCountryCode: numberWithoutCountryCode,
+      title: title,
+      titleSearchable: titleSearchable,
+      type: type,
+    );
   }
 
   //
   //
   //
 
-  ModelPhoneEntry.unsafe({
+  ModelPhoneEntry.b({
+    String? countryCode,
+    DateTime? createdAt,
+    String? createdBy,
+    String? description,
+    String? extension,
+    String? fullNumber,
     String? id,
-    this.countryCode,
-    this.createdAt,
-    this.createdBy,
-    this.description,
-    this.extension,
-    this.fullNumber,
-    this.numberWithoutCountryCode,
-    this.title,
-    this.titleSearchable,
-    this.type,
+    String? numberWithoutCountryCode,
+    String? title,
+    String? titleSearchable,
+    String? type,
   }) {
-    this.id = id;
+    assert(createdAt != null);
+    assert(createdBy != null);
+    assert(id != null);
+    this._countryCode = countryCode;
+    this._createdAt = createdAt;
+    this._createdBy = createdBy;
+    this._description = description;
+    this._extension = extension;
+    this._fullNumber = fullNumber;
+    this._id = id;
+    this._numberWithoutCountryCode = numberWithoutCountryCode;
+    this._title = title;
+    this._titleSearchable = titleSearchable;
+    this._type = type;
   }
 
   //
@@ -98,7 +132,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     Model? other,
   ) {
     return ModelPhoneEntry.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -124,7 +158,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
         final decoded = jsonDecode(source);
         return ModelPhoneEntry.fromJson(decoded);
       } else {
-        return ModelPhoneEntry.unsafe();
+        return ModelPhoneEntry.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -140,30 +174,18 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelPhoneEntry.unsafe(
-        countryCode: otherData?[K_COUNTRY_CODE]?.toString().trim().nullIfEmpty,
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
-        description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
-        extension: otherData?[K_EXTENSION]?.toString().trim().nullIfEmpty,
-        fullNumber: otherData?[K_FULL_NUMBER]?.toString().trim().nullIfEmpty,
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        numberWithoutCountryCode: otherData?[K_NUMBER_WITHOUT_COUNTRY_CODE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty,
-        title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
-        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ' '),
-        type: otherData?[K_TYPE]?.toString().trim().nullIfEmpty,
-      );
+      return ModelPhoneEntry.empty()
+        ..$countryCode = otherData?[K_COUNTRY_CODE]
+        ..$createdAt = otherData?[K_CREATED_AT]
+        ..$createdBy = otherData?[K_CREATED_BY]
+        ..$description = otherData?[K_DESCRIPTION]
+        ..$extension = otherData?[K_EXTENSION]
+        ..$fullNumber = otherData?[K_FULL_NUMBER]
+        ..$id = otherData?[K_ID]
+        ..$numberWithoutCountryCode = otherData?[K_NUMBER_WITHOUT_COUNTRY_CODE]
+        ..$title = otherData?[K_TITLE]
+        ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE]
+        ..$type = otherData?[K_TYPE];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -178,10 +200,10 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelPhoneEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelPhoneEntry.unsafe();
+        return ModelPhoneEntry.b();
       }
     } catch (e) {
       assert(false, e);
@@ -221,23 +243,17 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_COUNTRY_CODE: countryCode?.toString().trim().nullIfEmpty,
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
-        K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
-        K_EXTENSION: extension?.toString().trim().nullIfEmpty,
-        K_FULL_NUMBER: fullNumber?.toString().trim().nullIfEmpty,
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_NUMBER_WITHOUT_COUNTRY_CODE:
-            numberWithoutCountryCode?.toString().trim().nullIfEmpty,
-        K_TITLE: title?.toString().trim().nullIfEmpty,
-        K_TITLE_SEARCHABLE: titleSearchable
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ' '),
-        K_TYPE: type?.toString().trim().nullIfEmpty,
+        K_COUNTRY_CODE: this.$countryCode,
+        K_CREATED_AT: this.$createdAt,
+        K_CREATED_BY: this.$createdBy,
+        K_DESCRIPTION: this.$description,
+        K_EXTENSION: this.$extension,
+        K_FULL_NUMBER: this.$fullNumber,
+        K_ID: this.$id,
+        K_NUMBER_WITHOUT_COUNTRY_CODE: this.$numberWithoutCountryCode,
+        K_TITLE: this.$title,
+        K_TITLE_SEARCHABLE: this.$titleSearchable,
+        K_TYPE: this.$type,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -252,7 +268,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
 
   @override
   T empty<T extends Model>() {
-    return ModelPhoneEntry.unsafe() as T;
+    return ModelPhoneEntry.b() as T;
   }
 
   //
@@ -261,7 +277,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
 
   @override
   T copy<T extends Model>() {
-    return (ModelPhoneEntry.unsafe()..updateWith(this)) as T;
+    return (ModelPhoneEntry.b()..updateWith(this)) as T;
   }
 
   //
@@ -274,21 +290,39 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelPhoneEntry.fromJson(otherData);
-      other.countryCode != null ? this.countryCode = other.countryCode : null;
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdBy != null ? this.createdBy = other.createdBy : null;
-      other.description != null ? this.description = other.description : null;
-      other.extension != null ? this.extension = other.extension : null;
-      other.fullNumber != null ? this.fullNumber = other.fullNumber : null;
-      other.id != null ? this.id = other.id : null;
-      other.numberWithoutCountryCode != null
-          ? this.numberWithoutCountryCode = other.numberWithoutCountryCode
-          : null;
-      other.title != null ? this.title = other.title : null;
-      other.titleSearchable != null
-          ? this.titleSearchable = other.titleSearchable
-          : null;
-      other.type != null ? this.type = other.type : null;
+      if (other._countryCode != null) {
+        this.countryCode = other._countryCode!;
+      }
+      if (other._createdAt != null) {
+        this.createdAt = other._createdAt!;
+      }
+      if (other._createdBy != null) {
+        this.createdBy = other._createdBy!;
+      }
+      if (other._description != null) {
+        this.description = other._description!;
+      }
+      if (other._extension != null) {
+        this.extension = other._extension!;
+      }
+      if (other._fullNumber != null) {
+        this.fullNumber = other._fullNumber!;
+      }
+      if (other._id != null) {
+        this.id = other._id!;
+      }
+      if (other._numberWithoutCountryCode != null) {
+        this.numberWithoutCountryCode = other._numberWithoutCountryCode!;
+      }
+      if (other._title != null) {
+        this.title = other._title!;
+      }
+      if (other._titleSearchable != null) {
+        this.titleSearchable = other._titleSearchable!;
+      }
+      if (other._type != null) {
+        this.type = other._type!;
+      }
     }
   }
 
@@ -296,5 +330,76 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // countryCode.
+  String? get countryCode => this._countryCode;
+  set countryCode(String? v) => this._countryCode = v;
+  dynamic get $countryCode => this._countryCode?.toString().trim().nullIfEmpty;
+  set $countryCode(v) => this._countryCode = v?.toString().trim().nullIfEmpty;
+
+  // createdAt.
+  DateTime get createdAt => this._createdAt!;
+  set createdAt(DateTime v) => this._createdAt = v;
+  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  set $createdAt(v) => this._createdAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // createdBy.
+  String get createdBy => this._createdBy!;
+  set createdBy(String v) => this._createdBy = v;
+  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+
+  // description.
+  String? get description => this._description;
+  set description(String? v) => this._description = v;
+  dynamic get $description => this._description?.toString().trim().nullIfEmpty;
+  set $description(v) => this._description = v?.toString().trim().nullIfEmpty;
+
+  // extension.
+  String? get extension => this._extension;
+  set extension(String? v) => this._extension = v;
+  dynamic get $extension => this._extension?.toString().trim().nullIfEmpty;
+  set $extension(v) => this._extension = v?.toString().trim().nullIfEmpty;
+
+  // fullNumber.
+  String? get fullNumber => this._fullNumber;
+  set fullNumber(String? v) => this._fullNumber = v;
+  dynamic get $fullNumber => this._fullNumber?.toString().trim().nullIfEmpty;
+  set $fullNumber(v) => this._fullNumber = v?.toString().trim().nullIfEmpty;
+
+  // id.
+  String get id => this._id!;
+  set id(String v) => this._id = v;
+  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+
+  // numberWithoutCountryCode.
+  String? get numberWithoutCountryCode => this._numberWithoutCountryCode;
+  set numberWithoutCountryCode(String? v) => this._numberWithoutCountryCode = v;
+  dynamic get $numberWithoutCountryCode =>
+      this._numberWithoutCountryCode?.toString().trim().nullIfEmpty;
+  set $numberWithoutCountryCode(v) =>
+      this._numberWithoutCountryCode = v?.toString().trim().nullIfEmpty;
+
+  // title.
+  String? get title => this._title;
+  set title(String? v) => this._title = v;
+  dynamic get $title => this._title?.toString().trim().nullIfEmpty;
+  set $title(v) => this._title = v?.toString().trim().nullIfEmpty;
+
+  // titleSearchable.
+  String? get titleSearchable => this._titleSearchable;
+  set titleSearchable(String? v) => this._titleSearchable = v;
+  dynamic get $titleSearchable =>
+      this._titleSearchable?.toString().trim().nullIfEmpty;
+  set $titleSearchable(v) =>
+      this._titleSearchable = v?.toString().trim().nullIfEmpty;
+
+  // type.
+  String? get type => this._type;
+  set type(String? v) => this._type = v;
+  dynamic get $type => this._type?.toString().trim().nullIfEmpty;
+  set $type(v) => this._type = v?.toString().trim().nullIfEmpty;
 }

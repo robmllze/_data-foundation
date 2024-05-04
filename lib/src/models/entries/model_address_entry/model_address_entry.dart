@@ -16,26 +16,19 @@ part '_model_address_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...CommonFields.title,
-    ...CommonFields.title_searchable,
-    ...CommonFields.created_at,
-    ...CommonFields.created_by,
-    // Name of the recipient.
-    'name': 'String?',
-    // Primary address field (street address or P.O. box).
-    'address_line_1': 'String?',
-    // Secondary address field (apartment, suite, unit).
-    'address_line_2': 'String?',
-    // City or locality.
-    'city': 'String?',
-    // State, province, or regional equivalent.
-    'state_or_province': 'String?',
-    // Postal or ZIP code.
-    'postal_code': 'String?',
-    // Country name.
-    'country': 'String?',
-    // Additional information or delivery instructions.
-    'notes': 'String?',
+    ('id', String),
+    ('title', 'String?'),
+    ('title_searchable', 'String?'),
+    ('created_at', DateTime),
+    ('created_by', String),
+    ('name', 'String?'),
+    ('address_line_1', 'String?'),
+    ('address_line_2', 'String?'),
+    ('city', 'String?'),
+    ('state_or_province', 'String?'),
+    ('postal_code', 'String?'),
+    ('country', 'String?'),
+    ('notes', 'String?'),
   },
 )
 abstract class _ModelAddressEntry extends ThisModel<ModelAddressEntry> {}

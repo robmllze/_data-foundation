@@ -24,9 +24,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  static const CLASS = 'ModelEmailEntry';
-  static const MODEL_ID = 'model_email_entry';
-
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DESCRIPTION = 'description';
@@ -35,43 +32,72 @@ class ModelEmailEntry extends _ModelEmailEntry {
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
 
-  DateTime? createdAt;
-  String? createdBy;
-  String? description;
-  String? email;
-  String? title;
-  String? titleSearchable;
+  static const CLASS = 'ModelEmailEntry';
+
+  @override
+  String get $class => CLASS;
+
+  DateTime? _createdAt;
+  String? _createdBy;
+  String? _description;
+  String? _email;
+  String? _id;
+  String? _title;
+  String? _titleSearchable;
 
   //
   //
   //
 
-  ModelEmailEntry({
-    String? id,
-    this.createdAt,
-    this.createdBy,
-    this.description,
-    this.email,
-    this.title,
-    this.titleSearchable,
+  ModelEmailEntry.empty();
+
+  //
+  //
+  //
+
+  factory ModelEmailEntry({
+    required DateTime createdAt,
+    required String createdBy,
+    String? description,
+    String? email,
+    required String id,
+    String? title,
+    String? titleSearchable,
   }) {
-    this.id = id;
+    return ModelEmailEntry.b(
+      createdAt: createdAt,
+      createdBy: createdBy,
+      description: description,
+      email: email,
+      id: id,
+      title: title,
+      titleSearchable: titleSearchable,
+    );
   }
 
   //
   //
   //
 
-  ModelEmailEntry.unsafe({
+  ModelEmailEntry.b({
+    DateTime? createdAt,
+    String? createdBy,
+    String? description,
+    String? email,
     String? id,
-    this.createdAt,
-    this.createdBy,
-    this.description,
-    this.email,
-    this.title,
-    this.titleSearchable,
+    String? title,
+    String? titleSearchable,
   }) {
-    this.id = id;
+    assert(createdAt != null);
+    assert(createdBy != null);
+    assert(id != null);
+    this._createdAt = createdAt;
+    this._createdBy = createdBy;
+    this._description = description;
+    this._email = email;
+    this._id = id;
+    this._title = title;
+    this._titleSearchable = titleSearchable;
   }
 
   //
@@ -82,7 +108,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     Model? other,
   ) {
     return ModelEmailEntry.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -108,7 +134,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
         final decoded = jsonDecode(source);
         return ModelEmailEntry.fromJson(decoded);
       } else {
-        return ModelEmailEntry.unsafe();
+        return ModelEmailEntry.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -124,28 +150,14 @@ class ModelEmailEntry extends _ModelEmailEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelEmailEntry.unsafe(
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
-        description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
-        email: otherData?[K_EMAIL]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ' '),
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
-        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ' '),
-      );
+      return ModelEmailEntry.empty()
+        ..$createdAt = otherData?[K_CREATED_AT]
+        ..$createdBy = otherData?[K_CREATED_BY]
+        ..$description = otherData?[K_DESCRIPTION]
+        ..$email = otherData?[K_EMAIL]
+        ..$id = otherData?[K_ID]
+        ..$title = otherData?[K_TITLE]
+        ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -160,10 +172,10 @@ class ModelEmailEntry extends _ModelEmailEntry {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelEmailEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelEmailEntry.unsafe();
+        return ModelEmailEntry.b();
       }
     } catch (e) {
       assert(false, e);
@@ -203,23 +215,13 @@ class ModelEmailEntry extends _ModelEmailEntry {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
-        K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
-        K_EMAIL: email
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ' '),
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_TITLE: title?.toString().trim().nullIfEmpty,
-        K_TITLE_SEARCHABLE: titleSearchable
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ' '),
+        K_CREATED_AT: this.$createdAt,
+        K_CREATED_BY: this.$createdBy,
+        K_DESCRIPTION: this.$description,
+        K_EMAIL: this.$email,
+        K_ID: this.$id,
+        K_TITLE: this.$title,
+        K_TITLE_SEARCHABLE: this.$titleSearchable,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -234,7 +236,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
 
   @override
   T empty<T extends Model>() {
-    return ModelEmailEntry.unsafe() as T;
+    return ModelEmailEntry.b() as T;
   }
 
   //
@@ -243,7 +245,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
 
   @override
   T copy<T extends Model>() {
-    return (ModelEmailEntry.unsafe()..updateWith(this)) as T;
+    return (ModelEmailEntry.b()..updateWith(this)) as T;
   }
 
   //
@@ -256,15 +258,27 @@ class ModelEmailEntry extends _ModelEmailEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelEmailEntry.fromJson(otherData);
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdBy != null ? this.createdBy = other.createdBy : null;
-      other.description != null ? this.description = other.description : null;
-      other.email != null ? this.email = other.email : null;
-      other.id != null ? this.id = other.id : null;
-      other.title != null ? this.title = other.title : null;
-      other.titleSearchable != null
-          ? this.titleSearchable = other.titleSearchable
-          : null;
+      if (other._createdAt != null) {
+        this.createdAt = other._createdAt!;
+      }
+      if (other._createdBy != null) {
+        this.createdBy = other._createdBy!;
+      }
+      if (other._description != null) {
+        this.description = other._description!;
+      }
+      if (other._email != null) {
+        this.email = other._email!;
+      }
+      if (other._id != null) {
+        this.id = other._id!;
+      }
+      if (other._title != null) {
+        this.title = other._title!;
+      }
+      if (other._titleSearchable != null) {
+        this.titleSearchable = other._titleSearchable!;
+      }
     }
   }
 
@@ -272,5 +286,50 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // createdAt.
+  DateTime get createdAt => this._createdAt!;
+  set createdAt(DateTime v) => this._createdAt = v;
+  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  set $createdAt(v) => this._createdAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // createdBy.
+  String get createdBy => this._createdBy!;
+  set createdBy(String v) => this._createdBy = v;
+  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+
+  // description.
+  String? get description => this._description;
+  set description(String? v) => this._description = v;
+  dynamic get $description => this._description?.toString().trim().nullIfEmpty;
+  set $description(v) => this._description = v?.toString().trim().nullIfEmpty;
+
+  // email.
+  String? get email => this._email;
+  set email(String? v) => this._email = v;
+  dynamic get $email => this._email?.toString().trim().nullIfEmpty;
+  set $email(v) => this._email = v?.toString().trim().nullIfEmpty;
+
+  // id.
+  String get id => this._id!;
+  set id(String v) => this._id = v;
+  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+
+  // title.
+  String? get title => this._title;
+  set title(String? v) => this._title = v;
+  dynamic get $title => this._title?.toString().trim().nullIfEmpty;
+  set $title(v) => this._title = v?.toString().trim().nullIfEmpty;
+
+  // titleSearchable.
+  String? get titleSearchable => this._titleSearchable;
+  set titleSearchable(String? v) => this._titleSearchable = v;
+  dynamic get $titleSearchable =>
+      this._titleSearchable?.toString().trim().nullIfEmpty;
+  set $titleSearchable(v) =>
+      this._titleSearchable = v?.toString().trim().nullIfEmpty;
 }

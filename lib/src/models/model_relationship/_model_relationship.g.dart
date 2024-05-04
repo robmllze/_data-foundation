@@ -24,9 +24,6 @@ class ModelRelationship extends _ModelRelationship {
   //
   //
 
-  static const CLASS = 'ModelRelationship';
-  static const MODEL_ID = 'model_relationship';
-
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DEF = 'def';
@@ -40,58 +37,95 @@ class ModelRelationship extends _ModelRelationship {
   static const K_WHEN_ENABLED = 'when_enabled';
   static const K_WHEN_NOTED = 'when_noted';
 
-  DateTime? createdAt;
-  String? createdBy;
-  GenericModel? def;
-  RelationshipDefType? defType;
-  DateTime? deletedAt;
-  String? deletedBy;
-  Set<String>? memberPids;
-  Set<String?>? uploadedMediaIds;
-  Map<String, DateTime>? whenDisabled;
-  Map<String, DateTime>? whenEnabled;
-  Map<String, DateTime>? whenNoted;
+  static const CLASS = 'ModelRelationship';
+
+  @override
+  String get $class => CLASS;
+
+  DateTime? _createdAt;
+  String? _createdBy;
+  GenericModel? _def;
+  RelationshipDefType? _defType;
+  DateTime? _deletedAt;
+  String? _deletedBy;
+  String? _id;
+  Set<String>? _memberPids;
+  Set<String>? _uploadedMediaIds;
+  Map<String, DateTime>? _whenDisabled;
+  Map<String, DateTime>? _whenEnabled;
+  Map<String, DateTime>? _whenNoted;
 
   //
   //
   //
 
-  ModelRelationship({
-    String? id,
-    this.createdAt,
-    this.createdBy,
-    this.def,
-    this.defType,
-    this.deletedAt,
-    this.deletedBy,
-    this.memberPids,
-    this.uploadedMediaIds,
-    this.whenDisabled,
-    this.whenEnabled,
-    this.whenNoted,
+  ModelRelationship.empty();
+
+  //
+  //
+  //
+
+  factory ModelRelationship({
+    DateTime? createdAt,
+    String? createdBy,
+    GenericModel? def,
+    RelationshipDefType? defType,
+    DateTime? deletedAt,
+    String? deletedBy,
+    required String id,
+    Set<String>? memberPids,
+    Set<String>? uploadedMediaIds,
+    Map<String, DateTime>? whenDisabled,
+    Map<String, DateTime>? whenEnabled,
+    Map<String, DateTime>? whenNoted,
   }) {
-    this.id = id;
+    return ModelRelationship.b(
+      createdAt: createdAt,
+      createdBy: createdBy,
+      def: def,
+      defType: defType,
+      deletedAt: deletedAt,
+      deletedBy: deletedBy,
+      id: id,
+      memberPids: memberPids,
+      uploadedMediaIds: uploadedMediaIds,
+      whenDisabled: whenDisabled,
+      whenEnabled: whenEnabled,
+      whenNoted: whenNoted,
+    );
   }
 
   //
   //
   //
 
-  ModelRelationship.unsafe({
+  ModelRelationship.b({
+    DateTime? createdAt,
+    String? createdBy,
+    GenericModel? def,
+    RelationshipDefType? defType,
+    DateTime? deletedAt,
+    String? deletedBy,
     String? id,
-    this.createdAt,
-    this.createdBy,
-    this.def,
-    this.defType,
-    this.deletedAt,
-    this.deletedBy,
-    this.memberPids,
-    this.uploadedMediaIds,
-    this.whenDisabled,
-    this.whenEnabled,
-    this.whenNoted,
+    Set<String>? memberPids,
+    Set<String>? uploadedMediaIds,
+    Map<String, DateTime>? whenDisabled,
+    Map<String, DateTime>? whenEnabled,
+    Map<String, DateTime>? whenNoted,
   }) {
-    this.id = id;
+    assert(id != null);
+    this._createdAt = createdAt;
+    this._createdBy = createdBy;
+    this._def = def;
+    this._defType = defType;
+    this._deletedAt = deletedAt;
+    this._deletedBy = deletedBy;
+    this._id = id;
+    this._memberPids = memberPids;
+    this._uploadedMediaIds = uploadedMediaIds;
+    this._whenDisabled = whenDisabled;
+    this._whenEnabled = whenEnabled;
+    this._whenNoted = whenNoted;
   }
 
   //
@@ -102,7 +136,7 @@ class ModelRelationship extends _ModelRelationship {
     Model? other,
   ) {
     return ModelRelationship.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -128,7 +162,7 @@ class ModelRelationship extends _ModelRelationship {
         final decoded = jsonDecode(source);
         return ModelRelationship.fromJson(decoded);
       } else {
-        return ModelRelationship.unsafe();
+        return ModelRelationship.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -144,80 +178,19 @@ class ModelRelationship extends _ModelRelationship {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelRelationship.unsafe(
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
-        def: () {
-          final a = letMap<String, dynamic>(otherData?[K_DEF]);
-          return a != null ? GenericModel.fromJson(a) : null;
-        }(),
-        defType: RelationshipDefType.values
-            .valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
-        deletedAt: () {
-          final a = otherData?[K_DELETED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        deletedBy: otherData?[K_DELETED_BY]?.toString().trim().nullIfEmpty,
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        memberPids: letSet(otherData?[K_MEMBER_PIDS])
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
-        uploadedMediaIds: letSet(otherData?[K_UPLOADED_MEDIA_IDS])
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
-        whenDisabled: letMap(otherData?[K_WHEN_DISABLED])
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        whenEnabled: letMap(otherData?[K_WHEN_ENABLED])
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        whenNoted: letMap(otherData?[K_WHEN_NOTED])
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-      );
+      return ModelRelationship.empty()
+        ..$createdAt = otherData?[K_CREATED_AT]
+        ..$createdBy = otherData?[K_CREATED_BY]
+        ..$def = otherData?[K_DEF]
+        ..$defType = otherData?[K_DEF_TYPE]
+        ..$deletedAt = otherData?[K_DELETED_AT]
+        ..$deletedBy = otherData?[K_DELETED_BY]
+        ..$id = otherData?[K_ID]
+        ..$memberPids = otherData?[K_MEMBER_PIDS]
+        ..$uploadedMediaIds = otherData?[K_UPLOADED_MEDIA_IDS]
+        ..$whenDisabled = otherData?[K_WHEN_DISABLED]
+        ..$whenEnabled = otherData?[K_WHEN_ENABLED]
+        ..$whenNoted = otherData?[K_WHEN_NOTED];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -232,10 +205,10 @@ class ModelRelationship extends _ModelRelationship {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelRelationship.fromJson(uri.queryParameters);
       } else {
-        return ModelRelationship.unsafe();
+        return ModelRelationship.b();
       }
     } catch (e) {
       assert(false, e);
@@ -275,54 +248,18 @@ class ModelRelationship extends _ModelRelationship {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
-        K_DEF: def?.toJson(),
-        K_DEF_TYPE: defType?.name,
-        K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
-        K_DELETED_BY: deletedBy?.toString().trim().nullIfEmpty,
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_MEMBER_PIDS: memberPids
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
-        K_UPLOADED_MEDIA_IDS: uploadedMediaIds
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
-        K_WHEN_DISABLED: whenDisabled
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_WHEN_ENABLED: whenEnabled
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_WHEN_NOTED: whenNoted
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
+        K_CREATED_AT: this.$createdAt,
+        K_CREATED_BY: this.$createdBy,
+        K_DEF: this.$def,
+        K_DEF_TYPE: this.$defType,
+        K_DELETED_AT: this.$deletedAt,
+        K_DELETED_BY: this.$deletedBy,
+        K_ID: this.$id,
+        K_MEMBER_PIDS: this.$memberPids,
+        K_UPLOADED_MEDIA_IDS: this.$uploadedMediaIds,
+        K_WHEN_DISABLED: this.$whenDisabled,
+        K_WHEN_ENABLED: this.$whenEnabled,
+        K_WHEN_NOTED: this.$whenNoted,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -337,7 +274,7 @@ class ModelRelationship extends _ModelRelationship {
 
   @override
   T empty<T extends Model>() {
-    return ModelRelationship.unsafe() as T;
+    return ModelRelationship.b() as T;
   }
 
   //
@@ -346,7 +283,7 @@ class ModelRelationship extends _ModelRelationship {
 
   @override
   T copy<T extends Model>() {
-    return (ModelRelationship.unsafe()..updateWith(this)) as T;
+    return (ModelRelationship.b()..updateWith(this)) as T;
   }
 
   //
@@ -359,22 +296,42 @@ class ModelRelationship extends _ModelRelationship {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelRelationship.fromJson(otherData);
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdBy != null ? this.createdBy = other.createdBy : null;
-      other.def != null ? this.def = other.def : null;
-      other.defType != null ? this.defType = other.defType : null;
-      other.deletedAt != null ? this.deletedAt = other.deletedAt : null;
-      other.deletedBy != null ? this.deletedBy = other.deletedBy : null;
-      other.id != null ? this.id = other.id : null;
-      other.memberPids != null ? this.memberPids = other.memberPids : null;
-      other.uploadedMediaIds != null
-          ? this.uploadedMediaIds = other.uploadedMediaIds
-          : null;
-      other.whenDisabled != null
-          ? this.whenDisabled = other.whenDisabled
-          : null;
-      other.whenEnabled != null ? this.whenEnabled = other.whenEnabled : null;
-      other.whenNoted != null ? this.whenNoted = other.whenNoted : null;
+      if (other._createdAt != null) {
+        this.createdAt = other._createdAt!;
+      }
+      if (other._createdBy != null) {
+        this.createdBy = other._createdBy!;
+      }
+      if (other._def != null) {
+        this.def = other._def!;
+      }
+      if (other._defType != null) {
+        this.defType = other._defType!;
+      }
+      if (other._deletedAt != null) {
+        this.deletedAt = other._deletedAt!;
+      }
+      if (other._deletedBy != null) {
+        this.deletedBy = other._deletedBy!;
+      }
+      if (other._id != null) {
+        this.id = other._id!;
+      }
+      if (other._memberPids != null) {
+        this.memberPids = other._memberPids!;
+      }
+      if (other._uploadedMediaIds != null) {
+        this.uploadedMediaIds = other._uploadedMediaIds!;
+      }
+      if (other._whenDisabled != null) {
+        this.whenDisabled = other._whenDisabled!;
+      }
+      if (other._whenEnabled != null) {
+        this.whenEnabled = other._whenEnabled!;
+      }
+      if (other._whenNoted != null) {
+        this.whenNoted = other._whenNoted!;
+      }
     }
   }
 
@@ -382,5 +339,176 @@ class ModelRelationship extends _ModelRelationship {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // createdAt.
+  DateTime? get createdAt => this._createdAt;
+  set createdAt(DateTime? v) => this._createdAt = v;
+  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
+  set $createdAt(v) => this._createdAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // createdBy.
+  String? get createdBy => this._createdBy;
+  set createdBy(String? v) => this._createdBy = v;
+  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
+  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+
+  // def.
+  GenericModel? get def => this._def;
+  set def(GenericModel? v) => this._def = v;
+  dynamic get $def => this._def?.toJson();
+  set $def(v) => this._def = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? GenericModel.fromJson(a) : null;
+      }();
+
+  // defType.
+  RelationshipDefType? get defType => this._defType;
+  set defType(RelationshipDefType? v) => this._defType = v;
+  dynamic get $defType => this._defType?.name;
+  set $defType(v) =>
+      this._defType = RelationshipDefType.values.valueOf(letAs<String>(v));
+
+  // deletedAt.
+  DateTime? get deletedAt => this._deletedAt;
+  set deletedAt(DateTime? v) => this._deletedAt = v;
+  dynamic get $deletedAt => this._deletedAt?.toUtc()?.toIso8601String();
+  set $deletedAt(v) => this._deletedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // deletedBy.
+  String? get deletedBy => this._deletedBy;
+  set deletedBy(String? v) => this._deletedBy = v;
+  dynamic get $deletedBy => this._deletedBy?.toString().trim().nullIfEmpty;
+  set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
+
+  // id.
+  String get id => this._id!;
+  set id(String v) => this._id = v;
+  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+
+  // memberPids.
+  Set<String>? get memberPids => this._memberPids;
+  set memberPids(Set<String>? v) => this._memberPids = v;
+  dynamic get $memberPids => this
+      ._memberPids
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  set $memberPids(v) => this._memberPids = letSet(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
+
+  // uploadedMediaIds.
+  Set<String>? get uploadedMediaIds => this._uploadedMediaIds;
+  set uploadedMediaIds(Set<String>? v) => this._uploadedMediaIds = v;
+  dynamic get $uploadedMediaIds => this
+      ._uploadedMediaIds
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  set $uploadedMediaIds(v) => this._uploadedMediaIds = letSet(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
+
+  // whenDisabled.
+  Map<String, DateTime>? get whenDisabled => this._whenDisabled;
+  set whenDisabled(Map<String, DateTime>? v) => this._whenDisabled = v;
+  dynamic get $whenDisabled => this
+      ._whenDisabled
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toUtc()?.toIso8601String(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  set $whenDisabled(v) => this._whenDisabled = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = p1;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // whenEnabled.
+  Map<String, DateTime>? get whenEnabled => this._whenEnabled;
+  set whenEnabled(Map<String, DateTime>? v) => this._whenEnabled = v;
+  dynamic get $whenEnabled => this
+      ._whenEnabled
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toUtc()?.toIso8601String(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  set $whenEnabled(v) => this._whenEnabled = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = p1;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // whenNoted.
+  Map<String, DateTime>? get whenNoted => this._whenNoted;
+  set whenNoted(Map<String, DateTime>? v) => this._whenNoted = v;
+  dynamic get $whenNoted => this
+      ._whenNoted
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toUtc()?.toIso8601String(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  set $whenNoted(v) => this._whenNoted = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = p1;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 }

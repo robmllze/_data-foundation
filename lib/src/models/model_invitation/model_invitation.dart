@@ -16,15 +16,16 @@ part '_model_invitation.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...CommonFields.created_at,
-    ...CommonFields.created_by,
-    ...CommonFields.expires_at,
-    'def_type': 'InvitationDefType?',
-    'def': 'GenericModel?',
-    'invitation_link': 'Uri?',
-    'invitee_emails': 'Set<Searchable-String>?',
-    'invitee_accepted_emails': 'Set<Searchable-String>?',
-    'invitee_rejected_emails': 'Set<Searchable-String>?',
+    ('id', String),
+    ('created_at', DateTime),
+    ('created_by', String),
+    ('expires_at?', DateTime),
+    ('def_type?', InvitationDefType),
+    ('def?', GenericModel),
+    ('invitation_link?', Uri),
+    ('invitee_emails?', 'Set<Searchable-String>'),
+    ('invitee_accepted_emails?', 'Set<Searchable-String>'),
+    ('invitee_rejected_emails?', 'Set<Searchable-String>'),
   },
 )
 abstract class _ModelInvitation extends ThisModel<ModelInvitation> {

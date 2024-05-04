@@ -16,10 +16,10 @@ part '_model_message_def.g.dart';
 
 @GenerateModel(
   fields: {
-    'message': 'String?',
-    'relationship_id': 'String?',
-    'sender_pid': 'String?',
-    'receiver_pid': 'String?',
+    ('message', 'String?'),
+    ('relationship_id', String),
+    ('sender_pid', String),
+    ('receiver_pids?', Set<String>),
   },
 )
 // ignore: unused_element

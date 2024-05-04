@@ -24,9 +24,6 @@ class ModelOrganization extends _ModelOrganization {
   //
   //
 
-  static const CLASS = 'ModelOrganization';
-  static const MODEL_ID = 'model_organization';
-
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DELETED_AT = 'deleted_at';
@@ -35,43 +32,72 @@ class ModelOrganization extends _ModelOrganization {
   static const K_PID = 'pid';
   static const K_SEED = 'seed';
 
-  DateTime? createdAt;
-  String? createdBy;
-  DateTime? deletedAt;
-  String? deletedBy;
-  String? pid;
-  String? seed;
+  static const CLASS = 'ModelOrganization';
+
+  @override
+  String get $class => CLASS;
+
+  DateTime? _createdAt;
+  String? _createdBy;
+  DateTime? _deletedAt;
+  String? _deletedBy;
+  String? _id;
+  String? _pid;
+  String? _seed;
 
   //
   //
   //
 
-  ModelOrganization({
-    String? id,
-    this.createdAt,
-    this.createdBy,
-    this.deletedAt,
-    this.deletedBy,
-    this.pid,
-    this.seed,
+  ModelOrganization.empty();
+
+  //
+  //
+  //
+
+  factory ModelOrganization({
+    required DateTime createdAt,
+    required String createdBy,
+    DateTime? deletedAt,
+    String? deletedBy,
+    required String id,
+    String? pid,
+    String? seed,
   }) {
-    this.id = id;
+    return ModelOrganization.b(
+      createdAt: createdAt,
+      createdBy: createdBy,
+      deletedAt: deletedAt,
+      deletedBy: deletedBy,
+      id: id,
+      pid: pid,
+      seed: seed,
+    );
   }
 
   //
   //
   //
 
-  ModelOrganization.unsafe({
+  ModelOrganization.b({
+    DateTime? createdAt,
+    String? createdBy,
+    DateTime? deletedAt,
+    String? deletedBy,
     String? id,
-    this.createdAt,
-    this.createdBy,
-    this.deletedAt,
-    this.deletedBy,
-    this.pid,
-    this.seed,
+    String? pid,
+    String? seed,
   }) {
-    this.id = id;
+    assert(createdAt != null);
+    assert(createdBy != null);
+    assert(id != null);
+    this._createdAt = createdAt;
+    this._createdBy = createdBy;
+    this._deletedAt = deletedAt;
+    this._deletedBy = deletedBy;
+    this._id = id;
+    this._pid = pid;
+    this._seed = seed;
   }
 
   //
@@ -82,7 +108,7 @@ class ModelOrganization extends _ModelOrganization {
     Model? other,
   ) {
     return ModelOrganization.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -108,7 +134,7 @@ class ModelOrganization extends _ModelOrganization {
         final decoded = jsonDecode(source);
         return ModelOrganization.fromJson(decoded);
       } else {
-        return ModelOrganization.unsafe();
+        return ModelOrganization.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -124,21 +150,14 @@ class ModelOrganization extends _ModelOrganization {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelOrganization.unsafe(
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
-        deletedAt: () {
-          final a = otherData?[K_DELETED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        deletedBy: otherData?[K_DELETED_BY]?.toString().trim().nullIfEmpty,
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        pid: otherData?[K_PID]?.toString().trim().nullIfEmpty,
-        seed: otherData?[K_SEED]?.toString().trim().nullIfEmpty,
-      );
+      return ModelOrganization.empty()
+        ..$createdAt = otherData?[K_CREATED_AT]
+        ..$createdBy = otherData?[K_CREATED_BY]
+        ..$deletedAt = otherData?[K_DELETED_AT]
+        ..$deletedBy = otherData?[K_DELETED_BY]
+        ..$id = otherData?[K_ID]
+        ..$pid = otherData?[K_PID]
+        ..$seed = otherData?[K_SEED];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -153,10 +172,10 @@ class ModelOrganization extends _ModelOrganization {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelOrganization.fromJson(uri.queryParameters);
       } else {
-        return ModelOrganization.unsafe();
+        return ModelOrganization.b();
       }
     } catch (e) {
       assert(false, e);
@@ -196,13 +215,13 @@ class ModelOrganization extends _ModelOrganization {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
-        K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
-        K_DELETED_BY: deletedBy?.toString().trim().nullIfEmpty,
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_PID: pid?.toString().trim().nullIfEmpty,
-        K_SEED: seed?.toString().trim().nullIfEmpty,
+        K_CREATED_AT: this.$createdAt,
+        K_CREATED_BY: this.$createdBy,
+        K_DELETED_AT: this.$deletedAt,
+        K_DELETED_BY: this.$deletedBy,
+        K_ID: this.$id,
+        K_PID: this.$pid,
+        K_SEED: this.$seed,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -217,7 +236,7 @@ class ModelOrganization extends _ModelOrganization {
 
   @override
   T empty<T extends Model>() {
-    return ModelOrganization.unsafe() as T;
+    return ModelOrganization.b() as T;
   }
 
   //
@@ -226,7 +245,7 @@ class ModelOrganization extends _ModelOrganization {
 
   @override
   T copy<T extends Model>() {
-    return (ModelOrganization.unsafe()..updateWith(this)) as T;
+    return (ModelOrganization.b()..updateWith(this)) as T;
   }
 
   //
@@ -239,13 +258,27 @@ class ModelOrganization extends _ModelOrganization {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelOrganization.fromJson(otherData);
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdBy != null ? this.createdBy = other.createdBy : null;
-      other.deletedAt != null ? this.deletedAt = other.deletedAt : null;
-      other.deletedBy != null ? this.deletedBy = other.deletedBy : null;
-      other.id != null ? this.id = other.id : null;
-      other.pid != null ? this.pid = other.pid : null;
-      other.seed != null ? this.seed = other.seed : null;
+      if (other._createdAt != null) {
+        this.createdAt = other._createdAt!;
+      }
+      if (other._createdBy != null) {
+        this.createdBy = other._createdBy!;
+      }
+      if (other._deletedAt != null) {
+        this.deletedAt = other._deletedAt!;
+      }
+      if (other._deletedBy != null) {
+        this.deletedBy = other._deletedBy!;
+      }
+      if (other._id != null) {
+        this.id = other._id!;
+      }
+      if (other._pid != null) {
+        this.pid = other._pid!;
+      }
+      if (other._seed != null) {
+        this.seed = other._seed!;
+      }
     }
   }
 
@@ -253,5 +286,51 @@ class ModelOrganization extends _ModelOrganization {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // createdAt.
+  DateTime get createdAt => this._createdAt!;
+  set createdAt(DateTime v) => this._createdAt = v;
+  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  set $createdAt(v) => this._createdAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // createdBy.
+  String get createdBy => this._createdBy!;
+  set createdBy(String v) => this._createdBy = v;
+  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+
+  // deletedAt.
+  DateTime? get deletedAt => this._deletedAt;
+  set deletedAt(DateTime? v) => this._deletedAt = v;
+  dynamic get $deletedAt => this._deletedAt?.toUtc()?.toIso8601String();
+  set $deletedAt(v) => this._deletedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // deletedBy.
+  String? get deletedBy => this._deletedBy;
+  set deletedBy(String? v) => this._deletedBy = v;
+  dynamic get $deletedBy => this._deletedBy?.toString().trim().nullIfEmpty;
+  set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
+
+  // id.
+  String get id => this._id!;
+  set id(String v) => this._id = v;
+  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+
+  // pid.
+  String? get pid => this._pid;
+  set pid(String? v) => this._pid = v;
+  dynamic get $pid => this._pid?.toString().trim().nullIfEmpty;
+  set $pid(v) => this._pid = v?.toString().trim().nullIfEmpty;
+
+  // seed.
+  String? get seed => this._seed;
+  set seed(String? v) => this._seed = v;
+  dynamic get $seed => this._seed?.toString().trim().nullIfEmpty;
+  set $seed(v) => this._seed = v?.toString().trim().nullIfEmpty;
 }

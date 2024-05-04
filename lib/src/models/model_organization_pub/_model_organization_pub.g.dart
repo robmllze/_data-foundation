@@ -24,9 +24,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
 
-  static const CLASS = 'ModelOrganizationPub';
-  static const MODEL_ID = 'model_organization_pub';
-
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DELETED_AT = 'deleted_at';
@@ -43,67 +40,112 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   static const K_PRIMARY_PHONE = 'primary_phone';
   static const K_UPLOADED_MEDIA_IDS = 'uploaded_media_ids';
 
-  DateTime? createdAt;
-  String? createdBy;
-  DateTime? deletedAt;
-  String? deletedBy;
-  String? description;
-  String? displayName;
-  String? displayNameSearchable;
-  Map<DateTime?, ModelAddressEntry>? otherAddresses;
-  Map<DateTime?, ModelEmailEntry>? otherEmails;
-  Map<DateTime?, ModelPhoneEntry>? otherPhones;
-  ModelAddressEntry? primaryAddress;
-  ModelEmailEntry? primaryEmail;
-  ModelPhoneEntry? primaryPhone;
-  Set<String?>? uploadedMediaIds;
+  static const CLASS = 'ModelOrganizationPub';
+
+  @override
+  String get $class => CLASS;
+
+  DateTime? _createdAt;
+  String? _createdBy;
+  DateTime? _deletedAt;
+  String? _deletedBy;
+  String? _description;
+  String? _displayName;
+  String? _displayNameSearchable;
+  String? _id;
+  List<ModelAddressEntry>? _otherAddresses;
+  List<ModelEmailEntry>? _otherEmails;
+  List<ModelPhoneEntry>? _otherPhones;
+  ModelAddressEntry? _primaryAddress;
+  ModelEmailEntry? _primaryEmail;
+  ModelPhoneEntry? _primaryPhone;
+  List<String>? _uploadedMediaIds;
 
   //
   //
   //
 
-  ModelOrganizationPub({
-    String? id,
-    this.createdAt,
-    this.createdBy,
-    this.deletedAt,
-    this.deletedBy,
-    this.description,
-    this.displayName,
-    this.displayNameSearchable,
-    this.otherAddresses,
-    this.otherEmails,
-    this.otherPhones,
-    this.primaryAddress,
-    this.primaryEmail,
-    this.primaryPhone,
-    this.uploadedMediaIds,
+  ModelOrganizationPub.empty();
+
+  //
+  //
+  //
+
+  factory ModelOrganizationPub({
+    required DateTime createdAt,
+    required String createdBy,
+    DateTime? deletedAt,
+    String? deletedBy,
+    String? description,
+    String? displayName,
+    String? displayNameSearchable,
+    required String id,
+    List<ModelAddressEntry>? otherAddresses,
+    List<ModelEmailEntry>? otherEmails,
+    List<ModelPhoneEntry>? otherPhones,
+    ModelAddressEntry? primaryAddress,
+    ModelEmailEntry? primaryEmail,
+    ModelPhoneEntry? primaryPhone,
+    List<String>? uploadedMediaIds,
   }) {
-    this.id = id;
+    return ModelOrganizationPub.b(
+      createdAt: createdAt,
+      createdBy: createdBy,
+      deletedAt: deletedAt,
+      deletedBy: deletedBy,
+      description: description,
+      displayName: displayName,
+      displayNameSearchable: displayNameSearchable,
+      id: id,
+      otherAddresses: otherAddresses,
+      otherEmails: otherEmails,
+      otherPhones: otherPhones,
+      primaryAddress: primaryAddress,
+      primaryEmail: primaryEmail,
+      primaryPhone: primaryPhone,
+      uploadedMediaIds: uploadedMediaIds,
+    );
   }
 
   //
   //
   //
 
-  ModelOrganizationPub.unsafe({
+  ModelOrganizationPub.b({
+    DateTime? createdAt,
+    String? createdBy,
+    DateTime? deletedAt,
+    String? deletedBy,
+    String? description,
+    String? displayName,
+    String? displayNameSearchable,
     String? id,
-    this.createdAt,
-    this.createdBy,
-    this.deletedAt,
-    this.deletedBy,
-    this.description,
-    this.displayName,
-    this.displayNameSearchable,
-    this.otherAddresses,
-    this.otherEmails,
-    this.otherPhones,
-    this.primaryAddress,
-    this.primaryEmail,
-    this.primaryPhone,
-    this.uploadedMediaIds,
+    List<ModelAddressEntry>? otherAddresses,
+    List<ModelEmailEntry>? otherEmails,
+    List<ModelPhoneEntry>? otherPhones,
+    ModelAddressEntry? primaryAddress,
+    ModelEmailEntry? primaryEmail,
+    ModelPhoneEntry? primaryPhone,
+    List<String>? uploadedMediaIds,
   }) {
-    this.id = id;
+    assert(createdAt != null);
+    assert(createdBy != null);
+    assert(id != null);
+    this._createdAt = createdAt;
+    this._createdBy = createdBy;
+    this._deletedAt = deletedAt;
+    this._deletedBy = deletedBy;
+    this._description = description;
+    this._displayName = displayName;
+    this._displayNameSearchable = displayNameSearchable;
+    this._id = id;
+    this._otherAddresses = otherAddresses;
+    this._otherEmails = otherEmails;
+    this._otherPhones = otherPhones;
+    this._primaryAddress = primaryAddress;
+    this._primaryEmail = primaryEmail;
+    this._primaryPhone = primaryPhone;
+    this._uploadedMediaIds = uploadedMediaIds;
   }
 
   //
@@ -114,7 +156,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     Model? other,
   ) {
     return ModelOrganizationPub.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -140,7 +182,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         final decoded = jsonDecode(source);
         return ModelOrganizationPub.fromJson(decoded);
       } else {
-        return ModelOrganizationPub.unsafe();
+        return ModelOrganizationPub.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -156,95 +198,22 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelOrganizationPub.unsafe(
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
-        deletedAt: () {
-          final a = otherData?[K_DELETED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        deletedBy: otherData?[K_DELETED_BY]?.toString().trim().nullIfEmpty,
-        description: otherData?[K_DESCRIPTION]?.toString().trim().nullIfEmpty,
-        displayName: otherData?[K_DISPLAY_NAME]?.toString().trim().nullIfEmpty,
-        displayNameSearchable: otherData?[K_DISPLAY_NAME_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ' '),
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        otherAddresses: letMap(otherData?[K_OTHER_ADDRESSES])
-            ?.map(
-              (p0, p1) => MapEntry(
-                () {
-                  final a = p0;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-                () {
-                  final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelAddressEntry.fromJson(a) : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        otherEmails: letMap(otherData?[K_OTHER_EMAILS])
-            ?.map(
-              (p0, p1) => MapEntry(
-                () {
-                  final a = p0;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-                () {
-                  final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelEmailEntry.fromJson(a) : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        otherPhones: letMap(otherData?[K_OTHER_PHONES])
-            ?.map(
-              (p0, p1) => MapEntry(
-                () {
-                  final a = p0;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-                () {
-                  final a = letMap<String, dynamic>(p1);
-                  return a != null ? ModelPhoneEntry.fromJson(a) : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        primaryAddress: () {
-          final a = letMap<String, dynamic>(otherData?[K_PRIMARY_ADDRESS]);
-          return a != null ? ModelAddressEntry.fromJson(a) : null;
-        }(),
-        primaryEmail: () {
-          final a = letMap<String, dynamic>(otherData?[K_PRIMARY_EMAIL]);
-          return a != null ? ModelEmailEntry.fromJson(a) : null;
-        }(),
-        primaryPhone: () {
-          final a = letMap<String, dynamic>(otherData?[K_PRIMARY_PHONE]);
-          return a != null ? ModelPhoneEntry.fromJson(a) : null;
-        }(),
-        uploadedMediaIds: letSet(otherData?[K_UPLOADED_MEDIA_IDS])
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
-      );
+      return ModelOrganizationPub.empty()
+        ..$createdAt = otherData?[K_CREATED_AT]
+        ..$createdBy = otherData?[K_CREATED_BY]
+        ..$deletedAt = otherData?[K_DELETED_AT]
+        ..$deletedBy = otherData?[K_DELETED_BY]
+        ..$description = otherData?[K_DESCRIPTION]
+        ..$displayName = otherData?[K_DISPLAY_NAME]
+        ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
+        ..$id = otherData?[K_ID]
+        ..$otherAddresses = otherData?[K_OTHER_ADDRESSES]
+        ..$otherEmails = otherData?[K_OTHER_EMAILS]
+        ..$otherPhones = otherData?[K_OTHER_PHONES]
+        ..$primaryAddress = otherData?[K_PRIMARY_ADDRESS]
+        ..$primaryEmail = otherData?[K_PRIMARY_EMAIL]
+        ..$primaryPhone = otherData?[K_PRIMARY_PHONE]
+        ..$uploadedMediaIds = otherData?[K_UPLOADED_MEDIA_IDS];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -259,10 +228,10 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelOrganizationPub.fromJson(uri.queryParameters);
       } else {
-        return ModelOrganizationPub.unsafe();
+        return ModelOrganizationPub.b();
       }
     } catch (e) {
       assert(false, e);
@@ -302,56 +271,21 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
-        K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
-        K_DELETED_BY: deletedBy?.toString().trim().nullIfEmpty,
-        K_DESCRIPTION: description?.toString().trim().nullIfEmpty,
-        K_DISPLAY_NAME: displayName?.toString().trim().nullIfEmpty,
-        K_DISPLAY_NAME_SEARCHABLE: displayNameSearchable
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ' '),
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_OTHER_ADDRESSES: otherAddresses
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toUtc()?.toIso8601String(),
-                p1?.toJson(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_OTHER_EMAILS: otherEmails
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toUtc()?.toIso8601String(),
-                p1?.toJson(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_OTHER_PHONES: otherPhones
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toUtc()?.toIso8601String(),
-                p1?.toJson(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_PRIMARY_ADDRESS: primaryAddress?.toJson(),
-        K_PRIMARY_EMAIL: primaryEmail?.toJson(),
-        K_PRIMARY_PHONE: primaryPhone?.toJson(),
-        K_UPLOADED_MEDIA_IDS: uploadedMediaIds
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
+        K_CREATED_AT: this.$createdAt,
+        K_CREATED_BY: this.$createdBy,
+        K_DELETED_AT: this.$deletedAt,
+        K_DELETED_BY: this.$deletedBy,
+        K_DESCRIPTION: this.$description,
+        K_DISPLAY_NAME: this.$displayName,
+        K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
+        K_ID: this.$id,
+        K_OTHER_ADDRESSES: this.$otherAddresses,
+        K_OTHER_EMAILS: this.$otherEmails,
+        K_OTHER_PHONES: this.$otherPhones,
+        K_PRIMARY_ADDRESS: this.$primaryAddress,
+        K_PRIMARY_EMAIL: this.$primaryEmail,
+        K_PRIMARY_PHONE: this.$primaryPhone,
+        K_UPLOADED_MEDIA_IDS: this.$uploadedMediaIds,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -366,7 +300,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
 
   @override
   T empty<T extends Model>() {
-    return ModelOrganizationPub.unsafe() as T;
+    return ModelOrganizationPub.b() as T;
   }
 
   //
@@ -375,7 +309,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
 
   @override
   T copy<T extends Model>() {
-    return (ModelOrganizationPub.unsafe()..updateWith(this)) as T;
+    return (ModelOrganizationPub.b()..updateWith(this)) as T;
   }
 
   //
@@ -388,33 +322,51 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelOrganizationPub.fromJson(otherData);
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdBy != null ? this.createdBy = other.createdBy : null;
-      other.deletedAt != null ? this.deletedAt = other.deletedAt : null;
-      other.deletedBy != null ? this.deletedBy = other.deletedBy : null;
-      other.description != null ? this.description = other.description : null;
-      other.displayName != null ? this.displayName = other.displayName : null;
-      other.displayNameSearchable != null
-          ? this.displayNameSearchable = other.displayNameSearchable
-          : null;
-      other.id != null ? this.id = other.id : null;
-      other.otherAddresses != null
-          ? this.otherAddresses = other.otherAddresses
-          : null;
-      other.otherEmails != null ? this.otherEmails = other.otherEmails : null;
-      other.otherPhones != null ? this.otherPhones = other.otherPhones : null;
-      other.primaryAddress != null
-          ? this.primaryAddress = other.primaryAddress
-          : null;
-      other.primaryEmail != null
-          ? this.primaryEmail = other.primaryEmail
-          : null;
-      other.primaryPhone != null
-          ? this.primaryPhone = other.primaryPhone
-          : null;
-      other.uploadedMediaIds != null
-          ? this.uploadedMediaIds = other.uploadedMediaIds
-          : null;
+      if (other._createdAt != null) {
+        this.createdAt = other._createdAt!;
+      }
+      if (other._createdBy != null) {
+        this.createdBy = other._createdBy!;
+      }
+      if (other._deletedAt != null) {
+        this.deletedAt = other._deletedAt!;
+      }
+      if (other._deletedBy != null) {
+        this.deletedBy = other._deletedBy!;
+      }
+      if (other._description != null) {
+        this.description = other._description!;
+      }
+      if (other._displayName != null) {
+        this.displayName = other._displayName!;
+      }
+      if (other._displayNameSearchable != null) {
+        this.displayNameSearchable = other._displayNameSearchable!;
+      }
+      if (other._id != null) {
+        this.id = other._id!;
+      }
+      if (other._otherAddresses != null) {
+        this.otherAddresses = other._otherAddresses!;
+      }
+      if (other._otherEmails != null) {
+        this.otherEmails = other._otherEmails!;
+      }
+      if (other._otherPhones != null) {
+        this.otherPhones = other._otherPhones!;
+      }
+      if (other._primaryAddress != null) {
+        this.primaryAddress = other._primaryAddress!;
+      }
+      if (other._primaryEmail != null) {
+        this.primaryEmail = other._primaryEmail!;
+      }
+      if (other._primaryPhone != null) {
+        this.primaryPhone = other._primaryPhone!;
+      }
+      if (other._uploadedMediaIds != null) {
+        this.uploadedMediaIds = other._uploadedMediaIds!;
+      }
     }
   }
 
@@ -422,5 +374,175 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // createdAt.
+  DateTime get createdAt => this._createdAt!;
+  set createdAt(DateTime v) => this._createdAt = v;
+  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  set $createdAt(v) => this._createdAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // createdBy.
+  String get createdBy => this._createdBy!;
+  set createdBy(String v) => this._createdBy = v;
+  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+
+  // deletedAt.
+  DateTime? get deletedAt => this._deletedAt;
+  set deletedAt(DateTime? v) => this._deletedAt = v;
+  dynamic get $deletedAt => this._deletedAt?.toUtc()?.toIso8601String();
+  set $deletedAt(v) => this._deletedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // deletedBy.
+  String? get deletedBy => this._deletedBy;
+  set deletedBy(String? v) => this._deletedBy = v;
+  dynamic get $deletedBy => this._deletedBy?.toString().trim().nullIfEmpty;
+  set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
+
+  // description.
+  String? get description => this._description;
+  set description(String? v) => this._description = v;
+  dynamic get $description => this._description?.toString().trim().nullIfEmpty;
+  set $description(v) => this._description = v?.toString().trim().nullIfEmpty;
+
+  // displayName.
+  String? get displayName => this._displayName;
+  set displayName(String? v) => this._displayName = v;
+  dynamic get $displayName => this._displayName?.toString().trim().nullIfEmpty;
+  set $displayName(v) => this._displayName = v?.toString().trim().nullIfEmpty;
+
+  // displayNameSearchable.
+  String? get displayNameSearchable => this._displayNameSearchable;
+  set displayNameSearchable(String? v) => this._displayNameSearchable = v;
+  dynamic get $displayNameSearchable =>
+      this._displayNameSearchable?.toString().trim().nullIfEmpty;
+  set $displayNameSearchable(v) =>
+      this._displayNameSearchable = v?.toString().trim().nullIfEmpty;
+
+  // id.
+  String get id => this._id!;
+  set id(String v) => this._id = v;
+  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+
+  // otherAddresses.
+  List<ModelAddressEntry>? get otherAddresses => this._otherAddresses;
+  set otherAddresses(List<ModelAddressEntry>? v) => this._otherAddresses = v;
+  dynamic get $otherAddresses => this
+      ._otherAddresses
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  set $otherAddresses(v) => this._otherAddresses = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelAddressEntry.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // otherEmails.
+  List<ModelEmailEntry>? get otherEmails => this._otherEmails;
+  set otherEmails(List<ModelEmailEntry>? v) => this._otherEmails = v;
+  dynamic get $otherEmails => this
+      ._otherEmails
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  set $otherEmails(v) => this._otherEmails = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelEmailEntry.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // otherPhones.
+  List<ModelPhoneEntry>? get otherPhones => this._otherPhones;
+  set otherPhones(List<ModelPhoneEntry>? v) => this._otherPhones = v;
+  dynamic get $otherPhones => this
+      ._otherPhones
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  set $otherPhones(v) => this._otherPhones = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelPhoneEntry.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // primaryAddress.
+  ModelAddressEntry? get primaryAddress => this._primaryAddress;
+  set primaryAddress(ModelAddressEntry? v) => this._primaryAddress = v;
+  dynamic get $primaryAddress => this._primaryAddress?.toJson();
+  set $primaryAddress(v) => this._primaryAddress = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelAddressEntry.fromJson(a) : null;
+      }();
+
+  // primaryEmail.
+  ModelEmailEntry? get primaryEmail => this._primaryEmail;
+  set primaryEmail(ModelEmailEntry? v) => this._primaryEmail = v;
+  dynamic get $primaryEmail => this._primaryEmail?.toJson();
+  set $primaryEmail(v) => this._primaryEmail = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelEmailEntry.fromJson(a) : null;
+      }();
+
+  // primaryPhone.
+  ModelPhoneEntry? get primaryPhone => this._primaryPhone;
+  set primaryPhone(ModelPhoneEntry? v) => this._primaryPhone = v;
+  dynamic get $primaryPhone => this._primaryPhone?.toJson();
+  set $primaryPhone(v) => this._primaryPhone = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelPhoneEntry.fromJson(a) : null;
+      }();
+
+  // uploadedMediaIds.
+  List<String>? get uploadedMediaIds => this._uploadedMediaIds;
+  set uploadedMediaIds(List<String>? v) => this._uploadedMediaIds = v;
+  dynamic get $uploadedMediaIds => this
+      ._uploadedMediaIds
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  set $uploadedMediaIds(v) => this._uploadedMediaIds = letList(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
 }

@@ -24,11 +24,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
   //
 
-  static const CLASS = 'ModelScreenConfiguration';
-  static const MODEL_ID = 'model_screen_configuration';
-
   static const K_ARGUMENTS = 'arguments';
-  static const K_ID = 'id';
   static const K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN =
       'is_accessible_only_if_logged_in';
   static const K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN_AND_VERIFIED =
@@ -42,55 +38,86 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   static const K_PREVIOUS_CONFIGURATION = 'previous_configuration';
   static const K_TITLE = 'title';
 
-  Map<dynamic, dynamic>? arguments;
-  bool? isAccessibleOnlyIfLoggedIn;
-  bool? isAccessibleOnlyIfLoggedInAndVerified;
-  bool? isAccessibleOnlyIfLoggedOut;
-  bool? isRedirectable;
-  dynamic makeup;
-  Widget? navigationControlsWidget;
-  String? path;
-  ModelScreenConfiguration? previousConfiguration;
-  String? title;
+  static const CLASS = 'ModelScreenConfiguration';
+
+  @override
+  String get $class => CLASS;
+
+  Map<dynamic, dynamic>? _arguments;
+  bool? _isAccessibleOnlyIfLoggedIn;
+  bool? _isAccessibleOnlyIfLoggedInAndVerified;
+  bool? _isAccessibleOnlyIfLoggedOut;
+  bool? _isRedirectable;
+  dynamic _makeup;
+  Widget? _navigationControlsWidget;
+  String? _path;
+  ModelScreenConfiguration? _previousConfiguration;
+  String? _title;
 
   //
   //
   //
 
-  ModelScreenConfiguration({
-    String? id,
-    this.arguments,
-    this.isAccessibleOnlyIfLoggedIn,
-    this.isAccessibleOnlyIfLoggedInAndVerified,
-    this.isAccessibleOnlyIfLoggedOut,
-    this.isRedirectable,
-    this.makeup,
-    this.navigationControlsWidget,
-    this.path,
-    this.previousConfiguration,
-    this.title,
+  ModelScreenConfiguration.empty();
+
+  //
+  //
+  //
+
+  factory ModelScreenConfiguration({
+    Map<dynamic, dynamic>? arguments,
+    bool? isAccessibleOnlyIfLoggedIn,
+    bool? isAccessibleOnlyIfLoggedInAndVerified,
+    bool? isAccessibleOnlyIfLoggedOut,
+    bool? isRedirectable,
+    dynamic makeup,
+    Widget? navigationControlsWidget,
+    String? path,
+    ModelScreenConfiguration? previousConfiguration,
+    String? title,
   }) {
-    this.id = id;
+    return ModelScreenConfiguration.b(
+      arguments: arguments,
+      isAccessibleOnlyIfLoggedIn: isAccessibleOnlyIfLoggedIn,
+      isAccessibleOnlyIfLoggedInAndVerified:
+          isAccessibleOnlyIfLoggedInAndVerified,
+      isAccessibleOnlyIfLoggedOut: isAccessibleOnlyIfLoggedOut,
+      isRedirectable: isRedirectable,
+      makeup: makeup,
+      navigationControlsWidget: navigationControlsWidget,
+      path: path,
+      previousConfiguration: previousConfiguration,
+      title: title,
+    );
   }
 
   //
   //
   //
 
-  ModelScreenConfiguration.unsafe({
-    String? id,
-    this.arguments,
-    this.isAccessibleOnlyIfLoggedIn,
-    this.isAccessibleOnlyIfLoggedInAndVerified,
-    this.isAccessibleOnlyIfLoggedOut,
-    this.isRedirectable,
-    this.makeup,
-    this.navigationControlsWidget,
-    this.path,
-    this.previousConfiguration,
-    this.title,
+  ModelScreenConfiguration.b({
+    Map<dynamic, dynamic>? arguments,
+    bool? isAccessibleOnlyIfLoggedIn,
+    bool? isAccessibleOnlyIfLoggedInAndVerified,
+    bool? isAccessibleOnlyIfLoggedOut,
+    bool? isRedirectable,
+    dynamic makeup,
+    Widget? navigationControlsWidget,
+    String? path,
+    ModelScreenConfiguration? previousConfiguration,
+    String? title,
   }) {
-    this.id = id;
+    this._arguments = arguments;
+    this._isAccessibleOnlyIfLoggedIn = isAccessibleOnlyIfLoggedIn;
+    this._isAccessibleOnlyIfLoggedInAndVerified =
+        isAccessibleOnlyIfLoggedInAndVerified;
+    this._isAccessibleOnlyIfLoggedOut = isAccessibleOnlyIfLoggedOut;
+    this._isRedirectable = isRedirectable;
+    this._makeup = makeup;
+    this._navigationControlsWidget = navigationControlsWidget;
+    this._path = path;
+    this._previousConfiguration = previousConfiguration;
+    this._title = title;
   }
 
   //
@@ -101,7 +128,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     Model? other,
   ) {
     return ModelScreenConfiguration.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -127,7 +154,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
         final decoded = jsonDecode(source);
         return ModelScreenConfiguration.fromJson(decoded);
       } else {
-        return ModelScreenConfiguration.unsafe();
+        return ModelScreenConfiguration.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -143,35 +170,20 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelScreenConfiguration.unsafe(
-        arguments: letMap(otherData?[K_ARGUMENTS])
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0,
-                p1,
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        isAccessibleOnlyIfLoggedIn:
-            letBool(otherData?[K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN]),
-        isAccessibleOnlyIfLoggedInAndVerified:
-            letBool(otherData?[K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN_AND_VERIFIED]),
-        isAccessibleOnlyIfLoggedOut:
-            letBool(otherData?[K_IS_ACCESSIBLE_ONLY_IF_LOGGED_OUT]),
-        isRedirectable: letBool(otherData?[K_IS_REDIRECTABLE]),
-        makeup: otherData?[K_MAKEUP],
-        navigationControlsWidget: otherData?[K_NAVIGATION_CONTROLS_WIDGET],
-        path: otherData?[K_PATH]?.toString().trim().nullIfEmpty,
-        previousConfiguration: () {
-          final a =
-              letMap<String, dynamic>(otherData?[K_PREVIOUS_CONFIGURATION]);
-          return a != null ? ModelScreenConfiguration.fromJson(a) : null;
-        }(),
-        title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
-      );
+      return ModelScreenConfiguration.empty()
+        ..$arguments = otherData?[K_ARGUMENTS]
+        ..$isAccessibleOnlyIfLoggedIn =
+            otherData?[K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN]
+        ..$isAccessibleOnlyIfLoggedInAndVerified =
+            otherData?[K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN_AND_VERIFIED]
+        ..$isAccessibleOnlyIfLoggedOut =
+            otherData?[K_IS_ACCESSIBLE_ONLY_IF_LOGGED_OUT]
+        ..$isRedirectable = otherData?[K_IS_REDIRECTABLE]
+        ..$makeup = otherData?[K_MAKEUP]
+        ..$navigationControlsWidget = otherData?[K_NAVIGATION_CONTROLS_WIDGET]
+        ..$path = otherData?[K_PATH]
+        ..$previousConfiguration = otherData?[K_PREVIOUS_CONFIGURATION]
+        ..$title = otherData?[K_TITLE];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -186,10 +198,10 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelScreenConfiguration.fromJson(uri.queryParameters);
       } else {
-        return ModelScreenConfiguration.unsafe();
+        return ModelScreenConfiguration.b();
       }
     } catch (e) {
       assert(false, e);
@@ -229,26 +241,17 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_ARGUMENTS: arguments
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0,
-                p1,
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN: isAccessibleOnlyIfLoggedIn,
+        K_ARGUMENTS: this.$arguments,
+        K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN: this.$isAccessibleOnlyIfLoggedIn,
         K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN_AND_VERIFIED:
-            isAccessibleOnlyIfLoggedInAndVerified,
-        K_IS_ACCESSIBLE_ONLY_IF_LOGGED_OUT: isAccessibleOnlyIfLoggedOut,
-        K_IS_REDIRECTABLE: isRedirectable,
-        K_MAKEUP: makeup,
-        K_NAVIGATION_CONTROLS_WIDGET: navigationControlsWidget,
-        K_PATH: path?.toString().trim().nullIfEmpty,
-        K_PREVIOUS_CONFIGURATION: previousConfiguration?.toJson(),
-        K_TITLE: title?.toString().trim().nullIfEmpty,
+            this.$isAccessibleOnlyIfLoggedInAndVerified,
+        K_IS_ACCESSIBLE_ONLY_IF_LOGGED_OUT: this.$isAccessibleOnlyIfLoggedOut,
+        K_IS_REDIRECTABLE: this.$isRedirectable,
+        K_MAKEUP: this.$makeup,
+        K_NAVIGATION_CONTROLS_WIDGET: this.$navigationControlsWidget,
+        K_PATH: this.$path,
+        K_PREVIOUS_CONFIGURATION: this.$previousConfiguration,
+        K_TITLE: this.$title,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -263,7 +266,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
 
   @override
   T empty<T extends Model>() {
-    return ModelScreenConfiguration.unsafe() as T;
+    return ModelScreenConfiguration.b() as T;
   }
 
   //
@@ -272,7 +275,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
 
   @override
   T copy<T extends Model>() {
-    return (ModelScreenConfiguration.unsafe()..updateWith(this)) as T;
+    return (ModelScreenConfiguration.b()..updateWith(this)) as T;
   }
 
   //
@@ -285,30 +288,37 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelScreenConfiguration.fromJson(otherData);
-      other.arguments != null ? this.arguments = other.arguments : null;
-      other.id != null ? this.id = other.id : null;
-      other.isAccessibleOnlyIfLoggedIn != null
-          ? this.isAccessibleOnlyIfLoggedIn = other.isAccessibleOnlyIfLoggedIn
-          : null;
-      other.isAccessibleOnlyIfLoggedInAndVerified != null
-          ? this.isAccessibleOnlyIfLoggedInAndVerified =
-              other.isAccessibleOnlyIfLoggedInAndVerified
-          : null;
-      other.isAccessibleOnlyIfLoggedOut != null
-          ? this.isAccessibleOnlyIfLoggedOut = other.isAccessibleOnlyIfLoggedOut
-          : null;
-      other.isRedirectable != null
-          ? this.isRedirectable = other.isRedirectable
-          : null;
-      other.makeup != null ? this.makeup = other.makeup : null;
-      other.navigationControlsWidget != null
-          ? this.navigationControlsWidget = other.navigationControlsWidget
-          : null;
-      other.path != null ? this.path = other.path : null;
-      other.previousConfiguration != null
-          ? this.previousConfiguration = other.previousConfiguration
-          : null;
-      other.title != null ? this.title = other.title : null;
+      if (other._arguments != null) {
+        this.arguments = other._arguments!;
+      }
+      if (other._isAccessibleOnlyIfLoggedIn != null) {
+        this.isAccessibleOnlyIfLoggedIn = other._isAccessibleOnlyIfLoggedIn!;
+      }
+      if (other._isAccessibleOnlyIfLoggedInAndVerified != null) {
+        this.isAccessibleOnlyIfLoggedInAndVerified =
+            other._isAccessibleOnlyIfLoggedInAndVerified!;
+      }
+      if (other._isAccessibleOnlyIfLoggedOut != null) {
+        this.isAccessibleOnlyIfLoggedOut = other._isAccessibleOnlyIfLoggedOut!;
+      }
+      if (other._isRedirectable != null) {
+        this.isRedirectable = other._isRedirectable!;
+      }
+      if (other._makeup != null) {
+        this.makeup = other._makeup!;
+      }
+      if (other._navigationControlsWidget != null) {
+        this.navigationControlsWidget = other._navigationControlsWidget!;
+      }
+      if (other._path != null) {
+        this.path = other._path!;
+      }
+      if (other._previousConfiguration != null) {
+        this.previousConfiguration = other._previousConfiguration!;
+      }
+      if (other._title != null) {
+        this.title = other._title!;
+      }
     }
   }
 
@@ -316,5 +326,94 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // arguments.
+  Map<dynamic, dynamic>? get arguments => this._arguments;
+  set arguments(Map<dynamic, dynamic>? v) => this._arguments = v;
+  dynamic get $arguments => this
+      ._arguments
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0,
+          p1,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  set $arguments(v) => this._arguments = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0,
+          p1,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // isAccessibleOnlyIfLoggedIn.
+  bool? get isAccessibleOnlyIfLoggedIn => this._isAccessibleOnlyIfLoggedIn;
+  set isAccessibleOnlyIfLoggedIn(bool? v) =>
+      this._isAccessibleOnlyIfLoggedIn = v;
+  dynamic get $isAccessibleOnlyIfLoggedIn => this._isAccessibleOnlyIfLoggedIn;
+  set $isAccessibleOnlyIfLoggedIn(v) =>
+      this._isAccessibleOnlyIfLoggedIn = letBool(v);
+
+  // isAccessibleOnlyIfLoggedInAndVerified.
+  bool? get isAccessibleOnlyIfLoggedInAndVerified =>
+      this._isAccessibleOnlyIfLoggedInAndVerified;
+  set isAccessibleOnlyIfLoggedInAndVerified(bool? v) =>
+      this._isAccessibleOnlyIfLoggedInAndVerified = v;
+  dynamic get $isAccessibleOnlyIfLoggedInAndVerified =>
+      this._isAccessibleOnlyIfLoggedInAndVerified;
+  set $isAccessibleOnlyIfLoggedInAndVerified(v) =>
+      this._isAccessibleOnlyIfLoggedInAndVerified = letBool(v);
+
+  // isAccessibleOnlyIfLoggedOut.
+  bool? get isAccessibleOnlyIfLoggedOut => this._isAccessibleOnlyIfLoggedOut;
+  set isAccessibleOnlyIfLoggedOut(bool? v) =>
+      this._isAccessibleOnlyIfLoggedOut = v;
+  dynamic get $isAccessibleOnlyIfLoggedOut => this._isAccessibleOnlyIfLoggedOut;
+  set $isAccessibleOnlyIfLoggedOut(v) =>
+      this._isAccessibleOnlyIfLoggedOut = letBool(v);
+
+  // isRedirectable.
+  bool? get isRedirectable => this._isRedirectable;
+  set isRedirectable(bool? v) => this._isRedirectable = v;
+  dynamic get $isRedirectable => this._isRedirectable;
+  set $isRedirectable(v) => this._isRedirectable = letBool(v);
+
+  // makeup.
+  dynamic get makeup => this._makeup;
+  set makeup(dynamic v) => this._makeup = v;
+  dynamic get $makeup => this._makeup;
+  set $makeup(v) => this._makeup = v;
+
+  // navigationControlsWidget.
+  Widget? get navigationControlsWidget => this._navigationControlsWidget;
+  set navigationControlsWidget(Widget? v) => this._navigationControlsWidget = v;
+  dynamic get $navigationControlsWidget => this._navigationControlsWidget;
+  set $navigationControlsWidget(v) => this._navigationControlsWidget = v;
+
+  // path.
+  String? get path => this._path;
+  set path(String? v) => this._path = v;
+  dynamic get $path => this._path?.toString().trim().nullIfEmpty;
+  set $path(v) => this._path = v?.toString().trim().nullIfEmpty;
+
+  // previousConfiguration.
+  ModelScreenConfiguration? get previousConfiguration =>
+      this._previousConfiguration;
+  set previousConfiguration(ModelScreenConfiguration? v) =>
+      this._previousConfiguration = v;
+  dynamic get $previousConfiguration => this._previousConfiguration?.toJson();
+  set $previousConfiguration(v) => this._previousConfiguration = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelScreenConfiguration.fromJson(a) : null;
+      }();
+
+  // title.
+  String? get title => this._title;
+  set title(String? v) => this._title = v;
+  dynamic get $title => this._title?.toString().trim().nullIfEmpty;
+  set $title(v) => this._title = v?.toString().trim().nullIfEmpty;
 }

@@ -24,9 +24,6 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
   //
 
-  static const CLASS = 'ModelNoteEntry';
-  static const MODEL_ID = 'model_note_entry';
-
   static const K_BODY = 'body';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
@@ -34,40 +31,67 @@ class ModelNoteEntry extends _ModelNoteEntry {
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
 
-  String? body;
-  DateTime? createdAt;
-  String? createdBy;
-  String? title;
-  String? titleSearchable;
+  static const CLASS = 'ModelNoteEntry';
+
+  @override
+  String get $class => CLASS;
+
+  String? _body;
+  DateTime? _createdAt;
+  String? _createdBy;
+  String? _id;
+  String? _title;
+  String? _titleSearchable;
 
   //
   //
   //
 
-  ModelNoteEntry({
-    String? id,
-    this.body,
-    this.createdAt,
-    this.createdBy,
-    this.title,
-    this.titleSearchable,
+  ModelNoteEntry.empty();
+
+  //
+  //
+  //
+
+  factory ModelNoteEntry({
+    String? body,
+    required DateTime createdAt,
+    required String createdBy,
+    required String id,
+    String? title,
+    String? titleSearchable,
   }) {
-    this.id = id;
+    return ModelNoteEntry.b(
+      body: body,
+      createdAt: createdAt,
+      createdBy: createdBy,
+      id: id,
+      title: title,
+      titleSearchable: titleSearchable,
+    );
   }
 
   //
   //
   //
 
-  ModelNoteEntry.unsafe({
+  ModelNoteEntry.b({
+    String? body,
+    DateTime? createdAt,
+    String? createdBy,
     String? id,
-    this.body,
-    this.createdAt,
-    this.createdBy,
-    this.title,
-    this.titleSearchable,
+    String? title,
+    String? titleSearchable,
   }) {
-    this.id = id;
+    assert(createdAt != null);
+    assert(createdBy != null);
+    assert(id != null);
+    this._body = body;
+    this._createdAt = createdAt;
+    this._createdBy = createdBy;
+    this._id = id;
+    this._title = title;
+    this._titleSearchable = titleSearchable;
   }
 
   //
@@ -78,7 +102,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
     Model? other,
   ) {
     return ModelNoteEntry.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -104,7 +128,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
         final decoded = jsonDecode(source);
         return ModelNoteEntry.fromJson(decoded);
       } else {
-        return ModelNoteEntry.unsafe();
+        return ModelNoteEntry.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -120,22 +144,13 @@ class ModelNoteEntry extends _ModelNoteEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelNoteEntry.unsafe(
-        body: otherData?[K_BODY]?.toString().trim().nullIfEmpty,
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        title: otherData?[K_TITLE]?.toString().trim().nullIfEmpty,
-        titleSearchable: otherData?[K_TITLE_SEARCHABLE]
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ' '),
-      );
+      return ModelNoteEntry.empty()
+        ..$body = otherData?[K_BODY]
+        ..$createdAt = otherData?[K_CREATED_AT]
+        ..$createdBy = otherData?[K_CREATED_BY]
+        ..$id = otherData?[K_ID]
+        ..$title = otherData?[K_TITLE]
+        ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -150,10 +165,10 @@ class ModelNoteEntry extends _ModelNoteEntry {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelNoteEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelNoteEntry.unsafe();
+        return ModelNoteEntry.b();
       }
     } catch (e) {
       assert(false, e);
@@ -193,17 +208,12 @@ class ModelNoteEntry extends _ModelNoteEntry {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_BODY: body?.toString().trim().nullIfEmpty,
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_TITLE: title?.toString().trim().nullIfEmpty,
-        K_TITLE_SEARCHABLE: titleSearchable
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ' '),
+        K_BODY: this.$body,
+        K_CREATED_AT: this.$createdAt,
+        K_CREATED_BY: this.$createdBy,
+        K_ID: this.$id,
+        K_TITLE: this.$title,
+        K_TITLE_SEARCHABLE: this.$titleSearchable,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -218,7 +228,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
 
   @override
   T empty<T extends Model>() {
-    return ModelNoteEntry.unsafe() as T;
+    return ModelNoteEntry.b() as T;
   }
 
   //
@@ -227,7 +237,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
 
   @override
   T copy<T extends Model>() {
-    return (ModelNoteEntry.unsafe()..updateWith(this)) as T;
+    return (ModelNoteEntry.b()..updateWith(this)) as T;
   }
 
   //
@@ -240,14 +250,24 @@ class ModelNoteEntry extends _ModelNoteEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelNoteEntry.fromJson(otherData);
-      other.body != null ? this.body = other.body : null;
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdBy != null ? this.createdBy = other.createdBy : null;
-      other.id != null ? this.id = other.id : null;
-      other.title != null ? this.title = other.title : null;
-      other.titleSearchable != null
-          ? this.titleSearchable = other.titleSearchable
-          : null;
+      if (other._body != null) {
+        this.body = other._body!;
+      }
+      if (other._createdAt != null) {
+        this.createdAt = other._createdAt!;
+      }
+      if (other._createdBy != null) {
+        this.createdBy = other._createdBy!;
+      }
+      if (other._id != null) {
+        this.id = other._id!;
+      }
+      if (other._title != null) {
+        this.title = other._title!;
+      }
+      if (other._titleSearchable != null) {
+        this.titleSearchable = other._titleSearchable!;
+      }
     }
   }
 
@@ -255,5 +275,44 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // body.
+  String? get body => this._body;
+  set body(String? v) => this._body = v;
+  dynamic get $body => this._body?.toString().trim().nullIfEmpty;
+  set $body(v) => this._body = v?.toString().trim().nullIfEmpty;
+
+  // createdAt.
+  DateTime get createdAt => this._createdAt!;
+  set createdAt(DateTime v) => this._createdAt = v;
+  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  set $createdAt(v) => this._createdAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // createdBy.
+  String get createdBy => this._createdBy!;
+  set createdBy(String v) => this._createdBy = v;
+  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+
+  // id.
+  String get id => this._id!;
+  set id(String v) => this._id = v;
+  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+
+  // title.
+  String? get title => this._title;
+  set title(String? v) => this._title = v;
+  dynamic get $title => this._title?.toString().trim().nullIfEmpty;
+  set $title(v) => this._title = v?.toString().trim().nullIfEmpty;
+
+  // titleSearchable.
+  String? get titleSearchable => this._titleSearchable;
+  set titleSearchable(String? v) => this._titleSearchable = v;
+  dynamic get $titleSearchable =>
+      this._titleSearchable?.toString().trim().nullIfEmpty;
+  set $titleSearchable(v) =>
+      this._titleSearchable = v?.toString().trim().nullIfEmpty;
 }

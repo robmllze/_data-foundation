@@ -16,11 +16,12 @@ part '_model_note_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...CommonFields.title,
-    ...CommonFields.title_searchable,
-    ...CommonFields.created_at,
-    ...CommonFields.created_by,
-    'body': 'String?',
+    ('id', String),
+    ('title', 'String?'),
+    ('title_searchable', 'String?'),
+    ('created_at', DateTime),
+    ('created_by', String),
+    ('body', 'String?'),
   },
 )
 abstract class _ModelNoteEntry extends ThisModel<ModelNoteEntry> {}

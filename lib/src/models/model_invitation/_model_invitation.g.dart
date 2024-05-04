@@ -24,9 +24,6 @@ class ModelInvitation extends _ModelInvitation {
   //
   //
 
-  static const CLASS = 'ModelInvitation';
-  static const MODEL_ID = 'model_invitation';
-
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DEF = 'def';
@@ -38,52 +35,87 @@ class ModelInvitation extends _ModelInvitation {
   static const K_INVITEE_EMAILS = 'invitee_emails';
   static const K_INVITEE_REJECTED_EMAILS = 'invitee_rejected_emails';
 
-  DateTime? createdAt;
-  String? createdBy;
-  GenericModel? def;
-  InvitationDefType? defType;
-  DateTime? expiresAt;
-  Uri? invitationLink;
-  Set<String>? inviteeAcceptedEmails;
-  Set<String>? inviteeEmails;
-  Set<String>? inviteeRejectedEmails;
+  static const CLASS = 'ModelInvitation';
+
+  @override
+  String get $class => CLASS;
+
+  DateTime? _createdAt;
+  String? _createdBy;
+  GenericModel? _def;
+  InvitationDefType? _defType;
+  DateTime? _expiresAt;
+  String? _id;
+  Uri? _invitationLink;
+  Set<String>? _inviteeAcceptedEmails;
+  Set<String>? _inviteeEmails;
+  Set<String>? _inviteeRejectedEmails;
 
   //
   //
   //
 
-  ModelInvitation({
-    String? id,
-    this.createdAt,
-    this.createdBy,
-    this.def,
-    this.defType,
-    this.expiresAt,
-    this.invitationLink,
-    this.inviteeAcceptedEmails,
-    this.inviteeEmails,
-    this.inviteeRejectedEmails,
+  ModelInvitation.empty();
+
+  //
+  //
+  //
+
+  factory ModelInvitation({
+    required DateTime createdAt,
+    required String createdBy,
+    GenericModel? def,
+    InvitationDefType? defType,
+    DateTime? expiresAt,
+    required String id,
+    Uri? invitationLink,
+    Set<String>? inviteeAcceptedEmails,
+    Set<String>? inviteeEmails,
+    Set<String>? inviteeRejectedEmails,
   }) {
-    this.id = id;
+    return ModelInvitation.b(
+      createdAt: createdAt,
+      createdBy: createdBy,
+      def: def,
+      defType: defType,
+      expiresAt: expiresAt,
+      id: id,
+      invitationLink: invitationLink,
+      inviteeAcceptedEmails: inviteeAcceptedEmails,
+      inviteeEmails: inviteeEmails,
+      inviteeRejectedEmails: inviteeRejectedEmails,
+    );
   }
 
   //
   //
   //
 
-  ModelInvitation.unsafe({
+  ModelInvitation.b({
+    DateTime? createdAt,
+    String? createdBy,
+    GenericModel? def,
+    InvitationDefType? defType,
+    DateTime? expiresAt,
     String? id,
-    this.createdAt,
-    this.createdBy,
-    this.def,
-    this.defType,
-    this.expiresAt,
-    this.invitationLink,
-    this.inviteeAcceptedEmails,
-    this.inviteeEmails,
-    this.inviteeRejectedEmails,
+    Uri? invitationLink,
+    Set<String>? inviteeAcceptedEmails,
+    Set<String>? inviteeEmails,
+    Set<String>? inviteeRejectedEmails,
   }) {
-    this.id = id;
+    assert(createdAt != null);
+    assert(createdBy != null);
+    assert(id != null);
+    this._createdAt = createdAt;
+    this._createdBy = createdBy;
+    this._def = def;
+    this._defType = defType;
+    this._expiresAt = expiresAt;
+    this._id = id;
+    this._invitationLink = invitationLink;
+    this._inviteeAcceptedEmails = inviteeAcceptedEmails;
+    this._inviteeEmails = inviteeEmails;
+    this._inviteeRejectedEmails = inviteeRejectedEmails;
   }
 
   //
@@ -94,7 +126,7 @@ class ModelInvitation extends _ModelInvitation {
     Model? other,
   ) {
     return ModelInvitation.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -120,7 +152,7 @@ class ModelInvitation extends _ModelInvitation {
         final decoded = jsonDecode(source);
         return ModelInvitation.fromJson(decoded);
       } else {
-        return ModelInvitation.unsafe();
+        return ModelInvitation.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -136,67 +168,17 @@ class ModelInvitation extends _ModelInvitation {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelInvitation.unsafe(
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
-        def: () {
-          final a = letMap<String, dynamic>(otherData?[K_DEF]);
-          return a != null ? GenericModel.fromJson(a) : null;
-        }(),
-        defType: InvitationDefType.values
-            .valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
-        expiresAt: () {
-          final a = otherData?[K_EXPIRES_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        invitationLink: () {
-          final a = otherData?[K_INVITATION_LINK];
-          return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
-        }(),
-        inviteeAcceptedEmails: letSet(otherData?[K_INVITEE_ACCEPTED_EMAILS])
-            ?.map(
-              (p0) => p0
-                  ?.toString()
-                  .trim()
-                  .nullIfEmpty
-                  ?.toLowerCase()
-                  .replaceAll(r'[^\w]', ' '),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
-        inviteeEmails: letSet(otherData?[K_INVITEE_EMAILS])
-            ?.map(
-              (p0) => p0
-                  ?.toString()
-                  .trim()
-                  .nullIfEmpty
-                  ?.toLowerCase()
-                  .replaceAll(r'[^\w]', ' '),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
-        inviteeRejectedEmails: letSet(otherData?[K_INVITEE_REJECTED_EMAILS])
-            ?.map(
-              (p0) => p0
-                  ?.toString()
-                  .trim()
-                  .nullIfEmpty
-                  ?.toLowerCase()
-                  .replaceAll(r'[^\w]', ' '),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
-      );
+      return ModelInvitation.empty()
+        ..$createdAt = otherData?[K_CREATED_AT]
+        ..$createdBy = otherData?[K_CREATED_BY]
+        ..$def = otherData?[K_DEF]
+        ..$defType = otherData?[K_DEF_TYPE]
+        ..$expiresAt = otherData?[K_EXPIRES_AT]
+        ..$id = otherData?[K_ID]
+        ..$invitationLink = otherData?[K_INVITATION_LINK]
+        ..$inviteeAcceptedEmails = otherData?[K_INVITEE_ACCEPTED_EMAILS]
+        ..$inviteeEmails = otherData?[K_INVITEE_EMAILS]
+        ..$inviteeRejectedEmails = otherData?[K_INVITEE_REJECTED_EMAILS];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -211,10 +193,10 @@ class ModelInvitation extends _ModelInvitation {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelInvitation.fromJson(uri.queryParameters);
       } else {
-        return ModelInvitation.unsafe();
+        return ModelInvitation.b();
       }
     } catch (e) {
       assert(false, e);
@@ -254,49 +236,16 @@ class ModelInvitation extends _ModelInvitation {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
-        K_DEF: def?.toJson(),
-        K_DEF_TYPE: defType?.name,
-        K_EXPIRES_AT: expiresAt?.toUtc()?.toIso8601String(),
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_INVITATION_LINK: invitationLink?.toString(),
-        K_INVITEE_ACCEPTED_EMAILS: inviteeAcceptedEmails
-            ?.map(
-              (p0) => p0
-                  ?.toString()
-                  .trim()
-                  .nullIfEmpty
-                  ?.toLowerCase()
-                  .replaceAll(r'[^\w]', ' '),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
-        K_INVITEE_EMAILS: inviteeEmails
-            ?.map(
-              (p0) => p0
-                  ?.toString()
-                  .trim()
-                  .nullIfEmpty
-                  ?.toLowerCase()
-                  .replaceAll(r'[^\w]', ' '),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
-        K_INVITEE_REJECTED_EMAILS: inviteeRejectedEmails
-            ?.map(
-              (p0) => p0
-                  ?.toString()
-                  .trim()
-                  .nullIfEmpty
-                  ?.toLowerCase()
-                  .replaceAll(r'[^\w]', ' '),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
+        K_CREATED_AT: this.$createdAt,
+        K_CREATED_BY: this.$createdBy,
+        K_DEF: this.$def,
+        K_DEF_TYPE: this.$defType,
+        K_EXPIRES_AT: this.$expiresAt,
+        K_ID: this.$id,
+        K_INVITATION_LINK: this.$invitationLink,
+        K_INVITEE_ACCEPTED_EMAILS: this.$inviteeAcceptedEmails,
+        K_INVITEE_EMAILS: this.$inviteeEmails,
+        K_INVITEE_REJECTED_EMAILS: this.$inviteeRejectedEmails,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -311,7 +260,7 @@ class ModelInvitation extends _ModelInvitation {
 
   @override
   T empty<T extends Model>() {
-    return ModelInvitation.unsafe() as T;
+    return ModelInvitation.b() as T;
   }
 
   //
@@ -320,7 +269,7 @@ class ModelInvitation extends _ModelInvitation {
 
   @override
   T copy<T extends Model>() {
-    return (ModelInvitation.unsafe()..updateWith(this)) as T;
+    return (ModelInvitation.b()..updateWith(this)) as T;
   }
 
   //
@@ -333,24 +282,36 @@ class ModelInvitation extends _ModelInvitation {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelInvitation.fromJson(otherData);
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdBy != null ? this.createdBy = other.createdBy : null;
-      other.def != null ? this.def = other.def : null;
-      other.defType != null ? this.defType = other.defType : null;
-      other.expiresAt != null ? this.expiresAt = other.expiresAt : null;
-      other.id != null ? this.id = other.id : null;
-      other.invitationLink != null
-          ? this.invitationLink = other.invitationLink
-          : null;
-      other.inviteeAcceptedEmails != null
-          ? this.inviteeAcceptedEmails = other.inviteeAcceptedEmails
-          : null;
-      other.inviteeEmails != null
-          ? this.inviteeEmails = other.inviteeEmails
-          : null;
-      other.inviteeRejectedEmails != null
-          ? this.inviteeRejectedEmails = other.inviteeRejectedEmails
-          : null;
+      if (other._createdAt != null) {
+        this.createdAt = other._createdAt!;
+      }
+      if (other._createdBy != null) {
+        this.createdBy = other._createdBy!;
+      }
+      if (other._def != null) {
+        this.def = other._def!;
+      }
+      if (other._defType != null) {
+        this.defType = other._defType!;
+      }
+      if (other._expiresAt != null) {
+        this.expiresAt = other._expiresAt!;
+      }
+      if (other._id != null) {
+        this.id = other._id!;
+      }
+      if (other._invitationLink != null) {
+        this.invitationLink = other._invitationLink!;
+      }
+      if (other._inviteeAcceptedEmails != null) {
+        this.inviteeAcceptedEmails = other._inviteeAcceptedEmails!;
+      }
+      if (other._inviteeEmails != null) {
+        this.inviteeEmails = other._inviteeEmails!;
+      }
+      if (other._inviteeRejectedEmails != null) {
+        this.inviteeRejectedEmails = other._inviteeRejectedEmails!;
+      }
     }
   }
 
@@ -358,5 +319,148 @@ class ModelInvitation extends _ModelInvitation {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // createdAt.
+  DateTime get createdAt => this._createdAt!;
+  set createdAt(DateTime v) => this._createdAt = v;
+  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  set $createdAt(v) => this._createdAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // createdBy.
+  String get createdBy => this._createdBy!;
+  set createdBy(String v) => this._createdBy = v;
+  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+
+  // def.
+  GenericModel? get def => this._def;
+  set def(GenericModel? v) => this._def = v;
+  dynamic get $def => this._def?.toJson();
+  set $def(v) => this._def = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? GenericModel.fromJson(a) : null;
+      }();
+
+  // defType.
+  InvitationDefType? get defType => this._defType;
+  set defType(InvitationDefType? v) => this._defType = v;
+  dynamic get $defType => this._defType?.name;
+  set $defType(v) =>
+      this._defType = InvitationDefType.values.valueOf(letAs<String>(v));
+
+  // expiresAt.
+  DateTime? get expiresAt => this._expiresAt;
+  set expiresAt(DateTime? v) => this._expiresAt = v;
+  dynamic get $expiresAt => this._expiresAt?.toUtc()?.toIso8601String();
+  set $expiresAt(v) => this._expiresAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // id.
+  String get id => this._id!;
+  set id(String v) => this._id = v;
+  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+
+  // invitationLink.
+  Uri? get invitationLink => this._invitationLink;
+  set invitationLink(Uri? v) => this._invitationLink = v;
+  dynamic get $invitationLink => this._invitationLink?.toString();
+  set $invitationLink(v) => this._invitationLink = () {
+        final a = v;
+        return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
+      }();
+
+  // inviteeAcceptedEmails.
+  Set<String>? get inviteeAcceptedEmails => this._inviteeAcceptedEmails;
+  set inviteeAcceptedEmails(Set<String>? v) => this._inviteeAcceptedEmails = v;
+  dynamic get $inviteeAcceptedEmails => this
+      ._inviteeAcceptedEmails
+      ?.map(
+        (p0) => p0
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ''),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  set $inviteeAcceptedEmails(v) => this._inviteeAcceptedEmails = letSet(v)
+      ?.map(
+        (p0) => p0
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ''),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
+
+  // inviteeEmails.
+  Set<String>? get inviteeEmails => this._inviteeEmails;
+  set inviteeEmails(Set<String>? v) => this._inviteeEmails = v;
+  dynamic get $inviteeEmails => this
+      ._inviteeEmails
+      ?.map(
+        (p0) => p0
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ''),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  set $inviteeEmails(v) => this._inviteeEmails = letSet(v)
+      ?.map(
+        (p0) => p0
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ''),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
+
+  // inviteeRejectedEmails.
+  Set<String>? get inviteeRejectedEmails => this._inviteeRejectedEmails;
+  set inviteeRejectedEmails(Set<String>? v) => this._inviteeRejectedEmails = v;
+  dynamic get $inviteeRejectedEmails => this
+      ._inviteeRejectedEmails
+      ?.map(
+        (p0) => p0
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ''),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  set $inviteeRejectedEmails(v) => this._inviteeRejectedEmails = letSet(v)
+      ?.map(
+        (p0) => p0
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ''),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
 }

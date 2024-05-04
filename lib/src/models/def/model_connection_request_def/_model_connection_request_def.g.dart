@@ -24,42 +24,56 @@ class ModelConnectionRequestDef extends Model {
   //
   //
 
-  static const CLASS = 'ModelConnectionRequestDef';
-  static const MODEL_ID = 'model_connection_request_def';
-
-  static const K_ID = 'id';
   static const K_RECEIVER_PID = 'receiver_pid';
   static const K_RELATIONSHIP_ID = 'relationship_id';
   static const K_SENDER_PID = 'sender_pid';
 
-  String? receiverPid;
-  String? relationshipId;
-  String? senderPid;
+  static const CLASS = 'ModelConnectionRequestDef';
+
+  @override
+  String get $class => CLASS;
+
+  String? _receiverPid;
+  String? _relationshipId;
+  String? _senderPid;
 
   //
   //
   //
 
-  ModelConnectionRequestDef({
-    String? id,
-    this.receiverPid,
-    this.relationshipId,
-    this.senderPid,
+  ModelConnectionRequestDef.empty();
+
+  //
+  //
+  //
+
+  factory ModelConnectionRequestDef({
+    required String receiverPid,
+    required String relationshipId,
+    required String senderPid,
   }) {
-    this.id = id;
+    return ModelConnectionRequestDef.b(
+      receiverPid: receiverPid,
+      relationshipId: relationshipId,
+      senderPid: senderPid,
+    );
   }
 
   //
   //
   //
 
-  ModelConnectionRequestDef.unsafe({
-    String? id,
-    this.receiverPid,
-    this.relationshipId,
-    this.senderPid,
+  ModelConnectionRequestDef.b({
+    String? receiverPid,
+    String? relationshipId,
+    String? senderPid,
   }) {
-    this.id = id;
+    assert(receiverPid != null);
+    assert(relationshipId != null);
+    assert(senderPid != null);
+    this._receiverPid = receiverPid;
+    this._relationshipId = relationshipId;
+    this._senderPid = senderPid;
   }
 
   //
@@ -70,7 +84,7 @@ class ModelConnectionRequestDef extends Model {
     Model? other,
   ) {
     return ModelConnectionRequestDef.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -96,7 +110,7 @@ class ModelConnectionRequestDef extends Model {
         final decoded = jsonDecode(source);
         return ModelConnectionRequestDef.fromJson(decoded);
       } else {
-        return ModelConnectionRequestDef.unsafe();
+        return ModelConnectionRequestDef.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -112,13 +126,10 @@ class ModelConnectionRequestDef extends Model {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelConnectionRequestDef.unsafe(
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        receiverPid: otherData?[K_RECEIVER_PID]?.toString().trim().nullIfEmpty,
-        relationshipId:
-            otherData?[K_RELATIONSHIP_ID]?.toString().trim().nullIfEmpty,
-        senderPid: otherData?[K_SENDER_PID]?.toString().trim().nullIfEmpty,
-      );
+      return ModelConnectionRequestDef.empty()
+        ..$receiverPid = otherData?[K_RECEIVER_PID]
+        ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
+        ..$senderPid = otherData?[K_SENDER_PID];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -133,10 +144,10 @@ class ModelConnectionRequestDef extends Model {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelConnectionRequestDef.fromJson(uri.queryParameters);
       } else {
-        return ModelConnectionRequestDef.unsafe();
+        return ModelConnectionRequestDef.b();
       }
     } catch (e) {
       assert(false, e);
@@ -176,10 +187,9 @@ class ModelConnectionRequestDef extends Model {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_RECEIVER_PID: receiverPid?.toString().trim().nullIfEmpty,
-        K_RELATIONSHIP_ID: relationshipId?.toString().trim().nullIfEmpty,
-        K_SENDER_PID: senderPid?.toString().trim().nullIfEmpty,
+        K_RECEIVER_PID: this.$receiverPid,
+        K_RELATIONSHIP_ID: this.$relationshipId,
+        K_SENDER_PID: this.$senderPid,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -194,7 +204,7 @@ class ModelConnectionRequestDef extends Model {
 
   @override
   T empty<T extends Model>() {
-    return ModelConnectionRequestDef.unsafe() as T;
+    return ModelConnectionRequestDef.b() as T;
   }
 
   //
@@ -203,7 +213,7 @@ class ModelConnectionRequestDef extends Model {
 
   @override
   T copy<T extends Model>() {
-    return (ModelConnectionRequestDef.unsafe()..updateWith(this)) as T;
+    return (ModelConnectionRequestDef.b()..updateWith(this)) as T;
   }
 
   //
@@ -216,12 +226,15 @@ class ModelConnectionRequestDef extends Model {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelConnectionRequestDef.fromJson(otherData);
-      other.id != null ? this.id = other.id : null;
-      other.receiverPid != null ? this.receiverPid = other.receiverPid : null;
-      other.relationshipId != null
-          ? this.relationshipId = other.relationshipId
-          : null;
-      other.senderPid != null ? this.senderPid = other.senderPid : null;
+      if (other._receiverPid != null) {
+        this.receiverPid = other._receiverPid!;
+      }
+      if (other._relationshipId != null) {
+        this.relationshipId = other._relationshipId!;
+      }
+      if (other._senderPid != null) {
+        this.senderPid = other._senderPid!;
+      }
     }
   }
 
@@ -229,5 +242,24 @@ class ModelConnectionRequestDef extends Model {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // receiverPid.
+  String get receiverPid => this._receiverPid!;
+  set receiverPid(String v) => this._receiverPid = v;
+  dynamic get $receiverPid =>
+      (this._receiverPid?.toString().trim().nullIfEmpty)!;
+  set $receiverPid(v) => this._receiverPid = v?.toString().trim().nullIfEmpty;
+
+  // relationshipId.
+  String get relationshipId => this._relationshipId!;
+  set relationshipId(String v) => this._relationshipId = v;
+  dynamic get $relationshipId =>
+      (this._relationshipId?.toString().trim().nullIfEmpty)!;
+  set $relationshipId(v) =>
+      this._relationshipId = v?.toString().trim().nullIfEmpty;
+
+  // senderPid.
+  String get senderPid => this._senderPid!;
+  set senderPid(String v) => this._senderPid = v;
+  dynamic get $senderPid => (this._senderPid?.toString().trim().nullIfEmpty)!;
+  set $senderPid(v) => this._senderPid = v?.toString().trim().nullIfEmpty;
 }

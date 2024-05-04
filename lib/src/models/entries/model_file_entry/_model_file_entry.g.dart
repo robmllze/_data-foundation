@@ -24,9 +24,6 @@ class ModelFileEntry extends _ModelFileEntry {
   //
   //
 
-  static const CLASS = 'ModelFileEntry';
-  static const MODEL_ID = 'model_file_entry';
-
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DOWNLOAD_URL = 'download_url';
@@ -37,49 +34,82 @@ class ModelFileEntry extends _ModelFileEntry {
   static const K_STORAGE_PATH = 'storage_path';
   static const K_TYPE = 'type';
 
-  DateTime? createdAt;
-  String? createdBy;
-  Uri? downloadUrl;
-  List<String>? falsePath;
-  String? name;
-  int? size;
-  String? storagePath;
-  String? type;
+  static const CLASS = 'ModelFileEntry';
+
+  @override
+  String get $class => CLASS;
+
+  DateTime? _createdAt;
+  String? _createdBy;
+  Uri? _downloadUrl;
+  List<String>? _falsePath;
+  String? _id;
+  String? _name;
+  int? _size;
+  String? _storagePath;
+  String? _type;
 
   //
   //
   //
 
-  ModelFileEntry({
-    String? id,
-    this.createdAt,
-    this.createdBy,
-    this.downloadUrl,
-    this.falsePath,
-    this.name,
-    this.size,
-    this.storagePath,
-    this.type,
+  ModelFileEntry.empty();
+
+  //
+  //
+  //
+
+  factory ModelFileEntry({
+    required DateTime createdAt,
+    required String createdBy,
+    Uri? downloadUrl,
+    List<String>? falsePath,
+    required String id,
+    String? name,
+    int? size,
+    String? storagePath,
+    String? type,
   }) {
-    this.id = id;
+    return ModelFileEntry.b(
+      createdAt: createdAt,
+      createdBy: createdBy,
+      downloadUrl: downloadUrl,
+      falsePath: falsePath,
+      id: id,
+      name: name,
+      size: size,
+      storagePath: storagePath,
+      type: type,
+    );
   }
 
   //
   //
   //
 
-  ModelFileEntry.unsafe({
+  ModelFileEntry.b({
+    DateTime? createdAt,
+    String? createdBy,
+    Uri? downloadUrl,
+    List<String>? falsePath,
     String? id,
-    this.createdAt,
-    this.createdBy,
-    this.downloadUrl,
-    this.falsePath,
-    this.name,
-    this.size,
-    this.storagePath,
-    this.type,
+    String? name,
+    int? size,
+    String? storagePath,
+    String? type,
   }) {
-    this.id = id;
+    assert(createdAt != null);
+    assert(createdBy != null);
+    assert(id != null);
+    this._createdAt = createdAt;
+    this._createdBy = createdBy;
+    this._downloadUrl = downloadUrl;
+    this._falsePath = falsePath;
+    this._id = id;
+    this._name = name;
+    this._size = size;
+    this._storagePath = storagePath;
+    this._type = type;
   }
 
   //
@@ -90,7 +120,7 @@ class ModelFileEntry extends _ModelFileEntry {
     Model? other,
   ) {
     return ModelFileEntry.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -116,7 +146,7 @@ class ModelFileEntry extends _ModelFileEntry {
         final decoded = jsonDecode(source);
         return ModelFileEntry.fromJson(decoded);
       } else {
-        return ModelFileEntry.unsafe();
+        return ModelFileEntry.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -132,30 +162,16 @@ class ModelFileEntry extends _ModelFileEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelFileEntry.unsafe(
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
-        downloadUrl: () {
-          final a = otherData?[K_DOWNLOAD_URL];
-          return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
-        }(),
-        falsePath: letList(otherData?[K_FALSE_PATH])
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList()
-            .cast(),
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        name: otherData?[K_NAME]?.toString().trim().nullIfEmpty,
-        size: letInt(otherData?[K_SIZE]),
-        storagePath: otherData?[K_STORAGE_PATH]?.toString().trim().nullIfEmpty,
-        type: otherData?[K_TYPE]?.toString().trim().nullIfEmpty,
-      );
+      return ModelFileEntry.empty()
+        ..$createdAt = otherData?[K_CREATED_AT]
+        ..$createdBy = otherData?[K_CREATED_BY]
+        ..$downloadUrl = otherData?[K_DOWNLOAD_URL]
+        ..$falsePath = otherData?[K_FALSE_PATH]
+        ..$id = otherData?[K_ID]
+        ..$name = otherData?[K_NAME]
+        ..$size = otherData?[K_SIZE]
+        ..$storagePath = otherData?[K_STORAGE_PATH]
+        ..$type = otherData?[K_TYPE];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -170,10 +186,10 @@ class ModelFileEntry extends _ModelFileEntry {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelFileEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelFileEntry.unsafe();
+        return ModelFileEntry.b();
       }
     } catch (e) {
       assert(false, e);
@@ -213,21 +229,15 @@ class ModelFileEntry extends _ModelFileEntry {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
-        K_DOWNLOAD_URL: downloadUrl?.toString(),
-        K_FALSE_PATH: falsePath
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_NAME: name?.toString().trim().nullIfEmpty,
-        K_SIZE: size,
-        K_STORAGE_PATH: storagePath?.toString().trim().nullIfEmpty,
-        K_TYPE: type?.toString().trim().nullIfEmpty,
+        K_CREATED_AT: this.$createdAt,
+        K_CREATED_BY: this.$createdBy,
+        K_DOWNLOAD_URL: this.$downloadUrl,
+        K_FALSE_PATH: this.$falsePath,
+        K_ID: this.$id,
+        K_NAME: this.$name,
+        K_SIZE: this.$size,
+        K_STORAGE_PATH: this.$storagePath,
+        K_TYPE: this.$type,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -242,7 +252,7 @@ class ModelFileEntry extends _ModelFileEntry {
 
   @override
   T empty<T extends Model>() {
-    return ModelFileEntry.unsafe() as T;
+    return ModelFileEntry.b() as T;
   }
 
   //
@@ -251,7 +261,7 @@ class ModelFileEntry extends _ModelFileEntry {
 
   @override
   T copy<T extends Model>() {
-    return (ModelFileEntry.unsafe()..updateWith(this)) as T;
+    return (ModelFileEntry.b()..updateWith(this)) as T;
   }
 
   //
@@ -264,15 +274,33 @@ class ModelFileEntry extends _ModelFileEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelFileEntry.fromJson(otherData);
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdBy != null ? this.createdBy = other.createdBy : null;
-      other.downloadUrl != null ? this.downloadUrl = other.downloadUrl : null;
-      other.falsePath != null ? this.falsePath = other.falsePath : null;
-      other.id != null ? this.id = other.id : null;
-      other.name != null ? this.name = other.name : null;
-      other.size != null ? this.size = other.size : null;
-      other.storagePath != null ? this.storagePath = other.storagePath : null;
-      other.type != null ? this.type = other.type : null;
+      if (other._createdAt != null) {
+        this.createdAt = other._createdAt!;
+      }
+      if (other._createdBy != null) {
+        this.createdBy = other._createdBy!;
+      }
+      if (other._downloadUrl != null) {
+        this.downloadUrl = other._downloadUrl!;
+      }
+      if (other._falsePath != null) {
+        this.falsePath = other._falsePath!;
+      }
+      if (other._id != null) {
+        this.id = other._id!;
+      }
+      if (other._name != null) {
+        this.name = other._name!;
+      }
+      if (other._size != null) {
+        this.size = other._size!;
+      }
+      if (other._storagePath != null) {
+        this.storagePath = other._storagePath!;
+      }
+      if (other._type != null) {
+        this.type = other._type!;
+      }
     }
   }
 
@@ -280,5 +308,77 @@ class ModelFileEntry extends _ModelFileEntry {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // createdAt.
+  DateTime get createdAt => this._createdAt!;
+  set createdAt(DateTime v) => this._createdAt = v;
+  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  set $createdAt(v) => this._createdAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // createdBy.
+  String get createdBy => this._createdBy!;
+  set createdBy(String v) => this._createdBy = v;
+  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+
+  // downloadUrl.
+  Uri? get downloadUrl => this._downloadUrl;
+  set downloadUrl(Uri? v) => this._downloadUrl = v;
+  dynamic get $downloadUrl => this._downloadUrl?.toString();
+  set $downloadUrl(v) => this._downloadUrl = () {
+        final a = v;
+        return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
+      }();
+
+  // falsePath.
+  List<String>? get falsePath => this._falsePath;
+  set falsePath(List<String>? v) => this._falsePath = v;
+  dynamic get $falsePath => this
+      ._falsePath
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  set $falsePath(v) => this._falsePath = letList(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // id.
+  String get id => this._id!;
+  set id(String v) => this._id = v;
+  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+
+  // name.
+  String? get name => this._name;
+  set name(String? v) => this._name = v;
+  dynamic get $name => this._name?.toString().trim().nullIfEmpty;
+  set $name(v) => this._name = v?.toString().trim().nullIfEmpty;
+
+  // size.
+  int? get size => this._size;
+  set size(int? v) => this._size = v;
+  dynamic get $size => this._size;
+  set $size(v) => this._size = letInt(v);
+
+  // storagePath.
+  String? get storagePath => this._storagePath;
+  set storagePath(String? v) => this._storagePath = v;
+  dynamic get $storagePath => this._storagePath?.toString().trim().nullIfEmpty;
+  set $storagePath(v) => this._storagePath = v?.toString().trim().nullIfEmpty;
+
+  // type.
+  String? get type => this._type;
+  set type(String? v) => this._type = v;
+  dynamic get $type => this._type?.toString().trim().nullIfEmpty;
+  set $type(v) => this._type = v?.toString().trim().nullIfEmpty;
 }

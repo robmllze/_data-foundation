@@ -24,11 +24,6 @@ class ModelEvent extends _ModelEvent {
   //
   //
 
-  static const CLASS = 'ModelEvent';
-  static const MODEL_ID = 'model_event';
-
-  static const K_CREATED_AT = 'created_at';
-  static const K_CREATED_BY = 'created_by';
   static const K_DEF = 'def';
   static const K_DEF_TYPE = 'def_type';
   static const K_DELETED_AT = 'deleted_at';
@@ -44,70 +39,106 @@ class ModelEvent extends _ModelEvent {
   static const K_WHEN_RECEIVED = 'when_received';
   static const K_WHEN_SENT = 'when_sent';
 
-  DateTime? createdAt;
-  String? createdBy;
-  GenericModel? def;
-  EventDefType? defType;
-  DateTime? deletedAt;
-  String? deletedBy;
-  Set<String>? memberPids;
-  int? timeout;
-  Set<String?>? uploadedMediaIds;
-  Map<String, DateTime>? whenArchived;
-  Map<String, DateTime>? whenHidden;
-  Map<String, DateTime>? whenLiked;
-  Map<String, DateTime>? whenRead;
-  Map<String, DateTime>? whenReceived;
-  Map<String, DateTime>? whenSent;
+  static const CLASS = 'ModelEvent';
+
+  @override
+  String get $class => CLASS;
+
+  GenericModel? _def;
+  EventDefType? _defType;
+  DateTime? _deletedAt;
+  String? _deletedBy;
+  String? _id;
+  Set<String>? _memberPids;
+  int? _timeout;
+  Set<String>? _uploadedMediaIds;
+  Map<String, DateTime>? _whenArchived;
+  Map<String, DateTime>? _whenHidden;
+  Map<String, DateTime>? _whenLiked;
+  Map<String, DateTime>? _whenRead;
+  Map<String, DateTime>? _whenReceived;
+  Map<String, DateTime>? _whenSent;
 
   //
   //
   //
 
-  ModelEvent({
-    String? id,
-    this.createdAt,
-    this.createdBy,
-    this.def,
-    this.defType,
-    this.deletedAt,
-    this.deletedBy,
-    this.memberPids,
-    this.timeout,
-    this.uploadedMediaIds,
-    this.whenArchived,
-    this.whenHidden,
-    this.whenLiked,
-    this.whenRead,
-    this.whenReceived,
-    this.whenSent,
+  ModelEvent.empty();
+
+  //
+  //
+  //
+
+  factory ModelEvent({
+    GenericModel? def,
+    EventDefType? defType,
+    DateTime? deletedAt,
+    String? deletedBy,
+    required String id,
+    required Set<String> memberPids,
+    int? timeout,
+    Set<String>? uploadedMediaIds,
+    Map<String, DateTime>? whenArchived,
+    Map<String, DateTime>? whenHidden,
+    Map<String, DateTime>? whenLiked,
+    Map<String, DateTime>? whenRead,
+    Map<String, DateTime>? whenReceived,
+    Map<String, DateTime>? whenSent,
   }) {
-    this.id = id;
+    return ModelEvent.b(
+      def: def,
+      defType: defType,
+      deletedAt: deletedAt,
+      deletedBy: deletedBy,
+      id: id,
+      memberPids: memberPids,
+      timeout: timeout,
+      uploadedMediaIds: uploadedMediaIds,
+      whenArchived: whenArchived,
+      whenHidden: whenHidden,
+      whenLiked: whenLiked,
+      whenRead: whenRead,
+      whenReceived: whenReceived,
+      whenSent: whenSent,
+    );
   }
 
   //
   //
   //
 
-  ModelEvent.unsafe({
+  ModelEvent.b({
+    GenericModel? def,
+    EventDefType? defType,
+    DateTime? deletedAt,
+    String? deletedBy,
     String? id,
-    this.createdAt,
-    this.createdBy,
-    this.def,
-    this.defType,
-    this.deletedAt,
-    this.deletedBy,
-    this.memberPids,
-    this.timeout,
-    this.uploadedMediaIds,
-    this.whenArchived,
-    this.whenHidden,
-    this.whenLiked,
-    this.whenRead,
-    this.whenReceived,
-    this.whenSent,
+    Set<String>? memberPids,
+    int? timeout,
+    Set<String>? uploadedMediaIds,
+    Map<String, DateTime>? whenArchived,
+    Map<String, DateTime>? whenHidden,
+    Map<String, DateTime>? whenLiked,
+    Map<String, DateTime>? whenRead,
+    Map<String, DateTime>? whenReceived,
+    Map<String, DateTime>? whenSent,
   }) {
-    this.id = id;
+    assert(id != null);
+    assert(memberPids != null);
+    this._def = def;
+    this._defType = defType;
+    this._deletedAt = deletedAt;
+    this._deletedBy = deletedBy;
+    this._id = id;
+    this._memberPids = memberPids;
+    this._timeout = timeout;
+    this._uploadedMediaIds = uploadedMediaIds;
+    this._whenArchived = whenArchived;
+    this._whenHidden = whenHidden;
+    this._whenLiked = whenLiked;
+    this._whenRead = whenRead;
+    this._whenReceived = whenReceived;
+    this._whenSent = whenSent;
   }
 
   //
@@ -118,7 +149,7 @@ class ModelEvent extends _ModelEvent {
     Model? other,
   ) {
     return ModelEvent.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -144,7 +175,7 @@ class ModelEvent extends _ModelEvent {
         final decoded = jsonDecode(source);
         return ModelEvent.fromJson(decoded);
       } else {
-        return ModelEvent.unsafe();
+        return ModelEvent.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -160,120 +191,21 @@ class ModelEvent extends _ModelEvent {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelEvent.unsafe(
-        createdAt: () {
-          final a = otherData?[K_CREATED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        createdBy: otherData?[K_CREATED_BY]?.toString().trim().nullIfEmpty,
-        def: () {
-          final a = letMap<String, dynamic>(otherData?[K_DEF]);
-          return a != null ? GenericModel.fromJson(a) : null;
-        }(),
-        defType:
-            EventDefType.values.valueOf(letAs<String>(otherData?[K_DEF_TYPE])),
-        deletedAt: () {
-          final a = otherData?[K_DELETED_AT];
-          return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-        }(),
-        deletedBy: otherData?[K_DELETED_BY]?.toString().trim().nullIfEmpty,
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        memberPids: letSet(otherData?[K_MEMBER_PIDS])
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
-        timeout: letInt(otherData?[K_TIMEOUT]),
-        uploadedMediaIds: letSet(otherData?[K_UPLOADED_MEDIA_IDS])
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toSet()
-            .cast(),
-        whenArchived: letMap(otherData?[K_WHEN_ARCHIVED])
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        whenHidden: letMap(otherData?[K_WHEN_HIDDEN])
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        whenLiked: letMap(otherData?[K_WHEN_LIKED])
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        whenRead: letMap(otherData?[K_WHEN_READ])
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        whenReceived: letMap(otherData?[K_WHEN_RECEIVED])
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-        whenSent: letMap(otherData?[K_WHEN_SENT])
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                () {
-                  final a = p1;
-                  return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-                }(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.cast(),
-      );
+      return ModelEvent.empty()
+        ..$def = otherData?[K_DEF]
+        ..$defType = otherData?[K_DEF_TYPE]
+        ..$deletedAt = otherData?[K_DELETED_AT]
+        ..$deletedBy = otherData?[K_DELETED_BY]
+        ..$id = otherData?[K_ID]
+        ..$memberPids = otherData?[K_MEMBER_PIDS]
+        ..$timeout = otherData?[K_TIMEOUT]
+        ..$uploadedMediaIds = otherData?[K_UPLOADED_MEDIA_IDS]
+        ..$whenArchived = otherData?[K_WHEN_ARCHIVED]
+        ..$whenHidden = otherData?[K_WHEN_HIDDEN]
+        ..$whenLiked = otherData?[K_WHEN_LIKED]
+        ..$whenRead = otherData?[K_WHEN_READ]
+        ..$whenReceived = otherData?[K_WHEN_RECEIVED]
+        ..$whenSent = otherData?[K_WHEN_SENT];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -288,10 +220,10 @@ class ModelEvent extends _ModelEvent {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelEvent.fromJson(uri.queryParameters);
       } else {
-        return ModelEvent.unsafe();
+        return ModelEvent.b();
       }
     } catch (e) {
       assert(false, e);
@@ -331,82 +263,20 @@ class ModelEvent extends _ModelEvent {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: createdAt?.toUtc()?.toIso8601String(),
-        K_CREATED_BY: createdBy?.toString().trim().nullIfEmpty,
-        K_DEF: def?.toJson(),
-        K_DEF_TYPE: defType?.name,
-        K_DELETED_AT: deletedAt?.toUtc()?.toIso8601String(),
-        K_DELETED_BY: deletedBy?.toString().trim().nullIfEmpty,
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_MEMBER_PIDS: memberPids
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
-        K_TIMEOUT: timeout,
-        K_UPLOADED_MEDIA_IDS: uploadedMediaIds
-            ?.map(
-              (p0) => p0?.toString().trim().nullIfEmpty,
-            )
-            .nonNulls
-            .nullIfEmpty
-            ?.toList(),
-        K_WHEN_ARCHIVED: whenArchived
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_WHEN_HIDDEN: whenHidden
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_WHEN_LIKED: whenLiked
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_WHEN_READ: whenRead
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_WHEN_RECEIVED: whenReceived
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
-        K_WHEN_SENT: whenSent
-            ?.map(
-              (p0, p1) => MapEntry(
-                p0?.toString().trim().nullIfEmpty,
-                p1?.toUtc()?.toIso8601String(),
-              ),
-            )
-            .nonNulls
-            .nullIfEmpty,
+        K_DEF: this.$def,
+        K_DEF_TYPE: this.$defType,
+        K_DELETED_AT: this.$deletedAt,
+        K_DELETED_BY: this.$deletedBy,
+        K_ID: this.$id,
+        K_MEMBER_PIDS: this.$memberPids,
+        K_TIMEOUT: this.$timeout,
+        K_UPLOADED_MEDIA_IDS: this.$uploadedMediaIds,
+        K_WHEN_ARCHIVED: this.$whenArchived,
+        K_WHEN_HIDDEN: this.$whenHidden,
+        K_WHEN_LIKED: this.$whenLiked,
+        K_WHEN_READ: this.$whenRead,
+        K_WHEN_RECEIVED: this.$whenReceived,
+        K_WHEN_SENT: this.$whenSent,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -421,7 +291,7 @@ class ModelEvent extends _ModelEvent {
 
   @override
   T empty<T extends Model>() {
-    return ModelEvent.unsafe() as T;
+    return ModelEvent.b() as T;
   }
 
   //
@@ -430,7 +300,7 @@ class ModelEvent extends _ModelEvent {
 
   @override
   T copy<T extends Model>() {
-    return (ModelEvent.unsafe()..updateWith(this)) as T;
+    return (ModelEvent.b()..updateWith(this)) as T;
   }
 
   //
@@ -443,28 +313,48 @@ class ModelEvent extends _ModelEvent {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelEvent.fromJson(otherData);
-      other.createdAt != null ? this.createdAt = other.createdAt : null;
-      other.createdBy != null ? this.createdBy = other.createdBy : null;
-      other.def != null ? this.def = other.def : null;
-      other.defType != null ? this.defType = other.defType : null;
-      other.deletedAt != null ? this.deletedAt = other.deletedAt : null;
-      other.deletedBy != null ? this.deletedBy = other.deletedBy : null;
-      other.id != null ? this.id = other.id : null;
-      other.memberPids != null ? this.memberPids = other.memberPids : null;
-      other.timeout != null ? this.timeout = other.timeout : null;
-      other.uploadedMediaIds != null
-          ? this.uploadedMediaIds = other.uploadedMediaIds
-          : null;
-      other.whenArchived != null
-          ? this.whenArchived = other.whenArchived
-          : null;
-      other.whenHidden != null ? this.whenHidden = other.whenHidden : null;
-      other.whenLiked != null ? this.whenLiked = other.whenLiked : null;
-      other.whenRead != null ? this.whenRead = other.whenRead : null;
-      other.whenReceived != null
-          ? this.whenReceived = other.whenReceived
-          : null;
-      other.whenSent != null ? this.whenSent = other.whenSent : null;
+      if (other._def != null) {
+        this.def = other._def!;
+      }
+      if (other._defType != null) {
+        this.defType = other._defType!;
+      }
+      if (other._deletedAt != null) {
+        this.deletedAt = other._deletedAt!;
+      }
+      if (other._deletedBy != null) {
+        this.deletedBy = other._deletedBy!;
+      }
+      if (other._id != null) {
+        this.id = other._id!;
+      }
+      if (other._memberPids != null) {
+        this.memberPids = other._memberPids!;
+      }
+      if (other._timeout != null) {
+        this.timeout = other._timeout!;
+      }
+      if (other._uploadedMediaIds != null) {
+        this.uploadedMediaIds = other._uploadedMediaIds!;
+      }
+      if (other._whenArchived != null) {
+        this.whenArchived = other._whenArchived!;
+      }
+      if (other._whenHidden != null) {
+        this.whenHidden = other._whenHidden!;
+      }
+      if (other._whenLiked != null) {
+        this.whenLiked = other._whenLiked!;
+      }
+      if (other._whenRead != null) {
+        this.whenRead = other._whenRead!;
+      }
+      if (other._whenReceived != null) {
+        this.whenReceived = other._whenReceived!;
+      }
+      if (other._whenSent != null) {
+        this.whenSent = other._whenSent!;
+      }
     }
   }
 
@@ -472,5 +362,248 @@ class ModelEvent extends _ModelEvent {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // def.
+  GenericModel? get def => this._def;
+  set def(GenericModel? v) => this._def = v;
+  dynamic get $def => this._def?.toJson();
+  set $def(v) => this._def = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? GenericModel.fromJson(a) : null;
+      }();
+
+  // defType.
+  EventDefType? get defType => this._defType;
+  set defType(EventDefType? v) => this._defType = v;
+  dynamic get $defType => this._defType?.name;
+  set $defType(v) =>
+      this._defType = EventDefType.values.valueOf(letAs<String>(v));
+
+  // deletedAt.
+  DateTime? get deletedAt => this._deletedAt;
+  set deletedAt(DateTime? v) => this._deletedAt = v;
+  dynamic get $deletedAt => this._deletedAt?.toUtc()?.toIso8601String();
+  set $deletedAt(v) => this._deletedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // deletedBy.
+  String? get deletedBy => this._deletedBy;
+  set deletedBy(String? v) => this._deletedBy = v;
+  dynamic get $deletedBy => this._deletedBy?.toString().trim().nullIfEmpty;
+  set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
+
+  // id.
+  String get id => this._id!;
+  set id(String v) => this._id = v;
+  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+
+  // memberPids.
+  Set<String> get memberPids => this._memberPids!;
+  set memberPids(Set<String> v) => this._memberPids = v;
+  dynamic get $memberPids => (this
+      ._memberPids
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList())!;
+  set $memberPids(v) => this._memberPids = letSet(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
+
+  // timeout.
+  int? get timeout => this._timeout;
+  set timeout(int? v) => this._timeout = v;
+  dynamic get $timeout => this._timeout;
+  set $timeout(v) => this._timeout = letInt(v);
+
+  // uploadedMediaIds.
+  Set<String>? get uploadedMediaIds => this._uploadedMediaIds;
+  set uploadedMediaIds(Set<String>? v) => this._uploadedMediaIds = v;
+  dynamic get $uploadedMediaIds => this
+      ._uploadedMediaIds
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  set $uploadedMediaIds(v) => this._uploadedMediaIds = letSet(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
+
+  // whenArchived.
+  Map<String, DateTime>? get whenArchived => this._whenArchived;
+  set whenArchived(Map<String, DateTime>? v) => this._whenArchived = v;
+  dynamic get $whenArchived => this
+      ._whenArchived
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toUtc()?.toIso8601String(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  set $whenArchived(v) => this._whenArchived = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = p1;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // whenHidden.
+  Map<String, DateTime>? get whenHidden => this._whenHidden;
+  set whenHidden(Map<String, DateTime>? v) => this._whenHidden = v;
+  dynamic get $whenHidden => this
+      ._whenHidden
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toUtc()?.toIso8601String(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  set $whenHidden(v) => this._whenHidden = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = p1;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // whenLiked.
+  Map<String, DateTime>? get whenLiked => this._whenLiked;
+  set whenLiked(Map<String, DateTime>? v) => this._whenLiked = v;
+  dynamic get $whenLiked => this
+      ._whenLiked
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toUtc()?.toIso8601String(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  set $whenLiked(v) => this._whenLiked = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = p1;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // whenRead.
+  Map<String, DateTime>? get whenRead => this._whenRead;
+  set whenRead(Map<String, DateTime>? v) => this._whenRead = v;
+  dynamic get $whenRead => this
+      ._whenRead
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toUtc()?.toIso8601String(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  set $whenRead(v) => this._whenRead = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = p1;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // whenReceived.
+  Map<String, DateTime>? get whenReceived => this._whenReceived;
+  set whenReceived(Map<String, DateTime>? v) => this._whenReceived = v;
+  dynamic get $whenReceived => this
+      ._whenReceived
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toUtc()?.toIso8601String(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  set $whenReceived(v) => this._whenReceived = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = p1;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // whenSent.
+  Map<String, DateTime>? get whenSent => this._whenSent;
+  set whenSent(Map<String, DateTime>? v) => this._whenSent = v;
+  dynamic get $whenSent => this
+      ._whenSent
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toUtc()?.toIso8601String(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  set $whenSent(v) => this._whenSent = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = p1;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 }

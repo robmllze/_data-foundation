@@ -16,9 +16,9 @@ part '_model_connection_request_rejected_def.g.dart';
 
 @GenerateModel(
   fields: {
-    'relationship_id': 'String?',
-    'sender_pid': 'String?',
-    'receiver_pid': 'String?',
+    ('relationship_id', String),
+    ('sender_pid', String),
+    ('receiver_pid', String),
   },
 )
 // ignore: unused_element

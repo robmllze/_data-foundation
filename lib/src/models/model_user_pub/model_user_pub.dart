@@ -17,14 +17,15 @@ part '_model_user_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...CommonFields.display_name,
-    ...CommonFields.display_name_searchable,
-    ...CommonFields.email,
-    ...CommonFields.created_at,
-    ...CommonFields.created_by,
-    ...CommonFields.deleted_at,
-    ...CommonFields.deleted_by,
-    ...CommonFields.uploaded_media_ids,
+    ('id', String),
+    ('display_name', String),
+    ('display_name_searchable', 'Searchable-String'),
+    ('email', 'LowerCase-String'),
+    ('created_at', DateTime),
+    ('created_by?', String),
+    ('deleted_at?', DateTime),
+    ('deleted_by?', String),
+    ('uploaded_media_ids?', Set<String>),
   },
 )
 abstract class _ModelUserPub extends ThisModel<ModelUserPub> {}

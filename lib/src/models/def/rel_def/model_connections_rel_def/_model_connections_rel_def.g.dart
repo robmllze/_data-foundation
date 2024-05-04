@@ -24,34 +24,41 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
-  static const CLASS = 'ModelConnectionsRelDef';
-  static const MODEL_ID = 'model_connections_rel_def';
-
-  static const K_ID = 'id';
   static const K_PERMISSIONS = 'permissions';
 
-  ModelConnectionPermissions? permissions;
+  static const CLASS = 'ModelConnectionsRelDef';
+
+  @override
+  String get $class => CLASS;
+
+  ModelConnectionPermissions? _permissions;
 
   //
   //
   //
 
-  ModelConnectionsRelDef({
-    String? id,
-    this.permissions,
+  ModelConnectionsRelDef.empty();
+
+  //
+  //
+  //
+
+  factory ModelConnectionsRelDef({
+    ModelConnectionPermissions? permissions,
   }) {
-    this.id = id;
+    return ModelConnectionsRelDef.b(
+      permissions: permissions,
+    );
   }
 
   //
   //
   //
 
-  ModelConnectionsRelDef.unsafe({
-    String? id,
-    this.permissions,
+  ModelConnectionsRelDef.b({
+    ModelConnectionPermissions? permissions,
   }) {
-    this.id = id;
+    this._permissions = permissions;
   }
 
   //
@@ -62,7 +69,7 @@ class ModelConnectionsRelDef extends Model {
     Model? other,
   ) {
     return ModelConnectionsRelDef.fromJson(
-      other is GenericModel ? other.data : other?.toJson(),
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
 
@@ -88,7 +95,7 @@ class ModelConnectionsRelDef extends Model {
         final decoded = jsonDecode(source);
         return ModelConnectionsRelDef.fromJson(decoded);
       } else {
-        return ModelConnectionsRelDef.unsafe();
+        return ModelConnectionsRelDef.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -104,13 +111,8 @@ class ModelConnectionsRelDef extends Model {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelConnectionsRelDef.unsafe(
-        id: otherData?[K_ID]?.toString().trim().nullIfEmpty,
-        permissions: () {
-          final a = letMap<String, dynamic>(otherData?[K_PERMISSIONS]);
-          return a != null ? ModelConnectionPermissions.fromJson(a) : null;
-        }(),
-      );
+      return ModelConnectionsRelDef.empty()
+        ..$permissions = otherData?[K_PERMISSIONS];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -125,10 +127,10 @@ class ModelConnectionsRelDef extends Model {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == MODEL_ID) {
+      if (uri != null && uri.path == CLASS) {
         return ModelConnectionsRelDef.fromJson(uri.queryParameters);
       } else {
-        return ModelConnectionsRelDef.unsafe();
+        return ModelConnectionsRelDef.b();
       }
     } catch (e) {
       assert(false, e);
@@ -168,8 +170,7 @@ class ModelConnectionsRelDef extends Model {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_ID: id?.toString().trim().nullIfEmpty,
-        K_PERMISSIONS: permissions?.toJson(),
+        K_PERMISSIONS: this.$permissions,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -184,7 +185,7 @@ class ModelConnectionsRelDef extends Model {
 
   @override
   T empty<T extends Model>() {
-    return ModelConnectionsRelDef.unsafe() as T;
+    return ModelConnectionsRelDef.b() as T;
   }
 
   //
@@ -193,7 +194,7 @@ class ModelConnectionsRelDef extends Model {
 
   @override
   T copy<T extends Model>() {
-    return (ModelConnectionsRelDef.unsafe()..updateWith(this)) as T;
+    return (ModelConnectionsRelDef.b()..updateWith(this)) as T;
   }
 
   //
@@ -206,8 +207,9 @@ class ModelConnectionsRelDef extends Model {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelConnectionsRelDef.fromJson(otherData);
-      other.id != null ? this.id = other.id : null;
-      other.permissions != null ? this.permissions = other.permissions : null;
+      if (other._permissions != null) {
+        this.permissions = other._permissions!;
+      }
     }
   }
 
@@ -215,5 +217,12 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
-  String get modelId => MODEL_ID;
+  // permissions.
+  ModelConnectionPermissions? get permissions => this._permissions;
+  set permissions(ModelConnectionPermissions? v) => this._permissions = v;
+  dynamic get $permissions => this._permissions?.toJson();
+  set $permissions(v) => this._permissions = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelConnectionPermissions.fromJson(a) : null;
+      }();
 }

@@ -16,12 +16,13 @@ part '_model_email_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...CommonFields.title,
-    ...CommonFields.title_searchable,
-    ...CommonFields.created_at,
-    ...CommonFields.created_by,
-    ...CommonFields.email,
-    ...CommonFields.description,
+    ('id', String),
+    ('title', 'String?'),
+    ('title_searchable', 'String?'),
+    ('created_at', DateTime),
+    ('created_by', String),
+    ('email', 'String?'),
+    ('description', 'String?'),
   },
 )
 abstract class _ModelEmailEntry extends ThisModel<ModelEmailEntry> {}
