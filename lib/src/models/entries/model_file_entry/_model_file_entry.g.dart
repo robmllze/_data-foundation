@@ -29,9 +29,9 @@ class ModelFileEntry extends _ModelFileEntry {
   static const K_DESCRIPTION = 'description';
   static const K_DOWNLOAD_URL = 'download_url';
   static const K_EXTENSION = 'extension';
-  static const K_FALSE_PATH = 'false_path';
   static const K_ID = 'id';
   static const K_NAME = 'name';
+  static const K_PATH = 'path';
   static const K_SEARCHABLE_TITLE = 'searchable_title';
   static const K_SIZE = 'size';
   static const K_STORAGE_PATH = 'storage_path';
@@ -47,9 +47,9 @@ class ModelFileEntry extends _ModelFileEntry {
   String? description;
   Uri? downloadUrl;
   String? extension;
-  List<String>? falsePath;
   String? id;
   String? name;
+  List<String>? path;
   String? searchableTitle;
   int? size;
   String? storagePath;
@@ -71,9 +71,9 @@ class ModelFileEntry extends _ModelFileEntry {
     String? description,
     Uri? downloadUrl,
     String? extension,
-    List<String>? falsePath,
     String? id,
     String? name,
+    List<String>? path,
     String? searchableTitle,
     int? size,
     String? storagePath,
@@ -85,9 +85,9 @@ class ModelFileEntry extends _ModelFileEntry {
       description: description,
       downloadUrl: downloadUrl,
       extension: extension,
-      falsePath: falsePath,
       id: id,
       name: name,
+      path: path,
       searchableTitle: searchableTitle,
       size: size,
       storagePath: storagePath,
@@ -105,9 +105,9 @@ class ModelFileEntry extends _ModelFileEntry {
     this.description,
     this.downloadUrl,
     this.extension,
-    this.falsePath,
     this.id,
     this.name,
+    this.path,
     this.searchableTitle,
     this.size,
     this.storagePath,
@@ -180,9 +180,9 @@ class ModelFileEntry extends _ModelFileEntry {
         ..$description = otherData?[K_DESCRIPTION]
         ..$downloadUrl = otherData?[K_DOWNLOAD_URL]
         ..$extension = otherData?[K_EXTENSION]
-        ..$falsePath = otherData?[K_FALSE_PATH]
         ..$id = otherData?[K_ID]
         ..$name = otherData?[K_NAME]
+        ..$path = otherData?[K_PATH]
         ..$searchableTitle = otherData?[K_SEARCHABLE_TITLE]
         ..$size = otherData?[K_SIZE]
         ..$storagePath = otherData?[K_STORAGE_PATH]
@@ -228,9 +228,9 @@ class ModelFileEntry extends _ModelFileEntry {
         K_DESCRIPTION: this.$description,
         K_DOWNLOAD_URL: this.$downloadUrl,
         K_EXTENSION: this.$extension,
-        K_FALSE_PATH: this.$falsePath,
         K_ID: this.$id,
         K_NAME: this.$name,
+        K_PATH: this.$path,
         K_SEARCHABLE_TITLE: this.$searchableTitle,
         K_SIZE: this.$size,
         K_STORAGE_PATH: this.$storagePath,
@@ -286,14 +286,14 @@ class ModelFileEntry extends _ModelFileEntry {
       if (other.extension != null) {
         this.extension = other.extension!;
       }
-      if (other.falsePath != null) {
-        this.falsePath = other.falsePath!;
-      }
       if (other.id != null) {
         this.id = other.id!;
       }
       if (other.name != null) {
         this.name = other.name!;
+      }
+      if (other.path != null) {
+        this.path = other.path!;
       }
       if (other.searchableTitle != null) {
         this.searchableTitle = other.searchableTitle!;
@@ -356,31 +356,11 @@ class ModelFileEntry extends _ModelFileEntry {
   String? get extensionField => this.extension;
   set extensionField(String? v) => this.extension = v;
   @protected
-  dynamic get $extension => this.extension?.toString().trim().nullIfEmpty;
+  dynamic get $extension =>
+      this.extension?.toString().trim().nullIfEmpty?.toLowerCase();
   @protected
-  set $extension(v) => this.extension = v?.toString().trim().nullIfEmpty;
-
-  // falsePath.
-  List<String>? get falsePathField => this.falsePath;
-  set falsePathField(List<String>? v) => this.falsePath = v;
-  @protected
-  dynamic get $falsePath => this
-      .falsePath
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $falsePath(v) => this.falsePath = letList(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
+  set $extension(v) =>
+      this.extension = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
   // id.
   String? get idField => this.id;
@@ -397,6 +377,28 @@ class ModelFileEntry extends _ModelFileEntry {
   dynamic get $name => this.name?.toString().trim().nullIfEmpty;
   @protected
   set $name(v) => this.name = v?.toString().trim().nullIfEmpty;
+
+  // path.
+  List<String>? get pathField => this.path;
+  set pathField(List<String>? v) => this.path = v;
+  @protected
+  dynamic get $path => this
+      .path
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $path(v) => this.path = letList(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
 
   // searchableTitle.
   String? get searchableTitleField => this.searchableTitle;
