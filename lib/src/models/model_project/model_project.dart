@@ -16,16 +16,20 @@ part '_model_project.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id', String),
-    ('created_at', DateTime),
-    ('created_by', String),
+    ('id?', String),
+    ('pid?', String),
+    ('seed?', String),
+    ('created_at?', DateTime),
+    ('created_by?', String),
     ('deleted_at?', DateTime),
     ('deleted_by?', String),
-    ('pid', 'String?'),
-    ('seed', 'String?'),
   },
 )
 abstract class _ModelProject extends ThisModel<ModelProject> {
+  //
+  //
+  //
+
   // Opened.
   Map<DateTime, String>? get whenOpened => null;
   DateTime? get lastOpenedAt => getLastDate(this.whenOpened?.keys);
@@ -33,8 +37,14 @@ abstract class _ModelProject extends ThisModel<ModelProject> {
 
   bool isOpenedBy({required String id}) => this.whenOpened?.values.contains(id) == true;
 
+  //
+  //
+  //
+
   // Closed.
   Map<DateTime, String>? get whenClosed => null;
   DateTime? get lastClosedAt => getLastDate(this.whenClosed?.keys);
   String? get lastCloserId => this.whenClosed?[this.lastClosedAt];
+
+  bool isClosedBy({required String id}) => this.whenClosed?.values.contains(id) == true;
 }

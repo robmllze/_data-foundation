@@ -17,7 +17,7 @@ part '_model_event.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id', String),
+    ('id?', String),
     ('deleted_at?', DateTime),
     ('deleted_by?', String),
     ('member_pids', Set<String>),

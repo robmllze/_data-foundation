@@ -16,15 +16,15 @@ part '_model_file_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id', String),
-    ('created_at', DateTime),
-    ('created_by', String),
-    ('type', 'String?'),
-    ('name', 'String?'),
-    ('download_url', 'Uri?'),
-    ('storage_path', 'String?'),
-    ('false_path', 'List<String>?'),
-    ('size', 'int?'),
+    ('id?', String),
+    ('created_at?', DateTime),
+    ('created_by?', String),
+    ('type?', String),
+    ('name?', String),
+    ('download_url?', Uri),
+    ('storage_path?', String),
+    ('false_path?', List<String>),
+    ('size?', int),
   },
 )
 abstract class _ModelFileEntry extends ThisModel<ModelFileEntry> {}

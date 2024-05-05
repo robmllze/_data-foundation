@@ -67,7 +67,7 @@ class ModelInvitation extends _ModelInvitation {
     GenericModel? def,
     InvitationDefType? defType,
     DateTime? expiresAt,
-    required String id,
+    String? id,
     Uri? invitationLink,
     Set<String>? inviteeAcceptedEmails,
     Set<String>? inviteeEmails,
@@ -105,7 +105,6 @@ class ModelInvitation extends _ModelInvitation {
   }) {
     assert(createdAt != null);
     assert(createdBy != null);
-    assert(id != null);
     this._createdAt = createdAt;
     this._createdBy = createdBy;
     this._def = def;
@@ -128,6 +127,16 @@ class ModelInvitation extends _ModelInvitation {
     return ModelInvitation.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelInvitation? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelInvitation.from(other) : null;
   }
 
   //
@@ -202,27 +211,6 @@ class ModelInvitation extends _ModelInvitation {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelInvitation? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelInvitation.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelInvitation? fromPool({
-    required Iterable<ModelInvitation>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -360,9 +348,9 @@ class ModelInvitation extends _ModelInvitation {
       }();
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // invitationLink.

@@ -136,6 +136,16 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
   //
 
+  static ModelScreenConfiguration? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelScreenConfiguration.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   factory ModelScreenConfiguration.of(
     ModelScreenConfiguration? other,
   ) {
@@ -207,27 +217,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelScreenConfiguration? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelScreenConfiguration.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelScreenConfiguration? fromPool({
-    required Iterable<ModelScreenConfiguration>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //

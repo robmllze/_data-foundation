@@ -16,10 +16,7 @@ part '_model_connections_rel_def.g.dart';
 
 @GenerateModel(
   fields: {
-    (
-      'permissions',
-      'ModelConnectionPermissions?',
-    ),
+    ('permissions?', ModelConnectionPermissions),
   },
 )
 // ignore: unused_element

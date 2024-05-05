@@ -74,7 +74,7 @@ class ModelEvent extends _ModelEvent {
     EventDefType? defType,
     DateTime? deletedAt,
     String? deletedBy,
-    required String id,
+    String? id,
     required Set<String> memberPids,
     int? timeout,
     Set<String>? uploadedMediaIds,
@@ -123,7 +123,6 @@ class ModelEvent extends _ModelEvent {
     Map<String, DateTime>? whenReceived,
     Map<String, DateTime>? whenSent,
   }) {
-    assert(id != null);
     assert(memberPids != null);
     this._def = def;
     this._defType = defType;
@@ -151,6 +150,16 @@ class ModelEvent extends _ModelEvent {
     return ModelEvent.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelEvent? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelEvent.from(other) : null;
   }
 
   //
@@ -229,27 +238,6 @@ class ModelEvent extends _ModelEvent {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelEvent? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelEvent.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelEvent? fromPool({
-    required Iterable<ModelEvent>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -394,9 +382,9 @@ class ModelEvent extends _ModelEvent {
   set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // memberPids.

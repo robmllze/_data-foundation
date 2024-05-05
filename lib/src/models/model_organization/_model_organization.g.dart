@@ -56,11 +56,11 @@ class ModelOrganization extends _ModelOrganization {
   //
 
   factory ModelOrganization({
-    required DateTime createdAt,
-    required String createdBy,
+    DateTime? createdAt,
+    String? createdBy,
     DateTime? deletedAt,
     String? deletedBy,
-    required String id,
+    String? id,
     String? pid,
     String? seed,
   }) {
@@ -88,9 +88,6 @@ class ModelOrganization extends _ModelOrganization {
     String? pid,
     String? seed,
   }) {
-    assert(createdAt != null);
-    assert(createdBy != null);
-    assert(id != null);
     this._createdAt = createdAt;
     this._createdBy = createdBy;
     this._deletedAt = deletedAt;
@@ -110,6 +107,16 @@ class ModelOrganization extends _ModelOrganization {
     return ModelOrganization.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelOrganization? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelOrganization.from(other) : null;
   }
 
   //
@@ -181,27 +188,6 @@ class ModelOrganization extends _ModelOrganization {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelOrganization? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelOrganization.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelOrganization? fromPool({
-    required Iterable<ModelOrganization>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -287,18 +273,18 @@ class ModelOrganization extends _ModelOrganization {
   //
 
   // createdAt.
-  DateTime get createdAt => this._createdAt!;
-  set createdAt(DateTime v) => this._createdAt = v;
-  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  DateTime? get createdAt => this._createdAt;
+  set createdAt(DateTime? v) => this._createdAt = v;
+  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
   set $createdAt(v) => this._createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String get createdBy => this._createdBy!;
-  set createdBy(String v) => this._createdBy = v;
-  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  String? get createdBy => this._createdBy;
+  set createdBy(String? v) => this._createdBy = v;
+  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
   set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
 
   // deletedAt.
@@ -317,9 +303,9 @@ class ModelOrganization extends _ModelOrganization {
   set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // pid.

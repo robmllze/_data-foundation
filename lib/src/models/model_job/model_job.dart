@@ -16,13 +16,13 @@ part '_model_job.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id', String),
-    ('created_at', DateTime),
-    ('created_by', String),
+    ('id?', String),
+    ('pid?', String),
+    ('seed?', String),
+    ('created_at?', DateTime),
+    ('created_by?', String),
     ('deleted_at?', DateTime),
     ('deleted_by?', String),
-    ('pid', 'String?'),
-    ('seed', 'String?'),
   },
 )
 abstract class _ModelJob extends ThisModel<ModelJob> {}

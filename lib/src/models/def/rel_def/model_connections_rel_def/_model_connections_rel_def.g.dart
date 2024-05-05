@@ -77,6 +77,16 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
+  static ModelConnectionsRelDef? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelConnectionsRelDef.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   factory ModelConnectionsRelDef.of(
     ModelConnectionsRelDef? other,
   ) {
@@ -136,27 +146,6 @@ class ModelConnectionsRelDef extends Model {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelConnectionsRelDef? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelConnectionsRelDef.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelConnectionsRelDef? fromPool({
-    required Iterable<ModelConnectionsRelDef>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //

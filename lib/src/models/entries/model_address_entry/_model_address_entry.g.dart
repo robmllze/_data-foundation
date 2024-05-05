@@ -72,9 +72,9 @@ class ModelAddressEntry extends _ModelAddressEntry {
     String? addressLine2,
     String? city,
     String? country,
-    required DateTime createdAt,
-    required String createdBy,
-    required String id,
+    DateTime? createdAt,
+    String? createdBy,
+    String? id,
     String? name,
     String? notes,
     String? postalCode,
@@ -118,9 +118,6 @@ class ModelAddressEntry extends _ModelAddressEntry {
     String? title,
     String? titleSearchable,
   }) {
-    assert(createdAt != null);
-    assert(createdBy != null);
-    assert(id != null);
     this._addressLine1 = addressLine1;
     this._addressLine2 = addressLine2;
     this._city = city;
@@ -146,6 +143,16 @@ class ModelAddressEntry extends _ModelAddressEntry {
     return ModelAddressEntry.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelAddressEntry? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelAddressEntry.from(other) : null;
   }
 
   //
@@ -223,27 +230,6 @@ class ModelAddressEntry extends _ModelAddressEntry {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelAddressEntry? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelAddressEntry.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelAddressEntry? fromPool({
-    required Iterable<ModelAddressEntry>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -379,24 +365,24 @@ class ModelAddressEntry extends _ModelAddressEntry {
   set $country(v) => this._country = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
-  DateTime get createdAt => this._createdAt!;
-  set createdAt(DateTime v) => this._createdAt = v;
-  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  DateTime? get createdAt => this._createdAt;
+  set createdAt(DateTime? v) => this._createdAt = v;
+  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
   set $createdAt(v) => this._createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String get createdBy => this._createdBy!;
-  set createdBy(String v) => this._createdBy = v;
-  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  String? get createdBy => this._createdBy;
+  set createdBy(String? v) => this._createdBy = v;
+  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
   set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // name.
@@ -434,8 +420,13 @@ class ModelAddressEntry extends _ModelAddressEntry {
   // titleSearchable.
   String? get titleSearchable => this._titleSearchable;
   set titleSearchable(String? v) => this._titleSearchable = v;
-  dynamic get $titleSearchable =>
-      this._titleSearchable?.toString().trim().nullIfEmpty;
-  set $titleSearchable(v) =>
-      this._titleSearchable = v?.toString().trim().nullIfEmpty;
+  dynamic get $titleSearchable => this
+      ._titleSearchable
+      ?.toString()
+      .trim()
+      .nullIfEmpty
+      ?.toLowerCase()
+      .replaceAll(r'[^\w]', '');
+  set $titleSearchable(v) => this._titleSearchable =
+      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 }

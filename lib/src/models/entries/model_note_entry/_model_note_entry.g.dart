@@ -55,9 +55,9 @@ class ModelNoteEntry extends _ModelNoteEntry {
 
   factory ModelNoteEntry({
     String? body,
-    required DateTime createdAt,
-    required String createdBy,
-    required String id,
+    DateTime? createdAt,
+    String? createdBy,
+    String? id,
     String? title,
     String? titleSearchable,
   }) {
@@ -83,9 +83,6 @@ class ModelNoteEntry extends _ModelNoteEntry {
     String? title,
     String? titleSearchable,
   }) {
-    assert(createdAt != null);
-    assert(createdBy != null);
-    assert(id != null);
     this._body = body;
     this._createdAt = createdAt;
     this._createdBy = createdBy;
@@ -104,6 +101,16 @@ class ModelNoteEntry extends _ModelNoteEntry {
     return ModelNoteEntry.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelNoteEntry? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelNoteEntry.from(other) : null;
   }
 
   //
@@ -174,27 +181,6 @@ class ModelNoteEntry extends _ModelNoteEntry {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelNoteEntry? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelNoteEntry.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelNoteEntry? fromPool({
-    required Iterable<ModelNoteEntry>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -282,24 +268,24 @@ class ModelNoteEntry extends _ModelNoteEntry {
   set $body(v) => this._body = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
-  DateTime get createdAt => this._createdAt!;
-  set createdAt(DateTime v) => this._createdAt = v;
-  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  DateTime? get createdAt => this._createdAt;
+  set createdAt(DateTime? v) => this._createdAt = v;
+  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
   set $createdAt(v) => this._createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String get createdBy => this._createdBy!;
-  set createdBy(String v) => this._createdBy = v;
-  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  String? get createdBy => this._createdBy;
+  set createdBy(String? v) => this._createdBy = v;
+  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
   set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // title.
@@ -311,8 +297,13 @@ class ModelNoteEntry extends _ModelNoteEntry {
   // titleSearchable.
   String? get titleSearchable => this._titleSearchable;
   set titleSearchable(String? v) => this._titleSearchable = v;
-  dynamic get $titleSearchable =>
-      this._titleSearchable?.toString().trim().nullIfEmpty;
-  set $titleSearchable(v) =>
-      this._titleSearchable = v?.toString().trim().nullIfEmpty;
+  dynamic get $titleSearchable => this
+      ._titleSearchable
+      ?.toString()
+      .trim()
+      .nullIfEmpty
+      ?.toLowerCase()
+      .replaceAll(r'[^\w]', '');
+  set $titleSearchable(v) => this._titleSearchable =
+      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 }

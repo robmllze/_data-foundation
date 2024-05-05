@@ -53,9 +53,9 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   String? _displayName;
   String? _displayNameSearchable;
   String? _id;
-  List<ModelAddressEntry>? _otherAddresses;
-  List<ModelEmailEntry>? _otherEmails;
-  List<ModelPhoneEntry>? _otherPhones;
+  Set<ModelAddressEntry>? _otherAddresses;
+  Set<ModelEmailEntry>? _otherEmails;
+  Set<ModelEmailEntry>? _otherPhones;
   ModelAddressEntry? _primaryAddress;
   ModelEmailEntry? _primaryEmail;
   ModelPhoneEntry? _primaryPhone;
@@ -72,17 +72,17 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
 
   factory ModelOrganizationPub({
-    required DateTime createdAt,
-    required String createdBy,
+    DateTime? createdAt,
+    String? createdBy,
     DateTime? deletedAt,
     String? deletedBy,
     String? description,
     String? displayName,
     String? displayNameSearchable,
-    required String id,
-    List<ModelAddressEntry>? otherAddresses,
-    List<ModelEmailEntry>? otherEmails,
-    List<ModelPhoneEntry>? otherPhones,
+    String? id,
+    Set<ModelAddressEntry>? otherAddresses,
+    Set<ModelEmailEntry>? otherEmails,
+    Set<ModelEmailEntry>? otherPhones,
     ModelAddressEntry? primaryAddress,
     ModelEmailEntry? primaryEmail,
     ModelPhoneEntry? primaryPhone,
@@ -120,17 +120,14 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     String? displayName,
     String? displayNameSearchable,
     String? id,
-    List<ModelAddressEntry>? otherAddresses,
-    List<ModelEmailEntry>? otherEmails,
-    List<ModelPhoneEntry>? otherPhones,
+    Set<ModelAddressEntry>? otherAddresses,
+    Set<ModelEmailEntry>? otherEmails,
+    Set<ModelEmailEntry>? otherPhones,
     ModelAddressEntry? primaryAddress,
     ModelEmailEntry? primaryEmail,
     ModelPhoneEntry? primaryPhone,
     List<String>? uploadedMediaIds,
   }) {
-    assert(createdAt != null);
-    assert(createdBy != null);
-    assert(id != null);
     this._createdAt = createdAt;
     this._createdBy = createdBy;
     this._deletedAt = deletedAt;
@@ -158,6 +155,16 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     return ModelOrganizationPub.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelOrganizationPub? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelOrganizationPub.from(other) : null;
   }
 
   //
@@ -237,27 +244,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelOrganizationPub? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelOrganizationPub.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelOrganizationPub? fromPool({
-    required Iterable<ModelOrganizationPub>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -375,18 +361,18 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
 
   // createdAt.
-  DateTime get createdAt => this._createdAt!;
-  set createdAt(DateTime v) => this._createdAt = v;
-  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  DateTime? get createdAt => this._createdAt;
+  set createdAt(DateTime? v) => this._createdAt = v;
+  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
   set $createdAt(v) => this._createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String get createdBy => this._createdBy!;
-  set createdBy(String v) => this._createdBy = v;
-  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  String? get createdBy => this._createdBy;
+  set createdBy(String? v) => this._createdBy = v;
+  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
   set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
 
   // deletedAt.
@@ -419,20 +405,25 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   // displayNameSearchable.
   String? get displayNameSearchable => this._displayNameSearchable;
   set displayNameSearchable(String? v) => this._displayNameSearchable = v;
-  dynamic get $displayNameSearchable =>
-      this._displayNameSearchable?.toString().trim().nullIfEmpty;
-  set $displayNameSearchable(v) =>
-      this._displayNameSearchable = v?.toString().trim().nullIfEmpty;
+  dynamic get $displayNameSearchable => this
+      ._displayNameSearchable
+      ?.toString()
+      .trim()
+      .nullIfEmpty
+      ?.toLowerCase()
+      .replaceAll(r'[^\w]', '');
+  set $displayNameSearchable(v) => this._displayNameSearchable =
+      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // otherAddresses.
-  List<ModelAddressEntry>? get otherAddresses => this._otherAddresses;
-  set otherAddresses(List<ModelAddressEntry>? v) => this._otherAddresses = v;
+  Set<ModelAddressEntry>? get otherAddresses => this._otherAddresses;
+  set otherAddresses(Set<ModelAddressEntry>? v) => this._otherAddresses = v;
   dynamic get $otherAddresses => this
       ._otherAddresses
       ?.map(
@@ -441,7 +432,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $otherAddresses(v) => this._otherAddresses = letList(v)
+  set $otherAddresses(v) => this._otherAddresses = letSet(v)
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
@@ -450,12 +441,12 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       )
       .nonNulls
       .nullIfEmpty
-      ?.toList()
+      ?.toSet()
       .cast();
 
   // otherEmails.
-  List<ModelEmailEntry>? get otherEmails => this._otherEmails;
-  set otherEmails(List<ModelEmailEntry>? v) => this._otherEmails = v;
+  Set<ModelEmailEntry>? get otherEmails => this._otherEmails;
+  set otherEmails(Set<ModelEmailEntry>? v) => this._otherEmails = v;
   dynamic get $otherEmails => this
       ._otherEmails
       ?.map(
@@ -464,7 +455,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $otherEmails(v) => this._otherEmails = letList(v)
+  set $otherEmails(v) => this._otherEmails = letSet(v)
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
@@ -473,12 +464,12 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       )
       .nonNulls
       .nullIfEmpty
-      ?.toList()
+      ?.toSet()
       .cast();
 
   // otherPhones.
-  List<ModelPhoneEntry>? get otherPhones => this._otherPhones;
-  set otherPhones(List<ModelPhoneEntry>? v) => this._otherPhones = v;
+  Set<ModelEmailEntry>? get otherPhones => this._otherPhones;
+  set otherPhones(Set<ModelEmailEntry>? v) => this._otherPhones = v;
   dynamic get $otherPhones => this
       ._otherPhones
       ?.map(
@@ -487,16 +478,16 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $otherPhones(v) => this._otherPhones = letList(v)
+  set $otherPhones(v) => this._otherPhones = letSet(v)
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelPhoneEntry.fromJson(a) : null;
+          return a != null ? ModelEmailEntry.fromJson(a) : null;
         }(),
       )
       .nonNulls
       .nullIfEmpty
-      ?.toList()
+      ?.toSet()
       .cast();
 
   // primaryAddress.

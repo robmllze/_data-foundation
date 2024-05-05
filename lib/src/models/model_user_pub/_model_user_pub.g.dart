@@ -60,14 +60,14 @@ class ModelUserPub extends _ModelUserPub {
   //
 
   factory ModelUserPub({
-    required DateTime createdAt,
+    DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
     String? deletedBy,
-    required String displayName,
-    required String displayNameSearchable,
-    required String email,
-    required String id,
+    String? displayName,
+    String? displayNameSearchable,
+    String? email,
+    String? id,
     Set<String>? uploadedMediaIds,
   }) {
     return ModelUserPub.b(
@@ -98,11 +98,6 @@ class ModelUserPub extends _ModelUserPub {
     String? id,
     Set<String>? uploadedMediaIds,
   }) {
-    assert(createdAt != null);
-    assert(displayName != null);
-    assert(displayNameSearchable != null);
-    assert(email != null);
-    assert(id != null);
     this._createdAt = createdAt;
     this._createdBy = createdBy;
     this._deletedAt = deletedAt;
@@ -124,6 +119,16 @@ class ModelUserPub extends _ModelUserPub {
     return ModelUserPub.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelUserPub? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelUserPub.from(other) : null;
   }
 
   //
@@ -197,27 +202,6 @@ class ModelUserPub extends _ModelUserPub {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelUserPub? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelUserPub.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelUserPub? fromPool({
-    required Iterable<ModelUserPub>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -311,9 +295,9 @@ class ModelUserPub extends _ModelUserPub {
   //
 
   // createdAt.
-  DateTime get createdAt => this._createdAt!;
-  set createdAt(DateTime v) => this._createdAt = v;
-  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  DateTime? get createdAt => this._createdAt;
+  set createdAt(DateTime? v) => this._createdAt = v;
+  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
   set $createdAt(v) => this._createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -341,37 +325,36 @@ class ModelUserPub extends _ModelUserPub {
   set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
 
   // displayName.
-  String get displayName => this._displayName!;
-  set displayName(String v) => this._displayName = v;
-  dynamic get $displayName =>
-      (this._displayName?.toString().trim().nullIfEmpty)!;
+  String? get displayName => this._displayName;
+  set displayName(String? v) => this._displayName = v;
+  dynamic get $displayName => this._displayName?.toString().trim().nullIfEmpty;
   set $displayName(v) => this._displayName = v?.toString().trim().nullIfEmpty;
 
   // displayNameSearchable.
-  String get displayNameSearchable => this._displayNameSearchable!;
-  set displayNameSearchable(String v) => this._displayNameSearchable = v;
-  dynamic get $displayNameSearchable => (this
+  String? get displayNameSearchable => this._displayNameSearchable;
+  set displayNameSearchable(String? v) => this._displayNameSearchable = v;
+  dynamic get $displayNameSearchable => this
       ._displayNameSearchable
       ?.toString()
       .trim()
       .nullIfEmpty
       ?.toLowerCase()
-      .replaceAll(r'[^\w]', ''))!;
+      .replaceAll(r'[^\w]', '');
   set $displayNameSearchable(v) => this._displayNameSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 
   // email.
-  String get email => this._email!;
-  set email(String v) => this._email = v;
+  String? get email => this._email;
+  set email(String? v) => this._email = v;
   dynamic get $email =>
-      (this._email?.toString().trim().nullIfEmpty?.toLowerCase())!;
+      this._email?.toString().trim().nullIfEmpty?.toLowerCase();
   set $email(v) =>
       this._email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // uploadedMediaIds.

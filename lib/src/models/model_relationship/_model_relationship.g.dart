@@ -72,7 +72,7 @@ class ModelRelationship extends _ModelRelationship {
     RelationshipDefType? defType,
     DateTime? deletedAt,
     String? deletedBy,
-    required String id,
+    String? id,
     Set<String>? memberPids,
     Set<String>? uploadedMediaIds,
     Map<String, DateTime>? whenDisabled,
@@ -113,7 +113,6 @@ class ModelRelationship extends _ModelRelationship {
     Map<String, DateTime>? whenEnabled,
     Map<String, DateTime>? whenNoted,
   }) {
-    assert(id != null);
     this._createdAt = createdAt;
     this._createdBy = createdBy;
     this._def = def;
@@ -138,6 +137,16 @@ class ModelRelationship extends _ModelRelationship {
     return ModelRelationship.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelRelationship? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelRelationship.from(other) : null;
   }
 
   //
@@ -214,27 +223,6 @@ class ModelRelationship extends _ModelRelationship {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelRelationship? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelRelationship.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelRelationship? fromPool({
-    required Iterable<ModelRelationship>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -386,9 +374,9 @@ class ModelRelationship extends _ModelRelationship {
   set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // memberPids.

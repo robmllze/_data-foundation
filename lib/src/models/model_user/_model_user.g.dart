@@ -72,10 +72,10 @@ class ModelUser extends _ModelUser {
     String? deletedBy,
     bool? didSendWelcomeEmail,
     Set<String>? emailSubscriptions,
-    required String id,
-    required String pid,
+    String? id,
+    String? pid,
     Set<String>? pushSubscriptions,
-    required String seed,
+    String? seed,
     Set<String>? smsSubscriptions,
     Set<String>? uploadedMediaIds,
   }) {
@@ -114,9 +114,6 @@ class ModelUser extends _ModelUser {
     Set<String>? uploadedMediaIds,
   }) {
     assert(createdAt != null);
-    assert(id != null);
-    assert(pid != null);
-    assert(seed != null);
     this._createdAt = createdAt;
     this._createdBy = createdBy;
     this._deletedAt = deletedAt;
@@ -141,6 +138,16 @@ class ModelUser extends _ModelUser {
     return ModelUser.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelUser? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelUser.from(other) : null;
   }
 
   //
@@ -217,27 +224,6 @@ class ModelUser extends _ModelUser {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelUser? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelUser.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelUser? fromPool({
-    required Iterable<ModelUser>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -399,15 +385,15 @@ class ModelUser extends _ModelUser {
       .cast();
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // pid.
-  String get pid => this._pid!;
-  set pid(String v) => this._pid = v;
-  dynamic get $pid => (this._pid?.toString().trim().nullIfEmpty)!;
+  String? get pid => this._pid;
+  set pid(String? v) => this._pid = v;
+  dynamic get $pid => this._pid?.toString().trim().nullIfEmpty;
   set $pid(v) => this._pid = v?.toString().trim().nullIfEmpty;
 
   // pushSubscriptions.
@@ -431,9 +417,9 @@ class ModelUser extends _ModelUser {
       .cast();
 
   // seed.
-  String get seed => this._seed!;
-  set seed(String v) => this._seed = v;
-  dynamic get $seed => (this._seed?.toString().trim().nullIfEmpty)!;
+  String? get seed => this._seed;
+  set seed(String? v) => this._seed = v;
+  dynamic get $seed => this._seed?.toString().trim().nullIfEmpty;
   set $seed(v) => this._seed = v?.toString().trim().nullIfEmpty;
 
   // smsSubscriptions.

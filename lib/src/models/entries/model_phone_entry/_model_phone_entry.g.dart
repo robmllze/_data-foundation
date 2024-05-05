@@ -65,12 +65,12 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
 
   factory ModelPhoneEntry({
     String? countryCode,
-    required DateTime createdAt,
-    required String createdBy,
+    DateTime? createdAt,
+    String? createdBy,
     String? description,
     String? extension,
     String? fullNumber,
-    required String id,
+    String? id,
     String? numberWithoutCountryCode,
     String? title,
     String? titleSearchable,
@@ -108,9 +108,6 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     String? titleSearchable,
     String? type,
   }) {
-    assert(createdAt != null);
-    assert(createdBy != null);
-    assert(id != null);
     this._countryCode = countryCode;
     this._createdAt = createdAt;
     this._createdBy = createdBy;
@@ -134,6 +131,16 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     return ModelPhoneEntry.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelPhoneEntry? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelPhoneEntry.from(other) : null;
   }
 
   //
@@ -209,27 +216,6 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelPhoneEntry? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelPhoneEntry.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelPhoneEntry? fromPool({
-    required Iterable<ModelPhoneEntry>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -337,18 +323,18 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   set $countryCode(v) => this._countryCode = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
-  DateTime get createdAt => this._createdAt!;
-  set createdAt(DateTime v) => this._createdAt = v;
-  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  DateTime? get createdAt => this._createdAt;
+  set createdAt(DateTime? v) => this._createdAt = v;
+  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
   set $createdAt(v) => this._createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String get createdBy => this._createdBy!;
-  set createdBy(String v) => this._createdBy = v;
-  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  String? get createdBy => this._createdBy;
+  set createdBy(String? v) => this._createdBy = v;
+  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
   set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
 
   // description.
@@ -370,9 +356,9 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   set $fullNumber(v) => this._fullNumber = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // numberWithoutCountryCode.
@@ -392,10 +378,15 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   // titleSearchable.
   String? get titleSearchable => this._titleSearchable;
   set titleSearchable(String? v) => this._titleSearchable = v;
-  dynamic get $titleSearchable =>
-      this._titleSearchable?.toString().trim().nullIfEmpty;
-  set $titleSearchable(v) =>
-      this._titleSearchable = v?.toString().trim().nullIfEmpty;
+  dynamic get $titleSearchable => this
+      ._titleSearchable
+      ?.toString()
+      .trim()
+      .nullIfEmpty
+      ?.toLowerCase()
+      .replaceAll(r'[^\w]', '');
+  set $titleSearchable(v) => this._titleSearchable =
+      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 
   // type.
   String? get type => this._type;

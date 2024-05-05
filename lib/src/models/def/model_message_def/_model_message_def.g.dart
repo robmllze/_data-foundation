@@ -97,6 +97,16 @@ class ModelMessageDef extends Model {
   //
   //
 
+  static ModelMessageDef? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelMessageDef.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   factory ModelMessageDef.of(
     ModelMessageDef? other,
   ) {
@@ -159,27 +169,6 @@ class ModelMessageDef extends Model {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelMessageDef? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelMessageDef.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelMessageDef? fromPool({
-    required Iterable<ModelMessageDef>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //

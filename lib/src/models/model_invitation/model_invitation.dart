@@ -16,7 +16,7 @@ part '_model_invitation.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id', String),
+    ('id?', String),
     ('created_at', DateTime),
     ('created_by', String),
     ('expires_at?', DateTime),

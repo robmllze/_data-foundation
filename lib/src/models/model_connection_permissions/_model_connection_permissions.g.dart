@@ -131,6 +131,16 @@ class ModelConnectionPermissions extends Model {
   //
   //
 
+  static ModelConnectionPermissions? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelConnectionPermissions.from(other) : null;
+  }
+
+  //
+  //
+  //
+
   factory ModelConnectionPermissions.of(
     ModelConnectionPermissions? other,
   ) {
@@ -199,27 +209,6 @@ class ModelConnectionPermissions extends Model {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelConnectionPermissions? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelConnectionPermissions.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelConnectionPermissions? fromPool({
-    required Iterable<ModelConnectionPermissions>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //

@@ -16,17 +16,17 @@ part '_model_phone_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id', String),
-    ('title', 'String?'),
-    ('title_searchable', 'String?'),
-    ('created_at', DateTime),
-    ('created_by', String),
-    ('description', 'String?'),
-    ('country_code', 'String?'),
-    ('number_without_country_code', 'String?'),
-    ('full_number', 'String?'),
-    ('extension', 'String?'),
-    ('type', 'String?'),
+    ('id?', String),
+    ('title?', String),
+    ('title_searchable?', T_SEARCHABLE_STRING),
+    ('created_at?', DateTime),
+    ('created_by?', String),
+    ('description?', String),
+    ('country_code?', String),
+    ('number_without_country_code?', String),
+    ('full_number?', String),
+    ('extension?', String),
+    ('type?', String),
   },
 )
 abstract class _ModelPhoneEntry extends ThisModel<ModelPhoneEntry> {}

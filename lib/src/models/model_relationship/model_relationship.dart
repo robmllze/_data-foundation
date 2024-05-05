@@ -17,7 +17,7 @@ part '_model_relationship.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id', String),
+    ('id?', String),
     ('created_at?', DateTime),
     ('created_by?', String),
     ('deleted_at?', DateTime),

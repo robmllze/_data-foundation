@@ -17,9 +17,9 @@ part '_model_user.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id', String),
-    ('pid', String),
-    ('seed', String),
+    ('id?', String),
+    ('pid?', String),
+    ('seed?', String),
     ('created_at', DateTime),
     ('created_by?', String),
     ('deleted_at?', DateTime),

@@ -15,12 +15,11 @@ part '_model_connection_request_def.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
-  className: 'ModelConnectionRequestDef',
   fields: {
-    ('relationship_id', String),
-    ('sender_pid', String),
-    ('receiver_pid', String),
+    ('relationship_id?', String),
+    ('sender_pid?', String),
+    ('receiver_pid?', String),
   },
 )
 // ignore: unused_element
-abstract class _ModelConnectionRequestDef extends Model {}
+abstract class _ModelConnectionRequestDef {}

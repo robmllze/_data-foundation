@@ -48,9 +48,9 @@ class ModelRelDisabledDef extends Model {
   //
 
   factory ModelRelDisabledDef({
-    required String receiverPid,
-    required String relationshipId,
-    required String senderPid,
+    String? receiverPid,
+    String? relationshipId,
+    String? senderPid,
   }) {
     return ModelRelDisabledDef.b(
       receiverPid: receiverPid,
@@ -68,9 +68,6 @@ class ModelRelDisabledDef extends Model {
     String? relationshipId,
     String? senderPid,
   }) {
-    assert(receiverPid != null);
-    assert(relationshipId != null);
-    assert(senderPid != null);
     this._receiverPid = receiverPid;
     this._relationshipId = relationshipId;
     this._senderPid = senderPid;
@@ -86,6 +83,16 @@ class ModelRelDisabledDef extends Model {
     return ModelRelDisabledDef.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelRelDisabledDef? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelRelDisabledDef.from(other) : null;
   }
 
   //
@@ -159,27 +166,6 @@ class ModelRelDisabledDef extends Model {
   //
   //
 
-  static ModelRelDisabledDef? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelRelDisabledDef.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelRelDisabledDef? fromPool({
-    required Iterable<ModelRelDisabledDef>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
-  }
-
-  //
-  //
-  //
-
   @override
   Map<String, dynamic> toJson({
     dynamic defaultValue,
@@ -243,23 +229,22 @@ class ModelRelDisabledDef extends Model {
   //
 
   // receiverPid.
-  String get receiverPid => this._receiverPid!;
-  set receiverPid(String v) => this._receiverPid = v;
-  dynamic get $receiverPid =>
-      (this._receiverPid?.toString().trim().nullIfEmpty)!;
+  String? get receiverPid => this._receiverPid;
+  set receiverPid(String? v) => this._receiverPid = v;
+  dynamic get $receiverPid => this._receiverPid?.toString().trim().nullIfEmpty;
   set $receiverPid(v) => this._receiverPid = v?.toString().trim().nullIfEmpty;
 
   // relationshipId.
-  String get relationshipId => this._relationshipId!;
-  set relationshipId(String v) => this._relationshipId = v;
+  String? get relationshipId => this._relationshipId;
+  set relationshipId(String? v) => this._relationshipId = v;
   dynamic get $relationshipId =>
-      (this._relationshipId?.toString().trim().nullIfEmpty)!;
+      this._relationshipId?.toString().trim().nullIfEmpty;
   set $relationshipId(v) =>
       this._relationshipId = v?.toString().trim().nullIfEmpty;
 
   // senderPid.
-  String get senderPid => this._senderPid!;
-  set senderPid(String v) => this._senderPid = v;
-  dynamic get $senderPid => (this._senderPid?.toString().trim().nullIfEmpty)!;
+  String? get senderPid => this._senderPid;
+  set senderPid(String? v) => this._senderPid = v;
+  dynamic get $senderPid => this._senderPid?.toString().trim().nullIfEmpty;
   set $senderPid(v) => this._senderPid = v?.toString().trim().nullIfEmpty;
 }

@@ -60,11 +60,11 @@ class ModelFileEntry extends _ModelFileEntry {
   //
 
   factory ModelFileEntry({
-    required DateTime createdAt,
-    required String createdBy,
+    DateTime? createdAt,
+    String? createdBy,
     Uri? downloadUrl,
     List<String>? falsePath,
-    required String id,
+    String? id,
     String? name,
     int? size,
     String? storagePath,
@@ -98,9 +98,6 @@ class ModelFileEntry extends _ModelFileEntry {
     String? storagePath,
     String? type,
   }) {
-    assert(createdAt != null);
-    assert(createdBy != null);
-    assert(id != null);
     this._createdAt = createdAt;
     this._createdBy = createdBy;
     this._downloadUrl = downloadUrl;
@@ -122,6 +119,16 @@ class ModelFileEntry extends _ModelFileEntry {
     return ModelFileEntry.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelFileEntry? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelFileEntry.from(other) : null;
   }
 
   //
@@ -195,27 +202,6 @@ class ModelFileEntry extends _ModelFileEntry {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelFileEntry? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelFileEntry.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelFileEntry? fromPool({
-    required Iterable<ModelFileEntry>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -309,18 +295,18 @@ class ModelFileEntry extends _ModelFileEntry {
   //
 
   // createdAt.
-  DateTime get createdAt => this._createdAt!;
-  set createdAt(DateTime v) => this._createdAt = v;
-  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
+  DateTime? get createdAt => this._createdAt;
+  set createdAt(DateTime? v) => this._createdAt = v;
+  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
   set $createdAt(v) => this._createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String get createdBy => this._createdBy!;
-  set createdBy(String v) => this._createdBy = v;
-  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
+  String? get createdBy => this._createdBy;
+  set createdBy(String? v) => this._createdBy = v;
+  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
   set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
 
   // downloadUrl.
@@ -353,9 +339,9 @@ class ModelFileEntry extends _ModelFileEntry {
       .cast();
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // name.

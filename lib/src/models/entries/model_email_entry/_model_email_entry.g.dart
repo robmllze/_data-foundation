@@ -60,7 +60,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     required String createdBy,
     String? description,
     String? email,
-    required String id,
+    String? id,
     String? title,
     String? titleSearchable,
   }) {
@@ -90,7 +90,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
   }) {
     assert(createdAt != null);
     assert(createdBy != null);
-    assert(id != null);
     this._createdAt = createdAt;
     this._createdBy = createdBy;
     this._description = description;
@@ -110,6 +109,16 @@ class ModelEmailEntry extends _ModelEmailEntry {
     return ModelEmailEntry.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
+  }
+
+  //
+  //
+  //
+
+  static ModelEmailEntry? fromOrNull(
+    Model? other,
+  ) {
+    return other != null ? ModelEmailEntry.from(other) : null;
   }
 
   //
@@ -181,27 +190,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
       assert(false, e);
       rethrow;
     }
-  }
-
-  //
-  //
-  //
-
-  static ModelEmailEntry? convert(
-    Model? other,
-  ) {
-    return other != null ? ModelEmailEntry.from(other) : null;
-  }
-
-  //
-  //
-  //
-
-  static ModelEmailEntry? fromPool({
-    required Iterable<ModelEmailEntry>? pool,
-    required String? id,
-  }) {
-    return id != null ? pool?.firstWhereOrNull((e) => e.id == id) : null;
   }
 
   //
@@ -314,9 +302,9 @@ class ModelEmailEntry extends _ModelEmailEntry {
   set $email(v) => this._email = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String get id => this._id!;
-  set id(String v) => this._id = v;
-  dynamic get $id => (this._id?.toString().trim().nullIfEmpty)!;
+  String? get id => this._id;
+  set id(String? v) => this._id = v;
+  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
   set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
 
   // title.
@@ -328,8 +316,13 @@ class ModelEmailEntry extends _ModelEmailEntry {
   // titleSearchable.
   String? get titleSearchable => this._titleSearchable;
   set titleSearchable(String? v) => this._titleSearchable = v;
-  dynamic get $titleSearchable =>
-      this._titleSearchable?.toString().trim().nullIfEmpty;
-  set $titleSearchable(v) =>
-      this._titleSearchable = v?.toString().trim().nullIfEmpty;
+  dynamic get $titleSearchable => this
+      ._titleSearchable
+      ?.toString()
+      .trim()
+      .nullIfEmpty
+      ?.toLowerCase()
+      .replaceAll(r'[^\w]', '');
+  set $titleSearchable(v) => this._titleSearchable =
+      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 }

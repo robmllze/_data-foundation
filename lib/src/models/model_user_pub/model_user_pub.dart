@@ -17,11 +17,11 @@ part '_model_user_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id', String),
-    ('display_name', String),
-    ('display_name_searchable', 'Searchable-String'),
-    ('email', 'LowerCase-String'),
-    ('created_at', DateTime),
+    ('id?', String),
+    ('display_name?', String),
+    ('display_name_searchable?', T_SEARCHABLE_STRING),
+    ('email?', T_LOWER_CASE_STRING),
+    ('created_at?', DateTime),
     ('created_by?', String),
     ('deleted_at?', DateTime),
     ('deleted_by?', String),
