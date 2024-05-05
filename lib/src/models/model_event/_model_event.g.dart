@@ -44,20 +44,20 @@ class ModelEvent extends _ModelEvent {
   @override
   String get $class => CLASS;
 
-  GenericModel? _def;
-  EventDefType? _defType;
-  DateTime? _deletedAt;
-  String? _deletedBy;
-  String? _id;
-  Set<String>? _memberPids;
-  int? _timeout;
-  Set<String>? _uploadedMediaIds;
-  Map<String, DateTime>? _whenArchived;
-  Map<String, DateTime>? _whenHidden;
-  Map<String, DateTime>? _whenLiked;
-  Map<String, DateTime>? _whenRead;
-  Map<String, DateTime>? _whenReceived;
-  Map<String, DateTime>? _whenSent;
+  GenericModel? def;
+  EventDefType? defType;
+  DateTime? deletedAt;
+  String? deletedBy;
+  String? id;
+  Set<String>? memberPids;
+  int? timeout;
+  Set<String>? uploadedMediaIds;
+  Map<String, DateTime>? whenArchived;
+  Map<String, DateTime>? whenHidden;
+  Map<String, DateTime>? whenLiked;
+  Map<String, DateTime>? whenRead;
+  Map<String, DateTime>? whenReceived;
+  Map<String, DateTime>? whenSent;
 
   //
   //
@@ -108,36 +108,22 @@ class ModelEvent extends _ModelEvent {
   //
 
   ModelEvent.b({
-    GenericModel? def,
-    EventDefType? defType,
-    DateTime? deletedAt,
-    String? deletedBy,
-    String? id,
-    Set<String>? memberPids,
-    int? timeout,
-    Set<String>? uploadedMediaIds,
-    Map<String, DateTime>? whenArchived,
-    Map<String, DateTime>? whenHidden,
-    Map<String, DateTime>? whenLiked,
-    Map<String, DateTime>? whenRead,
-    Map<String, DateTime>? whenReceived,
-    Map<String, DateTime>? whenSent,
+    this.def,
+    this.defType,
+    this.deletedAt,
+    this.deletedBy,
+    this.id,
+    this.memberPids,
+    this.timeout,
+    this.uploadedMediaIds,
+    this.whenArchived,
+    this.whenHidden,
+    this.whenLiked,
+    this.whenRead,
+    this.whenReceived,
+    this.whenSent,
   }) {
     assert(memberPids != null);
-    this._def = def;
-    this._defType = defType;
-    this._deletedAt = deletedAt;
-    this._deletedBy = deletedBy;
-    this._id = id;
-    this._memberPids = memberPids;
-    this._timeout = timeout;
-    this._uploadedMediaIds = uploadedMediaIds;
-    this._whenArchived = whenArchived;
-    this._whenHidden = whenHidden;
-    this._whenLiked = whenLiked;
-    this._whenRead = whenRead;
-    this._whenReceived = whenReceived;
-    this._whenSent = whenSent;
   }
 
   //
@@ -301,47 +287,47 @@ class ModelEvent extends _ModelEvent {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelEvent.fromJson(otherData);
-      if (other._def != null) {
-        this.def = other._def!;
+      if (other.def != null) {
+        this.def = other.def!;
       }
-      if (other._defType != null) {
-        this.defType = other._defType!;
+      if (other.defType != null) {
+        this.defType = other.defType!;
       }
-      if (other._deletedAt != null) {
-        this.deletedAt = other._deletedAt!;
+      if (other.deletedAt != null) {
+        this.deletedAt = other.deletedAt!;
       }
-      if (other._deletedBy != null) {
-        this.deletedBy = other._deletedBy!;
+      if (other.deletedBy != null) {
+        this.deletedBy = other.deletedBy!;
       }
-      if (other._id != null) {
-        this.id = other._id!;
+      if (other.id != null) {
+        this.id = other.id!;
       }
-      if (other._memberPids != null) {
-        this.memberPids = other._memberPids!;
+      if (other.memberPids != null) {
+        this.memberPids = other.memberPids!;
       }
-      if (other._timeout != null) {
-        this.timeout = other._timeout!;
+      if (other.timeout != null) {
+        this.timeout = other.timeout!;
       }
-      if (other._uploadedMediaIds != null) {
-        this.uploadedMediaIds = other._uploadedMediaIds!;
+      if (other.uploadedMediaIds != null) {
+        this.uploadedMediaIds = other.uploadedMediaIds!;
       }
-      if (other._whenArchived != null) {
-        this.whenArchived = other._whenArchived!;
+      if (other.whenArchived != null) {
+        this.whenArchived = other.whenArchived!;
       }
-      if (other._whenHidden != null) {
-        this.whenHidden = other._whenHidden!;
+      if (other.whenHidden != null) {
+        this.whenHidden = other.whenHidden!;
       }
-      if (other._whenLiked != null) {
-        this.whenLiked = other._whenLiked!;
+      if (other.whenLiked != null) {
+        this.whenLiked = other.whenLiked!;
       }
-      if (other._whenRead != null) {
-        this.whenRead = other._whenRead!;
+      if (other.whenRead != null) {
+        this.whenRead = other.whenRead!;
       }
-      if (other._whenReceived != null) {
-        this.whenReceived = other._whenReceived!;
+      if (other.whenReceived != null) {
+        this.whenReceived = other.whenReceived!;
       }
-      if (other._whenSent != null) {
-        this.whenSent = other._whenSent!;
+      if (other.whenSent != null) {
+        this.whenSent = other.whenSent!;
       }
     }
   }
@@ -351,54 +337,66 @@ class ModelEvent extends _ModelEvent {
   //
 
   // def.
-  GenericModel? get def => this._def;
-  set def(GenericModel? v) => this._def = v;
-  dynamic get $def => this._def?.toJson();
-  set $def(v) => this._def = () {
+  GenericModel? get defField => this.def;
+  set defField(GenericModel? v) => this.def = v;
+  @protected
+  dynamic get $def => this.def?.toJson();
+  @protected
+  set $def(v) => this.def = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? GenericModel.fromJson(a) : null;
       }();
 
   // defType.
-  EventDefType? get defType => this._defType;
-  set defType(EventDefType? v) => this._defType = v;
-  dynamic get $defType => this._defType?.name;
+  EventDefType? get defTypeField => this.defType;
+  set defTypeField(EventDefType? v) => this.defType = v;
+  @protected
+  dynamic get $defType => this.defType?.name;
+  @protected
   set $defType(v) =>
-      this._defType = EventDefType.values.valueOf(letAs<String>(v));
+      this.defType = EventDefType.values.valueOf(letAs<String>(v));
 
   // deletedAt.
-  DateTime? get deletedAt => this._deletedAt;
-  set deletedAt(DateTime? v) => this._deletedAt = v;
-  dynamic get $deletedAt => this._deletedAt?.toUtc()?.toIso8601String();
-  set $deletedAt(v) => this._deletedAt = () {
+  DateTime? get deletedAtField => this.deletedAt;
+  set deletedAtField(DateTime? v) => this.deletedAt = v;
+  @protected
+  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $deletedAt(v) => this.deletedAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // deletedBy.
-  String? get deletedBy => this._deletedBy;
-  set deletedBy(String? v) => this._deletedBy = v;
-  dynamic get $deletedBy => this._deletedBy?.toString().trim().nullIfEmpty;
-  set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
+  String? get deletedByField => this.deletedBy;
+  set deletedByField(String? v) => this.deletedBy = v;
+  @protected
+  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String? get id => this._id;
-  set id(String? v) => this._id = v;
-  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
-  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // memberPids.
-  Set<String> get memberPids => this._memberPids!;
-  set memberPids(Set<String> v) => this._memberPids = v;
+  Set<String> get memberPidsField => this.memberPids!;
+  set memberPidsField(Set<String> v) => this.memberPids = v;
+  @protected
   dynamic get $memberPids => (this
-      ._memberPids
+      .memberPids
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
       .nonNulls
       .nullIfEmpty
       ?.toList())!;
-  set $memberPids(v) => this._memberPids = letSet(v)
+  @protected
+  set $memberPids(v) => this.memberPids = letSet(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
@@ -408,23 +406,27 @@ class ModelEvent extends _ModelEvent {
       .cast();
 
   // timeout.
-  int? get timeout => this._timeout;
-  set timeout(int? v) => this._timeout = v;
-  dynamic get $timeout => this._timeout;
-  set $timeout(v) => this._timeout = letInt(v);
+  int? get timeoutField => this.timeout;
+  set timeoutField(int? v) => this.timeout = v;
+  @protected
+  dynamic get $timeout => this.timeout;
+  @protected
+  set $timeout(v) => this.timeout = letInt(v);
 
   // uploadedMediaIds.
-  Set<String>? get uploadedMediaIds => this._uploadedMediaIds;
-  set uploadedMediaIds(Set<String>? v) => this._uploadedMediaIds = v;
+  Set<String>? get uploadedMediaIdsField => this.uploadedMediaIds;
+  set uploadedMediaIdsField(Set<String>? v) => this.uploadedMediaIds = v;
+  @protected
   dynamic get $uploadedMediaIds => this
-      ._uploadedMediaIds
+      .uploadedMediaIds
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $uploadedMediaIds(v) => this._uploadedMediaIds = letSet(v)
+  @protected
+  set $uploadedMediaIds(v) => this.uploadedMediaIds = letSet(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
@@ -434,10 +436,11 @@ class ModelEvent extends _ModelEvent {
       .cast();
 
   // whenArchived.
-  Map<String, DateTime>? get whenArchived => this._whenArchived;
-  set whenArchived(Map<String, DateTime>? v) => this._whenArchived = v;
+  Map<String, DateTime>? get whenArchivedField => this.whenArchived;
+  set whenArchivedField(Map<String, DateTime>? v) => this.whenArchived = v;
+  @protected
   dynamic get $whenArchived => this
-      ._whenArchived
+      .whenArchived
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -446,7 +449,8 @@ class ModelEvent extends _ModelEvent {
       )
       .nonNulls
       .nullIfEmpty;
-  set $whenArchived(v) => this._whenArchived = letMap(v)
+  @protected
+  set $whenArchived(v) => this.whenArchived = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -461,10 +465,11 @@ class ModelEvent extends _ModelEvent {
       ?.cast();
 
   // whenHidden.
-  Map<String, DateTime>? get whenHidden => this._whenHidden;
-  set whenHidden(Map<String, DateTime>? v) => this._whenHidden = v;
+  Map<String, DateTime>? get whenHiddenField => this.whenHidden;
+  set whenHiddenField(Map<String, DateTime>? v) => this.whenHidden = v;
+  @protected
   dynamic get $whenHidden => this
-      ._whenHidden
+      .whenHidden
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -473,7 +478,8 @@ class ModelEvent extends _ModelEvent {
       )
       .nonNulls
       .nullIfEmpty;
-  set $whenHidden(v) => this._whenHidden = letMap(v)
+  @protected
+  set $whenHidden(v) => this.whenHidden = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -488,10 +494,11 @@ class ModelEvent extends _ModelEvent {
       ?.cast();
 
   // whenLiked.
-  Map<String, DateTime>? get whenLiked => this._whenLiked;
-  set whenLiked(Map<String, DateTime>? v) => this._whenLiked = v;
+  Map<String, DateTime>? get whenLikedField => this.whenLiked;
+  set whenLikedField(Map<String, DateTime>? v) => this.whenLiked = v;
+  @protected
   dynamic get $whenLiked => this
-      ._whenLiked
+      .whenLiked
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -500,7 +507,8 @@ class ModelEvent extends _ModelEvent {
       )
       .nonNulls
       .nullIfEmpty;
-  set $whenLiked(v) => this._whenLiked = letMap(v)
+  @protected
+  set $whenLiked(v) => this.whenLiked = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -515,10 +523,11 @@ class ModelEvent extends _ModelEvent {
       ?.cast();
 
   // whenRead.
-  Map<String, DateTime>? get whenRead => this._whenRead;
-  set whenRead(Map<String, DateTime>? v) => this._whenRead = v;
+  Map<String, DateTime>? get whenReadField => this.whenRead;
+  set whenReadField(Map<String, DateTime>? v) => this.whenRead = v;
+  @protected
   dynamic get $whenRead => this
-      ._whenRead
+      .whenRead
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -527,7 +536,8 @@ class ModelEvent extends _ModelEvent {
       )
       .nonNulls
       .nullIfEmpty;
-  set $whenRead(v) => this._whenRead = letMap(v)
+  @protected
+  set $whenRead(v) => this.whenRead = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -542,10 +552,11 @@ class ModelEvent extends _ModelEvent {
       ?.cast();
 
   // whenReceived.
-  Map<String, DateTime>? get whenReceived => this._whenReceived;
-  set whenReceived(Map<String, DateTime>? v) => this._whenReceived = v;
+  Map<String, DateTime>? get whenReceivedField => this.whenReceived;
+  set whenReceivedField(Map<String, DateTime>? v) => this.whenReceived = v;
+  @protected
   dynamic get $whenReceived => this
-      ._whenReceived
+      .whenReceived
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -554,7 +565,8 @@ class ModelEvent extends _ModelEvent {
       )
       .nonNulls
       .nullIfEmpty;
-  set $whenReceived(v) => this._whenReceived = letMap(v)
+  @protected
+  set $whenReceived(v) => this.whenReceived = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -569,10 +581,11 @@ class ModelEvent extends _ModelEvent {
       ?.cast();
 
   // whenSent.
-  Map<String, DateTime>? get whenSent => this._whenSent;
-  set whenSent(Map<String, DateTime>? v) => this._whenSent = v;
+  Map<String, DateTime>? get whenSentField => this.whenSent;
+  set whenSentField(Map<String, DateTime>? v) => this.whenSent = v;
+  @protected
   dynamic get $whenSent => this
-      ._whenSent
+      .whenSent
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -581,7 +594,8 @@ class ModelEvent extends _ModelEvent {
       )
       .nonNulls
       .nullIfEmpty;
-  set $whenSent(v) => this._whenSent = letMap(v)
+  @protected
+  set $whenSent(v) => this.whenSent = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,

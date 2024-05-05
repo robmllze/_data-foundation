@@ -42,18 +42,18 @@ class ModelFileEntry extends _ModelFileEntry {
   @override
   String get $class => CLASS;
 
-  DateTime? _createdAt;
-  String? _createdBy;
-  String? _description;
-  Uri? _downloadUrl;
-  String? _extension;
-  List<String>? _falsePath;
-  String? _id;
-  String? _name;
-  String? _searchableTitle;
-  int? _size;
-  String? _storagePath;
-  String? _title;
+  DateTime? createdAt;
+  String? createdBy;
+  String? description;
+  Uri? downloadUrl;
+  String? extension;
+  List<String>? falsePath;
+  String? id;
+  String? name;
+  String? searchableTitle;
+  int? size;
+  String? storagePath;
+  String? title;
 
   //
   //
@@ -100,32 +100,19 @@ class ModelFileEntry extends _ModelFileEntry {
   //
 
   ModelFileEntry.b({
-    DateTime? createdAt,
-    String? createdBy,
-    String? description,
-    Uri? downloadUrl,
-    String? extension,
-    List<String>? falsePath,
-    String? id,
-    String? name,
-    String? searchableTitle,
-    int? size,
-    String? storagePath,
-    String? title,
-  }) {
-    this._createdAt = createdAt;
-    this._createdBy = createdBy;
-    this._description = description;
-    this._downloadUrl = downloadUrl;
-    this._extension = extension;
-    this._falsePath = falsePath;
-    this._id = id;
-    this._name = name;
-    this._searchableTitle = searchableTitle;
-    this._size = size;
-    this._storagePath = storagePath;
-    this._title = title;
-  }
+    this.createdAt,
+    this.createdBy,
+    this.description,
+    this.downloadUrl,
+    this.extension,
+    this.falsePath,
+    this.id,
+    this.name,
+    this.searchableTitle,
+    this.size,
+    this.storagePath,
+    this.title,
+  }) {}
 
   //
   //
@@ -284,41 +271,41 @@ class ModelFileEntry extends _ModelFileEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelFileEntry.fromJson(otherData);
-      if (other._createdAt != null) {
-        this.createdAt = other._createdAt!;
+      if (other.createdAt != null) {
+        this.createdAt = other.createdAt!;
       }
-      if (other._createdBy != null) {
-        this.createdBy = other._createdBy!;
+      if (other.createdBy != null) {
+        this.createdBy = other.createdBy!;
       }
-      if (other._description != null) {
-        this.description = other._description!;
+      if (other.description != null) {
+        this.description = other.description!;
       }
-      if (other._downloadUrl != null) {
-        this.downloadUrl = other._downloadUrl!;
+      if (other.downloadUrl != null) {
+        this.downloadUrl = other.downloadUrl!;
       }
-      if (other._extension != null) {
-        this.extension = other._extension!;
+      if (other.extension != null) {
+        this.extension = other.extension!;
       }
-      if (other._falsePath != null) {
-        this.falsePath = other._falsePath!;
+      if (other.falsePath != null) {
+        this.falsePath = other.falsePath!;
       }
-      if (other._id != null) {
-        this.id = other._id!;
+      if (other.id != null) {
+        this.id = other.id!;
       }
-      if (other._name != null) {
-        this.name = other._name!;
+      if (other.name != null) {
+        this.name = other.name!;
       }
-      if (other._searchableTitle != null) {
-        this.searchableTitle = other._searchableTitle!;
+      if (other.searchableTitle != null) {
+        this.searchableTitle = other.searchableTitle!;
       }
-      if (other._size != null) {
-        this.size = other._size!;
+      if (other.size != null) {
+        this.size = other.size!;
       }
-      if (other._storagePath != null) {
-        this.storagePath = other._storagePath!;
+      if (other.storagePath != null) {
+        this.storagePath = other.storagePath!;
       }
-      if (other._title != null) {
-        this.title = other._title!;
+      if (other.title != null) {
+        this.title = other.title!;
       }
     }
   }
@@ -328,53 +315,65 @@ class ModelFileEntry extends _ModelFileEntry {
   //
 
   // createdAt.
-  DateTime? get createdAt => this._createdAt;
-  set createdAt(DateTime? v) => this._createdAt = v;
-  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
-  set $createdAt(v) => this._createdAt = () {
+  DateTime? get createdAtField => this.createdAt;
+  set createdAtField(DateTime? v) => this.createdAt = v;
+  @protected
+  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  @protected
+  set $createdAt(v) => this.createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String? get createdBy => this._createdBy;
-  set createdBy(String? v) => this._createdBy = v;
-  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
-  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+  String? get createdByField => this.createdBy;
+  set createdByField(String? v) => this.createdBy = v;
+  @protected
+  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // description.
-  String? get description => this._description;
-  set description(String? v) => this._description = v;
-  dynamic get $description => this._description?.toString().trim().nullIfEmpty;
-  set $description(v) => this._description = v?.toString().trim().nullIfEmpty;
+  String? get descriptionField => this.description;
+  set descriptionField(String? v) => this.description = v;
+  @protected
+  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
+  @protected
+  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
   // downloadUrl.
-  Uri? get downloadUrl => this._downloadUrl;
-  set downloadUrl(Uri? v) => this._downloadUrl = v;
-  dynamic get $downloadUrl => this._downloadUrl?.toString();
-  set $downloadUrl(v) => this._downloadUrl = () {
+  Uri? get downloadUrlField => this.downloadUrl;
+  set downloadUrlField(Uri? v) => this.downloadUrl = v;
+  @protected
+  dynamic get $downloadUrl => this.downloadUrl?.toString();
+  @protected
+  set $downloadUrl(v) => this.downloadUrl = () {
         final a = v;
         return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
       }();
 
   // extension.
-  String? get extension => this._extension;
-  set extension(String? v) => this._extension = v;
-  dynamic get $extension => this._extension?.toString().trim().nullIfEmpty;
-  set $extension(v) => this._extension = v?.toString().trim().nullIfEmpty;
+  String? get extensionField => this.extension;
+  set extensionField(String? v) => this.extension = v;
+  @protected
+  dynamic get $extension => this.extension?.toString().trim().nullIfEmpty;
+  @protected
+  set $extension(v) => this.extension = v?.toString().trim().nullIfEmpty;
 
   // falsePath.
-  List<String>? get falsePath => this._falsePath;
-  set falsePath(List<String>? v) => this._falsePath = v;
+  List<String>? get falsePathField => this.falsePath;
+  set falsePathField(List<String>? v) => this.falsePath = v;
+  @protected
   dynamic get $falsePath => this
-      ._falsePath
+      .falsePath
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $falsePath(v) => this._falsePath = letList(v)
+  @protected
+  set $falsePath(v) => this.falsePath = letList(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
@@ -384,45 +383,57 @@ class ModelFileEntry extends _ModelFileEntry {
       .cast();
 
   // id.
-  String? get id => this._id;
-  set id(String? v) => this._id = v;
-  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
-  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // name.
-  String? get name => this._name;
-  set name(String? v) => this._name = v;
-  dynamic get $name => this._name?.toString().trim().nullIfEmpty;
-  set $name(v) => this._name = v?.toString().trim().nullIfEmpty;
+  String? get nameField => this.name;
+  set nameField(String? v) => this.name = v;
+  @protected
+  dynamic get $name => this.name?.toString().trim().nullIfEmpty;
+  @protected
+  set $name(v) => this.name = v?.toString().trim().nullIfEmpty;
 
   // searchableTitle.
-  String? get searchableTitle => this._searchableTitle;
-  set searchableTitle(String? v) => this._searchableTitle = v;
+  String? get searchableTitleField => this.searchableTitle;
+  set searchableTitleField(String? v) => this.searchableTitle = v;
+  @protected
   dynamic get $searchableTitle => this
-      ._searchableTitle
+      .searchableTitle
       ?.toString()
       .trim()
       .nullIfEmpty
       ?.toLowerCase()
       .replaceAll(r'[^\w]', '');
-  set $searchableTitle(v) => this._searchableTitle =
+  @protected
+  set $searchableTitle(v) => this.searchableTitle =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 
   // size.
-  int? get size => this._size;
-  set size(int? v) => this._size = v;
-  dynamic get $size => this._size;
-  set $size(v) => this._size = letInt(v);
+  int? get sizeField => this.size;
+  set sizeField(int? v) => this.size = v;
+  @protected
+  dynamic get $size => this.size;
+  @protected
+  set $size(v) => this.size = letInt(v);
 
   // storagePath.
-  String? get storagePath => this._storagePath;
-  set storagePath(String? v) => this._storagePath = v;
-  dynamic get $storagePath => this._storagePath?.toString().trim().nullIfEmpty;
-  set $storagePath(v) => this._storagePath = v?.toString().trim().nullIfEmpty;
+  String? get storagePathField => this.storagePath;
+  set storagePathField(String? v) => this.storagePath = v;
+  @protected
+  dynamic get $storagePath => this.storagePath?.toString().trim().nullIfEmpty;
+  @protected
+  set $storagePath(v) => this.storagePath = v?.toString().trim().nullIfEmpty;
 
   // title.
-  String? get title => this._title;
-  set title(String? v) => this._title = v;
-  dynamic get $title => this._title?.toString().trim().nullIfEmpty;
-  set $title(v) => this._title = v?.toString().trim().nullIfEmpty;
+  String? get titleField => this.title;
+  set titleField(String? v) => this.title = v;
+  @protected
+  dynamic get $title => this.title?.toString().trim().nullIfEmpty;
+  @protected
+  set $title(v) => this.title = v?.toString().trim().nullIfEmpty;
 }

@@ -34,10 +34,10 @@ class ModelMessageDef extends Model {
   @override
   String get $class => CLASS;
 
-  String? _message;
-  Set<String>? _receiverPids;
-  String? _relationshipId;
-  String? _senderPid;
+  String? message;
+  Set<String>? receiverPids;
+  String? relationshipId;
+  String? senderPid;
 
   //
   //
@@ -68,17 +68,13 @@ class ModelMessageDef extends Model {
   //
 
   ModelMessageDef.b({
-    String? message,
-    Set<String>? receiverPids,
-    String? relationshipId,
-    String? senderPid,
+    this.message,
+    this.receiverPids,
+    this.relationshipId,
+    this.senderPid,
   }) {
     assert(relationshipId != null);
     assert(senderPid != null);
-    this._message = message;
-    this._receiverPids = receiverPids;
-    this._relationshipId = relationshipId;
-    this._senderPid = senderPid;
   }
 
   //
@@ -222,17 +218,17 @@ class ModelMessageDef extends Model {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelMessageDef.fromJson(otherData);
-      if (other._message != null) {
-        this.message = other._message!;
+      if (other.message != null) {
+        this.message = other.message!;
       }
-      if (other._receiverPids != null) {
-        this.receiverPids = other._receiverPids!;
+      if (other.receiverPids != null) {
+        this.receiverPids = other.receiverPids!;
       }
-      if (other._relationshipId != null) {
-        this.relationshipId = other._relationshipId!;
+      if (other.relationshipId != null) {
+        this.relationshipId = other.relationshipId!;
       }
-      if (other._senderPid != null) {
-        this.senderPid = other._senderPid!;
+      if (other.senderPid != null) {
+        this.senderPid = other.senderPid!;
       }
     }
   }
@@ -242,23 +238,27 @@ class ModelMessageDef extends Model {
   //
 
   // message.
-  String? get message => this._message;
-  set message(String? v) => this._message = v;
-  dynamic get $message => this._message?.toString().trim().nullIfEmpty;
-  set $message(v) => this._message = v?.toString().trim().nullIfEmpty;
+  String? get messageField => this.message;
+  set messageField(String? v) => this.message = v;
+  @protected
+  dynamic get $message => this.message?.toString().trim().nullIfEmpty;
+  @protected
+  set $message(v) => this.message = v?.toString().trim().nullIfEmpty;
 
   // receiverPids.
-  Set<String>? get receiverPids => this._receiverPids;
-  set receiverPids(Set<String>? v) => this._receiverPids = v;
+  Set<String>? get receiverPidsField => this.receiverPids;
+  set receiverPidsField(Set<String>? v) => this.receiverPids = v;
+  @protected
   dynamic get $receiverPids => this
-      ._receiverPids
+      .receiverPids
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $receiverPids(v) => this._receiverPids = letSet(v)
+  @protected
+  set $receiverPids(v) => this.receiverPids = letSet(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
@@ -268,16 +268,20 @@ class ModelMessageDef extends Model {
       .cast();
 
   // relationshipId.
-  String get relationshipId => this._relationshipId!;
-  set relationshipId(String v) => this._relationshipId = v;
+  String get relationshipIdField => this.relationshipId!;
+  set relationshipIdField(String v) => this.relationshipId = v;
+  @protected
   dynamic get $relationshipId =>
-      (this._relationshipId?.toString().trim().nullIfEmpty)!;
+      (this.relationshipId?.toString().trim().nullIfEmpty)!;
+  @protected
   set $relationshipId(v) =>
-      this._relationshipId = v?.toString().trim().nullIfEmpty;
+      this.relationshipId = v?.toString().trim().nullIfEmpty;
 
   // senderPid.
-  String get senderPid => this._senderPid!;
-  set senderPid(String v) => this._senderPid = v;
-  dynamic get $senderPid => (this._senderPid?.toString().trim().nullIfEmpty)!;
-  set $senderPid(v) => this._senderPid = v?.toString().trim().nullIfEmpty;
+  String get senderPidField => this.senderPid!;
+  set senderPidField(String v) => this.senderPid = v;
+  @protected
+  dynamic get $senderPid => (this.senderPid?.toString().trim().nullIfEmpty)!;
+  @protected
+  set $senderPid(v) => this.senderPid = v?.toString().trim().nullIfEmpty;
 }

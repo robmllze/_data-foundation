@@ -47,23 +47,23 @@ class ModelProjectPub extends _ModelProjectPub {
   @override
   String get $class => CLASS;
 
-  DateTime? _createdAt;
-  String? _createdBy;
-  DateTime? _deletedAt;
-  String? _deletedBy;
-  String? _description;
-  String? _displayName;
-  String? _displayNameSearchable;
-  String? _id;
-  Set<ModelAddressEntry>? _otherAddresses;
-  Set<ModelEmailEntry>? _otherEmails;
-  Set<ModelEmailEntry>? _otherPhones;
-  ModelAddressEntry? _primaryAddress;
-  ModelEmailEntry? _primaryEmail;
-  ModelPhoneEntry? _primaryPhone;
-  List<String>? _uploadedMediaIds;
-  Map<String, DateTime>? _whenClosed;
-  Map<String, DateTime>? _whenOpened;
+  DateTime? createdAt;
+  String? createdBy;
+  DateTime? deletedAt;
+  String? deletedBy;
+  String? description;
+  String? displayName;
+  String? displayNameSearchable;
+  String? id;
+  Set<ModelAddressEntry>? otherAddresses;
+  Set<ModelEmailEntry>? otherEmails;
+  Set<ModelEmailEntry>? otherPhones;
+  ModelAddressEntry? primaryAddress;
+  ModelEmailEntry? primaryEmail;
+  ModelPhoneEntry? primaryPhone;
+  List<String>? uploadedMediaIds;
+  Map<String, DateTime>? whenClosed;
+  Map<String, DateTime>? whenOpened;
 
   //
   //
@@ -120,42 +120,24 @@ class ModelProjectPub extends _ModelProjectPub {
   //
 
   ModelProjectPub.b({
-    DateTime? createdAt,
-    String? createdBy,
-    DateTime? deletedAt,
-    String? deletedBy,
-    String? description,
-    String? displayName,
-    String? displayNameSearchable,
-    String? id,
-    Set<ModelAddressEntry>? otherAddresses,
-    Set<ModelEmailEntry>? otherEmails,
-    Set<ModelEmailEntry>? otherPhones,
-    ModelAddressEntry? primaryAddress,
-    ModelEmailEntry? primaryEmail,
-    ModelPhoneEntry? primaryPhone,
-    List<String>? uploadedMediaIds,
-    Map<String, DateTime>? whenClosed,
-    Map<String, DateTime>? whenOpened,
-  }) {
-    this._createdAt = createdAt;
-    this._createdBy = createdBy;
-    this._deletedAt = deletedAt;
-    this._deletedBy = deletedBy;
-    this._description = description;
-    this._displayName = displayName;
-    this._displayNameSearchable = displayNameSearchable;
-    this._id = id;
-    this._otherAddresses = otherAddresses;
-    this._otherEmails = otherEmails;
-    this._otherPhones = otherPhones;
-    this._primaryAddress = primaryAddress;
-    this._primaryEmail = primaryEmail;
-    this._primaryPhone = primaryPhone;
-    this._uploadedMediaIds = uploadedMediaIds;
-    this._whenClosed = whenClosed;
-    this._whenOpened = whenOpened;
-  }
+    this.createdAt,
+    this.createdBy,
+    this.deletedAt,
+    this.deletedBy,
+    this.description,
+    this.displayName,
+    this.displayNameSearchable,
+    this.id,
+    this.otherAddresses,
+    this.otherEmails,
+    this.otherPhones,
+    this.primaryAddress,
+    this.primaryEmail,
+    this.primaryPhone,
+    this.uploadedMediaIds,
+    this.whenClosed,
+    this.whenOpened,
+  }) {}
 
   //
   //
@@ -324,56 +306,56 @@ class ModelProjectPub extends _ModelProjectPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelProjectPub.fromJson(otherData);
-      if (other._createdAt != null) {
-        this.createdAt = other._createdAt!;
+      if (other.createdAt != null) {
+        this.createdAt = other.createdAt!;
       }
-      if (other._createdBy != null) {
-        this.createdBy = other._createdBy!;
+      if (other.createdBy != null) {
+        this.createdBy = other.createdBy!;
       }
-      if (other._deletedAt != null) {
-        this.deletedAt = other._deletedAt!;
+      if (other.deletedAt != null) {
+        this.deletedAt = other.deletedAt!;
       }
-      if (other._deletedBy != null) {
-        this.deletedBy = other._deletedBy!;
+      if (other.deletedBy != null) {
+        this.deletedBy = other.deletedBy!;
       }
-      if (other._description != null) {
-        this.description = other._description!;
+      if (other.description != null) {
+        this.description = other.description!;
       }
-      if (other._displayName != null) {
-        this.displayName = other._displayName!;
+      if (other.displayName != null) {
+        this.displayName = other.displayName!;
       }
-      if (other._displayNameSearchable != null) {
-        this.displayNameSearchable = other._displayNameSearchable!;
+      if (other.displayNameSearchable != null) {
+        this.displayNameSearchable = other.displayNameSearchable!;
       }
-      if (other._id != null) {
-        this.id = other._id!;
+      if (other.id != null) {
+        this.id = other.id!;
       }
-      if (other._otherAddresses != null) {
-        this.otherAddresses = other._otherAddresses!;
+      if (other.otherAddresses != null) {
+        this.otherAddresses = other.otherAddresses!;
       }
-      if (other._otherEmails != null) {
-        this.otherEmails = other._otherEmails!;
+      if (other.otherEmails != null) {
+        this.otherEmails = other.otherEmails!;
       }
-      if (other._otherPhones != null) {
-        this.otherPhones = other._otherPhones!;
+      if (other.otherPhones != null) {
+        this.otherPhones = other.otherPhones!;
       }
-      if (other._primaryAddress != null) {
-        this.primaryAddress = other._primaryAddress!;
+      if (other.primaryAddress != null) {
+        this.primaryAddress = other.primaryAddress!;
       }
-      if (other._primaryEmail != null) {
-        this.primaryEmail = other._primaryEmail!;
+      if (other.primaryEmail != null) {
+        this.primaryEmail = other.primaryEmail!;
       }
-      if (other._primaryPhone != null) {
-        this.primaryPhone = other._primaryPhone!;
+      if (other.primaryPhone != null) {
+        this.primaryPhone = other.primaryPhone!;
       }
-      if (other._uploadedMediaIds != null) {
-        this.uploadedMediaIds = other._uploadedMediaIds!;
+      if (other.uploadedMediaIds != null) {
+        this.uploadedMediaIds = other.uploadedMediaIds!;
       }
-      if (other._whenClosed != null) {
-        this.whenClosed = other._whenClosed!;
+      if (other.whenClosed != null) {
+        this.whenClosed = other.whenClosed!;
       }
-      if (other._whenOpened != null) {
-        this.whenOpened = other._whenOpened!;
+      if (other.whenOpened != null) {
+        this.whenOpened = other.whenOpened!;
       }
     }
   }
@@ -383,78 +365,96 @@ class ModelProjectPub extends _ModelProjectPub {
   //
 
   // createdAt.
-  DateTime? get createdAt => this._createdAt;
-  set createdAt(DateTime? v) => this._createdAt = v;
-  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
-  set $createdAt(v) => this._createdAt = () {
+  DateTime? get createdAtField => this.createdAt;
+  set createdAtField(DateTime? v) => this.createdAt = v;
+  @protected
+  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  @protected
+  set $createdAt(v) => this.createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String? get createdBy => this._createdBy;
-  set createdBy(String? v) => this._createdBy = v;
-  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
-  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+  String? get createdByField => this.createdBy;
+  set createdByField(String? v) => this.createdBy = v;
+  @protected
+  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // deletedAt.
-  DateTime? get deletedAt => this._deletedAt;
-  set deletedAt(DateTime? v) => this._deletedAt = v;
-  dynamic get $deletedAt => this._deletedAt?.toUtc()?.toIso8601String();
-  set $deletedAt(v) => this._deletedAt = () {
+  DateTime? get deletedAtField => this.deletedAt;
+  set deletedAtField(DateTime? v) => this.deletedAt = v;
+  @protected
+  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $deletedAt(v) => this.deletedAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // deletedBy.
-  String? get deletedBy => this._deletedBy;
-  set deletedBy(String? v) => this._deletedBy = v;
-  dynamic get $deletedBy => this._deletedBy?.toString().trim().nullIfEmpty;
-  set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
+  String? get deletedByField => this.deletedBy;
+  set deletedByField(String? v) => this.deletedBy = v;
+  @protected
+  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
   // description.
-  String? get description => this._description;
-  set description(String? v) => this._description = v;
-  dynamic get $description => this._description?.toString().trim().nullIfEmpty;
-  set $description(v) => this._description = v?.toString().trim().nullIfEmpty;
+  String? get descriptionField => this.description;
+  set descriptionField(String? v) => this.description = v;
+  @protected
+  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
+  @protected
+  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
   // displayName.
-  String? get displayName => this._displayName;
-  set displayName(String? v) => this._displayName = v;
-  dynamic get $displayName => this._displayName?.toString().trim().nullIfEmpty;
-  set $displayName(v) => this._displayName = v?.toString().trim().nullIfEmpty;
+  String? get displayNameField => this.displayName;
+  set displayNameField(String? v) => this.displayName = v;
+  @protected
+  dynamic get $displayName => this.displayName?.toString().trim().nullIfEmpty;
+  @protected
+  set $displayName(v) => this.displayName = v?.toString().trim().nullIfEmpty;
 
   // displayNameSearchable.
-  String? get displayNameSearchable => this._displayNameSearchable;
-  set displayNameSearchable(String? v) => this._displayNameSearchable = v;
+  String? get displayNameSearchableField => this.displayNameSearchable;
+  set displayNameSearchableField(String? v) => this.displayNameSearchable = v;
+  @protected
   dynamic get $displayNameSearchable => this
-      ._displayNameSearchable
+      .displayNameSearchable
       ?.toString()
       .trim()
       .nullIfEmpty
       ?.toLowerCase()
       .replaceAll(r'[^\w]', '');
-  set $displayNameSearchable(v) => this._displayNameSearchable =
+  @protected
+  set $displayNameSearchable(v) => this.displayNameSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 
   // id.
-  String? get id => this._id;
-  set id(String? v) => this._id = v;
-  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
-  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // otherAddresses.
-  Set<ModelAddressEntry>? get otherAddresses => this._otherAddresses;
-  set otherAddresses(Set<ModelAddressEntry>? v) => this._otherAddresses = v;
+  Set<ModelAddressEntry>? get otherAddressesField => this.otherAddresses;
+  set otherAddressesField(Set<ModelAddressEntry>? v) => this.otherAddresses = v;
+  @protected
   dynamic get $otherAddresses => this
-      ._otherAddresses
+      .otherAddresses
       ?.map(
         (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $otherAddresses(v) => this._otherAddresses = letSet(v)
+  @protected
+  set $otherAddresses(v) => this.otherAddresses = letSet(v)
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
@@ -467,17 +467,19 @@ class ModelProjectPub extends _ModelProjectPub {
       .cast();
 
   // otherEmails.
-  Set<ModelEmailEntry>? get otherEmails => this._otherEmails;
-  set otherEmails(Set<ModelEmailEntry>? v) => this._otherEmails = v;
+  Set<ModelEmailEntry>? get otherEmailsField => this.otherEmails;
+  set otherEmailsField(Set<ModelEmailEntry>? v) => this.otherEmails = v;
+  @protected
   dynamic get $otherEmails => this
-      ._otherEmails
+      .otherEmails
       ?.map(
         (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $otherEmails(v) => this._otherEmails = letSet(v)
+  @protected
+  set $otherEmails(v) => this.otherEmails = letSet(v)
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
@@ -490,17 +492,19 @@ class ModelProjectPub extends _ModelProjectPub {
       .cast();
 
   // otherPhones.
-  Set<ModelEmailEntry>? get otherPhones => this._otherPhones;
-  set otherPhones(Set<ModelEmailEntry>? v) => this._otherPhones = v;
+  Set<ModelEmailEntry>? get otherPhonesField => this.otherPhones;
+  set otherPhonesField(Set<ModelEmailEntry>? v) => this.otherPhones = v;
+  @protected
   dynamic get $otherPhones => this
-      ._otherPhones
+      .otherPhones
       ?.map(
         (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $otherPhones(v) => this._otherPhones = letSet(v)
+  @protected
+  set $otherPhones(v) => this.otherPhones = letSet(v)
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
@@ -513,44 +517,52 @@ class ModelProjectPub extends _ModelProjectPub {
       .cast();
 
   // primaryAddress.
-  ModelAddressEntry? get primaryAddress => this._primaryAddress;
-  set primaryAddress(ModelAddressEntry? v) => this._primaryAddress = v;
-  dynamic get $primaryAddress => this._primaryAddress?.toJson();
-  set $primaryAddress(v) => this._primaryAddress = () {
+  ModelAddressEntry? get primaryAddressField => this.primaryAddress;
+  set primaryAddressField(ModelAddressEntry? v) => this.primaryAddress = v;
+  @protected
+  dynamic get $primaryAddress => this.primaryAddress?.toJson();
+  @protected
+  set $primaryAddress(v) => this.primaryAddress = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelAddressEntry.fromJson(a) : null;
       }();
 
   // primaryEmail.
-  ModelEmailEntry? get primaryEmail => this._primaryEmail;
-  set primaryEmail(ModelEmailEntry? v) => this._primaryEmail = v;
-  dynamic get $primaryEmail => this._primaryEmail?.toJson();
-  set $primaryEmail(v) => this._primaryEmail = () {
+  ModelEmailEntry? get primaryEmailField => this.primaryEmail;
+  set primaryEmailField(ModelEmailEntry? v) => this.primaryEmail = v;
+  @protected
+  dynamic get $primaryEmail => this.primaryEmail?.toJson();
+  @protected
+  set $primaryEmail(v) => this.primaryEmail = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelEmailEntry.fromJson(a) : null;
       }();
 
   // primaryPhone.
-  ModelPhoneEntry? get primaryPhone => this._primaryPhone;
-  set primaryPhone(ModelPhoneEntry? v) => this._primaryPhone = v;
-  dynamic get $primaryPhone => this._primaryPhone?.toJson();
-  set $primaryPhone(v) => this._primaryPhone = () {
+  ModelPhoneEntry? get primaryPhoneField => this.primaryPhone;
+  set primaryPhoneField(ModelPhoneEntry? v) => this.primaryPhone = v;
+  @protected
+  dynamic get $primaryPhone => this.primaryPhone?.toJson();
+  @protected
+  set $primaryPhone(v) => this.primaryPhone = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelPhoneEntry.fromJson(a) : null;
       }();
 
   // uploadedMediaIds.
-  List<String>? get uploadedMediaIds => this._uploadedMediaIds;
-  set uploadedMediaIds(List<String>? v) => this._uploadedMediaIds = v;
+  List<String>? get uploadedMediaIdsField => this.uploadedMediaIds;
+  set uploadedMediaIdsField(List<String>? v) => this.uploadedMediaIds = v;
+  @protected
   dynamic get $uploadedMediaIds => this
-      ._uploadedMediaIds
+      .uploadedMediaIds
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $uploadedMediaIds(v) => this._uploadedMediaIds = letList(v)
+  @protected
+  set $uploadedMediaIds(v) => this.uploadedMediaIds = letList(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
@@ -560,10 +572,11 @@ class ModelProjectPub extends _ModelProjectPub {
       .cast();
 
   // whenClosed.
-  Map<String, DateTime>? get whenClosed => this._whenClosed;
-  set whenClosed(Map<String, DateTime>? v) => this._whenClosed = v;
+  Map<String, DateTime>? get whenClosedField => this.whenClosed;
+  set whenClosedField(Map<String, DateTime>? v) => this.whenClosed = v;
+  @protected
   dynamic get $whenClosed => this
-      ._whenClosed
+      .whenClosed
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -572,7 +585,8 @@ class ModelProjectPub extends _ModelProjectPub {
       )
       .nonNulls
       .nullIfEmpty;
-  set $whenClosed(v) => this._whenClosed = letMap(v)
+  @protected
+  set $whenClosed(v) => this.whenClosed = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -587,10 +601,11 @@ class ModelProjectPub extends _ModelProjectPub {
       ?.cast();
 
   // whenOpened.
-  Map<String, DateTime>? get whenOpened => this._whenOpened;
-  set whenOpened(Map<String, DateTime>? v) => this._whenOpened = v;
+  Map<String, DateTime>? get whenOpenedField => this.whenOpened;
+  set whenOpenedField(Map<String, DateTime>? v) => this.whenOpened = v;
+  @protected
   dynamic get $whenOpened => this
-      ._whenOpened
+      .whenOpened
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -599,7 +614,8 @@ class ModelProjectPub extends _ModelProjectPub {
       )
       .nonNulls
       .nullIfEmpty;
-  set $whenOpened(v) => this._whenOpened = letMap(v)
+  @protected
+  set $whenOpened(v) => this.whenOpened = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,

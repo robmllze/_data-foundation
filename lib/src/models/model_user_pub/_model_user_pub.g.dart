@@ -39,15 +39,15 @@ class ModelUserPub extends _ModelUserPub {
   @override
   String get $class => CLASS;
 
-  DateTime? _createdAt;
-  String? _createdBy;
-  DateTime? _deletedAt;
-  String? _deletedBy;
-  String? _displayName;
-  String? _displayNameSearchable;
-  String? _email;
-  String? _id;
-  Set<String>? _uploadedMediaIds;
+  DateTime? createdAt;
+  String? createdBy;
+  DateTime? deletedAt;
+  String? deletedBy;
+  String? displayName;
+  String? displayNameSearchable;
+  String? email;
+  String? id;
+  Set<String>? uploadedMediaIds;
 
   //
   //
@@ -88,26 +88,16 @@ class ModelUserPub extends _ModelUserPub {
   //
 
   ModelUserPub.b({
-    DateTime? createdAt,
-    String? createdBy,
-    DateTime? deletedAt,
-    String? deletedBy,
-    String? displayName,
-    String? displayNameSearchable,
-    String? email,
-    String? id,
-    Set<String>? uploadedMediaIds,
-  }) {
-    this._createdAt = createdAt;
-    this._createdBy = createdBy;
-    this._deletedAt = deletedAt;
-    this._deletedBy = deletedBy;
-    this._displayName = displayName;
-    this._displayNameSearchable = displayNameSearchable;
-    this._email = email;
-    this._id = id;
-    this._uploadedMediaIds = uploadedMediaIds;
-  }
+    this.createdAt,
+    this.createdBy,
+    this.deletedAt,
+    this.deletedBy,
+    this.displayName,
+    this.displayNameSearchable,
+    this.email,
+    this.id,
+    this.uploadedMediaIds,
+  }) {}
 
   //
   //
@@ -260,32 +250,32 @@ class ModelUserPub extends _ModelUserPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUserPub.fromJson(otherData);
-      if (other._createdAt != null) {
-        this.createdAt = other._createdAt!;
+      if (other.createdAt != null) {
+        this.createdAt = other.createdAt!;
       }
-      if (other._createdBy != null) {
-        this.createdBy = other._createdBy!;
+      if (other.createdBy != null) {
+        this.createdBy = other.createdBy!;
       }
-      if (other._deletedAt != null) {
-        this.deletedAt = other._deletedAt!;
+      if (other.deletedAt != null) {
+        this.deletedAt = other.deletedAt!;
       }
-      if (other._deletedBy != null) {
-        this.deletedBy = other._deletedBy!;
+      if (other.deletedBy != null) {
+        this.deletedBy = other.deletedBy!;
       }
-      if (other._displayName != null) {
-        this.displayName = other._displayName!;
+      if (other.displayName != null) {
+        this.displayName = other.displayName!;
       }
-      if (other._displayNameSearchable != null) {
-        this.displayNameSearchable = other._displayNameSearchable!;
+      if (other.displayNameSearchable != null) {
+        this.displayNameSearchable = other.displayNameSearchable!;
       }
-      if (other._email != null) {
-        this.email = other._email!;
+      if (other.email != null) {
+        this.email = other.email!;
       }
-      if (other._id != null) {
-        this.id = other._id!;
+      if (other.id != null) {
+        this.id = other.id!;
       }
-      if (other._uploadedMediaIds != null) {
-        this.uploadedMediaIds = other._uploadedMediaIds!;
+      if (other.uploadedMediaIds != null) {
+        this.uploadedMediaIds = other.uploadedMediaIds!;
       }
     }
   }
@@ -295,80 +285,97 @@ class ModelUserPub extends _ModelUserPub {
   //
 
   // createdAt.
-  DateTime? get createdAt => this._createdAt;
-  set createdAt(DateTime? v) => this._createdAt = v;
-  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
-  set $createdAt(v) => this._createdAt = () {
+  DateTime? get createdAtField => this.createdAt;
+  set createdAtField(DateTime? v) => this.createdAt = v;
+  @protected
+  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  @protected
+  set $createdAt(v) => this.createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String? get createdBy => this._createdBy;
-  set createdBy(String? v) => this._createdBy = v;
-  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
-  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+  String? get createdByField => this.createdBy;
+  set createdByField(String? v) => this.createdBy = v;
+  @protected
+  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // deletedAt.
-  DateTime? get deletedAt => this._deletedAt;
-  set deletedAt(DateTime? v) => this._deletedAt = v;
-  dynamic get $deletedAt => this._deletedAt?.toUtc()?.toIso8601String();
-  set $deletedAt(v) => this._deletedAt = () {
+  DateTime? get deletedAtField => this.deletedAt;
+  set deletedAtField(DateTime? v) => this.deletedAt = v;
+  @protected
+  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $deletedAt(v) => this.deletedAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // deletedBy.
-  String? get deletedBy => this._deletedBy;
-  set deletedBy(String? v) => this._deletedBy = v;
-  dynamic get $deletedBy => this._deletedBy?.toString().trim().nullIfEmpty;
-  set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
+  String? get deletedByField => this.deletedBy;
+  set deletedByField(String? v) => this.deletedBy = v;
+  @protected
+  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
   // displayName.
-  String? get displayName => this._displayName;
-  set displayName(String? v) => this._displayName = v;
-  dynamic get $displayName => this._displayName?.toString().trim().nullIfEmpty;
-  set $displayName(v) => this._displayName = v?.toString().trim().nullIfEmpty;
+  String? get displayNameField => this.displayName;
+  set displayNameField(String? v) => this.displayName = v;
+  @protected
+  dynamic get $displayName => this.displayName?.toString().trim().nullIfEmpty;
+  @protected
+  set $displayName(v) => this.displayName = v?.toString().trim().nullIfEmpty;
 
   // displayNameSearchable.
-  String? get displayNameSearchable => this._displayNameSearchable;
-  set displayNameSearchable(String? v) => this._displayNameSearchable = v;
+  String? get displayNameSearchableField => this.displayNameSearchable;
+  set displayNameSearchableField(String? v) => this.displayNameSearchable = v;
+  @protected
   dynamic get $displayNameSearchable => this
-      ._displayNameSearchable
+      .displayNameSearchable
       ?.toString()
       .trim()
       .nullIfEmpty
       ?.toLowerCase()
       .replaceAll(r'[^\w]', '');
-  set $displayNameSearchable(v) => this._displayNameSearchable =
+  @protected
+  set $displayNameSearchable(v) => this.displayNameSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 
   // email.
-  String? get email => this._email;
-  set email(String? v) => this._email = v;
+  String? get emailField => this.email;
+  set emailField(String? v) => this.email = v;
+  @protected
   dynamic get $email =>
-      this._email?.toString().trim().nullIfEmpty?.toLowerCase();
-  set $email(v) =>
-      this._email = v?.toString().trim().nullIfEmpty?.toLowerCase();
+      this.email?.toString().trim().nullIfEmpty?.toLowerCase();
+  @protected
+  set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
   // id.
-  String? get id => this._id;
-  set id(String? v) => this._id = v;
-  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
-  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // uploadedMediaIds.
-  Set<String>? get uploadedMediaIds => this._uploadedMediaIds;
-  set uploadedMediaIds(Set<String>? v) => this._uploadedMediaIds = v;
+  Set<String>? get uploadedMediaIdsField => this.uploadedMediaIds;
+  set uploadedMediaIdsField(Set<String>? v) => this.uploadedMediaIds = v;
+  @protected
   dynamic get $uploadedMediaIds => this
-      ._uploadedMediaIds
+      .uploadedMediaIds
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $uploadedMediaIds(v) => this._uploadedMediaIds = letSet(v)
+  @protected
+  set $uploadedMediaIds(v) => this.uploadedMediaIds = letSet(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )

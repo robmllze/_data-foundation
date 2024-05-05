@@ -41,17 +41,17 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   @override
   String get $class => CLASS;
 
-  String? _countryCode;
-  DateTime? _createdAt;
-  String? _createdBy;
-  String? _description;
-  String? _extension;
-  String? _fullNumber;
-  String? _id;
-  String? _numberWithoutCountryCode;
-  String? _title;
-  String? _titleSearchable;
-  String? _type;
+  String? countryCode;
+  DateTime? createdAt;
+  String? createdBy;
+  String? description;
+  String? extension;
+  String? fullNumber;
+  String? id;
+  String? numberWithoutCountryCode;
+  String? title;
+  String? titleSearchable;
+  String? type;
 
   //
   //
@@ -96,30 +96,18 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   //
 
   ModelPhoneEntry.b({
-    String? countryCode,
-    DateTime? createdAt,
-    String? createdBy,
-    String? description,
-    String? extension,
-    String? fullNumber,
-    String? id,
-    String? numberWithoutCountryCode,
-    String? title,
-    String? titleSearchable,
-    String? type,
-  }) {
-    this._countryCode = countryCode;
-    this._createdAt = createdAt;
-    this._createdBy = createdBy;
-    this._description = description;
-    this._extension = extension;
-    this._fullNumber = fullNumber;
-    this._id = id;
-    this._numberWithoutCountryCode = numberWithoutCountryCode;
-    this._title = title;
-    this._titleSearchable = titleSearchable;
-    this._type = type;
-  }
+    this.countryCode,
+    this.createdAt,
+    this.createdBy,
+    this.description,
+    this.extension,
+    this.fullNumber,
+    this.id,
+    this.numberWithoutCountryCode,
+    this.title,
+    this.titleSearchable,
+    this.type,
+  }) {}
 
   //
   //
@@ -276,38 +264,38 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelPhoneEntry.fromJson(otherData);
-      if (other._countryCode != null) {
-        this.countryCode = other._countryCode!;
+      if (other.countryCode != null) {
+        this.countryCode = other.countryCode!;
       }
-      if (other._createdAt != null) {
-        this.createdAt = other._createdAt!;
+      if (other.createdAt != null) {
+        this.createdAt = other.createdAt!;
       }
-      if (other._createdBy != null) {
-        this.createdBy = other._createdBy!;
+      if (other.createdBy != null) {
+        this.createdBy = other.createdBy!;
       }
-      if (other._description != null) {
-        this.description = other._description!;
+      if (other.description != null) {
+        this.description = other.description!;
       }
-      if (other._extension != null) {
-        this.extension = other._extension!;
+      if (other.extension != null) {
+        this.extension = other.extension!;
       }
-      if (other._fullNumber != null) {
-        this.fullNumber = other._fullNumber!;
+      if (other.fullNumber != null) {
+        this.fullNumber = other.fullNumber!;
       }
-      if (other._id != null) {
-        this.id = other._id!;
+      if (other.id != null) {
+        this.id = other.id!;
       }
-      if (other._numberWithoutCountryCode != null) {
-        this.numberWithoutCountryCode = other._numberWithoutCountryCode!;
+      if (other.numberWithoutCountryCode != null) {
+        this.numberWithoutCountryCode = other.numberWithoutCountryCode!;
       }
-      if (other._title != null) {
-        this.title = other._title!;
+      if (other.title != null) {
+        this.title = other.title!;
       }
-      if (other._titleSearchable != null) {
-        this.titleSearchable = other._titleSearchable!;
+      if (other.titleSearchable != null) {
+        this.titleSearchable = other.titleSearchable!;
       }
-      if (other._type != null) {
-        this.type = other._type!;
+      if (other.type != null) {
+        this.type = other.type!;
       }
     }
   }
@@ -317,80 +305,103 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   //
 
   // countryCode.
-  String? get countryCode => this._countryCode;
-  set countryCode(String? v) => this._countryCode = v;
-  dynamic get $countryCode => this._countryCode?.toString().trim().nullIfEmpty;
-  set $countryCode(v) => this._countryCode = v?.toString().trim().nullIfEmpty;
+  String? get countryCodeField => this.countryCode;
+  set countryCodeField(String? v) => this.countryCode = v;
+  @protected
+  dynamic get $countryCode => this.countryCode?.toString().trim().nullIfEmpty;
+  @protected
+  set $countryCode(v) => this.countryCode = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
-  DateTime? get createdAt => this._createdAt;
-  set createdAt(DateTime? v) => this._createdAt = v;
-  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
-  set $createdAt(v) => this._createdAt = () {
+  DateTime? get createdAtField => this.createdAt;
+  set createdAtField(DateTime? v) => this.createdAt = v;
+  @protected
+  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  @protected
+  set $createdAt(v) => this.createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String? get createdBy => this._createdBy;
-  set createdBy(String? v) => this._createdBy = v;
-  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
-  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+  String? get createdByField => this.createdBy;
+  set createdByField(String? v) => this.createdBy = v;
+  @protected
+  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // description.
-  String? get description => this._description;
-  set description(String? v) => this._description = v;
-  dynamic get $description => this._description?.toString().trim().nullIfEmpty;
-  set $description(v) => this._description = v?.toString().trim().nullIfEmpty;
+  String? get descriptionField => this.description;
+  set descriptionField(String? v) => this.description = v;
+  @protected
+  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
+  @protected
+  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
   // extension.
-  String? get extension => this._extension;
-  set extension(String? v) => this._extension = v;
-  dynamic get $extension => this._extension?.toString().trim().nullIfEmpty;
-  set $extension(v) => this._extension = v?.toString().trim().nullIfEmpty;
+  String? get extensionField => this.extension;
+  set extensionField(String? v) => this.extension = v;
+  @protected
+  dynamic get $extension => this.extension?.toString().trim().nullIfEmpty;
+  @protected
+  set $extension(v) => this.extension = v?.toString().trim().nullIfEmpty;
 
   // fullNumber.
-  String? get fullNumber => this._fullNumber;
-  set fullNumber(String? v) => this._fullNumber = v;
-  dynamic get $fullNumber => this._fullNumber?.toString().trim().nullIfEmpty;
-  set $fullNumber(v) => this._fullNumber = v?.toString().trim().nullIfEmpty;
+  String? get fullNumberField => this.fullNumber;
+  set fullNumberField(String? v) => this.fullNumber = v;
+  @protected
+  dynamic get $fullNumber => this.fullNumber?.toString().trim().nullIfEmpty;
+  @protected
+  set $fullNumber(v) => this.fullNumber = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String? get id => this._id;
-  set id(String? v) => this._id = v;
-  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
-  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // numberWithoutCountryCode.
-  String? get numberWithoutCountryCode => this._numberWithoutCountryCode;
-  set numberWithoutCountryCode(String? v) => this._numberWithoutCountryCode = v;
+  String? get numberWithoutCountryCodeField => this.numberWithoutCountryCode;
+  set numberWithoutCountryCodeField(String? v) =>
+      this.numberWithoutCountryCode = v;
+  @protected
   dynamic get $numberWithoutCountryCode =>
-      this._numberWithoutCountryCode?.toString().trim().nullIfEmpty;
+      this.numberWithoutCountryCode?.toString().trim().nullIfEmpty;
+  @protected
   set $numberWithoutCountryCode(v) =>
-      this._numberWithoutCountryCode = v?.toString().trim().nullIfEmpty;
+      this.numberWithoutCountryCode = v?.toString().trim().nullIfEmpty;
 
   // title.
-  String? get title => this._title;
-  set title(String? v) => this._title = v;
-  dynamic get $title => this._title?.toString().trim().nullIfEmpty;
-  set $title(v) => this._title = v?.toString().trim().nullIfEmpty;
+  String? get titleField => this.title;
+  set titleField(String? v) => this.title = v;
+  @protected
+  dynamic get $title => this.title?.toString().trim().nullIfEmpty;
+  @protected
+  set $title(v) => this.title = v?.toString().trim().nullIfEmpty;
 
   // titleSearchable.
-  String? get titleSearchable => this._titleSearchable;
-  set titleSearchable(String? v) => this._titleSearchable = v;
+  String? get titleSearchableField => this.titleSearchable;
+  set titleSearchableField(String? v) => this.titleSearchable = v;
+  @protected
   dynamic get $titleSearchable => this
-      ._titleSearchable
+      .titleSearchable
       ?.toString()
       .trim()
       .nullIfEmpty
       ?.toLowerCase()
       .replaceAll(r'[^\w]', '');
-  set $titleSearchable(v) => this._titleSearchable =
+  @protected
+  set $titleSearchable(v) => this.titleSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 
   // type.
-  String? get type => this._type;
-  set type(String? v) => this._type = v;
-  dynamic get $type => this._type?.toString().trim().nullIfEmpty;
-  set $type(v) => this._type = v?.toString().trim().nullIfEmpty;
+  String? get typeField => this.type;
+  set typeField(String? v) => this.type = v;
+  @protected
+  dynamic get $type => this.type?.toString().trim().nullIfEmpty;
+  @protected
+  set $type(v) => this.type = v?.toString().trim().nullIfEmpty;
 }

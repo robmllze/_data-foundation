@@ -37,13 +37,13 @@ class ModelProject extends _ModelProject {
   @override
   String get $class => CLASS;
 
-  DateTime? _createdAt;
-  String? _createdBy;
-  DateTime? _deletedAt;
-  String? _deletedBy;
-  String? _id;
-  String? _pid;
-  String? _seed;
+  DateTime? createdAt;
+  String? createdBy;
+  DateTime? deletedAt;
+  String? deletedBy;
+  String? id;
+  String? pid;
+  String? seed;
 
   //
   //
@@ -80,22 +80,14 @@ class ModelProject extends _ModelProject {
   //
 
   ModelProject.b({
-    DateTime? createdAt,
-    String? createdBy,
-    DateTime? deletedAt,
-    String? deletedBy,
-    String? id,
-    String? pid,
-    String? seed,
-  }) {
-    this._createdAt = createdAt;
-    this._createdBy = createdBy;
-    this._deletedAt = deletedAt;
-    this._deletedBy = deletedBy;
-    this._id = id;
-    this._pid = pid;
-    this._seed = seed;
-  }
+    this.createdAt,
+    this.createdBy,
+    this.deletedAt,
+    this.deletedBy,
+    this.id,
+    this.pid,
+    this.seed,
+  }) {}
 
   //
   //
@@ -244,26 +236,26 @@ class ModelProject extends _ModelProject {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelProject.fromJson(otherData);
-      if (other._createdAt != null) {
-        this.createdAt = other._createdAt!;
+      if (other.createdAt != null) {
+        this.createdAt = other.createdAt!;
       }
-      if (other._createdBy != null) {
-        this.createdBy = other._createdBy!;
+      if (other.createdBy != null) {
+        this.createdBy = other.createdBy!;
       }
-      if (other._deletedAt != null) {
-        this.deletedAt = other._deletedAt!;
+      if (other.deletedAt != null) {
+        this.deletedAt = other.deletedAt!;
       }
-      if (other._deletedBy != null) {
-        this.deletedBy = other._deletedBy!;
+      if (other.deletedBy != null) {
+        this.deletedBy = other.deletedBy!;
       }
-      if (other._id != null) {
-        this.id = other._id!;
+      if (other.id != null) {
+        this.id = other.id!;
       }
-      if (other._pid != null) {
-        this.pid = other._pid!;
+      if (other.pid != null) {
+        this.pid = other.pid!;
       }
-      if (other._seed != null) {
-        this.seed = other._seed!;
+      if (other.seed != null) {
+        this.seed = other.seed!;
       }
     }
   }
@@ -273,50 +265,64 @@ class ModelProject extends _ModelProject {
   //
 
   // createdAt.
-  DateTime? get createdAt => this._createdAt;
-  set createdAt(DateTime? v) => this._createdAt = v;
-  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
-  set $createdAt(v) => this._createdAt = () {
+  DateTime? get createdAtField => this.createdAt;
+  set createdAtField(DateTime? v) => this.createdAt = v;
+  @protected
+  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  @protected
+  set $createdAt(v) => this.createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String? get createdBy => this._createdBy;
-  set createdBy(String? v) => this._createdBy = v;
-  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
-  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+  String? get createdByField => this.createdBy;
+  set createdByField(String? v) => this.createdBy = v;
+  @protected
+  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // deletedAt.
-  DateTime? get deletedAt => this._deletedAt;
-  set deletedAt(DateTime? v) => this._deletedAt = v;
-  dynamic get $deletedAt => this._deletedAt?.toUtc()?.toIso8601String();
-  set $deletedAt(v) => this._deletedAt = () {
+  DateTime? get deletedAtField => this.deletedAt;
+  set deletedAtField(DateTime? v) => this.deletedAt = v;
+  @protected
+  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $deletedAt(v) => this.deletedAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // deletedBy.
-  String? get deletedBy => this._deletedBy;
-  set deletedBy(String? v) => this._deletedBy = v;
-  dynamic get $deletedBy => this._deletedBy?.toString().trim().nullIfEmpty;
-  set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
+  String? get deletedByField => this.deletedBy;
+  set deletedByField(String? v) => this.deletedBy = v;
+  @protected
+  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String? get id => this._id;
-  set id(String? v) => this._id = v;
-  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
-  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // pid.
-  String? get pid => this._pid;
-  set pid(String? v) => this._pid = v;
-  dynamic get $pid => this._pid?.toString().trim().nullIfEmpty;
-  set $pid(v) => this._pid = v?.toString().trim().nullIfEmpty;
+  String? get pidField => this.pid;
+  set pidField(String? v) => this.pid = v;
+  @protected
+  dynamic get $pid => this.pid?.toString().trim().nullIfEmpty;
+  @protected
+  set $pid(v) => this.pid = v?.toString().trim().nullIfEmpty;
 
   // seed.
-  String? get seed => this._seed;
-  set seed(String? v) => this._seed = v;
-  dynamic get $seed => this._seed?.toString().trim().nullIfEmpty;
-  set $seed(v) => this._seed = v?.toString().trim().nullIfEmpty;
+  String? get seedField => this.seed;
+  set seedField(String? v) => this.seed = v;
+  @protected
+  dynamic get $seed => this.seed?.toString().trim().nullIfEmpty;
+  @protected
+  set $seed(v) => this.seed = v?.toString().trim().nullIfEmpty;
 }

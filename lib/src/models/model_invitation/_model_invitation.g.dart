@@ -40,16 +40,16 @@ class ModelInvitation extends _ModelInvitation {
   @override
   String get $class => CLASS;
 
-  DateTime? _createdAt;
-  String? _createdBy;
-  GenericModel? _def;
-  InvitationDefType? _defType;
-  DateTime? _expiresAt;
-  String? _id;
-  Uri? _invitationLink;
-  Set<String>? _inviteeAcceptedEmails;
-  Set<String>? _inviteeEmails;
-  Set<String>? _inviteeRejectedEmails;
+  DateTime? createdAt;
+  String? createdBy;
+  GenericModel? def;
+  InvitationDefType? defType;
+  DateTime? expiresAt;
+  String? id;
+  Uri? invitationLink;
+  Set<String>? inviteeAcceptedEmails;
+  Set<String>? inviteeEmails;
+  Set<String>? inviteeRejectedEmails;
 
   //
   //
@@ -92,29 +92,19 @@ class ModelInvitation extends _ModelInvitation {
   //
 
   ModelInvitation.b({
-    DateTime? createdAt,
-    String? createdBy,
-    GenericModel? def,
-    InvitationDefType? defType,
-    DateTime? expiresAt,
-    String? id,
-    Uri? invitationLink,
-    Set<String>? inviteeAcceptedEmails,
-    Set<String>? inviteeEmails,
-    Set<String>? inviteeRejectedEmails,
+    this.createdAt,
+    this.createdBy,
+    this.def,
+    this.defType,
+    this.expiresAt,
+    this.id,
+    this.invitationLink,
+    this.inviteeAcceptedEmails,
+    this.inviteeEmails,
+    this.inviteeRejectedEmails,
   }) {
     assert(createdAt != null);
     assert(createdBy != null);
-    this._createdAt = createdAt;
-    this._createdBy = createdBy;
-    this._def = def;
-    this._defType = defType;
-    this._expiresAt = expiresAt;
-    this._id = id;
-    this._invitationLink = invitationLink;
-    this._inviteeAcceptedEmails = inviteeAcceptedEmails;
-    this._inviteeEmails = inviteeEmails;
-    this._inviteeRejectedEmails = inviteeRejectedEmails;
   }
 
   //
@@ -270,35 +260,35 @@ class ModelInvitation extends _ModelInvitation {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelInvitation.fromJson(otherData);
-      if (other._createdAt != null) {
-        this.createdAt = other._createdAt!;
+      if (other.createdAt != null) {
+        this.createdAt = other.createdAt!;
       }
-      if (other._createdBy != null) {
-        this.createdBy = other._createdBy!;
+      if (other.createdBy != null) {
+        this.createdBy = other.createdBy!;
       }
-      if (other._def != null) {
-        this.def = other._def!;
+      if (other.def != null) {
+        this.def = other.def!;
       }
-      if (other._defType != null) {
-        this.defType = other._defType!;
+      if (other.defType != null) {
+        this.defType = other.defType!;
       }
-      if (other._expiresAt != null) {
-        this.expiresAt = other._expiresAt!;
+      if (other.expiresAt != null) {
+        this.expiresAt = other.expiresAt!;
       }
-      if (other._id != null) {
-        this.id = other._id!;
+      if (other.id != null) {
+        this.id = other.id!;
       }
-      if (other._invitationLink != null) {
-        this.invitationLink = other._invitationLink!;
+      if (other.invitationLink != null) {
+        this.invitationLink = other.invitationLink!;
       }
-      if (other._inviteeAcceptedEmails != null) {
-        this.inviteeAcceptedEmails = other._inviteeAcceptedEmails!;
+      if (other.inviteeAcceptedEmails != null) {
+        this.inviteeAcceptedEmails = other.inviteeAcceptedEmails!;
       }
-      if (other._inviteeEmails != null) {
-        this.inviteeEmails = other._inviteeEmails!;
+      if (other.inviteeEmails != null) {
+        this.inviteeEmails = other.inviteeEmails!;
       }
-      if (other._inviteeRejectedEmails != null) {
-        this.inviteeRejectedEmails = other._inviteeRejectedEmails!;
+      if (other.inviteeRejectedEmails != null) {
+        this.inviteeRejectedEmails = other.inviteeRejectedEmails!;
       }
     }
   }
@@ -308,65 +298,81 @@ class ModelInvitation extends _ModelInvitation {
   //
 
   // createdAt.
-  DateTime get createdAt => this._createdAt!;
-  set createdAt(DateTime v) => this._createdAt = v;
-  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
-  set $createdAt(v) => this._createdAt = () {
+  DateTime get createdAtField => this.createdAt!;
+  set createdAtField(DateTime v) => this.createdAt = v;
+  @protected
+  dynamic get $createdAt => (this.createdAt?.toUtc()?.toIso8601String())!;
+  @protected
+  set $createdAt(v) => this.createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String get createdBy => this._createdBy!;
-  set createdBy(String v) => this._createdBy = v;
-  dynamic get $createdBy => (this._createdBy?.toString().trim().nullIfEmpty)!;
-  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+  String get createdByField => this.createdBy!;
+  set createdByField(String v) => this.createdBy = v;
+  @protected
+  dynamic get $createdBy => (this.createdBy?.toString().trim().nullIfEmpty)!;
+  @protected
+  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // def.
-  GenericModel? get def => this._def;
-  set def(GenericModel? v) => this._def = v;
-  dynamic get $def => this._def?.toJson();
-  set $def(v) => this._def = () {
+  GenericModel? get defField => this.def;
+  set defField(GenericModel? v) => this.def = v;
+  @protected
+  dynamic get $def => this.def?.toJson();
+  @protected
+  set $def(v) => this.def = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? GenericModel.fromJson(a) : null;
       }();
 
   // defType.
-  InvitationDefType? get defType => this._defType;
-  set defType(InvitationDefType? v) => this._defType = v;
-  dynamic get $defType => this._defType?.name;
+  InvitationDefType? get defTypeField => this.defType;
+  set defTypeField(InvitationDefType? v) => this.defType = v;
+  @protected
+  dynamic get $defType => this.defType?.name;
+  @protected
   set $defType(v) =>
-      this._defType = InvitationDefType.values.valueOf(letAs<String>(v));
+      this.defType = InvitationDefType.values.valueOf(letAs<String>(v));
 
   // expiresAt.
-  DateTime? get expiresAt => this._expiresAt;
-  set expiresAt(DateTime? v) => this._expiresAt = v;
-  dynamic get $expiresAt => this._expiresAt?.toUtc()?.toIso8601String();
-  set $expiresAt(v) => this._expiresAt = () {
+  DateTime? get expiresAtField => this.expiresAt;
+  set expiresAtField(DateTime? v) => this.expiresAt = v;
+  @protected
+  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
+  @protected
+  set $expiresAt(v) => this.expiresAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // id.
-  String? get id => this._id;
-  set id(String? v) => this._id = v;
-  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
-  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // invitationLink.
-  Uri? get invitationLink => this._invitationLink;
-  set invitationLink(Uri? v) => this._invitationLink = v;
-  dynamic get $invitationLink => this._invitationLink?.toString();
-  set $invitationLink(v) => this._invitationLink = () {
+  Uri? get invitationLinkField => this.invitationLink;
+  set invitationLinkField(Uri? v) => this.invitationLink = v;
+  @protected
+  dynamic get $invitationLink => this.invitationLink?.toString();
+  @protected
+  set $invitationLink(v) => this.invitationLink = () {
         final a = v;
         return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
       }();
 
   // inviteeAcceptedEmails.
-  Set<String>? get inviteeAcceptedEmails => this._inviteeAcceptedEmails;
-  set inviteeAcceptedEmails(Set<String>? v) => this._inviteeAcceptedEmails = v;
+  Set<String>? get inviteeAcceptedEmailsField => this.inviteeAcceptedEmails;
+  set inviteeAcceptedEmailsField(Set<String>? v) =>
+      this.inviteeAcceptedEmails = v;
+  @protected
   dynamic get $inviteeAcceptedEmails => this
-      ._inviteeAcceptedEmails
+      .inviteeAcceptedEmails
       ?.map(
         (p0) => p0
             ?.toString()
@@ -378,7 +384,8 @@ class ModelInvitation extends _ModelInvitation {
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $inviteeAcceptedEmails(v) => this._inviteeAcceptedEmails = letSet(v)
+  @protected
+  set $inviteeAcceptedEmails(v) => this.inviteeAcceptedEmails = letSet(v)
       ?.map(
         (p0) => p0
             ?.toString()
@@ -393,10 +400,11 @@ class ModelInvitation extends _ModelInvitation {
       .cast();
 
   // inviteeEmails.
-  Set<String>? get inviteeEmails => this._inviteeEmails;
-  set inviteeEmails(Set<String>? v) => this._inviteeEmails = v;
+  Set<String>? get inviteeEmailsField => this.inviteeEmails;
+  set inviteeEmailsField(Set<String>? v) => this.inviteeEmails = v;
+  @protected
   dynamic get $inviteeEmails => this
-      ._inviteeEmails
+      .inviteeEmails
       ?.map(
         (p0) => p0
             ?.toString()
@@ -408,7 +416,8 @@ class ModelInvitation extends _ModelInvitation {
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $inviteeEmails(v) => this._inviteeEmails = letSet(v)
+  @protected
+  set $inviteeEmails(v) => this.inviteeEmails = letSet(v)
       ?.map(
         (p0) => p0
             ?.toString()
@@ -423,10 +432,12 @@ class ModelInvitation extends _ModelInvitation {
       .cast();
 
   // inviteeRejectedEmails.
-  Set<String>? get inviteeRejectedEmails => this._inviteeRejectedEmails;
-  set inviteeRejectedEmails(Set<String>? v) => this._inviteeRejectedEmails = v;
+  Set<String>? get inviteeRejectedEmailsField => this.inviteeRejectedEmails;
+  set inviteeRejectedEmailsField(Set<String>? v) =>
+      this.inviteeRejectedEmails = v;
+  @protected
   dynamic get $inviteeRejectedEmails => this
-      ._inviteeRejectedEmails
+      .inviteeRejectedEmails
       ?.map(
         (p0) => p0
             ?.toString()
@@ -438,7 +449,8 @@ class ModelInvitation extends _ModelInvitation {
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $inviteeRejectedEmails(v) => this._inviteeRejectedEmails = letSet(v)
+  @protected
+  set $inviteeRejectedEmails(v) => this.inviteeRejectedEmails = letSet(v)
       ?.map(
         (p0) => p0
             ?.toString()

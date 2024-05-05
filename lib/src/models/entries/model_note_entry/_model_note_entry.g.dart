@@ -36,12 +36,12 @@ class ModelNoteEntry extends _ModelNoteEntry {
   @override
   String get $class => CLASS;
 
-  String? _body;
-  DateTime? _createdAt;
-  String? _createdBy;
-  String? _id;
-  String? _title;
-  String? _titleSearchable;
+  String? body;
+  DateTime? createdAt;
+  String? createdBy;
+  String? id;
+  String? title;
+  String? titleSearchable;
 
   //
   //
@@ -76,20 +76,13 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
 
   ModelNoteEntry.b({
-    String? body,
-    DateTime? createdAt,
-    String? createdBy,
-    String? id,
-    String? title,
-    String? titleSearchable,
-  }) {
-    this._body = body;
-    this._createdAt = createdAt;
-    this._createdBy = createdBy;
-    this._id = id;
-    this._title = title;
-    this._titleSearchable = titleSearchable;
-  }
+    this.body,
+    this.createdAt,
+    this.createdBy,
+    this.id,
+    this.title,
+    this.titleSearchable,
+  }) {}
 
   //
   //
@@ -236,23 +229,23 @@ class ModelNoteEntry extends _ModelNoteEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelNoteEntry.fromJson(otherData);
-      if (other._body != null) {
-        this.body = other._body!;
+      if (other.body != null) {
+        this.body = other.body!;
       }
-      if (other._createdAt != null) {
-        this.createdAt = other._createdAt!;
+      if (other.createdAt != null) {
+        this.createdAt = other.createdAt!;
       }
-      if (other._createdBy != null) {
-        this.createdBy = other._createdBy!;
+      if (other.createdBy != null) {
+        this.createdBy = other.createdBy!;
       }
-      if (other._id != null) {
-        this.id = other._id!;
+      if (other.id != null) {
+        this.id = other.id!;
       }
-      if (other._title != null) {
-        this.title = other._title!;
+      if (other.title != null) {
+        this.title = other.title!;
       }
-      if (other._titleSearchable != null) {
-        this.titleSearchable = other._titleSearchable!;
+      if (other.titleSearchable != null) {
+        this.titleSearchable = other.titleSearchable!;
       }
     }
   }
@@ -262,48 +255,60 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
 
   // body.
-  String? get body => this._body;
-  set body(String? v) => this._body = v;
-  dynamic get $body => this._body?.toString().trim().nullIfEmpty;
-  set $body(v) => this._body = v?.toString().trim().nullIfEmpty;
+  String? get bodyField => this.body;
+  set bodyField(String? v) => this.body = v;
+  @protected
+  dynamic get $body => this.body?.toString().trim().nullIfEmpty;
+  @protected
+  set $body(v) => this.body = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
-  DateTime? get createdAt => this._createdAt;
-  set createdAt(DateTime? v) => this._createdAt = v;
-  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
-  set $createdAt(v) => this._createdAt = () {
+  DateTime? get createdAtField => this.createdAt;
+  set createdAtField(DateTime? v) => this.createdAt = v;
+  @protected
+  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  @protected
+  set $createdAt(v) => this.createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String? get createdBy => this._createdBy;
-  set createdBy(String? v) => this._createdBy = v;
-  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
-  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+  String? get createdByField => this.createdBy;
+  set createdByField(String? v) => this.createdBy = v;
+  @protected
+  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String? get id => this._id;
-  set id(String? v) => this._id = v;
-  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
-  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // title.
-  String? get title => this._title;
-  set title(String? v) => this._title = v;
-  dynamic get $title => this._title?.toString().trim().nullIfEmpty;
-  set $title(v) => this._title = v?.toString().trim().nullIfEmpty;
+  String? get titleField => this.title;
+  set titleField(String? v) => this.title = v;
+  @protected
+  dynamic get $title => this.title?.toString().trim().nullIfEmpty;
+  @protected
+  set $title(v) => this.title = v?.toString().trim().nullIfEmpty;
 
   // titleSearchable.
-  String? get titleSearchable => this._titleSearchable;
-  set titleSearchable(String? v) => this._titleSearchable = v;
+  String? get titleSearchableField => this.titleSearchable;
+  set titleSearchableField(String? v) => this.titleSearchable = v;
+  @protected
   dynamic get $titleSearchable => this
-      ._titleSearchable
+      .titleSearchable
       ?.toString()
       .trim()
       .nullIfEmpty
       ?.toLowerCase()
       .replaceAll(r'[^\w]', '');
-  set $titleSearchable(v) => this._titleSearchable =
+  @protected
+  set $titleSearchable(v) => this.titleSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 }

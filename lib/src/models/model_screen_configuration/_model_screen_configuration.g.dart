@@ -43,16 +43,16 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   @override
   String get $class => CLASS;
 
-  Map<dynamic, dynamic>? _arguments;
-  bool? _isAccessibleOnlyIfLoggedIn;
-  bool? _isAccessibleOnlyIfLoggedInAndVerified;
-  bool? _isAccessibleOnlyIfLoggedOut;
-  bool? _isRedirectable;
-  dynamic _makeup;
-  Widget? _navigationControlsWidget;
-  String? _path;
-  ModelScreenConfiguration? _previousConfiguration;
-  String? _title;
+  Map<dynamic, dynamic>? arguments;
+  bool? isAccessibleOnlyIfLoggedIn;
+  bool? isAccessibleOnlyIfLoggedInAndVerified;
+  bool? isAccessibleOnlyIfLoggedOut;
+  bool? isRedirectable;
+  dynamic makeup;
+  Widget? navigationControlsWidget;
+  String? path;
+  ModelScreenConfiguration? previousConfiguration;
+  String? title;
 
   //
   //
@@ -96,29 +96,17 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
 
   ModelScreenConfiguration.b({
-    Map<dynamic, dynamic>? arguments,
-    bool? isAccessibleOnlyIfLoggedIn,
-    bool? isAccessibleOnlyIfLoggedInAndVerified,
-    bool? isAccessibleOnlyIfLoggedOut,
-    bool? isRedirectable,
-    dynamic makeup,
-    Widget? navigationControlsWidget,
-    String? path,
-    ModelScreenConfiguration? previousConfiguration,
-    String? title,
-  }) {
-    this._arguments = arguments;
-    this._isAccessibleOnlyIfLoggedIn = isAccessibleOnlyIfLoggedIn;
-    this._isAccessibleOnlyIfLoggedInAndVerified =
-        isAccessibleOnlyIfLoggedInAndVerified;
-    this._isAccessibleOnlyIfLoggedOut = isAccessibleOnlyIfLoggedOut;
-    this._isRedirectable = isRedirectable;
-    this._makeup = makeup;
-    this._navigationControlsWidget = navigationControlsWidget;
-    this._path = path;
-    this._previousConfiguration = previousConfiguration;
-    this._title = title;
-  }
+    this.arguments,
+    this.isAccessibleOnlyIfLoggedIn,
+    this.isAccessibleOnlyIfLoggedInAndVerified,
+    this.isAccessibleOnlyIfLoggedOut,
+    this.isRedirectable,
+    this.makeup,
+    this.navigationControlsWidget,
+    this.path,
+    this.previousConfiguration,
+    this.title,
+  }) {}
 
   //
   //
@@ -277,36 +265,36 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelScreenConfiguration.fromJson(otherData);
-      if (other._arguments != null) {
-        this.arguments = other._arguments!;
+      if (other.arguments != null) {
+        this.arguments = other.arguments!;
       }
-      if (other._isAccessibleOnlyIfLoggedIn != null) {
-        this.isAccessibleOnlyIfLoggedIn = other._isAccessibleOnlyIfLoggedIn!;
+      if (other.isAccessibleOnlyIfLoggedIn != null) {
+        this.isAccessibleOnlyIfLoggedIn = other.isAccessibleOnlyIfLoggedIn!;
       }
-      if (other._isAccessibleOnlyIfLoggedInAndVerified != null) {
+      if (other.isAccessibleOnlyIfLoggedInAndVerified != null) {
         this.isAccessibleOnlyIfLoggedInAndVerified =
-            other._isAccessibleOnlyIfLoggedInAndVerified!;
+            other.isAccessibleOnlyIfLoggedInAndVerified!;
       }
-      if (other._isAccessibleOnlyIfLoggedOut != null) {
-        this.isAccessibleOnlyIfLoggedOut = other._isAccessibleOnlyIfLoggedOut!;
+      if (other.isAccessibleOnlyIfLoggedOut != null) {
+        this.isAccessibleOnlyIfLoggedOut = other.isAccessibleOnlyIfLoggedOut!;
       }
-      if (other._isRedirectable != null) {
-        this.isRedirectable = other._isRedirectable!;
+      if (other.isRedirectable != null) {
+        this.isRedirectable = other.isRedirectable!;
       }
-      if (other._makeup != null) {
-        this.makeup = other._makeup!;
+      if (other.makeup != null) {
+        this.makeup = other.makeup!;
       }
-      if (other._navigationControlsWidget != null) {
-        this.navigationControlsWidget = other._navigationControlsWidget!;
+      if (other.navigationControlsWidget != null) {
+        this.navigationControlsWidget = other.navigationControlsWidget!;
       }
-      if (other._path != null) {
-        this.path = other._path!;
+      if (other.path != null) {
+        this.path = other.path!;
       }
-      if (other._previousConfiguration != null) {
-        this.previousConfiguration = other._previousConfiguration!;
+      if (other.previousConfiguration != null) {
+        this.previousConfiguration = other.previousConfiguration!;
       }
-      if (other._title != null) {
-        this.title = other._title!;
+      if (other.title != null) {
+        this.title = other.title!;
       }
     }
   }
@@ -316,10 +304,11 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
 
   // arguments.
-  Map<dynamic, dynamic>? get arguments => this._arguments;
-  set arguments(Map<dynamic, dynamic>? v) => this._arguments = v;
+  Map<dynamic, dynamic>? get argumentsField => this.arguments;
+  set argumentsField(Map<dynamic, dynamic>? v) => this.arguments = v;
+  @protected
   dynamic get $arguments => this
-      ._arguments
+      .arguments
       ?.map(
         (p0, p1) => MapEntry(
           p0,
@@ -328,7 +317,8 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       )
       .nonNulls
       .nullIfEmpty;
-  set $arguments(v) => this._arguments = letMap(v)
+  @protected
+  set $arguments(v) => this.arguments = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0,
@@ -340,69 +330,89 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       ?.cast();
 
   // isAccessibleOnlyIfLoggedIn.
-  bool? get isAccessibleOnlyIfLoggedIn => this._isAccessibleOnlyIfLoggedIn;
-  set isAccessibleOnlyIfLoggedIn(bool? v) =>
-      this._isAccessibleOnlyIfLoggedIn = v;
-  dynamic get $isAccessibleOnlyIfLoggedIn => this._isAccessibleOnlyIfLoggedIn;
+  bool? get isAccessibleOnlyIfLoggedInField => this.isAccessibleOnlyIfLoggedIn;
+  set isAccessibleOnlyIfLoggedInField(bool? v) =>
+      this.isAccessibleOnlyIfLoggedIn = v;
+  @protected
+  dynamic get $isAccessibleOnlyIfLoggedIn => this.isAccessibleOnlyIfLoggedIn;
+  @protected
   set $isAccessibleOnlyIfLoggedIn(v) =>
-      this._isAccessibleOnlyIfLoggedIn = letBool(v);
+      this.isAccessibleOnlyIfLoggedIn = letBool(v);
 
   // isAccessibleOnlyIfLoggedInAndVerified.
-  bool? get isAccessibleOnlyIfLoggedInAndVerified =>
-      this._isAccessibleOnlyIfLoggedInAndVerified;
-  set isAccessibleOnlyIfLoggedInAndVerified(bool? v) =>
-      this._isAccessibleOnlyIfLoggedInAndVerified = v;
+  bool? get isAccessibleOnlyIfLoggedInAndVerifiedField =>
+      this.isAccessibleOnlyIfLoggedInAndVerified;
+  set isAccessibleOnlyIfLoggedInAndVerifiedField(bool? v) =>
+      this.isAccessibleOnlyIfLoggedInAndVerified = v;
+  @protected
   dynamic get $isAccessibleOnlyIfLoggedInAndVerified =>
-      this._isAccessibleOnlyIfLoggedInAndVerified;
+      this.isAccessibleOnlyIfLoggedInAndVerified;
+  @protected
   set $isAccessibleOnlyIfLoggedInAndVerified(v) =>
-      this._isAccessibleOnlyIfLoggedInAndVerified = letBool(v);
+      this.isAccessibleOnlyIfLoggedInAndVerified = letBool(v);
 
   // isAccessibleOnlyIfLoggedOut.
-  bool? get isAccessibleOnlyIfLoggedOut => this._isAccessibleOnlyIfLoggedOut;
-  set isAccessibleOnlyIfLoggedOut(bool? v) =>
-      this._isAccessibleOnlyIfLoggedOut = v;
-  dynamic get $isAccessibleOnlyIfLoggedOut => this._isAccessibleOnlyIfLoggedOut;
+  bool? get isAccessibleOnlyIfLoggedOutField =>
+      this.isAccessibleOnlyIfLoggedOut;
+  set isAccessibleOnlyIfLoggedOutField(bool? v) =>
+      this.isAccessibleOnlyIfLoggedOut = v;
+  @protected
+  dynamic get $isAccessibleOnlyIfLoggedOut => this.isAccessibleOnlyIfLoggedOut;
+  @protected
   set $isAccessibleOnlyIfLoggedOut(v) =>
-      this._isAccessibleOnlyIfLoggedOut = letBool(v);
+      this.isAccessibleOnlyIfLoggedOut = letBool(v);
 
   // isRedirectable.
-  bool? get isRedirectable => this._isRedirectable;
-  set isRedirectable(bool? v) => this._isRedirectable = v;
-  dynamic get $isRedirectable => this._isRedirectable;
-  set $isRedirectable(v) => this._isRedirectable = letBool(v);
+  bool? get isRedirectableField => this.isRedirectable;
+  set isRedirectableField(bool? v) => this.isRedirectable = v;
+  @protected
+  dynamic get $isRedirectable => this.isRedirectable;
+  @protected
+  set $isRedirectable(v) => this.isRedirectable = letBool(v);
 
   // makeup.
-  dynamic get makeup => this._makeup;
-  set makeup(dynamic v) => this._makeup = v;
-  dynamic get $makeup => this._makeup;
-  set $makeup(v) => this._makeup = v;
+  dynamic get makeupField => this.makeup;
+  set makeupField(dynamic v) => this.makeup = v;
+  @protected
+  dynamic get $makeup => this.makeup;
+  @protected
+  set $makeup(v) => this.makeup = v;
 
   // navigationControlsWidget.
-  Widget? get navigationControlsWidget => this._navigationControlsWidget;
-  set navigationControlsWidget(Widget? v) => this._navigationControlsWidget = v;
-  dynamic get $navigationControlsWidget => this._navigationControlsWidget;
-  set $navigationControlsWidget(v) => this._navigationControlsWidget = v;
+  Widget? get navigationControlsWidgetField => this.navigationControlsWidget;
+  set navigationControlsWidgetField(Widget? v) =>
+      this.navigationControlsWidget = v;
+  @protected
+  dynamic get $navigationControlsWidget => this.navigationControlsWidget;
+  @protected
+  set $navigationControlsWidget(v) => this.navigationControlsWidget = v;
 
   // path.
-  String? get path => this._path;
-  set path(String? v) => this._path = v;
-  dynamic get $path => this._path?.toString().trim().nullIfEmpty;
-  set $path(v) => this._path = v?.toString().trim().nullIfEmpty;
+  String? get pathField => this.path;
+  set pathField(String? v) => this.path = v;
+  @protected
+  dynamic get $path => this.path?.toString().trim().nullIfEmpty;
+  @protected
+  set $path(v) => this.path = v?.toString().trim().nullIfEmpty;
 
   // previousConfiguration.
-  ModelScreenConfiguration? get previousConfiguration =>
-      this._previousConfiguration;
-  set previousConfiguration(ModelScreenConfiguration? v) =>
-      this._previousConfiguration = v;
-  dynamic get $previousConfiguration => this._previousConfiguration?.toJson();
-  set $previousConfiguration(v) => this._previousConfiguration = () {
+  ModelScreenConfiguration? get previousConfigurationField =>
+      this.previousConfiguration;
+  set previousConfigurationField(ModelScreenConfiguration? v) =>
+      this.previousConfiguration = v;
+  @protected
+  dynamic get $previousConfiguration => this.previousConfiguration?.toJson();
+  @protected
+  set $previousConfiguration(v) => this.previousConfiguration = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelScreenConfiguration.fromJson(a) : null;
       }();
 
   // title.
-  String? get title => this._title;
-  set title(String? v) => this._title = v;
-  dynamic get $title => this._title?.toString().trim().nullIfEmpty;
-  set $title(v) => this._title = v?.toString().trim().nullIfEmpty;
+  String? get titleField => this.title;
+  set titleField(String? v) => this.title = v;
+  @protected
+  dynamic get $title => this.title?.toString().trim().nullIfEmpty;
+  @protected
+  set $title(v) => this.title = v?.toString().trim().nullIfEmpty;
 }

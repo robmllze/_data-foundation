@@ -42,18 +42,18 @@ class ModelUser extends _ModelUser {
   @override
   String get $class => CLASS;
 
-  DateTime? _createdAt;
-  String? _createdBy;
-  DateTime? _deletedAt;
-  String? _deletedBy;
-  bool? _didSendWelcomeEmail;
-  Set<String>? _emailSubscriptions;
-  String? _id;
-  String? _pid;
-  Set<String>? _pushSubscriptions;
-  String? _seed;
-  Set<String>? _smsSubscriptions;
-  Set<String>? _uploadedMediaIds;
+  DateTime? createdAt;
+  String? createdBy;
+  DateTime? deletedAt;
+  String? deletedBy;
+  bool? didSendWelcomeEmail;
+  Set<String>? emailSubscriptions;
+  String? id;
+  String? pid;
+  Set<String>? pushSubscriptions;
+  String? seed;
+  Set<String>? smsSubscriptions;
+  Set<String>? uploadedMediaIds;
 
   //
   //
@@ -100,32 +100,20 @@ class ModelUser extends _ModelUser {
   //
 
   ModelUser.b({
-    DateTime? createdAt,
-    String? createdBy,
-    DateTime? deletedAt,
-    String? deletedBy,
-    bool? didSendWelcomeEmail,
-    Set<String>? emailSubscriptions,
-    String? id,
-    String? pid,
-    Set<String>? pushSubscriptions,
-    String? seed,
-    Set<String>? smsSubscriptions,
-    Set<String>? uploadedMediaIds,
+    this.createdAt,
+    this.createdBy,
+    this.deletedAt,
+    this.deletedBy,
+    this.didSendWelcomeEmail,
+    this.emailSubscriptions,
+    this.id,
+    this.pid,
+    this.pushSubscriptions,
+    this.seed,
+    this.smsSubscriptions,
+    this.uploadedMediaIds,
   }) {
     assert(createdAt != null);
-    this._createdAt = createdAt;
-    this._createdBy = createdBy;
-    this._deletedAt = deletedAt;
-    this._deletedBy = deletedBy;
-    this._didSendWelcomeEmail = didSendWelcomeEmail;
-    this._emailSubscriptions = emailSubscriptions;
-    this._id = id;
-    this._pid = pid;
-    this._pushSubscriptions = pushSubscriptions;
-    this._seed = seed;
-    this._smsSubscriptions = smsSubscriptions;
-    this._uploadedMediaIds = uploadedMediaIds;
   }
 
   //
@@ -285,41 +273,41 @@ class ModelUser extends _ModelUser {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUser.fromJson(otherData);
-      if (other._createdAt != null) {
-        this.createdAt = other._createdAt!;
+      if (other.createdAt != null) {
+        this.createdAt = other.createdAt!;
       }
-      if (other._createdBy != null) {
-        this.createdBy = other._createdBy!;
+      if (other.createdBy != null) {
+        this.createdBy = other.createdBy!;
       }
-      if (other._deletedAt != null) {
-        this.deletedAt = other._deletedAt!;
+      if (other.deletedAt != null) {
+        this.deletedAt = other.deletedAt!;
       }
-      if (other._deletedBy != null) {
-        this.deletedBy = other._deletedBy!;
+      if (other.deletedBy != null) {
+        this.deletedBy = other.deletedBy!;
       }
-      if (other._didSendWelcomeEmail != null) {
-        this.didSendWelcomeEmail = other._didSendWelcomeEmail!;
+      if (other.didSendWelcomeEmail != null) {
+        this.didSendWelcomeEmail = other.didSendWelcomeEmail!;
       }
-      if (other._emailSubscriptions != null) {
-        this.emailSubscriptions = other._emailSubscriptions!;
+      if (other.emailSubscriptions != null) {
+        this.emailSubscriptions = other.emailSubscriptions!;
       }
-      if (other._id != null) {
-        this.id = other._id!;
+      if (other.id != null) {
+        this.id = other.id!;
       }
-      if (other._pid != null) {
-        this.pid = other._pid!;
+      if (other.pid != null) {
+        this.pid = other.pid!;
       }
-      if (other._pushSubscriptions != null) {
-        this.pushSubscriptions = other._pushSubscriptions!;
+      if (other.pushSubscriptions != null) {
+        this.pushSubscriptions = other.pushSubscriptions!;
       }
-      if (other._seed != null) {
-        this.seed = other._seed!;
+      if (other.seed != null) {
+        this.seed = other.seed!;
       }
-      if (other._smsSubscriptions != null) {
-        this.smsSubscriptions = other._smsSubscriptions!;
+      if (other.smsSubscriptions != null) {
+        this.smsSubscriptions = other.smsSubscriptions!;
       }
-      if (other._uploadedMediaIds != null) {
-        this.uploadedMediaIds = other._uploadedMediaIds!;
+      if (other.uploadedMediaIds != null) {
+        this.uploadedMediaIds = other.uploadedMediaIds!;
       }
     }
   }
@@ -329,53 +317,65 @@ class ModelUser extends _ModelUser {
   //
 
   // createdAt.
-  DateTime get createdAt => this._createdAt!;
-  set createdAt(DateTime v) => this._createdAt = v;
-  dynamic get $createdAt => (this._createdAt?.toUtc()?.toIso8601String())!;
-  set $createdAt(v) => this._createdAt = () {
+  DateTime get createdAtField => this.createdAt!;
+  set createdAtField(DateTime v) => this.createdAt = v;
+  @protected
+  dynamic get $createdAt => (this.createdAt?.toUtc()?.toIso8601String())!;
+  @protected
+  set $createdAt(v) => this.createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String? get createdBy => this._createdBy;
-  set createdBy(String? v) => this._createdBy = v;
-  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
-  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+  String? get createdByField => this.createdBy;
+  set createdByField(String? v) => this.createdBy = v;
+  @protected
+  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // deletedAt.
-  DateTime? get deletedAt => this._deletedAt;
-  set deletedAt(DateTime? v) => this._deletedAt = v;
-  dynamic get $deletedAt => this._deletedAt?.toUtc()?.toIso8601String();
-  set $deletedAt(v) => this._deletedAt = () {
+  DateTime? get deletedAtField => this.deletedAt;
+  set deletedAtField(DateTime? v) => this.deletedAt = v;
+  @protected
+  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $deletedAt(v) => this.deletedAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // deletedBy.
-  String? get deletedBy => this._deletedBy;
-  set deletedBy(String? v) => this._deletedBy = v;
-  dynamic get $deletedBy => this._deletedBy?.toString().trim().nullIfEmpty;
-  set $deletedBy(v) => this._deletedBy = v?.toString().trim().nullIfEmpty;
+  String? get deletedByField => this.deletedBy;
+  set deletedByField(String? v) => this.deletedBy = v;
+  @protected
+  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
   // didSendWelcomeEmail.
-  bool? get didSendWelcomeEmail => this._didSendWelcomeEmail;
-  set didSendWelcomeEmail(bool? v) => this._didSendWelcomeEmail = v;
-  dynamic get $didSendWelcomeEmail => this._didSendWelcomeEmail;
-  set $didSendWelcomeEmail(v) => this._didSendWelcomeEmail = letBool(v);
+  bool? get didSendWelcomeEmailField => this.didSendWelcomeEmail;
+  set didSendWelcomeEmailField(bool? v) => this.didSendWelcomeEmail = v;
+  @protected
+  dynamic get $didSendWelcomeEmail => this.didSendWelcomeEmail;
+  @protected
+  set $didSendWelcomeEmail(v) => this.didSendWelcomeEmail = letBool(v);
 
   // emailSubscriptions.
-  Set<String>? get emailSubscriptions => this._emailSubscriptions;
-  set emailSubscriptions(Set<String>? v) => this._emailSubscriptions = v;
+  Set<String>? get emailSubscriptionsField => this.emailSubscriptions;
+  set emailSubscriptionsField(Set<String>? v) => this.emailSubscriptions = v;
+  @protected
   dynamic get $emailSubscriptions => this
-      ._emailSubscriptions
+      .emailSubscriptions
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $emailSubscriptions(v) => this._emailSubscriptions = letSet(v)
+  @protected
+  set $emailSubscriptions(v) => this.emailSubscriptions = letSet(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
@@ -385,29 +385,35 @@ class ModelUser extends _ModelUser {
       .cast();
 
   // id.
-  String? get id => this._id;
-  set id(String? v) => this._id = v;
-  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
-  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // pid.
-  String? get pid => this._pid;
-  set pid(String? v) => this._pid = v;
-  dynamic get $pid => this._pid?.toString().trim().nullIfEmpty;
-  set $pid(v) => this._pid = v?.toString().trim().nullIfEmpty;
+  String? get pidField => this.pid;
+  set pidField(String? v) => this.pid = v;
+  @protected
+  dynamic get $pid => this.pid?.toString().trim().nullIfEmpty;
+  @protected
+  set $pid(v) => this.pid = v?.toString().trim().nullIfEmpty;
 
   // pushSubscriptions.
-  Set<String>? get pushSubscriptions => this._pushSubscriptions;
-  set pushSubscriptions(Set<String>? v) => this._pushSubscriptions = v;
+  Set<String>? get pushSubscriptionsField => this.pushSubscriptions;
+  set pushSubscriptionsField(Set<String>? v) => this.pushSubscriptions = v;
+  @protected
   dynamic get $pushSubscriptions => this
-      ._pushSubscriptions
+      .pushSubscriptions
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $pushSubscriptions(v) => this._pushSubscriptions = letSet(v)
+  @protected
+  set $pushSubscriptions(v) => this.pushSubscriptions = letSet(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
@@ -417,23 +423,27 @@ class ModelUser extends _ModelUser {
       .cast();
 
   // seed.
-  String? get seed => this._seed;
-  set seed(String? v) => this._seed = v;
-  dynamic get $seed => this._seed?.toString().trim().nullIfEmpty;
-  set $seed(v) => this._seed = v?.toString().trim().nullIfEmpty;
+  String? get seedField => this.seed;
+  set seedField(String? v) => this.seed = v;
+  @protected
+  dynamic get $seed => this.seed?.toString().trim().nullIfEmpty;
+  @protected
+  set $seed(v) => this.seed = v?.toString().trim().nullIfEmpty;
 
   // smsSubscriptions.
-  Set<String>? get smsSubscriptions => this._smsSubscriptions;
-  set smsSubscriptions(Set<String>? v) => this._smsSubscriptions = v;
+  Set<String>? get smsSubscriptionsField => this.smsSubscriptions;
+  set smsSubscriptionsField(Set<String>? v) => this.smsSubscriptions = v;
+  @protected
   dynamic get $smsSubscriptions => this
-      ._smsSubscriptions
+      .smsSubscriptions
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $smsSubscriptions(v) => this._smsSubscriptions = letSet(v)
+  @protected
+  set $smsSubscriptions(v) => this.smsSubscriptions = letSet(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
@@ -443,17 +453,19 @@ class ModelUser extends _ModelUser {
       .cast();
 
   // uploadedMediaIds.
-  Set<String>? get uploadedMediaIds => this._uploadedMediaIds;
-  set uploadedMediaIds(Set<String>? v) => this._uploadedMediaIds = v;
+  Set<String>? get uploadedMediaIdsField => this.uploadedMediaIds;
+  set uploadedMediaIdsField(Set<String>? v) => this.uploadedMediaIds = v;
+  @protected
   dynamic get $uploadedMediaIds => this
-      ._uploadedMediaIds
+      .uploadedMediaIds
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
-  set $uploadedMediaIds(v) => this._uploadedMediaIds = letSet(v)
+  @protected
+  set $uploadedMediaIds(v) => this.uploadedMediaIds = letSet(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )

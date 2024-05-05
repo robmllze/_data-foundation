@@ -40,16 +40,16 @@ class ModelConnectionPermissions extends Model {
   @override
   String get $class => CLASS;
 
-  bool? _editorPermit;
-  bool? _editorRequest;
-  bool? _messagingPermit;
-  bool? _messagingRequest;
-  bool? _minimalPermit;
-  bool? _minimalRequest;
-  bool? _notificationPermit;
-  bool? _notificationRequest;
-  bool? _readOnlyPermit;
-  bool? _readOnlyRequest;
+  bool? editorPermit;
+  bool? editorRequest;
+  bool? messagingPermit;
+  bool? messagingRequest;
+  bool? minimalPermit;
+  bool? minimalRequest;
+  bool? notificationPermit;
+  bool? notificationRequest;
+  bool? readOnlyPermit;
+  bool? readOnlyRequest;
 
   //
   //
@@ -92,28 +92,17 @@ class ModelConnectionPermissions extends Model {
   //
 
   ModelConnectionPermissions.b({
-    bool? editorPermit,
-    bool? editorRequest,
-    bool? messagingPermit,
-    bool? messagingRequest,
-    bool? minimalPermit,
-    bool? minimalRequest,
-    bool? notificationPermit,
-    bool? notificationRequest,
-    bool? readOnlyPermit,
-    bool? readOnlyRequest,
-  }) {
-    this._editorPermit = editorPermit;
-    this._editorRequest = editorRequest;
-    this._messagingPermit = messagingPermit;
-    this._messagingRequest = messagingRequest;
-    this._minimalPermit = minimalPermit;
-    this._minimalRequest = minimalRequest;
-    this._notificationPermit = notificationPermit;
-    this._notificationRequest = notificationRequest;
-    this._readOnlyPermit = readOnlyPermit;
-    this._readOnlyRequest = readOnlyRequest;
-  }
+    this.editorPermit,
+    this.editorRequest,
+    this.messagingPermit,
+    this.messagingRequest,
+    this.minimalPermit,
+    this.minimalRequest,
+    this.notificationPermit,
+    this.notificationRequest,
+    this.readOnlyPermit,
+    this.readOnlyRequest,
+  }) {}
 
   //
   //
@@ -268,35 +257,35 @@ class ModelConnectionPermissions extends Model {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelConnectionPermissions.fromJson(otherData);
-      if (other._editorPermit != null) {
-        this.editorPermit = other._editorPermit!;
+      if (other.editorPermit != null) {
+        this.editorPermit = other.editorPermit!;
       }
-      if (other._editorRequest != null) {
-        this.editorRequest = other._editorRequest!;
+      if (other.editorRequest != null) {
+        this.editorRequest = other.editorRequest!;
       }
-      if (other._messagingPermit != null) {
-        this.messagingPermit = other._messagingPermit!;
+      if (other.messagingPermit != null) {
+        this.messagingPermit = other.messagingPermit!;
       }
-      if (other._messagingRequest != null) {
-        this.messagingRequest = other._messagingRequest!;
+      if (other.messagingRequest != null) {
+        this.messagingRequest = other.messagingRequest!;
       }
-      if (other._minimalPermit != null) {
-        this.minimalPermit = other._minimalPermit!;
+      if (other.minimalPermit != null) {
+        this.minimalPermit = other.minimalPermit!;
       }
-      if (other._minimalRequest != null) {
-        this.minimalRequest = other._minimalRequest!;
+      if (other.minimalRequest != null) {
+        this.minimalRequest = other.minimalRequest!;
       }
-      if (other._notificationPermit != null) {
-        this.notificationPermit = other._notificationPermit!;
+      if (other.notificationPermit != null) {
+        this.notificationPermit = other.notificationPermit!;
       }
-      if (other._notificationRequest != null) {
-        this.notificationRequest = other._notificationRequest!;
+      if (other.notificationRequest != null) {
+        this.notificationRequest = other.notificationRequest!;
       }
-      if (other._readOnlyPermit != null) {
-        this.readOnlyPermit = other._readOnlyPermit!;
+      if (other.readOnlyPermit != null) {
+        this.readOnlyPermit = other.readOnlyPermit!;
       }
-      if (other._readOnlyRequest != null) {
-        this.readOnlyRequest = other._readOnlyRequest!;
+      if (other.readOnlyRequest != null) {
+        this.readOnlyRequest = other.readOnlyRequest!;
       }
     }
   }
@@ -306,62 +295,82 @@ class ModelConnectionPermissions extends Model {
   //
 
   // editorPermit.
-  bool? get editorPermit => this._editorPermit;
-  set editorPermit(bool? v) => this._editorPermit = v;
-  dynamic get $editorPermit => this._editorPermit;
-  set $editorPermit(v) => this._editorPermit = letBool(v);
+  bool? get editorPermitField => this.editorPermit;
+  set editorPermitField(bool? v) => this.editorPermit = v;
+  @protected
+  dynamic get $editorPermit => this.editorPermit;
+  @protected
+  set $editorPermit(v) => this.editorPermit = letBool(v);
 
   // editorRequest.
-  bool? get editorRequest => this._editorRequest;
-  set editorRequest(bool? v) => this._editorRequest = v;
-  dynamic get $editorRequest => this._editorRequest;
-  set $editorRequest(v) => this._editorRequest = letBool(v);
+  bool? get editorRequestField => this.editorRequest;
+  set editorRequestField(bool? v) => this.editorRequest = v;
+  @protected
+  dynamic get $editorRequest => this.editorRequest;
+  @protected
+  set $editorRequest(v) => this.editorRequest = letBool(v);
 
   // messagingPermit.
-  bool? get messagingPermit => this._messagingPermit;
-  set messagingPermit(bool? v) => this._messagingPermit = v;
-  dynamic get $messagingPermit => this._messagingPermit;
-  set $messagingPermit(v) => this._messagingPermit = letBool(v);
+  bool? get messagingPermitField => this.messagingPermit;
+  set messagingPermitField(bool? v) => this.messagingPermit = v;
+  @protected
+  dynamic get $messagingPermit => this.messagingPermit;
+  @protected
+  set $messagingPermit(v) => this.messagingPermit = letBool(v);
 
   // messagingRequest.
-  bool? get messagingRequest => this._messagingRequest;
-  set messagingRequest(bool? v) => this._messagingRequest = v;
-  dynamic get $messagingRequest => this._messagingRequest;
-  set $messagingRequest(v) => this._messagingRequest = letBool(v);
+  bool? get messagingRequestField => this.messagingRequest;
+  set messagingRequestField(bool? v) => this.messagingRequest = v;
+  @protected
+  dynamic get $messagingRequest => this.messagingRequest;
+  @protected
+  set $messagingRequest(v) => this.messagingRequest = letBool(v);
 
   // minimalPermit.
-  bool? get minimalPermit => this._minimalPermit;
-  set minimalPermit(bool? v) => this._minimalPermit = v;
-  dynamic get $minimalPermit => this._minimalPermit;
-  set $minimalPermit(v) => this._minimalPermit = letBool(v);
+  bool? get minimalPermitField => this.minimalPermit;
+  set minimalPermitField(bool? v) => this.minimalPermit = v;
+  @protected
+  dynamic get $minimalPermit => this.minimalPermit;
+  @protected
+  set $minimalPermit(v) => this.minimalPermit = letBool(v);
 
   // minimalRequest.
-  bool? get minimalRequest => this._minimalRequest;
-  set minimalRequest(bool? v) => this._minimalRequest = v;
-  dynamic get $minimalRequest => this._minimalRequest;
-  set $minimalRequest(v) => this._minimalRequest = letBool(v);
+  bool? get minimalRequestField => this.minimalRequest;
+  set minimalRequestField(bool? v) => this.minimalRequest = v;
+  @protected
+  dynamic get $minimalRequest => this.minimalRequest;
+  @protected
+  set $minimalRequest(v) => this.minimalRequest = letBool(v);
 
   // notificationPermit.
-  bool? get notificationPermit => this._notificationPermit;
-  set notificationPermit(bool? v) => this._notificationPermit = v;
-  dynamic get $notificationPermit => this._notificationPermit;
-  set $notificationPermit(v) => this._notificationPermit = letBool(v);
+  bool? get notificationPermitField => this.notificationPermit;
+  set notificationPermitField(bool? v) => this.notificationPermit = v;
+  @protected
+  dynamic get $notificationPermit => this.notificationPermit;
+  @protected
+  set $notificationPermit(v) => this.notificationPermit = letBool(v);
 
   // notificationRequest.
-  bool? get notificationRequest => this._notificationRequest;
-  set notificationRequest(bool? v) => this._notificationRequest = v;
-  dynamic get $notificationRequest => this._notificationRequest;
-  set $notificationRequest(v) => this._notificationRequest = letBool(v);
+  bool? get notificationRequestField => this.notificationRequest;
+  set notificationRequestField(bool? v) => this.notificationRequest = v;
+  @protected
+  dynamic get $notificationRequest => this.notificationRequest;
+  @protected
+  set $notificationRequest(v) => this.notificationRequest = letBool(v);
 
   // readOnlyPermit.
-  bool? get readOnlyPermit => this._readOnlyPermit;
-  set readOnlyPermit(bool? v) => this._readOnlyPermit = v;
-  dynamic get $readOnlyPermit => this._readOnlyPermit;
-  set $readOnlyPermit(v) => this._readOnlyPermit = letBool(v);
+  bool? get readOnlyPermitField => this.readOnlyPermit;
+  set readOnlyPermitField(bool? v) => this.readOnlyPermit = v;
+  @protected
+  dynamic get $readOnlyPermit => this.readOnlyPermit;
+  @protected
+  set $readOnlyPermit(v) => this.readOnlyPermit = letBool(v);
 
   // readOnlyRequest.
-  bool? get readOnlyRequest => this._readOnlyRequest;
-  set readOnlyRequest(bool? v) => this._readOnlyRequest = v;
-  dynamic get $readOnlyRequest => this._readOnlyRequest;
-  set $readOnlyRequest(v) => this._readOnlyRequest = letBool(v);
+  bool? get readOnlyRequestField => this.readOnlyRequest;
+  set readOnlyRequestField(bool? v) => this.readOnlyRequest = v;
+  @protected
+  dynamic get $readOnlyRequest => this.readOnlyRequest;
+  @protected
+  set $readOnlyRequest(v) => this.readOnlyRequest = letBool(v);
 }

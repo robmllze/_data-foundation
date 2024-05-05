@@ -31,7 +31,7 @@ class ModelConnectionsRelDef extends Model {
   @override
   String get $class => CLASS;
 
-  ModelConnectionPermissions? _permissions;
+  ModelConnectionPermissions? permissions;
 
   //
   //
@@ -56,10 +56,8 @@ class ModelConnectionsRelDef extends Model {
   //
 
   ModelConnectionsRelDef.b({
-    ModelConnectionPermissions? permissions,
-  }) {
-    this._permissions = permissions;
-  }
+    this.permissions,
+  }) {}
 
   //
   //
@@ -196,8 +194,8 @@ class ModelConnectionsRelDef extends Model {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelConnectionsRelDef.fromJson(otherData);
-      if (other._permissions != null) {
-        this.permissions = other._permissions!;
+      if (other.permissions != null) {
+        this.permissions = other.permissions!;
       }
     }
   }
@@ -207,10 +205,12 @@ class ModelConnectionsRelDef extends Model {
   //
 
   // permissions.
-  ModelConnectionPermissions? get permissions => this._permissions;
-  set permissions(ModelConnectionPermissions? v) => this._permissions = v;
-  dynamic get $permissions => this._permissions?.toJson();
-  set $permissions(v) => this._permissions = () {
+  ModelConnectionPermissions? get permissionsField => this.permissions;
+  set permissionsField(ModelConnectionPermissions? v) => this.permissions = v;
+  @protected
+  dynamic get $permissions => this.permissions?.toJson();
+  @protected
+  set $permissions(v) => this.permissions = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelConnectionPermissions.fromJson(a) : null;
       }();

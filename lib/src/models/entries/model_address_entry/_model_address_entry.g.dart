@@ -43,19 +43,19 @@ class ModelAddressEntry extends _ModelAddressEntry {
   @override
   String get $class => CLASS;
 
-  String? _addressLine1;
-  String? _addressLine2;
-  String? _city;
-  String? _country;
-  DateTime? _createdAt;
-  String? _createdBy;
-  String? _id;
-  String? _name;
-  String? _notes;
-  String? _postalCode;
-  String? _stateOrProvince;
-  String? _title;
-  String? _titleSearchable;
+  String? addressLine1;
+  String? addressLine2;
+  String? city;
+  String? country;
+  DateTime? createdAt;
+  String? createdBy;
+  String? id;
+  String? name;
+  String? notes;
+  String? postalCode;
+  String? stateOrProvince;
+  String? title;
+  String? titleSearchable;
 
   //
   //
@@ -104,34 +104,20 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
 
   ModelAddressEntry.b({
-    String? addressLine1,
-    String? addressLine2,
-    String? city,
-    String? country,
-    DateTime? createdAt,
-    String? createdBy,
-    String? id,
-    String? name,
-    String? notes,
-    String? postalCode,
-    String? stateOrProvince,
-    String? title,
-    String? titleSearchable,
-  }) {
-    this._addressLine1 = addressLine1;
-    this._addressLine2 = addressLine2;
-    this._city = city;
-    this._country = country;
-    this._createdAt = createdAt;
-    this._createdBy = createdBy;
-    this._id = id;
-    this._name = name;
-    this._notes = notes;
-    this._postalCode = postalCode;
-    this._stateOrProvince = stateOrProvince;
-    this._title = title;
-    this._titleSearchable = titleSearchable;
-  }
+    this.addressLine1,
+    this.addressLine2,
+    this.city,
+    this.country,
+    this.createdAt,
+    this.createdBy,
+    this.id,
+    this.name,
+    this.notes,
+    this.postalCode,
+    this.stateOrProvince,
+    this.title,
+    this.titleSearchable,
+  }) {}
 
   //
   //
@@ -292,44 +278,44 @@ class ModelAddressEntry extends _ModelAddressEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelAddressEntry.fromJson(otherData);
-      if (other._addressLine1 != null) {
-        this.addressLine1 = other._addressLine1!;
+      if (other.addressLine1 != null) {
+        this.addressLine1 = other.addressLine1!;
       }
-      if (other._addressLine2 != null) {
-        this.addressLine2 = other._addressLine2!;
+      if (other.addressLine2 != null) {
+        this.addressLine2 = other.addressLine2!;
       }
-      if (other._city != null) {
-        this.city = other._city!;
+      if (other.city != null) {
+        this.city = other.city!;
       }
-      if (other._country != null) {
-        this.country = other._country!;
+      if (other.country != null) {
+        this.country = other.country!;
       }
-      if (other._createdAt != null) {
-        this.createdAt = other._createdAt!;
+      if (other.createdAt != null) {
+        this.createdAt = other.createdAt!;
       }
-      if (other._createdBy != null) {
-        this.createdBy = other._createdBy!;
+      if (other.createdBy != null) {
+        this.createdBy = other.createdBy!;
       }
-      if (other._id != null) {
-        this.id = other._id!;
+      if (other.id != null) {
+        this.id = other.id!;
       }
-      if (other._name != null) {
-        this.name = other._name!;
+      if (other.name != null) {
+        this.name = other.name!;
       }
-      if (other._notes != null) {
-        this.notes = other._notes!;
+      if (other.notes != null) {
+        this.notes = other.notes!;
       }
-      if (other._postalCode != null) {
-        this.postalCode = other._postalCode!;
+      if (other.postalCode != null) {
+        this.postalCode = other.postalCode!;
       }
-      if (other._stateOrProvince != null) {
-        this.stateOrProvince = other._stateOrProvince!;
+      if (other.stateOrProvince != null) {
+        this.stateOrProvince = other.stateOrProvince!;
       }
-      if (other._title != null) {
-        this.title = other._title!;
+      if (other.title != null) {
+        this.title = other.title!;
       }
-      if (other._titleSearchable != null) {
-        this.titleSearchable = other._titleSearchable!;
+      if (other.titleSearchable != null) {
+        this.titleSearchable = other.titleSearchable!;
       }
     }
   }
@@ -339,94 +325,118 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
 
   // addressLine1.
-  String? get addressLine1 => this._addressLine1;
-  set addressLine1(String? v) => this._addressLine1 = v;
-  dynamic get $addressLine1 =>
-      this._addressLine1?.toString().trim().nullIfEmpty;
-  set $addressLine1(v) => this._addressLine1 = v?.toString().trim().nullIfEmpty;
+  String? get addressLine1Field => this.addressLine1;
+  set addressLine1Field(String? v) => this.addressLine1 = v;
+  @protected
+  dynamic get $addressLine1 => this.addressLine1?.toString().trim().nullIfEmpty;
+  @protected
+  set $addressLine1(v) => this.addressLine1 = v?.toString().trim().nullIfEmpty;
 
   // addressLine2.
-  String? get addressLine2 => this._addressLine2;
-  set addressLine2(String? v) => this._addressLine2 = v;
-  dynamic get $addressLine2 =>
-      this._addressLine2?.toString().trim().nullIfEmpty;
-  set $addressLine2(v) => this._addressLine2 = v?.toString().trim().nullIfEmpty;
+  String? get addressLine2Field => this.addressLine2;
+  set addressLine2Field(String? v) => this.addressLine2 = v;
+  @protected
+  dynamic get $addressLine2 => this.addressLine2?.toString().trim().nullIfEmpty;
+  @protected
+  set $addressLine2(v) => this.addressLine2 = v?.toString().trim().nullIfEmpty;
 
   // city.
-  String? get city => this._city;
-  set city(String? v) => this._city = v;
-  dynamic get $city => this._city?.toString().trim().nullIfEmpty;
-  set $city(v) => this._city = v?.toString().trim().nullIfEmpty;
+  String? get cityField => this.city;
+  set cityField(String? v) => this.city = v;
+  @protected
+  dynamic get $city => this.city?.toString().trim().nullIfEmpty;
+  @protected
+  set $city(v) => this.city = v?.toString().trim().nullIfEmpty;
 
   // country.
-  String? get country => this._country;
-  set country(String? v) => this._country = v;
-  dynamic get $country => this._country?.toString().trim().nullIfEmpty;
-  set $country(v) => this._country = v?.toString().trim().nullIfEmpty;
+  String? get countryField => this.country;
+  set countryField(String? v) => this.country = v;
+  @protected
+  dynamic get $country => this.country?.toString().trim().nullIfEmpty;
+  @protected
+  set $country(v) => this.country = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
-  DateTime? get createdAt => this._createdAt;
-  set createdAt(DateTime? v) => this._createdAt = v;
-  dynamic get $createdAt => this._createdAt?.toUtc()?.toIso8601String();
-  set $createdAt(v) => this._createdAt = () {
+  DateTime? get createdAtField => this.createdAt;
+  set createdAtField(DateTime? v) => this.createdAt = v;
+  @protected
+  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  @protected
+  set $createdAt(v) => this.createdAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // createdBy.
-  String? get createdBy => this._createdBy;
-  set createdBy(String? v) => this._createdBy = v;
-  dynamic get $createdBy => this._createdBy?.toString().trim().nullIfEmpty;
-  set $createdBy(v) => this._createdBy = v?.toString().trim().nullIfEmpty;
+  String? get createdByField => this.createdBy;
+  set createdByField(String? v) => this.createdBy = v;
+  @protected
+  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // id.
-  String? get id => this._id;
-  set id(String? v) => this._id = v;
-  dynamic get $id => this._id?.toString().trim().nullIfEmpty;
-  set $id(v) => this._id = v?.toString().trim().nullIfEmpty;
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // name.
-  String? get name => this._name;
-  set name(String? v) => this._name = v;
-  dynamic get $name => this._name?.toString().trim().nullIfEmpty;
-  set $name(v) => this._name = v?.toString().trim().nullIfEmpty;
+  String? get nameField => this.name;
+  set nameField(String? v) => this.name = v;
+  @protected
+  dynamic get $name => this.name?.toString().trim().nullIfEmpty;
+  @protected
+  set $name(v) => this.name = v?.toString().trim().nullIfEmpty;
 
   // notes.
-  String? get notes => this._notes;
-  set notes(String? v) => this._notes = v;
-  dynamic get $notes => this._notes?.toString().trim().nullIfEmpty;
-  set $notes(v) => this._notes = v?.toString().trim().nullIfEmpty;
+  String? get notesField => this.notes;
+  set notesField(String? v) => this.notes = v;
+  @protected
+  dynamic get $notes => this.notes?.toString().trim().nullIfEmpty;
+  @protected
+  set $notes(v) => this.notes = v?.toString().trim().nullIfEmpty;
 
   // postalCode.
-  String? get postalCode => this._postalCode;
-  set postalCode(String? v) => this._postalCode = v;
-  dynamic get $postalCode => this._postalCode?.toString().trim().nullIfEmpty;
-  set $postalCode(v) => this._postalCode = v?.toString().trim().nullIfEmpty;
+  String? get postalCodeField => this.postalCode;
+  set postalCodeField(String? v) => this.postalCode = v;
+  @protected
+  dynamic get $postalCode => this.postalCode?.toString().trim().nullIfEmpty;
+  @protected
+  set $postalCode(v) => this.postalCode = v?.toString().trim().nullIfEmpty;
 
   // stateOrProvince.
-  String? get stateOrProvince => this._stateOrProvince;
-  set stateOrProvince(String? v) => this._stateOrProvince = v;
+  String? get stateOrProvinceField => this.stateOrProvince;
+  set stateOrProvinceField(String? v) => this.stateOrProvince = v;
+  @protected
   dynamic get $stateOrProvince =>
-      this._stateOrProvince?.toString().trim().nullIfEmpty;
+      this.stateOrProvince?.toString().trim().nullIfEmpty;
+  @protected
   set $stateOrProvince(v) =>
-      this._stateOrProvince = v?.toString().trim().nullIfEmpty;
+      this.stateOrProvince = v?.toString().trim().nullIfEmpty;
 
   // title.
-  String? get title => this._title;
-  set title(String? v) => this._title = v;
-  dynamic get $title => this._title?.toString().trim().nullIfEmpty;
-  set $title(v) => this._title = v?.toString().trim().nullIfEmpty;
+  String? get titleField => this.title;
+  set titleField(String? v) => this.title = v;
+  @protected
+  dynamic get $title => this.title?.toString().trim().nullIfEmpty;
+  @protected
+  set $title(v) => this.title = v?.toString().trim().nullIfEmpty;
 
   // titleSearchable.
-  String? get titleSearchable => this._titleSearchable;
-  set titleSearchable(String? v) => this._titleSearchable = v;
+  String? get titleSearchableField => this.titleSearchable;
+  set titleSearchableField(String? v) => this.titleSearchable = v;
+  @protected
   dynamic get $titleSearchable => this
-      ._titleSearchable
+      .titleSearchable
       ?.toString()
       .trim()
       .nullIfEmpty
       ?.toLowerCase()
       .replaceAll(r'[^\w]', '');
-  set $titleSearchable(v) => this._titleSearchable =
+  @protected
+  set $titleSearchable(v) => this.titleSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 }
