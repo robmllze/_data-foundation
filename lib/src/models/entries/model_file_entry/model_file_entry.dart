@@ -19,12 +19,15 @@ part '_model_file_entry.g.dart';
     ('id?', String),
     ('created_at?', DateTime),
     ('created_by?', String),
-    ('type?', String),
     ('name?', String),
     ('download_url?', Uri),
     ('storage_path?', String),
     ('false_path?', List<String>),
     ('size?', int),
+    ('extension?', String),
+    ('title?', String),
+    ('searchable_title?', T_SEARCHABLE_STRING),
+    ('description?', String),
   },
 )
 abstract class _ModelFileEntry extends ThisModel<ModelFileEntry> {}
