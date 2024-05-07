@@ -17,13 +17,6 @@ part '_model_project_pub.g.dart';
   shouldInherit: true,
   fields: {
     ...PublicBaseModel.FIELDS,
-    ('description?', String),
-    ('primary_address?', ModelAddressEntry),
-    ('other_addresses?', Set<ModelAddressEntry>),
-    ('primary_email?', ModelEmailEntry),
-    ('other_emails?', Set<ModelEmailEntry>),
-    ('primary_phone?', ModelPhoneEntry),
-    ('other_phones?', Set<ModelEmailEntry>),
     ('when_opened?', Map<String, DateTime>),
     ('when_closed?', Map<String, DateTime>),
   },

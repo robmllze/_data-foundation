@@ -17,20 +17,17 @@ part '_model_relationship.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('created_at?', DateTime),
-    ('created_by?', String),
-    ('deleted_at?', DateTime),
-    ('deleted_by?', String),
-    ('def_type?', RelationshipDefType),
-    ('def?', GenericModel),
+    ...PublicBaseModel.FIELDS,
+    ('files?', Map<String, ModelFileEntry>),
     ('member_pids?', Set<String>),
     ('when_disabled?', Map<String, DateTime>),
     ('when_enabled?', Map<String, DateTime>),
     ('when_noted?', Map<String, DateTime>),
+    ('def_type?', RelationshipDefType),
+    ('def?', GenericModel),
   },
 )
-abstract class _ModelRelationship extends ThisModel<ModelRelationship> {
+abstract class _ModelRelationship extends PublicBaseModel<ModelRelationship> {
   //
   //
   //

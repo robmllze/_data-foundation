@@ -20,5 +20,4 @@ part '_model_rel_removed_def.g.dart';
     ...DefBaseModel.FIELDS,
   },
 )
-// ignore: unused_element
 abstract class _ModelRelRemovedDef extends DefBaseModel<ModelRelRemovedDef> {}

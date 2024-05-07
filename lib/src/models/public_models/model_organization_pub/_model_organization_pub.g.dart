@@ -24,6 +24,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
 
+  static const K_AVATAR = 'avatar';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DELETED_AT = 'deleted_at';
@@ -45,6 +46,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   @override
   String get $class => CLASS;
 
+  ModelFileEntry? avatar;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
@@ -72,6 +74,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
 
   factory ModelOrganizationPub({
+    ModelFileEntry? avatar,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
@@ -89,6 +92,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     ModelPhoneEntry? primaryPhone,
   }) {
     return ModelOrganizationPub.b(
+      avatar: avatar,
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
@@ -112,6 +116,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
 
   ModelOrganizationPub.b({
+    this.avatar,
     this.createdAt,
     this.createdBy,
     this.deletedAt,
@@ -190,6 +195,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   ) {
     try {
       return ModelOrganizationPub.empty()
+        ..$avatar = otherData?[K_AVATAR]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
@@ -241,6 +247,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_AVATAR: this.$avatar,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
@@ -292,6 +299,9 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelOrganizationPub.fromJson(otherData);
+      if (other.avatar != null) {
+        this.avatar = other.avatar!;
+      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -343,6 +353,17 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
   //
+
+  // avatar.
+  ModelFileEntry? get avatarField => this.avatar;
+  set avatarField(ModelFileEntry? v) => this.avatar = v;
+  @protected
+  dynamic get $avatar => this.avatar?.toJson();
+  @protected
+  set $avatar(v) => this.avatar = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelFileEntry.fromJson(a) : null;
+      }();
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;

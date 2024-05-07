@@ -24,6 +24,7 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
 
+  static const K_AVATAR = 'avatar';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DELETED_AT = 'deleted_at';
@@ -47,6 +48,7 @@ class ModelJobPub extends _ModelJobPub {
   @override
   String get $class => CLASS;
 
+  ModelFileEntry? avatar;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
@@ -76,6 +78,7 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   factory ModelJobPub({
+    ModelFileEntry? avatar,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
@@ -95,6 +98,7 @@ class ModelJobPub extends _ModelJobPub {
     Map<String, DateTime>? whenOpened,
   }) {
     return ModelJobPub.b(
+      avatar: avatar,
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
@@ -120,6 +124,7 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   ModelJobPub.b({
+    this.avatar,
     this.createdAt,
     this.createdBy,
     this.deletedAt,
@@ -200,6 +205,7 @@ class ModelJobPub extends _ModelJobPub {
   ) {
     try {
       return ModelJobPub.empty()
+        ..$avatar = otherData?[K_AVATAR]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
@@ -253,6 +259,7 @@ class ModelJobPub extends _ModelJobPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_AVATAR: this.$avatar,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
@@ -306,6 +313,9 @@ class ModelJobPub extends _ModelJobPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelJobPub.fromJson(otherData);
+      if (other.avatar != null) {
+        this.avatar = other.avatar!;
+      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -363,6 +373,17 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
   //
+
+  // avatar.
+  ModelFileEntry? get avatarField => this.avatar;
+  set avatarField(ModelFileEntry? v) => this.avatar = v;
+  @protected
+  dynamic get $avatar => this.avatar?.toJson();
+  @protected
+  set $avatar(v) => this.avatar = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelFileEntry.fromJson(a) : null;
+      }();
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
