@@ -28,6 +28,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
   static const K_CREATED_BY = 'created_by';
   static const K_DESCRIPTION = 'description';
   static const K_ID = 'id';
+  static const K_LAST_MODIFIED_AT = 'last_modified_at';
+  static const K_LAST_MODIFIED_BY = 'last_modified_by';
   static const K_NOTE = 'note';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
@@ -41,6 +43,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
   String? createdBy;
   String? description;
   String? id;
+  DateTime? lastModifiedAt;
+  String? lastModifiedBy;
   String? note;
   String? title;
   String? titleSearchable;
@@ -60,6 +64,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
     String? createdBy,
     String? description,
     String? id,
+    DateTime? lastModifiedAt,
+    String? lastModifiedBy,
     String? note,
     String? title,
     String? titleSearchable,
@@ -69,6 +75,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
       createdBy: createdBy,
       description: description,
       id: id,
+      lastModifiedAt: lastModifiedAt,
+      lastModifiedBy: lastModifiedBy,
       note: note,
       title: title,
       titleSearchable: titleSearchable,
@@ -84,6 +92,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
     this.createdBy,
     this.description,
     this.id,
+    this.lastModifiedAt,
+    this.lastModifiedBy,
     this.note,
     this.title,
     this.titleSearchable,
@@ -154,6 +164,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$description = otherData?[K_DESCRIPTION]
         ..$id = otherData?[K_ID]
+        ..$lastModifiedAt = otherData?[K_LAST_MODIFIED_AT]
+        ..$lastModifiedBy = otherData?[K_LAST_MODIFIED_BY]
         ..$note = otherData?[K_NOTE]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
@@ -197,6 +209,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
         K_CREATED_BY: this.$createdBy,
         K_DESCRIPTION: this.$description,
         K_ID: this.$id,
+        K_LAST_MODIFIED_AT: this.$lastModifiedAt,
+        K_LAST_MODIFIED_BY: this.$lastModifiedBy,
         K_NOTE: this.$note,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
@@ -248,6 +262,12 @@ class ModelNoteEntry extends _ModelNoteEntry {
       if (other.id != null) {
         this.id = other.id!;
       }
+      if (other.lastModifiedAt != null) {
+        this.lastModifiedAt = other.lastModifiedAt!;
+      }
+      if (other.lastModifiedBy != null) {
+        this.lastModifiedBy = other.lastModifiedBy!;
+      }
       if (other.note != null) {
         this.note = other.note!;
       }
@@ -298,6 +318,28 @@ class ModelNoteEntry extends _ModelNoteEntry {
   dynamic get $id => this.id?.toString().trim().nullIfEmpty;
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // lastModifiedAt.
+  DateTime? get lastModifiedAtField => this.lastModifiedAt;
+  set lastModifiedAtField(DateTime? v) => this.lastModifiedAt = v;
+  @protected
+  dynamic get $lastModifiedAt =>
+      this.lastModifiedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $lastModifiedAt(v) => this.lastModifiedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // lastModifiedBy.
+  String? get lastModifiedByField => this.lastModifiedBy;
+  set lastModifiedByField(String? v) => this.lastModifiedBy = v;
+  @protected
+  dynamic get $lastModifiedBy =>
+      this.lastModifiedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $lastModifiedBy(v) =>
+      this.lastModifiedBy = v?.toString().trim().nullIfEmpty;
 
   // note.
   String? get noteField => this.note;

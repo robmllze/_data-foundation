@@ -29,6 +29,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   static const K_DESCRIPTION = 'description';
   static const K_EMAIL = 'email';
   static const K_ID = 'id';
+  static const K_LAST_MODIFIED_AT = 'last_modified_at';
+  static const K_LAST_MODIFIED_BY = 'last_modified_by';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
 
@@ -42,6 +44,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   String? description;
   String? email;
   String? id;
+  DateTime? lastModifiedAt;
+  String? lastModifiedBy;
   String? title;
   String? titleSearchable;
 
@@ -61,6 +65,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
     String? description,
     String? email,
     String? id,
+    DateTime? lastModifiedAt,
+    String? lastModifiedBy,
     String? title,
     String? titleSearchable,
   }) {
@@ -70,6 +76,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
       description: description,
       email: email,
       id: id,
+      lastModifiedAt: lastModifiedAt,
+      lastModifiedBy: lastModifiedBy,
       title: title,
       titleSearchable: titleSearchable,
     );
@@ -85,6 +93,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
     this.description,
     this.email,
     this.id,
+    this.lastModifiedAt,
+    this.lastModifiedBy,
     this.title,
     this.titleSearchable,
   }) {}
@@ -155,6 +165,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
         ..$description = otherData?[K_DESCRIPTION]
         ..$email = otherData?[K_EMAIL]
         ..$id = otherData?[K_ID]
+        ..$lastModifiedAt = otherData?[K_LAST_MODIFIED_AT]
+        ..$lastModifiedBy = otherData?[K_LAST_MODIFIED_BY]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
@@ -198,6 +210,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
         K_DESCRIPTION: this.$description,
         K_EMAIL: this.$email,
         K_ID: this.$id,
+        K_LAST_MODIFIED_AT: this.$lastModifiedAt,
+        K_LAST_MODIFIED_BY: this.$lastModifiedBy,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
       }.mapWithDefault(defaultValue);
@@ -250,6 +264,12 @@ class ModelEmailEntry extends _ModelEmailEntry {
       }
       if (other.id != null) {
         this.id = other.id!;
+      }
+      if (other.lastModifiedAt != null) {
+        this.lastModifiedAt = other.lastModifiedAt!;
+      }
+      if (other.lastModifiedBy != null) {
+        this.lastModifiedBy = other.lastModifiedBy!;
       }
       if (other.title != null) {
         this.title = other.title!;
@@ -306,6 +326,28 @@ class ModelEmailEntry extends _ModelEmailEntry {
   dynamic get $id => this.id?.toString().trim().nullIfEmpty;
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // lastModifiedAt.
+  DateTime? get lastModifiedAtField => this.lastModifiedAt;
+  set lastModifiedAtField(DateTime? v) => this.lastModifiedAt = v;
+  @protected
+  dynamic get $lastModifiedAt =>
+      this.lastModifiedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $lastModifiedAt(v) => this.lastModifiedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // lastModifiedBy.
+  String? get lastModifiedByField => this.lastModifiedBy;
+  set lastModifiedByField(String? v) => this.lastModifiedBy = v;
+  @protected
+  dynamic get $lastModifiedBy =>
+      this.lastModifiedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $lastModifiedBy(v) =>
+      this.lastModifiedBy = v?.toString().trim().nullIfEmpty;
 
   // title.
   String? get titleField => this.title;

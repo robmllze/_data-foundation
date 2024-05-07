@@ -71,7 +71,7 @@ class ModelJob extends _ModelJob {
     String? id,
     String? pid,
     String? seed,
-    required Map<DateTime, ModelTodoEntry> todoEntries,
+    Map<DateTime, ModelTodoEntry>? todoEntries,
   }) {
     return ModelJob.b(
       checkIns: checkIns,
@@ -102,9 +102,7 @@ class ModelJob extends _ModelJob {
     this.pid,
     this.seed,
     this.todoEntries,
-  }) {
-    assert(todoEntries != null);
-  }
+  }) {}
 
   //
   //
@@ -417,10 +415,11 @@ class ModelJob extends _ModelJob {
   set $seed(v) => this.seed = v?.toString().trim().nullIfEmpty;
 
   // todoEntries.
-  Map<DateTime, ModelTodoEntry> get todoEntriesField => this.todoEntries!;
-  set todoEntriesField(Map<DateTime, ModelTodoEntry> v) => this.todoEntries = v;
+  Map<DateTime, ModelTodoEntry>? get todoEntriesField => this.todoEntries;
+  set todoEntriesField(Map<DateTime, ModelTodoEntry>? v) =>
+      this.todoEntries = v;
   @protected
-  dynamic get $todoEntries => (this
+  dynamic get $todoEntries => this
       .todoEntries
       ?.map(
         (p0, p1) => MapEntry(
@@ -429,7 +428,7 @@ class ModelJob extends _ModelJob {
         ),
       )
       .nonNulls
-      .nullIfEmpty)!;
+      .nullIfEmpty;
   @protected
   set $todoEntries(v) => this.todoEntries = letMap(v)
       ?.map(

@@ -15,43 +15,47 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_address_entry.dart';
+part of 'model_file_entry.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelAddressEntry extends _ModelAddressEntry {
+class ModelFileEntry extends _ModelFileEntry {
   //
   //
   //
 
-  static const K_ADDRESS_LINE_1 = 'address_line_1';
-  static const K_ADDRESS_LINE_2 = 'address_line_2';
-  static const K_CITY = 'city';
-  static const K_COUNTRY = 'country';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
+  static const K_DEFINITION_PATH = 'definition_path';
   static const K_DESCRIPTION = 'description';
+  static const K_DOWNLOAD_URL = 'download_url';
+  static const K_EXTENSION = 'extension';
   static const K_ID = 'id';
-  static const K_POSTAL_CODE = 'postal_code';
-  static const K_STATE_OR_PROVINCE = 'state_or_province';
+  static const K_LAST_MODIFIED_AT = 'last_modified_at';
+  static const K_LAST_MODIFIED_BY = 'last_modified_by';
+  static const K_NAME = 'name';
+  static const K_SIZE = 'size';
+  static const K_STORAGE_PATH = 'storage_path';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
 
-  static const CLASS = 'ModelAddressEntry';
+  static const CLASS = 'ModelFileEntry';
 
   @override
   String get $class => CLASS;
 
-  String? addressLine1;
-  String? addressLine2;
-  String? city;
-  String? country;
   DateTime? createdAt;
   String? createdBy;
+  List<String>? definitionPath;
   String? description;
+  Uri? downloadUrl;
+  String? extension;
   String? id;
-  String? postalCode;
-  String? stateOrProvince;
+  DateTime? lastModifiedAt;
+  String? lastModifiedBy;
+  String? name;
+  int? size;
+  String? storagePath;
   String? title;
   String? titleSearchable;
 
@@ -59,37 +63,41 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
   //
 
-  ModelAddressEntry.empty();
+  ModelFileEntry.empty();
 
   //
   //
   //
 
-  factory ModelAddressEntry({
-    String? addressLine1,
-    String? addressLine2,
-    String? city,
-    String? country,
+  factory ModelFileEntry({
     DateTime? createdAt,
     String? createdBy,
+    List<String>? definitionPath,
     String? description,
+    Uri? downloadUrl,
+    String? extension,
     String? id,
-    String? postalCode,
-    String? stateOrProvince,
+    DateTime? lastModifiedAt,
+    String? lastModifiedBy,
+    String? name,
+    int? size,
+    String? storagePath,
     String? title,
     String? titleSearchable,
   }) {
-    return ModelAddressEntry.b(
-      addressLine1: addressLine1,
-      addressLine2: addressLine2,
-      city: city,
-      country: country,
+    return ModelFileEntry.b(
       createdAt: createdAt,
       createdBy: createdBy,
+      definitionPath: definitionPath,
       description: description,
+      downloadUrl: downloadUrl,
+      extension: extension,
       id: id,
-      postalCode: postalCode,
-      stateOrProvince: stateOrProvince,
+      lastModifiedAt: lastModifiedAt,
+      lastModifiedBy: lastModifiedBy,
+      name: name,
+      size: size,
+      storagePath: storagePath,
       title: title,
       titleSearchable: titleSearchable,
     );
@@ -99,17 +107,19 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
   //
 
-  ModelAddressEntry.b({
-    this.addressLine1,
-    this.addressLine2,
-    this.city,
-    this.country,
+  ModelFileEntry.b({
     this.createdAt,
     this.createdBy,
+    this.definitionPath,
     this.description,
+    this.downloadUrl,
+    this.extension,
     this.id,
-    this.postalCode,
-    this.stateOrProvince,
+    this.lastModifiedAt,
+    this.lastModifiedBy,
+    this.name,
+    this.size,
+    this.storagePath,
     this.title,
     this.titleSearchable,
   }) {}
@@ -118,10 +128,10 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
   //
 
-  factory ModelAddressEntry.from(
+  factory ModelFileEntry.from(
     Model? other,
   ) {
-    return ModelAddressEntry.fromJson(
+    return ModelFileEntry.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
@@ -130,35 +140,35 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
   //
 
-  static ModelAddressEntry? fromOrNull(
+  static ModelFileEntry? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelAddressEntry.from(other) : null;
+    return other != null ? ModelFileEntry.from(other) : null;
   }
 
   //
   //
   //
 
-  factory ModelAddressEntry.of(
-    ModelAddressEntry? other,
+  factory ModelFileEntry.of(
+    ModelFileEntry? other,
   ) {
-    return ModelAddressEntry.fromJson(other?.toJson());
+    return ModelFileEntry.fromJson(other?.toJson());
   }
 
   //
   //
   //
 
-  factory ModelAddressEntry.fromJsonString(
+  factory ModelFileEntry.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelAddressEntry.fromJson(decoded);
+        return ModelFileEntry.fromJson(decoded);
       } else {
-        return ModelAddressEntry.empty();
+        return ModelFileEntry.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -170,21 +180,23 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
   //
 
-  factory ModelAddressEntry.fromJson(
+  factory ModelFileEntry.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelAddressEntry.empty()
-        ..$addressLine1 = otherData?[K_ADDRESS_LINE_1]
-        ..$addressLine2 = otherData?[K_ADDRESS_LINE_2]
-        ..$city = otherData?[K_CITY]
-        ..$country = otherData?[K_COUNTRY]
+      return ModelFileEntry.empty()
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
+        ..$definitionPath = otherData?[K_DEFINITION_PATH]
         ..$description = otherData?[K_DESCRIPTION]
+        ..$downloadUrl = otherData?[K_DOWNLOAD_URL]
+        ..$extension = otherData?[K_EXTENSION]
         ..$id = otherData?[K_ID]
-        ..$postalCode = otherData?[K_POSTAL_CODE]
-        ..$stateOrProvince = otherData?[K_STATE_OR_PROVINCE]
+        ..$lastModifiedAt = otherData?[K_LAST_MODIFIED_AT]
+        ..$lastModifiedBy = otherData?[K_LAST_MODIFIED_BY]
+        ..$name = otherData?[K_NAME]
+        ..$size = otherData?[K_SIZE]
+        ..$storagePath = otherData?[K_STORAGE_PATH]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
@@ -197,14 +209,14 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
   //
 
-  factory ModelAddressEntry.fromUri(
+  factory ModelFileEntry.fromUri(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelAddressEntry.fromJson(uri.queryParameters);
+        return ModelFileEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelAddressEntry.b();
+        return ModelFileEntry.b();
       }
     } catch (e) {
       assert(false, e);
@@ -223,16 +235,18 @@ class ModelAddressEntry extends _ModelAddressEntry {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_ADDRESS_LINE_1: this.$addressLine1,
-        K_ADDRESS_LINE_2: this.$addressLine2,
-        K_CITY: this.$city,
-        K_COUNTRY: this.$country,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
+        K_DEFINITION_PATH: this.$definitionPath,
         K_DESCRIPTION: this.$description,
+        K_DOWNLOAD_URL: this.$downloadUrl,
+        K_EXTENSION: this.$extension,
         K_ID: this.$id,
-        K_POSTAL_CODE: this.$postalCode,
-        K_STATE_OR_PROVINCE: this.$stateOrProvince,
+        K_LAST_MODIFIED_AT: this.$lastModifiedAt,
+        K_LAST_MODIFIED_BY: this.$lastModifiedBy,
+        K_NAME: this.$name,
+        K_SIZE: this.$size,
+        K_STORAGE_PATH: this.$storagePath,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
       }.mapWithDefault(defaultValue);
@@ -249,7 +263,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
 
   @override
   T empty<T extends Model>() {
-    return ModelAddressEntry.b() as T;
+    return ModelFileEntry.b() as T;
   }
 
   //
@@ -258,7 +272,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
 
   @override
   T copy<T extends Model>() {
-    return (ModelAddressEntry.b()..updateWith(this)) as T;
+    return (ModelFileEntry.b()..updateWith(this)) as T;
   }
 
   //
@@ -270,36 +284,42 @@ class ModelAddressEntry extends _ModelAddressEntry {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelAddressEntry.fromJson(otherData);
-      if (other.addressLine1 != null) {
-        this.addressLine1 = other.addressLine1!;
-      }
-      if (other.addressLine2 != null) {
-        this.addressLine2 = other.addressLine2!;
-      }
-      if (other.city != null) {
-        this.city = other.city!;
-      }
-      if (other.country != null) {
-        this.country = other.country!;
-      }
+      final other = ModelFileEntry.fromJson(otherData);
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
       if (other.createdBy != null) {
         this.createdBy = other.createdBy!;
       }
+      if (other.definitionPath != null) {
+        this.definitionPath = other.definitionPath!;
+      }
       if (other.description != null) {
         this.description = other.description!;
+      }
+      if (other.downloadUrl != null) {
+        this.downloadUrl = other.downloadUrl!;
+      }
+      if (other.extension != null) {
+        this.extension = other.extension!;
       }
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.postalCode != null) {
-        this.postalCode = other.postalCode!;
+      if (other.lastModifiedAt != null) {
+        this.lastModifiedAt = other.lastModifiedAt!;
       }
-      if (other.stateOrProvince != null) {
-        this.stateOrProvince = other.stateOrProvince!;
+      if (other.lastModifiedBy != null) {
+        this.lastModifiedBy = other.lastModifiedBy!;
+      }
+      if (other.name != null) {
+        this.name = other.name!;
+      }
+      if (other.size != null) {
+        this.size = other.size!;
+      }
+      if (other.storagePath != null) {
+        this.storagePath = other.storagePath!;
       }
       if (other.title != null) {
         this.title = other.title!;
@@ -313,38 +333,6 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
   //
   //
-
-  // addressLine1.
-  String? get addressLine1Field => this.addressLine1;
-  set addressLine1Field(String? v) => this.addressLine1 = v;
-  @protected
-  dynamic get $addressLine1 => this.addressLine1?.toString().trim().nullIfEmpty;
-  @protected
-  set $addressLine1(v) => this.addressLine1 = v?.toString().trim().nullIfEmpty;
-
-  // addressLine2.
-  String? get addressLine2Field => this.addressLine2;
-  set addressLine2Field(String? v) => this.addressLine2 = v;
-  @protected
-  dynamic get $addressLine2 => this.addressLine2?.toString().trim().nullIfEmpty;
-  @protected
-  set $addressLine2(v) => this.addressLine2 = v?.toString().trim().nullIfEmpty;
-
-  // city.
-  String? get cityField => this.city;
-  set cityField(String? v) => this.city = v;
-  @protected
-  dynamic get $city => this.city?.toString().trim().nullIfEmpty;
-  @protected
-  set $city(v) => this.city = v?.toString().trim().nullIfEmpty;
-
-  // country.
-  String? get countryField => this.country;
-  set countryField(String? v) => this.country = v;
-  @protected
-  dynamic get $country => this.country?.toString().trim().nullIfEmpty;
-  @protected
-  set $country(v) => this.country = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -365,6 +353,28 @@ class ModelAddressEntry extends _ModelAddressEntry {
   @protected
   set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
+  // definitionPath.
+  List<String>? get definitionPathField => this.definitionPath;
+  set definitionPathField(List<String>? v) => this.definitionPath = v;
+  @protected
+  dynamic get $definitionPath => this
+      .definitionPath
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $definitionPath(v) => this.definitionPath = letList(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
   // description.
   String? get descriptionField => this.description;
   set descriptionField(String? v) => this.description = v;
@@ -372,6 +382,27 @@ class ModelAddressEntry extends _ModelAddressEntry {
   dynamic get $description => this.description?.toString().trim().nullIfEmpty;
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
+
+  // downloadUrl.
+  Uri? get downloadUrlField => this.downloadUrl;
+  set downloadUrlField(Uri? v) => this.downloadUrl = v;
+  @protected
+  dynamic get $downloadUrl => this.downloadUrl?.toString();
+  @protected
+  set $downloadUrl(v) => this.downloadUrl = () {
+        final a = v;
+        return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
+      }();
+
+  // extension.
+  String? get extensionField => this.extension;
+  set extensionField(String? v) => this.extension = v;
+  @protected
+  dynamic get $extension =>
+      this.extension?.toString().trim().nullIfEmpty?.toLowerCase();
+  @protected
+  set $extension(v) =>
+      this.extension = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
   // id.
   String? get idField => this.id;
@@ -381,23 +412,51 @@ class ModelAddressEntry extends _ModelAddressEntry {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // postalCode.
-  String? get postalCodeField => this.postalCode;
-  set postalCodeField(String? v) => this.postalCode = v;
+  // lastModifiedAt.
+  DateTime? get lastModifiedAtField => this.lastModifiedAt;
+  set lastModifiedAtField(DateTime? v) => this.lastModifiedAt = v;
   @protected
-  dynamic get $postalCode => this.postalCode?.toString().trim().nullIfEmpty;
+  dynamic get $lastModifiedAt =>
+      this.lastModifiedAt?.toUtc()?.toIso8601String();
   @protected
-  set $postalCode(v) => this.postalCode = v?.toString().trim().nullIfEmpty;
+  set $lastModifiedAt(v) => this.lastModifiedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
 
-  // stateOrProvince.
-  String? get stateOrProvinceField => this.stateOrProvince;
-  set stateOrProvinceField(String? v) => this.stateOrProvince = v;
+  // lastModifiedBy.
+  String? get lastModifiedByField => this.lastModifiedBy;
+  set lastModifiedByField(String? v) => this.lastModifiedBy = v;
   @protected
-  dynamic get $stateOrProvince =>
-      this.stateOrProvince?.toString().trim().nullIfEmpty;
+  dynamic get $lastModifiedBy =>
+      this.lastModifiedBy?.toString().trim().nullIfEmpty;
   @protected
-  set $stateOrProvince(v) =>
-      this.stateOrProvince = v?.toString().trim().nullIfEmpty;
+  set $lastModifiedBy(v) =>
+      this.lastModifiedBy = v?.toString().trim().nullIfEmpty;
+
+  // name.
+  String? get nameField => this.name;
+  set nameField(String? v) => this.name = v;
+  @protected
+  dynamic get $name => this.name?.toString().trim().nullIfEmpty;
+  @protected
+  set $name(v) => this.name = v?.toString().trim().nullIfEmpty;
+
+  // size.
+  int? get sizeField => this.size;
+  set sizeField(int? v) => this.size = v;
+  @protected
+  dynamic get $size => this.size;
+  @protected
+  set $size(v) => this.size = letInt(v);
+
+  // storagePath.
+  String? get storagePathField => this.storagePath;
+  set storagePathField(String? v) => this.storagePath = v;
+  @protected
+  dynamic get $storagePath => this.storagePath?.toString().trim().nullIfEmpty;
+  @protected
+  set $storagePath(v) => this.storagePath = v?.toString().trim().nullIfEmpty;
 
   // title.
   String? get titleField => this.title;

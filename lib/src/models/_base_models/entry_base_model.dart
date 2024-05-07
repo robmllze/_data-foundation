@@ -21,9 +21,11 @@ abstract class EntryBaseModel<T extends Model> extends ThisModel<T> {
     ('id?', String),
     ('title?', String),
     ('title_searchable?', T_SEARCHABLE_STRING),
+    ('description?', String),
     ('created_at?', DateTime),
     ('created_by?', String),
-    ('description?', String),
+    ('last_modified_at?', DateTime),
+    ('last_modified_by?', String),
   };
 
   //

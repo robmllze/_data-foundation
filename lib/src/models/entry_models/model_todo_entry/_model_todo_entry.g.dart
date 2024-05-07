@@ -15,43 +15,37 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_file_entry.dart';
+part of 'model_todo_entry.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelFileEntry extends _ModelFileEntry {
+class ModelTodoEntry extends _ModelTodoEntry {
   //
   //
   //
 
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
-  static const K_DEFINITION_PATH = 'definition_path';
   static const K_DESCRIPTION = 'description';
-  static const K_DOWNLOAD_URL = 'download_url';
-  static const K_EXTENSION = 'extension';
   static const K_ID = 'id';
-  static const K_NAME = 'name';
-  static const K_SIZE = 'size';
-  static const K_STORAGE_PATH = 'storage_path';
+  static const K_LAST_MODIFIED_AT = 'last_modified_at';
+  static const K_LAST_MODIFIED_BY = 'last_modified_by';
+  static const K_STATUS = 'status';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
 
-  static const CLASS = 'ModelFileEntry';
+  static const CLASS = 'ModelTodoEntry';
 
   @override
   String get $class => CLASS;
 
   DateTime? createdAt;
   String? createdBy;
-  List<String>? definitionPath;
   String? description;
-  Uri? downloadUrl;
-  String? extension;
   String? id;
-  String? name;
-  int? size;
-  String? storagePath;
+  DateTime? lastModifiedAt;
+  String? lastModifiedBy;
+  Map<DateTime, String>? status;
   String? title;
   String? titleSearchable;
 
@@ -59,37 +53,31 @@ class ModelFileEntry extends _ModelFileEntry {
   //
   //
 
-  ModelFileEntry.empty();
+  ModelTodoEntry.empty();
 
   //
   //
   //
 
-  factory ModelFileEntry({
+  factory ModelTodoEntry({
     DateTime? createdAt,
     String? createdBy,
-    List<String>? definitionPath,
     String? description,
-    Uri? downloadUrl,
-    String? extension,
     String? id,
-    String? name,
-    int? size,
-    String? storagePath,
+    DateTime? lastModifiedAt,
+    String? lastModifiedBy,
+    Map<DateTime, String>? status,
     String? title,
     String? titleSearchable,
   }) {
-    return ModelFileEntry.b(
+    return ModelTodoEntry.b(
       createdAt: createdAt,
       createdBy: createdBy,
-      definitionPath: definitionPath,
       description: description,
-      downloadUrl: downloadUrl,
-      extension: extension,
       id: id,
-      name: name,
-      size: size,
-      storagePath: storagePath,
+      lastModifiedAt: lastModifiedAt,
+      lastModifiedBy: lastModifiedBy,
+      status: status,
       title: title,
       titleSearchable: titleSearchable,
     );
@@ -99,17 +87,14 @@ class ModelFileEntry extends _ModelFileEntry {
   //
   //
 
-  ModelFileEntry.b({
+  ModelTodoEntry.b({
     this.createdAt,
     this.createdBy,
-    this.definitionPath,
     this.description,
-    this.downloadUrl,
-    this.extension,
     this.id,
-    this.name,
-    this.size,
-    this.storagePath,
+    this.lastModifiedAt,
+    this.lastModifiedBy,
+    this.status,
     this.title,
     this.titleSearchable,
   }) {}
@@ -118,10 +103,10 @@ class ModelFileEntry extends _ModelFileEntry {
   //
   //
 
-  factory ModelFileEntry.from(
+  factory ModelTodoEntry.from(
     Model? other,
   ) {
-    return ModelFileEntry.fromJson(
+    return ModelTodoEntry.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
@@ -130,35 +115,35 @@ class ModelFileEntry extends _ModelFileEntry {
   //
   //
 
-  static ModelFileEntry? fromOrNull(
+  static ModelTodoEntry? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelFileEntry.from(other) : null;
+    return other != null ? ModelTodoEntry.from(other) : null;
   }
 
   //
   //
   //
 
-  factory ModelFileEntry.of(
-    ModelFileEntry? other,
+  factory ModelTodoEntry.of(
+    ModelTodoEntry? other,
   ) {
-    return ModelFileEntry.fromJson(other?.toJson());
+    return ModelTodoEntry.fromJson(other?.toJson());
   }
 
   //
   //
   //
 
-  factory ModelFileEntry.fromJsonString(
+  factory ModelTodoEntry.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelFileEntry.fromJson(decoded);
+        return ModelTodoEntry.fromJson(decoded);
       } else {
-        return ModelFileEntry.empty();
+        return ModelTodoEntry.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -170,21 +155,18 @@ class ModelFileEntry extends _ModelFileEntry {
   //
   //
 
-  factory ModelFileEntry.fromJson(
+  factory ModelTodoEntry.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelFileEntry.empty()
+      return ModelTodoEntry.empty()
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
-        ..$definitionPath = otherData?[K_DEFINITION_PATH]
         ..$description = otherData?[K_DESCRIPTION]
-        ..$downloadUrl = otherData?[K_DOWNLOAD_URL]
-        ..$extension = otherData?[K_EXTENSION]
         ..$id = otherData?[K_ID]
-        ..$name = otherData?[K_NAME]
-        ..$size = otherData?[K_SIZE]
-        ..$storagePath = otherData?[K_STORAGE_PATH]
+        ..$lastModifiedAt = otherData?[K_LAST_MODIFIED_AT]
+        ..$lastModifiedBy = otherData?[K_LAST_MODIFIED_BY]
+        ..$status = otherData?[K_STATUS]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
@@ -197,14 +179,14 @@ class ModelFileEntry extends _ModelFileEntry {
   //
   //
 
-  factory ModelFileEntry.fromUri(
+  factory ModelTodoEntry.fromUri(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelFileEntry.fromJson(uri.queryParameters);
+        return ModelTodoEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelFileEntry.b();
+        return ModelTodoEntry.b();
       }
     } catch (e) {
       assert(false, e);
@@ -225,14 +207,11 @@ class ModelFileEntry extends _ModelFileEntry {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
-        K_DEFINITION_PATH: this.$definitionPath,
         K_DESCRIPTION: this.$description,
-        K_DOWNLOAD_URL: this.$downloadUrl,
-        K_EXTENSION: this.$extension,
         K_ID: this.$id,
-        K_NAME: this.$name,
-        K_SIZE: this.$size,
-        K_STORAGE_PATH: this.$storagePath,
+        K_LAST_MODIFIED_AT: this.$lastModifiedAt,
+        K_LAST_MODIFIED_BY: this.$lastModifiedBy,
+        K_STATUS: this.$status,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
       }.mapWithDefault(defaultValue);
@@ -249,7 +228,7 @@ class ModelFileEntry extends _ModelFileEntry {
 
   @override
   T empty<T extends Model>() {
-    return ModelFileEntry.b() as T;
+    return ModelTodoEntry.b() as T;
   }
 
   //
@@ -258,7 +237,7 @@ class ModelFileEntry extends _ModelFileEntry {
 
   @override
   T copy<T extends Model>() {
-    return (ModelFileEntry.b()..updateWith(this)) as T;
+    return (ModelTodoEntry.b()..updateWith(this)) as T;
   }
 
   //
@@ -270,36 +249,27 @@ class ModelFileEntry extends _ModelFileEntry {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelFileEntry.fromJson(otherData);
+      final other = ModelTodoEntry.fromJson(otherData);
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
       if (other.createdBy != null) {
         this.createdBy = other.createdBy!;
       }
-      if (other.definitionPath != null) {
-        this.definitionPath = other.definitionPath!;
-      }
       if (other.description != null) {
         this.description = other.description!;
-      }
-      if (other.downloadUrl != null) {
-        this.downloadUrl = other.downloadUrl!;
-      }
-      if (other.extension != null) {
-        this.extension = other.extension!;
       }
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.name != null) {
-        this.name = other.name!;
+      if (other.lastModifiedAt != null) {
+        this.lastModifiedAt = other.lastModifiedAt!;
       }
-      if (other.size != null) {
-        this.size = other.size!;
+      if (other.lastModifiedBy != null) {
+        this.lastModifiedBy = other.lastModifiedBy!;
       }
-      if (other.storagePath != null) {
-        this.storagePath = other.storagePath!;
+      if (other.status != null) {
+        this.status = other.status!;
       }
       if (other.title != null) {
         this.title = other.title!;
@@ -333,28 +303,6 @@ class ModelFileEntry extends _ModelFileEntry {
   @protected
   set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
-  // definitionPath.
-  List<String>? get definitionPathField => this.definitionPath;
-  set definitionPathField(List<String>? v) => this.definitionPath = v;
-  @protected
-  dynamic get $definitionPath => this
-      .definitionPath
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $definitionPath(v) => this.definitionPath = letList(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
-
   // description.
   String? get descriptionField => this.description;
   set descriptionField(String? v) => this.description = v;
@@ -362,27 +310,6 @@ class ModelFileEntry extends _ModelFileEntry {
   dynamic get $description => this.description?.toString().trim().nullIfEmpty;
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
-
-  // downloadUrl.
-  Uri? get downloadUrlField => this.downloadUrl;
-  set downloadUrlField(Uri? v) => this.downloadUrl = v;
-  @protected
-  dynamic get $downloadUrl => this.downloadUrl?.toString();
-  @protected
-  set $downloadUrl(v) => this.downloadUrl = () {
-        final a = v;
-        return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
-      }();
-
-  // extension.
-  String? get extensionField => this.extension;
-  set extensionField(String? v) => this.extension = v;
-  @protected
-  dynamic get $extension =>
-      this.extension?.toString().trim().nullIfEmpty?.toLowerCase();
-  @protected
-  set $extension(v) =>
-      this.extension = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
   // id.
   String? get idField => this.id;
@@ -392,29 +319,56 @@ class ModelFileEntry extends _ModelFileEntry {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // name.
-  String? get nameField => this.name;
-  set nameField(String? v) => this.name = v;
+  // lastModifiedAt.
+  DateTime? get lastModifiedAtField => this.lastModifiedAt;
+  set lastModifiedAtField(DateTime? v) => this.lastModifiedAt = v;
   @protected
-  dynamic get $name => this.name?.toString().trim().nullIfEmpty;
+  dynamic get $lastModifiedAt =>
+      this.lastModifiedAt?.toUtc()?.toIso8601String();
   @protected
-  set $name(v) => this.name = v?.toString().trim().nullIfEmpty;
+  set $lastModifiedAt(v) => this.lastModifiedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
 
-  // size.
-  int? get sizeField => this.size;
-  set sizeField(int? v) => this.size = v;
+  // lastModifiedBy.
+  String? get lastModifiedByField => this.lastModifiedBy;
+  set lastModifiedByField(String? v) => this.lastModifiedBy = v;
   @protected
-  dynamic get $size => this.size;
+  dynamic get $lastModifiedBy =>
+      this.lastModifiedBy?.toString().trim().nullIfEmpty;
   @protected
-  set $size(v) => this.size = letInt(v);
+  set $lastModifiedBy(v) =>
+      this.lastModifiedBy = v?.toString().trim().nullIfEmpty;
 
-  // storagePath.
-  String? get storagePathField => this.storagePath;
-  set storagePathField(String? v) => this.storagePath = v;
+  // status.
+  Map<DateTime, String>? get statusField => this.status;
+  set statusField(Map<DateTime, String>? v) => this.status = v;
   @protected
-  dynamic get $storagePath => this.storagePath?.toString().trim().nullIfEmpty;
+  dynamic get $status => this
+      .status
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toUtc()?.toIso8601String(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
   @protected
-  set $storagePath(v) => this.storagePath = v?.toString().trim().nullIfEmpty;
+  set $status(v) => this.status = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          () {
+            final a = p0;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 
   // title.
   String? get titleField => this.title;

@@ -15,63 +15,87 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_todo_entry.dart';
+part of 'model_phone_entry.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelTodoEntry extends _ModelTodoEntry {
+class ModelPhoneEntry extends _ModelPhoneEntry {
   //
   //
   //
 
+  static const K_COUNTRY_CODE = 'country_code';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DESCRIPTION = 'description';
+  static const K_EXTENSION = 'extension';
+  static const K_FULL_NUMBER = 'full_number';
   static const K_ID = 'id';
-  static const K_STATUS = 'status';
+  static const K_LAST_MODIFIED_AT = 'last_modified_at';
+  static const K_LAST_MODIFIED_BY = 'last_modified_by';
+  static const K_NUMBER_WITHOUT_COUNTRY_CODE = 'number_without_country_code';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
+  static const K_TYPE = 'type';
 
-  static const CLASS = 'ModelTodoEntry';
+  static const CLASS = 'ModelPhoneEntry';
 
   @override
   String get $class => CLASS;
 
+  String? countryCode;
   DateTime? createdAt;
   String? createdBy;
   String? description;
+  String? extension;
+  String? fullNumber;
   String? id;
-  Map<DateTime, String>? status;
+  DateTime? lastModifiedAt;
+  String? lastModifiedBy;
+  String? numberWithoutCountryCode;
   String? title;
   String? titleSearchable;
+  String? type;
 
   //
   //
   //
 
-  ModelTodoEntry.empty();
+  ModelPhoneEntry.empty();
 
   //
   //
   //
 
-  factory ModelTodoEntry({
+  factory ModelPhoneEntry({
+    String? countryCode,
     DateTime? createdAt,
     String? createdBy,
     String? description,
+    String? extension,
+    String? fullNumber,
     String? id,
-    Map<DateTime, String>? status,
+    DateTime? lastModifiedAt,
+    String? lastModifiedBy,
+    String? numberWithoutCountryCode,
     String? title,
     String? titleSearchable,
+    String? type,
   }) {
-    return ModelTodoEntry.b(
+    return ModelPhoneEntry.b(
+      countryCode: countryCode,
       createdAt: createdAt,
       createdBy: createdBy,
       description: description,
+      extension: extension,
+      fullNumber: fullNumber,
       id: id,
-      status: status,
+      lastModifiedAt: lastModifiedAt,
+      lastModifiedBy: lastModifiedBy,
+      numberWithoutCountryCode: numberWithoutCountryCode,
       title: title,
       titleSearchable: titleSearchable,
+      type: type,
     );
   }
 
@@ -79,24 +103,30 @@ class ModelTodoEntry extends _ModelTodoEntry {
   //
   //
 
-  ModelTodoEntry.b({
+  ModelPhoneEntry.b({
+    this.countryCode,
     this.createdAt,
     this.createdBy,
     this.description,
+    this.extension,
+    this.fullNumber,
     this.id,
-    this.status,
+    this.lastModifiedAt,
+    this.lastModifiedBy,
+    this.numberWithoutCountryCode,
     this.title,
     this.titleSearchable,
+    this.type,
   }) {}
 
   //
   //
   //
 
-  factory ModelTodoEntry.from(
+  factory ModelPhoneEntry.from(
     Model? other,
   ) {
-    return ModelTodoEntry.fromJson(
+    return ModelPhoneEntry.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
@@ -105,35 +135,35 @@ class ModelTodoEntry extends _ModelTodoEntry {
   //
   //
 
-  static ModelTodoEntry? fromOrNull(
+  static ModelPhoneEntry? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelTodoEntry.from(other) : null;
+    return other != null ? ModelPhoneEntry.from(other) : null;
   }
 
   //
   //
   //
 
-  factory ModelTodoEntry.of(
-    ModelTodoEntry? other,
+  factory ModelPhoneEntry.of(
+    ModelPhoneEntry? other,
   ) {
-    return ModelTodoEntry.fromJson(other?.toJson());
+    return ModelPhoneEntry.fromJson(other?.toJson());
   }
 
   //
   //
   //
 
-  factory ModelTodoEntry.fromJsonString(
+  factory ModelPhoneEntry.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelTodoEntry.fromJson(decoded);
+        return ModelPhoneEntry.fromJson(decoded);
       } else {
-        return ModelTodoEntry.empty();
+        return ModelPhoneEntry.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -145,18 +175,24 @@ class ModelTodoEntry extends _ModelTodoEntry {
   //
   //
 
-  factory ModelTodoEntry.fromJson(
+  factory ModelPhoneEntry.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelTodoEntry.empty()
+      return ModelPhoneEntry.empty()
+        ..$countryCode = otherData?[K_COUNTRY_CODE]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$description = otherData?[K_DESCRIPTION]
+        ..$extension = otherData?[K_EXTENSION]
+        ..$fullNumber = otherData?[K_FULL_NUMBER]
         ..$id = otherData?[K_ID]
-        ..$status = otherData?[K_STATUS]
+        ..$lastModifiedAt = otherData?[K_LAST_MODIFIED_AT]
+        ..$lastModifiedBy = otherData?[K_LAST_MODIFIED_BY]
+        ..$numberWithoutCountryCode = otherData?[K_NUMBER_WITHOUT_COUNTRY_CODE]
         ..$title = otherData?[K_TITLE]
-        ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
+        ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE]
+        ..$type = otherData?[K_TYPE];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -167,14 +203,14 @@ class ModelTodoEntry extends _ModelTodoEntry {
   //
   //
 
-  factory ModelTodoEntry.fromUri(
+  factory ModelPhoneEntry.fromUri(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelTodoEntry.fromJson(uri.queryParameters);
+        return ModelPhoneEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelTodoEntry.b();
+        return ModelPhoneEntry.b();
       }
     } catch (e) {
       assert(false, e);
@@ -193,13 +229,19 @@ class ModelTodoEntry extends _ModelTodoEntry {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_COUNTRY_CODE: this.$countryCode,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DESCRIPTION: this.$description,
+        K_EXTENSION: this.$extension,
+        K_FULL_NUMBER: this.$fullNumber,
         K_ID: this.$id,
-        K_STATUS: this.$status,
+        K_LAST_MODIFIED_AT: this.$lastModifiedAt,
+        K_LAST_MODIFIED_BY: this.$lastModifiedBy,
+        K_NUMBER_WITHOUT_COUNTRY_CODE: this.$numberWithoutCountryCode,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
+        K_TYPE: this.$type,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -214,7 +256,7 @@ class ModelTodoEntry extends _ModelTodoEntry {
 
   @override
   T empty<T extends Model>() {
-    return ModelTodoEntry.b() as T;
+    return ModelPhoneEntry.b() as T;
   }
 
   //
@@ -223,7 +265,7 @@ class ModelTodoEntry extends _ModelTodoEntry {
 
   @override
   T copy<T extends Model>() {
-    return (ModelTodoEntry.b()..updateWith(this)) as T;
+    return (ModelPhoneEntry.b()..updateWith(this)) as T;
   }
 
   //
@@ -235,7 +277,10 @@ class ModelTodoEntry extends _ModelTodoEntry {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelTodoEntry.fromJson(otherData);
+      final other = ModelPhoneEntry.fromJson(otherData);
+      if (other.countryCode != null) {
+        this.countryCode = other.countryCode!;
+      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -245,11 +290,23 @@ class ModelTodoEntry extends _ModelTodoEntry {
       if (other.description != null) {
         this.description = other.description!;
       }
+      if (other.extension != null) {
+        this.extension = other.extension!;
+      }
+      if (other.fullNumber != null) {
+        this.fullNumber = other.fullNumber!;
+      }
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.status != null) {
-        this.status = other.status!;
+      if (other.lastModifiedAt != null) {
+        this.lastModifiedAt = other.lastModifiedAt!;
+      }
+      if (other.lastModifiedBy != null) {
+        this.lastModifiedBy = other.lastModifiedBy!;
+      }
+      if (other.numberWithoutCountryCode != null) {
+        this.numberWithoutCountryCode = other.numberWithoutCountryCode!;
       }
       if (other.title != null) {
         this.title = other.title!;
@@ -257,12 +314,23 @@ class ModelTodoEntry extends _ModelTodoEntry {
       if (other.titleSearchable != null) {
         this.titleSearchable = other.titleSearchable!;
       }
+      if (other.type != null) {
+        this.type = other.type!;
+      }
     }
   }
 
   //
   //
   //
+
+  // countryCode.
+  String? get countryCodeField => this.countryCode;
+  set countryCodeField(String? v) => this.countryCode = v;
+  @protected
+  dynamic get $countryCode => this.countryCode?.toString().trim().nullIfEmpty;
+  @protected
+  set $countryCode(v) => this.countryCode = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -291,6 +359,22 @@ class ModelTodoEntry extends _ModelTodoEntry {
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
+  // extension.
+  String? get extensionField => this.extension;
+  set extensionField(String? v) => this.extension = v;
+  @protected
+  dynamic get $extension => this.extension?.toString().trim().nullIfEmpty;
+  @protected
+  set $extension(v) => this.extension = v?.toString().trim().nullIfEmpty;
+
+  // fullNumber.
+  String? get fullNumberField => this.fullNumber;
+  set fullNumberField(String? v) => this.fullNumber = v;
+  @protected
+  dynamic get $fullNumber => this.fullNumber?.toString().trim().nullIfEmpty;
+  @protected
+  set $fullNumber(v) => this.fullNumber = v?.toString().trim().nullIfEmpty;
+
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -299,34 +383,38 @@ class ModelTodoEntry extends _ModelTodoEntry {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // status.
-  Map<DateTime, String>? get statusField => this.status;
-  set statusField(Map<DateTime, String>? v) => this.status = v;
+  // lastModifiedAt.
+  DateTime? get lastModifiedAtField => this.lastModifiedAt;
+  set lastModifiedAtField(DateTime? v) => this.lastModifiedAt = v;
   @protected
-  dynamic get $status => this
-      .status
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toUtc()?.toIso8601String(),
-          p1?.toString().trim().nullIfEmpty,
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
+  dynamic get $lastModifiedAt =>
+      this.lastModifiedAt?.toUtc()?.toIso8601String();
   @protected
-  set $status(v) => this.status = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          () {
-            final a = p0;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-          p1?.toString().trim().nullIfEmpty,
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
+  set $lastModifiedAt(v) => this.lastModifiedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // lastModifiedBy.
+  String? get lastModifiedByField => this.lastModifiedBy;
+  set lastModifiedByField(String? v) => this.lastModifiedBy = v;
+  @protected
+  dynamic get $lastModifiedBy =>
+      this.lastModifiedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $lastModifiedBy(v) =>
+      this.lastModifiedBy = v?.toString().trim().nullIfEmpty;
+
+  // numberWithoutCountryCode.
+  String? get numberWithoutCountryCodeField => this.numberWithoutCountryCode;
+  set numberWithoutCountryCodeField(String? v) =>
+      this.numberWithoutCountryCode = v;
+  @protected
+  dynamic get $numberWithoutCountryCode =>
+      this.numberWithoutCountryCode?.toString().trim().nullIfEmpty;
+  @protected
+  set $numberWithoutCountryCode(v) =>
+      this.numberWithoutCountryCode = v?.toString().trim().nullIfEmpty;
 
   // title.
   String? get titleField => this.title;
@@ -350,4 +438,12 @@ class ModelTodoEntry extends _ModelTodoEntry {
   @protected
   set $titleSearchable(v) => this.titleSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+
+  // type.
+  String? get typeField => this.type;
+  set typeField(String? v) => this.type = v;
+  @protected
+  dynamic get $type => this.type?.toString().trim().nullIfEmpty;
+  @protected
+  set $type(v) => this.type = v?.toString().trim().nullIfEmpty;
 }
