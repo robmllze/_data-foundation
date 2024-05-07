@@ -17,9 +17,6 @@ part '_model_job.g.dart';
   shouldInherit: true,
   fields: {
     ...PrivateBaseModel.FIELDS,
-    ('todo_entries?', Map<DateTime, ModelTodoEntry>),
-    ('check_ins?', Map<DateTime, String>),
-    ('check_outs?', Map<DateTime, String>),
   },
 )
 abstract class _ModelJob extends PrivateBaseModel<ModelJob> {}

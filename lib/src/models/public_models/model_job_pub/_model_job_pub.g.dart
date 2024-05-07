@@ -25,6 +25,8 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   static const K_AVATAR = 'avatar';
+  static const K_CHECK_INS = 'check_ins';
+  static const K_CHECK_OUTS = 'check_outs';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DELETED_AT = 'deleted_at';
@@ -40,6 +42,7 @@ class ModelJobPub extends _ModelJobPub {
   static const K_PRIMARY_ADDRESS = 'primary_address';
   static const K_PRIMARY_EMAIL = 'primary_email';
   static const K_PRIMARY_PHONE = 'primary_phone';
+  static const K_TODO_ENTRIES = 'todo_entries';
   static const K_WHEN_CLOSED = 'when_closed';
   static const K_WHEN_OPENED = 'when_opened';
 
@@ -49,6 +52,8 @@ class ModelJobPub extends _ModelJobPub {
   String get $class => CLASS;
 
   ModelFileEntry? avatar;
+  Map<DateTime, String>? checkIns;
+  Map<DateTime, String>? checkOuts;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
@@ -64,6 +69,7 @@ class ModelJobPub extends _ModelJobPub {
   ModelAddressEntry? primaryAddress;
   ModelEmailEntry? primaryEmail;
   ModelPhoneEntry? primaryPhone;
+  Map<DateTime, ModelTodoEntry>? todoEntries;
   Map<String, DateTime>? whenClosed;
   Map<String, DateTime>? whenOpened;
 
@@ -79,6 +85,8 @@ class ModelJobPub extends _ModelJobPub {
 
   factory ModelJobPub({
     ModelFileEntry? avatar,
+    Map<DateTime, String>? checkIns,
+    Map<DateTime, String>? checkOuts,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
@@ -94,11 +102,14 @@ class ModelJobPub extends _ModelJobPub {
     ModelAddressEntry? primaryAddress,
     ModelEmailEntry? primaryEmail,
     ModelPhoneEntry? primaryPhone,
+    Map<DateTime, ModelTodoEntry>? todoEntries,
     Map<String, DateTime>? whenClosed,
     Map<String, DateTime>? whenOpened,
   }) {
     return ModelJobPub.b(
       avatar: avatar,
+      checkIns: checkIns,
+      checkOuts: checkOuts,
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
@@ -114,6 +125,7 @@ class ModelJobPub extends _ModelJobPub {
       primaryAddress: primaryAddress,
       primaryEmail: primaryEmail,
       primaryPhone: primaryPhone,
+      todoEntries: todoEntries,
       whenClosed: whenClosed,
       whenOpened: whenOpened,
     );
@@ -125,6 +137,8 @@ class ModelJobPub extends _ModelJobPub {
 
   ModelJobPub.b({
     this.avatar,
+    this.checkIns,
+    this.checkOuts,
     this.createdAt,
     this.createdBy,
     this.deletedAt,
@@ -140,6 +154,7 @@ class ModelJobPub extends _ModelJobPub {
     this.primaryAddress,
     this.primaryEmail,
     this.primaryPhone,
+    this.todoEntries,
     this.whenClosed,
     this.whenOpened,
   }) {}
@@ -206,6 +221,8 @@ class ModelJobPub extends _ModelJobPub {
     try {
       return ModelJobPub.empty()
         ..$avatar = otherData?[K_AVATAR]
+        ..$checkIns = otherData?[K_CHECK_INS]
+        ..$checkOuts = otherData?[K_CHECK_OUTS]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
@@ -221,6 +238,7 @@ class ModelJobPub extends _ModelJobPub {
         ..$primaryAddress = otherData?[K_PRIMARY_ADDRESS]
         ..$primaryEmail = otherData?[K_PRIMARY_EMAIL]
         ..$primaryPhone = otherData?[K_PRIMARY_PHONE]
+        ..$todoEntries = otherData?[K_TODO_ENTRIES]
         ..$whenClosed = otherData?[K_WHEN_CLOSED]
         ..$whenOpened = otherData?[K_WHEN_OPENED];
     } catch (e) {
@@ -260,6 +278,8 @@ class ModelJobPub extends _ModelJobPub {
     try {
       final withNulls = <String, dynamic>{
         K_AVATAR: this.$avatar,
+        K_CHECK_INS: this.$checkIns,
+        K_CHECK_OUTS: this.$checkOuts,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
@@ -275,6 +295,7 @@ class ModelJobPub extends _ModelJobPub {
         K_PRIMARY_ADDRESS: this.$primaryAddress,
         K_PRIMARY_EMAIL: this.$primaryEmail,
         K_PRIMARY_PHONE: this.$primaryPhone,
+        K_TODO_ENTRIES: this.$todoEntries,
         K_WHEN_CLOSED: this.$whenClosed,
         K_WHEN_OPENED: this.$whenOpened,
       }.mapWithDefault(defaultValue);
@@ -315,6 +336,12 @@ class ModelJobPub extends _ModelJobPub {
       final other = ModelJobPub.fromJson(otherData);
       if (other.avatar != null) {
         this.avatar = other.avatar!;
+      }
+      if (other.checkIns != null) {
+        this.checkIns = other.checkIns!;
+      }
+      if (other.checkOuts != null) {
+        this.checkOuts = other.checkOuts!;
       }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
@@ -361,6 +388,9 @@ class ModelJobPub extends _ModelJobPub {
       if (other.primaryPhone != null) {
         this.primaryPhone = other.primaryPhone!;
       }
+      if (other.todoEntries != null) {
+        this.todoEntries = other.todoEntries!;
+      }
       if (other.whenClosed != null) {
         this.whenClosed = other.whenClosed!;
       }
@@ -384,6 +414,64 @@ class ModelJobPub extends _ModelJobPub {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelFileEntry.fromJson(a) : null;
       }();
+
+  // checkIns.
+  Map<DateTime, String>? get checkInsField => this.checkIns;
+  set checkInsField(Map<DateTime, String>? v) => this.checkIns = v;
+  @protected
+  dynamic get $checkIns => this
+      .checkIns
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toUtc()?.toIso8601String(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $checkIns(v) => this.checkIns = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          () {
+            final a = p0;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // checkOuts.
+  Map<DateTime, String>? get checkOutsField => this.checkOuts;
+  set checkOutsField(Map<DateTime, String>? v) => this.checkOuts = v;
+  @protected
+  dynamic get $checkOuts => this
+      .checkOuts
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toUtc()?.toIso8601String(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $checkOuts(v) => this.checkOuts = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          () {
+            final a = p0;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -578,6 +666,39 @@ class ModelJobPub extends _ModelJobPub {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelPhoneEntry.fromJson(a) : null;
       }();
+
+  // todoEntries.
+  Map<DateTime, ModelTodoEntry>? get todoEntriesField => this.todoEntries;
+  set todoEntriesField(Map<DateTime, ModelTodoEntry>? v) =>
+      this.todoEntries = v;
+  @protected
+  dynamic get $todoEntries => this
+      .todoEntries
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toUtc()?.toIso8601String(),
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $todoEntries(v) => this.todoEntries = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          () {
+            final a = p0;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+          () {
+            final a = letMap<String, dynamic>(p1);
+            return a != null ? ModelTodoEntry.fromJson(a) : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 
   // whenClosed.
   Map<String, DateTime>? get whenClosedField => this.whenClosed;

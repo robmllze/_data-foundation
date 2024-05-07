@@ -7,6 +7,8 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'dart:collection';
+
 import '/_common.dart';
 
 part '_model_job_pub.g.dart';
@@ -17,11 +19,103 @@ part '_model_job_pub.g.dart';
   shouldInherit: true,
   fields: {
     ...PublicBaseModel.FIELDS,
+    ('todo_entries?', Map<DateTime, ModelTodoEntry>),
+    ('check_ins?', Map<DateTime, String>),
+    ('check_outs?', Map<DateTime, String>),
     ('when_opened?', Map<String, DateTime>),
     ('when_closed?', Map<String, DateTime>),
   },
 )
 abstract class _ModelJobPub extends PublicBaseModel<ModelJobPub> {
+  //
+  //
+  //
+
+  bool canCheckIn(String? pid) {
+    final lastCheckIn = this.model.lastCheckInFor(pid);
+    final lastCheckOut = this.model.lastCheckOutFor(pid);
+    if (lastCheckIn != null && lastCheckOut != null) {
+      return lastCheckIn.isBefore(lastCheckOut);
+    }
+    if (lastCheckIn == null && lastCheckOut != null) {
+      return true;
+    }
+    if (lastCheckIn == null && lastCheckOut == null) {
+      return true;
+    }
+    return false;
+  }
+
+  DateTime? lastCheckInFor(String? pid) => (this.checkInsFor(pid).toList()..sort()).lastOrNull;
+
+  Iterable<DateTime> checkInsFor(String? pid) =>
+      this.model.checkIns?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
+
+  bool canCheckOut(String? pid) {
+    final lastCheckIn = this.lastCheckInFor(pid);
+    final lastCheckOut = this.lastCheckOutFor(pid);
+    if (lastCheckIn != null && lastCheckOut != null) {
+      return lastCheckIn.isAfter(lastCheckOut);
+    }
+    if (lastCheckIn != null && lastCheckOut == null) {
+      return true;
+    }
+     if (lastCheckIn == null && lastCheckOut == null) {
+      return false;
+    }
+    return false;
+  }
+
+  DateTime? lastCheckOutFor(String? pid) => (this.checkOutsFor(pid).toList()..sort()).lastOrNull;
+
+  Iterable<DateTime> checkOutsFor(String? pid) =>
+      this.model.checkOuts?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
+
+  //
+  //
+  //
+
+  Iterable<({DateTime date, Duration? durationSinceCheckIn})> checkedDatesFor(String? pid) {
+    final checkInDates = this.checkInsFor(pid);
+    final checkOutDates = this.checkOutsFor(pid);
+
+    // Combine and label check-in and check-out dates
+    final events = <DateTime, bool>{};
+    for (var checkIn in checkInDates) {
+      events[checkIn] = true; // true for check-in
+    }
+    for (var checkOut in checkOutDates) {
+      events[checkOut] = false; // false for check-out
+    }
+
+    // Sort the events by date
+    final sortedEvents = events.entries.toList()..sort((a, b) => a.key.compareTo(b.key));
+
+    // Prepare to track the last check-in date
+    DateTime? lastCheckIn;
+    final result = Queue<({DateTime date, Duration? durationSinceCheckIn})>();
+
+    // Iterate through sorted events to calculate durations
+    for (var event in sortedEvents) {
+      if (event.value) {
+        // It's a check-in date
+        lastCheckIn = event.key;
+        result.addFirst((date: event.key, durationSinceCheckIn: null)); // No duration for check-in
+      } else {
+        // It's a check-out date
+        if (lastCheckIn != null) {
+          final durationSinceCheckIn = event.key.difference(lastCheckIn);
+          result.addFirst((date: event.key, durationSinceCheckIn: durationSinceCheckIn));
+        } else {
+          // If there's no preceding check-in, return null for duration
+          result.addFirst((date: event.key, durationSinceCheckIn: null));
+        }
+      }
+    }
+
+    return result;
+  }
+
   //
   //
   //
