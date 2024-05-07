@@ -16,16 +16,10 @@ part '_model_project.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('pid?', String),
-    ('seed?', String),
-    ('created_at?', DateTime),
-    ('created_by?', String),
-    ('deleted_at?', DateTime),
-    ('deleted_by?', String),
+    ...PrivateBaseModel.FIELDS,
   },
 )
-abstract class _ModelProject extends ThisModel<ModelProject> {
+abstract class _ModelProject extends PrivateBaseModel<ModelProject> {
   //
   //
   //

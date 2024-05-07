@@ -30,9 +30,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
   static const K_COUNTRY = 'country';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
+  static const K_DESCRIPTION = 'description';
   static const K_ID = 'id';
-  static const K_NAME = 'name';
-  static const K_NOTES = 'notes';
   static const K_POSTAL_CODE = 'postal_code';
   static const K_STATE_OR_PROVINCE = 'state_or_province';
   static const K_TITLE = 'title';
@@ -49,9 +48,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
   String? country;
   DateTime? createdAt;
   String? createdBy;
+  String? description;
   String? id;
-  String? name;
-  String? notes;
   String? postalCode;
   String? stateOrProvince;
   String? title;
@@ -74,9 +72,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
     String? country,
     DateTime? createdAt,
     String? createdBy,
+    String? description,
     String? id,
-    String? name,
-    String? notes,
     String? postalCode,
     String? stateOrProvince,
     String? title,
@@ -89,9 +86,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
       country: country,
       createdAt: createdAt,
       createdBy: createdBy,
+      description: description,
       id: id,
-      name: name,
-      notes: notes,
       postalCode: postalCode,
       stateOrProvince: stateOrProvince,
       title: title,
@@ -110,9 +106,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
     this.country,
     this.createdAt,
     this.createdBy,
+    this.description,
     this.id,
-    this.name,
-    this.notes,
     this.postalCode,
     this.stateOrProvince,
     this.title,
@@ -186,9 +181,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
         ..$country = otherData?[K_COUNTRY]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
+        ..$description = otherData?[K_DESCRIPTION]
         ..$id = otherData?[K_ID]
-        ..$name = otherData?[K_NAME]
-        ..$notes = otherData?[K_NOTES]
         ..$postalCode = otherData?[K_POSTAL_CODE]
         ..$stateOrProvince = otherData?[K_STATE_OR_PROVINCE]
         ..$title = otherData?[K_TITLE]
@@ -235,9 +229,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
         K_COUNTRY: this.$country,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
+        K_DESCRIPTION: this.$description,
         K_ID: this.$id,
-        K_NAME: this.$name,
-        K_NOTES: this.$notes,
         K_POSTAL_CODE: this.$postalCode,
         K_STATE_OR_PROVINCE: this.$stateOrProvince,
         K_TITLE: this.$title,
@@ -296,14 +289,11 @@ class ModelAddressEntry extends _ModelAddressEntry {
       if (other.createdBy != null) {
         this.createdBy = other.createdBy!;
       }
+      if (other.description != null) {
+        this.description = other.description!;
+      }
       if (other.id != null) {
         this.id = other.id!;
-      }
-      if (other.name != null) {
-        this.name = other.name!;
-      }
-      if (other.notes != null) {
-        this.notes = other.notes!;
       }
       if (other.postalCode != null) {
         this.postalCode = other.postalCode!;
@@ -375,6 +365,14 @@ class ModelAddressEntry extends _ModelAddressEntry {
   @protected
   set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
+  // description.
+  String? get descriptionField => this.description;
+  set descriptionField(String? v) => this.description = v;
+  @protected
+  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
+  @protected
+  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
+
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -382,22 +380,6 @@ class ModelAddressEntry extends _ModelAddressEntry {
   dynamic get $id => this.id?.toString().trim().nullIfEmpty;
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
-
-  // name.
-  String? get nameField => this.name;
-  set nameField(String? v) => this.name = v;
-  @protected
-  dynamic get $name => this.name?.toString().trim().nullIfEmpty;
-  @protected
-  set $name(v) => this.name = v?.toString().trim().nullIfEmpty;
-
-  // notes.
-  String? get notesField => this.notes;
-  set notesField(String? v) => this.notes = v;
-  @protected
-  dynamic get $notes => this.notes?.toString().trim().nullIfEmpty;
-  @protected
-  set $notes(v) => this.notes = v?.toString().trim().nullIfEmpty;
 
   // postalCode.
   String? get postalCodeField => this.postalCode;

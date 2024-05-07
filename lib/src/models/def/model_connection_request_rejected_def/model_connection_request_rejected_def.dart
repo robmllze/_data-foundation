@@ -15,11 +15,10 @@ part '_model_connection_request_rejected_def.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
+  shouldInherit: true,
   fields: {
-    ('relationship_id?', String),
-    ('sender_pid?', String),
-    ('receiver_pid?', String),
+    ...DefBaseModel.FIELDS,
   },
 )
-// ignore: unused_element
-abstract class _ModelConnectionRequestRejectedDef {}
+abstract class _ModelConnectionRequestRejectedDef
+    extends DefBaseModel<ModelConnectionRequestRejectedDef> {}

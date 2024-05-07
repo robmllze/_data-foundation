@@ -10,15 +10,26 @@
 
 import '/_common.dart';
 
-part '_model_rel_disabled_def.g.dart';
-
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@GenerateModel(
-  shouldInherit: true,
-  fields: {
-    ...DefBaseModel.FIELDS,
-  },
-)
-// ignore: unused_element
-abstract class _ModelRelDisabledDef extends DefBaseModel<ModelRelDisabledDef> {}
+abstract class DefBaseModel<T extends Model> extends ThisModel<T> {
+  //
+  //
+  //
+
+  static const FIELDS = {
+    ('relationship_id?', String),
+    ('sender_pid?', String),
+    ('receiver_pid?', String),
+    ('message?', String),
+  };
+
+  //
+  //
+  //
+
+  String? relationshipId;
+  String? senderPid;
+  String? receiverPid;
+  String? message;
+}

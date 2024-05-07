@@ -16,12 +16,8 @@ part '_model_note_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('title?', String),
-    ('title_searchable?', T_SEARCHABLE_STRING),
-    ('created_at?', DateTime),
-    ('created_by?', String),
-    ('body?', String),
+    ...EntryBaseModel.FIELDS,
+    ('note?', String),
   },
 )
-abstract class _ModelNoteEntry extends ThisModel<ModelNoteEntry> {}
+abstract class _ModelNoteEntry extends EntryBaseModel<ModelNoteEntry> {}

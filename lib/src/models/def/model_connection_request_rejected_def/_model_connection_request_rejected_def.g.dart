@@ -19,11 +19,13 @@ part of 'model_connection_request_rejected_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelConnectionRequestRejectedDef extends Model {
+class ModelConnectionRequestRejectedDef
+    extends _ModelConnectionRequestRejectedDef {
   //
   //
   //
 
+  static const K_MESSAGE = 'message';
   static const K_RECEIVER_PID = 'receiver_pid';
   static const K_RELATIONSHIP_ID = 'relationship_id';
   static const K_SENDER_PID = 'sender_pid';
@@ -33,6 +35,7 @@ class ModelConnectionRequestRejectedDef extends Model {
   @override
   String get $class => CLASS;
 
+  String? message;
   String? receiverPid;
   String? relationshipId;
   String? senderPid;
@@ -48,11 +51,13 @@ class ModelConnectionRequestRejectedDef extends Model {
   //
 
   factory ModelConnectionRequestRejectedDef({
+    String? message,
     String? receiverPid,
     String? relationshipId,
     String? senderPid,
   }) {
     return ModelConnectionRequestRejectedDef.b(
+      message: message,
       receiverPid: receiverPid,
       relationshipId: relationshipId,
       senderPid: senderPid,
@@ -64,6 +69,7 @@ class ModelConnectionRequestRejectedDef extends Model {
   //
 
   ModelConnectionRequestRejectedDef.b({
+    this.message,
     this.receiverPid,
     this.relationshipId,
     this.senderPid,
@@ -130,6 +136,7 @@ class ModelConnectionRequestRejectedDef extends Model {
   ) {
     try {
       return ModelConnectionRequestRejectedDef.empty()
+        ..$message = otherData?[K_MESSAGE]
         ..$receiverPid = otherData?[K_RECEIVER_PID]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$senderPid = otherData?[K_SENDER_PID];
@@ -169,6 +176,7 @@ class ModelConnectionRequestRejectedDef extends Model {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_MESSAGE: this.$message,
         K_RECEIVER_PID: this.$receiverPid,
         K_RELATIONSHIP_ID: this.$relationshipId,
         K_SENDER_PID: this.$senderPid,
@@ -208,6 +216,9 @@ class ModelConnectionRequestRejectedDef extends Model {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelConnectionRequestRejectedDef.fromJson(otherData);
+      if (other.message != null) {
+        this.message = other.message!;
+      }
       if (other.receiverPid != null) {
         this.receiverPid = other.receiverPid!;
       }
@@ -223,6 +234,14 @@ class ModelConnectionRequestRejectedDef extends Model {
   //
   //
   //
+
+  // message.
+  String? get messageField => this.message;
+  set messageField(String? v) => this.message = v;
+  @protected
+  dynamic get $message => this.message?.toString().trim().nullIfEmpty;
+  @protected
+  set $message(v) => this.message = v?.toString().trim().nullIfEmpty;
 
   // receiverPid.
   String? get receiverPidField => this.receiverPid;

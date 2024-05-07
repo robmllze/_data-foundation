@@ -15,12 +15,9 @@ part '_model_message_def.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
+  shouldInherit: true,
   fields: {
-    ('relationship_id', String),
-    ('sender_pid', String),
-    ('receiver_pids?', Set<String>),
-    ('message?', String),
+    ...DefBaseModel.FIELDS,
   },
 )
-// ignore: unused_element
-abstract class _ModelMessageDef {}
+abstract class _ModelMessageDef extends DefBaseModel<ModelMessageDef> {}

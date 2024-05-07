@@ -16,19 +16,13 @@ part '_model_address_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('title?', String),
-    ('title_searchable?', T_SEARCHABLE_STRING),
-    ('created_at?', DateTime),
-    ('created_by?', String),
-    ('name?', String),
+    ...EntryBaseModel.FIELDS,
     ('address_line_1?', String),
     ('address_line_2?', String),
     ('city?', String),
     ('state_or_province?', String),
     ('postal_code?', String),
     ('country?', String),
-    ('notes?', String),
   },
 )
-abstract class _ModelAddressEntry extends ThisModel<ModelAddressEntry> {}
+abstract class _ModelAddressEntry extends EntryBaseModel<ModelAddressEntry> {}

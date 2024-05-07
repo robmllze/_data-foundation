@@ -16,15 +16,8 @@ part '_model_organization_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('display_name?', String),
-    ('display_name_searchable?', T_SEARCHABLE_STRING),
+    ...PublicBaseModel.FIELDS,
     ('description?', String),
-    ('created_at?', DateTime),
-    ('created_by?', String),
-    ('deleted_at?', DateTime),
-    ('deleted_by?', String),
-    ('uploaded_media_ids?', List<String>),
     ('primary_address?', ModelAddressEntry),
     ('other_addresses?', Set<ModelAddressEntry>),
     ('primary_email?', ModelEmailEntry),
@@ -33,4 +26,4 @@ part '_model_organization_pub.g.dart';
     ('other_phones?', Set<ModelEmailEntry>),
   },
 )
-abstract class _ModelOrganizationPub extends ThisModel<ModelOrganizationPub> {}
+abstract class _ModelOrganizationPub extends PublicBaseModel<ModelOrganizationPub> {}

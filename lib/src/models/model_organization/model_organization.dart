@@ -16,13 +16,7 @@ part '_model_organization.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('pid?', String),
-    ('seed?', String),
-    ('created_at?', DateTime),
-    ('created_by?', String),
-    ('deleted_at?', DateTime),
-    ('deleted_by?', String),
+    ...PrivateBaseModel.FIELDS,
   },
 )
-abstract class _ModelOrganization extends ThisModel<ModelOrganization> {}
+abstract class _ModelOrganization extends PrivateBaseModel<ModelOrganization> {}

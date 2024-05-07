@@ -19,11 +19,12 @@ part of 'model_rel_changed_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelRelChangedDef extends Model {
+class ModelRelChangedDef extends _ModelRelChangedDef {
   //
   //
   //
 
+  static const K_MESSAGE = 'message';
   static const K_RECEIVER_PID = 'receiver_pid';
   static const K_RELATIONSHIP_ID = 'relationship_id';
   static const K_SENDER_PID = 'sender_pid';
@@ -33,6 +34,7 @@ class ModelRelChangedDef extends Model {
   @override
   String get $class => CLASS;
 
+  String? message;
   String? receiverPid;
   String? relationshipId;
   String? senderPid;
@@ -48,11 +50,13 @@ class ModelRelChangedDef extends Model {
   //
 
   factory ModelRelChangedDef({
+    String? message,
     String? receiverPid,
     String? relationshipId,
     String? senderPid,
   }) {
     return ModelRelChangedDef.b(
+      message: message,
       receiverPid: receiverPid,
       relationshipId: relationshipId,
       senderPid: senderPid,
@@ -64,6 +68,7 @@ class ModelRelChangedDef extends Model {
   //
 
   ModelRelChangedDef.b({
+    this.message,
     this.receiverPid,
     this.relationshipId,
     this.senderPid,
@@ -130,6 +135,7 @@ class ModelRelChangedDef extends Model {
   ) {
     try {
       return ModelRelChangedDef.empty()
+        ..$message = otherData?[K_MESSAGE]
         ..$receiverPid = otherData?[K_RECEIVER_PID]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$senderPid = otherData?[K_SENDER_PID];
@@ -169,6 +175,7 @@ class ModelRelChangedDef extends Model {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_MESSAGE: this.$message,
         K_RECEIVER_PID: this.$receiverPid,
         K_RELATIONSHIP_ID: this.$relationshipId,
         K_SENDER_PID: this.$senderPid,
@@ -208,6 +215,9 @@ class ModelRelChangedDef extends Model {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelRelChangedDef.fromJson(otherData);
+      if (other.message != null) {
+        this.message = other.message!;
+      }
       if (other.receiverPid != null) {
         this.receiverPid = other.receiverPid!;
       }
@@ -223,6 +233,14 @@ class ModelRelChangedDef extends Model {
   //
   //
   //
+
+  // message.
+  String? get messageField => this.message;
+  set messageField(String? v) => this.message = v;
+  @protected
+  dynamic get $message => this.message?.toString().trim().nullIfEmpty;
+  @protected
+  set $message(v) => this.message = v?.toString().trim().nullIfEmpty;
 
   // receiverPid.
   String? get receiverPidField => this.receiverPid;

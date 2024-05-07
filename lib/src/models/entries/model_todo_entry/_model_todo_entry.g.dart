@@ -15,11 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_email_entry.dart';
+part of 'model_todo_entry.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelEmailEntry extends _ModelEmailEntry {
+class ModelTodoEntry extends _ModelTodoEntry {
   //
   //
   //
@@ -27,12 +27,12 @@ class ModelEmailEntry extends _ModelEmailEntry {
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DESCRIPTION = 'description';
-  static const K_EMAIL = 'email';
   static const K_ID = 'id';
+  static const K_STATUS = 'status';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
 
-  static const CLASS = 'ModelEmailEntry';
+  static const CLASS = 'ModelTodoEntry';
 
   @override
   String get $class => CLASS;
@@ -40,8 +40,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   DateTime? createdAt;
   String? createdBy;
   String? description;
-  String? email;
   String? id;
+  Map<DateTime, String>? status;
   String? title;
   String? titleSearchable;
 
@@ -49,27 +49,27 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  ModelEmailEntry.empty();
+  ModelTodoEntry.empty();
 
   //
   //
   //
 
-  factory ModelEmailEntry({
+  factory ModelTodoEntry({
     DateTime? createdAt,
     String? createdBy,
     String? description,
-    String? email,
     String? id,
+    Map<DateTime, String>? status,
     String? title,
     String? titleSearchable,
   }) {
-    return ModelEmailEntry.b(
+    return ModelTodoEntry.b(
       createdAt: createdAt,
       createdBy: createdBy,
       description: description,
-      email: email,
       id: id,
+      status: status,
       title: title,
       titleSearchable: titleSearchable,
     );
@@ -79,12 +79,12 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  ModelEmailEntry.b({
+  ModelTodoEntry.b({
     this.createdAt,
     this.createdBy,
     this.description,
-    this.email,
     this.id,
+    this.status,
     this.title,
     this.titleSearchable,
   }) {}
@@ -93,10 +93,10 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  factory ModelEmailEntry.from(
+  factory ModelTodoEntry.from(
     Model? other,
   ) {
-    return ModelEmailEntry.fromJson(
+    return ModelTodoEntry.fromJson(
       letAs<GenericModel>(other)?.data ?? other?.toJson(),
     );
   }
@@ -105,35 +105,35 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  static ModelEmailEntry? fromOrNull(
+  static ModelTodoEntry? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelEmailEntry.from(other) : null;
+    return other != null ? ModelTodoEntry.from(other) : null;
   }
 
   //
   //
   //
 
-  factory ModelEmailEntry.of(
-    ModelEmailEntry? other,
+  factory ModelTodoEntry.of(
+    ModelTodoEntry? other,
   ) {
-    return ModelEmailEntry.fromJson(other?.toJson());
+    return ModelTodoEntry.fromJson(other?.toJson());
   }
 
   //
   //
   //
 
-  factory ModelEmailEntry.fromJsonString(
+  factory ModelTodoEntry.fromJsonString(
     String? source,
   ) {
     try {
       if (source != null && source.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelEmailEntry.fromJson(decoded);
+        return ModelTodoEntry.fromJson(decoded);
       } else {
-        return ModelEmailEntry.empty();
+        return ModelTodoEntry.empty();
       }
     } catch (e) {
       assert(false, e);
@@ -145,16 +145,16 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  factory ModelEmailEntry.fromJson(
+  factory ModelTodoEntry.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelEmailEntry.empty()
+      return ModelTodoEntry.empty()
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$description = otherData?[K_DESCRIPTION]
-        ..$email = otherData?[K_EMAIL]
         ..$id = otherData?[K_ID]
+        ..$status = otherData?[K_STATUS]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
@@ -167,14 +167,14 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  factory ModelEmailEntry.fromUri(
+  factory ModelTodoEntry.fromUri(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelEmailEntry.fromJson(uri.queryParameters);
+        return ModelTodoEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelEmailEntry.b();
+        return ModelTodoEntry.b();
       }
     } catch (e) {
       assert(false, e);
@@ -196,8 +196,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DESCRIPTION: this.$description,
-        K_EMAIL: this.$email,
         K_ID: this.$id,
+        K_STATUS: this.$status,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
       }.mapWithDefault(defaultValue);
@@ -214,7 +214,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
 
   @override
   T empty<T extends Model>() {
-    return ModelEmailEntry.b() as T;
+    return ModelTodoEntry.b() as T;
   }
 
   //
@@ -223,7 +223,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
 
   @override
   T copy<T extends Model>() {
-    return (ModelEmailEntry.b()..updateWith(this)) as T;
+    return (ModelTodoEntry.b()..updateWith(this)) as T;
   }
 
   //
@@ -235,7 +235,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelEmailEntry.fromJson(otherData);
+      final other = ModelTodoEntry.fromJson(otherData);
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -245,11 +245,11 @@ class ModelEmailEntry extends _ModelEmailEntry {
       if (other.description != null) {
         this.description = other.description!;
       }
-      if (other.email != null) {
-        this.email = other.email!;
-      }
       if (other.id != null) {
         this.id = other.id!;
+      }
+      if (other.status != null) {
+        this.status = other.status!;
       }
       if (other.title != null) {
         this.title = other.title!;
@@ -291,14 +291,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
-  // email.
-  String? get emailField => this.email;
-  set emailField(String? v) => this.email = v;
-  @protected
-  dynamic get $email => this.email?.toString().trim().nullIfEmpty;
-  @protected
-  set $email(v) => this.email = v?.toString().trim().nullIfEmpty;
-
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -306,6 +298,35 @@ class ModelEmailEntry extends _ModelEmailEntry {
   dynamic get $id => this.id?.toString().trim().nullIfEmpty;
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // status.
+  Map<DateTime, String>? get statusField => this.status;
+  set statusField(Map<DateTime, String>? v) => this.status = v;
+  @protected
+  dynamic get $status => this
+      .status
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toUtc()?.toIso8601String(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $status(v) => this.status = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          () {
+            final a = p0;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 
   // title.
   String? get titleField => this.title;

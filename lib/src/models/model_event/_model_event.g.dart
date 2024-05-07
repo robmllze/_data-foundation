@@ -31,7 +31,6 @@ class ModelEvent extends _ModelEvent {
   static const K_ID = 'id';
   static const K_MEMBER_PIDS = 'member_pids';
   static const K_TIMEOUT = 'timeout';
-  static const K_UPLOADED_MEDIA_IDS = 'uploaded_media_ids';
   static const K_WHEN_ARCHIVED = 'when_archived';
   static const K_WHEN_HIDDEN = 'when_hidden';
   static const K_WHEN_LIKED = 'when_liked';
@@ -51,7 +50,6 @@ class ModelEvent extends _ModelEvent {
   String? id;
   Set<String>? memberPids;
   int? timeout;
-  Set<String>? uploadedMediaIds;
   Map<String, DateTime>? whenArchived;
   Map<String, DateTime>? whenHidden;
   Map<String, DateTime>? whenLiked;
@@ -77,7 +75,6 @@ class ModelEvent extends _ModelEvent {
     String? id,
     required Set<String> memberPids,
     int? timeout,
-    Set<String>? uploadedMediaIds,
     Map<String, DateTime>? whenArchived,
     Map<String, DateTime>? whenHidden,
     Map<String, DateTime>? whenLiked,
@@ -93,7 +90,6 @@ class ModelEvent extends _ModelEvent {
       id: id,
       memberPids: memberPids,
       timeout: timeout,
-      uploadedMediaIds: uploadedMediaIds,
       whenArchived: whenArchived,
       whenHidden: whenHidden,
       whenLiked: whenLiked,
@@ -115,7 +111,6 @@ class ModelEvent extends _ModelEvent {
     this.id,
     this.memberPids,
     this.timeout,
-    this.uploadedMediaIds,
     this.whenArchived,
     this.whenHidden,
     this.whenLiked,
@@ -194,7 +189,6 @@ class ModelEvent extends _ModelEvent {
         ..$id = otherData?[K_ID]
         ..$memberPids = otherData?[K_MEMBER_PIDS]
         ..$timeout = otherData?[K_TIMEOUT]
-        ..$uploadedMediaIds = otherData?[K_UPLOADED_MEDIA_IDS]
         ..$whenArchived = otherData?[K_WHEN_ARCHIVED]
         ..$whenHidden = otherData?[K_WHEN_HIDDEN]
         ..$whenLiked = otherData?[K_WHEN_LIKED]
@@ -244,7 +238,6 @@ class ModelEvent extends _ModelEvent {
         K_ID: this.$id,
         K_MEMBER_PIDS: this.$memberPids,
         K_TIMEOUT: this.$timeout,
-        K_UPLOADED_MEDIA_IDS: this.$uploadedMediaIds,
         K_WHEN_ARCHIVED: this.$whenArchived,
         K_WHEN_HIDDEN: this.$whenHidden,
         K_WHEN_LIKED: this.$whenLiked,
@@ -307,9 +300,6 @@ class ModelEvent extends _ModelEvent {
       }
       if (other.timeout != null) {
         this.timeout = other.timeout!;
-      }
-      if (other.uploadedMediaIds != null) {
-        this.uploadedMediaIds = other.uploadedMediaIds!;
       }
       if (other.whenArchived != null) {
         this.whenArchived = other.whenArchived!;
@@ -412,28 +402,6 @@ class ModelEvent extends _ModelEvent {
   dynamic get $timeout => this.timeout;
   @protected
   set $timeout(v) => this.timeout = letInt(v);
-
-  // uploadedMediaIds.
-  Set<String>? get uploadedMediaIdsField => this.uploadedMediaIds;
-  set uploadedMediaIdsField(Set<String>? v) => this.uploadedMediaIds = v;
-  @protected
-  dynamic get $uploadedMediaIds => this
-      .uploadedMediaIds
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $uploadedMediaIds(v) => this.uploadedMediaIds = letSet(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
 
   // whenArchived.
   Map<String, DateTime>? get whenArchivedField => this.whenArchived;

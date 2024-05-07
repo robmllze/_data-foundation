@@ -35,7 +35,6 @@ class ModelUser extends _ModelUser {
   static const K_PUSH_SUBSCRIPTIONS = 'push_subscriptions';
   static const K_SEED = 'seed';
   static const K_SMS_SUBSCRIPTIONS = 'sms_subscriptions';
-  static const K_UPLOADED_MEDIA_IDS = 'uploaded_media_ids';
 
   static const CLASS = 'ModelUser';
 
@@ -53,7 +52,6 @@ class ModelUser extends _ModelUser {
   Set<String>? pushSubscriptions;
   String? seed;
   Set<String>? smsSubscriptions;
-  Set<String>? uploadedMediaIds;
 
   //
   //
@@ -66,7 +64,7 @@ class ModelUser extends _ModelUser {
   //
 
   factory ModelUser({
-    required DateTime createdAt,
+    DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
     String? deletedBy,
@@ -77,7 +75,6 @@ class ModelUser extends _ModelUser {
     Set<String>? pushSubscriptions,
     String? seed,
     Set<String>? smsSubscriptions,
-    Set<String>? uploadedMediaIds,
   }) {
     return ModelUser.b(
       createdAt: createdAt,
@@ -91,7 +88,6 @@ class ModelUser extends _ModelUser {
       pushSubscriptions: pushSubscriptions,
       seed: seed,
       smsSubscriptions: smsSubscriptions,
-      uploadedMediaIds: uploadedMediaIds,
     );
   }
 
@@ -111,10 +107,7 @@ class ModelUser extends _ModelUser {
     this.pushSubscriptions,
     this.seed,
     this.smsSubscriptions,
-    this.uploadedMediaIds,
-  }) {
-    assert(createdAt != null);
-  }
+  }) {}
 
   //
   //
@@ -187,8 +180,7 @@ class ModelUser extends _ModelUser {
         ..$pid = otherData?[K_PID]
         ..$pushSubscriptions = otherData?[K_PUSH_SUBSCRIPTIONS]
         ..$seed = otherData?[K_SEED]
-        ..$smsSubscriptions = otherData?[K_SMS_SUBSCRIPTIONS]
-        ..$uploadedMediaIds = otherData?[K_UPLOADED_MEDIA_IDS];
+        ..$smsSubscriptions = otherData?[K_SMS_SUBSCRIPTIONS];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -236,7 +228,6 @@ class ModelUser extends _ModelUser {
         K_PUSH_SUBSCRIPTIONS: this.$pushSubscriptions,
         K_SEED: this.$seed,
         K_SMS_SUBSCRIPTIONS: this.$smsSubscriptions,
-        K_UPLOADED_MEDIA_IDS: this.$uploadedMediaIds,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -306,9 +297,6 @@ class ModelUser extends _ModelUser {
       if (other.smsSubscriptions != null) {
         this.smsSubscriptions = other.smsSubscriptions!;
       }
-      if (other.uploadedMediaIds != null) {
-        this.uploadedMediaIds = other.uploadedMediaIds!;
-      }
     }
   }
 
@@ -317,10 +305,10 @@ class ModelUser extends _ModelUser {
   //
 
   // createdAt.
-  DateTime get createdAtField => this.createdAt!;
-  set createdAtField(DateTime v) => this.createdAt = v;
+  DateTime? get createdAtField => this.createdAt;
+  set createdAtField(DateTime? v) => this.createdAt = v;
   @protected
-  dynamic get $createdAt => (this.createdAt?.toUtc()?.toIso8601String())!;
+  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
   @protected
   set $createdAt(v) => this.createdAt = () {
         final a = v;
@@ -444,28 +432,6 @@ class ModelUser extends _ModelUser {
       ?.toList();
   @protected
   set $smsSubscriptions(v) => this.smsSubscriptions = letSet(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
-
-  // uploadedMediaIds.
-  Set<String>? get uploadedMediaIdsField => this.uploadedMediaIds;
-  set uploadedMediaIdsField(Set<String>? v) => this.uploadedMediaIds = v;
-  @protected
-  dynamic get $uploadedMediaIds => this
-      .uploadedMediaIds
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $uploadedMediaIds(v) => this.uploadedMediaIds = letSet(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )

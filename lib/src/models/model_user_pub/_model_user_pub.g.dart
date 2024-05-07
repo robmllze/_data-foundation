@@ -32,7 +32,6 @@ class ModelUserPub extends _ModelUserPub {
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_EMAIL = 'email';
   static const K_ID = 'id';
-  static const K_UPLOADED_MEDIA_IDS = 'uploaded_media_ids';
 
   static const CLASS = 'ModelUserPub';
 
@@ -47,7 +46,6 @@ class ModelUserPub extends _ModelUserPub {
   String? displayNameSearchable;
   String? email;
   String? id;
-  Set<String>? uploadedMediaIds;
 
   //
   //
@@ -68,7 +66,6 @@ class ModelUserPub extends _ModelUserPub {
     String? displayNameSearchable,
     String? email,
     String? id,
-    Set<String>? uploadedMediaIds,
   }) {
     return ModelUserPub.b(
       createdAt: createdAt,
@@ -79,7 +76,6 @@ class ModelUserPub extends _ModelUserPub {
       displayNameSearchable: displayNameSearchable,
       email: email,
       id: id,
-      uploadedMediaIds: uploadedMediaIds,
     );
   }
 
@@ -96,7 +92,6 @@ class ModelUserPub extends _ModelUserPub {
     this.displayNameSearchable,
     this.email,
     this.id,
-    this.uploadedMediaIds,
   }) {}
 
   //
@@ -167,8 +162,7 @@ class ModelUserPub extends _ModelUserPub {
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$email = otherData?[K_EMAIL]
-        ..$id = otherData?[K_ID]
-        ..$uploadedMediaIds = otherData?[K_UPLOADED_MEDIA_IDS];
+        ..$id = otherData?[K_ID];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -213,7 +207,6 @@ class ModelUserPub extends _ModelUserPub {
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_EMAIL: this.$email,
         K_ID: this.$id,
-        K_UPLOADED_MEDIA_IDS: this.$uploadedMediaIds,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -273,9 +266,6 @@ class ModelUserPub extends _ModelUserPub {
       }
       if (other.id != null) {
         this.id = other.id!;
-      }
-      if (other.uploadedMediaIds != null) {
-        this.uploadedMediaIds = other.uploadedMediaIds!;
       }
     }
   }
@@ -361,26 +351,4 @@ class ModelUserPub extends _ModelUserPub {
   dynamic get $id => this.id?.toString().trim().nullIfEmpty;
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
-
-  // uploadedMediaIds.
-  Set<String>? get uploadedMediaIdsField => this.uploadedMediaIds;
-  set uploadedMediaIdsField(Set<String>? v) => this.uploadedMediaIds = v;
-  @protected
-  dynamic get $uploadedMediaIds => this
-      .uploadedMediaIds
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $uploadedMediaIds(v) => this.uploadedMediaIds = letSet(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
 }

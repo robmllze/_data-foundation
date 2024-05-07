@@ -16,18 +16,67 @@ part '_model_file_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('created_at?', DateTime),
-    ('created_by?', String),
+    ...EntryBaseModel.FIELDS,
     ('name?', String),
     ('download_url?', Uri),
     ('storage_path?', String),
-    ('path?', List<String>),
+    ('definition_path?', List<String>),
     ('size?', int),
     ('extension?', T_LOWER_CASE_STRING),
-    ('title?', String),
-    ('searchable_title?', T_SEARCHABLE_STRING),
-    ('description?', String),
   },
 )
-abstract class _ModelFileEntry extends ThisModel<ModelFileEntry> {}
+abstract class _ModelFileEntry extends EntryBaseModel<ModelFileEntry> {
+  //
+  //
+  //
+
+  bool isFlutterImageExtension() => this._isAnyExtension(FLUTTER_IMAGE_SUPPORTED_EXTENSIONS);
+  bool isFlutterVideoExtension() => this._isAnyExtension(FLUTTER_VIDEO_SUPPORTED_EXTENSIONS);
+  bool isAudioPlayersExtension() => this._isAnyExtension(AUDIOPLAYERS_SUPPORTED_EXTENSIONS);
+  bool isSvgExtension() => this._isAnyExtension(['svg']);
+  bool isPdfExtension() => this._isAnyExtension(['pdf']);
+  bool isTextExtension() => this._isAnyExtension(['txt']);
+  bool isJsonExtension() => this._isAnyExtension(['json', 'jsonc']);
+  bool isCsvExtension() => this._isAnyExtension(['csv']);
+  bool isYamlExtension() => this._isAnyExtension(['yaml', 'yml']);
+
+  //
+  //
+  //
+
+  bool _isAnyExtension(List<String> extensions) =>
+      extensions.map((e) => e.toLowerCase()).contains(this.model.extension);
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+/// See: https://api.flutter.dev/flutter/widgets/Image-class.html#:~:text=The%20following%20image%20formats%20are,WebP%2C%20BMP%2C%20and%20WBMP.
+const FLUTTER_IMAGE_SUPPORTED_EXTENSIONS = [
+  'png',
+  'jpg',
+  'jpeg',
+  'gif',
+  'webp',
+  'bmp',
+  'wbmp',
+];
+
+/// See: https://pub.dev/packages/video_player_web
+const FLUTTER_VIDEO_SUPPORTED_EXTENSIONS = [
+  'mp4',
+  'webm',
+  'ogg',
+  'av1',
+  'hevc',
+];
+
+// See: https://pub.dev/packages/audioplayers
+const AUDIOPLAYERS_SUPPORTED_EXTENSIONS = [
+  'mp3',
+  'wav',
+  'ogg',
+  'aac',
+  'm4a',
+  'flac',
+  'opus',
+];

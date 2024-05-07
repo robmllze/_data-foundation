@@ -16,13 +16,10 @@ part '_model_job.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('pid?', String),
-    ('seed?', String),
-    ('created_at?', DateTime),
-    ('created_by?', String),
-    ('deleted_at?', DateTime),
-    ('deleted_by?', String),
+    ...PrivateBaseModel.FIELDS,
+    ('todo_entries', Map<DateTime, ModelTodoEntry>),
+    ('check_ins?', Map<DateTime, String>),
+    ('check_outs?', Map<DateTime, String>),
   },
 )
-abstract class _ModelJob extends ThisModel<ModelJob> {}
+abstract class _ModelJob extends PrivateBaseModel<ModelJob> {}

@@ -22,7 +22,6 @@ part '_model_relationship.g.dart';
     ('created_by?', String),
     ('deleted_at?', DateTime),
     ('deleted_by?', String),
-    ('uploaded_media_ids?', Set<String>),
     ('def_type?', RelationshipDefType),
     ('def?', GenericModel),
     ('member_pids?', Set<String>),

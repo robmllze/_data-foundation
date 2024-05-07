@@ -26,16 +26,16 @@ class ModelFileEntry extends _ModelFileEntry {
 
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
+  static const K_DEFINITION_PATH = 'definition_path';
   static const K_DESCRIPTION = 'description';
   static const K_DOWNLOAD_URL = 'download_url';
   static const K_EXTENSION = 'extension';
   static const K_ID = 'id';
   static const K_NAME = 'name';
-  static const K_PATH = 'path';
-  static const K_SEARCHABLE_TITLE = 'searchable_title';
   static const K_SIZE = 'size';
   static const K_STORAGE_PATH = 'storage_path';
   static const K_TITLE = 'title';
+  static const K_TITLE_SEARCHABLE = 'title_searchable';
 
   static const CLASS = 'ModelFileEntry';
 
@@ -44,16 +44,16 @@ class ModelFileEntry extends _ModelFileEntry {
 
   DateTime? createdAt;
   String? createdBy;
+  List<String>? definitionPath;
   String? description;
   Uri? downloadUrl;
   String? extension;
   String? id;
   String? name;
-  List<String>? path;
-  String? searchableTitle;
   int? size;
   String? storagePath;
   String? title;
+  String? titleSearchable;
 
   //
   //
@@ -68,30 +68,30 @@ class ModelFileEntry extends _ModelFileEntry {
   factory ModelFileEntry({
     DateTime? createdAt,
     String? createdBy,
+    List<String>? definitionPath,
     String? description,
     Uri? downloadUrl,
     String? extension,
     String? id,
     String? name,
-    List<String>? path,
-    String? searchableTitle,
     int? size,
     String? storagePath,
     String? title,
+    String? titleSearchable,
   }) {
     return ModelFileEntry.b(
       createdAt: createdAt,
       createdBy: createdBy,
+      definitionPath: definitionPath,
       description: description,
       downloadUrl: downloadUrl,
       extension: extension,
       id: id,
       name: name,
-      path: path,
-      searchableTitle: searchableTitle,
       size: size,
       storagePath: storagePath,
       title: title,
+      titleSearchable: titleSearchable,
     );
   }
 
@@ -102,16 +102,16 @@ class ModelFileEntry extends _ModelFileEntry {
   ModelFileEntry.b({
     this.createdAt,
     this.createdBy,
+    this.definitionPath,
     this.description,
     this.downloadUrl,
     this.extension,
     this.id,
     this.name,
-    this.path,
-    this.searchableTitle,
     this.size,
     this.storagePath,
     this.title,
+    this.titleSearchable,
   }) {}
 
   //
@@ -177,16 +177,16 @@ class ModelFileEntry extends _ModelFileEntry {
       return ModelFileEntry.empty()
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
+        ..$definitionPath = otherData?[K_DEFINITION_PATH]
         ..$description = otherData?[K_DESCRIPTION]
         ..$downloadUrl = otherData?[K_DOWNLOAD_URL]
         ..$extension = otherData?[K_EXTENSION]
         ..$id = otherData?[K_ID]
         ..$name = otherData?[K_NAME]
-        ..$path = otherData?[K_PATH]
-        ..$searchableTitle = otherData?[K_SEARCHABLE_TITLE]
         ..$size = otherData?[K_SIZE]
         ..$storagePath = otherData?[K_STORAGE_PATH]
-        ..$title = otherData?[K_TITLE];
+        ..$title = otherData?[K_TITLE]
+        ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -225,16 +225,16 @@ class ModelFileEntry extends _ModelFileEntry {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
+        K_DEFINITION_PATH: this.$definitionPath,
         K_DESCRIPTION: this.$description,
         K_DOWNLOAD_URL: this.$downloadUrl,
         K_EXTENSION: this.$extension,
         K_ID: this.$id,
         K_NAME: this.$name,
-        K_PATH: this.$path,
-        K_SEARCHABLE_TITLE: this.$searchableTitle,
         K_SIZE: this.$size,
         K_STORAGE_PATH: this.$storagePath,
         K_TITLE: this.$title,
+        K_TITLE_SEARCHABLE: this.$titleSearchable,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -277,6 +277,9 @@ class ModelFileEntry extends _ModelFileEntry {
       if (other.createdBy != null) {
         this.createdBy = other.createdBy!;
       }
+      if (other.definitionPath != null) {
+        this.definitionPath = other.definitionPath!;
+      }
       if (other.description != null) {
         this.description = other.description!;
       }
@@ -292,12 +295,6 @@ class ModelFileEntry extends _ModelFileEntry {
       if (other.name != null) {
         this.name = other.name!;
       }
-      if (other.path != null) {
-        this.path = other.path!;
-      }
-      if (other.searchableTitle != null) {
-        this.searchableTitle = other.searchableTitle!;
-      }
       if (other.size != null) {
         this.size = other.size!;
       }
@@ -306,6 +303,9 @@ class ModelFileEntry extends _ModelFileEntry {
       }
       if (other.title != null) {
         this.title = other.title!;
+      }
+      if (other.titleSearchable != null) {
+        this.titleSearchable = other.titleSearchable!;
       }
     }
   }
@@ -332,6 +332,28 @@ class ModelFileEntry extends _ModelFileEntry {
   dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
   @protected
   set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
+
+  // definitionPath.
+  List<String>? get definitionPathField => this.definitionPath;
+  set definitionPathField(List<String>? v) => this.definitionPath = v;
+  @protected
+  dynamic get $definitionPath => this
+      .definitionPath
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $definitionPath(v) => this.definitionPath = letList(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
 
   // description.
   String? get descriptionField => this.description;
@@ -378,43 +400,6 @@ class ModelFileEntry extends _ModelFileEntry {
   @protected
   set $name(v) => this.name = v?.toString().trim().nullIfEmpty;
 
-  // path.
-  List<String>? get pathField => this.path;
-  set pathField(List<String>? v) => this.path = v;
-  @protected
-  dynamic get $path => this
-      .path
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $path(v) => this.path = letList(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
-
-  // searchableTitle.
-  String? get searchableTitleField => this.searchableTitle;
-  set searchableTitleField(String? v) => this.searchableTitle = v;
-  @protected
-  dynamic get $searchableTitle => this
-      .searchableTitle
-      ?.toString()
-      .trim()
-      .nullIfEmpty
-      ?.toLowerCase()
-      .replaceAll(r'[^\w]', '');
-  @protected
-  set $searchableTitle(v) => this.searchableTitle =
-      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
-
   // size.
   int? get sizeField => this.size;
   set sizeField(int? v) => this.size = v;
@@ -438,4 +423,19 @@ class ModelFileEntry extends _ModelFileEntry {
   dynamic get $title => this.title?.toString().trim().nullIfEmpty;
   @protected
   set $title(v) => this.title = v?.toString().trim().nullIfEmpty;
+
+  // titleSearchable.
+  String? get titleSearchableField => this.titleSearchable;
+  set titleSearchableField(String? v) => this.titleSearchable = v;
+  @protected
+  dynamic get $titleSearchable => this
+      .titleSearchable
+      ?.toString()
+      .trim()
+      .nullIfEmpty
+      ?.toLowerCase()
+      .replaceAll(r'[^\w]', '');
+  @protected
+  set $titleSearchable(v) => this.titleSearchable =
+      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 }

@@ -21,7 +21,6 @@ part '_model_event.g.dart';
     ('deleted_at?', DateTime),
     ('deleted_by?', String),
     ('member_pids', Set<String>),
-    ('uploaded_media_ids?', Set<String>),
     ('def_type?', EventDefType),
     ('def?', GenericModel),
     ('timeout?', int),

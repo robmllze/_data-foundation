@@ -19,13 +19,13 @@ part of 'model_message_def.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelMessageDef extends Model {
+class ModelMessageDef extends _ModelMessageDef {
   //
   //
   //
 
   static const K_MESSAGE = 'message';
-  static const K_RECEIVER_PIDS = 'receiver_pids';
+  static const K_RECEIVER_PID = 'receiver_pid';
   static const K_RELATIONSHIP_ID = 'relationship_id';
   static const K_SENDER_PID = 'sender_pid';
 
@@ -35,7 +35,7 @@ class ModelMessageDef extends Model {
   String get $class => CLASS;
 
   String? message;
-  Set<String>? receiverPids;
+  String? receiverPid;
   String? relationshipId;
   String? senderPid;
 
@@ -51,13 +51,13 @@ class ModelMessageDef extends Model {
 
   factory ModelMessageDef({
     String? message,
-    Set<String>? receiverPids,
-    required String relationshipId,
-    required String senderPid,
+    String? receiverPid,
+    String? relationshipId,
+    String? senderPid,
   }) {
     return ModelMessageDef.b(
       message: message,
-      receiverPids: receiverPids,
+      receiverPid: receiverPid,
       relationshipId: relationshipId,
       senderPid: senderPid,
     );
@@ -69,13 +69,10 @@ class ModelMessageDef extends Model {
 
   ModelMessageDef.b({
     this.message,
-    this.receiverPids,
+    this.receiverPid,
     this.relationshipId,
     this.senderPid,
-  }) {
-    assert(relationshipId != null);
-    assert(senderPid != null);
-  }
+  }) {}
 
   //
   //
@@ -139,7 +136,7 @@ class ModelMessageDef extends Model {
     try {
       return ModelMessageDef.empty()
         ..$message = otherData?[K_MESSAGE]
-        ..$receiverPids = otherData?[K_RECEIVER_PIDS]
+        ..$receiverPid = otherData?[K_RECEIVER_PID]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$senderPid = otherData?[K_SENDER_PID];
     } catch (e) {
@@ -179,7 +176,7 @@ class ModelMessageDef extends Model {
     try {
       final withNulls = <String, dynamic>{
         K_MESSAGE: this.$message,
-        K_RECEIVER_PIDS: this.$receiverPids,
+        K_RECEIVER_PID: this.$receiverPid,
         K_RELATIONSHIP_ID: this.$relationshipId,
         K_SENDER_PID: this.$senderPid,
       }.mapWithDefault(defaultValue);
@@ -221,8 +218,8 @@ class ModelMessageDef extends Model {
       if (other.message != null) {
         this.message = other.message!;
       }
-      if (other.receiverPids != null) {
-        this.receiverPids = other.receiverPids!;
+      if (other.receiverPid != null) {
+        this.receiverPid = other.receiverPid!;
       }
       if (other.relationshipId != null) {
         this.relationshipId = other.relationshipId!;
@@ -245,43 +242,29 @@ class ModelMessageDef extends Model {
   @protected
   set $message(v) => this.message = v?.toString().trim().nullIfEmpty;
 
-  // receiverPids.
-  Set<String>? get receiverPidsField => this.receiverPids;
-  set receiverPidsField(Set<String>? v) => this.receiverPids = v;
+  // receiverPid.
+  String? get receiverPidField => this.receiverPid;
+  set receiverPidField(String? v) => this.receiverPid = v;
   @protected
-  dynamic get $receiverPids => this
-      .receiverPids
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
+  dynamic get $receiverPid => this.receiverPid?.toString().trim().nullIfEmpty;
   @protected
-  set $receiverPids(v) => this.receiverPids = letSet(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
+  set $receiverPid(v) => this.receiverPid = v?.toString().trim().nullIfEmpty;
 
   // relationshipId.
-  String get relationshipIdField => this.relationshipId!;
-  set relationshipIdField(String v) => this.relationshipId = v;
+  String? get relationshipIdField => this.relationshipId;
+  set relationshipIdField(String? v) => this.relationshipId = v;
   @protected
   dynamic get $relationshipId =>
-      (this.relationshipId?.toString().trim().nullIfEmpty)!;
+      this.relationshipId?.toString().trim().nullIfEmpty;
   @protected
   set $relationshipId(v) =>
       this.relationshipId = v?.toString().trim().nullIfEmpty;
 
   // senderPid.
-  String get senderPidField => this.senderPid!;
-  set senderPidField(String v) => this.senderPid = v;
+  String? get senderPidField => this.senderPid;
+  set senderPidField(String? v) => this.senderPid = v;
   @protected
-  dynamic get $senderPid => (this.senderPid?.toString().trim().nullIfEmpty)!;
+  dynamic get $senderPid => this.senderPid?.toString().trim().nullIfEmpty;
   @protected
   set $senderPid(v) => this.senderPid = v?.toString().trim().nullIfEmpty;
 }

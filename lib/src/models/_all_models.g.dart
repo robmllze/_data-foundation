@@ -7,6 +7,10 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+export '_base_models/def_base_model.dart';
+export '_base_models/entry_base_model.dart';
+export '_base_models/private_base_model.dart';
+export '_base_models/public_base_model.dart';
 export 'def/model_connection_request_accepted_def/model_connection_request_accepted_def.dart';
 export 'def/model_connection_request_def/model_connection_request_def.dart';
 export 'def/model_connection_request_rejected_def/model_connection_request_rejected_def.dart';
@@ -20,6 +24,7 @@ export 'entries/model_email_entry/model_email_entry.dart';
 export 'entries/model_file_entry/model_file_entry.dart';
 export 'entries/model_note_entry/model_note_entry.dart';
 export 'entries/model_phone_entry/model_phone_entry.dart';
+export 'entries/model_todo_entry/model_todo_entry.dart';
 export 'model_connection_permissions/model_connection_permissions.dart';
 export 'model_event/model_event.dart';
 export 'model_invitation/model_invitation.dart';

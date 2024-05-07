@@ -24,10 +24,11 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
   //
 
-  static const K_BODY = 'body';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
+  static const K_DESCRIPTION = 'description';
   static const K_ID = 'id';
+  static const K_NOTE = 'note';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
 
@@ -36,10 +37,11 @@ class ModelNoteEntry extends _ModelNoteEntry {
   @override
   String get $class => CLASS;
 
-  String? body;
   DateTime? createdAt;
   String? createdBy;
+  String? description;
   String? id;
+  String? note;
   String? title;
   String? titleSearchable;
 
@@ -54,18 +56,20 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
 
   factory ModelNoteEntry({
-    String? body,
     DateTime? createdAt,
     String? createdBy,
+    String? description,
     String? id,
+    String? note,
     String? title,
     String? titleSearchable,
   }) {
     return ModelNoteEntry.b(
-      body: body,
       createdAt: createdAt,
       createdBy: createdBy,
+      description: description,
       id: id,
+      note: note,
       title: title,
       titleSearchable: titleSearchable,
     );
@@ -76,10 +80,11 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
 
   ModelNoteEntry.b({
-    this.body,
     this.createdAt,
     this.createdBy,
+    this.description,
     this.id,
+    this.note,
     this.title,
     this.titleSearchable,
   }) {}
@@ -145,10 +150,11 @@ class ModelNoteEntry extends _ModelNoteEntry {
   ) {
     try {
       return ModelNoteEntry.empty()
-        ..$body = otherData?[K_BODY]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
+        ..$description = otherData?[K_DESCRIPTION]
         ..$id = otherData?[K_ID]
+        ..$note = otherData?[K_NOTE]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
@@ -187,10 +193,11 @@ class ModelNoteEntry extends _ModelNoteEntry {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_BODY: this.$body,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
+        K_DESCRIPTION: this.$description,
         K_ID: this.$id,
+        K_NOTE: this.$note,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
       }.mapWithDefault(defaultValue);
@@ -229,17 +236,20 @@ class ModelNoteEntry extends _ModelNoteEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelNoteEntry.fromJson(otherData);
-      if (other.body != null) {
-        this.body = other.body!;
-      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
       if (other.createdBy != null) {
         this.createdBy = other.createdBy!;
       }
+      if (other.description != null) {
+        this.description = other.description!;
+      }
       if (other.id != null) {
         this.id = other.id!;
+      }
+      if (other.note != null) {
+        this.note = other.note!;
       }
       if (other.title != null) {
         this.title = other.title!;
@@ -253,14 +263,6 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
   //
   //
-
-  // body.
-  String? get bodyField => this.body;
-  set bodyField(String? v) => this.body = v;
-  @protected
-  dynamic get $body => this.body?.toString().trim().nullIfEmpty;
-  @protected
-  set $body(v) => this.body = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -281,6 +283,14 @@ class ModelNoteEntry extends _ModelNoteEntry {
   @protected
   set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
+  // description.
+  String? get descriptionField => this.description;
+  set descriptionField(String? v) => this.description = v;
+  @protected
+  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
+  @protected
+  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
+
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -288,6 +298,14 @@ class ModelNoteEntry extends _ModelNoteEntry {
   dynamic get $id => this.id?.toString().trim().nullIfEmpty;
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // note.
+  String? get noteField => this.note;
+  set noteField(String? v) => this.note = v;
+  @protected
+  dynamic get $note => this.note?.toString().trim().nullIfEmpty;
+  @protected
+  set $note(v) => this.note = v?.toString().trim().nullIfEmpty;
 
   // title.
   String? get titleField => this.title;

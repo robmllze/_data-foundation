@@ -24,6 +24,8 @@ class ModelJob extends _ModelJob {
   //
   //
 
+  static const K_CHECK_INS = 'check_ins';
+  static const K_CHECK_OUTS = 'check_outs';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DELETED_AT = 'deleted_at';
@@ -31,12 +33,15 @@ class ModelJob extends _ModelJob {
   static const K_ID = 'id';
   static const K_PID = 'pid';
   static const K_SEED = 'seed';
+  static const K_TODO_ENTRIES = 'todo_entries';
 
   static const CLASS = 'ModelJob';
 
   @override
   String get $class => CLASS;
 
+  Map<DateTime, String>? checkIns;
+  Map<DateTime, String>? checkOuts;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
@@ -44,6 +49,7 @@ class ModelJob extends _ModelJob {
   String? id;
   String? pid;
   String? seed;
+  Map<DateTime, ModelTodoEntry>? todoEntries;
 
   //
   //
@@ -56,6 +62,8 @@ class ModelJob extends _ModelJob {
   //
 
   factory ModelJob({
+    Map<DateTime, String>? checkIns,
+    Map<DateTime, String>? checkOuts,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
@@ -63,8 +71,11 @@ class ModelJob extends _ModelJob {
     String? id,
     String? pid,
     String? seed,
+    required Map<DateTime, ModelTodoEntry> todoEntries,
   }) {
     return ModelJob.b(
+      checkIns: checkIns,
+      checkOuts: checkOuts,
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
@@ -72,6 +83,7 @@ class ModelJob extends _ModelJob {
       id: id,
       pid: pid,
       seed: seed,
+      todoEntries: todoEntries,
     );
   }
 
@@ -80,6 +92,8 @@ class ModelJob extends _ModelJob {
   //
 
   ModelJob.b({
+    this.checkIns,
+    this.checkOuts,
     this.createdAt,
     this.createdBy,
     this.deletedAt,
@@ -87,7 +101,10 @@ class ModelJob extends _ModelJob {
     this.id,
     this.pid,
     this.seed,
-  }) {}
+    this.todoEntries,
+  }) {
+    assert(todoEntries != null);
+  }
 
   //
   //
@@ -150,13 +167,16 @@ class ModelJob extends _ModelJob {
   ) {
     try {
       return ModelJob.empty()
+        ..$checkIns = otherData?[K_CHECK_INS]
+        ..$checkOuts = otherData?[K_CHECK_OUTS]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
         ..$deletedBy = otherData?[K_DELETED_BY]
         ..$id = otherData?[K_ID]
         ..$pid = otherData?[K_PID]
-        ..$seed = otherData?[K_SEED];
+        ..$seed = otherData?[K_SEED]
+        ..$todoEntries = otherData?[K_TODO_ENTRIES];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -193,6 +213,8 @@ class ModelJob extends _ModelJob {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_CHECK_INS: this.$checkIns,
+        K_CHECK_OUTS: this.$checkOuts,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
@@ -200,6 +222,7 @@ class ModelJob extends _ModelJob {
         K_ID: this.$id,
         K_PID: this.$pid,
         K_SEED: this.$seed,
+        K_TODO_ENTRIES: this.$todoEntries,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -236,6 +259,12 @@ class ModelJob extends _ModelJob {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelJob.fromJson(otherData);
+      if (other.checkIns != null) {
+        this.checkIns = other.checkIns!;
+      }
+      if (other.checkOuts != null) {
+        this.checkOuts = other.checkOuts!;
+      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -257,12 +286,73 @@ class ModelJob extends _ModelJob {
       if (other.seed != null) {
         this.seed = other.seed!;
       }
+      if (other.todoEntries != null) {
+        this.todoEntries = other.todoEntries!;
+      }
     }
   }
 
   //
   //
   //
+
+  // checkIns.
+  Map<DateTime, String>? get checkInsField => this.checkIns;
+  set checkInsField(Map<DateTime, String>? v) => this.checkIns = v;
+  @protected
+  dynamic get $checkIns => this
+      .checkIns
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toUtc()?.toIso8601String(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $checkIns(v) => this.checkIns = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          () {
+            final a = p0;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // checkOuts.
+  Map<DateTime, String>? get checkOutsField => this.checkOuts;
+  set checkOutsField(Map<DateTime, String>? v) => this.checkOuts = v;
+  @protected
+  dynamic get $checkOuts => this
+      .checkOuts
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toUtc()?.toIso8601String(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $checkOuts(v) => this.checkOuts = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          () {
+            final a = p0;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+          p1?.toString().trim().nullIfEmpty,
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -325,4 +415,36 @@ class ModelJob extends _ModelJob {
   dynamic get $seed => this.seed?.toString().trim().nullIfEmpty;
   @protected
   set $seed(v) => this.seed = v?.toString().trim().nullIfEmpty;
+
+  // todoEntries.
+  Map<DateTime, ModelTodoEntry> get todoEntriesField => this.todoEntries!;
+  set todoEntriesField(Map<DateTime, ModelTodoEntry> v) => this.todoEntries = v;
+  @protected
+  dynamic get $todoEntries => (this
+      .todoEntries
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toUtc()?.toIso8601String(),
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty)!;
+  @protected
+  set $todoEntries(v) => this.todoEntries = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          () {
+            final a = p0;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+          () {
+            final a = letMap<String, dynamic>(p1);
+            return a != null ? ModelTodoEntry.fromJson(a) : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 }

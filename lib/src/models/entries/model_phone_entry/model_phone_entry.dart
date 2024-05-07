@@ -16,12 +16,7 @@ part '_model_phone_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('title?', String),
-    ('title_searchable?', T_SEARCHABLE_STRING),
-    ('created_at?', DateTime),
-    ('created_by?', String),
-    ('description?', String),
+    ...EntryBaseModel.FIELDS,
     ('country_code?', String),
     ('number_without_country_code?', String),
     ('full_number?', String),
@@ -29,4 +24,4 @@ part '_model_phone_entry.g.dart';
     ('type?', String),
   },
 )
-abstract class _ModelPhoneEntry extends ThisModel<ModelPhoneEntry> {}
+abstract class _ModelPhoneEntry extends EntryBaseModel<ModelPhoneEntry> {}

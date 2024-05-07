@@ -7,6 +7,10 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+export 'models/_base_models/def_base_model.dart';
+export 'models/_base_models/entry_base_model.dart';
+export 'models/_base_models/private_base_model.dart';
+export 'models/_base_models/public_base_model.dart';
 export 'models/def/model_connection_request_accepted_def/model_connection_request_accepted_def.dart';
 export 'models/def/model_connection_request_def/model_connection_request_def.dart';
 export 'models/def/model_connection_request_rejected_def/model_connection_request_rejected_def.dart';

@@ -31,6 +31,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   static const K_DESCRIPTION = 'description';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
+  static const K_EMAIL = 'email';
   static const K_ID = 'id';
   static const K_OTHER_ADDRESSES = 'other_addresses';
   static const K_OTHER_EMAILS = 'other_emails';
@@ -38,7 +39,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   static const K_PRIMARY_ADDRESS = 'primary_address';
   static const K_PRIMARY_EMAIL = 'primary_email';
   static const K_PRIMARY_PHONE = 'primary_phone';
-  static const K_UPLOADED_MEDIA_IDS = 'uploaded_media_ids';
 
   static const CLASS = 'ModelOrganizationPub';
 
@@ -52,6 +52,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   String? description;
   String? displayName;
   String? displayNameSearchable;
+  String? email;
   String? id;
   Set<ModelAddressEntry>? otherAddresses;
   Set<ModelEmailEntry>? otherEmails;
@@ -59,7 +60,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   ModelAddressEntry? primaryAddress;
   ModelEmailEntry? primaryEmail;
   ModelPhoneEntry? primaryPhone;
-  List<String>? uploadedMediaIds;
 
   //
   //
@@ -79,6 +79,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     String? description,
     String? displayName,
     String? displayNameSearchable,
+    String? email,
     String? id,
     Set<ModelAddressEntry>? otherAddresses,
     Set<ModelEmailEntry>? otherEmails,
@@ -86,7 +87,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     ModelAddressEntry? primaryAddress,
     ModelEmailEntry? primaryEmail,
     ModelPhoneEntry? primaryPhone,
-    List<String>? uploadedMediaIds,
   }) {
     return ModelOrganizationPub.b(
       createdAt: createdAt,
@@ -96,6 +96,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       description: description,
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
+      email: email,
       id: id,
       otherAddresses: otherAddresses,
       otherEmails: otherEmails,
@@ -103,7 +104,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       primaryAddress: primaryAddress,
       primaryEmail: primaryEmail,
       primaryPhone: primaryPhone,
-      uploadedMediaIds: uploadedMediaIds,
     );
   }
 
@@ -119,6 +119,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     this.description,
     this.displayName,
     this.displayNameSearchable,
+    this.email,
     this.id,
     this.otherAddresses,
     this.otherEmails,
@@ -126,7 +127,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     this.primaryAddress,
     this.primaryEmail,
     this.primaryPhone,
-    this.uploadedMediaIds,
   }) {}
 
   //
@@ -197,14 +197,14 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         ..$description = otherData?[K_DESCRIPTION]
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
+        ..$email = otherData?[K_EMAIL]
         ..$id = otherData?[K_ID]
         ..$otherAddresses = otherData?[K_OTHER_ADDRESSES]
         ..$otherEmails = otherData?[K_OTHER_EMAILS]
         ..$otherPhones = otherData?[K_OTHER_PHONES]
         ..$primaryAddress = otherData?[K_PRIMARY_ADDRESS]
         ..$primaryEmail = otherData?[K_PRIMARY_EMAIL]
-        ..$primaryPhone = otherData?[K_PRIMARY_PHONE]
-        ..$uploadedMediaIds = otherData?[K_UPLOADED_MEDIA_IDS];
+        ..$primaryPhone = otherData?[K_PRIMARY_PHONE];
     } catch (e) {
       assert(false, e);
       rethrow;
@@ -248,6 +248,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         K_DESCRIPTION: this.$description,
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
+        K_EMAIL: this.$email,
         K_ID: this.$id,
         K_OTHER_ADDRESSES: this.$otherAddresses,
         K_OTHER_EMAILS: this.$otherEmails,
@@ -255,7 +256,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         K_PRIMARY_ADDRESS: this.$primaryAddress,
         K_PRIMARY_EMAIL: this.$primaryEmail,
         K_PRIMARY_PHONE: this.$primaryPhone,
-        K_UPLOADED_MEDIA_IDS: this.$uploadedMediaIds,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -313,6 +313,9 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       if (other.displayNameSearchable != null) {
         this.displayNameSearchable = other.displayNameSearchable!;
       }
+      if (other.email != null) {
+        this.email = other.email!;
+      }
       if (other.id != null) {
         this.id = other.id!;
       }
@@ -333,9 +336,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       }
       if (other.primaryPhone != null) {
         this.primaryPhone = other.primaryPhone!;
-      }
-      if (other.uploadedMediaIds != null) {
-        this.uploadedMediaIds = other.uploadedMediaIds!;
       }
     }
   }
@@ -412,6 +412,15 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   @protected
   set $displayNameSearchable(v) => this.displayNameSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+
+  // email.
+  String? get emailField => this.email;
+  set emailField(String? v) => this.email = v;
+  @protected
+  dynamic get $email =>
+      this.email?.toString().trim().nullIfEmpty?.toLowerCase();
+  @protected
+  set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
   // id.
   String? get idField => this.id;
@@ -528,26 +537,4 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelPhoneEntry.fromJson(a) : null;
       }();
-
-  // uploadedMediaIds.
-  List<String>? get uploadedMediaIdsField => this.uploadedMediaIds;
-  set uploadedMediaIdsField(List<String>? v) => this.uploadedMediaIds = v;
-  @protected
-  dynamic get $uploadedMediaIds => this
-      .uploadedMediaIds
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $uploadedMediaIds(v) => this.uploadedMediaIds = letList(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
 }

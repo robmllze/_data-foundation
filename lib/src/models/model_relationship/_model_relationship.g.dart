@@ -32,7 +32,6 @@ class ModelRelationship extends _ModelRelationship {
   static const K_DELETED_BY = 'deleted_by';
   static const K_ID = 'id';
   static const K_MEMBER_PIDS = 'member_pids';
-  static const K_UPLOADED_MEDIA_IDS = 'uploaded_media_ids';
   static const K_WHEN_DISABLED = 'when_disabled';
   static const K_WHEN_ENABLED = 'when_enabled';
   static const K_WHEN_NOTED = 'when_noted';
@@ -50,7 +49,6 @@ class ModelRelationship extends _ModelRelationship {
   String? deletedBy;
   String? id;
   Set<String>? memberPids;
-  Set<String>? uploadedMediaIds;
   Map<String, DateTime>? whenDisabled;
   Map<String, DateTime>? whenEnabled;
   Map<String, DateTime>? whenNoted;
@@ -74,7 +72,6 @@ class ModelRelationship extends _ModelRelationship {
     String? deletedBy,
     String? id,
     Set<String>? memberPids,
-    Set<String>? uploadedMediaIds,
     Map<String, DateTime>? whenDisabled,
     Map<String, DateTime>? whenEnabled,
     Map<String, DateTime>? whenNoted,
@@ -88,7 +85,6 @@ class ModelRelationship extends _ModelRelationship {
       deletedBy: deletedBy,
       id: id,
       memberPids: memberPids,
-      uploadedMediaIds: uploadedMediaIds,
       whenDisabled: whenDisabled,
       whenEnabled: whenEnabled,
       whenNoted: whenNoted,
@@ -108,7 +104,6 @@ class ModelRelationship extends _ModelRelationship {
     this.deletedBy,
     this.id,
     this.memberPids,
-    this.uploadedMediaIds,
     this.whenDisabled,
     this.whenEnabled,
     this.whenNoted,
@@ -183,7 +178,6 @@ class ModelRelationship extends _ModelRelationship {
         ..$deletedBy = otherData?[K_DELETED_BY]
         ..$id = otherData?[K_ID]
         ..$memberPids = otherData?[K_MEMBER_PIDS]
-        ..$uploadedMediaIds = otherData?[K_UPLOADED_MEDIA_IDS]
         ..$whenDisabled = otherData?[K_WHEN_DISABLED]
         ..$whenEnabled = otherData?[K_WHEN_ENABLED]
         ..$whenNoted = otherData?[K_WHEN_NOTED];
@@ -231,7 +225,6 @@ class ModelRelationship extends _ModelRelationship {
         K_DELETED_BY: this.$deletedBy,
         K_ID: this.$id,
         K_MEMBER_PIDS: this.$memberPids,
-        K_UPLOADED_MEDIA_IDS: this.$uploadedMediaIds,
         K_WHEN_DISABLED: this.$whenDisabled,
         K_WHEN_ENABLED: this.$whenEnabled,
         K_WHEN_NOTED: this.$whenNoted,
@@ -294,9 +287,6 @@ class ModelRelationship extends _ModelRelationship {
       }
       if (other.memberPids != null) {
         this.memberPids = other.memberPids!;
-      }
-      if (other.uploadedMediaIds != null) {
-        this.uploadedMediaIds = other.uploadedMediaIds!;
       }
       if (other.whenDisabled != null) {
         this.whenDisabled = other.whenDisabled!;
@@ -394,28 +384,6 @@ class ModelRelationship extends _ModelRelationship {
       ?.toList();
   @protected
   set $memberPids(v) => this.memberPids = letSet(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
-
-  // uploadedMediaIds.
-  Set<String>? get uploadedMediaIdsField => this.uploadedMediaIds;
-  set uploadedMediaIdsField(Set<String>? v) => this.uploadedMediaIds = v;
-  @protected
-  dynamic get $uploadedMediaIds => this
-      .uploadedMediaIds
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $uploadedMediaIds(v) => this.uploadedMediaIds = letSet(v)
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )

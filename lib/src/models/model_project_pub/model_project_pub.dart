@@ -16,15 +16,8 @@ part '_model_project_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('display_name?', String),
-    ('display_name_searchable?', T_SEARCHABLE_STRING),
+    ...PublicBaseModel.FIELDS,
     ('description?', String),
-    ('created_at?', DateTime),
-    ('created_by?', String),
-    ('deleted_at?', DateTime),
-    ('deleted_by?', String),
-    ('uploaded_media_ids?', List<String>),
     ('primary_address?', ModelAddressEntry),
     ('other_addresses?', Set<ModelAddressEntry>),
     ('primary_email?', ModelEmailEntry),
@@ -35,7 +28,7 @@ part '_model_project_pub.g.dart';
     ('when_closed?', Map<String, DateTime>),
   },
 )
-abstract class _ModelProjectPub extends ThisModel<ModelProjectPub> {
+abstract class _ModelProjectPub extends PublicBaseModel<ModelProjectPub> {
   //
   //
   //

@@ -10,15 +10,34 @@
 
 import '/_common.dart';
 
-part '_model_rel_disabled_def.g.dart';
-
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@GenerateModel(
-  shouldInherit: true,
-  fields: {
-    ...DefBaseModel.FIELDS,
-  },
-)
-// ignore: unused_element
-abstract class _ModelRelDisabledDef extends DefBaseModel<ModelRelDisabledDef> {}
+abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
+  //
+  //
+  //
+
+  static const FIELDS = {
+    ('id?', String),
+    ('display_name?', String),
+    ('display_name_searchable?', T_SEARCHABLE_STRING),
+    ('email?', T_LOWER_CASE_STRING),
+    ('created_at?', DateTime),
+    ('created_by?', String),
+    ('deleted_at?', DateTime),
+    ('deleted_by?', String),
+  };
+
+  //
+  //
+  //
+
+  String? id;
+  String? displayName;
+  String? displayNameSearchable;
+  String? email;
+  DateTime? createdAt;
+  String? createdBy;
+  DateTime? deletedAt;
+  String? deletedBy;
+}
