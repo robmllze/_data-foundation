@@ -46,6 +46,26 @@ abstract class _ModelFileEntry extends EntryBaseModel<ModelFileEntry> {
 
   bool _isAnyExtension(List<String> extensions) =>
       extensions.map((e) => e.toLowerCase()).contains(this.model.extension);
+
+  //
+  //
+  //
+
+  bool definitionPathStartsWith(List<String> a, [List<String> b = const []]) {
+    final combinedPath = [...a, ...b];
+    final definitionPath = this.model.definitionPath ?? [];
+    if (definitionPath.length < combinedPath.length) {
+      return false;
+    }
+    for (var i = 0; i < combinedPath.length; i++) {
+      final a = definitionPath[i].trim().toLowerCase();
+      final b = combinedPath[i].trim().toLowerCase();
+      if (a != b) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
