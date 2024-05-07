@@ -60,7 +60,7 @@ abstract class _ModelJobPub extends PublicBaseModel<ModelJobPub> {
     if (lastClockIn != null && lastClockOut == null) {
       return true;
     }
-     if (lastClockIn == null && lastClockOut == null) {
+    if (lastClockIn == null && lastClockOut == null) {
       return false;
     }
     return false;
@@ -97,18 +97,17 @@ abstract class _ModelJobPub extends PublicBaseModel<ModelJobPub> {
 
     // Iterate through sorted events to calculate durations
     for (var event in sortedEvents) {
-      if (event.value) {
-        // It's a clock-in date
-        lastClockIn = event.key;
-        result.addFirst((date: event.key, durationSinceClockIn: null)); // No duration for clock-in
+      final date = event.key.toLocal();
+      final clockIn = event.value;
+      if (clockIn) {
+        lastClockIn = date;
+        result.addFirst((date: date, durationSinceClockIn: null)); // No duration for clock-in
       } else {
-        // It's a clock-out date
         if (lastClockIn != null) {
-          final durationSinceClockIn = event.key.difference(lastClockIn);
-          result.addFirst((date: event.key, durationSinceClockIn: durationSinceClockIn));
+          final durationSinceClockIn = date.difference(lastClockIn);
+          result.addFirst((date: date, durationSinceClockIn: durationSinceClockIn));
         } else {
-          // If there's no preceding clock-in, return null for duration
-          result.addFirst((date: event.key, durationSinceClockIn: null));
+          result.addFirst((date: date, durationSinceClockIn: null));
         }
       }
     }
