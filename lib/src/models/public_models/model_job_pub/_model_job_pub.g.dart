@@ -25,8 +25,8 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   static const K_AVATAR = 'avatar';
-  static const K_CHECK_INS = 'check_ins';
-  static const K_CHECK_OUTS = 'check_outs';
+  static const K_CLOCK_INS = 'clock_ins';
+  static const K_CLOCK_OUTS = 'clock_outs';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DELETED_AT = 'deleted_at';
@@ -52,8 +52,8 @@ class ModelJobPub extends _ModelJobPub {
   String get $class => CLASS;
 
   ModelFileEntry? avatar;
-  Map<DateTime, String>? checkIns;
-  Map<DateTime, String>? checkOuts;
+  Map<DateTime, String>? clockIns;
+  Map<DateTime, String>? clockOuts;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
@@ -85,8 +85,8 @@ class ModelJobPub extends _ModelJobPub {
 
   factory ModelJobPub({
     ModelFileEntry? avatar,
-    Map<DateTime, String>? checkIns,
-    Map<DateTime, String>? checkOuts,
+    Map<DateTime, String>? clockIns,
+    Map<DateTime, String>? clockOuts,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
@@ -108,8 +108,8 @@ class ModelJobPub extends _ModelJobPub {
   }) {
     return ModelJobPub.b(
       avatar: avatar,
-      checkIns: checkIns,
-      checkOuts: checkOuts,
+      clockIns: clockIns,
+      clockOuts: clockOuts,
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
@@ -137,8 +137,8 @@ class ModelJobPub extends _ModelJobPub {
 
   ModelJobPub.b({
     this.avatar,
-    this.checkIns,
-    this.checkOuts,
+    this.clockIns,
+    this.clockOuts,
     this.createdAt,
     this.createdBy,
     this.deletedAt,
@@ -221,8 +221,8 @@ class ModelJobPub extends _ModelJobPub {
     try {
       return ModelJobPub.empty()
         ..$avatar = otherData?[K_AVATAR]
-        ..$checkIns = otherData?[K_CHECK_INS]
-        ..$checkOuts = otherData?[K_CHECK_OUTS]
+        ..$clockIns = otherData?[K_CLOCK_INS]
+        ..$clockOuts = otherData?[K_CLOCK_OUTS]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
@@ -278,8 +278,8 @@ class ModelJobPub extends _ModelJobPub {
     try {
       final withNulls = <String, dynamic>{
         K_AVATAR: this.$avatar,
-        K_CHECK_INS: this.$checkIns,
-        K_CHECK_OUTS: this.$checkOuts,
+        K_CLOCK_INS: this.$clockIns,
+        K_CLOCK_OUTS: this.$clockOuts,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
@@ -337,11 +337,11 @@ class ModelJobPub extends _ModelJobPub {
       if (other.avatar != null) {
         this.avatar = other.avatar!;
       }
-      if (other.checkIns != null) {
-        this.checkIns = other.checkIns!;
+      if (other.clockIns != null) {
+        this.clockIns = other.clockIns!;
       }
-      if (other.checkOuts != null) {
-        this.checkOuts = other.checkOuts!;
+      if (other.clockOuts != null) {
+        this.clockOuts = other.clockOuts!;
       }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
@@ -415,12 +415,12 @@ class ModelJobPub extends _ModelJobPub {
         return a != null ? ModelFileEntry.fromJson(a) : null;
       }();
 
-  // checkIns.
-  Map<DateTime, String>? get checkInsField => this.checkIns;
-  set checkInsField(Map<DateTime, String>? v) => this.checkIns = v;
+  // clockIns.
+  Map<DateTime, String>? get clockInsField => this.clockIns;
+  set clockInsField(Map<DateTime, String>? v) => this.clockIns = v;
   @protected
-  dynamic get $checkIns => this
-      .checkIns
+  dynamic get $clockIns => this
+      .clockIns
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toUtc()?.toIso8601String(),
@@ -430,7 +430,7 @@ class ModelJobPub extends _ModelJobPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $checkIns(v) => this.checkIns = letMap(v)
+  set $clockIns(v) => this.clockIns = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           () {
@@ -444,12 +444,12 @@ class ModelJobPub extends _ModelJobPub {
       .nullIfEmpty
       ?.cast();
 
-  // checkOuts.
-  Map<DateTime, String>? get checkOutsField => this.checkOuts;
-  set checkOutsField(Map<DateTime, String>? v) => this.checkOuts = v;
+  // clockOuts.
+  Map<DateTime, String>? get clockOutsField => this.clockOuts;
+  set clockOutsField(Map<DateTime, String>? v) => this.clockOuts = v;
   @protected
-  dynamic get $checkOuts => this
-      .checkOuts
+  dynamic get $clockOuts => this
+      .clockOuts
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toUtc()?.toIso8601String(),
@@ -459,7 +459,7 @@ class ModelJobPub extends _ModelJobPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $checkOuts(v) => this.checkOuts = letMap(v)
+  set $clockOuts(v) => this.clockOuts = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           () {

@@ -20,8 +20,8 @@ part '_model_job_pub.g.dart';
   fields: {
     ...PublicBaseModel.FIELDS,
     ('todo_entries?', Map<DateTime, ModelTodoEntry>),
-    ('check_ins?', Map<DateTime, String>),
-    ('check_outs?', Map<DateTime, String>),
+    ('clock_ins?', Map<DateTime, String>),
+    ('clock_outs?', Map<DateTime, String>),
     ('when_opened?', Map<String, DateTime>),
     ('when_closed?', Map<String, DateTime>),
   },
@@ -31,84 +31,84 @@ abstract class _ModelJobPub extends PublicBaseModel<ModelJobPub> {
   //
   //
 
-  bool canCheckIn(String? pid) {
-    final lastCheckIn = this.model.lastCheckInFor(pid);
-    final lastCheckOut = this.model.lastCheckOutFor(pid);
-    if (lastCheckIn != null && lastCheckOut != null) {
-      return lastCheckIn.isBefore(lastCheckOut);
+  bool canClockIn(String? pid) {
+    final lastClockIn = this.model.lastClockInFor(pid);
+    final lastClockOut = this.model.lastClockOutFor(pid);
+    if (lastClockIn != null && lastClockOut != null) {
+      return lastClockIn.isBefore(lastClockOut);
     }
-    if (lastCheckIn == null && lastCheckOut != null) {
+    if (lastClockIn == null && lastClockOut != null) {
       return true;
     }
-    if (lastCheckIn == null && lastCheckOut == null) {
+    if (lastClockIn == null && lastClockOut == null) {
       return true;
     }
     return false;
   }
 
-  DateTime? lastCheckInFor(String? pid) => (this.checkInsFor(pid).toList()..sort()).lastOrNull;
+  DateTime? lastClockInFor(String? pid) => (this.clockInsFor(pid).toList()..sort()).lastOrNull;
 
-  Iterable<DateTime> checkInsFor(String? pid) =>
-      this.model.checkIns?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
+  Iterable<DateTime> clockInsFor(String? pid) =>
+      this.model.clockIns?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
 
-  bool canCheckOut(String? pid) {
-    final lastCheckIn = this.lastCheckInFor(pid);
-    final lastCheckOut = this.lastCheckOutFor(pid);
-    if (lastCheckIn != null && lastCheckOut != null) {
-      return lastCheckIn.isAfter(lastCheckOut);
+  bool canClockOut(String? pid) {
+    final lastClockIn = this.lastClockInFor(pid);
+    final lastClockOut = this.lastClockOutFor(pid);
+    if (lastClockIn != null && lastClockOut != null) {
+      return lastClockIn.isAfter(lastClockOut);
     }
-    if (lastCheckIn != null && lastCheckOut == null) {
+    if (lastClockIn != null && lastClockOut == null) {
       return true;
     }
-     if (lastCheckIn == null && lastCheckOut == null) {
+     if (lastClockIn == null && lastClockOut == null) {
       return false;
     }
     return false;
   }
 
-  DateTime? lastCheckOutFor(String? pid) => (this.checkOutsFor(pid).toList()..sort()).lastOrNull;
+  DateTime? lastClockOutFor(String? pid) => (this.clockOutsFor(pid).toList()..sort()).lastOrNull;
 
-  Iterable<DateTime> checkOutsFor(String? pid) =>
-      this.model.checkOuts?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
+  Iterable<DateTime> clockOutsFor(String? pid) =>
+      this.model.clockOuts?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
 
   //
   //
   //
 
-  Iterable<({DateTime date, Duration? durationSinceCheckIn})> checkedDatesFor(String? pid) {
-    final checkInDates = this.checkInsFor(pid);
-    final checkOutDates = this.checkOutsFor(pid);
+  Iterable<({DateTime date, Duration? durationSinceClockIn})> clockedDatesFor(String? pid) {
+    final clockInDates = this.clockInsFor(pid);
+    final clockOutDates = this.clockOutsFor(pid);
 
-    // Combine and label check-in and check-out dates
+    // Combine and label clock-in and clock-out dates
     final events = <DateTime, bool>{};
-    for (var checkIn in checkInDates) {
-      events[checkIn] = true; // true for check-in
+    for (var clockIn in clockInDates) {
+      events[clockIn] = true; // true for clock-in
     }
-    for (var checkOut in checkOutDates) {
-      events[checkOut] = false; // false for check-out
+    for (var clockOut in clockOutDates) {
+      events[clockOut] = false; // false for clock-out
     }
 
     // Sort the events by date
     final sortedEvents = events.entries.toList()..sort((a, b) => a.key.compareTo(b.key));
 
-    // Prepare to track the last check-in date
-    DateTime? lastCheckIn;
-    final result = Queue<({DateTime date, Duration? durationSinceCheckIn})>();
+    // Prepare to track the last clock-in date
+    DateTime? lastClockIn;
+    final result = Queue<({DateTime date, Duration? durationSinceClockIn})>();
 
     // Iterate through sorted events to calculate durations
     for (var event in sortedEvents) {
       if (event.value) {
-        // It's a check-in date
-        lastCheckIn = event.key;
-        result.addFirst((date: event.key, durationSinceCheckIn: null)); // No duration for check-in
+        // It's a clock-in date
+        lastClockIn = event.key;
+        result.addFirst((date: event.key, durationSinceClockIn: null)); // No duration for clock-in
       } else {
-        // It's a check-out date
-        if (lastCheckIn != null) {
-          final durationSinceCheckIn = event.key.difference(lastCheckIn);
-          result.addFirst((date: event.key, durationSinceCheckIn: durationSinceCheckIn));
+        // It's a clock-out date
+        if (lastClockIn != null) {
+          final durationSinceClockIn = event.key.difference(lastClockIn);
+          result.addFirst((date: event.key, durationSinceClockIn: durationSinceClockIn));
         } else {
-          // If there's no preceding check-in, return null for duration
-          result.addFirst((date: event.key, durationSinceCheckIn: null));
+          // If there's no preceding clock-in, return null for duration
+          result.addFirst((date: event.key, durationSinceClockIn: null));
         }
       }
     }
