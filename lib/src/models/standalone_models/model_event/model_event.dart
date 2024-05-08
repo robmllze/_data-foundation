@@ -17,9 +17,7 @@ part '_model_event.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('deleted_at?', DateTime),
-    ('deleted_by?', String),
+    ...EntryBaseModel.FIELDS,
     ('member_pids', Set<String>),
     ('def_type?', EventDefType),
     ('def?', GenericModel),
@@ -29,10 +27,9 @@ part '_model_event.g.dart';
     ('when_hidden?', Map<String, DateTime>),
     ('when_liked?', Map<String, DateTime>),
     ('when_received?', Map<String, DateTime>),
-    ('when_sent?', Map<String, DateTime>),
   },
 )
-abstract class _ModelEvent extends ThisModel<ModelEvent> {
+abstract class _ModelEvent extends EntryBaseModel<ModelEvent> {
   //
   //
   //
@@ -82,11 +79,11 @@ abstract class _ModelEvent extends ThisModel<ModelEvent> {
   bool get isReceived => this.model.whenReceived?.nullIfEmpty != null;
   bool isReceivedBy({required String id}) => this.model.whenReceived?.keys.contains(id) == true;
 
-  // Sent.
-  Iterable<DateTime> get datesSent => this.model.whenSent?.values ?? [];
-  DateTime? get sentAt => getFirstDate(this.datesSent);
-  String? get sentBy =>
-      this.model.whenSent?.entries.firstWhereOrNull((e) => e.value == this.sentAt)?.key;
-  bool get isSent => this.model.whenSent?.nullIfEmpty != null;
-  bool isSentBy({required String id}) => this.model.whenSent?.keys.contains(id) == true;
+  // // Sent.
+  // Iterable<DateTime> get datesSent => this.model.whenSent?.values ?? [];
+  // DateTime? get sentAt => getFirstDate(this.datesSent);
+  // String? get sentBy =>
+  //     this.model.whenSent?.entries.firstWhereOrNull((e) => e.value == this.sentAt)?.key;
+  // bool get isSent => this.model.whenSent?.nullIfEmpty != null;
+  // bool isSentBy({required String id}) => this.model.whenSent?.keys.contains(id) == true;
 }

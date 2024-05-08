@@ -27,6 +27,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   static const K_COUNTRY_CODE = 'country_code';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
+  static const K_DELETED_AT = 'deleted_at';
+  static const K_DELETED_BY = 'deleted_by';
   static const K_DESCRIPTION = 'description';
   static const K_EXTENSION = 'extension';
   static const K_FULL_NUMBER = 'full_number';
@@ -46,6 +48,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   String? countryCode;
   DateTime? createdAt;
   String? createdBy;
+  DateTime? deletedAt;
+  String? deletedBy;
   String? description;
   String? extension;
   String? fullNumber;
@@ -71,6 +75,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     String? countryCode,
     DateTime? createdAt,
     String? createdBy,
+    DateTime? deletedAt,
+    String? deletedBy,
     String? description,
     String? extension,
     String? fullNumber,
@@ -86,6 +92,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
       countryCode: countryCode,
       createdAt: createdAt,
       createdBy: createdBy,
+      deletedAt: deletedAt,
+      deletedBy: deletedBy,
       description: description,
       extension: extension,
       fullNumber: fullNumber,
@@ -107,6 +115,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     this.countryCode,
     this.createdAt,
     this.createdBy,
+    this.deletedAt,
+    this.deletedBy,
     this.description,
     this.extension,
     this.fullNumber,
@@ -183,6 +193,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
         ..$countryCode = otherData?[K_COUNTRY_CODE]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
+        ..$deletedAt = otherData?[K_DELETED_AT]
+        ..$deletedBy = otherData?[K_DELETED_BY]
         ..$description = otherData?[K_DESCRIPTION]
         ..$extension = otherData?[K_EXTENSION]
         ..$fullNumber = otherData?[K_FULL_NUMBER]
@@ -232,6 +244,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
         K_COUNTRY_CODE: this.$countryCode,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
+        K_DELETED_AT: this.$deletedAt,
+        K_DELETED_BY: this.$deletedBy,
         K_DESCRIPTION: this.$description,
         K_EXTENSION: this.$extension,
         K_FULL_NUMBER: this.$fullNumber,
@@ -286,6 +300,12 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
       }
       if (other.createdBy != null) {
         this.createdBy = other.createdBy!;
+      }
+      if (other.deletedAt != null) {
+        this.deletedAt = other.deletedAt!;
+      }
+      if (other.deletedBy != null) {
+        this.deletedBy = other.deletedBy!;
       }
       if (other.description != null) {
         this.description = other.description!;
@@ -350,6 +370,25 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
   @protected
   set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
+
+  // deletedAt.
+  DateTime? get deletedAtField => this.deletedAt;
+  set deletedAtField(DateTime? v) => this.deletedAt = v;
+  @protected
+  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $deletedAt(v) => this.deletedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // deletedBy.
+  String? get deletedByField => this.deletedBy;
+  set deletedByField(String? v) => this.deletedBy = v;
+  @protected
+  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
   // description.
   String? get descriptionField => this.description;

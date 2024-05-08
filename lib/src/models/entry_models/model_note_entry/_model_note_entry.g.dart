@@ -26,6 +26,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
 
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
+  static const K_DELETED_AT = 'deleted_at';
+  static const K_DELETED_BY = 'deleted_by';
   static const K_DESCRIPTION = 'description';
   static const K_ID = 'id';
   static const K_LAST_MODIFIED_AT = 'last_modified_at';
@@ -41,6 +43,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
 
   DateTime? createdAt;
   String? createdBy;
+  DateTime? deletedAt;
+  String? deletedBy;
   String? description;
   String? id;
   DateTime? lastModifiedAt;
@@ -62,6 +66,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
   factory ModelNoteEntry({
     DateTime? createdAt,
     String? createdBy,
+    DateTime? deletedAt,
+    String? deletedBy,
     String? description,
     String? id,
     DateTime? lastModifiedAt,
@@ -73,6 +79,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
     return ModelNoteEntry.b(
       createdAt: createdAt,
       createdBy: createdBy,
+      deletedAt: deletedAt,
+      deletedBy: deletedBy,
       description: description,
       id: id,
       lastModifiedAt: lastModifiedAt,
@@ -90,6 +98,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
   ModelNoteEntry.b({
     this.createdAt,
     this.createdBy,
+    this.deletedAt,
+    this.deletedBy,
     this.description,
     this.id,
     this.lastModifiedAt,
@@ -162,6 +172,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
       return ModelNoteEntry.empty()
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
+        ..$deletedAt = otherData?[K_DELETED_AT]
+        ..$deletedBy = otherData?[K_DELETED_BY]
         ..$description = otherData?[K_DESCRIPTION]
         ..$id = otherData?[K_ID]
         ..$lastModifiedAt = otherData?[K_LAST_MODIFIED_AT]
@@ -207,6 +219,8 @@ class ModelNoteEntry extends _ModelNoteEntry {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
+        K_DELETED_AT: this.$deletedAt,
+        K_DELETED_BY: this.$deletedBy,
         K_DESCRIPTION: this.$description,
         K_ID: this.$id,
         K_LAST_MODIFIED_AT: this.$lastModifiedAt,
@@ -256,6 +270,12 @@ class ModelNoteEntry extends _ModelNoteEntry {
       if (other.createdBy != null) {
         this.createdBy = other.createdBy!;
       }
+      if (other.deletedAt != null) {
+        this.deletedAt = other.deletedAt!;
+      }
+      if (other.deletedBy != null) {
+        this.deletedBy = other.deletedBy!;
+      }
       if (other.description != null) {
         this.description = other.description!;
       }
@@ -302,6 +322,25 @@ class ModelNoteEntry extends _ModelNoteEntry {
   dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
   @protected
   set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
+
+  // deletedAt.
+  DateTime? get deletedAtField => this.deletedAt;
+  set deletedAtField(DateTime? v) => this.deletedAt = v;
+  @protected
+  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $deletedAt(v) => this.deletedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // deletedBy.
+  String? get deletedByField => this.deletedBy;
+  set deletedByField(String? v) => this.deletedBy = v;
+  @protected
+  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
   // description.
   String? get descriptionField => this.description;

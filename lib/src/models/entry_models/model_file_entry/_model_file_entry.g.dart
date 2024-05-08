@@ -27,6 +27,8 @@ class ModelFileEntry extends _ModelFileEntry {
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DEFINITION_PATH = 'definition_path';
+  static const K_DELETED_AT = 'deleted_at';
+  static const K_DELETED_BY = 'deleted_by';
   static const K_DESCRIPTION = 'description';
   static const K_DOWNLOAD_URL = 'download_url';
   static const K_EXTENSION = 'extension';
@@ -47,6 +49,8 @@ class ModelFileEntry extends _ModelFileEntry {
   DateTime? createdAt;
   String? createdBy;
   List<String>? definitionPath;
+  DateTime? deletedAt;
+  String? deletedBy;
   String? description;
   Uri? downloadUrl;
   String? extension;
@@ -73,6 +77,8 @@ class ModelFileEntry extends _ModelFileEntry {
     DateTime? createdAt,
     String? createdBy,
     List<String>? definitionPath,
+    DateTime? deletedAt,
+    String? deletedBy,
     String? description,
     Uri? downloadUrl,
     String? extension,
@@ -89,6 +95,8 @@ class ModelFileEntry extends _ModelFileEntry {
       createdAt: createdAt,
       createdBy: createdBy,
       definitionPath: definitionPath,
+      deletedAt: deletedAt,
+      deletedBy: deletedBy,
       description: description,
       downloadUrl: downloadUrl,
       extension: extension,
@@ -111,6 +119,8 @@ class ModelFileEntry extends _ModelFileEntry {
     this.createdAt,
     this.createdBy,
     this.definitionPath,
+    this.deletedAt,
+    this.deletedBy,
     this.description,
     this.downloadUrl,
     this.extension,
@@ -188,6 +198,8 @@ class ModelFileEntry extends _ModelFileEntry {
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$definitionPath = otherData?[K_DEFINITION_PATH]
+        ..$deletedAt = otherData?[K_DELETED_AT]
+        ..$deletedBy = otherData?[K_DELETED_BY]
         ..$description = otherData?[K_DESCRIPTION]
         ..$downloadUrl = otherData?[K_DOWNLOAD_URL]
         ..$extension = otherData?[K_EXTENSION]
@@ -238,6 +250,8 @@ class ModelFileEntry extends _ModelFileEntry {
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DEFINITION_PATH: this.$definitionPath,
+        K_DELETED_AT: this.$deletedAt,
+        K_DELETED_BY: this.$deletedBy,
         K_DESCRIPTION: this.$description,
         K_DOWNLOAD_URL: this.$downloadUrl,
         K_EXTENSION: this.$extension,
@@ -293,6 +307,12 @@ class ModelFileEntry extends _ModelFileEntry {
       }
       if (other.definitionPath != null) {
         this.definitionPath = other.definitionPath!;
+      }
+      if (other.deletedAt != null) {
+        this.deletedAt = other.deletedAt!;
+      }
+      if (other.deletedBy != null) {
+        this.deletedBy = other.deletedBy!;
       }
       if (other.description != null) {
         this.description = other.description!;
@@ -374,6 +394,25 @@ class ModelFileEntry extends _ModelFileEntry {
       .nullIfEmpty
       ?.toList()
       .cast();
+
+  // deletedAt.
+  DateTime? get deletedAtField => this.deletedAt;
+  set deletedAtField(DateTime? v) => this.deletedAt = v;
+  @protected
+  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $deletedAt(v) => this.deletedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // deletedBy.
+  String? get deletedByField => this.deletedBy;
+  set deletedByField(String? v) => this.deletedBy = v;
+  @protected
+  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
   // description.
   String? get descriptionField => this.description;

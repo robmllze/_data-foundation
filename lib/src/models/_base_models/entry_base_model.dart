@@ -24,6 +24,8 @@ abstract class EntryBaseModel<T extends Model> extends ThisModel<T> {
     ('description?', String),
     ('created_at?', DateTime),
     ('created_by?', String),
+    ('deleted_at?', DateTime),
+    ('deleted_by?', String),
     ('last_modified_at?', DateTime),
     ('last_modified_by?', String),
   };
