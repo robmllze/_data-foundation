@@ -148,11 +148,9 @@ abstract class _ModelRelationship extends PublicBaseModel<ModelRelationship> {
   Set<String> extractMemberPids({
     required Iterable<String> memberPidPrefixes,
   }) {
-    return this
-            .model
-            .memberPids
-            ?.where((a) => memberPidPrefixes.any((b) => a.startsWith(b)))
-            .toSet() ??
-        {};
+    final memberPids = this.model.memberPids ?? {};
+    return memberPidPrefixes.isNotEmpty
+        ? memberPids.where((a) => memberPidPrefixes.any((b) => a.startsWith(b))).toSet()
+        : memberPids;
   }
 }
