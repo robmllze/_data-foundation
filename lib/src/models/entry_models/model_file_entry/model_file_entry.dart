@@ -44,6 +44,14 @@ abstract class _ModelFileEntry extends EntryBaseModel<ModelFileEntry> {
   //
   //
 
+  bool isAvatarImage() =>
+      this.model.isFlutterImageExtension() &&
+      this.model.definitionPathStartsWith(FileSchema.AVATAR_IMAGE);
+
+  //
+  //
+  //
+
   bool _isAnyExtension(List<String> extensions) =>
       extensions.map((e) => e.toLowerCase()).contains(this.model.extension);
 
