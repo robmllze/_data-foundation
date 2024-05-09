@@ -27,7 +27,7 @@ abstract final class Schema {
     return DataRef(
       id: fileId,
       tableName: 'files',
-      collectionPath: 'files',
+      collection: const ['files'],
     );
   }
 
@@ -39,7 +39,7 @@ abstract final class Schema {
     return DataRef(
       id: invitationId,
       tableName: 'invitations',
-      collectionPath: 'invitations',
+      collection: const ['invitations'],
     );
   }
 
@@ -51,7 +51,7 @@ abstract final class Schema {
     return DataRef(
       id: eventId,
       tableName: 'events',
-      collectionPath: 'events',
+      collection: const ['events'],
     );
   }
 
@@ -63,7 +63,7 @@ abstract final class Schema {
     return DataRef(
       id: eventId,
       tableName: 'messages',
-      collectionPath: 'messages',
+      collection: const ['messages'],
     );
   }
 
@@ -76,7 +76,7 @@ abstract final class Schema {
     return DataRef(
       id: eventId,
       tableName: 'relationship_messages',
-      collectionPath: 'relationships/$relationshipId/messages',
+      collection: ['relationships', '$relationshipId', 'messages'],
     );
   }
 
@@ -88,7 +88,7 @@ abstract final class Schema {
     return DataRef(
       id: userId,
       tableName: 'users',
-      collectionPath: 'users',
+      collection: const ['users'],
     );
   }
 
@@ -100,7 +100,7 @@ abstract final class Schema {
     return DataRef(
       id: userPid,
       tableName: 'user_pubs',
-      collectionPath: 'user_pubs',
+      collection: const ['user_pubs'],
     );
   }
 
@@ -113,7 +113,7 @@ abstract final class Schema {
     return DataRef(
       id: eventId,
       tableName: 'user_events',
-      collectionPath: 'user_pubs/$userPid/events',
+      collection: ['user_pubs', '$userPid', 'events'],
     );
   }
 
@@ -125,7 +125,7 @@ abstract final class Schema {
     return DataRef(
       id: relationshipId,
       tableName: 'relationships',
-      collectionPath: 'relationships',
+      collection: const ['relationships'],
     );
   }
 
@@ -138,7 +138,7 @@ abstract final class Schema {
     return DataRef(
       id: eventId,
       tableName: 'relationship_events',
-      collectionPath: 'relationships/$relationshipId/events',
+      collection: ['relationships', '$relationshipId', 'events'],
     );
   }
 
@@ -150,7 +150,7 @@ abstract final class Schema {
     return DataRef(
       id: projectId,
       tableName: 'projects',
-      collectionPath: 'projects',
+      collection: const ['projects'],
     );
   }
 
@@ -162,7 +162,7 @@ abstract final class Schema {
     return DataRef(
       id: projectPid,
       tableName: 'project_pubs',
-      collectionPath: 'project_pubs',
+      collection: const ['project_pubs'],
     );
   }
 
@@ -174,7 +174,7 @@ abstract final class Schema {
     return DataRef(
       id: jobId,
       tableName: 'jobs',
-      collectionPath: 'jobs',
+      collection: const ['jobs'],
     );
   }
 
@@ -186,7 +186,7 @@ abstract final class Schema {
     return DataRef(
       id: jobPid,
       tableName: 'job_pubs',
-      collectionPath: 'job_pubs',
+      collection: const ['job_pubs'],
     );
   }
 
@@ -198,7 +198,7 @@ abstract final class Schema {
     return DataRef(
       id: organizationId,
       tableName: 'organizations',
-      collectionPath: 'organizations',
+      collection: const ['organizations'],
     );
   }
 
@@ -210,7 +210,7 @@ abstract final class Schema {
     return DataRef(
       id: organizationPid,
       tableName: 'organization_pubs',
-      collectionPath: 'organization_pubs',
+      collection: const ['organization_pubs'],
     );
   }
 }
