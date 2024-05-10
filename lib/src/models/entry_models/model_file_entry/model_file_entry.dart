@@ -46,7 +46,8 @@ abstract class _ModelFileEntry extends EntryBaseModel<ModelFileEntry> {
 
   bool isAvatarImage() {
     return this.model.isFlutterImageExtension() &&
-        this.model.definitionPathStartsWith(FileSchema.AVATAR_IMAGE);
+        this.model.definitionPathStartsWith(FileSchema.PUBLIC_FILES) &&
+        this.model.id == AVATAR_IMAGE_ID;
   }
 
   bool isProfileFile() {
@@ -114,3 +115,5 @@ const AUDIOPLAYERS_SUPPORTED_EXTENSIONS = [
   'flac',
   'opus',
 ];
+
+const AVATAR_IMAGE_ID = 'avatar';
