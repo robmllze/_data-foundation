@@ -69,7 +69,7 @@ abstract final class Schema {
 
   // Relationship Messages.
 
-  static DataRef relationshipMessagesRef({
+  static DataRef relationshipMessageEventsRef({
     String? relationshipId,
     String? eventId,
   }) {
