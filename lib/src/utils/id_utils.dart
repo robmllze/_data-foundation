@@ -28,17 +28,17 @@ final class IdUtils {
   // Relationship ID
   //
 
-  static const RELATIONSHIP_ID_PPREFIX = 'r';
+  static const RELATIONSHIP_ID_PREFIX = 'r';
 
-  static String newRelationshipId() => _newPidV4(prefix: RELATIONSHIP_ID_PPREFIX);
+  static String newRelationshipId() => _newPidV4(prefix: RELATIONSHIP_ID_PREFIX);
 
   //
   // Event ID
   //
 
-  static const EVENT_ID_PPREFIX = 'e';
+  static const EVENT_ID_PREFIX = 'e';
 
-  static String newEventId() => _newPidV4(prefix: EVENT_ID_PPREFIX);
+  static String newEventId() => _newPidV4(prefix: EVENT_ID_PREFIX);
 
   //
   // User PID
@@ -73,9 +73,9 @@ final class IdUtils {
   // Job PID
   //
 
-  static const JOB_PID_PPREFIX = 'pj';
+  static const JOB_PID_PREFIX = 'pj';
 
-  static bool isJobPid(String pid) => hasPrefix(pid, JOB_PID_PPREFIX);
+  static bool isJobPid(String pid) => hasPrefix(pid, JOB_PID_PREFIX);
 
   static String idToJobPid({
     required String seed,
@@ -84,7 +84,7 @@ final class IdUtils {
     return idToPid(
       seed: seed,
       id: jobId,
-      prefix: JOB_PID_PPREFIX,
+      prefix: JOB_PID_PREFIX,
     );
   }
 
@@ -92,9 +92,9 @@ final class IdUtils {
   // Project PID
   //
 
-  static const PROJECT_PID_PPREFIX = 'pp';
+  static const PROJECT_PID_PREFIX = 'pp';
 
-  static bool isProjectPid(String pid) => hasPrefix(pid, PROJECT_PID_PPREFIX);
+  static bool isProjectPid(String pid) => hasPrefix(pid, PROJECT_PID_PREFIX);
 
   static String idToProjectPid({
     required String seed,
@@ -103,7 +103,7 @@ final class IdUtils {
     return idToPid(
       seed: seed,
       id: projectId,
-      prefix: PROJECT_PID_PPREFIX,
+      prefix: PROJECT_PID_PREFIX,
     );
   }
 
@@ -111,9 +111,9 @@ final class IdUtils {
   // Organization PID
   //
 
-  static const ORGANIZATION_PID_PPREFIX = 'po';
+  static const ORGANIZATION_PID_PREFIX = 'po';
 
-  static bool isOrganizationPid(String pid) => hasPrefix(pid, ORGANIZATION_PID_PPREFIX);
+  static bool isOrganizationPid(String pid) => hasPrefix(pid, ORGANIZATION_PID_PREFIX);
 
   static String idToOrganizationPid({
     required String seed,
@@ -122,7 +122,7 @@ final class IdUtils {
     return idToPid(
       seed: seed,
       id: organizationId,
-      prefix: ORGANIZATION_PID_PPREFIX,
+      prefix: ORGANIZATION_PID_PREFIX,
     );
   }
 
