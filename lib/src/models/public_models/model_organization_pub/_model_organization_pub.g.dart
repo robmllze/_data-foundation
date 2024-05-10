@@ -24,7 +24,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
 
-  static const K_AVATAR = 'avatar';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DELETED_AT = 'deleted_at';
@@ -33,6 +32,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_EMAIL = 'email';
+  static const K_FILES = 'files';
   static const K_ID = 'id';
   static const K_OTHER_ADDRESSES = 'other_addresses';
   static const K_OTHER_EMAILS = 'other_emails';
@@ -46,7 +46,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   @override
   String get $class => CLASS;
 
-  ModelFileEntry? avatar;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
@@ -55,10 +54,11 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   String? displayName;
   String? displayNameSearchable;
   String? email;
+  Map<String, ModelFileEntry>? files;
   String? id;
   Set<ModelAddressEntry>? otherAddresses;
   Set<ModelEmailEntry>? otherEmails;
-  Set<ModelEmailEntry>? otherPhones;
+  Set<ModelPhoneEntry>? otherPhones;
   ModelAddressEntry? primaryAddress;
   ModelEmailEntry? primaryEmail;
   ModelPhoneEntry? primaryPhone;
@@ -74,7 +74,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
 
   factory ModelOrganizationPub({
-    ModelFileEntry? avatar,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
@@ -83,16 +82,16 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     String? displayName,
     String? displayNameSearchable,
     String? email,
+    Map<String, ModelFileEntry>? files,
     String? id,
     Set<ModelAddressEntry>? otherAddresses,
     Set<ModelEmailEntry>? otherEmails,
-    Set<ModelEmailEntry>? otherPhones,
+    Set<ModelPhoneEntry>? otherPhones,
     ModelAddressEntry? primaryAddress,
     ModelEmailEntry? primaryEmail,
     ModelPhoneEntry? primaryPhone,
   }) {
     return ModelOrganizationPub.b(
-      avatar: avatar,
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
@@ -101,6 +100,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
       email: email,
+      files: files,
       id: id,
       otherAddresses: otherAddresses,
       otherEmails: otherEmails,
@@ -116,7 +116,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
 
   ModelOrganizationPub.b({
-    this.avatar,
     this.createdAt,
     this.createdBy,
     this.deletedAt,
@@ -125,6 +124,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     this.displayName,
     this.displayNameSearchable,
     this.email,
+    this.files,
     this.id,
     this.otherAddresses,
     this.otherEmails,
@@ -195,7 +195,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   ) {
     try {
       return ModelOrganizationPub.empty()
-        ..$avatar = otherData?[K_AVATAR]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
@@ -204,6 +203,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$email = otherData?[K_EMAIL]
+        ..$files = otherData?[K_FILES]
         ..$id = otherData?[K_ID]
         ..$otherAddresses = otherData?[K_OTHER_ADDRESSES]
         ..$otherEmails = otherData?[K_OTHER_EMAILS]
@@ -247,7 +247,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_AVATAR: this.$avatar,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
@@ -256,6 +255,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_EMAIL: this.$email,
+        K_FILES: this.$files,
         K_ID: this.$id,
         K_OTHER_ADDRESSES: this.$otherAddresses,
         K_OTHER_EMAILS: this.$otherEmails,
@@ -299,9 +299,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelOrganizationPub.fromJson(otherData);
-      if (other.avatar != null) {
-        this.avatar = other.avatar!;
-      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -325,6 +322,9 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       }
       if (other.email != null) {
         this.email = other.email!;
+      }
+      if (other.files != null) {
+        this.files = other.files!;
       }
       if (other.id != null) {
         this.id = other.id!;
@@ -353,17 +353,6 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
   //
-
-  // avatar.
-  ModelFileEntry? get avatarField => this.avatar;
-  set avatarField(ModelFileEntry? v) => this.avatar = v;
-  @protected
-  dynamic get $avatar => this.avatar?.toJson();
-  @protected
-  set $avatar(v) => this.avatar = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelFileEntry.fromJson(a) : null;
-      }();
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -443,6 +432,35 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   @protected
   set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
+  // files.
+  Map<String, ModelFileEntry>? get filesField => this.files;
+  set filesField(Map<String, ModelFileEntry>? v) => this.files = v;
+  @protected
+  dynamic get $files => this
+      .files
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $files(v) => this.files = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = letMap<String, dynamic>(p1);
+            return a != null ? ModelFileEntry.fromJson(a) : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -502,8 +520,8 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       .cast();
 
   // otherPhones.
-  Set<ModelEmailEntry>? get otherPhonesField => this.otherPhones;
-  set otherPhonesField(Set<ModelEmailEntry>? v) => this.otherPhones = v;
+  Set<ModelPhoneEntry>? get otherPhonesField => this.otherPhones;
+  set otherPhonesField(Set<ModelPhoneEntry>? v) => this.otherPhones = v;
   @protected
   dynamic get $otherPhones => this
       .otherPhones
@@ -518,7 +536,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelEmailEntry.fromJson(a) : null;
+          return a != null ? ModelPhoneEntry.fromJson(a) : null;
         }(),
       )
       .nonNulls

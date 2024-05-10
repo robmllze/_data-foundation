@@ -18,7 +18,6 @@ part '_model_relationship.g.dart';
   shouldInherit: true,
   fields: {
     ...PublicBaseModel.FIELDS,
-    ('files?', Map<String, ModelFileEntry>),
     ('member_pids?', Set<String>),
     ('when_disabled?', Map<String, DateTime>),
     ('when_enabled?', Map<String, DateTime>),

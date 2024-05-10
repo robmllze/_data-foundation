@@ -8,6 +8,7 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import '../../../lib.dart';
 import '/_common.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -19,7 +20,6 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
 
   static const FIELDS = {
     ('id?', String),
-    ('avatar?', ModelFileEntry),
     ('display_name?', String),
     ('display_name_searchable?', T_SEARCHABLE_STRING),
     ('email?', T_LOWER_CASE_STRING),
@@ -33,14 +33,15 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
     ('primary_email?', ModelEmailEntry),
     ('other_emails?', Set<ModelEmailEntry>),
     ('primary_phone?', ModelPhoneEntry),
-    ('other_phones?', Set<ModelEmailEntry>),
+    ('other_phones?', Set<ModelPhoneEntry>),
+    ('files?', Map<String, ModelFileEntry>),
   };
 
   //
   //
   //
 
-  String? id;
+  //String? id;
   String? displayName;
   String? displayNameSearchable;
   String? email;
@@ -48,4 +49,40 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
   String? createdBy;
   DateTime? deletedAt;
   String? deletedBy;
+  String? description;
+  ModelAddressEntry? primaryAddress;
+  Set<ModelAddressEntry>? otherAddresses;
+  ModelEmailEntry? primaryEmail;
+  Set<ModelEmailEntry>? otherEmails;
+  ModelPhoneEntry? primaryPhone;
+  Set<ModelPhoneEntry>? otherPhones;
+  Map<String, ModelFileEntry>? files;
+
+  //
+  //
+  //
+
+  Iterable<String>? get fileDownloadUrls {
+    return this.files?.values.map((e) => e.downloadUrl.toString());
+  }
+
+  String? get avatarImageDownloadUrl {
+    return this.avatarImage?.downloadUrl.toString();
+  }
+
+  ModelFileEntry? get avatarImage {
+    return this.files?.values.firstWhereOrNull((e) => e.isAvatarImage());
+  }
+
+  bool isUploadingFile(String fileId) {
+    final a = this.files?[fileId];
+    final b = a != null && a.downloadUrl == null;
+    return b;
+  }
+
+  bool isUploadingAvatarImage() {
+    final a = this.avatarImage;
+    final b = a != null && a.downloadUrl == null;
+    return b;
+  }
 }

@@ -24,7 +24,6 @@ class ModelRelationship extends _ModelRelationship {
   //
   //
 
-  static const K_AVATAR = 'avatar';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DEF = 'def';
@@ -53,7 +52,6 @@ class ModelRelationship extends _ModelRelationship {
   @override
   String get $class => CLASS;
 
-  ModelFileEntry? avatar;
   DateTime? createdAt;
   String? createdBy;
   GenericModel? def;
@@ -69,7 +67,7 @@ class ModelRelationship extends _ModelRelationship {
   Set<String>? memberPids;
   Set<ModelAddressEntry>? otherAddresses;
   Set<ModelEmailEntry>? otherEmails;
-  Set<ModelEmailEntry>? otherPhones;
+  Set<ModelPhoneEntry>? otherPhones;
   ModelAddressEntry? primaryAddress;
   ModelEmailEntry? primaryEmail;
   ModelPhoneEntry? primaryPhone;
@@ -88,7 +86,6 @@ class ModelRelationship extends _ModelRelationship {
   //
 
   factory ModelRelationship({
-    ModelFileEntry? avatar,
     DateTime? createdAt,
     String? createdBy,
     GenericModel? def,
@@ -104,7 +101,7 @@ class ModelRelationship extends _ModelRelationship {
     Set<String>? memberPids,
     Set<ModelAddressEntry>? otherAddresses,
     Set<ModelEmailEntry>? otherEmails,
-    Set<ModelEmailEntry>? otherPhones,
+    Set<ModelPhoneEntry>? otherPhones,
     ModelAddressEntry? primaryAddress,
     ModelEmailEntry? primaryEmail,
     ModelPhoneEntry? primaryPhone,
@@ -113,7 +110,6 @@ class ModelRelationship extends _ModelRelationship {
     Map<String, DateTime>? whenNoted,
   }) {
     return ModelRelationship.b(
-      avatar: avatar,
       createdAt: createdAt,
       createdBy: createdBy,
       def: def,
@@ -144,7 +140,6 @@ class ModelRelationship extends _ModelRelationship {
   //
 
   ModelRelationship.b({
-    this.avatar,
     this.createdAt,
     this.createdBy,
     this.def,
@@ -230,7 +225,6 @@ class ModelRelationship extends _ModelRelationship {
   ) {
     try {
       return ModelRelationship.empty()
-        ..$avatar = otherData?[K_AVATAR]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$def = otherData?[K_DEF]
@@ -289,7 +283,6 @@ class ModelRelationship extends _ModelRelationship {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_AVATAR: this.$avatar,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DEF: this.$def,
@@ -348,9 +341,6 @@ class ModelRelationship extends _ModelRelationship {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelRelationship.fromJson(otherData);
-      if (other.avatar != null) {
-        this.avatar = other.avatar!;
-      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -423,17 +413,6 @@ class ModelRelationship extends _ModelRelationship {
   //
   //
   //
-
-  // avatar.
-  ModelFileEntry? get avatarField => this.avatar;
-  set avatarField(ModelFileEntry? v) => this.avatar = v;
-  @protected
-  dynamic get $avatar => this.avatar?.toJson();
-  @protected
-  set $avatar(v) => this.avatar = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelFileEntry.fromJson(a) : null;
-      }();
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -643,8 +622,8 @@ class ModelRelationship extends _ModelRelationship {
       .cast();
 
   // otherPhones.
-  Set<ModelEmailEntry>? get otherPhonesField => this.otherPhones;
-  set otherPhonesField(Set<ModelEmailEntry>? v) => this.otherPhones = v;
+  Set<ModelPhoneEntry>? get otherPhonesField => this.otherPhones;
+  set otherPhonesField(Set<ModelPhoneEntry>? v) => this.otherPhones = v;
   @protected
   dynamic get $otherPhones => this
       .otherPhones
@@ -659,7 +638,7 @@ class ModelRelationship extends _ModelRelationship {
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelEmailEntry.fromJson(a) : null;
+          return a != null ? ModelPhoneEntry.fromJson(a) : null;
         }(),
       )
       .nonNulls

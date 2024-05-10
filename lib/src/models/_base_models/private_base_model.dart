@@ -31,7 +31,7 @@ abstract class PrivateBaseModel<T extends Model> extends ThisModel<T> {
   //
   //
 
-  String? id;
+  //String? id;
   String? pid;
   String? seed;
   DateTime? createdAt;

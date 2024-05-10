@@ -34,10 +34,14 @@ abstract class EntryBaseModel<T extends Model> extends ThisModel<T> {
   //
   //
 
-  String? id;
+  //String? id;
   String? title;
   String? titleSearchable;
+  String? description;
   DateTime? createdAt;
   String? createdBy;
-  String? description;
+  DateTime? deletedAt;
+  String? deletedBy;
+  DateTime? lastModifiedAt;
+  String? lastModifiedBy;
 }

@@ -24,7 +24,6 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
 
-  static const K_AVATAR = 'avatar';
   static const K_CLOCK_INS = 'clock_ins';
   static const K_CLOCK_OUTS = 'clock_outs';
   static const K_CREATED_AT = 'created_at';
@@ -35,6 +34,7 @@ class ModelJobPub extends _ModelJobPub {
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_EMAIL = 'email';
+  static const K_FILES = 'files';
   static const K_ID = 'id';
   static const K_OTHER_ADDRESSES = 'other_addresses';
   static const K_OTHER_EMAILS = 'other_emails';
@@ -51,7 +51,6 @@ class ModelJobPub extends _ModelJobPub {
   @override
   String get $class => CLASS;
 
-  ModelFileEntry? avatar;
   Map<DateTime, String>? clockIns;
   Map<DateTime, String>? clockOuts;
   DateTime? createdAt;
@@ -62,10 +61,11 @@ class ModelJobPub extends _ModelJobPub {
   String? displayName;
   String? displayNameSearchable;
   String? email;
+  Map<String, ModelFileEntry>? files;
   String? id;
   Set<ModelAddressEntry>? otherAddresses;
   Set<ModelEmailEntry>? otherEmails;
-  Set<ModelEmailEntry>? otherPhones;
+  Set<ModelPhoneEntry>? otherPhones;
   ModelAddressEntry? primaryAddress;
   ModelEmailEntry? primaryEmail;
   ModelPhoneEntry? primaryPhone;
@@ -84,7 +84,6 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   factory ModelJobPub({
-    ModelFileEntry? avatar,
     Map<DateTime, String>? clockIns,
     Map<DateTime, String>? clockOuts,
     DateTime? createdAt,
@@ -95,10 +94,11 @@ class ModelJobPub extends _ModelJobPub {
     String? displayName,
     String? displayNameSearchable,
     String? email,
+    Map<String, ModelFileEntry>? files,
     String? id,
     Set<ModelAddressEntry>? otherAddresses,
     Set<ModelEmailEntry>? otherEmails,
-    Set<ModelEmailEntry>? otherPhones,
+    Set<ModelPhoneEntry>? otherPhones,
     ModelAddressEntry? primaryAddress,
     ModelEmailEntry? primaryEmail,
     ModelPhoneEntry? primaryPhone,
@@ -107,7 +107,6 @@ class ModelJobPub extends _ModelJobPub {
     Map<String, DateTime>? whenOpened,
   }) {
     return ModelJobPub.b(
-      avatar: avatar,
       clockIns: clockIns,
       clockOuts: clockOuts,
       createdAt: createdAt,
@@ -118,6 +117,7 @@ class ModelJobPub extends _ModelJobPub {
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
       email: email,
+      files: files,
       id: id,
       otherAddresses: otherAddresses,
       otherEmails: otherEmails,
@@ -136,7 +136,6 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   ModelJobPub.b({
-    this.avatar,
     this.clockIns,
     this.clockOuts,
     this.createdAt,
@@ -147,6 +146,7 @@ class ModelJobPub extends _ModelJobPub {
     this.displayName,
     this.displayNameSearchable,
     this.email,
+    this.files,
     this.id,
     this.otherAddresses,
     this.otherEmails,
@@ -220,7 +220,6 @@ class ModelJobPub extends _ModelJobPub {
   ) {
     try {
       return ModelJobPub.empty()
-        ..$avatar = otherData?[K_AVATAR]
         ..$clockIns = otherData?[K_CLOCK_INS]
         ..$clockOuts = otherData?[K_CLOCK_OUTS]
         ..$createdAt = otherData?[K_CREATED_AT]
@@ -231,6 +230,7 @@ class ModelJobPub extends _ModelJobPub {
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$email = otherData?[K_EMAIL]
+        ..$files = otherData?[K_FILES]
         ..$id = otherData?[K_ID]
         ..$otherAddresses = otherData?[K_OTHER_ADDRESSES]
         ..$otherEmails = otherData?[K_OTHER_EMAILS]
@@ -277,7 +277,6 @@ class ModelJobPub extends _ModelJobPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_AVATAR: this.$avatar,
         K_CLOCK_INS: this.$clockIns,
         K_CLOCK_OUTS: this.$clockOuts,
         K_CREATED_AT: this.$createdAt,
@@ -288,6 +287,7 @@ class ModelJobPub extends _ModelJobPub {
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_EMAIL: this.$email,
+        K_FILES: this.$files,
         K_ID: this.$id,
         K_OTHER_ADDRESSES: this.$otherAddresses,
         K_OTHER_EMAILS: this.$otherEmails,
@@ -334,9 +334,6 @@ class ModelJobPub extends _ModelJobPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelJobPub.fromJson(otherData);
-      if (other.avatar != null) {
-        this.avatar = other.avatar!;
-      }
       if (other.clockIns != null) {
         this.clockIns = other.clockIns!;
       }
@@ -366,6 +363,9 @@ class ModelJobPub extends _ModelJobPub {
       }
       if (other.email != null) {
         this.email = other.email!;
+      }
+      if (other.files != null) {
+        this.files = other.files!;
       }
       if (other.id != null) {
         this.id = other.id!;
@@ -403,17 +403,6 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
   //
-
-  // avatar.
-  ModelFileEntry? get avatarField => this.avatar;
-  set avatarField(ModelFileEntry? v) => this.avatar = v;
-  @protected
-  dynamic get $avatar => this.avatar?.toJson();
-  @protected
-  set $avatar(v) => this.avatar = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelFileEntry.fromJson(a) : null;
-      }();
 
   // clockIns.
   Map<DateTime, String>? get clockInsField => this.clockIns;
@@ -551,6 +540,35 @@ class ModelJobPub extends _ModelJobPub {
   @protected
   set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
+  // files.
+  Map<String, ModelFileEntry>? get filesField => this.files;
+  set filesField(Map<String, ModelFileEntry>? v) => this.files = v;
+  @protected
+  dynamic get $files => this
+      .files
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $files(v) => this.files = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = letMap<String, dynamic>(p1);
+            return a != null ? ModelFileEntry.fromJson(a) : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -610,8 +628,8 @@ class ModelJobPub extends _ModelJobPub {
       .cast();
 
   // otherPhones.
-  Set<ModelEmailEntry>? get otherPhonesField => this.otherPhones;
-  set otherPhonesField(Set<ModelEmailEntry>? v) => this.otherPhones = v;
+  Set<ModelPhoneEntry>? get otherPhonesField => this.otherPhones;
+  set otherPhonesField(Set<ModelPhoneEntry>? v) => this.otherPhones = v;
   @protected
   dynamic get $otherPhones => this
       .otherPhones
@@ -626,7 +644,7 @@ class ModelJobPub extends _ModelJobPub {
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelEmailEntry.fromJson(a) : null;
+          return a != null ? ModelPhoneEntry.fromJson(a) : null;
         }(),
       )
       .nonNulls
