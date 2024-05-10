@@ -82,19 +82,20 @@ class ModelConnectionRequestAcceptedDef
   factory ModelConnectionRequestAcceptedDef.from(
     Model? other,
   ) {
-    return ModelConnectionRequestAcceptedDef.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelConnectionRequestAcceptedDef? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelConnectionRequestAcceptedDef.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -102,9 +103,20 @@ class ModelConnectionRequestAcceptedDef
   //
 
   factory ModelConnectionRequestAcceptedDef.of(
+    ModelConnectionRequestAcceptedDef other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionRequestAcceptedDef? ofOrNull(
     ModelConnectionRequestAcceptedDef? other,
   ) {
-    return ModelConnectionRequestAcceptedDef.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -112,18 +124,28 @@ class ModelConnectionRequestAcceptedDef
   //
 
   factory ModelConnectionRequestAcceptedDef.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionRequestAcceptedDef? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelConnectionRequestAcceptedDef.fromJson(decoded);
       } else {
         return ModelConnectionRequestAcceptedDef.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -135,14 +157,24 @@ class ModelConnectionRequestAcceptedDef
     Map<String, dynamic>? otherData,
   ) {
     try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionRequestAcceptedDef? fromJsonOrNull(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
       return ModelConnectionRequestAcceptedDef.empty()
         ..$message = otherData?[K_MESSAGE]
         ..$receiverPid = otherData?[K_RECEIVER_PID]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$senderPid = otherData?[K_SENDER_PID];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -154,14 +186,24 @@ class ModelConnectionRequestAcceptedDef
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionRequestAcceptedDef? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelConnectionRequestAcceptedDef.fromJson(uri.queryParameters);
       } else {
         return ModelConnectionRequestAcceptedDef.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

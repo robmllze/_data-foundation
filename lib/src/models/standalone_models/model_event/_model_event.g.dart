@@ -158,19 +158,20 @@ class ModelEvent extends _ModelEvent {
   factory ModelEvent.from(
     Model? other,
   ) {
-    return ModelEvent.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelEvent? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelEvent.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -178,9 +179,20 @@ class ModelEvent extends _ModelEvent {
   //
 
   factory ModelEvent.of(
+    ModelEvent other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelEvent? ofOrNull(
     ModelEvent? other,
   ) {
-    return ModelEvent.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -188,18 +200,28 @@ class ModelEvent extends _ModelEvent {
   //
 
   factory ModelEvent.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelEvent? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelEvent.fromJson(decoded);
       } else {
         return ModelEvent.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -208,6 +230,17 @@ class ModelEvent extends _ModelEvent {
   //
 
   factory ModelEvent.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelEvent? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -232,8 +265,7 @@ class ModelEvent extends _ModelEvent {
         ..$whenRead = otherData?[K_WHEN_READ]
         ..$whenReceived = otherData?[K_WHEN_RECEIVED];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -245,14 +277,24 @@ class ModelEvent extends _ModelEvent {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelEvent? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelEvent.fromJson(uri.queryParameters);
       } else {
         return ModelEvent.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

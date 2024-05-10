@@ -141,19 +141,20 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   factory ModelOrganizationPub.from(
     Model? other,
   ) {
-    return ModelOrganizationPub.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelOrganizationPub? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelOrganizationPub.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -161,9 +162,20 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
 
   factory ModelOrganizationPub.of(
+    ModelOrganizationPub other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelOrganizationPub? ofOrNull(
     ModelOrganizationPub? other,
   ) {
-    return ModelOrganizationPub.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -171,18 +183,28 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
 
   factory ModelOrganizationPub.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelOrganizationPub? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelOrganizationPub.fromJson(decoded);
       } else {
         return ModelOrganizationPub.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -191,6 +213,17 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
 
   factory ModelOrganizationPub.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelOrganizationPub? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -212,8 +245,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         ..$primaryEmail = otherData?[K_PRIMARY_EMAIL]
         ..$primaryPhone = otherData?[K_PRIMARY_PHONE];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -225,14 +257,24 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelOrganizationPub? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelOrganizationPub.fromJson(uri.queryParameters);
       } else {
         return ModelOrganizationPub.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

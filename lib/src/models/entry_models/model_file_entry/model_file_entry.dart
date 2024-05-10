@@ -30,30 +30,36 @@ abstract class _ModelFileEntry extends EntryBaseModel<ModelFileEntry> {
   //
   //
 
-  bool isFlutterImageExtension() => this._isAnyExtension(FLUTTER_IMAGE_SUPPORTED_EXTENSIONS);
-  bool isFlutterVideoExtension() => this._isAnyExtension(FLUTTER_VIDEO_SUPPORTED_EXTENSIONS);
-  bool isAudioPlayersExtension() => this._isAnyExtension(AUDIOPLAYERS_SUPPORTED_EXTENSIONS);
-  bool isSvgExtension() => this._isAnyExtension(['svg']);
-  bool isPdfExtension() => this._isAnyExtension(['pdf']);
-  bool isTextExtension() => this._isAnyExtension(['txt']);
-  bool isJsonExtension() => this._isAnyExtension(['json', 'jsonc']);
-  bool isCsvExtension() => this._isAnyExtension(['csv']);
-  bool isYamlExtension() => this._isAnyExtension(['yaml', 'yml']);
+  bool isFlutterImageExtension() => this._isAnyOfExtensions(FLUTTER_IMAGE_SUPPORTED_EXTENSIONS);
+  bool isFlutterVideoExtension() => this._isAnyOfExtensions(FLUTTER_VIDEO_SUPPORTED_EXTENSIONS);
+  bool isAudioPlayersExtension() => this._isAnyOfExtensions(AUDIOPLAYERS_SUPPORTED_EXTENSIONS);
+  bool isSvgExtension() => this._isAnyOfExtensions(['svg']);
+  bool isPdfExtension() => this._isAnyOfExtensions(['pdf']);
+  bool isTextExtension() => this._isAnyOfExtensions(['txt']);
+  bool isJsonExtension() => this._isAnyOfExtensions(['json', 'jsonc']);
+  bool isCsvExtension() => this._isAnyOfExtensions(['csv']);
+  bool isYamlExtension() => this._isAnyOfExtensions(['yaml', 'yml']);
 
   //
   //
   //
 
-  bool isAvatarImage() =>
-      this.model.isFlutterImageExtension() &&
-      this.model.definitionPathStartsWith(FileSchema.AVATAR_IMAGE);
+  bool isAvatarImage() {
+    return this.model.isFlutterImageExtension() &&
+        this.model.definitionPathStartsWith(FileSchema.AVATAR_IMAGE);
+  }
+
+  bool isProfileFile() {
+    return this.model.definitionPathStartsWith(FileSchema.PROFILE_FILES);
+  }
 
   //
   //
   //
 
-  bool _isAnyExtension(List<String> extensions) =>
-      extensions.map((e) => e.toLowerCase()).contains(this.model.extension);
+  bool _isAnyOfExtensions(List<String> extensions) {
+    return extensions.map((e) => e.toLowerCase()).contains(this.model.extension);
+  }
 
   //
   //

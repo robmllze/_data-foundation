@@ -115,19 +115,20 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   factory ModelScreenConfiguration.from(
     Model? other,
   ) {
-    return ModelScreenConfiguration.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelScreenConfiguration? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelScreenConfiguration.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -135,9 +136,20 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
 
   factory ModelScreenConfiguration.of(
+    ModelScreenConfiguration other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelScreenConfiguration? ofOrNull(
     ModelScreenConfiguration? other,
   ) {
-    return ModelScreenConfiguration.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -145,18 +157,28 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
 
   factory ModelScreenConfiguration.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelScreenConfiguration? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelScreenConfiguration.fromJson(decoded);
       } else {
         return ModelScreenConfiguration.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -165,6 +187,17 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
 
   factory ModelScreenConfiguration.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelScreenConfiguration? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -183,8 +216,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
         ..$previousConfiguration = otherData?[K_PREVIOUS_CONFIGURATION]
         ..$title = otherData?[K_TITLE];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -196,14 +228,24 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelScreenConfiguration? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelScreenConfiguration.fromJson(uri.queryParameters);
       } else {
         return ModelScreenConfiguration.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

@@ -81,19 +81,20 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
   factory ModelRelDisabledDef.from(
     Model? other,
   ) {
-    return ModelRelDisabledDef.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelRelDisabledDef? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelRelDisabledDef.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -101,9 +102,20 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
   //
 
   factory ModelRelDisabledDef.of(
+    ModelRelDisabledDef other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelDisabledDef? ofOrNull(
     ModelRelDisabledDef? other,
   ) {
-    return ModelRelDisabledDef.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -111,18 +123,28 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
   //
 
   factory ModelRelDisabledDef.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelDisabledDef? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelRelDisabledDef.fromJson(decoded);
       } else {
         return ModelRelDisabledDef.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -134,14 +156,24 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
     Map<String, dynamic>? otherData,
   ) {
     try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelDisabledDef? fromJsonOrNull(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
       return ModelRelDisabledDef.empty()
         ..$message = otherData?[K_MESSAGE]
         ..$receiverPid = otherData?[K_RECEIVER_PID]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$senderPid = otherData?[K_SENDER_PID];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -153,14 +185,24 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelDisabledDef? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelRelDisabledDef.fromJson(uri.queryParameters);
       } else {
         return ModelRelDisabledDef.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

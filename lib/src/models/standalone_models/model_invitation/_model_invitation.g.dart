@@ -114,19 +114,20 @@ class ModelInvitation extends _ModelInvitation {
   factory ModelInvitation.from(
     Model? other,
   ) {
-    return ModelInvitation.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelInvitation? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelInvitation.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -134,9 +135,20 @@ class ModelInvitation extends _ModelInvitation {
   //
 
   factory ModelInvitation.of(
+    ModelInvitation other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelInvitation? ofOrNull(
     ModelInvitation? other,
   ) {
-    return ModelInvitation.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -144,18 +156,28 @@ class ModelInvitation extends _ModelInvitation {
   //
 
   factory ModelInvitation.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelInvitation? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelInvitation.fromJson(decoded);
       } else {
         return ModelInvitation.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -164,6 +186,17 @@ class ModelInvitation extends _ModelInvitation {
   //
 
   factory ModelInvitation.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelInvitation? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -179,8 +212,7 @@ class ModelInvitation extends _ModelInvitation {
         ..$inviteeEmails = otherData?[K_INVITEE_EMAILS]
         ..$inviteeRejectedEmails = otherData?[K_INVITEE_REJECTED_EMAILS];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -192,14 +224,24 @@ class ModelInvitation extends _ModelInvitation {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelInvitation? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelInvitation.fromJson(uri.queryParameters);
       } else {
         return ModelInvitation.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

@@ -151,19 +151,20 @@ class ModelProjectPub extends _ModelProjectPub {
   factory ModelProjectPub.from(
     Model? other,
   ) {
-    return ModelProjectPub.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelProjectPub? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelProjectPub.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -171,9 +172,20 @@ class ModelProjectPub extends _ModelProjectPub {
   //
 
   factory ModelProjectPub.of(
+    ModelProjectPub other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelProjectPub? ofOrNull(
     ModelProjectPub? other,
   ) {
-    return ModelProjectPub.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -181,18 +193,28 @@ class ModelProjectPub extends _ModelProjectPub {
   //
 
   factory ModelProjectPub.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelProjectPub? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelProjectPub.fromJson(decoded);
       } else {
         return ModelProjectPub.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -201,6 +223,17 @@ class ModelProjectPub extends _ModelProjectPub {
   //
 
   factory ModelProjectPub.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelProjectPub? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -224,8 +257,7 @@ class ModelProjectPub extends _ModelProjectPub {
         ..$whenClosed = otherData?[K_WHEN_CLOSED]
         ..$whenOpened = otherData?[K_WHEN_OPENED];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -237,14 +269,24 @@ class ModelProjectPub extends _ModelProjectPub {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelProjectPub? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelProjectPub.fromJson(uri.queryParameters);
       } else {
         return ModelProjectPub.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

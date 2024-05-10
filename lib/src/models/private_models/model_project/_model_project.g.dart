@@ -96,19 +96,20 @@ class ModelProject extends _ModelProject {
   factory ModelProject.from(
     Model? other,
   ) {
-    return ModelProject.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelProject? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelProject.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -116,9 +117,20 @@ class ModelProject extends _ModelProject {
   //
 
   factory ModelProject.of(
+    ModelProject other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelProject? ofOrNull(
     ModelProject? other,
   ) {
-    return ModelProject.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -126,18 +138,28 @@ class ModelProject extends _ModelProject {
   //
 
   factory ModelProject.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelProject? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelProject.fromJson(decoded);
       } else {
         return ModelProject.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -146,6 +168,17 @@ class ModelProject extends _ModelProject {
   //
 
   factory ModelProject.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelProject? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -158,8 +191,7 @@ class ModelProject extends _ModelProject {
         ..$pid = otherData?[K_PID]
         ..$seed = otherData?[K_SEED];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -171,14 +203,24 @@ class ModelProject extends _ModelProject {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelProject? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelProject.fromJson(uri.queryParameters);
       } else {
         return ModelProject.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

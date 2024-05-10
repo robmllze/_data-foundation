@@ -141,19 +141,20 @@ class ModelAddressEntry extends _ModelAddressEntry {
   factory ModelAddressEntry.from(
     Model? other,
   ) {
-    return ModelAddressEntry.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelAddressEntry? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelAddressEntry.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -161,9 +162,20 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
 
   factory ModelAddressEntry.of(
+    ModelAddressEntry other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelAddressEntry? ofOrNull(
     ModelAddressEntry? other,
   ) {
-    return ModelAddressEntry.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -171,18 +183,28 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
 
   factory ModelAddressEntry.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelAddressEntry? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelAddressEntry.fromJson(decoded);
       } else {
         return ModelAddressEntry.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -191,6 +213,17 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
 
   factory ModelAddressEntry.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelAddressEntry? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -212,8 +245,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -225,14 +257,24 @@ class ModelAddressEntry extends _ModelAddressEntry {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelAddressEntry? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelAddressEntry.fromJson(uri.queryParameters);
       } else {
         return ModelAddressEntry.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

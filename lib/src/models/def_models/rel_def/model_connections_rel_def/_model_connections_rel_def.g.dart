@@ -66,19 +66,20 @@ class ModelConnectionsRelDef extends Model {
   factory ModelConnectionsRelDef.from(
     Model? other,
   ) {
-    return ModelConnectionsRelDef.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelConnectionsRelDef? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelConnectionsRelDef.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -86,9 +87,20 @@ class ModelConnectionsRelDef extends Model {
   //
 
   factory ModelConnectionsRelDef.of(
+    ModelConnectionsRelDef other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionsRelDef? ofOrNull(
     ModelConnectionsRelDef? other,
   ) {
-    return ModelConnectionsRelDef.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -96,18 +108,28 @@ class ModelConnectionsRelDef extends Model {
   //
 
   factory ModelConnectionsRelDef.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionsRelDef? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelConnectionsRelDef.fromJson(decoded);
       } else {
         return ModelConnectionsRelDef.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -119,11 +141,21 @@ class ModelConnectionsRelDef extends Model {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelConnectionsRelDef.empty()
-        ..$permissions = otherData?[K_PERMISSIONS];
+      return fromJsonOrNull(otherData)!;
     } catch (e) {
       assert(false, e);
       rethrow;
+    }
+  }
+
+  static ModelConnectionsRelDef? fromJsonOrNull(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return ModelConnectionsRelDef.empty()
+        ..$permissions = otherData?[K_PERMISSIONS];
+    } catch (e) {
+      return null;
     }
   }
 
@@ -135,14 +167,24 @@ class ModelConnectionsRelDef extends Model {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionsRelDef? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelConnectionsRelDef.fromJson(uri.queryParameters);
       } else {
         return ModelConnectionsRelDef.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

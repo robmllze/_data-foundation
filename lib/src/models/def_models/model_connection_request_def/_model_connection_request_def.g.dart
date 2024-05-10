@@ -81,19 +81,20 @@ class ModelConnectionRequestDef extends _ModelConnectionRequestDef {
   factory ModelConnectionRequestDef.from(
     Model? other,
   ) {
-    return ModelConnectionRequestDef.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelConnectionRequestDef? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelConnectionRequestDef.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -101,9 +102,20 @@ class ModelConnectionRequestDef extends _ModelConnectionRequestDef {
   //
 
   factory ModelConnectionRequestDef.of(
+    ModelConnectionRequestDef other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionRequestDef? ofOrNull(
     ModelConnectionRequestDef? other,
   ) {
-    return ModelConnectionRequestDef.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -111,18 +123,28 @@ class ModelConnectionRequestDef extends _ModelConnectionRequestDef {
   //
 
   factory ModelConnectionRequestDef.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionRequestDef? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelConnectionRequestDef.fromJson(decoded);
       } else {
         return ModelConnectionRequestDef.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -134,14 +156,24 @@ class ModelConnectionRequestDef extends _ModelConnectionRequestDef {
     Map<String, dynamic>? otherData,
   ) {
     try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionRequestDef? fromJsonOrNull(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
       return ModelConnectionRequestDef.empty()
         ..$message = otherData?[K_MESSAGE]
         ..$receiverPid = otherData?[K_RECEIVER_PID]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$senderPid = otherData?[K_SENDER_PID];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -153,14 +185,24 @@ class ModelConnectionRequestDef extends _ModelConnectionRequestDef {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionRequestDef? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelConnectionRequestDef.fromJson(uri.queryParameters);
       } else {
         return ModelConnectionRequestDef.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

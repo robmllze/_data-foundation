@@ -81,19 +81,20 @@ class ModelRelChangedDef extends _ModelRelChangedDef {
   factory ModelRelChangedDef.from(
     Model? other,
   ) {
-    return ModelRelChangedDef.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelRelChangedDef? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelRelChangedDef.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -101,9 +102,20 @@ class ModelRelChangedDef extends _ModelRelChangedDef {
   //
 
   factory ModelRelChangedDef.of(
+    ModelRelChangedDef other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelChangedDef? ofOrNull(
     ModelRelChangedDef? other,
   ) {
-    return ModelRelChangedDef.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -111,18 +123,28 @@ class ModelRelChangedDef extends _ModelRelChangedDef {
   //
 
   factory ModelRelChangedDef.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelChangedDef? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelRelChangedDef.fromJson(decoded);
       } else {
         return ModelRelChangedDef.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -134,14 +156,24 @@ class ModelRelChangedDef extends _ModelRelChangedDef {
     Map<String, dynamic>? otherData,
   ) {
     try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelChangedDef? fromJsonOrNull(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
       return ModelRelChangedDef.empty()
         ..$message = otherData?[K_MESSAGE]
         ..$receiverPid = otherData?[K_RECEIVER_PID]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$senderPid = otherData?[K_SENDER_PID];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -153,14 +185,24 @@ class ModelRelChangedDef extends _ModelRelChangedDef {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelChangedDef? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelRelChangedDef.fromJson(uri.queryParameters);
       } else {
         return ModelRelChangedDef.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

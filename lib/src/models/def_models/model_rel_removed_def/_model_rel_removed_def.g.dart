@@ -81,19 +81,20 @@ class ModelRelRemovedDef extends _ModelRelRemovedDef {
   factory ModelRelRemovedDef.from(
     Model? other,
   ) {
-    return ModelRelRemovedDef.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelRelRemovedDef? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelRelRemovedDef.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -101,9 +102,20 @@ class ModelRelRemovedDef extends _ModelRelRemovedDef {
   //
 
   factory ModelRelRemovedDef.of(
+    ModelRelRemovedDef other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelRemovedDef? ofOrNull(
     ModelRelRemovedDef? other,
   ) {
-    return ModelRelRemovedDef.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -111,18 +123,28 @@ class ModelRelRemovedDef extends _ModelRelRemovedDef {
   //
 
   factory ModelRelRemovedDef.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelRemovedDef? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelRelRemovedDef.fromJson(decoded);
       } else {
         return ModelRelRemovedDef.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -134,14 +156,24 @@ class ModelRelRemovedDef extends _ModelRelRemovedDef {
     Map<String, dynamic>? otherData,
   ) {
     try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelRemovedDef? fromJsonOrNull(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
       return ModelRelRemovedDef.empty()
         ..$message = otherData?[K_MESSAGE]
         ..$receiverPid = otherData?[K_RECEIVER_PID]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$senderPid = otherData?[K_SENDER_PID];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -153,14 +185,24 @@ class ModelRelRemovedDef extends _ModelRelRemovedDef {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelRemovedDef? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelRelRemovedDef.fromJson(uri.queryParameters);
       } else {
         return ModelRelRemovedDef.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

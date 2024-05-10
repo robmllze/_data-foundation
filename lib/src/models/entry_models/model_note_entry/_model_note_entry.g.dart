@@ -116,19 +116,20 @@ class ModelNoteEntry extends _ModelNoteEntry {
   factory ModelNoteEntry.from(
     Model? other,
   ) {
-    return ModelNoteEntry.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelNoteEntry? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelNoteEntry.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -136,9 +137,20 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
 
   factory ModelNoteEntry.of(
+    ModelNoteEntry other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelNoteEntry? ofOrNull(
     ModelNoteEntry? other,
   ) {
-    return ModelNoteEntry.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -146,18 +158,28 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
 
   factory ModelNoteEntry.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelNoteEntry? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelNoteEntry.fromJson(decoded);
       } else {
         return ModelNoteEntry.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -166,6 +188,17 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
 
   factory ModelNoteEntry.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelNoteEntry? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -182,8 +215,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -195,14 +227,24 @@ class ModelNoteEntry extends _ModelNoteEntry {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelNoteEntry? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelNoteEntry.fromJson(uri.queryParameters);
       } else {
         return ModelNoteEntry.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

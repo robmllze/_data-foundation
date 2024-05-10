@@ -166,19 +166,20 @@ class ModelJobPub extends _ModelJobPub {
   factory ModelJobPub.from(
     Model? other,
   ) {
-    return ModelJobPub.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelJobPub? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelJobPub.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -186,9 +187,20 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   factory ModelJobPub.of(
+    ModelJobPub other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelJobPub? ofOrNull(
     ModelJobPub? other,
   ) {
-    return ModelJobPub.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -196,18 +208,28 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   factory ModelJobPub.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelJobPub? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelJobPub.fromJson(decoded);
       } else {
         return ModelJobPub.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -216,6 +238,17 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   factory ModelJobPub.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelJobPub? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -242,8 +275,7 @@ class ModelJobPub extends _ModelJobPub {
         ..$whenClosed = otherData?[K_WHEN_CLOSED]
         ..$whenOpened = otherData?[K_WHEN_OPENED];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -255,14 +287,24 @@ class ModelJobPub extends _ModelJobPub {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelJobPub? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelJobPub.fromJson(uri.queryParameters);
       } else {
         return ModelJobPub.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

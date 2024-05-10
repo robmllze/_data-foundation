@@ -136,19 +136,20 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   factory ModelPhoneEntry.from(
     Model? other,
   ) {
-    return ModelPhoneEntry.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelPhoneEntry? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelPhoneEntry.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -156,9 +157,20 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   //
 
   factory ModelPhoneEntry.of(
+    ModelPhoneEntry other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelPhoneEntry? ofOrNull(
     ModelPhoneEntry? other,
   ) {
-    return ModelPhoneEntry.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -166,18 +178,28 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   //
 
   factory ModelPhoneEntry.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelPhoneEntry? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelPhoneEntry.fromJson(decoded);
       } else {
         return ModelPhoneEntry.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -186,6 +208,17 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   //
 
   factory ModelPhoneEntry.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelPhoneEntry? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -206,8 +239,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE]
         ..$type = otherData?[K_TYPE];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -219,14 +251,24 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelPhoneEntry? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelPhoneEntry.fromJson(uri.queryParameters);
       } else {
         return ModelPhoneEntry.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

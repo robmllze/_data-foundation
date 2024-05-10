@@ -116,19 +116,20 @@ class ModelUser extends _ModelUser {
   factory ModelUser.from(
     Model? other,
   ) {
-    return ModelUser.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelUser? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelUser.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -136,9 +137,20 @@ class ModelUser extends _ModelUser {
   //
 
   factory ModelUser.of(
+    ModelUser other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelUser? ofOrNull(
     ModelUser? other,
   ) {
-    return ModelUser.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -146,18 +158,28 @@ class ModelUser extends _ModelUser {
   //
 
   factory ModelUser.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelUser? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelUser.fromJson(decoded);
       } else {
         return ModelUser.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -166,6 +188,17 @@ class ModelUser extends _ModelUser {
   //
 
   factory ModelUser.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelUser? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -182,8 +215,7 @@ class ModelUser extends _ModelUser {
         ..$seed = otherData?[K_SEED]
         ..$smsSubscriptions = otherData?[K_SMS_SUBSCRIPTIONS];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -195,14 +227,24 @@ class ModelUser extends _ModelUser {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelUser? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelUser.fromJson(uri.queryParameters);
       } else {
         return ModelUser.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

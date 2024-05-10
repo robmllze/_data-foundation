@@ -141,19 +141,20 @@ class ModelUserPub extends _ModelUserPub {
   factory ModelUserPub.from(
     Model? other,
   ) {
-    return ModelUserPub.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelUserPub? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelUserPub.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -161,9 +162,20 @@ class ModelUserPub extends _ModelUserPub {
   //
 
   factory ModelUserPub.of(
+    ModelUserPub other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelUserPub? ofOrNull(
     ModelUserPub? other,
   ) {
-    return ModelUserPub.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -171,18 +183,28 @@ class ModelUserPub extends _ModelUserPub {
   //
 
   factory ModelUserPub.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelUserPub? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelUserPub.fromJson(decoded);
       } else {
         return ModelUserPub.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -191,6 +213,17 @@ class ModelUserPub extends _ModelUserPub {
   //
 
   factory ModelUserPub.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelUserPub? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -212,8 +245,7 @@ class ModelUserPub extends _ModelUserPub {
         ..$primaryEmail = otherData?[K_PRIMARY_EMAIL]
         ..$primaryPhone = otherData?[K_PRIMARY_PHONE];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -225,14 +257,24 @@ class ModelUserPub extends _ModelUserPub {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelUserPub? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelUserPub.fromJson(uri.queryParameters);
       } else {
         return ModelUserPub.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

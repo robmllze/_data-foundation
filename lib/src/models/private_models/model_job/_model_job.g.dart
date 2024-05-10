@@ -96,19 +96,20 @@ class ModelJob extends _ModelJob {
   factory ModelJob.from(
     Model? other,
   ) {
-    return ModelJob.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelJob? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelJob.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -116,9 +117,20 @@ class ModelJob extends _ModelJob {
   //
 
   factory ModelJob.of(
+    ModelJob other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelJob? ofOrNull(
     ModelJob? other,
   ) {
-    return ModelJob.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -126,18 +138,28 @@ class ModelJob extends _ModelJob {
   //
 
   factory ModelJob.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelJob? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelJob.fromJson(decoded);
       } else {
         return ModelJob.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -146,6 +168,17 @@ class ModelJob extends _ModelJob {
   //
 
   factory ModelJob.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelJob? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -158,8 +191,7 @@ class ModelJob extends _ModelJob {
         ..$pid = otherData?[K_PID]
         ..$seed = otherData?[K_SEED];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -171,14 +203,24 @@ class ModelJob extends _ModelJob {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelJob? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelJob.fromJson(uri.queryParameters);
       } else {
         return ModelJob.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

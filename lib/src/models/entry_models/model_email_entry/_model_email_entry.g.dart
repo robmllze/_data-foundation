@@ -116,19 +116,20 @@ class ModelEmailEntry extends _ModelEmailEntry {
   factory ModelEmailEntry.from(
     Model? other,
   ) {
-    return ModelEmailEntry.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelEmailEntry? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelEmailEntry.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -136,9 +137,20 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
 
   factory ModelEmailEntry.of(
+    ModelEmailEntry other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelEmailEntry? ofOrNull(
     ModelEmailEntry? other,
   ) {
-    return ModelEmailEntry.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -146,18 +158,28 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
 
   factory ModelEmailEntry.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelEmailEntry? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelEmailEntry.fromJson(decoded);
       } else {
         return ModelEmailEntry.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -166,6 +188,17 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
 
   factory ModelEmailEntry.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelEmailEntry? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -182,8 +215,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -195,14 +227,24 @@ class ModelEmailEntry extends _ModelEmailEntry {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelEmailEntry? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelEmailEntry.fromJson(uri.queryParameters);
       } else {
         return ModelEmailEntry.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

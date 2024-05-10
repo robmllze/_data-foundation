@@ -171,19 +171,20 @@ class ModelRelationship extends _ModelRelationship {
   factory ModelRelationship.from(
     Model? other,
   ) {
-    return ModelRelationship.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelRelationship? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelRelationship.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -191,9 +192,20 @@ class ModelRelationship extends _ModelRelationship {
   //
 
   factory ModelRelationship.of(
+    ModelRelationship other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelationship? ofOrNull(
     ModelRelationship? other,
   ) {
-    return ModelRelationship.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -201,18 +213,28 @@ class ModelRelationship extends _ModelRelationship {
   //
 
   factory ModelRelationship.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelationship? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelRelationship.fromJson(decoded);
       } else {
         return ModelRelationship.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -221,6 +243,17 @@ class ModelRelationship extends _ModelRelationship {
   //
 
   factory ModelRelationship.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelationship? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -248,8 +281,7 @@ class ModelRelationship extends _ModelRelationship {
         ..$whenEnabled = otherData?[K_WHEN_ENABLED]
         ..$whenNoted = otherData?[K_WHEN_NOTED];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -261,14 +293,24 @@ class ModelRelationship extends _ModelRelationship {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelRelationship? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelRelationship.fromJson(uri.queryParameters);
       } else {
         return ModelRelationship.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

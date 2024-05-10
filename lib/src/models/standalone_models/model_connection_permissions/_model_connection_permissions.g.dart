@@ -111,19 +111,20 @@ class ModelConnectionPermissions extends Model {
   factory ModelConnectionPermissions.from(
     Model? other,
   ) {
-    return ModelConnectionPermissions.fromJson(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
-    );
+    try {
+      return fromOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
   }
-
-  //
-  //
-  //
 
   static ModelConnectionPermissions? fromOrNull(
     Model? other,
   ) {
-    return other != null ? ModelConnectionPermissions.from(other) : null;
+    return fromJsonOrNull(
+      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+    )!;
   }
 
   //
@@ -131,9 +132,20 @@ class ModelConnectionPermissions extends Model {
   //
 
   factory ModelConnectionPermissions.of(
+    ModelConnectionPermissions other,
+  ) {
+    try {
+      return ofOrNull(other)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionPermissions? ofOrNull(
     ModelConnectionPermissions? other,
   ) {
-    return ModelConnectionPermissions.fromJson(other?.toJson());
+    return fromJsonOrNull(other?.toJson());
   }
 
   //
@@ -141,18 +153,28 @@ class ModelConnectionPermissions extends Model {
   //
 
   factory ModelConnectionPermissions.fromJsonString(
+    String source,
+  ) {
+    try {
+      return fromJsonStringOrNull(source)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionPermissions? fromJsonStringOrNull(
     String? source,
   ) {
     try {
-      if (source != null && source.isNotEmpty) {
+      if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
         return ModelConnectionPermissions.fromJson(decoded);
       } else {
         return ModelConnectionPermissions.empty();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -161,6 +183,17 @@ class ModelConnectionPermissions extends Model {
   //
 
   factory ModelConnectionPermissions.fromJson(
+    Map<String, dynamic>? otherData,
+  ) {
+    try {
+      return fromJsonOrNull(otherData)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionPermissions? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -176,8 +209,7 @@ class ModelConnectionPermissions extends Model {
         ..$readOnlyPermit = otherData?[K_READ_ONLY_PERMIT]
         ..$readOnlyRequest = otherData?[K_READ_ONLY_REQUEST];
     } catch (e) {
-      assert(false, e);
-      rethrow;
+      return null;
     }
   }
 
@@ -189,14 +221,24 @@ class ModelConnectionPermissions extends Model {
     Uri? uri,
   ) {
     try {
+      return fromUriOrNull(uri)!;
+    } catch (e) {
+      assert(false, e);
+      rethrow;
+    }
+  }
+
+  static ModelConnectionPermissions? fromUriOrNull(
+    Uri? uri,
+  ) {
+    try {
       if (uri != null && uri.path == CLASS) {
         return ModelConnectionPermissions.fromJson(uri.queryParameters);
       } else {
         return ModelConnectionPermissions.b();
       }
-    } catch (e) {
-      assert(false, e);
-      rethrow;
+    } catch (_) {
+      return null;
     }
   }
 

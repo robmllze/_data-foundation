@@ -8,7 +8,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import '../../../lib.dart';
 import '/_common.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -63,7 +62,9 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
   //
 
   Iterable<String>? get fileDownloadUrls {
-    return this.files?.values.map((e) => e.downloadUrl.toString());
+    final a = this.sortedFilesByCreatedAt(ascending: false);
+    final b = a?.map((e) => e.downloadUrl.toString());
+    return b;
   }
 
   String? get avatarImageDownloadUrl {
@@ -71,7 +72,9 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
   }
 
   ModelFileEntry? get avatarImage {
-    return this.files?.values.firstWhereOrNull((e) => e.isAvatarImage());
+    final a = this.sortedFilesByCreatedAt(ascending: false);
+    final b = a?.firstWhereOrNull((e) => e.isAvatarImage());
+    return b;
   }
 
   bool isUploadingFile(String fileId) {
@@ -84,5 +87,17 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
     final a = this.avatarImage;
     final b = a != null && a.downloadUrl == null;
     return b;
+  }
+
+  Iterable<ModelFileEntry>? sortedFilesByCreatedAt({bool ascending = true}) {
+    return this.files?.values.toList()
+      ?..sort((a, b) {
+        final now = DateTime.now();
+        return (ascending ? 1 : -1) * (a.createdAt ?? now).compareTo((b.createdAt ?? now));
+      });
+  }
+
+  Iterable<ModelFileEntry>? get profileFiles {
+    return this.sortedFilesByCreatedAt(ascending: false)?.where((e) => e.isProfileFile());
   }
 }
