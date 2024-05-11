@@ -43,6 +43,7 @@ export 'types/access_type/access_type.dart';
 export 'types/event_def_type/event_def_type.dart';
 export 'types/invitation_def_type/invitation_def_type.dart';
 export 'types/relationship_def_type/relationship_def_type.dart';
+export 'utils/data_ref_for_pid.dart';
 export 'utils/file_schema.dart';
 export 'utils/id_utils.dart';
 export 'utils/schema.dart';
