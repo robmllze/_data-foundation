@@ -18,6 +18,7 @@ part '_model_event.g.dart';
   shouldInherit: true,
   fields: {
     ...EntryBaseModel.FIELDS,
+    ('relationship_id?', String),
     ('member_pids', Set<String>),
     ('def_type?', EventDefType),
     ('def?', GenericModel),

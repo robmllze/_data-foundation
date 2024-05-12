@@ -35,6 +35,7 @@ class ModelEvent extends _ModelEvent {
   static const K_LAST_MODIFIED_AT = 'last_modified_at';
   static const K_LAST_MODIFIED_BY = 'last_modified_by';
   static const K_MEMBER_PIDS = 'member_pids';
+  static const K_RELATIONSHIP_ID = 'relationship_id';
   static const K_TIMEOUT = 'timeout';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
@@ -60,6 +61,7 @@ class ModelEvent extends _ModelEvent {
   DateTime? lastModifiedAt;
   String? lastModifiedBy;
   Set<String>? memberPids;
+  String? relationshipId;
   int? timeout;
   String? title;
   String? titleSearchable;
@@ -91,6 +93,7 @@ class ModelEvent extends _ModelEvent {
     DateTime? lastModifiedAt,
     String? lastModifiedBy,
     required Set<String> memberPids,
+    String? relationshipId,
     int? timeout,
     String? title,
     String? titleSearchable,
@@ -112,6 +115,7 @@ class ModelEvent extends _ModelEvent {
       lastModifiedAt: lastModifiedAt,
       lastModifiedBy: lastModifiedBy,
       memberPids: memberPids,
+      relationshipId: relationshipId,
       timeout: timeout,
       title: title,
       titleSearchable: titleSearchable,
@@ -139,6 +143,7 @@ class ModelEvent extends _ModelEvent {
     this.lastModifiedAt,
     this.lastModifiedBy,
     this.memberPids,
+    this.relationshipId,
     this.timeout,
     this.title,
     this.titleSearchable,
@@ -256,6 +261,7 @@ class ModelEvent extends _ModelEvent {
         ..$lastModifiedAt = otherData?[K_LAST_MODIFIED_AT]
         ..$lastModifiedBy = otherData?[K_LAST_MODIFIED_BY]
         ..$memberPids = otherData?[K_MEMBER_PIDS]
+        ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$timeout = otherData?[K_TIMEOUT]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE]
@@ -320,6 +326,7 @@ class ModelEvent extends _ModelEvent {
         K_LAST_MODIFIED_AT: this.$lastModifiedAt,
         K_LAST_MODIFIED_BY: this.$lastModifiedBy,
         K_MEMBER_PIDS: this.$memberPids,
+        K_RELATIONSHIP_ID: this.$relationshipId,
         K_TIMEOUT: this.$timeout,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
@@ -396,6 +403,9 @@ class ModelEvent extends _ModelEvent {
       }
       if (other.memberPids != null) {
         this.memberPids = other.memberPids!;
+      }
+      if (other.relationshipId != null) {
+        this.relationshipId = other.relationshipId!;
       }
       if (other.timeout != null) {
         this.timeout = other.timeout!;
@@ -545,6 +555,16 @@ class ModelEvent extends _ModelEvent {
       .nullIfEmpty
       ?.toSet()
       .cast();
+
+  // relationshipId.
+  String? get relationshipIdField => this.relationshipId;
+  set relationshipIdField(String? v) => this.relationshipId = v;
+  @protected
+  dynamic get $relationshipId =>
+      this.relationshipId?.toString().trim().nullIfEmpty;
+  @protected
+  set $relationshipId(v) =>
+      this.relationshipId = v?.toString().trim().nullIfEmpty;
 
   // timeout.
   int? get timeoutField => this.timeout;
