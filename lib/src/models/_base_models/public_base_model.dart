@@ -10,6 +10,8 @@
 
 import '/_common.dart';
 
+export 'dart:ui' show Color;
+
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
@@ -34,6 +36,7 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
     ('primary_phone?', ModelPhoneEntry),
     ('other_phones?', Set<ModelPhoneEntry>),
     ('files?', Map<String, ModelFileEntry>),
+    ('distinctive_color?', Color),
   };
 
   //
@@ -56,6 +59,7 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
   ModelPhoneEntry? primaryPhone;
   Set<ModelPhoneEntry>? otherPhones;
   Map<String, ModelFileEntry>? files;
+  Color? distinctiveColor;
 
   //
   //

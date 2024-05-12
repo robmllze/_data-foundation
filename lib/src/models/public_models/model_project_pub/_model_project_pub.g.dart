@@ -31,6 +31,7 @@ class ModelProjectPub extends _ModelProjectPub {
   static const K_DESCRIPTION = 'description';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
+  static const K_DISTINCTIVE_COLOR = 'distinctive_color';
   static const K_EMAIL = 'email';
   static const K_FILES = 'files';
   static const K_ID = 'id';
@@ -55,6 +56,7 @@ class ModelProjectPub extends _ModelProjectPub {
   String? description;
   String? displayName;
   String? displayNameSearchable;
+  Color? distinctiveColor;
   String? email;
   Map<String, ModelFileEntry>? files;
   String? id;
@@ -85,6 +87,7 @@ class ModelProjectPub extends _ModelProjectPub {
     String? description,
     String? displayName,
     String? displayNameSearchable,
+    Color? distinctiveColor,
     String? email,
     Map<String, ModelFileEntry>? files,
     String? id,
@@ -105,6 +108,7 @@ class ModelProjectPub extends _ModelProjectPub {
       description: description,
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
+      distinctiveColor: distinctiveColor,
       email: email,
       files: files,
       id: id,
@@ -131,6 +135,7 @@ class ModelProjectPub extends _ModelProjectPub {
     this.description,
     this.displayName,
     this.displayNameSearchable,
+    this.distinctiveColor,
     this.email,
     this.files,
     this.id,
@@ -245,6 +250,7 @@ class ModelProjectPub extends _ModelProjectPub {
         ..$description = otherData?[K_DESCRIPTION]
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
+        ..$distinctiveColor = otherData?[K_DISTINCTIVE_COLOR]
         ..$email = otherData?[K_EMAIL]
         ..$files = otherData?[K_FILES]
         ..$id = otherData?[K_ID]
@@ -308,6 +314,7 @@ class ModelProjectPub extends _ModelProjectPub {
         K_DESCRIPTION: this.$description,
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
+        K_DISTINCTIVE_COLOR: this.$distinctiveColor,
         K_EMAIL: this.$email,
         K_FILES: this.$files,
         K_ID: this.$id,
@@ -375,6 +382,9 @@ class ModelProjectPub extends _ModelProjectPub {
       }
       if (other.displayNameSearchable != null) {
         this.displayNameSearchable = other.displayNameSearchable!;
+      }
+      if (other.distinctiveColor != null) {
+        this.distinctiveColor = other.distinctiveColor!;
       }
       if (other.email != null) {
         this.email = other.email!;
@@ -485,11 +495,23 @@ class ModelProjectPub extends _ModelProjectPub {
   set $displayNameSearchable(v) => this.displayNameSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 
+  // distinctiveColor.
+  Color? get distinctiveColorField => this.distinctiveColor;
+  set distinctiveColorField(Color? v) => this.distinctiveColor = v;
+  @protected
+  dynamic get $distinctiveColor => this.distinctiveColor?.value;
+  @protected
+  set $distinctiveColor(v) => this.distinctiveColor = () {
+        final a = letAs<int>(v);
+        return a is int ? Color(a) : null;
+      }();
+
   // email.
   String? get emailField => this.email;
   set emailField(String? v) => this.email = v;
   @protected
-  dynamic get $email => this.email?.toString().trim().nullIfEmpty?.toLowerCase();
+  dynamic get $email =>
+      this.email?.toString().trim().nullIfEmpty?.toLowerCase();
   @protected
   set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
@@ -537,7 +559,7 @@ class ModelProjectPub extends _ModelProjectPub {
   dynamic get $otherAddresses => this
       .otherAddresses
       ?.map(
-        (p0) => p0.toJson(),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
@@ -562,7 +584,7 @@ class ModelProjectPub extends _ModelProjectPub {
   dynamic get $otherEmails => this
       .otherEmails
       ?.map(
-        (p0) => p0.toJson(),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
@@ -587,7 +609,7 @@ class ModelProjectPub extends _ModelProjectPub {
   dynamic get $otherPhones => this
       .otherPhones
       ?.map(
-        (p0) => p0.toJson(),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty

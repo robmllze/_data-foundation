@@ -33,6 +33,7 @@ class ModelJobPub extends _ModelJobPub {
   static const K_DESCRIPTION = 'description';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
+  static const K_DISTINCTIVE_COLOR = 'distinctive_color';
   static const K_EMAIL = 'email';
   static const K_FILES = 'files';
   static const K_ID = 'id';
@@ -60,6 +61,7 @@ class ModelJobPub extends _ModelJobPub {
   String? description;
   String? displayName;
   String? displayNameSearchable;
+  Color? distinctiveColor;
   String? email;
   Map<String, ModelFileEntry>? files;
   String? id;
@@ -93,6 +95,7 @@ class ModelJobPub extends _ModelJobPub {
     String? description,
     String? displayName,
     String? displayNameSearchable,
+    Color? distinctiveColor,
     String? email,
     Map<String, ModelFileEntry>? files,
     String? id,
@@ -116,6 +119,7 @@ class ModelJobPub extends _ModelJobPub {
       description: description,
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
+      distinctiveColor: distinctiveColor,
       email: email,
       files: files,
       id: id,
@@ -145,6 +149,7 @@ class ModelJobPub extends _ModelJobPub {
     this.description,
     this.displayName,
     this.displayNameSearchable,
+    this.distinctiveColor,
     this.email,
     this.files,
     this.id,
@@ -262,6 +267,7 @@ class ModelJobPub extends _ModelJobPub {
         ..$description = otherData?[K_DESCRIPTION]
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
+        ..$distinctiveColor = otherData?[K_DISTINCTIVE_COLOR]
         ..$email = otherData?[K_EMAIL]
         ..$files = otherData?[K_FILES]
         ..$id = otherData?[K_ID]
@@ -328,6 +334,7 @@ class ModelJobPub extends _ModelJobPub {
         K_DESCRIPTION: this.$description,
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
+        K_DISTINCTIVE_COLOR: this.$distinctiveColor,
         K_EMAIL: this.$email,
         K_FILES: this.$files,
         K_ID: this.$id,
@@ -402,6 +409,9 @@ class ModelJobPub extends _ModelJobPub {
       }
       if (other.displayNameSearchable != null) {
         this.displayNameSearchable = other.displayNameSearchable!;
+      }
+      if (other.distinctiveColor != null) {
+        this.distinctiveColor = other.distinctiveColor!;
       }
       if (other.email != null) {
         this.email = other.email!;
@@ -573,6 +583,17 @@ class ModelJobPub extends _ModelJobPub {
   set $displayNameSearchable(v) => this.displayNameSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 
+  // distinctiveColor.
+  Color? get distinctiveColorField => this.distinctiveColor;
+  set distinctiveColorField(Color? v) => this.distinctiveColor = v;
+  @protected
+  dynamic get $distinctiveColor => this.distinctiveColor?.value;
+  @protected
+  set $distinctiveColor(v) => this.distinctiveColor = () {
+        final a = letAs<int>(v);
+        return a is int ? Color(a) : null;
+      }();
+
   // email.
   String? get emailField => this.email;
   set emailField(String? v) => this.email = v;
@@ -626,7 +647,7 @@ class ModelJobPub extends _ModelJobPub {
   dynamic get $otherAddresses => this
       .otherAddresses
       ?.map(
-        (p0) => p0.toJson(),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
@@ -651,7 +672,7 @@ class ModelJobPub extends _ModelJobPub {
   dynamic get $otherEmails => this
       .otherEmails
       ?.map(
-        (p0) => p0.toJson(),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
@@ -676,7 +697,7 @@ class ModelJobPub extends _ModelJobPub {
   dynamic get $otherPhones => this
       .otherPhones
       ?.map(
-        (p0) => p0.toJson(),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
