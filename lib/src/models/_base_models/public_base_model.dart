@@ -23,6 +23,7 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
     ('id?', String),
     ('display_name?', String),
     ('display_name_searchable?', T_SEARCHABLE_STRING),
+    ('display_color?', Color),
     ('email?', T_LOWER_CASE_STRING),
     ('created_at?', DateTime),
     ('created_by?', String),
@@ -36,7 +37,6 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
     ('primary_phone?', ModelPhoneEntry),
     ('other_phones?', Set<ModelPhoneEntry>),
     ('files?', Map<String, ModelFileEntry>),
-    ('distinctive_color?', Color),
   };
 
   //
@@ -46,6 +46,7 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
   //String? id;
   String? displayName;
   String? displayNameSearchable;
+  Color? displayColor;
   String? email;
   DateTime? createdAt;
   String? createdBy;
@@ -59,7 +60,6 @@ abstract class PublicBaseModel<T extends Model> extends ThisModel<T> {
   ModelPhoneEntry? primaryPhone;
   Set<ModelPhoneEntry>? otherPhones;
   Map<String, ModelFileEntry>? files;
-  Color? distinctiveColor;
 
   //
   //

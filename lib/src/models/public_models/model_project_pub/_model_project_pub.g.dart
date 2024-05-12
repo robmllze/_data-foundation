@@ -29,9 +29,9 @@ class ModelProjectPub extends _ModelProjectPub {
   static const K_DELETED_AT = 'deleted_at';
   static const K_DELETED_BY = 'deleted_by';
   static const K_DESCRIPTION = 'description';
+  static const K_DISPLAY_COLOR = 'display_color';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
-  static const K_DISTINCTIVE_COLOR = 'distinctive_color';
   static const K_EMAIL = 'email';
   static const K_FILES = 'files';
   static const K_ID = 'id';
@@ -54,9 +54,9 @@ class ModelProjectPub extends _ModelProjectPub {
   DateTime? deletedAt;
   String? deletedBy;
   String? description;
+  Color? displayColor;
   String? displayName;
   String? displayNameSearchable;
-  Color? distinctiveColor;
   String? email;
   Map<String, ModelFileEntry>? files;
   String? id;
@@ -85,9 +85,9 @@ class ModelProjectPub extends _ModelProjectPub {
     DateTime? deletedAt,
     String? deletedBy,
     String? description,
+    Color? displayColor,
     String? displayName,
     String? displayNameSearchable,
-    Color? distinctiveColor,
     String? email,
     Map<String, ModelFileEntry>? files,
     String? id,
@@ -106,9 +106,9 @@ class ModelProjectPub extends _ModelProjectPub {
       deletedAt: deletedAt,
       deletedBy: deletedBy,
       description: description,
+      displayColor: displayColor,
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
-      distinctiveColor: distinctiveColor,
       email: email,
       files: files,
       id: id,
@@ -133,9 +133,9 @@ class ModelProjectPub extends _ModelProjectPub {
     this.deletedAt,
     this.deletedBy,
     this.description,
+    this.displayColor,
     this.displayName,
     this.displayNameSearchable,
-    this.distinctiveColor,
     this.email,
     this.files,
     this.id,
@@ -248,9 +248,9 @@ class ModelProjectPub extends _ModelProjectPub {
         ..$deletedAt = otherData?[K_DELETED_AT]
         ..$deletedBy = otherData?[K_DELETED_BY]
         ..$description = otherData?[K_DESCRIPTION]
+        ..$displayColor = otherData?[K_DISPLAY_COLOR]
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
-        ..$distinctiveColor = otherData?[K_DISTINCTIVE_COLOR]
         ..$email = otherData?[K_EMAIL]
         ..$files = otherData?[K_FILES]
         ..$id = otherData?[K_ID]
@@ -312,9 +312,9 @@ class ModelProjectPub extends _ModelProjectPub {
         K_DELETED_AT: this.$deletedAt,
         K_DELETED_BY: this.$deletedBy,
         K_DESCRIPTION: this.$description,
+        K_DISPLAY_COLOR: this.$displayColor,
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
-        K_DISTINCTIVE_COLOR: this.$distinctiveColor,
         K_EMAIL: this.$email,
         K_FILES: this.$files,
         K_ID: this.$id,
@@ -377,14 +377,14 @@ class ModelProjectPub extends _ModelProjectPub {
       if (other.description != null) {
         this.description = other.description!;
       }
+      if (other.displayColor != null) {
+        this.displayColor = other.displayColor!;
+      }
       if (other.displayName != null) {
         this.displayName = other.displayName!;
       }
       if (other.displayNameSearchable != null) {
         this.displayNameSearchable = other.displayNameSearchable!;
-      }
-      if (other.distinctiveColor != null) {
-        this.distinctiveColor = other.distinctiveColor!;
       }
       if (other.email != null) {
         this.email = other.email!;
@@ -472,6 +472,17 @@ class ModelProjectPub extends _ModelProjectPub {
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
+  // displayColor.
+  Color? get displayColorField => this.displayColor;
+  set displayColorField(Color? v) => this.displayColor = v;
+  @protected
+  dynamic get $displayColor => this.displayColor?.value;
+  @protected
+  set $displayColor(v) => this.displayColor = () {
+        final a = letAs<int>(v);
+        return a is int ? Color(a) : null;
+      }();
+
   // displayName.
   String? get displayNameField => this.displayName;
   set displayNameField(String? v) => this.displayName = v;
@@ -494,17 +505,6 @@ class ModelProjectPub extends _ModelProjectPub {
   @protected
   set $displayNameSearchable(v) => this.displayNameSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
-
-  // distinctiveColor.
-  Color? get distinctiveColorField => this.distinctiveColor;
-  set distinctiveColorField(Color? v) => this.distinctiveColor = v;
-  @protected
-  dynamic get $distinctiveColor => this.distinctiveColor?.value;
-  @protected
-  set $distinctiveColor(v) => this.distinctiveColor = () {
-        final a = letAs<int>(v);
-        return a is int ? Color(a) : null;
-      }();
 
   // email.
   String? get emailField => this.email;
