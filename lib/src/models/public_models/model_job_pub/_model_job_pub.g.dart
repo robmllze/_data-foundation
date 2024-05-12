@@ -626,7 +626,7 @@ class ModelJobPub extends _ModelJobPub {
   dynamic get $otherAddresses => this
       .otherAddresses
       ?.map(
-        (p0) => p0?.toJson(),
+        (p0) => p0.toJson(),
       )
       .nonNulls
       .nullIfEmpty
@@ -651,7 +651,7 @@ class ModelJobPub extends _ModelJobPub {
   dynamic get $otherEmails => this
       .otherEmails
       ?.map(
-        (p0) => p0?.toJson(),
+        (p0) => p0.toJson(),
       )
       .nonNulls
       .nullIfEmpty
@@ -676,7 +676,7 @@ class ModelJobPub extends _ModelJobPub {
   dynamic get $otherPhones => this
       .otherPhones
       ?.map(
-        (p0) => p0?.toJson(),
+        (p0) => p0.toJson(),
       )
       .nonNulls
       .nullIfEmpty

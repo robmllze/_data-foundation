@@ -469,8 +469,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   String? get emailField => this.email;
   set emailField(String? v) => this.email = v;
   @protected
-  dynamic get $email =>
-      this.email?.toString().trim().nullIfEmpty?.toLowerCase();
+  dynamic get $email => this.email?.toString().trim().nullIfEmpty?.toLowerCase();
   @protected
   set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
@@ -518,7 +517,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   dynamic get $otherAddresses => this
       .otherAddresses
       ?.map(
-        (p0) => p0?.toJson(),
+        (p0) => p0.toJson(),
       )
       .nonNulls
       .nullIfEmpty
@@ -543,7 +542,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   dynamic get $otherEmails => this
       .otherEmails
       ?.map(
-        (p0) => p0?.toJson(),
+        (p0) => p0.toJson(),
       )
       .nonNulls
       .nullIfEmpty
@@ -568,7 +567,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   dynamic get $otherPhones => this
       .otherPhones
       ?.map(
-        (p0) => p0?.toJson(),
+        (p0) => p0.toJson(),
       )
       .nonNulls
       .nullIfEmpty

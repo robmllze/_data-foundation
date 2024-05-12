@@ -492,8 +492,7 @@ class ModelRelationship extends _ModelRelationship {
   @protected
   dynamic get $defType => this.defType?.name;
   @protected
-  set $defType(v) =>
-      this.defType = RelationshipDefType.values.valueOf(letAs<String>(v));
+  set $defType(v) => this.defType = RelationshipDefType.values.valueOf(letAs<String>(v));
 
   // deletedAt.
   DateTime? get deletedAtField => this.deletedAt;
@@ -549,8 +548,7 @@ class ModelRelationship extends _ModelRelationship {
   String? get emailField => this.email;
   set emailField(String? v) => this.email = v;
   @protected
-  dynamic get $email =>
-      this.email?.toString().trim().nullIfEmpty?.toLowerCase();
+  dynamic get $email => this.email?.toString().trim().nullIfEmpty?.toLowerCase();
   @protected
   set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
@@ -620,7 +618,7 @@ class ModelRelationship extends _ModelRelationship {
   dynamic get $otherAddresses => this
       .otherAddresses
       ?.map(
-        (p0) => p0?.toJson(),
+        (p0) => p0.toJson(),
       )
       .nonNulls
       .nullIfEmpty
@@ -645,7 +643,7 @@ class ModelRelationship extends _ModelRelationship {
   dynamic get $otherEmails => this
       .otherEmails
       ?.map(
-        (p0) => p0?.toJson(),
+        (p0) => p0.toJson(),
       )
       .nonNulls
       .nullIfEmpty
@@ -670,7 +668,7 @@ class ModelRelationship extends _ModelRelationship {
   dynamic get $otherPhones => this
       .otherPhones
       ?.map(
-        (p0) => p0?.toJson(),
+        (p0) => p0.toJson(),
       )
       .nonNulls
       .nullIfEmpty
