@@ -16,7 +16,7 @@ part '_model_organization.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PrivateBaseModel.FIELDS,
+    ...PRIVATE_BASE_MODEL_FIELDS,
   },
 )
-abstract class _ModelOrganization extends PrivateBaseModel<ModelOrganization> {}
+abstract class _ModelOrganization extends Model implements PrivateBaseModel {}

@@ -8,6 +8,8 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'dart:ui';
+
 import '/_common.dart';
 
 part '_model_relationship.g.dart';
@@ -17,7 +19,7 @@ part '_model_relationship.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PublicBaseModel.FIELDS,
+    ...PUBLIC_BASE_MODEL_FIELDS,
     ('member_pids?', Set<String>),
     ('when_disabled?', Map<String, DateTime>),
     ('when_enabled?', Map<String, DateTime>),
@@ -26,18 +28,22 @@ part '_model_relationship.g.dart';
     ('def?', GenericModel),
   },
 )
-abstract class _ModelRelationship extends PublicBaseModel<ModelRelationship> {
+abstract class _ModelRelationship extends Model implements PublicBaseModel {}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+extension ModelRelationshipExtension on ModelRelationship {
   //
   //
   //
 
-  DateTime? get firstNoted => getFirstDate(this.model.whenNoted?.values);
-  DateTime? get firstEnabled => getFirstDate(this.model.whenEnabled?.values);
-  DateTime? get firstDisabled => getFirstDate(this.model.whenDisabled?.values);
+  DateTime? get firstNoted => getFirstDate(this.whenNoted?.values);
+  DateTime? get firstEnabled => getFirstDate(this.whenEnabled?.values);
+  DateTime? get firstDisabled => getFirstDate(this.whenDisabled?.values);
 
-  DateTime? get lastNoted => getLastDate(this.model.whenNoted?.values);
-  DateTime? get lastEnabled => getLastDate(this.model.whenEnabled?.values);
-  DateTime? get lastDisabled => getLastDate(this.model.whenDisabled?.values);
+  DateTime? get lastNoted => getLastDate(this.whenNoted?.values);
+  DateTime? get lastEnabled => getLastDate(this.whenEnabled?.values);
+  DateTime? get lastDisabled => getLastDate(this.whenDisabled?.values);
 
   //
   //
@@ -76,15 +82,15 @@ abstract class _ModelRelationship extends PublicBaseModel<ModelRelationship> {
   ///
   /// It is useful for tracking if this relationship is new to a Member or not.
   void markAsNotedFor(String memberPid) {
-    this.model.whenNoted = {
-      ...?this.model.whenNoted,
+    this.whenNoted = {
+      ...?this.whenNoted,
       memberPid: DateTime.now(),
     };
   }
 
   /// Whether this relationship is marked as "noted" for the Member with [memberPid].
   bool isMarkedAsNotedFor(String memberPid) {
-    return this.model.whenNoted?[memberPid] == null;
+    return this.whenNoted?[memberPid] == null;
   }
 
   /// Marks this relationship as "enabled" for the Member with [memberPid].
@@ -95,14 +101,14 @@ abstract class _ModelRelationship extends PublicBaseModel<ModelRelationship> {
   /// If not explicitly marked as enabled or disabled then the relationship is
   /// assumed to be enabled.
   void markAsEnabledFor(String memberPid) {
-    this.model.whenEnabled = {
-      ...?this.model.whenEnabled,
+    this.whenEnabled = {
+      ...?this.whenEnabled,
       memberPid: DateTime.now(),
     };
   }
 
   /// Whether this relationship is marked as "enabled" for the Member with [memberPid].
-  bool isMarkedAsEnabledFor(String memberPid) => this.model.whenEnabled?[memberPid] == null;
+  bool isMarkedAsEnabledFor(String memberPid) => this.whenEnabled?[memberPid] == null;
 
   /// Marks this relationship as "disabled" for the Member with [memberPid].
   ///
@@ -111,28 +117,28 @@ abstract class _ModelRelationship extends PublicBaseModel<ModelRelationship> {
   ///
   /// It is useful for temporarily disabling a relationship for a Member.
   void markAsDisabledFor(String memberPid) {
-    this.model.whenDisabled = {
-      ...?this.model.whenDisabled,
+    this.whenDisabled = {
+      ...?this.whenDisabled,
       memberPid: DateTime.now(),
     };
   }
 
   /// Whether this relationship is marked as "disabled" for the Member with [memberPid].
-  bool isMarkedAsDisabledFor(String memberPid) => this.model.whenDisabled?[memberPid] == null;
+  bool isMarkedAsDisabledFor(String memberPid) => this.whenDisabled?[memberPid] == null;
 
   /// Whether this relationship involves the Member with [memberPid].
   bool involvesMember(String memberPid) {
-    return this.model.memberPids?.contains(memberPid) == true;
+    return this.memberPids?.contains(memberPid) == true;
   }
 
   /// Returns the Member IDs of the other Members in this relationship.
   Iterable<String>? getOtherMemberPids(String currentMemberId) {
-    return this.model.memberPids?.where((e) => e != currentMemberId);
+    return this.memberPids?.where((e) => e != currentMemberId);
   }
 
   /// Calls [callback] for each Member in this relationship.
   void forEachMember(void Function(String memberPid) callback) async {
-    final memberPid = this.model.memberPids;
+    final memberPid = this.memberPids;
     final hasMembers = memberPid?.isNotEmpty == true;
     assert(hasMembers);
     if (hasMembers) {
@@ -147,7 +153,7 @@ abstract class _ModelRelationship extends PublicBaseModel<ModelRelationship> {
   Set<String> extractMemberPids({
     required Iterable<String> memberPidPrefixes,
   }) {
-    final memberPids = this.model.memberPids ?? {};
+    final memberPids = this.memberPids ?? {};
     return memberPidPrefixes.isNotEmpty
         ? memberPids.where((a) => memberPidPrefixes.any((b) => a.startsWith(b))).toSet()
         : memberPids;

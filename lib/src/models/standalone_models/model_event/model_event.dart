@@ -17,7 +17,7 @@ part '_model_event.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...EntryBaseModel.FIELDS,
+    ...ENTRY_BASE_MODEL_FIELDS,
     ('relationship_id?', String),
     ('member_pids', Set<String>),
     ('def_type?', EventDefType),
@@ -30,61 +30,65 @@ part '_model_event.g.dart';
     ('when_received?', Map<String, DateTime>),
   },
 )
-abstract class _ModelEvent extends EntryBaseModel<ModelEvent> {
+abstract class _ModelEvent extends Model implements EntryBaseModel {}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+extension ModelEventExtension on ModelEvent {
   //
   //
   //
 
   bool get didTimeout {
-    final timeout = this.model.timeout;
+    final timeout = this.timeout;
     return timeout != null && timeout < DateTime.now().millisecondsSinceEpoch;
   }
 
   // Read.
-  Iterable<DateTime> get datesRead => this.model.whenRead?.values ?? [];
+  Iterable<DateTime> get datesRead => this.whenRead?.values ?? [];
   DateTime? get lastReadAt => getLastDate(this.datesRead);
   String? get lastReadBy =>
-      this.model.whenRead?.entries.firstWhereOrNull((e) => e.value == this.lastReadAt)?.key;
-  bool get isRead => this.model.whenRead?.nullIfEmpty != null;
-  bool isReadBy(String id) => this.model.whenRead?.keys.contains(id) == true;
+      this.whenRead?.entries.firstWhereOrNull((e) => e.value == this.lastReadAt)?.key;
+  bool get isRead => this.whenRead?.nullIfEmpty != null;
+  bool isReadBy(String id) => this.whenRead?.keys.contains(id) == true;
 
   // Archived.
-  Iterable<DateTime> get datesArchived => this.model.whenArchived?.values ?? [];
+  Iterable<DateTime> get datesArchived => this.whenArchived?.values ?? [];
   DateTime? get archivedAt => getFirstDate(this.datesArchived);
   String? get archivedBy =>
-      this.model.whenArchived?.entries.firstWhereOrNull((e) => e.value == this.archivedAt)?.key;
-  bool get isArchived => this.model.whenArchived?.nullIfEmpty != null;
-  bool isArchivedBy({required String id}) => this.model.whenArchived?.keys.contains(id) == true;
+      this.whenArchived?.entries.firstWhereOrNull((e) => e.value == this.archivedAt)?.key;
+  bool get isArchived => this.whenArchived?.nullIfEmpty != null;
+  bool isArchivedBy({required String id}) => this.whenArchived?.keys.contains(id) == true;
 
   // Hidden.
-  Iterable<DateTime> get datesHidden => this.model.whenHidden?.values ?? [];
+  Iterable<DateTime> get datesHidden => this.whenHidden?.values ?? [];
   DateTime? get hiddenAt => getFirstDate(this.datesHidden);
   String? get hiddenBy =>
-      this.model.whenHidden?.entries.firstWhereOrNull((e) => e.value == this.hiddenAt)?.key;
-  bool get isHidden => this.model.whenHidden?.nullIfEmpty != null;
-  bool isHiddenBy({required String id}) => this.model.whenHidden?.keys.contains(id) == true;
+      this.whenHidden?.entries.firstWhereOrNull((e) => e.value == this.hiddenAt)?.key;
+  bool get isHidden => this.whenHidden?.nullIfEmpty != null;
+  bool isHiddenBy({required String id}) => this.whenHidden?.keys.contains(id) == true;
 
   // Liked.
-  Iterable<DateTime> get datesLiked => this.model.whenLiked?.values ?? [];
+  Iterable<DateTime> get datesLiked => this.whenLiked?.values ?? [];
   DateTime? get likedAt => getFirstDate(this.datesLiked);
   String? get likedBy =>
-      this.model.whenLiked?.entries.firstWhereOrNull((e) => e.value == this.likedAt)?.key;
-  bool get isLiked => this.model.whenLiked?.nullIfEmpty != null;
-  bool isLikedBy({required String id}) => this.model.whenLiked?.keys.contains(id) == true;
+      this.whenLiked?.entries.firstWhereOrNull((e) => e.value == this.likedAt)?.key;
+  bool get isLiked => this.whenLiked?.nullIfEmpty != null;
+  bool isLikedBy({required String id}) => this.whenLiked?.keys.contains(id) == true;
 
   // Received.
-  Iterable<DateTime> get datesReceived => this.model.whenReceived?.values ?? [];
+  Iterable<DateTime> get datesReceived => this.whenReceived?.values ?? [];
   DateTime? get receivedAt => getFirstDate(this.datesReceived);
   String? get receivedBy =>
-      this.model.whenReceived?.entries.firstWhereOrNull((e) => e.value == this.receivedAt)?.key;
-  bool get isReceived => this.model.whenReceived?.nullIfEmpty != null;
-  bool isReceivedBy({required String id}) => this.model.whenReceived?.keys.contains(id) == true;
+      this.whenReceived?.entries.firstWhereOrNull((e) => e.value == this.receivedAt)?.key;
+  bool get isReceived => this.whenReceived?.nullIfEmpty != null;
+  bool isReceivedBy({required String id}) => this.whenReceived?.keys.contains(id) == true;
 
   // // Sent.
-  // Iterable<DateTime> get datesSent => this.model.whenSent?.values ?? [];
+  // Iterable<DateTime> get datesSent => this.whenSent?.values ?? [];
   // DateTime? get sentAt => getFirstDate(this.datesSent);
   // String? get sentBy =>
-  //     this.model.whenSent?.entries.firstWhereOrNull((e) => e.value == this.sentAt)?.key;
-  // bool get isSent => this.model.whenSent?.nullIfEmpty != null;
-  // bool isSentBy({required String id}) => this.model.whenSent?.keys.contains(id) == true;
+  //     this.whenSent?.entries.firstWhereOrNull((e) => e.value == this.sentAt)?.key;
+  // bool get isSent => this.whenSent?.nullIfEmpty != null;
+  // bool isSentBy({required String id}) => this.whenSent?.keys.contains(id) == true;
 }

@@ -8,6 +8,7 @@
 //.title~
 
 import 'dart:collection';
+import 'dart:ui';
 
 import '/_common.dart';
 
@@ -18,22 +19,26 @@ part '_model_job_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PublicBaseModel.FIELDS,
-    ('todo_entries?', Map<DateTime, ModelTodoEntry>),
+    ...PUBLIC_BASE_MODEL_FIELDS,
     ('clock_ins?', Map<DateTime, String>),
     ('clock_outs?', Map<DateTime, String>),
     ('when_opened?', Map<String, DateTime>),
     ('when_closed?', Map<String, DateTime>),
+    ('todo_book?', Map<DateTime, ModelTodoEntry>),
   },
 )
-abstract class _ModelJobPub extends PublicBaseModel<ModelJobPub> {
+abstract class _ModelJobPub extends Model implements PublicBaseModel {}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+extension ModelJobPubExtension on ModelJobPub {
   //
   //
   //
 
   bool canClockIn(String? pid) {
-    final lastClockIn = this.model.lastClockInFor(pid);
-    final lastClockOut = this.model.lastClockOutFor(pid);
+    final lastClockIn = this.lastClockInFor(pid);
+    final lastClockOut = this.lastClockOutFor(pid);
     if (lastClockIn != null && lastClockOut != null) {
       return lastClockIn.isBefore(lastClockOut);
     }
@@ -49,7 +54,7 @@ abstract class _ModelJobPub extends PublicBaseModel<ModelJobPub> {
   DateTime? lastClockInFor(String? pid) => (this.clockInsFor(pid).toList()..sort()).lastOrNull;
 
   Iterable<DateTime> clockInsFor(String? pid) =>
-      this.model.clockIns?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
+      this.clockIns?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
 
   bool canClockOut(String? pid) {
     final lastClockIn = this.lastClockInFor(pid);
@@ -69,7 +74,7 @@ abstract class _ModelJobPub extends PublicBaseModel<ModelJobPub> {
   DateTime? lastClockOutFor(String? pid) => (this.clockOutsFor(pid).toList()..sort()).lastOrNull;
 
   Iterable<DateTime> clockOutsFor(String? pid) =>
-      this.model.clockOuts?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
+      this.clockOuts?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
 
   //
   //
@@ -120,18 +125,18 @@ abstract class _ModelJobPub extends PublicBaseModel<ModelJobPub> {
   //
 
   // Opened.
-  Iterable<DateTime> get datesOpened => this.model.whenOpened?.values ?? [];
+  Iterable<DateTime> get datesOpened => this.whenOpened?.values ?? [];
   DateTime? get openedAt => getFirstDate(this.datesOpened);
   String? get openedById =>
-      this.model.whenOpened?.entries.firstWhereOrNull((e) => e.value == this.openedAt)?.key;
-  bool get isOpened => this.model.whenOpened != null;
-  bool isOpenedBy({required String id}) => this.model.whenOpened?.keys.contains(id) == true;
+      this.whenOpened?.entries.firstWhereOrNull((e) => e.value == this.openedAt)?.key;
+  bool get isOpened => this.whenOpened != null;
+  bool isOpenedBy({required String id}) => this.whenOpened?.keys.contains(id) == true;
 
   // Closed.
-  Iterable<DateTime> get datesClosed => this.model.whenClosed?.values ?? [];
+  Iterable<DateTime> get datesClosed => this.whenClosed?.values ?? [];
   DateTime? get closedAt => getFirstDate(this.datesClosed);
   String? get closedById =>
-      this.model.whenClosed?.entries.firstWhereOrNull((e) => e.value == this.closedAt)?.key;
-  bool get isClosed => this.model.whenClosed != null;
-  bool isClosedBy({required String id}) => this.model.whenClosed?.keys.contains(id) == true;
+      this.whenClosed?.entries.firstWhereOrNull((e) => e.value == this.closedAt)?.key;
+  bool get isClosed => this.whenClosed != null;
+  bool isClosedBy({required String id}) => this.whenClosed?.keys.contains(id) == true;
 }

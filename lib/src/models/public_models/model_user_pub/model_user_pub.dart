@@ -8,6 +8,8 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'dart:ui';
+
 import '/_common.dart';
 
 part '_model_user_pub.g.dart';
@@ -17,7 +19,7 @@ part '_model_user_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PublicBaseModel.FIELDS,
+    ...PUBLIC_BASE_MODEL_FIELDS,
   },
 )
-abstract class _ModelUserPub extends PublicBaseModel<ModelUserPub> {}
+abstract class _ModelUserPub extends Model implements PublicBaseModel {}

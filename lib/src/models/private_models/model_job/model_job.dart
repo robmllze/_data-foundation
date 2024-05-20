@@ -16,7 +16,7 @@ part '_model_job.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PrivateBaseModel.FIELDS,
+    ...PRIVATE_BASE_MODEL_FIELDS,
   },
 )
-abstract class _ModelJob extends PrivateBaseModel<ModelJob> {}
+abstract class _ModelJob extends Model implements PrivateBaseModel {}

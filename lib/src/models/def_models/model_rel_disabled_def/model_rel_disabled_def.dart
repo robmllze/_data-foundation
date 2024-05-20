@@ -17,7 +17,7 @@ part '_model_rel_disabled_def.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...DefBaseModel.FIELDS,
+    ...DEF_BASE_MODEL_FIELDS,
   },
 )
-abstract class _ModelRelDisabledDef extends DefBaseModel<ModelRelDisabledDef> {}
+abstract class _ModelRelDisabledDef extends Model implements DefBaseModel {}

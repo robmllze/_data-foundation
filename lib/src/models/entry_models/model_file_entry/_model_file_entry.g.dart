@@ -33,8 +33,8 @@ class ModelFileEntry extends _ModelFileEntry {
   static const K_DOWNLOAD_URL = 'download_url';
   static const K_EXTENSION = 'extension';
   static const K_ID = 'id';
-  static const K_LAST_MODIFIED_AT = 'last_modified_at';
-  static const K_LAST_MODIFIED_BY = 'last_modified_by';
+  static const K_MODIFIED_AT = 'modified_at';
+  static const K_MODIFIED_BY = 'modified_by';
   static const K_NAME = 'name';
   static const K_SIZE = 'size';
   static const K_STORAGE_PATH = 'storage_path';
@@ -55,8 +55,8 @@ class ModelFileEntry extends _ModelFileEntry {
   Uri? downloadUrl;
   String? extension;
   String? id;
-  DateTime? lastModifiedAt;
-  String? lastModifiedBy;
+  DateTime? modifiedAt;
+  String? modifiedBy;
   String? name;
   int? size;
   String? storagePath;
@@ -83,8 +83,8 @@ class ModelFileEntry extends _ModelFileEntry {
     Uri? downloadUrl,
     String? extension,
     String? id,
-    DateTime? lastModifiedAt,
-    String? lastModifiedBy,
+    DateTime? modifiedAt,
+    String? modifiedBy,
     String? name,
     int? size,
     String? storagePath,
@@ -101,8 +101,8 @@ class ModelFileEntry extends _ModelFileEntry {
       downloadUrl: downloadUrl,
       extension: extension,
       id: id,
-      lastModifiedAt: lastModifiedAt,
-      lastModifiedBy: lastModifiedBy,
+      modifiedAt: modifiedAt,
+      modifiedBy: modifiedBy,
       name: name,
       size: size,
       storagePath: storagePath,
@@ -125,8 +125,8 @@ class ModelFileEntry extends _ModelFileEntry {
     this.downloadUrl,
     this.extension,
     this.id,
-    this.lastModifiedAt,
-    this.lastModifiedBy,
+    this.modifiedAt,
+    this.modifiedBy,
     this.name,
     this.size,
     this.storagePath,
@@ -237,8 +237,8 @@ class ModelFileEntry extends _ModelFileEntry {
         ..$downloadUrl = otherData?[K_DOWNLOAD_URL]
         ..$extension = otherData?[K_EXTENSION]
         ..$id = otherData?[K_ID]
-        ..$lastModifiedAt = otherData?[K_LAST_MODIFIED_AT]
-        ..$lastModifiedBy = otherData?[K_LAST_MODIFIED_BY]
+        ..$modifiedAt = otherData?[K_MODIFIED_AT]
+        ..$modifiedBy = otherData?[K_MODIFIED_BY]
         ..$name = otherData?[K_NAME]
         ..$size = otherData?[K_SIZE]
         ..$storagePath = otherData?[K_STORAGE_PATH]
@@ -298,8 +298,8 @@ class ModelFileEntry extends _ModelFileEntry {
         K_DOWNLOAD_URL: this.$downloadUrl,
         K_EXTENSION: this.$extension,
         K_ID: this.$id,
-        K_LAST_MODIFIED_AT: this.$lastModifiedAt,
-        K_LAST_MODIFIED_BY: this.$lastModifiedBy,
+        K_MODIFIED_AT: this.$modifiedAt,
+        K_MODIFIED_BY: this.$modifiedBy,
         K_NAME: this.$name,
         K_SIZE: this.$size,
         K_STORAGE_PATH: this.$storagePath,
@@ -368,11 +368,11 @@ class ModelFileEntry extends _ModelFileEntry {
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.lastModifiedAt != null) {
-        this.lastModifiedAt = other.lastModifiedAt!;
+      if (other.modifiedAt != null) {
+        this.modifiedAt = other.modifiedAt!;
       }
-      if (other.lastModifiedBy != null) {
-        this.lastModifiedBy = other.lastModifiedBy!;
+      if (other.modifiedBy != null) {
+        this.modifiedBy = other.modifiedBy!;
       }
       if (other.name != null) {
         this.name = other.name!;
@@ -493,27 +493,24 @@ class ModelFileEntry extends _ModelFileEntry {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // lastModifiedAt.
-  DateTime? get lastModifiedAtField => this.lastModifiedAt;
-  set lastModifiedAtField(DateTime? v) => this.lastModifiedAt = v;
+  // modifiedAt.
+  DateTime? get modifiedAtField => this.modifiedAt;
+  set modifiedAtField(DateTime? v) => this.modifiedAt = v;
   @protected
-  dynamic get $lastModifiedAt =>
-      this.lastModifiedAt?.toUtc()?.toIso8601String();
+  dynamic get $modifiedAt => this.modifiedAt?.toUtc()?.toIso8601String();
   @protected
-  set $lastModifiedAt(v) => this.lastModifiedAt = () {
+  set $modifiedAt(v) => this.modifiedAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
-  // lastModifiedBy.
-  String? get lastModifiedByField => this.lastModifiedBy;
-  set lastModifiedByField(String? v) => this.lastModifiedBy = v;
+  // modifiedBy.
+  String? get modifiedByField => this.modifiedBy;
+  set modifiedByField(String? v) => this.modifiedBy = v;
   @protected
-  dynamic get $lastModifiedBy =>
-      this.lastModifiedBy?.toString().trim().nullIfEmpty;
+  dynamic get $modifiedBy => this.modifiedBy?.toString().trim().nullIfEmpty;
   @protected
-  set $lastModifiedBy(v) =>
-      this.lastModifiedBy = v?.toString().trim().nullIfEmpty;
+  set $modifiedBy(v) => this.modifiedBy = v?.toString().trim().nullIfEmpty;
 
   // name.
   String? get nameField => this.name;

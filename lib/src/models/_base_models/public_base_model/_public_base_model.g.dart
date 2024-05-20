@@ -15,18 +15,16 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_job_pub.dart';
+part of 'public_base_model.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelJobPub extends _ModelJobPub {
+class PublicBaseModel extends Model {
   //
   //
   //
 
   static const K_ADDRESS_BOOK = 'address_book';
-  static const K_CLOCK_INS = 'clock_ins';
-  static const K_CLOCK_OUTS = 'clock_outs';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DELETED_AT = 'deleted_at';
@@ -40,18 +38,13 @@ class ModelJobPub extends _ModelJobPub {
   static const K_FILE_BOOK = 'file_book';
   static const K_ID = 'id';
   static const K_PHONE_BOOK = 'phone_book';
-  static const K_TODO_BOOK = 'todo_book';
-  static const K_WHEN_CLOSED = 'when_closed';
-  static const K_WHEN_OPENED = 'when_opened';
 
-  static const CLASS = 'ModelJobPub';
+  static const CLASS = 'PublicBaseModel';
 
   @override
   String get $class => CLASS;
 
   Map<String, ModelAddressEntry>? addressBook;
-  Map<DateTime, String>? clockIns;
-  Map<DateTime, String>? clockOuts;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
@@ -65,24 +58,19 @@ class ModelJobPub extends _ModelJobPub {
   Map<String, ModelFileEntry>? fileBook;
   String? id;
   Map<String, ModelPhoneEntry>? phoneBook;
-  Map<DateTime, ModelTodoEntry>? todoBook;
-  Map<String, DateTime>? whenClosed;
-  Map<String, DateTime>? whenOpened;
 
   //
   //
   //
 
-  ModelJobPub.empty();
+  PublicBaseModel.empty();
 
   //
   //
   //
 
-  factory ModelJobPub({
+  factory PublicBaseModel({
     Map<String, ModelAddressEntry>? addressBook,
-    Map<DateTime, String>? clockIns,
-    Map<DateTime, String>? clockOuts,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
@@ -96,14 +84,9 @@ class ModelJobPub extends _ModelJobPub {
     Map<String, ModelFileEntry>? fileBook,
     String? id,
     Map<String, ModelPhoneEntry>? phoneBook,
-    Map<DateTime, ModelTodoEntry>? todoBook,
-    Map<String, DateTime>? whenClosed,
-    Map<String, DateTime>? whenOpened,
   }) {
-    return ModelJobPub.b(
+    return PublicBaseModel.b(
       addressBook: addressBook,
-      clockIns: clockIns,
-      clockOuts: clockOuts,
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
@@ -117,9 +100,6 @@ class ModelJobPub extends _ModelJobPub {
       fileBook: fileBook,
       id: id,
       phoneBook: phoneBook,
-      todoBook: todoBook,
-      whenClosed: whenClosed,
-      whenOpened: whenOpened,
     );
   }
 
@@ -127,10 +107,8 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
 
-  ModelJobPub.b({
+  PublicBaseModel.b({
     this.addressBook,
-    this.clockIns,
-    this.clockOuts,
     this.createdAt,
     this.createdBy,
     this.deletedAt,
@@ -144,16 +122,13 @@ class ModelJobPub extends _ModelJobPub {
     this.fileBook,
     this.id,
     this.phoneBook,
-    this.todoBook,
-    this.whenClosed,
-    this.whenOpened,
   }) {}
 
   //
   //
   //
 
-  factory ModelJobPub.from(
+  factory PublicBaseModel.from(
     Model? other,
   ) {
     try {
@@ -164,7 +139,7 @@ class ModelJobPub extends _ModelJobPub {
     }
   }
 
-  static ModelJobPub? fromOrNull(
+  static PublicBaseModel? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(
@@ -176,8 +151,8 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
 
-  factory ModelJobPub.of(
-    ModelJobPub other,
+  factory PublicBaseModel.of(
+    PublicBaseModel other,
   ) {
     try {
       return ofOrNull(other)!;
@@ -187,8 +162,8 @@ class ModelJobPub extends _ModelJobPub {
     }
   }
 
-  static ModelJobPub? ofOrNull(
-    ModelJobPub? other,
+  static PublicBaseModel? ofOrNull(
+    PublicBaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -197,7 +172,7 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
 
-  factory ModelJobPub.fromJsonString(
+  factory PublicBaseModel.fromJsonString(
     String source,
   ) {
     try {
@@ -208,15 +183,15 @@ class ModelJobPub extends _ModelJobPub {
     }
   }
 
-  static ModelJobPub? fromJsonStringOrNull(
+  static PublicBaseModel? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelJobPub.fromJson(decoded);
+        return PublicBaseModel.fromJson(decoded);
       } else {
-        return ModelJobPub.empty();
+        return PublicBaseModel.empty();
       }
     } catch (_) {
       return null;
@@ -227,7 +202,7 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
 
-  factory ModelJobPub.fromJson(
+  factory PublicBaseModel.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -238,14 +213,12 @@ class ModelJobPub extends _ModelJobPub {
     }
   }
 
-  static ModelJobPub? fromJsonOrNull(
+  static PublicBaseModel? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelJobPub.empty()
+      return PublicBaseModel.empty()
         ..$addressBook = otherData?[K_ADDRESS_BOOK]
-        ..$clockIns = otherData?[K_CLOCK_INS]
-        ..$clockOuts = otherData?[K_CLOCK_OUTS]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
@@ -258,10 +231,7 @@ class ModelJobPub extends _ModelJobPub {
         ..$emailBook = otherData?[K_EMAIL_BOOK]
         ..$fileBook = otherData?[K_FILE_BOOK]
         ..$id = otherData?[K_ID]
-        ..$phoneBook = otherData?[K_PHONE_BOOK]
-        ..$todoBook = otherData?[K_TODO_BOOK]
-        ..$whenClosed = otherData?[K_WHEN_CLOSED]
-        ..$whenOpened = otherData?[K_WHEN_OPENED];
+        ..$phoneBook = otherData?[K_PHONE_BOOK];
     } catch (e) {
       return null;
     }
@@ -271,7 +241,7 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
 
-  factory ModelJobPub.fromUri(
+  factory PublicBaseModel.fromUri(
     Uri? uri,
   ) {
     try {
@@ -282,14 +252,14 @@ class ModelJobPub extends _ModelJobPub {
     }
   }
 
-  static ModelJobPub? fromUriOrNull(
+  static PublicBaseModel? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelJobPub.fromJson(uri.queryParameters);
+        return PublicBaseModel.fromJson(uri.queryParameters);
       } else {
-        return ModelJobPub.b();
+        return PublicBaseModel.b();
       }
     } catch (_) {
       return null;
@@ -308,8 +278,6 @@ class ModelJobPub extends _ModelJobPub {
     try {
       final withNulls = <String, dynamic>{
         K_ADDRESS_BOOK: this.$addressBook,
-        K_CLOCK_INS: this.$clockIns,
-        K_CLOCK_OUTS: this.$clockOuts,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
@@ -323,9 +291,6 @@ class ModelJobPub extends _ModelJobPub {
         K_FILE_BOOK: this.$fileBook,
         K_ID: this.$id,
         K_PHONE_BOOK: this.$phoneBook,
-        K_TODO_BOOK: this.$todoBook,
-        K_WHEN_CLOSED: this.$whenClosed,
-        K_WHEN_OPENED: this.$whenOpened,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -340,7 +305,7 @@ class ModelJobPub extends _ModelJobPub {
 
   @override
   T empty<T extends Model>() {
-    return ModelJobPub.b() as T;
+    return PublicBaseModel.b() as T;
   }
 
   //
@@ -349,7 +314,7 @@ class ModelJobPub extends _ModelJobPub {
 
   @override
   T copy<T extends Model>() {
-    return (ModelJobPub.b()..updateWith(this)) as T;
+    return (PublicBaseModel.b()..updateWith(this)) as T;
   }
 
   //
@@ -361,15 +326,9 @@ class ModelJobPub extends _ModelJobPub {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelJobPub.fromJson(otherData);
+      final other = PublicBaseModel.fromJson(otherData);
       if (other.addressBook != null) {
         this.addressBook = other.addressBook!;
-      }
-      if (other.clockIns != null) {
-        this.clockIns = other.clockIns!;
-      }
-      if (other.clockOuts != null) {
-        this.clockOuts = other.clockOuts!;
       }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
@@ -410,15 +369,6 @@ class ModelJobPub extends _ModelJobPub {
       if (other.phoneBook != null) {
         this.phoneBook = other.phoneBook!;
       }
-      if (other.todoBook != null) {
-        this.todoBook = other.todoBook!;
-      }
-      if (other.whenClosed != null) {
-        this.whenClosed = other.whenClosed!;
-      }
-      if (other.whenOpened != null) {
-        this.whenOpened = other.whenOpened!;
-      }
     }
   }
 
@@ -450,64 +400,6 @@ class ModelJobPub extends _ModelJobPub {
             final a = letMap<String, dynamic>(p1);
             return a != null ? ModelAddressEntry.fromJson(a) : null;
           }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
-
-  // clockIns.
-  Map<DateTime, String>? get clockInsField => this.clockIns;
-  set clockInsField(Map<DateTime, String>? v) => this.clockIns = v;
-  @protected
-  dynamic get $clockIns => this
-      .clockIns
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toUtc()?.toIso8601String(),
-          p1?.toString().trim().nullIfEmpty,
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $clockIns(v) => this.clockIns = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          () {
-            final a = p0;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-          p1?.toString().trim().nullIfEmpty,
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
-
-  // clockOuts.
-  Map<DateTime, String>? get clockOutsField => this.clockOuts;
-  set clockOutsField(Map<DateTime, String>? v) => this.clockOuts = v;
-  @protected
-  dynamic get $clockOuts => this
-      .clockOuts
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toUtc()?.toIso8601String(),
-          p1?.toString().trim().nullIfEmpty,
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $clockOuts(v) => this.clockOuts = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          () {
-            final a = p0;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-          p1?.toString().trim().nullIfEmpty,
         ),
       )
       .nonNulls
@@ -691,96 +583,6 @@ class ModelJobPub extends _ModelJobPub {
           () {
             final a = letMap<String, dynamic>(p1);
             return a != null ? ModelPhoneEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
-
-  // todoBook.
-  Map<DateTime, ModelTodoEntry>? get todoBookField => this.todoBook;
-  set todoBookField(Map<DateTime, ModelTodoEntry>? v) => this.todoBook = v;
-  @protected
-  dynamic get $todoBook => this
-      .todoBook
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toUtc()?.toIso8601String(),
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $todoBook(v) => this.todoBook = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          () {
-            final a = p0;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelTodoEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
-
-  // whenClosed.
-  Map<String, DateTime>? get whenClosedField => this.whenClosed;
-  set whenClosedField(Map<String, DateTime>? v) => this.whenClosed = v;
-  @protected
-  dynamic get $whenClosed => this
-      .whenClosed
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toUtc()?.toIso8601String(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $whenClosed(v) => this.whenClosed = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = p1;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
-
-  // whenOpened.
-  Map<String, DateTime>? get whenOpenedField => this.whenOpened;
-  set whenOpenedField(Map<String, DateTime>? v) => this.whenOpened = v;
-  @protected
-  dynamic get $whenOpened => this
-      .whenOpened
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toUtc()?.toIso8601String(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $whenOpened(v) => this.whenOpened = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = p1;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
           }(),
         ),
       )

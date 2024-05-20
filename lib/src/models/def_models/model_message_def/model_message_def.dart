@@ -17,7 +17,7 @@ part '_model_message_def.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...DefBaseModel.FIELDS,
+    ...DEF_BASE_MODEL_FIELDS,
   },
 )
-abstract class _ModelMessageDef extends DefBaseModel<ModelMessageDef> {}
+abstract class _ModelMessageDef extends Model implements DefBaseModel {}

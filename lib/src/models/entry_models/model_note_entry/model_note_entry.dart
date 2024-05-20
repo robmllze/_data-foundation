@@ -16,8 +16,8 @@ part '_model_note_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...EntryBaseModel.FIELDS,
+    ...ENTRY_BASE_MODEL_FIELDS,
     ('note?', String),
   },
 )
-abstract class _ModelNoteEntry extends EntryBaseModel<ModelNoteEntry> {}
+abstract class _ModelNoteEntry extends Model implements EntryBaseModel {}

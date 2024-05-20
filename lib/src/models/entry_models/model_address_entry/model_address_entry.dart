@@ -16,7 +16,7 @@ part '_model_address_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...EntryBaseModel.FIELDS,
+    ...ENTRY_BASE_MODEL_FIELDS,
     ('address_line_1?', String),
     ('address_line_2?', String),
     ('city?', String),
@@ -25,4 +25,4 @@ part '_model_address_entry.g.dart';
     ('country?', String),
   },
 )
-abstract class _ModelAddressEntry extends EntryBaseModel<ModelAddressEntry> {}
+abstract class _ModelAddressEntry extends Model implements EntryBaseModel {}

@@ -7,6 +7,8 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'dart:ui';
+
 import '/_common.dart';
 
 part '_model_project_pub.g.dart';
@@ -16,26 +18,30 @@ part '_model_project_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PublicBaseModel.FIELDS,
+    ...PUBLIC_BASE_MODEL_FIELDS,
     ('when_opened?', Map<String, DateTime>),
     ('when_closed?', Map<String, DateTime>),
   },
 )
-abstract class _ModelProjectPub extends PublicBaseModel<ModelProjectPub> {
+abstract class _ModelProjectPub extends Model implements PublicBaseModel {}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+extension ModelProjectPubExtension on ModelProjectPub {
   //
   //
   //
 
   // Opened.
-  DateTime? get openedAt => getFirstDate(this.model.whenOpened?.values);
+  DateTime? get openedAt => getFirstDate(this.whenOpened?.values);
   String? get openedById =>
-      this.model.whenOpened?.entries.firstWhereOrNull((e) => e.value == this.model.createdAt)?.key;
-  bool get isOpened => this.model.whenOpened?.nullIfEmpty != null;
-  bool isOpenedBy(String id) => this.model.whenOpened?.keys.contains(id) == true;
+      this.whenOpened?.entries.firstWhereOrNull((e) => e.value == this.createdAt)?.key;
+  bool get isOpened => this.whenOpened?.nullIfEmpty != null;
+  bool isOpenedBy(String id) => this.whenOpened?.keys.contains(id) == true;
 
   // Closed.
-  DateTime? get closedAt => getFirstDate(this.model.whenClosed?.values);
+  DateTime? get closedAt => getFirstDate(this.whenClosed?.values);
   String? get closedById =>
-      this.model.whenClosed?.entries.firstWhereOrNull((e) => e.value == this.model.createdAt)?.key;
-  bool isClosedBy(String id) => this.model.whenOpened?.keys.contains(id) == true;
+      this.whenClosed?.entries.firstWhereOrNull((e) => e.value == this.createdAt)?.key;
+  bool isClosedBy(String id) => this.whenOpened?.keys.contains(id) == true;
 }

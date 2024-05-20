@@ -15,11 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_email_entry.dart';
+part of 'private_base_model.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelEmailEntry extends _ModelEmailEntry {
+class PrivateBaseModel extends Model {
   //
   //
   //
@@ -28,15 +28,11 @@ class ModelEmailEntry extends _ModelEmailEntry {
   static const K_CREATED_BY = 'created_by';
   static const K_DELETED_AT = 'deleted_at';
   static const K_DELETED_BY = 'deleted_by';
-  static const K_DESCRIPTION = 'description';
-  static const K_EMAIL = 'email';
   static const K_ID = 'id';
-  static const K_MODIFIED_AT = 'modified_at';
-  static const K_MODIFIED_BY = 'modified_by';
-  static const K_TITLE = 'title';
-  static const K_TITLE_SEARCHABLE = 'title_searchable';
+  static const K_PID = 'pid';
+  static const K_SEED = 'seed';
 
-  static const CLASS = 'ModelEmailEntry';
+  static const CLASS = 'PrivateBaseModel';
 
   @override
   String get $class => CLASS;
@@ -45,49 +41,37 @@ class ModelEmailEntry extends _ModelEmailEntry {
   String? createdBy;
   DateTime? deletedAt;
   String? deletedBy;
-  String? description;
-  String? email;
   String? id;
-  DateTime? modifiedAt;
-  String? modifiedBy;
-  String? title;
-  String? titleSearchable;
+  String? pid;
+  String? seed;
 
   //
   //
   //
 
-  ModelEmailEntry.empty();
+  PrivateBaseModel.empty();
 
   //
   //
   //
 
-  factory ModelEmailEntry({
+  factory PrivateBaseModel({
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
     String? deletedBy,
-    String? description,
-    String? email,
     String? id,
-    DateTime? modifiedAt,
-    String? modifiedBy,
-    String? title,
-    String? titleSearchable,
+    String? pid,
+    String? seed,
   }) {
-    return ModelEmailEntry.b(
+    return PrivateBaseModel.b(
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
       deletedBy: deletedBy,
-      description: description,
-      email: email,
       id: id,
-      modifiedAt: modifiedAt,
-      modifiedBy: modifiedBy,
-      title: title,
-      titleSearchable: titleSearchable,
+      pid: pid,
+      seed: seed,
     );
   }
 
@@ -95,25 +79,21 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  ModelEmailEntry.b({
+  PrivateBaseModel.b({
     this.createdAt,
     this.createdBy,
     this.deletedAt,
     this.deletedBy,
-    this.description,
-    this.email,
     this.id,
-    this.modifiedAt,
-    this.modifiedBy,
-    this.title,
-    this.titleSearchable,
+    this.pid,
+    this.seed,
   }) {}
 
   //
   //
   //
 
-  factory ModelEmailEntry.from(
+  factory PrivateBaseModel.from(
     Model? other,
   ) {
     try {
@@ -124,7 +104,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     }
   }
 
-  static ModelEmailEntry? fromOrNull(
+  static PrivateBaseModel? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(
@@ -136,8 +116,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  factory ModelEmailEntry.of(
-    ModelEmailEntry other,
+  factory PrivateBaseModel.of(
+    PrivateBaseModel other,
   ) {
     try {
       return ofOrNull(other)!;
@@ -147,8 +127,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
     }
   }
 
-  static ModelEmailEntry? ofOrNull(
-    ModelEmailEntry? other,
+  static PrivateBaseModel? ofOrNull(
+    PrivateBaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -157,7 +137,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  factory ModelEmailEntry.fromJsonString(
+  factory PrivateBaseModel.fromJsonString(
     String source,
   ) {
     try {
@@ -168,15 +148,15 @@ class ModelEmailEntry extends _ModelEmailEntry {
     }
   }
 
-  static ModelEmailEntry? fromJsonStringOrNull(
+  static PrivateBaseModel? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelEmailEntry.fromJson(decoded);
+        return PrivateBaseModel.fromJson(decoded);
       } else {
-        return ModelEmailEntry.empty();
+        return PrivateBaseModel.empty();
       }
     } catch (_) {
       return null;
@@ -187,7 +167,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  factory ModelEmailEntry.fromJson(
+  factory PrivateBaseModel.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -198,22 +178,18 @@ class ModelEmailEntry extends _ModelEmailEntry {
     }
   }
 
-  static ModelEmailEntry? fromJsonOrNull(
+  static PrivateBaseModel? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelEmailEntry.empty()
+      return PrivateBaseModel.empty()
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
         ..$deletedBy = otherData?[K_DELETED_BY]
-        ..$description = otherData?[K_DESCRIPTION]
-        ..$email = otherData?[K_EMAIL]
         ..$id = otherData?[K_ID]
-        ..$modifiedAt = otherData?[K_MODIFIED_AT]
-        ..$modifiedBy = otherData?[K_MODIFIED_BY]
-        ..$title = otherData?[K_TITLE]
-        ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
+        ..$pid = otherData?[K_PID]
+        ..$seed = otherData?[K_SEED];
     } catch (e) {
       return null;
     }
@@ -223,7 +199,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  factory ModelEmailEntry.fromUri(
+  factory PrivateBaseModel.fromUri(
     Uri? uri,
   ) {
     try {
@@ -234,14 +210,14 @@ class ModelEmailEntry extends _ModelEmailEntry {
     }
   }
 
-  static ModelEmailEntry? fromUriOrNull(
+  static PrivateBaseModel? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelEmailEntry.fromJson(uri.queryParameters);
+        return PrivateBaseModel.fromJson(uri.queryParameters);
       } else {
-        return ModelEmailEntry.b();
+        return PrivateBaseModel.b();
       }
     } catch (_) {
       return null;
@@ -263,13 +239,9 @@ class ModelEmailEntry extends _ModelEmailEntry {
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
         K_DELETED_BY: this.$deletedBy,
-        K_DESCRIPTION: this.$description,
-        K_EMAIL: this.$email,
         K_ID: this.$id,
-        K_MODIFIED_AT: this.$modifiedAt,
-        K_MODIFIED_BY: this.$modifiedBy,
-        K_TITLE: this.$title,
-        K_TITLE_SEARCHABLE: this.$titleSearchable,
+        K_PID: this.$pid,
+        K_SEED: this.$seed,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -284,7 +256,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
 
   @override
   T empty<T extends Model>() {
-    return ModelEmailEntry.b() as T;
+    return PrivateBaseModel.b() as T;
   }
 
   //
@@ -293,7 +265,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
 
   @override
   T copy<T extends Model>() {
-    return (ModelEmailEntry.b()..updateWith(this)) as T;
+    return (PrivateBaseModel.b()..updateWith(this)) as T;
   }
 
   //
@@ -305,7 +277,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelEmailEntry.fromJson(otherData);
+      final other = PrivateBaseModel.fromJson(otherData);
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -318,26 +290,14 @@ class ModelEmailEntry extends _ModelEmailEntry {
       if (other.deletedBy != null) {
         this.deletedBy = other.deletedBy!;
       }
-      if (other.description != null) {
-        this.description = other.description!;
-      }
-      if (other.email != null) {
-        this.email = other.email!;
-      }
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.modifiedAt != null) {
-        this.modifiedAt = other.modifiedAt!;
+      if (other.pid != null) {
+        this.pid = other.pid!;
       }
-      if (other.modifiedBy != null) {
-        this.modifiedBy = other.modifiedBy!;
-      }
-      if (other.title != null) {
-        this.title = other.title!;
-      }
-      if (other.titleSearchable != null) {
-        this.titleSearchable = other.titleSearchable!;
+      if (other.seed != null) {
+        this.seed = other.seed!;
       }
     }
   }
@@ -384,22 +344,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
   @protected
   set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
-  // description.
-  String? get descriptionField => this.description;
-  set descriptionField(String? v) => this.description = v;
-  @protected
-  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
-  @protected
-  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
-
-  // email.
-  String? get emailField => this.email;
-  set emailField(String? v) => this.email = v;
-  @protected
-  dynamic get $email => this.email?.toString().trim().nullIfEmpty;
-  @protected
-  set $email(v) => this.email = v?.toString().trim().nullIfEmpty;
-
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -408,45 +352,19 @@ class ModelEmailEntry extends _ModelEmailEntry {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // modifiedAt.
-  DateTime? get modifiedAtField => this.modifiedAt;
-  set modifiedAtField(DateTime? v) => this.modifiedAt = v;
+  // pid.
+  String? get pidField => this.pid;
+  set pidField(String? v) => this.pid = v;
   @protected
-  dynamic get $modifiedAt => this.modifiedAt?.toUtc()?.toIso8601String();
+  dynamic get $pid => this.pid?.toString().trim().nullIfEmpty;
   @protected
-  set $modifiedAt(v) => this.modifiedAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
+  set $pid(v) => this.pid = v?.toString().trim().nullIfEmpty;
 
-  // modifiedBy.
-  String? get modifiedByField => this.modifiedBy;
-  set modifiedByField(String? v) => this.modifiedBy = v;
+  // seed.
+  String? get seedField => this.seed;
+  set seedField(String? v) => this.seed = v;
   @protected
-  dynamic get $modifiedBy => this.modifiedBy?.toString().trim().nullIfEmpty;
+  dynamic get $seed => this.seed?.toString().trim().nullIfEmpty;
   @protected
-  set $modifiedBy(v) => this.modifiedBy = v?.toString().trim().nullIfEmpty;
-
-  // title.
-  String? get titleField => this.title;
-  set titleField(String? v) => this.title = v;
-  @protected
-  dynamic get $title => this.title?.toString().trim().nullIfEmpty;
-  @protected
-  set $title(v) => this.title = v?.toString().trim().nullIfEmpty;
-
-  // titleSearchable.
-  String? get titleSearchableField => this.titleSearchable;
-  set titleSearchableField(String? v) => this.titleSearchable = v;
-  @protected
-  dynamic get $titleSearchable => this
-      .titleSearchable
-      ?.toString()
-      .trim()
-      .nullIfEmpty
-      ?.toLowerCase()
-      .replaceAll(r'[^\w]', '');
-  @protected
-  set $titleSearchable(v) => this.titleSearchable =
-      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+  set $seed(v) => this.seed = v?.toString().trim().nullIfEmpty;
 }

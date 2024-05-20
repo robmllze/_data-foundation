@@ -22,10 +22,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  xyz_config: ^0.28.1
-  xyz_gen_annotations: ^0.32.0
+  xyz_config: ^0.28.2
+  xyz_gen_annotations: ^0.32.1
   xyz_security: ^0.1.1
-  xyz_utils: ^0.53.0
+  xyz_utils: ^0.54.0
 
   uuid: 4.4.0
   crypto: 3.0.3

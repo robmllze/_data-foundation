@@ -24,6 +24,7 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
+  static const K_ADDRESS_BOOK = 'address_book';
   static const K_CREATED_AT = 'created_at';
   static const K_CREATED_BY = 'created_by';
   static const K_DELETED_AT = 'deleted_at';
@@ -33,20 +34,17 @@ class ModelUserPub extends _ModelUserPub {
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
   static const K_EMAIL = 'email';
-  static const K_FILES = 'files';
+  static const K_EMAIL_BOOK = 'email_book';
+  static const K_FILE_BOOK = 'file_book';
   static const K_ID = 'id';
-  static const K_OTHER_ADDRESSES = 'other_addresses';
-  static const K_OTHER_EMAILS = 'other_emails';
-  static const K_OTHER_PHONES = 'other_phones';
-  static const K_PRIMARY_ADDRESS = 'primary_address';
-  static const K_PRIMARY_EMAIL = 'primary_email';
-  static const K_PRIMARY_PHONE = 'primary_phone';
+  static const K_PHONE_BOOK = 'phone_book';
 
   static const CLASS = 'ModelUserPub';
 
   @override
   String get $class => CLASS;
 
+  Map<String, ModelAddressEntry>? addressBook;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
@@ -56,14 +54,10 @@ class ModelUserPub extends _ModelUserPub {
   String? displayName;
   String? displayNameSearchable;
   String? email;
-  Map<String, ModelFileEntry>? files;
+  Map<String, ModelEmailEntry>? emailBook;
+  Map<String, ModelFileEntry>? fileBook;
   String? id;
-  Set<ModelAddressEntry>? otherAddresses;
-  Set<ModelEmailEntry>? otherEmails;
-  Set<ModelPhoneEntry>? otherPhones;
-  ModelAddressEntry? primaryAddress;
-  ModelEmailEntry? primaryEmail;
-  ModelPhoneEntry? primaryPhone;
+  Map<String, ModelPhoneEntry>? phoneBook;
 
   //
   //
@@ -76,6 +70,7 @@ class ModelUserPub extends _ModelUserPub {
   //
 
   factory ModelUserPub({
+    Map<String, ModelAddressEntry>? addressBook,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
@@ -85,16 +80,13 @@ class ModelUserPub extends _ModelUserPub {
     String? displayName,
     String? displayNameSearchable,
     String? email,
-    Map<String, ModelFileEntry>? files,
+    Map<String, ModelEmailEntry>? emailBook,
+    Map<String, ModelFileEntry>? fileBook,
     String? id,
-    Set<ModelAddressEntry>? otherAddresses,
-    Set<ModelEmailEntry>? otherEmails,
-    Set<ModelPhoneEntry>? otherPhones,
-    ModelAddressEntry? primaryAddress,
-    ModelEmailEntry? primaryEmail,
-    ModelPhoneEntry? primaryPhone,
+    Map<String, ModelPhoneEntry>? phoneBook,
   }) {
     return ModelUserPub.b(
+      addressBook: addressBook,
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
@@ -104,14 +96,10 @@ class ModelUserPub extends _ModelUserPub {
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
       email: email,
-      files: files,
+      emailBook: emailBook,
+      fileBook: fileBook,
       id: id,
-      otherAddresses: otherAddresses,
-      otherEmails: otherEmails,
-      otherPhones: otherPhones,
-      primaryAddress: primaryAddress,
-      primaryEmail: primaryEmail,
-      primaryPhone: primaryPhone,
+      phoneBook: phoneBook,
     );
   }
 
@@ -120,6 +108,7 @@ class ModelUserPub extends _ModelUserPub {
   //
 
   ModelUserPub.b({
+    this.addressBook,
     this.createdAt,
     this.createdBy,
     this.deletedAt,
@@ -129,14 +118,10 @@ class ModelUserPub extends _ModelUserPub {
     this.displayName,
     this.displayNameSearchable,
     this.email,
-    this.files,
+    this.emailBook,
+    this.fileBook,
     this.id,
-    this.otherAddresses,
-    this.otherEmails,
-    this.otherPhones,
-    this.primaryAddress,
-    this.primaryEmail,
-    this.primaryPhone,
+    this.phoneBook,
   }) {}
 
   //
@@ -233,6 +218,7 @@ class ModelUserPub extends _ModelUserPub {
   ) {
     try {
       return ModelUserPub.empty()
+        ..$addressBook = otherData?[K_ADDRESS_BOOK]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
@@ -242,14 +228,10 @@ class ModelUserPub extends _ModelUserPub {
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$email = otherData?[K_EMAIL]
-        ..$files = otherData?[K_FILES]
+        ..$emailBook = otherData?[K_EMAIL_BOOK]
+        ..$fileBook = otherData?[K_FILE_BOOK]
         ..$id = otherData?[K_ID]
-        ..$otherAddresses = otherData?[K_OTHER_ADDRESSES]
-        ..$otherEmails = otherData?[K_OTHER_EMAILS]
-        ..$otherPhones = otherData?[K_OTHER_PHONES]
-        ..$primaryAddress = otherData?[K_PRIMARY_ADDRESS]
-        ..$primaryEmail = otherData?[K_PRIMARY_EMAIL]
-        ..$primaryPhone = otherData?[K_PRIMARY_PHONE];
+        ..$phoneBook = otherData?[K_PHONE_BOOK];
     } catch (e) {
       return null;
     }
@@ -295,6 +277,7 @@ class ModelUserPub extends _ModelUserPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_ADDRESS_BOOK: this.$addressBook,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
@@ -304,14 +287,10 @@ class ModelUserPub extends _ModelUserPub {
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_EMAIL: this.$email,
-        K_FILES: this.$files,
+        K_EMAIL_BOOK: this.$emailBook,
+        K_FILE_BOOK: this.$fileBook,
         K_ID: this.$id,
-        K_OTHER_ADDRESSES: this.$otherAddresses,
-        K_OTHER_EMAILS: this.$otherEmails,
-        K_OTHER_PHONES: this.$otherPhones,
-        K_PRIMARY_ADDRESS: this.$primaryAddress,
-        K_PRIMARY_EMAIL: this.$primaryEmail,
-        K_PRIMARY_PHONE: this.$primaryPhone,
+        K_PHONE_BOOK: this.$phoneBook,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -348,6 +327,9 @@ class ModelUserPub extends _ModelUserPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUserPub.fromJson(otherData);
+      if (other.addressBook != null) {
+        this.addressBook = other.addressBook!;
+      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -375,29 +357,17 @@ class ModelUserPub extends _ModelUserPub {
       if (other.email != null) {
         this.email = other.email!;
       }
-      if (other.files != null) {
-        this.files = other.files!;
+      if (other.emailBook != null) {
+        this.emailBook = other.emailBook!;
+      }
+      if (other.fileBook != null) {
+        this.fileBook = other.fileBook!;
       }
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.otherAddresses != null) {
-        this.otherAddresses = other.otherAddresses!;
-      }
-      if (other.otherEmails != null) {
-        this.otherEmails = other.otherEmails!;
-      }
-      if (other.otherPhones != null) {
-        this.otherPhones = other.otherPhones!;
-      }
-      if (other.primaryAddress != null) {
-        this.primaryAddress = other.primaryAddress!;
-      }
-      if (other.primaryEmail != null) {
-        this.primaryEmail = other.primaryEmail!;
-      }
-      if (other.primaryPhone != null) {
-        this.primaryPhone = other.primaryPhone!;
+      if (other.phoneBook != null) {
+        this.phoneBook = other.phoneBook!;
       }
     }
   }
@@ -405,6 +375,36 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
   //
+
+  // addressBook.
+  Map<String, ModelAddressEntry>? get addressBookField => this.addressBook;
+  set addressBookField(Map<String, ModelAddressEntry>? v) =>
+      this.addressBook = v;
+  @protected
+  dynamic get $addressBook => this
+      .addressBook
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $addressBook(v) => this.addressBook = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = letMap<String, dynamic>(p1);
+            return a != null ? ModelAddressEntry.fromJson(a) : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -495,12 +495,12 @@ class ModelUserPub extends _ModelUserPub {
   @protected
   set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
-  // files.
-  Map<String, ModelFileEntry>? get filesField => this.files;
-  set filesField(Map<String, ModelFileEntry>? v) => this.files = v;
+  // emailBook.
+  Map<String, ModelEmailEntry>? get emailBookField => this.emailBook;
+  set emailBookField(Map<String, ModelEmailEntry>? v) => this.emailBook = v;
   @protected
-  dynamic get $files => this
-      .files
+  dynamic get $emailBook => this
+      .emailBook
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -510,7 +510,36 @@ class ModelUserPub extends _ModelUserPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $files(v) => this.files = letMap(v)
+  set $emailBook(v) => this.emailBook = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = letMap<String, dynamic>(p1);
+            return a != null ? ModelEmailEntry.fromJson(a) : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // fileBook.
+  Map<String, ModelFileEntry>? get fileBookField => this.fileBook;
+  set fileBookField(Map<String, ModelFileEntry>? v) => this.fileBook = v;
+  @protected
+  dynamic get $fileBook => this
+      .fileBook
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $fileBook(v) => this.fileBook = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -532,111 +561,32 @@ class ModelUserPub extends _ModelUserPub {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // otherAddresses.
-  Set<ModelAddressEntry>? get otherAddressesField => this.otherAddresses;
-  set otherAddressesField(Set<ModelAddressEntry>? v) => this.otherAddresses = v;
+  // phoneBook.
+  Map<String, ModelPhoneEntry>? get phoneBookField => this.phoneBook;
+  set phoneBookField(Map<String, ModelPhoneEntry>? v) => this.phoneBook = v;
   @protected
-  dynamic get $otherAddresses => this
-      .otherAddresses
+  dynamic get $phoneBook => this
+      .phoneBook
       ?.map(
-        (p0) => p0?.toJson(),
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $phoneBook(v) => this.phoneBook = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = letMap<String, dynamic>(p1);
+            return a != null ? ModelPhoneEntry.fromJson(a) : null;
+          }(),
+        ),
       )
       .nonNulls
       .nullIfEmpty
-      ?.toList();
-  @protected
-  set $otherAddresses(v) => this.otherAddresses = letSet(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelAddressEntry.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
-
-  // otherEmails.
-  Set<ModelEmailEntry>? get otherEmailsField => this.otherEmails;
-  set otherEmailsField(Set<ModelEmailEntry>? v) => this.otherEmails = v;
-  @protected
-  dynamic get $otherEmails => this
-      .otherEmails
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $otherEmails(v) => this.otherEmails = letSet(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelEmailEntry.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
-
-  // otherPhones.
-  Set<ModelPhoneEntry>? get otherPhonesField => this.otherPhones;
-  set otherPhonesField(Set<ModelPhoneEntry>? v) => this.otherPhones = v;
-  @protected
-  dynamic get $otherPhones => this
-      .otherPhones
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $otherPhones(v) => this.otherPhones = letSet(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelPhoneEntry.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
-
-  // primaryAddress.
-  ModelAddressEntry? get primaryAddressField => this.primaryAddress;
-  set primaryAddressField(ModelAddressEntry? v) => this.primaryAddress = v;
-  @protected
-  dynamic get $primaryAddress => this.primaryAddress?.toJson();
-  @protected
-  set $primaryAddress(v) => this.primaryAddress = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelAddressEntry.fromJson(a) : null;
-      }();
-
-  // primaryEmail.
-  ModelEmailEntry? get primaryEmailField => this.primaryEmail;
-  set primaryEmailField(ModelEmailEntry? v) => this.primaryEmail = v;
-  @protected
-  dynamic get $primaryEmail => this.primaryEmail?.toJson();
-  @protected
-  set $primaryEmail(v) => this.primaryEmail = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelEmailEntry.fromJson(a) : null;
-      }();
-
-  // primaryPhone.
-  ModelPhoneEntry? get primaryPhoneField => this.primaryPhone;
-  set primaryPhoneField(ModelPhoneEntry? v) => this.primaryPhone = v;
-  @protected
-  dynamic get $primaryPhone => this.primaryPhone?.toJson();
-  @protected
-  set $primaryPhone(v) => this.primaryPhone = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelPhoneEntry.fromJson(a) : null;
-      }();
+      ?.cast();
 }

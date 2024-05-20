@@ -34,8 +34,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
   static const K_DELETED_BY = 'deleted_by';
   static const K_DESCRIPTION = 'description';
   static const K_ID = 'id';
-  static const K_LAST_MODIFIED_AT = 'last_modified_at';
-  static const K_LAST_MODIFIED_BY = 'last_modified_by';
+  static const K_MODIFIED_AT = 'modified_at';
+  static const K_MODIFIED_BY = 'modified_by';
   static const K_POSTAL_CODE = 'postal_code';
   static const K_STATE_OR_PROVINCE = 'state_or_province';
   static const K_TITLE = 'title';
@@ -56,8 +56,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
   String? deletedBy;
   String? description;
   String? id;
-  DateTime? lastModifiedAt;
-  String? lastModifiedBy;
+  DateTime? modifiedAt;
+  String? modifiedBy;
   String? postalCode;
   String? stateOrProvince;
   String? title;
@@ -84,8 +84,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
     String? deletedBy,
     String? description,
     String? id,
-    DateTime? lastModifiedAt,
-    String? lastModifiedBy,
+    DateTime? modifiedAt,
+    String? modifiedBy,
     String? postalCode,
     String? stateOrProvince,
     String? title,
@@ -102,8 +102,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
       deletedBy: deletedBy,
       description: description,
       id: id,
-      lastModifiedAt: lastModifiedAt,
-      lastModifiedBy: lastModifiedBy,
+      modifiedAt: modifiedAt,
+      modifiedBy: modifiedBy,
       postalCode: postalCode,
       stateOrProvince: stateOrProvince,
       title: title,
@@ -126,8 +126,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
     this.deletedBy,
     this.description,
     this.id,
-    this.lastModifiedAt,
-    this.lastModifiedBy,
+    this.modifiedAt,
+    this.modifiedBy,
     this.postalCode,
     this.stateOrProvince,
     this.title,
@@ -238,8 +238,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
         ..$deletedBy = otherData?[K_DELETED_BY]
         ..$description = otherData?[K_DESCRIPTION]
         ..$id = otherData?[K_ID]
-        ..$lastModifiedAt = otherData?[K_LAST_MODIFIED_AT]
-        ..$lastModifiedBy = otherData?[K_LAST_MODIFIED_BY]
+        ..$modifiedAt = otherData?[K_MODIFIED_AT]
+        ..$modifiedBy = otherData?[K_MODIFIED_BY]
         ..$postalCode = otherData?[K_POSTAL_CODE]
         ..$stateOrProvince = otherData?[K_STATE_OR_PROVINCE]
         ..$title = otherData?[K_TITLE]
@@ -299,8 +299,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
         K_DELETED_BY: this.$deletedBy,
         K_DESCRIPTION: this.$description,
         K_ID: this.$id,
-        K_LAST_MODIFIED_AT: this.$lastModifiedAt,
-        K_LAST_MODIFIED_BY: this.$lastModifiedBy,
+        K_MODIFIED_AT: this.$modifiedAt,
+        K_MODIFIED_BY: this.$modifiedBy,
         K_POSTAL_CODE: this.$postalCode,
         K_STATE_OR_PROVINCE: this.$stateOrProvince,
         K_TITLE: this.$title,
@@ -371,11 +371,11 @@ class ModelAddressEntry extends _ModelAddressEntry {
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.lastModifiedAt != null) {
-        this.lastModifiedAt = other.lastModifiedAt!;
+      if (other.modifiedAt != null) {
+        this.modifiedAt = other.modifiedAt!;
       }
-      if (other.lastModifiedBy != null) {
-        this.lastModifiedBy = other.lastModifiedBy!;
+      if (other.modifiedBy != null) {
+        this.modifiedBy = other.modifiedBy!;
       }
       if (other.postalCode != null) {
         this.postalCode = other.postalCode!;
@@ -482,27 +482,24 @@ class ModelAddressEntry extends _ModelAddressEntry {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // lastModifiedAt.
-  DateTime? get lastModifiedAtField => this.lastModifiedAt;
-  set lastModifiedAtField(DateTime? v) => this.lastModifiedAt = v;
+  // modifiedAt.
+  DateTime? get modifiedAtField => this.modifiedAt;
+  set modifiedAtField(DateTime? v) => this.modifiedAt = v;
   @protected
-  dynamic get $lastModifiedAt =>
-      this.lastModifiedAt?.toUtc()?.toIso8601String();
+  dynamic get $modifiedAt => this.modifiedAt?.toUtc()?.toIso8601String();
   @protected
-  set $lastModifiedAt(v) => this.lastModifiedAt = () {
+  set $modifiedAt(v) => this.modifiedAt = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
-  // lastModifiedBy.
-  String? get lastModifiedByField => this.lastModifiedBy;
-  set lastModifiedByField(String? v) => this.lastModifiedBy = v;
+  // modifiedBy.
+  String? get modifiedByField => this.modifiedBy;
+  set modifiedByField(String? v) => this.modifiedBy = v;
   @protected
-  dynamic get $lastModifiedBy =>
-      this.lastModifiedBy?.toString().trim().nullIfEmpty;
+  dynamic get $modifiedBy => this.modifiedBy?.toString().trim().nullIfEmpty;
   @protected
-  set $lastModifiedBy(v) =>
-      this.lastModifiedBy = v?.toString().trim().nullIfEmpty;
+  set $modifiedBy(v) => this.modifiedBy = v?.toString().trim().nullIfEmpty;
 
   // postalCode.
   String? get postalCodeField => this.postalCode;

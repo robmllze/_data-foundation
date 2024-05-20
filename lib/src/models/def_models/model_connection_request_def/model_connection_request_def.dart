@@ -17,7 +17,7 @@ part '_model_connection_request_def.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...DefBaseModel.FIELDS,
+    ...DEF_BASE_MODEL_FIELDS,
   },
 )
-abstract class _ModelConnectionRequestDef extends DefBaseModel<ModelConnectionRequestDef> {}
+abstract class _ModelConnectionRequestDef extends Model implements DefBaseModel {}

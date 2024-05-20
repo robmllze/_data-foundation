@@ -32,9 +32,9 @@ class ModelEvent extends _ModelEvent {
   static const K_DELETED_BY = 'deleted_by';
   static const K_DESCRIPTION = 'description';
   static const K_ID = 'id';
-  static const K_LAST_MODIFIED_AT = 'last_modified_at';
-  static const K_LAST_MODIFIED_BY = 'last_modified_by';
   static const K_MEMBER_PIDS = 'member_pids';
+  static const K_MODIFIED_AT = 'modified_at';
+  static const K_MODIFIED_BY = 'modified_by';
   static const K_RELATIONSHIP_ID = 'relationship_id';
   static const K_TIMEOUT = 'timeout';
   static const K_TITLE = 'title';
@@ -58,9 +58,9 @@ class ModelEvent extends _ModelEvent {
   String? deletedBy;
   String? description;
   String? id;
-  DateTime? lastModifiedAt;
-  String? lastModifiedBy;
   Set<String>? memberPids;
+  DateTime? modifiedAt;
+  String? modifiedBy;
   String? relationshipId;
   int? timeout;
   String? title;
@@ -90,9 +90,9 @@ class ModelEvent extends _ModelEvent {
     String? deletedBy,
     String? description,
     String? id,
-    DateTime? lastModifiedAt,
-    String? lastModifiedBy,
     required Set<String> memberPids,
+    DateTime? modifiedAt,
+    String? modifiedBy,
     String? relationshipId,
     int? timeout,
     String? title,
@@ -112,9 +112,9 @@ class ModelEvent extends _ModelEvent {
       deletedBy: deletedBy,
       description: description,
       id: id,
-      lastModifiedAt: lastModifiedAt,
-      lastModifiedBy: lastModifiedBy,
       memberPids: memberPids,
+      modifiedAt: modifiedAt,
+      modifiedBy: modifiedBy,
       relationshipId: relationshipId,
       timeout: timeout,
       title: title,
@@ -140,9 +140,9 @@ class ModelEvent extends _ModelEvent {
     this.deletedBy,
     this.description,
     this.id,
-    this.lastModifiedAt,
-    this.lastModifiedBy,
     this.memberPids,
+    this.modifiedAt,
+    this.modifiedBy,
     this.relationshipId,
     this.timeout,
     this.title,
@@ -258,9 +258,9 @@ class ModelEvent extends _ModelEvent {
         ..$deletedBy = otherData?[K_DELETED_BY]
         ..$description = otherData?[K_DESCRIPTION]
         ..$id = otherData?[K_ID]
-        ..$lastModifiedAt = otherData?[K_LAST_MODIFIED_AT]
-        ..$lastModifiedBy = otherData?[K_LAST_MODIFIED_BY]
         ..$memberPids = otherData?[K_MEMBER_PIDS]
+        ..$modifiedAt = otherData?[K_MODIFIED_AT]
+        ..$modifiedBy = otherData?[K_MODIFIED_BY]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$timeout = otherData?[K_TIMEOUT]
         ..$title = otherData?[K_TITLE]
@@ -323,9 +323,9 @@ class ModelEvent extends _ModelEvent {
         K_DELETED_BY: this.$deletedBy,
         K_DESCRIPTION: this.$description,
         K_ID: this.$id,
-        K_LAST_MODIFIED_AT: this.$lastModifiedAt,
-        K_LAST_MODIFIED_BY: this.$lastModifiedBy,
         K_MEMBER_PIDS: this.$memberPids,
+        K_MODIFIED_AT: this.$modifiedAt,
+        K_MODIFIED_BY: this.$modifiedBy,
         K_RELATIONSHIP_ID: this.$relationshipId,
         K_TIMEOUT: this.$timeout,
         K_TITLE: this.$title,
@@ -395,14 +395,14 @@ class ModelEvent extends _ModelEvent {
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.lastModifiedAt != null) {
-        this.lastModifiedAt = other.lastModifiedAt!;
-      }
-      if (other.lastModifiedBy != null) {
-        this.lastModifiedBy = other.lastModifiedBy!;
-      }
       if (other.memberPids != null) {
         this.memberPids = other.memberPids!;
+      }
+      if (other.modifiedAt != null) {
+        this.modifiedAt = other.modifiedAt!;
+      }
+      if (other.modifiedBy != null) {
+        this.modifiedBy = other.modifiedBy!;
       }
       if (other.relationshipId != null) {
         this.relationshipId = other.relationshipId!;
@@ -512,28 +512,6 @@ class ModelEvent extends _ModelEvent {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // lastModifiedAt.
-  DateTime? get lastModifiedAtField => this.lastModifiedAt;
-  set lastModifiedAtField(DateTime? v) => this.lastModifiedAt = v;
-  @protected
-  dynamic get $lastModifiedAt =>
-      this.lastModifiedAt?.toUtc()?.toIso8601String();
-  @protected
-  set $lastModifiedAt(v) => this.lastModifiedAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
-
-  // lastModifiedBy.
-  String? get lastModifiedByField => this.lastModifiedBy;
-  set lastModifiedByField(String? v) => this.lastModifiedBy = v;
-  @protected
-  dynamic get $lastModifiedBy =>
-      this.lastModifiedBy?.toString().trim().nullIfEmpty;
-  @protected
-  set $lastModifiedBy(v) =>
-      this.lastModifiedBy = v?.toString().trim().nullIfEmpty;
-
   // memberPids.
   Set<String> get memberPidsField => this.memberPids!;
   set memberPidsField(Set<String> v) => this.memberPids = v;
@@ -555,6 +533,25 @@ class ModelEvent extends _ModelEvent {
       .nullIfEmpty
       ?.toSet()
       .cast();
+
+  // modifiedAt.
+  DateTime? get modifiedAtField => this.modifiedAt;
+  set modifiedAtField(DateTime? v) => this.modifiedAt = v;
+  @protected
+  dynamic get $modifiedAt => this.modifiedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $modifiedAt(v) => this.modifiedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // modifiedBy.
+  String? get modifiedByField => this.modifiedBy;
+  set modifiedByField(String? v) => this.modifiedBy = v;
+  @protected
+  dynamic get $modifiedBy => this.modifiedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $modifiedBy(v) => this.modifiedBy = v?.toString().trim().nullIfEmpty;
 
   // relationshipId.
   String? get relationshipIdField => this.relationshipId;

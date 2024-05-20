@@ -16,7 +16,7 @@ part '_model_file_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...EntryBaseModel.FIELDS,
+    ...ENTRY_BASE_MODEL_FIELDS,
     ('name?', String),
     ('download_url?', Uri),
     ('storage_path?', String),
@@ -25,7 +25,12 @@ part '_model_file_entry.g.dart';
     ('extension?', T_LOWER_CASE_STRING),
   },
 )
-abstract class _ModelFileEntry extends EntryBaseModel<ModelFileEntry> {
+abstract class _ModelFileEntry extends Model implements EntryBaseModel {}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+extension ModelFileEntryExtension on ModelFileEntry {
+
   //
   //
   //
@@ -45,13 +50,13 @@ abstract class _ModelFileEntry extends EntryBaseModel<ModelFileEntry> {
   //
 
   bool isAvatarImage() {
-    return this.model.isFlutterImageExtension() &&
-        this.model.definitionPathStartsWith(FileSchema.PUBLIC_FILES) &&
-        this.model.id == AVATAR_IMAGE_ID;
+    return this.isFlutterImageExtension() &&
+        this.definitionPathStartsWith(FileSchema.PUBLIC_FILES) &&
+        this.id == AVATAR_IMAGE_ID;
   }
 
   bool isProfileFile() {
-    return this.model.definitionPathStartsWith(FileSchema.PROFILE_FILES);
+    return this.definitionPathStartsWith(FileSchema.PROFILE_FILES);
   }
 
   //
@@ -59,7 +64,7 @@ abstract class _ModelFileEntry extends EntryBaseModel<ModelFileEntry> {
   //
 
   bool _isAnyOfExtensions(List<String> extensions) {
-    return extensions.map((e) => e.toLowerCase()).contains(this.model.extension);
+    return extensions.map((e) => e.toLowerCase()).contains(this.extension);
   }
 
   //
@@ -68,7 +73,7 @@ abstract class _ModelFileEntry extends EntryBaseModel<ModelFileEntry> {
 
   bool definitionPathStartsWith(List<String> a, [List<String> b = const []]) {
     final combinedPath = [...a, ...b];
-    final definitionPath = this.model.definitionPath ?? [];
+    final definitionPath = this.definitionPath ?? [];
     if (definitionPath.length < combinedPath.length) {
       return false;
     }

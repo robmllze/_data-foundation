@@ -7,6 +7,8 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'dart:ui';
+
 import '/_common.dart';
 
 part '_model_organization_pub.g.dart';
@@ -16,7 +18,7 @@ part '_model_organization_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PublicBaseModel.FIELDS,
+    ...PUBLIC_BASE_MODEL_FIELDS,
   },
 )
-abstract class _ModelOrganizationPub extends PublicBaseModel<ModelOrganizationPub> {}
+abstract class _ModelOrganizationPub extends Model implements PublicBaseModel {}
