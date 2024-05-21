@@ -17,7 +17,7 @@ part '_model_event.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...ENTRY_BASE_MODEL_FIELDS,
+    ...ENTRY_MODEL_FIELDS,
     ('relationship_id?', String),
     ('member_pids', Set<String>),
     ('def_type?', EventDefType),
@@ -30,7 +30,7 @@ part '_model_event.g.dart';
     ('when_received?', Map<String, DateTime>),
   },
 )
-abstract class _ModelEvent extends Model implements EntryBaseModel {}
+abstract class _ModelEvent extends Model implements EntryModel {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

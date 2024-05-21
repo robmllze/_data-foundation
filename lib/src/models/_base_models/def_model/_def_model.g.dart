@@ -15,11 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'def_base_model.dart';
+part of 'def_model.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class DefBaseModel extends Model {
+class DefModel extends Model {
   //
   //
   //
@@ -29,7 +29,7 @@ class DefBaseModel extends Model {
   static const K_RELATIONSHIP_ID = 'relationship_id';
   static const K_SENDER_PID = 'sender_pid';
 
-  static const CLASS = 'DefBaseModel';
+  static const CLASS = 'DefModel';
 
   @override
   String get $class => CLASS;
@@ -43,19 +43,19 @@ class DefBaseModel extends Model {
   //
   //
 
-  DefBaseModel.empty();
+  DefModel.empty();
 
   //
   //
   //
 
-  factory DefBaseModel({
+  factory DefModel({
     String? message,
     String? receiverPid,
     String? relationshipId,
     String? senderPid,
   }) {
-    return DefBaseModel.b(
+    return DefModel.b(
       message: message,
       receiverPid: receiverPid,
       relationshipId: relationshipId,
@@ -67,7 +67,7 @@ class DefBaseModel extends Model {
   //
   //
 
-  DefBaseModel.b({
+  DefModel.b({
     this.message,
     this.receiverPid,
     this.relationshipId,
@@ -78,7 +78,7 @@ class DefBaseModel extends Model {
   //
   //
 
-  factory DefBaseModel.from(
+  factory DefModel.from(
     Model? other,
   ) {
     try {
@@ -89,7 +89,7 @@ class DefBaseModel extends Model {
     }
   }
 
-  static DefBaseModel? fromOrNull(
+  static DefModel? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(
@@ -101,8 +101,8 @@ class DefBaseModel extends Model {
   //
   //
 
-  factory DefBaseModel.of(
-    DefBaseModel other,
+  factory DefModel.of(
+    DefModel other,
   ) {
     try {
       return ofOrNull(other)!;
@@ -112,8 +112,8 @@ class DefBaseModel extends Model {
     }
   }
 
-  static DefBaseModel? ofOrNull(
-    DefBaseModel? other,
+  static DefModel? ofOrNull(
+    DefModel? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -122,7 +122,7 @@ class DefBaseModel extends Model {
   //
   //
 
-  factory DefBaseModel.fromJsonString(
+  factory DefModel.fromJsonString(
     String source,
   ) {
     try {
@@ -133,15 +133,15 @@ class DefBaseModel extends Model {
     }
   }
 
-  static DefBaseModel? fromJsonStringOrNull(
+  static DefModel? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return DefBaseModel.fromJson(decoded);
+        return DefModel.fromJson(decoded);
       } else {
-        return DefBaseModel.empty();
+        return DefModel.empty();
       }
     } catch (_) {
       return null;
@@ -152,7 +152,7 @@ class DefBaseModel extends Model {
   //
   //
 
-  factory DefBaseModel.fromJson(
+  factory DefModel.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -163,11 +163,11 @@ class DefBaseModel extends Model {
     }
   }
 
-  static DefBaseModel? fromJsonOrNull(
+  static DefModel? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return DefBaseModel.empty()
+      return DefModel.empty()
         ..$message = otherData?[K_MESSAGE]
         ..$receiverPid = otherData?[K_RECEIVER_PID]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
@@ -181,7 +181,7 @@ class DefBaseModel extends Model {
   //
   //
 
-  factory DefBaseModel.fromUri(
+  factory DefModel.fromUri(
     Uri? uri,
   ) {
     try {
@@ -192,14 +192,14 @@ class DefBaseModel extends Model {
     }
   }
 
-  static DefBaseModel? fromUriOrNull(
+  static DefModel? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return DefBaseModel.fromJson(uri.queryParameters);
+        return DefModel.fromJson(uri.queryParameters);
       } else {
-        return DefBaseModel.b();
+        return DefModel.b();
       }
     } catch (_) {
       return null;
@@ -235,7 +235,7 @@ class DefBaseModel extends Model {
 
   @override
   T empty<T extends Model>() {
-    return DefBaseModel.b() as T;
+    return DefModel.b() as T;
   }
 
   //
@@ -244,7 +244,7 @@ class DefBaseModel extends Model {
 
   @override
   T copy<T extends Model>() {
-    return (DefBaseModel.b()..updateWith(this)) as T;
+    return (DefModel.b()..updateWith(this)) as T;
   }
 
   //
@@ -256,7 +256,7 @@ class DefBaseModel extends Model {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = DefBaseModel.fromJson(otherData);
+      final other = DefModel.fromJson(otherData);
       if (other.message != null) {
         this.message = other.message!;
       }

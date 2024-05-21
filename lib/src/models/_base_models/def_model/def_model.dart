@@ -9,17 +9,17 @@
 
 import '/_common.dart';
 
-part '_def_base_model.g.dart';
+part '_def_model.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-const DEF_BASE_MODEL_FIELDS = {
+const DEF_MODEL_FIELDS = {
   ('relationship_id?', String),
   ('sender_pid?', String),
   ('receiver_pid?', String),
   ('message?', String),
 };
 
-@GenerateModel(fields: DEF_BASE_MODEL_FIELDS)
+@GenerateModel(fields: DEF_MODEL_FIELDS)
 // ignore: unused_element
-abstract class _DefBaseModel {}
+abstract class _DefModel {}

@@ -9,20 +9,23 @@
 
 import '/_common.dart';
 
-part '_private_base_model.g.dart';
+part '_entry_model.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-const PRIVATE_BASE_MODEL_FIELDS = {
+const ENTRY_MODEL_FIELDS = {
   ('id?', String),
-  ('pid?', String),
-  ('seed?', String),
+  ('title?', String),
+  ('title_searchable?', T_SEARCHABLE_STRING),
+  ('description?', String),
   ('created_at?', DateTime),
   ('created_by?', String),
   ('deleted_at?', DateTime),
   ('deleted_by?', String),
+  ('modified_at?', DateTime),
+  ('modified_by?', String),
 };
 
-@GenerateModel(fields: PRIVATE_BASE_MODEL_FIELDS)
+@GenerateModel(fields: ENTRY_MODEL_FIELDS)
 // ignore: unused_element
-abstract class _PrivateBaseModel {}
+abstract class _EntryModel {}

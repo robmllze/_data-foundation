@@ -19,7 +19,7 @@ part '_model_relationship.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PUBLIC_BASE_MODEL_FIELDS,
+    ...PUBLIC_MODEL_FIELDS,
     ('member_pids?', Set<String>),
     ('when_disabled?', Map<String, DateTime>),
     ('when_enabled?', Map<String, DateTime>),
@@ -28,7 +28,7 @@ part '_model_relationship.g.dart';
     ('def?', GenericModel),
   },
 )
-abstract class _ModelRelationship extends Model implements PublicBaseModel {}
+abstract class _ModelRelationship extends Model implements PublicModel {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

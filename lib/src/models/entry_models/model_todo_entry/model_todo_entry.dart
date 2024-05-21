@@ -16,8 +16,8 @@ part '_model_todo_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...ENTRY_BASE_MODEL_FIELDS,
+    ...ENTRY_MODEL_FIELDS,
     ('status?', Map<DateTime, String>),
   },
 )
-abstract class _ModelTodoEntry extends Model implements EntryBaseModel {}
+abstract class _ModelTodoEntry extends Model implements EntryModel {}

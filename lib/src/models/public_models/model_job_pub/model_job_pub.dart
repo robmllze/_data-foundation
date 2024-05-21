@@ -19,7 +19,7 @@ part '_model_job_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PUBLIC_BASE_MODEL_FIELDS,
+    ...PUBLIC_MODEL_FIELDS,
     ('clock_ins?', Map<DateTime, String>),
     ('clock_outs?', Map<DateTime, String>),
     ('when_opened?', Map<String, DateTime>),
@@ -27,7 +27,7 @@ part '_model_job_pub.g.dart';
     ('todo_book?', Map<DateTime, ModelTodoEntry>),
   },
 )
-abstract class _ModelJobPub extends Model implements PublicBaseModel {}
+abstract class _ModelJobPub extends Model implements PublicModel {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

@@ -18,7 +18,7 @@ part '_model_organization_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PUBLIC_BASE_MODEL_FIELDS,
+    ...PUBLIC_MODEL_FIELDS,
   },
 )
-abstract class _ModelOrganizationPub extends Model implements PublicBaseModel {}
+abstract class _ModelOrganizationPub extends Model implements PublicModel {}

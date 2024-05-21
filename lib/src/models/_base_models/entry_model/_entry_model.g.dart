@@ -15,11 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'entry_base_model.dart';
+part of 'entry_model.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class EntryBaseModel extends Model {
+class EntryModel extends Model {
   //
   //
   //
@@ -35,7 +35,7 @@ class EntryBaseModel extends Model {
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
 
-  static const CLASS = 'EntryBaseModel';
+  static const CLASS = 'EntryModel';
 
   @override
   String get $class => CLASS;
@@ -55,13 +55,13 @@ class EntryBaseModel extends Model {
   //
   //
 
-  EntryBaseModel.empty();
+  EntryModel.empty();
 
   //
   //
   //
 
-  factory EntryBaseModel({
+  factory EntryModel({
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
@@ -73,7 +73,7 @@ class EntryBaseModel extends Model {
     String? title,
     String? titleSearchable,
   }) {
-    return EntryBaseModel.b(
+    return EntryModel.b(
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
@@ -91,7 +91,7 @@ class EntryBaseModel extends Model {
   //
   //
 
-  EntryBaseModel.b({
+  EntryModel.b({
     this.createdAt,
     this.createdBy,
     this.deletedAt,
@@ -108,7 +108,7 @@ class EntryBaseModel extends Model {
   //
   //
 
-  factory EntryBaseModel.from(
+  factory EntryModel.from(
     Model? other,
   ) {
     try {
@@ -119,7 +119,7 @@ class EntryBaseModel extends Model {
     }
   }
 
-  static EntryBaseModel? fromOrNull(
+  static EntryModel? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(
@@ -131,8 +131,8 @@ class EntryBaseModel extends Model {
   //
   //
 
-  factory EntryBaseModel.of(
-    EntryBaseModel other,
+  factory EntryModel.of(
+    EntryModel other,
   ) {
     try {
       return ofOrNull(other)!;
@@ -142,8 +142,8 @@ class EntryBaseModel extends Model {
     }
   }
 
-  static EntryBaseModel? ofOrNull(
-    EntryBaseModel? other,
+  static EntryModel? ofOrNull(
+    EntryModel? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -152,7 +152,7 @@ class EntryBaseModel extends Model {
   //
   //
 
-  factory EntryBaseModel.fromJsonString(
+  factory EntryModel.fromJsonString(
     String source,
   ) {
     try {
@@ -163,15 +163,15 @@ class EntryBaseModel extends Model {
     }
   }
 
-  static EntryBaseModel? fromJsonStringOrNull(
+  static EntryModel? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return EntryBaseModel.fromJson(decoded);
+        return EntryModel.fromJson(decoded);
       } else {
-        return EntryBaseModel.empty();
+        return EntryModel.empty();
       }
     } catch (_) {
       return null;
@@ -182,7 +182,7 @@ class EntryBaseModel extends Model {
   //
   //
 
-  factory EntryBaseModel.fromJson(
+  factory EntryModel.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -193,11 +193,11 @@ class EntryBaseModel extends Model {
     }
   }
 
-  static EntryBaseModel? fromJsonOrNull(
+  static EntryModel? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return EntryBaseModel.empty()
+      return EntryModel.empty()
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
@@ -217,7 +217,7 @@ class EntryBaseModel extends Model {
   //
   //
 
-  factory EntryBaseModel.fromUri(
+  factory EntryModel.fromUri(
     Uri? uri,
   ) {
     try {
@@ -228,14 +228,14 @@ class EntryBaseModel extends Model {
     }
   }
 
-  static EntryBaseModel? fromUriOrNull(
+  static EntryModel? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return EntryBaseModel.fromJson(uri.queryParameters);
+        return EntryModel.fromJson(uri.queryParameters);
       } else {
-        return EntryBaseModel.b();
+        return EntryModel.b();
       }
     } catch (_) {
       return null;
@@ -277,7 +277,7 @@ class EntryBaseModel extends Model {
 
   @override
   T empty<T extends Model>() {
-    return EntryBaseModel.b() as T;
+    return EntryModel.b() as T;
   }
 
   //
@@ -286,7 +286,7 @@ class EntryBaseModel extends Model {
 
   @override
   T copy<T extends Model>() {
-    return (EntryBaseModel.b()..updateWith(this)) as T;
+    return (EntryModel.b()..updateWith(this)) as T;
   }
 
   //
@@ -298,7 +298,7 @@ class EntryBaseModel extends Model {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = EntryBaseModel.fromJson(otherData);
+      final other = EntryModel.fromJson(otherData);
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }

@@ -15,11 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'public_base_model.dart';
+part of 'public_model.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class PublicBaseModel extends Model {
+class PublicModel extends Model {
   //
   //
   //
@@ -39,7 +39,7 @@ class PublicBaseModel extends Model {
   static const K_ID = 'id';
   static const K_PHONE_BOOK = 'phone_book';
 
-  static const CLASS = 'PublicBaseModel';
+  static const CLASS = 'PublicModel';
 
   @override
   String get $class => CLASS;
@@ -63,13 +63,13 @@ class PublicBaseModel extends Model {
   //
   //
 
-  PublicBaseModel.empty();
+  PublicModel.empty();
 
   //
   //
   //
 
-  factory PublicBaseModel({
+  factory PublicModel({
     Map<String, ModelAddressEntry>? addressBook,
     DateTime? createdAt,
     String? createdBy,
@@ -85,7 +85,7 @@ class PublicBaseModel extends Model {
     String? id,
     Map<String, ModelPhoneEntry>? phoneBook,
   }) {
-    return PublicBaseModel.b(
+    return PublicModel.b(
       addressBook: addressBook,
       createdAt: createdAt,
       createdBy: createdBy,
@@ -107,7 +107,7 @@ class PublicBaseModel extends Model {
   //
   //
 
-  PublicBaseModel.b({
+  PublicModel.b({
     this.addressBook,
     this.createdAt,
     this.createdBy,
@@ -128,7 +128,7 @@ class PublicBaseModel extends Model {
   //
   //
 
-  factory PublicBaseModel.from(
+  factory PublicModel.from(
     Model? other,
   ) {
     try {
@@ -139,7 +139,7 @@ class PublicBaseModel extends Model {
     }
   }
 
-  static PublicBaseModel? fromOrNull(
+  static PublicModel? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(
@@ -151,8 +151,8 @@ class PublicBaseModel extends Model {
   //
   //
 
-  factory PublicBaseModel.of(
-    PublicBaseModel other,
+  factory PublicModel.of(
+    PublicModel other,
   ) {
     try {
       return ofOrNull(other)!;
@@ -162,8 +162,8 @@ class PublicBaseModel extends Model {
     }
   }
 
-  static PublicBaseModel? ofOrNull(
-    PublicBaseModel? other,
+  static PublicModel? ofOrNull(
+    PublicModel? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -172,7 +172,7 @@ class PublicBaseModel extends Model {
   //
   //
 
-  factory PublicBaseModel.fromJsonString(
+  factory PublicModel.fromJsonString(
     String source,
   ) {
     try {
@@ -183,15 +183,15 @@ class PublicBaseModel extends Model {
     }
   }
 
-  static PublicBaseModel? fromJsonStringOrNull(
+  static PublicModel? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return PublicBaseModel.fromJson(decoded);
+        return PublicModel.fromJson(decoded);
       } else {
-        return PublicBaseModel.empty();
+        return PublicModel.empty();
       }
     } catch (_) {
       return null;
@@ -202,7 +202,7 @@ class PublicBaseModel extends Model {
   //
   //
 
-  factory PublicBaseModel.fromJson(
+  factory PublicModel.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -213,11 +213,11 @@ class PublicBaseModel extends Model {
     }
   }
 
-  static PublicBaseModel? fromJsonOrNull(
+  static PublicModel? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return PublicBaseModel.empty()
+      return PublicModel.empty()
         ..$addressBook = otherData?[K_ADDRESS_BOOK]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
@@ -241,7 +241,7 @@ class PublicBaseModel extends Model {
   //
   //
 
-  factory PublicBaseModel.fromUri(
+  factory PublicModel.fromUri(
     Uri? uri,
   ) {
     try {
@@ -252,14 +252,14 @@ class PublicBaseModel extends Model {
     }
   }
 
-  static PublicBaseModel? fromUriOrNull(
+  static PublicModel? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return PublicBaseModel.fromJson(uri.queryParameters);
+        return PublicModel.fromJson(uri.queryParameters);
       } else {
-        return PublicBaseModel.b();
+        return PublicModel.b();
       }
     } catch (_) {
       return null;
@@ -305,7 +305,7 @@ class PublicBaseModel extends Model {
 
   @override
   T empty<T extends Model>() {
-    return PublicBaseModel.b() as T;
+    return PublicModel.b() as T;
   }
 
   //
@@ -314,7 +314,7 @@ class PublicBaseModel extends Model {
 
   @override
   T copy<T extends Model>() {
-    return (PublicBaseModel.b()..updateWith(this)) as T;
+    return (PublicModel.b()..updateWith(this)) as T;
   }
 
   //
@@ -326,7 +326,7 @@ class PublicBaseModel extends Model {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = PublicBaseModel.fromJson(otherData);
+      final other = PublicModel.fromJson(otherData);
       if (other.addressBook != null) {
         this.addressBook = other.addressBook!;
       }

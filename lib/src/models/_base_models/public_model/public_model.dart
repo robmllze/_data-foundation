@@ -11,11 +11,11 @@ import 'dart:ui';
 
 import '/_common.dart';
 
-part '_public_base_model.g.dart';
+part '_public_model.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-const PUBLIC_BASE_MODEL_FIELDS = {
+const PUBLIC_MODEL_FIELDS = {
   ('id?', String),
   ('display_name?', String),
   ('display_name_searchable?', T_SEARCHABLE_STRING),
@@ -32,13 +32,20 @@ const PUBLIC_BASE_MODEL_FIELDS = {
   ('phone_book?', Map<String, ModelPhoneEntry>),
 };
 
-@GenerateModel(fields: PUBLIC_BASE_MODEL_FIELDS)
+@GenerateModel(fields: PUBLIC_MODEL_FIELDS)
 // ignore: unused_element
-abstract class _PublicBaseModel {}
+abstract class _PublicModel {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-extension PublicBaseModeExtension on PublicBaseModel {
+extension PublicModelExtension on PublicModel {
+  //
+  //
+  //
+
+  bool isIdNotEmpty() {
+    return this.id != null && this.id!.isNotEmpty;
+  }
   //
   //
   //

@@ -15,11 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'private_base_model.dart';
+part of 'private_model.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class PrivateBaseModel extends Model {
+class PrivateModel extends Model {
   //
   //
   //
@@ -32,7 +32,7 @@ class PrivateBaseModel extends Model {
   static const K_PID = 'pid';
   static const K_SEED = 'seed';
 
-  static const CLASS = 'PrivateBaseModel';
+  static const CLASS = 'PrivateModel';
 
   @override
   String get $class => CLASS;
@@ -49,13 +49,13 @@ class PrivateBaseModel extends Model {
   //
   //
 
-  PrivateBaseModel.empty();
+  PrivateModel.empty();
 
   //
   //
   //
 
-  factory PrivateBaseModel({
+  factory PrivateModel({
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
@@ -64,7 +64,7 @@ class PrivateBaseModel extends Model {
     String? pid,
     String? seed,
   }) {
-    return PrivateBaseModel.b(
+    return PrivateModel.b(
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
@@ -79,7 +79,7 @@ class PrivateBaseModel extends Model {
   //
   //
 
-  PrivateBaseModel.b({
+  PrivateModel.b({
     this.createdAt,
     this.createdBy,
     this.deletedAt,
@@ -93,7 +93,7 @@ class PrivateBaseModel extends Model {
   //
   //
 
-  factory PrivateBaseModel.from(
+  factory PrivateModel.from(
     Model? other,
   ) {
     try {
@@ -104,7 +104,7 @@ class PrivateBaseModel extends Model {
     }
   }
 
-  static PrivateBaseModel? fromOrNull(
+  static PrivateModel? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(
@@ -116,8 +116,8 @@ class PrivateBaseModel extends Model {
   //
   //
 
-  factory PrivateBaseModel.of(
-    PrivateBaseModel other,
+  factory PrivateModel.of(
+    PrivateModel other,
   ) {
     try {
       return ofOrNull(other)!;
@@ -127,8 +127,8 @@ class PrivateBaseModel extends Model {
     }
   }
 
-  static PrivateBaseModel? ofOrNull(
-    PrivateBaseModel? other,
+  static PrivateModel? ofOrNull(
+    PrivateModel? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -137,7 +137,7 @@ class PrivateBaseModel extends Model {
   //
   //
 
-  factory PrivateBaseModel.fromJsonString(
+  factory PrivateModel.fromJsonString(
     String source,
   ) {
     try {
@@ -148,15 +148,15 @@ class PrivateBaseModel extends Model {
     }
   }
 
-  static PrivateBaseModel? fromJsonStringOrNull(
+  static PrivateModel? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return PrivateBaseModel.fromJson(decoded);
+        return PrivateModel.fromJson(decoded);
       } else {
-        return PrivateBaseModel.empty();
+        return PrivateModel.empty();
       }
     } catch (_) {
       return null;
@@ -167,7 +167,7 @@ class PrivateBaseModel extends Model {
   //
   //
 
-  factory PrivateBaseModel.fromJson(
+  factory PrivateModel.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -178,11 +178,11 @@ class PrivateBaseModel extends Model {
     }
   }
 
-  static PrivateBaseModel? fromJsonOrNull(
+  static PrivateModel? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return PrivateBaseModel.empty()
+      return PrivateModel.empty()
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
@@ -199,7 +199,7 @@ class PrivateBaseModel extends Model {
   //
   //
 
-  factory PrivateBaseModel.fromUri(
+  factory PrivateModel.fromUri(
     Uri? uri,
   ) {
     try {
@@ -210,14 +210,14 @@ class PrivateBaseModel extends Model {
     }
   }
 
-  static PrivateBaseModel? fromUriOrNull(
+  static PrivateModel? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return PrivateBaseModel.fromJson(uri.queryParameters);
+        return PrivateModel.fromJson(uri.queryParameters);
       } else {
-        return PrivateBaseModel.b();
+        return PrivateModel.b();
       }
     } catch (_) {
       return null;
@@ -256,7 +256,7 @@ class PrivateBaseModel extends Model {
 
   @override
   T empty<T extends Model>() {
-    return PrivateBaseModel.b() as T;
+    return PrivateModel.b() as T;
   }
 
   //
@@ -265,7 +265,7 @@ class PrivateBaseModel extends Model {
 
   @override
   T copy<T extends Model>() {
-    return (PrivateBaseModel.b()..updateWith(this)) as T;
+    return (PrivateModel.b()..updateWith(this)) as T;
   }
 
   //
@@ -277,7 +277,7 @@ class PrivateBaseModel extends Model {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = PrivateBaseModel.fromJson(otherData);
+      final other = PrivateModel.fromJson(otherData);
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }

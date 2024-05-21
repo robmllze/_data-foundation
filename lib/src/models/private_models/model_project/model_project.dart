@@ -16,10 +16,10 @@ part '_model_project.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PRIVATE_BASE_MODEL_FIELDS,
+    ...PRIVATE_MODEL_FIELDS,
   },
 )
-abstract class _ModelProject extends Model implements PrivateBaseModel {}
+abstract class _ModelProject extends Model implements PrivateModel {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

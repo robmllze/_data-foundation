@@ -18,12 +18,12 @@ part '_model_project_pub.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PUBLIC_BASE_MODEL_FIELDS,
+    ...PUBLIC_MODEL_FIELDS,
     ('when_opened?', Map<String, DateTime>),
     ('when_closed?', Map<String, DateTime>),
   },
 )
-abstract class _ModelProjectPub extends Model implements PublicBaseModel {}
+abstract class _ModelProjectPub extends Model implements PublicModel {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

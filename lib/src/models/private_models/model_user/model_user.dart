@@ -17,11 +17,11 @@ part '_model_user.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...PRIVATE_BASE_MODEL_FIELDS,
+    ...PRIVATE_MODEL_FIELDS,
     ('did_send_welcome_email?', bool),
     ('email_subscriptions?', Set<String>),
     ('push_subscriptions?', Set<String>),
     ('sms_subscriptions?', Set<String>),
   },
 )
-abstract class _ModelUser extends Model implements PrivateBaseModel {}
+abstract class _ModelUser extends Model implements PrivateModel {}
