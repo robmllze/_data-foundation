@@ -33,7 +33,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       'is_accessible_only_if_logged_out';
   static const K_IS_REDIRECTABLE = 'is_redirectable';
   static const K_MAKEUP = 'makeup';
-  static const K_NAVIGATION_CONTROLS_WIDGET = 'navigation_controls_widget';
   static const K_PATH = 'path';
   static const K_PREVIOUS_CONFIGURATION = 'previous_configuration';
   static const K_TITLE = 'title';
@@ -49,7 +48,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   bool? isAccessibleOnlyIfLoggedOut;
   bool? isRedirectable;
   dynamic makeup;
-  Widget? navigationControlsWidget;
   String? path;
   ModelScreenConfiguration? previousConfiguration;
   String? title;
@@ -71,7 +69,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     bool? isAccessibleOnlyIfLoggedOut,
     bool? isRedirectable,
     dynamic makeup,
-    Widget? navigationControlsWidget,
     String? path,
     ModelScreenConfiguration? previousConfiguration,
     String? title,
@@ -84,7 +81,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       isAccessibleOnlyIfLoggedOut: isAccessibleOnlyIfLoggedOut,
       isRedirectable: isRedirectable,
       makeup: makeup,
-      navigationControlsWidget: navigationControlsWidget,
       path: path,
       previousConfiguration: previousConfiguration,
       title: title,
@@ -102,7 +98,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     this.isAccessibleOnlyIfLoggedOut,
     this.isRedirectable,
     this.makeup,
-    this.navigationControlsWidget,
     this.path,
     this.previousConfiguration,
     this.title,
@@ -211,7 +206,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
             otherData?[K_IS_ACCESSIBLE_ONLY_IF_LOGGED_OUT]
         ..$isRedirectable = otherData?[K_IS_REDIRECTABLE]
         ..$makeup = otherData?[K_MAKEUP]
-        ..$navigationControlsWidget = otherData?[K_NAVIGATION_CONTROLS_WIDGET]
         ..$path = otherData?[K_PATH]
         ..$previousConfiguration = otherData?[K_PREVIOUS_CONFIGURATION]
         ..$title = otherData?[K_TITLE];
@@ -267,7 +261,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
         K_IS_ACCESSIBLE_ONLY_IF_LOGGED_OUT: this.$isAccessibleOnlyIfLoggedOut,
         K_IS_REDIRECTABLE: this.$isRedirectable,
         K_MAKEUP: this.$makeup,
-        K_NAVIGATION_CONTROLS_WIDGET: this.$navigationControlsWidget,
         K_PATH: this.$path,
         K_PREVIOUS_CONFIGURATION: this.$previousConfiguration,
         K_TITLE: this.$title,
@@ -325,9 +318,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       }
       if (other.makeup != null) {
         this.makeup = other.makeup!;
-      }
-      if (other.navigationControlsWidget != null) {
-        this.navigationControlsWidget = other.navigationControlsWidget!;
       }
       if (other.path != null) {
         this.path = other.path!;
@@ -419,15 +409,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   dynamic get $makeup => this.makeup;
   @protected
   set $makeup(v) => this.makeup = v;
-
-  // navigationControlsWidget.
-  Widget? get navigationControlsWidgetField => this.navigationControlsWidget;
-  set navigationControlsWidgetField(Widget? v) =>
-      this.navigationControlsWidget = v;
-  @protected
-  dynamic get $navigationControlsWidget => this.navigationControlsWidget;
-  @protected
-  set $navigationControlsWidget(v) => this.navigationControlsWidget = v;
 
   // path.
   String? get pathField => this.path;

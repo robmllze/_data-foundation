@@ -25,7 +25,6 @@ part '_model_screen_configuration.g.dart';
     ('is_accessible_only_if_logged_out?', bool),
     ('is_redirectable?', bool),
     ('makeup', dynamic),
-    ('navigation_controls_widget?', Widget),
     ('path?', String),
     ('previous_configuration?', ModelScreenConfiguration),
     ('title?', String),
@@ -53,7 +52,6 @@ ModelScreenConfiguration urlToScreenConfiguration({
   required bool isAccessibleOnlyIfLoggedOut,
   required bool isRedirectable,
   required dynamic makeup,
-  required Widget? navigationControlsWidget,
   required String? title,
 }) {
   final path = url.path;
@@ -69,7 +67,6 @@ ModelScreenConfiguration urlToScreenConfiguration({
     isRedirectable: isRedirectable,
     path: path,
     makeup: makeup,
-    navigationControlsWidget: navigationControlsWidget,
     title: title,
   );
 }
