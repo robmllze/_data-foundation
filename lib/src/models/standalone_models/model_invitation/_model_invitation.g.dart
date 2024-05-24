@@ -376,7 +376,7 @@ class ModelInvitation extends _ModelInvitation {
   dynamic get $def => this.def?.data;
   @protected
   set $def(v) => this.def = () {
-        final a = letMap<String, dynamic>(letMap(v)?[DataModel.K_DATA]);
+        final a = letMap<String, dynamic>(v);
         return a != null ? DataModel(data: a) : null;
       }();
 
