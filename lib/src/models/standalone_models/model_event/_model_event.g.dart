@@ -92,7 +92,7 @@ class ModelEvent extends _ModelEvent {
     String? deletedBy,
     String? description,
     String? id,
-    required Set<String> memberPids,
+    Set<String>? memberPids,
     DateTime? modifiedAt,
     String? modifiedBy,
     required DataRefModel ref,
@@ -158,7 +158,6 @@ class ModelEvent extends _ModelEvent {
     this.whenRead,
     this.whenReceived,
   }) {
-    assert(memberPids != null);
     assert(ref != null);
   }
 
@@ -524,17 +523,17 @@ class ModelEvent extends _ModelEvent {
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // memberPids.
-  Set<String> get memberPidsField => this.memberPids!;
-  set memberPidsField(Set<String> v) => this.memberPids = v;
+  Set<String>? get memberPidsField => this.memberPids;
+  set memberPidsField(Set<String>? v) => this.memberPids = v;
   @protected
-  dynamic get $memberPids => (this
+  dynamic get $memberPids => this
       .memberPids
       ?.map(
         (p0) => p0?.toString().trim().nullIfEmpty,
       )
       .nonNulls
       .nullIfEmpty
-      ?.toList())!;
+      ?.toList();
   @protected
   set $memberPids(v) => this.memberPids = letSet(v)
       ?.map(

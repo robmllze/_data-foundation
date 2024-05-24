@@ -19,7 +19,7 @@ part '_model_event.g.dart';
   fields: {
     ...ENTRY_MODEL_FIELDS,
     ('relationship_id?', String),
-    ('member_pids', Set<String>),
+    ('member_pids?', Set<String>),
     ('def_type?', EventDefType),
     ('def?', DataModel),
     ('timeout?', int),
