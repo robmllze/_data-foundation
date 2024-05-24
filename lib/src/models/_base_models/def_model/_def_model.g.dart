@@ -93,7 +93,7 @@ class DefModel extends Model {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 

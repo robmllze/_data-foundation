@@ -19,15 +19,50 @@ abstract final class Schema {
   //
   //
 
-  // Media.
+  // Entries.
 
-  static DataRef fileRef({
+  static DataRef filesRef({
     String? fileId,
   }) {
     return DataRef(
       id: fileId,
-      tableName: 'files',
       collection: const ['files'],
+    );
+  }
+
+  static DataRef addressesRef({
+    String? addressId,
+  }) {
+    return DataRef(
+      id: addressId,
+      collection: const ['addresses'],
+    );
+  }
+
+  static DataRef emailsRef({
+    String? emailId,
+  }) {
+    return DataRef(
+      id: emailId,
+      collection: const ['emails'],
+    );
+  }
+
+  static DataRef notesRef({
+    String? noteId,
+  }) {
+    return DataRef(
+      id: noteId,
+      collection: const ['notes'],
+    );
+  }
+
+  static DataRef phoneRef({
+    String? phoneId,
+  }) {
+    return DataRef(
+      id: phoneId,
+      collection: const ['phones'],
     );
   }
 
@@ -38,7 +73,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: invitationId,
-      tableName: 'invitations',
       collection: const ['invitations'],
     );
   }
@@ -50,7 +84,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: eventId,
-      tableName: 'events',
       collection: const ['events'],
     );
   }
@@ -62,7 +95,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: eventId,
-      tableName: 'messages',
       collection: const ['messages'],
     );
   }
@@ -75,7 +107,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: eventId,
-      tableName: 'relationship_messages',
       collection: ['relationships', '$relationshipId', 'messages'],
     );
   }
@@ -87,7 +118,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: userId,
-      tableName: 'users',
       collection: const ['users'],
     );
   }
@@ -99,7 +129,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: userPid,
-      tableName: 'user_pubs',
       collection: const ['user_pubs'],
     );
   }
@@ -112,7 +141,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: eventId,
-      tableName: 'user_events',
       collection: ['user_pubs', '$userPid', 'events'],
     );
   }
@@ -124,7 +152,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: relationshipId,
-      tableName: 'relationships',
       collection: const ['relationships'],
     );
   }
@@ -137,7 +164,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: eventId,
-      tableName: 'relationship_events',
       collection: ['relationships', '$relationshipId', 'events'],
     );
   }
@@ -149,7 +175,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: projectId,
-      tableName: 'projects',
       collection: const ['projects'],
     );
   }
@@ -161,7 +186,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: projectPid,
-      tableName: 'project_pubs',
       collection: const ['project_pubs'],
     );
   }
@@ -173,7 +197,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: jobId,
-      tableName: 'jobs',
       collection: const ['jobs'],
     );
   }
@@ -185,7 +208,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: jobPid,
-      tableName: 'job_pubs',
       collection: const ['job_pubs'],
     );
   }
@@ -197,7 +219,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: organizationId,
-      tableName: 'organizations',
       collection: const ['organizations'],
     );
   }
@@ -209,7 +230,6 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: organizationPid,
-      tableName: 'organization_pubs',
       collection: const ['organization_pubs'],
     );
   }

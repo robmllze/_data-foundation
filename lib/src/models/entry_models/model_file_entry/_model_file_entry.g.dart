@@ -36,6 +36,7 @@ class ModelFileEntry extends _ModelFileEntry {
   static const K_MODIFIED_AT = 'modified_at';
   static const K_MODIFIED_BY = 'modified_by';
   static const K_NAME = 'name';
+  static const K_REF = 'ref';
   static const K_SIZE = 'size';
   static const K_STORAGE_PATH = 'storage_path';
   static const K_TITLE = 'title';
@@ -58,6 +59,7 @@ class ModelFileEntry extends _ModelFileEntry {
   DateTime? modifiedAt;
   String? modifiedBy;
   String? name;
+  DataRefModel? ref;
   int? size;
   String? storagePath;
   String? title;
@@ -86,6 +88,7 @@ class ModelFileEntry extends _ModelFileEntry {
     DateTime? modifiedAt,
     String? modifiedBy,
     String? name,
+    required DataRefModel ref,
     int? size,
     String? storagePath,
     String? title,
@@ -104,6 +107,7 @@ class ModelFileEntry extends _ModelFileEntry {
       modifiedAt: modifiedAt,
       modifiedBy: modifiedBy,
       name: name,
+      ref: ref,
       size: size,
       storagePath: storagePath,
       title: title,
@@ -128,11 +132,14 @@ class ModelFileEntry extends _ModelFileEntry {
     this.modifiedAt,
     this.modifiedBy,
     this.name,
+    this.ref,
     this.size,
     this.storagePath,
     this.title,
     this.titleSearchable,
-  }) {}
+  }) {
+    assert(ref != null);
+  }
 
   //
   //
@@ -153,7 +160,7 @@ class ModelFileEntry extends _ModelFileEntry {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 
@@ -240,6 +247,7 @@ class ModelFileEntry extends _ModelFileEntry {
         ..$modifiedAt = otherData?[K_MODIFIED_AT]
         ..$modifiedBy = otherData?[K_MODIFIED_BY]
         ..$name = otherData?[K_NAME]
+        ..$ref = otherData?[K_REF]
         ..$size = otherData?[K_SIZE]
         ..$storagePath = otherData?[K_STORAGE_PATH]
         ..$title = otherData?[K_TITLE]
@@ -301,6 +309,7 @@ class ModelFileEntry extends _ModelFileEntry {
         K_MODIFIED_AT: this.$modifiedAt,
         K_MODIFIED_BY: this.$modifiedBy,
         K_NAME: this.$name,
+        K_REF: this.$ref,
         K_SIZE: this.$size,
         K_STORAGE_PATH: this.$storagePath,
         K_TITLE: this.$title,
@@ -376,6 +385,9 @@ class ModelFileEntry extends _ModelFileEntry {
       }
       if (other.name != null) {
         this.name = other.name!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.size != null) {
         this.size = other.size!;
@@ -519,6 +531,17 @@ class ModelFileEntry extends _ModelFileEntry {
   dynamic get $name => this.name?.toString().trim().nullIfEmpty;
   @protected
   set $name(v) => this.name = v?.toString().trim().nullIfEmpty;
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => (this.ref?.toJson())!;
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // size.
   int? get sizeField => this.size;

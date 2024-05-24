@@ -38,6 +38,7 @@ class ModelProjectPub extends _ModelProjectPub {
   static const K_FILE_BOOK = 'file_book';
   static const K_ID = 'id';
   static const K_PHONE_BOOK = 'phone_book';
+  static const K_REF = 'ref';
   static const K_WHEN_CLOSED = 'when_closed';
   static const K_WHEN_OPENED = 'when_opened';
 
@@ -60,6 +61,7 @@ class ModelProjectPub extends _ModelProjectPub {
   Map<String, ModelFileEntry>? fileBook;
   String? id;
   Map<String, ModelPhoneEntry>? phoneBook;
+  DataRefModel? ref;
   Map<String, DateTime>? whenClosed;
   Map<String, DateTime>? whenOpened;
 
@@ -88,6 +90,7 @@ class ModelProjectPub extends _ModelProjectPub {
     Map<String, ModelFileEntry>? fileBook,
     String? id,
     Map<String, ModelPhoneEntry>? phoneBook,
+    required DataRefModel ref,
     Map<String, DateTime>? whenClosed,
     Map<String, DateTime>? whenOpened,
   }) {
@@ -106,6 +109,7 @@ class ModelProjectPub extends _ModelProjectPub {
       fileBook: fileBook,
       id: id,
       phoneBook: phoneBook,
+      ref: ref,
       whenClosed: whenClosed,
       whenOpened: whenOpened,
     );
@@ -130,9 +134,12 @@ class ModelProjectPub extends _ModelProjectPub {
     this.fileBook,
     this.id,
     this.phoneBook,
+    this.ref,
     this.whenClosed,
     this.whenOpened,
-  }) {}
+  }) {
+    assert(ref != null);
+  }
 
   //
   //
@@ -153,7 +160,7 @@ class ModelProjectPub extends _ModelProjectPub {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 
@@ -242,6 +249,7 @@ class ModelProjectPub extends _ModelProjectPub {
         ..$fileBook = otherData?[K_FILE_BOOK]
         ..$id = otherData?[K_ID]
         ..$phoneBook = otherData?[K_PHONE_BOOK]
+        ..$ref = otherData?[K_REF]
         ..$whenClosed = otherData?[K_WHEN_CLOSED]
         ..$whenOpened = otherData?[K_WHEN_OPENED];
     } catch (e) {
@@ -303,6 +311,7 @@ class ModelProjectPub extends _ModelProjectPub {
         K_FILE_BOOK: this.$fileBook,
         K_ID: this.$id,
         K_PHONE_BOOK: this.$phoneBook,
+        K_REF: this.$ref,
         K_WHEN_CLOSED: this.$whenClosed,
         K_WHEN_OPENED: this.$whenOpened,
       }.mapWithDefault(defaultValue);
@@ -382,6 +391,9 @@ class ModelProjectPub extends _ModelProjectPub {
       }
       if (other.phoneBook != null) {
         this.phoneBook = other.phoneBook!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.whenClosed != null) {
         this.whenClosed = other.whenClosed!;
@@ -609,6 +621,17 @@ class ModelProjectPub extends _ModelProjectPub {
       .nonNulls
       .nullIfEmpty
       ?.cast();
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => (this.ref?.toJson())!;
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // whenClosed.
   Map<String, DateTime>? get whenClosedField => this.whenClosed;

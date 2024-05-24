@@ -33,6 +33,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
   static const K_MODIFIED_AT = 'modified_at';
   static const K_MODIFIED_BY = 'modified_by';
   static const K_NOTE = 'note';
+  static const K_REF = 'ref';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
 
@@ -50,6 +51,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
   DateTime? modifiedAt;
   String? modifiedBy;
   String? note;
+  DataRefModel? ref;
   String? title;
   String? titleSearchable;
 
@@ -73,6 +75,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
     DateTime? modifiedAt,
     String? modifiedBy,
     String? note,
+    required DataRefModel ref,
     String? title,
     String? titleSearchable,
   }) {
@@ -86,6 +89,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
       modifiedAt: modifiedAt,
       modifiedBy: modifiedBy,
       note: note,
+      ref: ref,
       title: title,
       titleSearchable: titleSearchable,
     );
@@ -105,9 +109,12 @@ class ModelNoteEntry extends _ModelNoteEntry {
     this.modifiedAt,
     this.modifiedBy,
     this.note,
+    this.ref,
     this.title,
     this.titleSearchable,
-  }) {}
+  }) {
+    assert(ref != null);
+  }
 
   //
   //
@@ -128,7 +135,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 
@@ -212,6 +219,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
         ..$modifiedAt = otherData?[K_MODIFIED_AT]
         ..$modifiedBy = otherData?[K_MODIFIED_BY]
         ..$note = otherData?[K_NOTE]
+        ..$ref = otherData?[K_REF]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
@@ -268,6 +276,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
         K_MODIFIED_AT: this.$modifiedAt,
         K_MODIFIED_BY: this.$modifiedBy,
         K_NOTE: this.$note,
+        K_REF: this.$ref,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
       }.mapWithDefault(defaultValue);
@@ -332,6 +341,9 @@ class ModelNoteEntry extends _ModelNoteEntry {
       }
       if (other.note != null) {
         this.note = other.note!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.title != null) {
         this.title = other.title!;
@@ -426,6 +438,17 @@ class ModelNoteEntry extends _ModelNoteEntry {
   dynamic get $note => this.note?.toString().trim().nullIfEmpty;
   @protected
   set $note(v) => this.note = v?.toString().trim().nullIfEmpty;
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => (this.ref?.toJson())!;
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // title.
   String? get titleField => this.title;

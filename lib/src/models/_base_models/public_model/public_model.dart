@@ -16,6 +16,7 @@ part '_public_model.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 const PUBLIC_MODEL_FIELDS = {
+  ('ref', DataRefModel),
   ('id?', String),
   ('display_name?', String),
   ('display_name_searchable?', T_SEARCHABLE_STRING),

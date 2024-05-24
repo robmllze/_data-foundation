@@ -16,12 +16,13 @@ part '_model_invitation.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
+    ('ref', DataRefModel),
     ('id?', String),
     ('created_at', DateTime),
     ('created_by', String),
     ('expires_at?', DateTime),
     ('def_type?', InvitationDefType),
-    ('def?', GenericModel),
+    ('def?', DataModel),
     ('invitation_link?', Uri),
     ('invitee_emails?', 'Set<Searchable-String>'),
     ('invitee_accepted_emails?', 'Set<Searchable-String>'),

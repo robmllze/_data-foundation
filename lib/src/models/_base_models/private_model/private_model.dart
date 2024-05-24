@@ -14,6 +14,7 @@ part '_private_model.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 const PRIVATE_MODEL_FIELDS = {
+  ('ref', DataRefModel),
   ('id?', String),
   ('pid?', String),
   ('seed?', String),

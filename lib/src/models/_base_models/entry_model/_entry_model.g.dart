@@ -32,6 +32,7 @@ class EntryModel extends Model {
   static const K_ID = 'id';
   static const K_MODIFIED_AT = 'modified_at';
   static const K_MODIFIED_BY = 'modified_by';
+  static const K_REF = 'ref';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
 
@@ -48,6 +49,7 @@ class EntryModel extends Model {
   String? id;
   DateTime? modifiedAt;
   String? modifiedBy;
+  DataRefModel? ref;
   String? title;
   String? titleSearchable;
 
@@ -70,6 +72,7 @@ class EntryModel extends Model {
     String? id,
     DateTime? modifiedAt,
     String? modifiedBy,
+    required DataRefModel ref,
     String? title,
     String? titleSearchable,
   }) {
@@ -82,6 +85,7 @@ class EntryModel extends Model {
       id: id,
       modifiedAt: modifiedAt,
       modifiedBy: modifiedBy,
+      ref: ref,
       title: title,
       titleSearchable: titleSearchable,
     );
@@ -100,9 +104,12 @@ class EntryModel extends Model {
     this.id,
     this.modifiedAt,
     this.modifiedBy,
+    this.ref,
     this.title,
     this.titleSearchable,
-  }) {}
+  }) {
+    assert(ref != null);
+  }
 
   //
   //
@@ -123,7 +130,7 @@ class EntryModel extends Model {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 
@@ -206,6 +213,7 @@ class EntryModel extends Model {
         ..$id = otherData?[K_ID]
         ..$modifiedAt = otherData?[K_MODIFIED_AT]
         ..$modifiedBy = otherData?[K_MODIFIED_BY]
+        ..$ref = otherData?[K_REF]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
     } catch (e) {
@@ -261,6 +269,7 @@ class EntryModel extends Model {
         K_ID: this.$id,
         K_MODIFIED_AT: this.$modifiedAt,
         K_MODIFIED_BY: this.$modifiedBy,
+        K_REF: this.$ref,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
       }.mapWithDefault(defaultValue);
@@ -322,6 +331,9 @@ class EntryModel extends Model {
       }
       if (other.modifiedBy != null) {
         this.modifiedBy = other.modifiedBy!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.title != null) {
         this.title = other.title!;
@@ -408,6 +420,17 @@ class EntryModel extends Model {
   dynamic get $modifiedBy => this.modifiedBy?.toString().trim().nullIfEmpty;
   @protected
   set $modifiedBy(v) => this.modifiedBy = v?.toString().trim().nullIfEmpty;
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => (this.ref?.toJson())!;
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // title.
   String? get titleField => this.title;

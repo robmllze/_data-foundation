@@ -15,39 +15,39 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_connections_rel_def.dart';
+part of 'model_cache_information.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelConnectionsRelDef extends Model {
+class ModelCacheInformation extends _ModelCacheInformation {
   //
   //
   //
 
-  static const K_PERMISSIONS = 'permissions';
+  static const K_FILES = 'files';
 
-  static const CLASS = 'ModelConnectionsRelDef';
+  static const CLASS = 'ModelCacheInformation';
 
   @override
   String get $class => CLASS;
 
-  ModelConnectionPermissions? permissions;
+  Set<ModelFileEntry>? files;
 
   //
   //
   //
 
-  ModelConnectionsRelDef.empty();
+  ModelCacheInformation.empty();
 
   //
   //
   //
 
-  factory ModelConnectionsRelDef({
-    ModelConnectionPermissions? permissions,
+  factory ModelCacheInformation({
+    required Set<ModelFileEntry> files,
   }) {
-    return ModelConnectionsRelDef.b(
-      permissions: permissions,
+    return ModelCacheInformation.b(
+      files: files,
     );
   }
 
@@ -55,15 +55,17 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
-  ModelConnectionsRelDef.b({
-    this.permissions,
-  }) {}
+  ModelCacheInformation.b({
+    this.files,
+  }) {
+    assert(files != null);
+  }
 
   //
   //
   //
 
-  factory ModelConnectionsRelDef.from(
+  factory ModelCacheInformation.from(
     Model? other,
   ) {
     try {
@@ -74,7 +76,7 @@ class ModelConnectionsRelDef extends Model {
     }
   }
 
-  static ModelConnectionsRelDef? fromOrNull(
+  static ModelCacheInformation? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(
@@ -86,8 +88,8 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
-  factory ModelConnectionsRelDef.of(
-    ModelConnectionsRelDef other,
+  factory ModelCacheInformation.of(
+    ModelCacheInformation other,
   ) {
     try {
       return ofOrNull(other)!;
@@ -97,8 +99,8 @@ class ModelConnectionsRelDef extends Model {
     }
   }
 
-  static ModelConnectionsRelDef? ofOrNull(
-    ModelConnectionsRelDef? other,
+  static ModelCacheInformation? ofOrNull(
+    ModelCacheInformation? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -107,7 +109,7 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
-  factory ModelConnectionsRelDef.fromJsonString(
+  factory ModelCacheInformation.fromJsonString(
     String source,
   ) {
     try {
@@ -118,15 +120,15 @@ class ModelConnectionsRelDef extends Model {
     }
   }
 
-  static ModelConnectionsRelDef? fromJsonStringOrNull(
+  static ModelCacheInformation? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelConnectionsRelDef.fromJson(decoded);
+        return ModelCacheInformation.fromJson(decoded);
       } else {
-        return ModelConnectionsRelDef.empty();
+        return ModelCacheInformation.empty();
       }
     } catch (_) {
       return null;
@@ -137,7 +139,7 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
-  factory ModelConnectionsRelDef.fromJson(
+  factory ModelCacheInformation.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
@@ -148,12 +150,11 @@ class ModelConnectionsRelDef extends Model {
     }
   }
 
-  static ModelConnectionsRelDef? fromJsonOrNull(
+  static ModelCacheInformation? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelConnectionsRelDef.empty()
-        ..$permissions = otherData?[K_PERMISSIONS];
+      return ModelCacheInformation.empty()..$files = otherData?[K_FILES];
     } catch (e) {
       return null;
     }
@@ -163,7 +164,7 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
-  factory ModelConnectionsRelDef.fromUri(
+  factory ModelCacheInformation.fromUri(
     Uri? uri,
   ) {
     try {
@@ -174,14 +175,14 @@ class ModelConnectionsRelDef extends Model {
     }
   }
 
-  static ModelConnectionsRelDef? fromUriOrNull(
+  static ModelCacheInformation? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelConnectionsRelDef.fromJson(uri.queryParameters);
+        return ModelCacheInformation.fromJson(uri.queryParameters);
       } else {
-        return ModelConnectionsRelDef.b();
+        return ModelCacheInformation.b();
       }
     } catch (_) {
       return null;
@@ -199,7 +200,7 @@ class ModelConnectionsRelDef extends Model {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_PERMISSIONS: this.$permissions,
+        K_FILES: this.$files,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -214,7 +215,7 @@ class ModelConnectionsRelDef extends Model {
 
   @override
   T empty<T extends Model>() {
-    return ModelConnectionsRelDef.b() as T;
+    return ModelCacheInformation.b() as T;
   }
 
   //
@@ -223,7 +224,7 @@ class ModelConnectionsRelDef extends Model {
 
   @override
   T copy<T extends Model>() {
-    return (ModelConnectionsRelDef.b()..updateWith(this)) as T;
+    return (ModelCacheInformation.b()..updateWith(this)) as T;
   }
 
   //
@@ -235,9 +236,9 @@ class ModelConnectionsRelDef extends Model {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelConnectionsRelDef.fromJson(otherData);
-      if (other.permissions != null) {
-        this.permissions = other.permissions!;
+      final other = ModelCacheInformation.fromJson(otherData);
+      if (other.files != null) {
+        this.files = other.files!;
       }
     }
   }
@@ -246,14 +247,28 @@ class ModelConnectionsRelDef extends Model {
   //
   //
 
-  // permissions.
-  ModelConnectionPermissions? get permissionsField => this.permissions;
-  set permissionsField(ModelConnectionPermissions? v) => this.permissions = v;
+  // files.
+  Set<ModelFileEntry> get filesField => this.files!;
+  set filesField(Set<ModelFileEntry> v) => this.files = v;
   @protected
-  dynamic get $permissions => this.permissions?.toJson();
+  dynamic get $files => (this
+      .files
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList())!;
   @protected
-  set $permissions(v) => this.permissions = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelConnectionPermissions.fromJson(a) : null;
-      }();
+  set $files(v) => this.files = letSet(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelFileEntry.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
 }

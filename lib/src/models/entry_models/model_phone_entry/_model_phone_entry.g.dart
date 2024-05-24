@@ -36,6 +36,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   static const K_MODIFIED_AT = 'modified_at';
   static const K_MODIFIED_BY = 'modified_by';
   static const K_NUMBER_WITHOUT_COUNTRY_CODE = 'number_without_country_code';
+  static const K_REF = 'ref';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
   static const K_TYPE = 'type';
@@ -57,6 +58,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   DateTime? modifiedAt;
   String? modifiedBy;
   String? numberWithoutCountryCode;
+  DataRefModel? ref;
   String? title;
   String? titleSearchable;
   String? type;
@@ -84,6 +86,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     DateTime? modifiedAt,
     String? modifiedBy,
     String? numberWithoutCountryCode,
+    required DataRefModel ref,
     String? title,
     String? titleSearchable,
     String? type,
@@ -101,6 +104,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
       modifiedAt: modifiedAt,
       modifiedBy: modifiedBy,
       numberWithoutCountryCode: numberWithoutCountryCode,
+      ref: ref,
       title: title,
       titleSearchable: titleSearchable,
       type: type,
@@ -124,10 +128,13 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     this.modifiedAt,
     this.modifiedBy,
     this.numberWithoutCountryCode,
+    this.ref,
     this.title,
     this.titleSearchable,
     this.type,
-  }) {}
+  }) {
+    assert(ref != null);
+  }
 
   //
   //
@@ -148,7 +155,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 
@@ -235,6 +242,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
         ..$modifiedAt = otherData?[K_MODIFIED_AT]
         ..$modifiedBy = otherData?[K_MODIFIED_BY]
         ..$numberWithoutCountryCode = otherData?[K_NUMBER_WITHOUT_COUNTRY_CODE]
+        ..$ref = otherData?[K_REF]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE]
         ..$type = otherData?[K_TYPE];
@@ -295,6 +303,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
         K_MODIFIED_AT: this.$modifiedAt,
         K_MODIFIED_BY: this.$modifiedBy,
         K_NUMBER_WITHOUT_COUNTRY_CODE: this.$numberWithoutCountryCode,
+        K_REF: this.$ref,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
         K_TYPE: this.$type,
@@ -369,6 +378,9 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
       }
       if (other.numberWithoutCountryCode != null) {
         this.numberWithoutCountryCode = other.numberWithoutCountryCode!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.title != null) {
         this.title = other.title!;
@@ -493,6 +505,17 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   @protected
   set $numberWithoutCountryCode(v) =>
       this.numberWithoutCountryCode = v?.toString().trim().nullIfEmpty;
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => (this.ref?.toJson())!;
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // title.
   String? get titleField => this.title;

@@ -38,6 +38,7 @@ class PublicModel extends Model {
   static const K_FILE_BOOK = 'file_book';
   static const K_ID = 'id';
   static const K_PHONE_BOOK = 'phone_book';
+  static const K_REF = 'ref';
 
   static const CLASS = 'PublicModel';
 
@@ -58,6 +59,7 @@ class PublicModel extends Model {
   Map<String, ModelFileEntry>? fileBook;
   String? id;
   Map<String, ModelPhoneEntry>? phoneBook;
+  DataRefModel? ref;
 
   //
   //
@@ -84,6 +86,7 @@ class PublicModel extends Model {
     Map<String, ModelFileEntry>? fileBook,
     String? id,
     Map<String, ModelPhoneEntry>? phoneBook,
+    required DataRefModel ref,
   }) {
     return PublicModel.b(
       addressBook: addressBook,
@@ -100,6 +103,7 @@ class PublicModel extends Model {
       fileBook: fileBook,
       id: id,
       phoneBook: phoneBook,
+      ref: ref,
     );
   }
 
@@ -122,7 +126,10 @@ class PublicModel extends Model {
     this.fileBook,
     this.id,
     this.phoneBook,
-  }) {}
+    this.ref,
+  }) {
+    assert(ref != null);
+  }
 
   //
   //
@@ -143,7 +150,7 @@ class PublicModel extends Model {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 
@@ -231,7 +238,8 @@ class PublicModel extends Model {
         ..$emailBook = otherData?[K_EMAIL_BOOK]
         ..$fileBook = otherData?[K_FILE_BOOK]
         ..$id = otherData?[K_ID]
-        ..$phoneBook = otherData?[K_PHONE_BOOK];
+        ..$phoneBook = otherData?[K_PHONE_BOOK]
+        ..$ref = otherData?[K_REF];
     } catch (e) {
       return null;
     }
@@ -291,6 +299,7 @@ class PublicModel extends Model {
         K_FILE_BOOK: this.$fileBook,
         K_ID: this.$id,
         K_PHONE_BOOK: this.$phoneBook,
+        K_REF: this.$ref,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -368,6 +377,9 @@ class PublicModel extends Model {
       }
       if (other.phoneBook != null) {
         this.phoneBook = other.phoneBook!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
     }
   }
@@ -589,4 +601,15 @@ class PublicModel extends Model {
       .nonNulls
       .nullIfEmpty
       ?.cast();
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => (this.ref?.toJson())!;
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 }

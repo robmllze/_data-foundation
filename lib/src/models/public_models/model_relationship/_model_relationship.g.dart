@@ -41,6 +41,7 @@ class ModelRelationship extends _ModelRelationship {
   static const K_ID = 'id';
   static const K_MEMBER_PIDS = 'member_pids';
   static const K_PHONE_BOOK = 'phone_book';
+  static const K_REF = 'ref';
   static const K_WHEN_DISABLED = 'when_disabled';
   static const K_WHEN_ENABLED = 'when_enabled';
   static const K_WHEN_NOTED = 'when_noted';
@@ -53,7 +54,7 @@ class ModelRelationship extends _ModelRelationship {
   Map<String, ModelAddressEntry>? addressBook;
   DateTime? createdAt;
   String? createdBy;
-  GenericModel? def;
+  DataModel? def;
   RelationshipDefType? defType;
   DateTime? deletedAt;
   String? deletedBy;
@@ -67,6 +68,7 @@ class ModelRelationship extends _ModelRelationship {
   String? id;
   Set<String>? memberPids;
   Map<String, ModelPhoneEntry>? phoneBook;
+  DataRefModel? ref;
   Map<String, DateTime>? whenDisabled;
   Map<String, DateTime>? whenEnabled;
   Map<String, DateTime>? whenNoted;
@@ -85,7 +87,7 @@ class ModelRelationship extends _ModelRelationship {
     Map<String, ModelAddressEntry>? addressBook,
     DateTime? createdAt,
     String? createdBy,
-    GenericModel? def,
+    DataModel? def,
     RelationshipDefType? defType,
     DateTime? deletedAt,
     String? deletedBy,
@@ -99,6 +101,7 @@ class ModelRelationship extends _ModelRelationship {
     String? id,
     Set<String>? memberPids,
     Map<String, ModelPhoneEntry>? phoneBook,
+    required DataRefModel ref,
     Map<String, DateTime>? whenDisabled,
     Map<String, DateTime>? whenEnabled,
     Map<String, DateTime>? whenNoted,
@@ -121,6 +124,7 @@ class ModelRelationship extends _ModelRelationship {
       id: id,
       memberPids: memberPids,
       phoneBook: phoneBook,
+      ref: ref,
       whenDisabled: whenDisabled,
       whenEnabled: whenEnabled,
       whenNoted: whenNoted,
@@ -149,10 +153,13 @@ class ModelRelationship extends _ModelRelationship {
     this.id,
     this.memberPids,
     this.phoneBook,
+    this.ref,
     this.whenDisabled,
     this.whenEnabled,
     this.whenNoted,
-  }) {}
+  }) {
+    assert(ref != null);
+  }
 
   //
   //
@@ -173,7 +180,7 @@ class ModelRelationship extends _ModelRelationship {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 
@@ -265,6 +272,7 @@ class ModelRelationship extends _ModelRelationship {
         ..$id = otherData?[K_ID]
         ..$memberPids = otherData?[K_MEMBER_PIDS]
         ..$phoneBook = otherData?[K_PHONE_BOOK]
+        ..$ref = otherData?[K_REF]
         ..$whenDisabled = otherData?[K_WHEN_DISABLED]
         ..$whenEnabled = otherData?[K_WHEN_ENABLED]
         ..$whenNoted = otherData?[K_WHEN_NOTED];
@@ -330,6 +338,7 @@ class ModelRelationship extends _ModelRelationship {
         K_ID: this.$id,
         K_MEMBER_PIDS: this.$memberPids,
         K_PHONE_BOOK: this.$phoneBook,
+        K_REF: this.$ref,
         K_WHEN_DISABLED: this.$whenDisabled,
         K_WHEN_ENABLED: this.$whenEnabled,
         K_WHEN_NOTED: this.$whenNoted,
@@ -420,6 +429,9 @@ class ModelRelationship extends _ModelRelationship {
       if (other.phoneBook != null) {
         this.phoneBook = other.phoneBook!;
       }
+      if (other.ref != null) {
+        this.ref = other.ref!;
+      }
       if (other.whenDisabled != null) {
         this.whenDisabled = other.whenDisabled!;
       }
@@ -486,14 +498,14 @@ class ModelRelationship extends _ModelRelationship {
   set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // def.
-  GenericModel? get defField => this.def;
-  set defField(GenericModel? v) => this.def = v;
+  DataModel? get defField => this.def;
+  set defField(DataModel? v) => this.def = v;
   @protected
-  dynamic get $def => this.def?.toJson();
+  dynamic get $def => this.def?.data;
   @protected
   set $def(v) => this.def = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? GenericModel.fromJson(a) : null;
+        final a = letMap<String, dynamic>(letMap(v)?[DataModel.K_DATA]);
+        return a != null ? DataModel(data: a) : null;
       }();
 
   // defType.
@@ -691,6 +703,17 @@ class ModelRelationship extends _ModelRelationship {
       .nonNulls
       .nullIfEmpty
       ?.cast();
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => (this.ref?.toJson())!;
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // whenDisabled.
   Map<String, DateTime>? get whenDisabledField => this.whenDisabled;

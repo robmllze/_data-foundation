@@ -21,7 +21,7 @@ part '_model_event.g.dart';
     ('relationship_id?', String),
     ('member_pids', Set<String>),
     ('def_type?', EventDefType),
-    ('def?', GenericModel),
+    ('def?', DataModel),
     ('timeout?', int),
     ('when_read?', Map<String, DateTime>),
     ('when_archived?', Map<String, DateTime>),

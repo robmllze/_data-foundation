@@ -35,6 +35,7 @@ class ModelEvent extends _ModelEvent {
   static const K_MEMBER_PIDS = 'member_pids';
   static const K_MODIFIED_AT = 'modified_at';
   static const K_MODIFIED_BY = 'modified_by';
+  static const K_REF = 'ref';
   static const K_RELATIONSHIP_ID = 'relationship_id';
   static const K_TIMEOUT = 'timeout';
   static const K_TITLE = 'title';
@@ -52,7 +53,7 @@ class ModelEvent extends _ModelEvent {
 
   DateTime? createdAt;
   String? createdBy;
-  GenericModel? def;
+  DataModel? def;
   EventDefType? defType;
   DateTime? deletedAt;
   String? deletedBy;
@@ -61,6 +62,7 @@ class ModelEvent extends _ModelEvent {
   Set<String>? memberPids;
   DateTime? modifiedAt;
   String? modifiedBy;
+  DataRefModel? ref;
   String? relationshipId;
   int? timeout;
   String? title;
@@ -84,7 +86,7 @@ class ModelEvent extends _ModelEvent {
   factory ModelEvent({
     DateTime? createdAt,
     String? createdBy,
-    GenericModel? def,
+    DataModel? def,
     EventDefType? defType,
     DateTime? deletedAt,
     String? deletedBy,
@@ -93,6 +95,7 @@ class ModelEvent extends _ModelEvent {
     required Set<String> memberPids,
     DateTime? modifiedAt,
     String? modifiedBy,
+    required DataRefModel ref,
     String? relationshipId,
     int? timeout,
     String? title,
@@ -115,6 +118,7 @@ class ModelEvent extends _ModelEvent {
       memberPids: memberPids,
       modifiedAt: modifiedAt,
       modifiedBy: modifiedBy,
+      ref: ref,
       relationshipId: relationshipId,
       timeout: timeout,
       title: title,
@@ -143,6 +147,7 @@ class ModelEvent extends _ModelEvent {
     this.memberPids,
     this.modifiedAt,
     this.modifiedBy,
+    this.ref,
     this.relationshipId,
     this.timeout,
     this.title,
@@ -154,6 +159,7 @@ class ModelEvent extends _ModelEvent {
     this.whenReceived,
   }) {
     assert(memberPids != null);
+    assert(ref != null);
   }
 
   //
@@ -175,7 +181,7 @@ class ModelEvent extends _ModelEvent {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 
@@ -261,6 +267,7 @@ class ModelEvent extends _ModelEvent {
         ..$memberPids = otherData?[K_MEMBER_PIDS]
         ..$modifiedAt = otherData?[K_MODIFIED_AT]
         ..$modifiedBy = otherData?[K_MODIFIED_BY]
+        ..$ref = otherData?[K_REF]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$timeout = otherData?[K_TIMEOUT]
         ..$title = otherData?[K_TITLE]
@@ -326,6 +333,7 @@ class ModelEvent extends _ModelEvent {
         K_MEMBER_PIDS: this.$memberPids,
         K_MODIFIED_AT: this.$modifiedAt,
         K_MODIFIED_BY: this.$modifiedBy,
+        K_REF: this.$ref,
         K_RELATIONSHIP_ID: this.$relationshipId,
         K_TIMEOUT: this.$timeout,
         K_TITLE: this.$title,
@@ -404,6 +412,9 @@ class ModelEvent extends _ModelEvent {
       if (other.modifiedBy != null) {
         this.modifiedBy = other.modifiedBy!;
       }
+      if (other.ref != null) {
+        this.ref = other.ref!;
+      }
       if (other.relationshipId != null) {
         this.relationshipId = other.relationshipId!;
       }
@@ -458,14 +469,14 @@ class ModelEvent extends _ModelEvent {
   set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // def.
-  GenericModel? get defField => this.def;
-  set defField(GenericModel? v) => this.def = v;
+  DataModel? get defField => this.def;
+  set defField(DataModel? v) => this.def = v;
   @protected
-  dynamic get $def => this.def?.toJson();
+  dynamic get $def => this.def?.data;
   @protected
   set $def(v) => this.def = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? GenericModel.fromJson(a) : null;
+        final a = letMap<String, dynamic>(letMap(v)?[DataModel.K_DATA]);
+        return a != null ? DataModel(data: a) : null;
       }();
 
   // defType.
@@ -552,6 +563,17 @@ class ModelEvent extends _ModelEvent {
   dynamic get $modifiedBy => this.modifiedBy?.toString().trim().nullIfEmpty;
   @protected
   set $modifiedBy(v) => this.modifiedBy = v?.toString().trim().nullIfEmpty;
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => (this.ref?.toJson())!;
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // relationshipId.
   String? get relationshipIdField => this.relationshipId;

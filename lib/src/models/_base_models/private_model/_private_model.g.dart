@@ -30,6 +30,7 @@ class PrivateModel extends Model {
   static const K_DELETED_BY = 'deleted_by';
   static const K_ID = 'id';
   static const K_PID = 'pid';
+  static const K_REF = 'ref';
   static const K_SEED = 'seed';
 
   static const CLASS = 'PrivateModel';
@@ -43,6 +44,7 @@ class PrivateModel extends Model {
   String? deletedBy;
   String? id;
   String? pid;
+  DataRefModel? ref;
   String? seed;
 
   //
@@ -62,6 +64,7 @@ class PrivateModel extends Model {
     String? deletedBy,
     String? id,
     String? pid,
+    required DataRefModel ref,
     String? seed,
   }) {
     return PrivateModel.b(
@@ -71,6 +74,7 @@ class PrivateModel extends Model {
       deletedBy: deletedBy,
       id: id,
       pid: pid,
+      ref: ref,
       seed: seed,
     );
   }
@@ -86,8 +90,11 @@ class PrivateModel extends Model {
     this.deletedBy,
     this.id,
     this.pid,
+    this.ref,
     this.seed,
-  }) {}
+  }) {
+    assert(ref != null);
+  }
 
   //
   //
@@ -108,7 +115,7 @@ class PrivateModel extends Model {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 
@@ -189,6 +196,7 @@ class PrivateModel extends Model {
         ..$deletedBy = otherData?[K_DELETED_BY]
         ..$id = otherData?[K_ID]
         ..$pid = otherData?[K_PID]
+        ..$ref = otherData?[K_REF]
         ..$seed = otherData?[K_SEED];
     } catch (e) {
       return null;
@@ -241,6 +249,7 @@ class PrivateModel extends Model {
         K_DELETED_BY: this.$deletedBy,
         K_ID: this.$id,
         K_PID: this.$pid,
+        K_REF: this.$ref,
         K_SEED: this.$seed,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -295,6 +304,9 @@ class PrivateModel extends Model {
       }
       if (other.pid != null) {
         this.pid = other.pid!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.seed != null) {
         this.seed = other.seed!;
@@ -359,6 +371,17 @@ class PrivateModel extends Model {
   dynamic get $pid => this.pid?.toString().trim().nullIfEmpty;
   @protected
   set $pid(v) => this.pid = v?.toString().trim().nullIfEmpty;
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => (this.ref?.toJson())!;
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // seed.
   String? get seedField => this.seed;

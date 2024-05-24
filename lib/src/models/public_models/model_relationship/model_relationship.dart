@@ -25,7 +25,7 @@ part '_model_relationship.g.dart';
     ('when_enabled?', Map<String, DateTime>),
     ('when_noted?', Map<String, DateTime>),
     ('def_type?', RelationshipDefType),
-    ('def?', GenericModel),
+    ('def?', DataModel),
   },
 )
 abstract class _ModelRelationship extends Model implements PublicModel {}

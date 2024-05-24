@@ -37,6 +37,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
   static const K_MODIFIED_AT = 'modified_at';
   static const K_MODIFIED_BY = 'modified_by';
   static const K_POSTAL_CODE = 'postal_code';
+  static const K_REF = 'ref';
   static const K_STATE_OR_PROVINCE = 'state_or_province';
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'title_searchable';
@@ -59,6 +60,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
   DateTime? modifiedAt;
   String? modifiedBy;
   String? postalCode;
+  DataRefModel? ref;
   String? stateOrProvince;
   String? title;
   String? titleSearchable;
@@ -87,6 +89,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
     DateTime? modifiedAt,
     String? modifiedBy,
     String? postalCode,
+    required DataRefModel ref,
     String? stateOrProvince,
     String? title,
     String? titleSearchable,
@@ -105,6 +108,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
       modifiedAt: modifiedAt,
       modifiedBy: modifiedBy,
       postalCode: postalCode,
+      ref: ref,
       stateOrProvince: stateOrProvince,
       title: title,
       titleSearchable: titleSearchable,
@@ -129,10 +133,13 @@ class ModelAddressEntry extends _ModelAddressEntry {
     this.modifiedAt,
     this.modifiedBy,
     this.postalCode,
+    this.ref,
     this.stateOrProvince,
     this.title,
     this.titleSearchable,
-  }) {}
+  }) {
+    assert(ref != null);
+  }
 
   //
   //
@@ -153,7 +160,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 
@@ -241,6 +248,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
         ..$modifiedAt = otherData?[K_MODIFIED_AT]
         ..$modifiedBy = otherData?[K_MODIFIED_BY]
         ..$postalCode = otherData?[K_POSTAL_CODE]
+        ..$ref = otherData?[K_REF]
         ..$stateOrProvince = otherData?[K_STATE_OR_PROVINCE]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
@@ -302,6 +310,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
         K_MODIFIED_AT: this.$modifiedAt,
         K_MODIFIED_BY: this.$modifiedBy,
         K_POSTAL_CODE: this.$postalCode,
+        K_REF: this.$ref,
         K_STATE_OR_PROVINCE: this.$stateOrProvince,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
@@ -379,6 +388,9 @@ class ModelAddressEntry extends _ModelAddressEntry {
       }
       if (other.postalCode != null) {
         this.postalCode = other.postalCode!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.stateOrProvince != null) {
         this.stateOrProvince = other.stateOrProvince!;
@@ -508,6 +520,17 @@ class ModelAddressEntry extends _ModelAddressEntry {
   dynamic get $postalCode => this.postalCode?.toString().trim().nullIfEmpty;
   @protected
   set $postalCode(v) => this.postalCode = v?.toString().trim().nullIfEmpty;
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => (this.ref?.toJson())!;
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // stateOrProvince.
   String? get stateOrProvinceField => this.stateOrProvince;

@@ -33,6 +33,7 @@ class ModelUser extends _ModelUser {
   static const K_ID = 'id';
   static const K_PID = 'pid';
   static const K_PUSH_SUBSCRIPTIONS = 'push_subscriptions';
+  static const K_REF = 'ref';
   static const K_SEED = 'seed';
   static const K_SMS_SUBSCRIPTIONS = 'sms_subscriptions';
 
@@ -50,6 +51,7 @@ class ModelUser extends _ModelUser {
   String? id;
   String? pid;
   Set<String>? pushSubscriptions;
+  DataRefModel? ref;
   String? seed;
   Set<String>? smsSubscriptions;
 
@@ -73,6 +75,7 @@ class ModelUser extends _ModelUser {
     String? id,
     String? pid,
     Set<String>? pushSubscriptions,
+    required DataRefModel ref,
     String? seed,
     Set<String>? smsSubscriptions,
   }) {
@@ -86,6 +89,7 @@ class ModelUser extends _ModelUser {
       id: id,
       pid: pid,
       pushSubscriptions: pushSubscriptions,
+      ref: ref,
       seed: seed,
       smsSubscriptions: smsSubscriptions,
     );
@@ -105,9 +109,12 @@ class ModelUser extends _ModelUser {
     this.id,
     this.pid,
     this.pushSubscriptions,
+    this.ref,
     this.seed,
     this.smsSubscriptions,
-  }) {}
+  }) {
+    assert(ref != null);
+  }
 
   //
   //
@@ -128,7 +135,7 @@ class ModelUser extends _ModelUser {
     Model? other,
   ) {
     return fromJsonOrNull(
-      letAs<GenericModel>(other)?.data ?? other?.toJson(),
+      letAs<DataModel>(other)?.data ?? other?.toJson(),
     )!;
   }
 
@@ -212,6 +219,7 @@ class ModelUser extends _ModelUser {
         ..$id = otherData?[K_ID]
         ..$pid = otherData?[K_PID]
         ..$pushSubscriptions = otherData?[K_PUSH_SUBSCRIPTIONS]
+        ..$ref = otherData?[K_REF]
         ..$seed = otherData?[K_SEED]
         ..$smsSubscriptions = otherData?[K_SMS_SUBSCRIPTIONS];
     } catch (e) {
@@ -268,6 +276,7 @@ class ModelUser extends _ModelUser {
         K_ID: this.$id,
         K_PID: this.$pid,
         K_PUSH_SUBSCRIPTIONS: this.$pushSubscriptions,
+        K_REF: this.$ref,
         K_SEED: this.$seed,
         K_SMS_SUBSCRIPTIONS: this.$smsSubscriptions,
       }.mapWithDefault(defaultValue);
@@ -332,6 +341,9 @@ class ModelUser extends _ModelUser {
       }
       if (other.pushSubscriptions != null) {
         this.pushSubscriptions = other.pushSubscriptions!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.seed != null) {
         this.seed = other.seed!;
@@ -451,6 +463,17 @@ class ModelUser extends _ModelUser {
       .nullIfEmpty
       ?.toSet()
       .cast();
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => (this.ref?.toJson())!;
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // seed.
   String? get seedField => this.seed;
