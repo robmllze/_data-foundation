@@ -159,9 +159,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
   static ModelAddressEntry? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //

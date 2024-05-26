@@ -92,9 +92,7 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
   static ModelRelDisabledDef? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //

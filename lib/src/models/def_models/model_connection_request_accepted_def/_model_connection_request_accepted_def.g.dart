@@ -93,9 +93,7 @@ class ModelConnectionRequestAcceptedDef
   static ModelConnectionRequestAcceptedDef? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //

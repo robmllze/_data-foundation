@@ -79,9 +79,7 @@ class ModelCacheInformation extends _ModelCacheInformation {
   static ModelCacheInformation? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //

@@ -149,9 +149,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   static ModelOrganizationPub? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //

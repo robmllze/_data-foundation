@@ -179,9 +179,7 @@ class ModelRelationship extends _ModelRelationship {
   static ModelRelationship? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //

@@ -149,9 +149,7 @@ class ModelUserPub extends _ModelUserPub {
   static ModelUserPub? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //

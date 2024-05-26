@@ -131,9 +131,7 @@ class ModelInvitation extends _ModelInvitation {
   static ModelInvitation? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //

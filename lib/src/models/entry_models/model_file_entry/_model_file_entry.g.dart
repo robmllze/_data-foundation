@@ -159,9 +159,7 @@ class ModelFileEntry extends _ModelFileEntry {
   static ModelFileEntry? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //

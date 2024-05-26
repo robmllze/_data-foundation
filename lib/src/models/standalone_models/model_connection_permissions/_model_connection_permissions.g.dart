@@ -122,9 +122,7 @@ class ModelConnectionPermissions extends Model {
   static ModelConnectionPermissions? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //

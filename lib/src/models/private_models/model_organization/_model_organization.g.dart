@@ -114,9 +114,7 @@ class ModelOrganization extends _ModelOrganization {
   static ModelOrganization? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //

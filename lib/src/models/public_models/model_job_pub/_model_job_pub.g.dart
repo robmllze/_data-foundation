@@ -174,9 +174,7 @@ class ModelJobPub extends _ModelJobPub {
   static ModelJobPub? fromOrNull(
     Model? other,
   ) {
-    return fromJsonOrNull(
-      letAs<DataModel>(other)?.data ?? other?.toJson(),
-    )!;
+    return fromJsonOrNull(other?.toJson())!;
   }
 
   //
