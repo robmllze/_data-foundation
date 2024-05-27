@@ -352,7 +352,7 @@ class ModelInvitation extends _ModelInvitation {
   DateTime get createdAtField => this.createdAt!;
   set createdAtField(DateTime v) => this.createdAt = v;
   @protected
-  dynamic get $createdAt => (this.createdAt?.toUtc()?.toIso8601String())!;
+  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
   @protected
   set $createdAt(v) => this.createdAt = () {
         final a = v;
@@ -363,7 +363,7 @@ class ModelInvitation extends _ModelInvitation {
   String get createdByField => this.createdBy!;
   set createdByField(String v) => this.createdBy = v;
   @protected
-  dynamic get $createdBy => (this.createdBy?.toString().trim().nullIfEmpty)!;
+  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
   @protected
   set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
@@ -519,7 +519,7 @@ class ModelInvitation extends _ModelInvitation {
   DataRefModel get refField => this.ref!;
   set refField(DataRefModel v) => this.ref = v;
   @protected
-  dynamic get $ref => (this.ref?.toJson())!;
+  dynamic get $ref => this.ref?.toJson();
   @protected
   set $ref(v) => this.ref = () {
         final a = letMap<String, dynamic>(v);

@@ -604,7 +604,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   DataRefModel get refField => this.ref!;
   set refField(DataRefModel v) => this.ref = v;
   @protected
-  dynamic get $ref => (this.ref?.toJson())!;
+  dynamic get $ref => this.ref?.toJson();
   @protected
   set $ref(v) => this.ref = () {
         final a = letMap<String, dynamic>(v);

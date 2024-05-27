@@ -249,14 +249,14 @@ class ModelCacheInformation extends _ModelCacheInformation {
   Set<ModelFileEntry> get filesField => this.files!;
   set filesField(Set<ModelFileEntry> v) => this.files = v;
   @protected
-  dynamic get $files => (this
+  dynamic get $files => this
       .files
       ?.map(
         (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
-      ?.toList())!;
+      ?.toList();
   @protected
   set $files(v) => this.files = letSet(v)
       ?.map(
