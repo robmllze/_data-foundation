@@ -19,6 +19,17 @@ abstract final class Schema {
   //
   //
 
+  // Collections.
+
+  static DataRef falseCollectionsRef({
+    String? collectionPath,
+  }) {
+    return DataRef(
+      id: collectionPath,
+      collection: const ['collections'],
+    );
+  }
+
   // Entries.
 
   static DataRef filesRef({
