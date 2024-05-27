@@ -146,7 +146,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelPhoneEntry.from: $e');
       rethrow;
     }
   }
@@ -167,7 +167,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelPhoneEntry.of: $e');
       rethrow;
     }
   }
@@ -188,7 +188,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelPhoneEntry.fromJsonString: $e');
       rethrow;
     }
   }
@@ -218,7 +218,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelPhoneEntry.fromJson: $e');
       rethrow;
     }
   }
@@ -259,7 +259,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelPhoneEntry.fromUri: $e');
       rethrow;
     }
   }
@@ -271,7 +271,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
       if (uri != null && uri.path == CLASS) {
         return ModelPhoneEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelPhoneEntry.b();
+        return ModelPhoneEntry.empty();
       }
     } catch (_) {
       return null;
@@ -308,7 +308,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelPhoneEntry.toJson: $e');
       rethrow;
     }
   }

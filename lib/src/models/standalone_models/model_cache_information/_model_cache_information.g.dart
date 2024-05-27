@@ -71,7 +71,7 @@ class ModelCacheInformation extends _ModelCacheInformation {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelCacheInformation.from: $e');
       rethrow;
     }
   }
@@ -92,7 +92,7 @@ class ModelCacheInformation extends _ModelCacheInformation {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelCacheInformation.of: $e');
       rethrow;
     }
   }
@@ -113,7 +113,7 @@ class ModelCacheInformation extends _ModelCacheInformation {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelCacheInformation.fromJsonString: $e');
       rethrow;
     }
   }
@@ -143,7 +143,7 @@ class ModelCacheInformation extends _ModelCacheInformation {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelCacheInformation.fromJson: $e');
       rethrow;
     }
   }
@@ -168,7 +168,7 @@ class ModelCacheInformation extends _ModelCacheInformation {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelCacheInformation.fromUri: $e');
       rethrow;
     }
   }
@@ -180,7 +180,7 @@ class ModelCacheInformation extends _ModelCacheInformation {
       if (uri != null && uri.path == CLASS) {
         return ModelCacheInformation.fromJson(uri.queryParameters);
       } else {
-        return ModelCacheInformation.b();
+        return ModelCacheInformation.empty();
       }
     } catch (_) {
       return null;
@@ -202,7 +202,7 @@ class ModelCacheInformation extends _ModelCacheInformation {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelCacheInformation.toJson: $e');
       rethrow;
     }
   }

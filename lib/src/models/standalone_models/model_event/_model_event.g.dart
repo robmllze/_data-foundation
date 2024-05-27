@@ -171,7 +171,7 @@ class ModelEvent extends _ModelEvent {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEvent.from: $e');
       rethrow;
     }
   }
@@ -192,7 +192,7 @@ class ModelEvent extends _ModelEvent {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEvent.of: $e');
       rethrow;
     }
   }
@@ -213,7 +213,7 @@ class ModelEvent extends _ModelEvent {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEvent.fromJsonString: $e');
       rethrow;
     }
   }
@@ -243,7 +243,7 @@ class ModelEvent extends _ModelEvent {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEvent.fromJson: $e');
       rethrow;
     }
   }
@@ -289,7 +289,7 @@ class ModelEvent extends _ModelEvent {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEvent.fromUri: $e');
       rethrow;
     }
   }
@@ -301,7 +301,7 @@ class ModelEvent extends _ModelEvent {
       if (uri != null && uri.path == CLASS) {
         return ModelEvent.fromJson(uri.queryParameters);
       } else {
-        return ModelEvent.b();
+        return ModelEvent.empty();
       }
     } catch (_) {
       return null;
@@ -343,7 +343,7 @@ class ModelEvent extends _ModelEvent {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEvent.toJson: $e');
       rethrow;
     }
   }

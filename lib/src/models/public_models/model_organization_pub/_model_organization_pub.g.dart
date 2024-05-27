@@ -141,7 +141,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganizationPub.from: $e');
       rethrow;
     }
   }
@@ -162,7 +162,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganizationPub.of: $e');
       rethrow;
     }
   }
@@ -183,7 +183,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganizationPub.fromJsonString: $e');
       rethrow;
     }
   }
@@ -213,7 +213,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganizationPub.fromJson: $e');
       rethrow;
     }
   }
@@ -253,7 +253,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganizationPub.fromUri: $e');
       rethrow;
     }
   }
@@ -265,7 +265,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       if (uri != null && uri.path == CLASS) {
         return ModelOrganizationPub.fromJson(uri.queryParameters);
       } else {
-        return ModelOrganizationPub.b();
+        return ModelOrganizationPub.empty();
       }
     } catch (_) {
       return null;
@@ -301,7 +301,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganizationPub.toJson: $e');
       rethrow;
     }
   }

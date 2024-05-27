@@ -84,7 +84,7 @@ class ModelMessageDef extends _ModelMessageDef {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelMessageDef.from: $e');
       rethrow;
     }
   }
@@ -105,7 +105,7 @@ class ModelMessageDef extends _ModelMessageDef {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelMessageDef.of: $e');
       rethrow;
     }
   }
@@ -126,7 +126,7 @@ class ModelMessageDef extends _ModelMessageDef {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelMessageDef.fromJsonString: $e');
       rethrow;
     }
   }
@@ -156,7 +156,7 @@ class ModelMessageDef extends _ModelMessageDef {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelMessageDef.fromJson: $e');
       rethrow;
     }
   }
@@ -185,7 +185,7 @@ class ModelMessageDef extends _ModelMessageDef {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelMessageDef.fromUri: $e');
       rethrow;
     }
   }
@@ -197,7 +197,7 @@ class ModelMessageDef extends _ModelMessageDef {
       if (uri != null && uri.path == CLASS) {
         return ModelMessageDef.fromJson(uri.queryParameters);
       } else {
-        return ModelMessageDef.b();
+        return ModelMessageDef.empty();
       }
     } catch (_) {
       return null;
@@ -222,7 +222,7 @@ class ModelMessageDef extends _ModelMessageDef {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelMessageDef.toJson: $e');
       rethrow;
     }
   }

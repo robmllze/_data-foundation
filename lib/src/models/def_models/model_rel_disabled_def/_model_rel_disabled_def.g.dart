@@ -84,7 +84,7 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelDisabledDef.from: $e');
       rethrow;
     }
   }
@@ -105,7 +105,7 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelDisabledDef.of: $e');
       rethrow;
     }
   }
@@ -126,7 +126,7 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelDisabledDef.fromJsonString: $e');
       rethrow;
     }
   }
@@ -156,7 +156,7 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelDisabledDef.fromJson: $e');
       rethrow;
     }
   }
@@ -185,7 +185,7 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelDisabledDef.fromUri: $e');
       rethrow;
     }
   }
@@ -197,7 +197,7 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
       if (uri != null && uri.path == CLASS) {
         return ModelRelDisabledDef.fromJson(uri.queryParameters);
       } else {
-        return ModelRelDisabledDef.b();
+        return ModelRelDisabledDef.empty();
       }
     } catch (_) {
       return null;
@@ -222,7 +222,7 @@ class ModelRelDisabledDef extends _ModelRelDisabledDef {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelDisabledDef.toJson: $e');
       rethrow;
     }
   }

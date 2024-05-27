@@ -84,7 +84,7 @@ class DefModel extends Model {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'DefModel.from: $e');
       rethrow;
     }
   }
@@ -105,7 +105,7 @@ class DefModel extends Model {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'DefModel.of: $e');
       rethrow;
     }
   }
@@ -126,7 +126,7 @@ class DefModel extends Model {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'DefModel.fromJsonString: $e');
       rethrow;
     }
   }
@@ -156,7 +156,7 @@ class DefModel extends Model {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'DefModel.fromJson: $e');
       rethrow;
     }
   }
@@ -185,7 +185,7 @@ class DefModel extends Model {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'DefModel.fromUri: $e');
       rethrow;
     }
   }
@@ -197,7 +197,7 @@ class DefModel extends Model {
       if (uri != null && uri.path == CLASS) {
         return DefModel.fromJson(uri.queryParameters);
       } else {
-        return DefModel.b();
+        return DefModel.empty();
       }
     } catch (_) {
       return null;
@@ -222,7 +222,7 @@ class DefModel extends Model {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'DefModel.toJson: $e');
       rethrow;
     }
   }

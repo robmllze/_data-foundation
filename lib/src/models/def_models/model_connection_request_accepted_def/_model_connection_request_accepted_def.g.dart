@@ -85,7 +85,7 @@ class ModelConnectionRequestAcceptedDef
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionRequestAcceptedDef.from: $e');
       rethrow;
     }
   }
@@ -106,7 +106,7 @@ class ModelConnectionRequestAcceptedDef
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionRequestAcceptedDef.of: $e');
       rethrow;
     }
   }
@@ -127,7 +127,7 @@ class ModelConnectionRequestAcceptedDef
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionRequestAcceptedDef.fromJsonString: $e');
       rethrow;
     }
   }
@@ -157,7 +157,7 @@ class ModelConnectionRequestAcceptedDef
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionRequestAcceptedDef.fromJson: $e');
       rethrow;
     }
   }
@@ -186,7 +186,7 @@ class ModelConnectionRequestAcceptedDef
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionRequestAcceptedDef.fromUri: $e');
       rethrow;
     }
   }
@@ -198,7 +198,7 @@ class ModelConnectionRequestAcceptedDef
       if (uri != null && uri.path == CLASS) {
         return ModelConnectionRequestAcceptedDef.fromJson(uri.queryParameters);
       } else {
-        return ModelConnectionRequestAcceptedDef.b();
+        return ModelConnectionRequestAcceptedDef.empty();
       }
     } catch (_) {
       return null;
@@ -223,7 +223,7 @@ class ModelConnectionRequestAcceptedDef
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionRequestAcceptedDef.toJson: $e');
       rethrow;
     }
   }

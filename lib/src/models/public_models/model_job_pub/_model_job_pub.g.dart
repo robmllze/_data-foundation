@@ -166,7 +166,7 @@ class ModelJobPub extends _ModelJobPub {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJobPub.from: $e');
       rethrow;
     }
   }
@@ -187,7 +187,7 @@ class ModelJobPub extends _ModelJobPub {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJobPub.of: $e');
       rethrow;
     }
   }
@@ -208,7 +208,7 @@ class ModelJobPub extends _ModelJobPub {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJobPub.fromJsonString: $e');
       rethrow;
     }
   }
@@ -238,7 +238,7 @@ class ModelJobPub extends _ModelJobPub {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJobPub.fromJson: $e');
       rethrow;
     }
   }
@@ -283,7 +283,7 @@ class ModelJobPub extends _ModelJobPub {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJobPub.fromUri: $e');
       rethrow;
     }
   }
@@ -295,7 +295,7 @@ class ModelJobPub extends _ModelJobPub {
       if (uri != null && uri.path == CLASS) {
         return ModelJobPub.fromJson(uri.queryParameters);
       } else {
-        return ModelJobPub.b();
+        return ModelJobPub.empty();
       }
     } catch (_) {
       return null;
@@ -336,7 +336,7 @@ class ModelJobPub extends _ModelJobPub {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJobPub.toJson: $e');
       rethrow;
     }
   }

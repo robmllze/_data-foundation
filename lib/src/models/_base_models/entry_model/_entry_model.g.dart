@@ -121,7 +121,7 @@ class EntryModel extends Model {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'EntryModel.from: $e');
       rethrow;
     }
   }
@@ -142,7 +142,7 @@ class EntryModel extends Model {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'EntryModel.of: $e');
       rethrow;
     }
   }
@@ -163,7 +163,7 @@ class EntryModel extends Model {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'EntryModel.fromJsonString: $e');
       rethrow;
     }
   }
@@ -193,7 +193,7 @@ class EntryModel extends Model {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'EntryModel.fromJson: $e');
       rethrow;
     }
   }
@@ -229,7 +229,7 @@ class EntryModel extends Model {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'EntryModel.fromUri: $e');
       rethrow;
     }
   }
@@ -241,7 +241,7 @@ class EntryModel extends Model {
       if (uri != null && uri.path == CLASS) {
         return EntryModel.fromJson(uri.queryParameters);
       } else {
-        return EntryModel.b();
+        return EntryModel.empty();
       }
     } catch (_) {
       return null;
@@ -273,7 +273,7 @@ class EntryModel extends Model {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'EntryModel.toJson: $e');
       rethrow;
     }
   }

@@ -114,7 +114,7 @@ class ModelConnectionPermissions extends Model {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionPermissions.from: $e');
       rethrow;
     }
   }
@@ -135,7 +135,7 @@ class ModelConnectionPermissions extends Model {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionPermissions.of: $e');
       rethrow;
     }
   }
@@ -156,7 +156,7 @@ class ModelConnectionPermissions extends Model {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionPermissions.fromJsonString: $e');
       rethrow;
     }
   }
@@ -186,7 +186,7 @@ class ModelConnectionPermissions extends Model {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionPermissions.fromJson: $e');
       rethrow;
     }
   }
@@ -221,7 +221,7 @@ class ModelConnectionPermissions extends Model {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionPermissions.fromUri: $e');
       rethrow;
     }
   }
@@ -233,7 +233,7 @@ class ModelConnectionPermissions extends Model {
       if (uri != null && uri.path == CLASS) {
         return ModelConnectionPermissions.fromJson(uri.queryParameters);
       } else {
-        return ModelConnectionPermissions.b();
+        return ModelConnectionPermissions.empty();
       }
     } catch (_) {
       return null;
@@ -264,7 +264,7 @@ class ModelConnectionPermissions extends Model {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionPermissions.toJson: $e');
       rethrow;
     }
   }

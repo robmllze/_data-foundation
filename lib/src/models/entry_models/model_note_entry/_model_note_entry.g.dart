@@ -126,7 +126,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelNoteEntry.from: $e');
       rethrow;
     }
   }
@@ -147,7 +147,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelNoteEntry.of: $e');
       rethrow;
     }
   }
@@ -168,7 +168,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelNoteEntry.fromJsonString: $e');
       rethrow;
     }
   }
@@ -198,7 +198,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelNoteEntry.fromJson: $e');
       rethrow;
     }
   }
@@ -235,7 +235,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelNoteEntry.fromUri: $e');
       rethrow;
     }
   }
@@ -247,7 +247,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
       if (uri != null && uri.path == CLASS) {
         return ModelNoteEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelNoteEntry.b();
+        return ModelNoteEntry.empty();
       }
     } catch (_) {
       return null;
@@ -280,7 +280,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelNoteEntry.toJson: $e');
       rethrow;
     }
   }

@@ -106,7 +106,7 @@ class PrivateModel extends Model {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'PrivateModel.from: $e');
       rethrow;
     }
   }
@@ -127,7 +127,7 @@ class PrivateModel extends Model {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'PrivateModel.of: $e');
       rethrow;
     }
   }
@@ -148,7 +148,7 @@ class PrivateModel extends Model {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'PrivateModel.fromJsonString: $e');
       rethrow;
     }
   }
@@ -178,7 +178,7 @@ class PrivateModel extends Model {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'PrivateModel.fromJson: $e');
       rethrow;
     }
   }
@@ -211,7 +211,7 @@ class PrivateModel extends Model {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'PrivateModel.fromUri: $e');
       rethrow;
     }
   }
@@ -223,7 +223,7 @@ class PrivateModel extends Model {
       if (uri != null && uri.path == CLASS) {
         return PrivateModel.fromJson(uri.queryParameters);
       } else {
-        return PrivateModel.b();
+        return PrivateModel.empty();
       }
     } catch (_) {
       return null;
@@ -252,7 +252,7 @@ class PrivateModel extends Model {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'PrivateModel.toJson: $e');
       rethrow;
     }
   }

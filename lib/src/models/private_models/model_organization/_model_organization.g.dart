@@ -106,7 +106,7 @@ class ModelOrganization extends _ModelOrganization {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganization.from: $e');
       rethrow;
     }
   }
@@ -127,7 +127,7 @@ class ModelOrganization extends _ModelOrganization {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganization.of: $e');
       rethrow;
     }
   }
@@ -148,7 +148,7 @@ class ModelOrganization extends _ModelOrganization {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganization.fromJsonString: $e');
       rethrow;
     }
   }
@@ -178,7 +178,7 @@ class ModelOrganization extends _ModelOrganization {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganization.fromJson: $e');
       rethrow;
     }
   }
@@ -211,7 +211,7 @@ class ModelOrganization extends _ModelOrganization {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganization.fromUri: $e');
       rethrow;
     }
   }
@@ -223,7 +223,7 @@ class ModelOrganization extends _ModelOrganization {
       if (uri != null && uri.path == CLASS) {
         return ModelOrganization.fromJson(uri.queryParameters);
       } else {
-        return ModelOrganization.b();
+        return ModelOrganization.empty();
       }
     } catch (_) {
       return null;
@@ -252,7 +252,7 @@ class ModelOrganization extends _ModelOrganization {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelOrganization.toJson: $e');
       rethrow;
     }
   }

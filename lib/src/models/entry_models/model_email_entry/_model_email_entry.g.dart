@@ -126,7 +126,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEmailEntry.from: $e');
       rethrow;
     }
   }
@@ -147,7 +147,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEmailEntry.of: $e');
       rethrow;
     }
   }
@@ -168,7 +168,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEmailEntry.fromJsonString: $e');
       rethrow;
     }
   }
@@ -198,7 +198,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEmailEntry.fromJson: $e');
       rethrow;
     }
   }
@@ -235,7 +235,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEmailEntry.fromUri: $e');
       rethrow;
     }
   }
@@ -247,7 +247,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
       if (uri != null && uri.path == CLASS) {
         return ModelEmailEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelEmailEntry.b();
+        return ModelEmailEntry.empty();
       }
     } catch (_) {
       return null;
@@ -280,7 +280,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelEmailEntry.toJson: $e');
       rethrow;
     }
   }

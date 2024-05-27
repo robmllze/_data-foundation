@@ -171,7 +171,7 @@ class ModelRelationship extends _ModelRelationship {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelationship.from: $e');
       rethrow;
     }
   }
@@ -192,7 +192,7 @@ class ModelRelationship extends _ModelRelationship {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelationship.of: $e');
       rethrow;
     }
   }
@@ -213,7 +213,7 @@ class ModelRelationship extends _ModelRelationship {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelationship.fromJsonString: $e');
       rethrow;
     }
   }
@@ -243,7 +243,7 @@ class ModelRelationship extends _ModelRelationship {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelationship.fromJson: $e');
       rethrow;
     }
   }
@@ -289,7 +289,7 @@ class ModelRelationship extends _ModelRelationship {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelationship.fromUri: $e');
       rethrow;
     }
   }
@@ -301,7 +301,7 @@ class ModelRelationship extends _ModelRelationship {
       if (uri != null && uri.path == CLASS) {
         return ModelRelationship.fromJson(uri.queryParameters);
       } else {
-        return ModelRelationship.b();
+        return ModelRelationship.empty();
       }
     } catch (_) {
       return null;
@@ -343,7 +343,7 @@ class ModelRelationship extends _ModelRelationship {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelRelationship.toJson: $e');
       rethrow;
     }
   }

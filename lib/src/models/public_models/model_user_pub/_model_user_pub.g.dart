@@ -141,7 +141,7 @@ class ModelUserPub extends _ModelUserPub {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUserPub.from: $e');
       rethrow;
     }
   }
@@ -162,7 +162,7 @@ class ModelUserPub extends _ModelUserPub {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUserPub.of: $e');
       rethrow;
     }
   }
@@ -183,7 +183,7 @@ class ModelUserPub extends _ModelUserPub {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUserPub.fromJsonString: $e');
       rethrow;
     }
   }
@@ -213,7 +213,7 @@ class ModelUserPub extends _ModelUserPub {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUserPub.fromJson: $e');
       rethrow;
     }
   }
@@ -253,7 +253,7 @@ class ModelUserPub extends _ModelUserPub {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUserPub.fromUri: $e');
       rethrow;
     }
   }
@@ -265,7 +265,7 @@ class ModelUserPub extends _ModelUserPub {
       if (uri != null && uri.path == CLASS) {
         return ModelUserPub.fromJson(uri.queryParameters);
       } else {
-        return ModelUserPub.b();
+        return ModelUserPub.empty();
       }
     } catch (_) {
       return null;
@@ -301,7 +301,7 @@ class ModelUserPub extends _ModelUserPub {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUserPub.toJson: $e');
       rethrow;
     }
   }

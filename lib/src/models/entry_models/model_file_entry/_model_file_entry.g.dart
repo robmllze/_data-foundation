@@ -151,7 +151,7 @@ class ModelFileEntry extends _ModelFileEntry {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelFileEntry.from: $e');
       rethrow;
     }
   }
@@ -172,7 +172,7 @@ class ModelFileEntry extends _ModelFileEntry {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelFileEntry.of: $e');
       rethrow;
     }
   }
@@ -193,7 +193,7 @@ class ModelFileEntry extends _ModelFileEntry {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelFileEntry.fromJsonString: $e');
       rethrow;
     }
   }
@@ -223,7 +223,7 @@ class ModelFileEntry extends _ModelFileEntry {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelFileEntry.fromJson: $e');
       rethrow;
     }
   }
@@ -265,7 +265,7 @@ class ModelFileEntry extends _ModelFileEntry {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelFileEntry.fromUri: $e');
       rethrow;
     }
   }
@@ -277,7 +277,7 @@ class ModelFileEntry extends _ModelFileEntry {
       if (uri != null && uri.path == CLASS) {
         return ModelFileEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelFileEntry.b();
+        return ModelFileEntry.empty();
       }
     } catch (_) {
       return null;
@@ -315,7 +315,7 @@ class ModelFileEntry extends _ModelFileEntry {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelFileEntry.toJson: $e');
       rethrow;
     }
   }

@@ -106,7 +106,7 @@ class ModelProject extends _ModelProject {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelProject.from: $e');
       rethrow;
     }
   }
@@ -127,7 +127,7 @@ class ModelProject extends _ModelProject {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelProject.of: $e');
       rethrow;
     }
   }
@@ -148,7 +148,7 @@ class ModelProject extends _ModelProject {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelProject.fromJsonString: $e');
       rethrow;
     }
   }
@@ -178,7 +178,7 @@ class ModelProject extends _ModelProject {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelProject.fromJson: $e');
       rethrow;
     }
   }
@@ -211,7 +211,7 @@ class ModelProject extends _ModelProject {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelProject.fromUri: $e');
       rethrow;
     }
   }
@@ -223,7 +223,7 @@ class ModelProject extends _ModelProject {
       if (uri != null && uri.path == CLASS) {
         return ModelProject.fromJson(uri.queryParameters);
       } else {
-        return ModelProject.b();
+        return ModelProject.empty();
       }
     } catch (_) {
       return null;
@@ -252,7 +252,7 @@ class ModelProject extends _ModelProject {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelProject.toJson: $e');
       rethrow;
     }
   }

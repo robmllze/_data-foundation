@@ -123,7 +123,7 @@ class ModelInvitation extends _ModelInvitation {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelInvitation.from: $e');
       rethrow;
     }
   }
@@ -144,7 +144,7 @@ class ModelInvitation extends _ModelInvitation {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelInvitation.of: $e');
       rethrow;
     }
   }
@@ -165,7 +165,7 @@ class ModelInvitation extends _ModelInvitation {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelInvitation.fromJsonString: $e');
       rethrow;
     }
   }
@@ -195,7 +195,7 @@ class ModelInvitation extends _ModelInvitation {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelInvitation.fromJson: $e');
       rethrow;
     }
   }
@@ -231,7 +231,7 @@ class ModelInvitation extends _ModelInvitation {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelInvitation.fromUri: $e');
       rethrow;
     }
   }
@@ -243,7 +243,7 @@ class ModelInvitation extends _ModelInvitation {
       if (uri != null && uri.path == CLASS) {
         return ModelInvitation.fromJson(uri.queryParameters);
       } else {
-        return ModelInvitation.b();
+        return ModelInvitation.empty();
       }
     } catch (_) {
       return null;
@@ -275,7 +275,7 @@ class ModelInvitation extends _ModelInvitation {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelInvitation.toJson: $e');
       rethrow;
     }
   }

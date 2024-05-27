@@ -151,7 +151,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelAddressEntry.from: $e');
       rethrow;
     }
   }
@@ -172,7 +172,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelAddressEntry.of: $e');
       rethrow;
     }
   }
@@ -193,7 +193,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelAddressEntry.fromJsonString: $e');
       rethrow;
     }
   }
@@ -223,7 +223,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelAddressEntry.fromJson: $e');
       rethrow;
     }
   }
@@ -265,7 +265,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelAddressEntry.fromUri: $e');
       rethrow;
     }
   }
@@ -277,7 +277,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
       if (uri != null && uri.path == CLASS) {
         return ModelAddressEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelAddressEntry.b();
+        return ModelAddressEntry.empty();
       }
     } catch (_) {
       return null;
@@ -315,7 +315,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelAddressEntry.toJson: $e');
       rethrow;
     }
   }

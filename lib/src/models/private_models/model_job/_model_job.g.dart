@@ -106,7 +106,7 @@ class ModelJob extends _ModelJob {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJob.from: $e');
       rethrow;
     }
   }
@@ -127,7 +127,7 @@ class ModelJob extends _ModelJob {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJob.of: $e');
       rethrow;
     }
   }
@@ -148,7 +148,7 @@ class ModelJob extends _ModelJob {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJob.fromJsonString: $e');
       rethrow;
     }
   }
@@ -178,7 +178,7 @@ class ModelJob extends _ModelJob {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJob.fromJson: $e');
       rethrow;
     }
   }
@@ -211,7 +211,7 @@ class ModelJob extends _ModelJob {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJob.fromUri: $e');
       rethrow;
     }
   }
@@ -223,7 +223,7 @@ class ModelJob extends _ModelJob {
       if (uri != null && uri.path == CLASS) {
         return ModelJob.fromJson(uri.queryParameters);
       } else {
-        return ModelJob.b();
+        return ModelJob.empty();
       }
     } catch (_) {
       return null;
@@ -252,7 +252,7 @@ class ModelJob extends _ModelJob {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelJob.toJson: $e');
       rethrow;
     }
   }

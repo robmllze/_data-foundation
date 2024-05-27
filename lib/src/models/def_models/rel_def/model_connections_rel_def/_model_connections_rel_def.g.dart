@@ -69,7 +69,7 @@ class ModelConnectionsRelDef extends Model {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionsRelDef.from: $e');
       rethrow;
     }
   }
@@ -90,7 +90,7 @@ class ModelConnectionsRelDef extends Model {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionsRelDef.of: $e');
       rethrow;
     }
   }
@@ -111,7 +111,7 @@ class ModelConnectionsRelDef extends Model {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionsRelDef.fromJsonString: $e');
       rethrow;
     }
   }
@@ -141,7 +141,7 @@ class ModelConnectionsRelDef extends Model {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionsRelDef.fromJson: $e');
       rethrow;
     }
   }
@@ -167,7 +167,7 @@ class ModelConnectionsRelDef extends Model {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionsRelDef.fromUri: $e');
       rethrow;
     }
   }
@@ -179,7 +179,7 @@ class ModelConnectionsRelDef extends Model {
       if (uri != null && uri.path == CLASS) {
         return ModelConnectionsRelDef.fromJson(uri.queryParameters);
       } else {
-        return ModelConnectionsRelDef.b();
+        return ModelConnectionsRelDef.empty();
       }
     } catch (_) {
       return null;
@@ -201,7 +201,7 @@ class ModelConnectionsRelDef extends Model {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelConnectionsRelDef.toJson: $e');
       rethrow;
     }
   }

@@ -126,7 +126,7 @@ class ModelUser extends _ModelUser {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUser.from: $e');
       rethrow;
     }
   }
@@ -147,7 +147,7 @@ class ModelUser extends _ModelUser {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUser.of: $e');
       rethrow;
     }
   }
@@ -168,7 +168,7 @@ class ModelUser extends _ModelUser {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUser.fromJsonString: $e');
       rethrow;
     }
   }
@@ -198,7 +198,7 @@ class ModelUser extends _ModelUser {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUser.fromJson: $e');
       rethrow;
     }
   }
@@ -235,7 +235,7 @@ class ModelUser extends _ModelUser {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUser.fromUri: $e');
       rethrow;
     }
   }
@@ -247,7 +247,7 @@ class ModelUser extends _ModelUser {
       if (uri != null && uri.path == CLASS) {
         return ModelUser.fromJson(uri.queryParameters);
       } else {
-        return ModelUser.b();
+        return ModelUser.empty();
       }
     } catch (_) {
       return null;
@@ -280,7 +280,7 @@ class ModelUser extends _ModelUser {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelUser.toJson: $e');
       rethrow;
     }
   }

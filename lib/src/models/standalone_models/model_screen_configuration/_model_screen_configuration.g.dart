@@ -113,7 +113,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelScreenConfiguration.from: $e');
       rethrow;
     }
   }
@@ -134,7 +134,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelScreenConfiguration.of: $e');
       rethrow;
     }
   }
@@ -155,7 +155,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelScreenConfiguration.fromJsonString: $e');
       rethrow;
     }
   }
@@ -185,7 +185,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelScreenConfiguration.fromJson: $e');
       rethrow;
     }
   }
@@ -222,7 +222,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelScreenConfiguration.fromUri: $e');
       rethrow;
     }
   }
@@ -234,7 +234,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       if (uri != null && uri.path == CLASS) {
         return ModelScreenConfiguration.fromJson(uri.queryParameters);
       } else {
-        return ModelScreenConfiguration.b();
+        return ModelScreenConfiguration.empty();
       }
     } catch (_) {
       return null;
@@ -265,7 +265,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelScreenConfiguration.toJson: $e');
       rethrow;
     }
   }

@@ -126,7 +126,7 @@ class ModelTodoEntry extends _ModelTodoEntry {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelTodoEntry.from: $e');
       rethrow;
     }
   }
@@ -147,7 +147,7 @@ class ModelTodoEntry extends _ModelTodoEntry {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelTodoEntry.of: $e');
       rethrow;
     }
   }
@@ -168,7 +168,7 @@ class ModelTodoEntry extends _ModelTodoEntry {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelTodoEntry.fromJsonString: $e');
       rethrow;
     }
   }
@@ -198,7 +198,7 @@ class ModelTodoEntry extends _ModelTodoEntry {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelTodoEntry.fromJson: $e');
       rethrow;
     }
   }
@@ -235,7 +235,7 @@ class ModelTodoEntry extends _ModelTodoEntry {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelTodoEntry.fromUri: $e');
       rethrow;
     }
   }
@@ -247,7 +247,7 @@ class ModelTodoEntry extends _ModelTodoEntry {
       if (uri != null && uri.path == CLASS) {
         return ModelTodoEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelTodoEntry.b();
+        return ModelTodoEntry.empty();
       }
     } catch (_) {
       return null;
@@ -280,7 +280,7 @@ class ModelTodoEntry extends _ModelTodoEntry {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelTodoEntry.toJson: $e');
       rethrow;
     }
   }

@@ -76,7 +76,7 @@ class ModelDataCollection extends _ModelDataCollection {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelDataCollection.from: $e');
       rethrow;
     }
   }
@@ -97,7 +97,7 @@ class ModelDataCollection extends _ModelDataCollection {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelDataCollection.of: $e');
       rethrow;
     }
   }
@@ -118,7 +118,7 @@ class ModelDataCollection extends _ModelDataCollection {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelDataCollection.fromJsonString: $e');
       rethrow;
     }
   }
@@ -148,7 +148,7 @@ class ModelDataCollection extends _ModelDataCollection {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelDataCollection.fromJson: $e');
       rethrow;
     }
   }
@@ -175,7 +175,7 @@ class ModelDataCollection extends _ModelDataCollection {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelDataCollection.fromUri: $e');
       rethrow;
     }
   }
@@ -187,7 +187,7 @@ class ModelDataCollection extends _ModelDataCollection {
       if (uri != null && uri.path == CLASS) {
         return ModelDataCollection.fromJson(uri.queryParameters);
       } else {
-        return ModelDataCollection.b();
+        return ModelDataCollection.empty();
       }
     } catch (_) {
       return null;
@@ -210,7 +210,7 @@ class ModelDataCollection extends _ModelDataCollection {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, e);
+      assert(false, 'ModelDataCollection.toJson: $e');
       rethrow;
     }
   }
