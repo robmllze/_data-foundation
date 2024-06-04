@@ -32,7 +32,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   static const K_IS_ACCESSIBLE_ONLY_IF_LOGGED_OUT =
       'is_accessible_only_if_logged_out';
   static const K_IS_REDIRECTABLE = 'is_redirectable';
-  static const K_MAKEUP = 'makeup';
   static const K_PATH = 'path';
   static const K_PREVIOUS_CONFIGURATION = 'previous_configuration';
   static const K_TITLE = 'title';
@@ -47,7 +46,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   bool? isAccessibleOnlyIfLoggedInAndVerified;
   bool? isAccessibleOnlyIfLoggedOut;
   bool? isRedirectable;
-  dynamic makeup;
   String? path;
   ModelScreenConfiguration? previousConfiguration;
   String? title;
@@ -68,7 +66,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     bool? isAccessibleOnlyIfLoggedInAndVerified,
     bool? isAccessibleOnlyIfLoggedOut,
     bool? isRedirectable,
-    dynamic makeup,
     String? path,
     ModelScreenConfiguration? previousConfiguration,
     String? title,
@@ -80,7 +77,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
           isAccessibleOnlyIfLoggedInAndVerified,
       isAccessibleOnlyIfLoggedOut: isAccessibleOnlyIfLoggedOut,
       isRedirectable: isRedirectable,
-      makeup: makeup,
       path: path,
       previousConfiguration: previousConfiguration,
       title: title,
@@ -97,7 +93,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     this.isAccessibleOnlyIfLoggedInAndVerified,
     this.isAccessibleOnlyIfLoggedOut,
     this.isRedirectable,
-    this.makeup,
     this.path,
     this.previousConfiguration,
     this.title,
@@ -203,7 +198,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
         ..$isAccessibleOnlyIfLoggedOut =
             otherData?[K_IS_ACCESSIBLE_ONLY_IF_LOGGED_OUT]
         ..$isRedirectable = otherData?[K_IS_REDIRECTABLE]
-        ..$makeup = otherData?[K_MAKEUP]
         ..$path = otherData?[K_PATH]
         ..$previousConfiguration = otherData?[K_PREVIOUS_CONFIGURATION]
         ..$title = otherData?[K_TITLE];
@@ -258,7 +252,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
             this.$isAccessibleOnlyIfLoggedInAndVerified,
         K_IS_ACCESSIBLE_ONLY_IF_LOGGED_OUT: this.$isAccessibleOnlyIfLoggedOut,
         K_IS_REDIRECTABLE: this.$isRedirectable,
-        K_MAKEUP: this.$makeup,
         K_PATH: this.$path,
         K_PREVIOUS_CONFIGURATION: this.$previousConfiguration,
         K_TITLE: this.$title,
@@ -313,9 +306,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       }
       if (other.isRedirectable != null) {
         this.isRedirectable = other.isRedirectable!;
-      }
-      if (other.makeup != null) {
-        this.makeup = other.makeup!;
       }
       if (other.path != null) {
         this.path = other.path!;
@@ -399,14 +389,6 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   dynamic get $isRedirectable => this.isRedirectable;
   @protected
   set $isRedirectable(v) => this.isRedirectable = letBool(v);
-
-  // makeup.
-  dynamic get makeupField => this.makeup;
-  set makeupField(dynamic v) => this.makeup = v;
-  @protected
-  dynamic get $makeup => this.makeup;
-  @protected
-  set $makeup(v) => this.makeup = v;
 
   // path.
   String? get pathField => this.path;

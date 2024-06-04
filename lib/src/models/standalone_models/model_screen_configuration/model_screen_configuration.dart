@@ -22,7 +22,6 @@ part '_model_screen_configuration.g.dart';
     ('is_accessible_only_if_logged_in?', bool),
     ('is_accessible_only_if_logged_out?', bool),
     ('is_redirectable?', bool),
-    ('makeup', dynamic),
     ('path?', String),
     ('previous_configuration?', ModelScreenConfiguration),
     ('title?', String),
@@ -49,7 +48,6 @@ ModelScreenConfiguration urlToScreenConfiguration({
   required bool isAccessibleOnlyIfLoggedInAndVerified,
   required bool isAccessibleOnlyIfLoggedOut,
   required bool isRedirectable,
-  required dynamic makeup,
   required String? title,
 }) {
   final path = url.path;
@@ -64,7 +62,6 @@ ModelScreenConfiguration urlToScreenConfiguration({
     isAccessibleOnlyIfLoggedOut: isAccessibleOnlyIfLoggedOut,
     isRedirectable: isRedirectable,
     path: path,
-    makeup: makeup,
     title: title,
   );
 }
