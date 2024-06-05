@@ -9,7 +9,7 @@
 
 import '/_common.dart';
 
-part '_model_notifications_registration.g.dart';
+part '_model_app_registration.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -17,8 +17,9 @@ part '_model_notifications_registration.g.dart';
   shouldInherit: true,
   fields: {
     ('created_at', DateTime),
-    ('token?', String),
-    ('ip_address?', String),
+    ('logged_at', DateTime),
+    ('notification_token', String),
+    ('ip_address', String),
   },
 )
-abstract class _ModelNotificationsRegistration extends Model {}
+abstract class _ModelAppRegistration extends Model {}

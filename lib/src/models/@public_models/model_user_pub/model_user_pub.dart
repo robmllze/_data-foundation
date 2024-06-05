@@ -20,7 +20,7 @@ part '_model_user_pub.g.dart';
   shouldInherit: true,
   fields: {
     ...PUBLIC_MODEL_FIELDS,
-    ('notifications_registrations?', Map<DateTime, ModelNotificationsRegistration>),
+    ('app_registrations?', Map<DateTime, ModelAppRegistration>),
   },
 )
 abstract class _ModelUserPub extends ThisModel<ModelUserPub> implements PublicModel {
@@ -30,5 +30,5 @@ abstract class _ModelUserPub extends ThisModel<ModelUserPub> implements PublicMo
 
   /// Returns the set of notification tokens for this user.
   Set<String> get notificationTokens =>
-      this.model.notificationsRegistrations?.values.map((e) => e.token).nonNulls.toSet() ?? {};
+      this.model.appRegistrations?.values.map((e) => e.notificationToken).nonNulls.toSet() ?? {};
 }

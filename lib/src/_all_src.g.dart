@@ -40,7 +40,7 @@ export 'models/model_connection_permissions/model_connection_permissions.dart';
 export 'models/model_data_collection/model_data_collection.dart';
 export 'models/model_event/model_event.dart';
 export 'models/model_invitation/model_invitation.dart';
-export 'models/model_notifications_registration/model_notifications_registration.dart';
+export 'models/model_app_registration/model_app_registration.dart';
 export 'models/model_screen_configuration/model_screen_configuration.dart';
 export 'types/access_status_type/access_status_type.dart';
 export 'types/access_type/access_type.dart';

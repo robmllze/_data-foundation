@@ -15,47 +15,51 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_notifications_registration.dart';
+part of 'model_app_registration.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
+class ModelAppRegistration extends _ModelAppRegistration {
   //
   //
   //
 
   static const K_CREATED_AT = 'created_at';
   static const K_IP_ADDRESS = 'ip_address';
-  static const K_TOKEN = 'token';
+  static const K_LOGGED_AT = 'logged_at';
+  static const K_NOTIFICATION_TOKEN = 'notification_token';
 
-  static const CLASS = 'ModelNotificationsRegistration';
+  static const CLASS = 'ModelAppRegistration';
 
   @override
   String get $class => CLASS;
 
   DateTime? createdAt;
   String? ipAddress;
-  String? token;
+  DateTime? loggedAt;
+  String? notificationToken;
 
   //
   //
   //
 
-  ModelNotificationsRegistration.empty();
+  ModelAppRegistration.empty();
 
   //
   //
   //
 
-  factory ModelNotificationsRegistration({
+  factory ModelAppRegistration({
     required DateTime createdAt,
-    String? ipAddress,
-    String? token,
+    required String ipAddress,
+    required DateTime loggedAt,
+    required String notificationToken,
   }) {
-    return ModelNotificationsRegistration.b(
+    return ModelAppRegistration.b(
       createdAt: createdAt,
       ipAddress: ipAddress,
-      token: token,
+      loggedAt: loggedAt,
+      notificationToken: notificationToken,
     );
   }
 
@@ -63,30 +67,34 @@ class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
   //
   //
 
-  ModelNotificationsRegistration.b({
+  ModelAppRegistration.b({
     this.createdAt,
     this.ipAddress,
-    this.token,
+    this.loggedAt,
+    this.notificationToken,
   }) {
     assert(createdAt != null);
+    assert(ipAddress != null);
+    assert(loggedAt != null);
+    assert(notificationToken != null);
   }
 
   //
   //
   //
 
-  factory ModelNotificationsRegistration.from(
+  factory ModelAppRegistration.from(
     Model? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelNotificationsRegistration.from: $e');
+      assert(false, 'ModelAppRegistration.from: $e');
       rethrow;
     }
   }
 
-  static ModelNotificationsRegistration? fromOrNull(
+  static ModelAppRegistration? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
@@ -96,19 +104,19 @@ class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
   //
   //
 
-  factory ModelNotificationsRegistration.of(
-    ModelNotificationsRegistration other,
+  factory ModelAppRegistration.of(
+    ModelAppRegistration other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelNotificationsRegistration.of: $e');
+      assert(false, 'ModelAppRegistration.of: $e');
       rethrow;
     }
   }
 
-  static ModelNotificationsRegistration? ofOrNull(
-    ModelNotificationsRegistration? other,
+  static ModelAppRegistration? ofOrNull(
+    ModelAppRegistration? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -117,26 +125,26 @@ class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
   //
   //
 
-  factory ModelNotificationsRegistration.fromJsonString(
+  factory ModelAppRegistration.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'ModelNotificationsRegistration.fromJsonString: $e');
+      assert(false, 'ModelAppRegistration.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static ModelNotificationsRegistration? fromJsonStringOrNull(
+  static ModelAppRegistration? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelNotificationsRegistration.fromJson(decoded);
+        return ModelAppRegistration.fromJson(decoded);
       } else {
-        return ModelNotificationsRegistration.empty();
+        return ModelAppRegistration.empty();
       }
     } catch (_) {
       return null;
@@ -147,25 +155,26 @@ class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
   //
   //
 
-  factory ModelNotificationsRegistration.fromJson(
+  factory ModelAppRegistration.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'ModelNotificationsRegistration.fromJson: $e');
+      assert(false, 'ModelAppRegistration.fromJson: $e');
       rethrow;
     }
   }
 
-  static ModelNotificationsRegistration? fromJsonOrNull(
+  static ModelAppRegistration? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelNotificationsRegistration.empty()
+      return ModelAppRegistration.empty()
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$ipAddress = otherData?[K_IP_ADDRESS]
-        ..$token = otherData?[K_TOKEN];
+        ..$loggedAt = otherData?[K_LOGGED_AT]
+        ..$notificationToken = otherData?[K_NOTIFICATION_TOKEN];
     } catch (e) {
       return null;
     }
@@ -175,25 +184,25 @@ class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
   //
   //
 
-  factory ModelNotificationsRegistration.fromUri(
+  factory ModelAppRegistration.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'ModelNotificationsRegistration.fromUri: $e');
+      assert(false, 'ModelAppRegistration.fromUri: $e');
       rethrow;
     }
   }
 
-  static ModelNotificationsRegistration? fromUriOrNull(
+  static ModelAppRegistration? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelNotificationsRegistration.fromJson(uri.queryParameters);
+        return ModelAppRegistration.fromJson(uri.queryParameters);
       } else {
-        return ModelNotificationsRegistration.empty();
+        return ModelAppRegistration.empty();
       }
     } catch (_) {
       return null;
@@ -213,11 +222,12 @@ class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
       final withNulls = <String, dynamic>{
         K_CREATED_AT: this.$createdAt,
         K_IP_ADDRESS: this.$ipAddress,
-        K_TOKEN: this.$token,
+        K_LOGGED_AT: this.$loggedAt,
+        K_NOTIFICATION_TOKEN: this.$notificationToken,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'ModelNotificationsRegistration.toJson: $e');
+      assert(false, 'ModelAppRegistration.toJson: $e');
       rethrow;
     }
   }
@@ -228,7 +238,7 @@ class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
 
   @override
   T empty<T extends Model>() {
-    return ModelNotificationsRegistration.b() as T;
+    return ModelAppRegistration.b() as T;
   }
 
   //
@@ -237,7 +247,7 @@ class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
 
   @override
   T copy<T extends Model>() {
-    return (ModelNotificationsRegistration.b()..updateWith(this)) as T;
+    return (ModelAppRegistration.b()..updateWith(this)) as T;
   }
 
   //
@@ -249,15 +259,18 @@ class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelNotificationsRegistration.fromJson(otherData);
+      final other = ModelAppRegistration.fromJson(otherData);
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
       if (other.ipAddress != null) {
         this.ipAddress = other.ipAddress!;
       }
-      if (other.token != null) {
-        this.token = other.token!;
+      if (other.loggedAt != null) {
+        this.loggedAt = other.loggedAt!;
+      }
+      if (other.notificationToken != null) {
+        this.notificationToken = other.notificationToken!;
       }
     }
   }
@@ -278,18 +291,31 @@ class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
       }();
 
   // ipAddress.
-  String? get ipAddressField => this.ipAddress;
-  set ipAddressField(String? v) => this.ipAddress = v;
+  String get ipAddressField => this.ipAddress!;
+  set ipAddressField(String v) => this.ipAddress = v;
   @protected
   dynamic get $ipAddress => this.ipAddress?.toString().trim().nullIfEmpty;
   @protected
   set $ipAddress(v) => this.ipAddress = v?.toString().trim().nullIfEmpty;
 
-  // token.
-  String? get tokenField => this.token;
-  set tokenField(String? v) => this.token = v;
+  // loggedAt.
+  DateTime get loggedAtField => this.loggedAt!;
+  set loggedAtField(DateTime v) => this.loggedAt = v;
   @protected
-  dynamic get $token => this.token?.toString().trim().nullIfEmpty;
+  dynamic get $loggedAt => this.loggedAt?.toUtc()?.toIso8601String();
   @protected
-  set $token(v) => this.token = v?.toString().trim().nullIfEmpty;
+  set $loggedAt(v) => this.loggedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // notificationToken.
+  String get notificationTokenField => this.notificationToken!;
+  set notificationTokenField(String v) => this.notificationToken = v;
+  @protected
+  dynamic get $notificationToken =>
+      this.notificationToken?.toString().trim().nullIfEmpty;
+  @protected
+  set $notificationToken(v) =>
+      this.notificationToken = v?.toString().trim().nullIfEmpty;
 }
