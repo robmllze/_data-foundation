@@ -40,5 +40,5 @@ export 'model_connection_permissions/model_connection_permissions.dart';
 export 'model_data_collection/model_data_collection.dart';
 export 'model_event/model_event.dart';
 export 'model_invitation/model_invitation.dart';
-export 'model_registration_token/model_registration_token.dart';
+export 'model_notifications_registration/model_notifications_registration.dart';
 export 'model_screen_configuration/model_screen_configuration.dart';

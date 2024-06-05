@@ -15,11 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_registration_token.dart';
+part of 'model_notifications_registration.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelRegistrationToken extends _ModelRegistrationToken {
+class ModelNotificationsRegistration extends _ModelNotificationsRegistration {
   //
   //
   //
@@ -28,7 +28,7 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
   static const K_IP_ADDRESS = 'ip_address';
   static const K_TOKEN = 'token';
 
-  static const CLASS = 'ModelRegistrationToken';
+  static const CLASS = 'ModelNotificationsRegistration';
 
   @override
   String get $class => CLASS;
@@ -41,18 +41,18 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
   //
   //
 
-  ModelRegistrationToken.empty();
+  ModelNotificationsRegistration.empty();
 
   //
   //
   //
 
-  factory ModelRegistrationToken({
+  factory ModelNotificationsRegistration({
     required DateTime createdAt,
     String? ipAddress,
-    required String token,
+    String? token,
   }) {
-    return ModelRegistrationToken.b(
+    return ModelNotificationsRegistration.b(
       createdAt: createdAt,
       ipAddress: ipAddress,
       token: token,
@@ -63,31 +63,30 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
   //
   //
 
-  ModelRegistrationToken.b({
+  ModelNotificationsRegistration.b({
     this.createdAt,
     this.ipAddress,
     this.token,
   }) {
     assert(createdAt != null);
-    assert(token != null);
   }
 
   //
   //
   //
 
-  factory ModelRegistrationToken.from(
+  factory ModelNotificationsRegistration.from(
     Model? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelRegistrationToken.from: $e');
+      assert(false, 'ModelNotificationsRegistration.from: $e');
       rethrow;
     }
   }
 
-  static ModelRegistrationToken? fromOrNull(
+  static ModelNotificationsRegistration? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
@@ -97,19 +96,19 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
   //
   //
 
-  factory ModelRegistrationToken.of(
-    ModelRegistrationToken other,
+  factory ModelNotificationsRegistration.of(
+    ModelNotificationsRegistration other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelRegistrationToken.of: $e');
+      assert(false, 'ModelNotificationsRegistration.of: $e');
       rethrow;
     }
   }
 
-  static ModelRegistrationToken? ofOrNull(
-    ModelRegistrationToken? other,
+  static ModelNotificationsRegistration? ofOrNull(
+    ModelNotificationsRegistration? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -118,26 +117,26 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
   //
   //
 
-  factory ModelRegistrationToken.fromJsonString(
+  factory ModelNotificationsRegistration.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'ModelRegistrationToken.fromJsonString: $e');
+      assert(false, 'ModelNotificationsRegistration.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static ModelRegistrationToken? fromJsonStringOrNull(
+  static ModelNotificationsRegistration? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelRegistrationToken.fromJson(decoded);
+        return ModelNotificationsRegistration.fromJson(decoded);
       } else {
-        return ModelRegistrationToken.empty();
+        return ModelNotificationsRegistration.empty();
       }
     } catch (_) {
       return null;
@@ -148,22 +147,22 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
   //
   //
 
-  factory ModelRegistrationToken.fromJson(
+  factory ModelNotificationsRegistration.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'ModelRegistrationToken.fromJson: $e');
+      assert(false, 'ModelNotificationsRegistration.fromJson: $e');
       rethrow;
     }
   }
 
-  static ModelRegistrationToken? fromJsonOrNull(
+  static ModelNotificationsRegistration? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelRegistrationToken.empty()
+      return ModelNotificationsRegistration.empty()
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$ipAddress = otherData?[K_IP_ADDRESS]
         ..$token = otherData?[K_TOKEN];
@@ -176,25 +175,25 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
   //
   //
 
-  factory ModelRegistrationToken.fromUri(
+  factory ModelNotificationsRegistration.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'ModelRegistrationToken.fromUri: $e');
+      assert(false, 'ModelNotificationsRegistration.fromUri: $e');
       rethrow;
     }
   }
 
-  static ModelRegistrationToken? fromUriOrNull(
+  static ModelNotificationsRegistration? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelRegistrationToken.fromJson(uri.queryParameters);
+        return ModelNotificationsRegistration.fromJson(uri.queryParameters);
       } else {
-        return ModelRegistrationToken.empty();
+        return ModelNotificationsRegistration.empty();
       }
     } catch (_) {
       return null;
@@ -218,7 +217,7 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'ModelRegistrationToken.toJson: $e');
+      assert(false, 'ModelNotificationsRegistration.toJson: $e');
       rethrow;
     }
   }
@@ -229,7 +228,7 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
 
   @override
   T empty<T extends Model>() {
-    return ModelRegistrationToken.b() as T;
+    return ModelNotificationsRegistration.b() as T;
   }
 
   //
@@ -238,7 +237,7 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
 
   @override
   T copy<T extends Model>() {
-    return (ModelRegistrationToken.b()..updateWith(this)) as T;
+    return (ModelNotificationsRegistration.b()..updateWith(this)) as T;
   }
 
   //
@@ -250,7 +249,7 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelRegistrationToken.fromJson(otherData);
+      final other = ModelNotificationsRegistration.fromJson(otherData);
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -287,8 +286,8 @@ class ModelRegistrationToken extends _ModelRegistrationToken {
   set $ipAddress(v) => this.ipAddress = v?.toString().trim().nullIfEmpty;
 
   // token.
-  String get tokenField => this.token!;
-  set tokenField(String v) => this.token = v;
+  String? get tokenField => this.token;
+  set tokenField(String? v) => this.token = v;
   @protected
   dynamic get $token => this.token?.toString().trim().nullIfEmpty;
   @protected

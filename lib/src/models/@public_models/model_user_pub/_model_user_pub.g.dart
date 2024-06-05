@@ -37,9 +37,9 @@ class ModelUserPub extends _ModelUserPub {
   static const K_EMAIL_BOOK = 'email_book';
   static const K_FILE_BOOK = 'file_book';
   static const K_ID = 'id';
+  static const K_NOTIFICATIONS_REGISTRATIONS = 'notifications_registrations';
   static const K_PHONE_BOOK = 'phone_book';
   static const K_REF = 'ref';
-  static const K_REGISTRATION_TOKENS = 'registration_tokens';
 
   static const CLASS = 'ModelUserPub';
 
@@ -59,9 +59,9 @@ class ModelUserPub extends _ModelUserPub {
   Map<String, ModelEmailEntry>? emailBook;
   Map<String, ModelFileEntry>? fileBook;
   String? id;
+  Map<DateTime, ModelNotificationsRegistration>? notificationsRegistrations;
   Map<String, ModelPhoneEntry>? phoneBook;
   DataRefModel? ref;
-  Map<String, ModelRegistrationToken>? registrationTokens;
 
   //
   //
@@ -87,9 +87,9 @@ class ModelUserPub extends _ModelUserPub {
     Map<String, ModelEmailEntry>? emailBook,
     Map<String, ModelFileEntry>? fileBook,
     String? id,
+    Map<DateTime, ModelNotificationsRegistration>? notificationsRegistrations,
     Map<String, ModelPhoneEntry>? phoneBook,
     required DataRefModel ref,
-    Map<String, ModelRegistrationToken>? registrationTokens,
   }) {
     return ModelUserPub.b(
       addressBook: addressBook,
@@ -105,9 +105,9 @@ class ModelUserPub extends _ModelUserPub {
       emailBook: emailBook,
       fileBook: fileBook,
       id: id,
+      notificationsRegistrations: notificationsRegistrations,
       phoneBook: phoneBook,
       ref: ref,
-      registrationTokens: registrationTokens,
     );
   }
 
@@ -129,9 +129,9 @@ class ModelUserPub extends _ModelUserPub {
     this.emailBook,
     this.fileBook,
     this.id,
+    this.notificationsRegistrations,
     this.phoneBook,
     this.ref,
-    this.registrationTokens,
   }) {
     assert(ref != null);
   }
@@ -241,9 +241,10 @@ class ModelUserPub extends _ModelUserPub {
         ..$emailBook = otherData?[K_EMAIL_BOOK]
         ..$fileBook = otherData?[K_FILE_BOOK]
         ..$id = otherData?[K_ID]
+        ..$notificationsRegistrations =
+            otherData?[K_NOTIFICATIONS_REGISTRATIONS]
         ..$phoneBook = otherData?[K_PHONE_BOOK]
-        ..$ref = otherData?[K_REF]
-        ..$registrationTokens = otherData?[K_REGISTRATION_TOKENS];
+        ..$ref = otherData?[K_REF];
     } catch (e) {
       return null;
     }
@@ -302,9 +303,9 @@ class ModelUserPub extends _ModelUserPub {
         K_EMAIL_BOOK: this.$emailBook,
         K_FILE_BOOK: this.$fileBook,
         K_ID: this.$id,
+        K_NOTIFICATIONS_REGISTRATIONS: this.$notificationsRegistrations,
         K_PHONE_BOOK: this.$phoneBook,
         K_REF: this.$ref,
-        K_REGISTRATION_TOKENS: this.$registrationTokens,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -380,14 +381,14 @@ class ModelUserPub extends _ModelUserPub {
       if (other.id != null) {
         this.id = other.id!;
       }
+      if (other.notificationsRegistrations != null) {
+        this.notificationsRegistrations = other.notificationsRegistrations!;
+      }
       if (other.phoneBook != null) {
         this.phoneBook = other.phoneBook!;
       }
       if (other.ref != null) {
         this.ref = other.ref!;
-      }
-      if (other.registrationTokens != null) {
-        this.registrationTokens = other.registrationTokens!;
       }
     }
   }
@@ -581,6 +582,44 @@ class ModelUserPub extends _ModelUserPub {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
+  // notificationsRegistrations.
+  Map<DateTime, ModelNotificationsRegistration>?
+      get notificationsRegistrationsField => this.notificationsRegistrations;
+  set notificationsRegistrationsField(
+          Map<DateTime, ModelNotificationsRegistration>? v) =>
+      this.notificationsRegistrations = v;
+  @protected
+  dynamic get $notificationsRegistrations => this
+      .notificationsRegistrations
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toUtc()?.toIso8601String(),
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $notificationsRegistrations(v) =>
+      this.notificationsRegistrations = letMap(v)
+          ?.map(
+            (p0, p1) => MapEntry(
+              () {
+                final a = p0;
+                return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+              }(),
+              () {
+                final a = letMap<String, dynamic>(p1);
+                return a != null
+                    ? ModelNotificationsRegistration.fromJson(a)
+                    : null;
+              }(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.cast();
+
   // phoneBook.
   Map<String, ModelPhoneEntry>? get phoneBookField => this.phoneBook;
   set phoneBookField(Map<String, ModelPhoneEntry>? v) => this.phoneBook = v;
@@ -620,35 +659,4 @@ class ModelUserPub extends _ModelUserPub {
         final a = letMap<String, dynamic>(v);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-
-  // registrationTokens.
-  Map<String, ModelRegistrationToken>? get registrationTokensField =>
-      this.registrationTokens;
-  set registrationTokensField(Map<String, ModelRegistrationToken>? v) =>
-      this.registrationTokens = v;
-  @protected
-  dynamic get $registrationTokens => this
-      .registrationTokens
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $registrationTokens(v) => this.registrationTokens = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelRegistrationToken.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
 }

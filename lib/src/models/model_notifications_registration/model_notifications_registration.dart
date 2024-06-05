@@ -9,7 +9,7 @@
 
 import '/_common.dart';
 
-part '_model_registration_token.g.dart';
+part '_model_notifications_registration.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -17,8 +17,8 @@ part '_model_registration_token.g.dart';
   shouldInherit: true,
   fields: {
     ('created_at', DateTime),
-    ('token', String),
+    ('token?', String),
     ('ip_address?', String),
   },
 )
-abstract class _ModelRegistrationToken extends Model {}
+abstract class _ModelNotificationsRegistration extends Model {}
