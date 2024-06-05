@@ -20,6 +20,7 @@ part '_model_user_pub.g.dart';
   shouldInherit: true,
   fields: {
     ...PUBLIC_MODEL_FIELDS,
+    ('registration_tokens?', Map<String, ModelRegistrationToken>),
   },
 )
 abstract class _ModelUserPub extends Model implements PublicModel {}

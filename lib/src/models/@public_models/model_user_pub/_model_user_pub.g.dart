@@ -39,6 +39,7 @@ class ModelUserPub extends _ModelUserPub {
   static const K_ID = 'id';
   static const K_PHONE_BOOK = 'phone_book';
   static const K_REF = 'ref';
+  static const K_REGISTRATION_TOKENS = 'registration_tokens';
 
   static const CLASS = 'ModelUserPub';
 
@@ -60,6 +61,7 @@ class ModelUserPub extends _ModelUserPub {
   String? id;
   Map<String, ModelPhoneEntry>? phoneBook;
   DataRefModel? ref;
+  Map<String, ModelRegistrationToken>? registrationTokens;
 
   //
   //
@@ -87,6 +89,7 @@ class ModelUserPub extends _ModelUserPub {
     String? id,
     Map<String, ModelPhoneEntry>? phoneBook,
     required DataRefModel ref,
+    Map<String, ModelRegistrationToken>? registrationTokens,
   }) {
     return ModelUserPub.b(
       addressBook: addressBook,
@@ -104,6 +107,7 @@ class ModelUserPub extends _ModelUserPub {
       id: id,
       phoneBook: phoneBook,
       ref: ref,
+      registrationTokens: registrationTokens,
     );
   }
 
@@ -127,6 +131,7 @@ class ModelUserPub extends _ModelUserPub {
     this.id,
     this.phoneBook,
     this.ref,
+    this.registrationTokens,
   }) {
     assert(ref != null);
   }
@@ -237,7 +242,8 @@ class ModelUserPub extends _ModelUserPub {
         ..$fileBook = otherData?[K_FILE_BOOK]
         ..$id = otherData?[K_ID]
         ..$phoneBook = otherData?[K_PHONE_BOOK]
-        ..$ref = otherData?[K_REF];
+        ..$ref = otherData?[K_REF]
+        ..$registrationTokens = otherData?[K_REGISTRATION_TOKENS];
     } catch (e) {
       return null;
     }
@@ -298,6 +304,7 @@ class ModelUserPub extends _ModelUserPub {
         K_ID: this.$id,
         K_PHONE_BOOK: this.$phoneBook,
         K_REF: this.$ref,
+        K_REGISTRATION_TOKENS: this.$registrationTokens,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -378,6 +385,9 @@ class ModelUserPub extends _ModelUserPub {
       }
       if (other.ref != null) {
         this.ref = other.ref!;
+      }
+      if (other.registrationTokens != null) {
+        this.registrationTokens = other.registrationTokens!;
       }
     }
   }
@@ -610,4 +620,35 @@ class ModelUserPub extends _ModelUserPub {
         final a = letMap<String, dynamic>(v);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
+
+  // registrationTokens.
+  Map<String, ModelRegistrationToken>? get registrationTokensField =>
+      this.registrationTokens;
+  set registrationTokensField(Map<String, ModelRegistrationToken>? v) =>
+      this.registrationTokens = v;
+  @protected
+  dynamic get $registrationTokens => this
+      .registrationTokens
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $registrationTokens(v) => this.registrationTokens = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = letMap<String, dynamic>(p1);
+            return a != null ? ModelRegistrationToken.fromJson(a) : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 }
