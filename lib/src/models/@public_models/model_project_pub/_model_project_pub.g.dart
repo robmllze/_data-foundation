@@ -30,6 +30,7 @@ class ModelProjectPub extends _ModelProjectPub {
   static const K_DELETED_AT = 'deleted_at';
   static const K_DELETED_BY = 'deleted_by';
   static const K_DESCRIPTION = 'description';
+  static const K_DEVICE_REGISTRATIONS = 'device_registrations';
   static const K_DISPLAY_COLOR = 'display_color';
   static const K_DISPLAY_NAME = 'display_name';
   static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
@@ -53,6 +54,7 @@ class ModelProjectPub extends _ModelProjectPub {
   DateTime? deletedAt;
   String? deletedBy;
   String? description;
+  Map<String, ModelDeviceRegistration>? deviceRegistrations;
   Color? displayColor;
   String? displayName;
   String? displayNameSearchable;
@@ -82,6 +84,7 @@ class ModelProjectPub extends _ModelProjectPub {
     DateTime? deletedAt,
     String? deletedBy,
     String? description,
+    Map<String, ModelDeviceRegistration>? deviceRegistrations,
     Color? displayColor,
     String? displayName,
     String? displayNameSearchable,
@@ -101,6 +104,7 @@ class ModelProjectPub extends _ModelProjectPub {
       deletedAt: deletedAt,
       deletedBy: deletedBy,
       description: description,
+      deviceRegistrations: deviceRegistrations,
       displayColor: displayColor,
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
@@ -126,6 +130,7 @@ class ModelProjectPub extends _ModelProjectPub {
     this.deletedAt,
     this.deletedBy,
     this.description,
+    this.deviceRegistrations,
     this.displayColor,
     this.displayName,
     this.displayNameSearchable,
@@ -239,6 +244,7 @@ class ModelProjectPub extends _ModelProjectPub {
         ..$deletedAt = otherData?[K_DELETED_AT]
         ..$deletedBy = otherData?[K_DELETED_BY]
         ..$description = otherData?[K_DESCRIPTION]
+        ..$deviceRegistrations = otherData?[K_DEVICE_REGISTRATIONS]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
@@ -301,6 +307,7 @@ class ModelProjectPub extends _ModelProjectPub {
         K_DELETED_AT: this.$deletedAt,
         K_DELETED_BY: this.$deletedBy,
         K_DESCRIPTION: this.$description,
+        K_DEVICE_REGISTRATIONS: this.$deviceRegistrations,
         K_DISPLAY_COLOR: this.$displayColor,
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
@@ -365,6 +372,9 @@ class ModelProjectPub extends _ModelProjectPub {
       }
       if (other.description != null) {
         this.description = other.description!;
+      }
+      if (other.deviceRegistrations != null) {
+        this.deviceRegistrations = other.deviceRegistrations!;
       }
       if (other.displayColor != null) {
         this.displayColor = other.displayColor!;
@@ -481,6 +491,37 @@ class ModelProjectPub extends _ModelProjectPub {
   dynamic get $description => this.description?.toString().trim().nullIfEmpty;
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
+
+  // deviceRegistrations.
+  Map<String, ModelDeviceRegistration>? get deviceRegistrationsField =>
+      this.deviceRegistrations;
+  set deviceRegistrationsField(Map<String, ModelDeviceRegistration>? v) =>
+      this.deviceRegistrations = v;
+  @protected
+  dynamic get $deviceRegistrations => this
+      .deviceRegistrations
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $deviceRegistrations(v) => this.deviceRegistrations = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = letMap<String, dynamic>(p1);
+            return a != null ? ModelDeviceRegistration.fromJson(a) : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 
   // displayColor.
   Color? get displayColorField => this.displayColor;

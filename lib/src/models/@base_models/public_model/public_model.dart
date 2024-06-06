@@ -31,6 +31,7 @@ const PUBLIC_MODEL_FIELDS = {
   ('email_book?', Map<String, ModelEmailEntry>),
   ('file_book?', Map<String, ModelFileEntry>),
   ('phone_book?', Map<String, ModelPhoneEntry>),
+  ('device_registrations?', Map<String, ModelDeviceRegistration>),
 };
 
 @GenerateModel(fields: PUBLIC_MODEL_FIELDS)
@@ -114,4 +115,11 @@ extension PublicModelExtension on PublicModel {
   Iterable<ModelFileEntry>? get profileFiles {
     return this.sortedFilesByCreatedAt(ascending: false)?.where((e) => e.isProfileFile());
   }
+
+  //
+  //
+  //
+
+  Set<String> get notificationTokens =>
+      this.deviceRegistrations?.values.map((e) => e.notificationToken).nonNulls.toSet() ?? {};
 }

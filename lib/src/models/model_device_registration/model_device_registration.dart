@@ -7,19 +7,24 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'package:xyz_device_info/xyz_device_info.dart';
+
 import '/_common.dart';
 
-part '_model_app_registration.g.dart';
+part '_model_device_registration.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('created_at', DateTime),
-    ('logged_at', DateTime),
-    ('notification_token', String),
-    ('ip_address', String),
+    ('id?', String),
+    ('device_registered_at?', DateTime),
+    ('last_logged_in_at?', DateTime),
+    ('notification_token?', String),
+    ('ipv4_address?', String),
+    ('device_info?', ModelBasicDeviceInfo),
+    ('location?', ModelLocation),
   },
 )
-abstract class _ModelAppRegistration extends Model {}
+abstract class _ModelDeviceRegistration extends Model {}
