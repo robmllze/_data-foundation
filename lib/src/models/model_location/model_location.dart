@@ -14,14 +14,18 @@ part '_model_location.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateModel(
-  shouldInherit: true,
   fields: {
     ('altitude?', double),
     ('latitude?', double),
     ('longitude?', double),
   },
 )
-abstract class _ModelLocation extends ThisModel<ModelLocation> {
+// ignore: unused_element
+abstract class _ModelLocation {}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+extension ModelLocationExtension on ModelLocation {
   //
   //
   //
@@ -29,8 +33,77 @@ abstract class _ModelLocation extends ThisModel<ModelLocation> {
   /// Returns the distance to another location on Earth in meters.
   double getDistanceTo(ModelLocation other) {
     return calculateHavershire3DDistance(
-      location1: this.model,
+      location1: this,
       location2: other,
+    );
+  }
+
+  //
+  //
+  //
+
+  ModelLocation? get nullIfInvalid {
+    if (latitude == null || longitude == null) {
+      return null;
+    }
+    altitude ??= 0.0;
+    return this;
+  }
+
+  //
+  //
+  //
+
+  Uri getGoogleMapsUri() {
+    return Uri.https(
+      'www.google.com',
+      '/maps',
+      {
+        // Query the location.
+        'q': '$latitude,$longitude',
+        // Center the map.
+        'll': '$latitude,$longitude',
+        // Zoom level.
+        'z': '30',
+        // 'k' for satellite.
+        't': 'k',
+      },
+    );
+  }
+
+  //
+  //
+  //
+
+  Uri getAppleMapsUri() {
+    return Uri.https(
+      'maps.apple.com',
+      '/',
+      {
+        // Query the location.
+        'q': '$latitude,$longitude',
+        // 'k' for satellite.
+        't': 'k',
+      },
+    );
+  }
+
+  //
+  //
+  //
+
+  Uri getBingMapsUri() {
+    return Uri.https(
+      'www.bing.com',
+      '/maps',
+      {
+        // Center point.
+        'cp': '$latitude~$longitude',
+        // Zoom level.
+        'lvl': '18',
+        // 'h' for aerial, 'r' for road.
+        'style': 'h',
+      },
     );
   }
 }

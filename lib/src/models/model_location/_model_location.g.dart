@@ -19,7 +19,7 @@ part of 'model_location.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelLocation extends _ModelLocation {
+class ModelLocation extends Model {
   //
   //
   //
