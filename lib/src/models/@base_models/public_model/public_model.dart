@@ -7,6 +7,7 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'dart:math';
 import 'dart:ui';
 
 import '/_common.dart';
@@ -122,4 +123,20 @@ extension PublicModelExtension on PublicModel {
 
   Set<String> get notificationTokens =>
       this.deviceRegistrations?.values.map((e) => e.notificationToken).nonNulls.toSet() ?? {};
+
+  //
+  //
+  //
+
+  ModelLocation? get lastRegisteredLocation {
+    final deviceRegistrations = this.deviceRegistrations?.values;
+    final lastLoggedInTimestamps =
+        deviceRegistrations?.map((e) => e.lastLoggedInAt?.millisecondsSinceEpoch).nonNulls;
+    final lastLoggedInIndex =
+        lastLoggedInTimestamps?.toList().indexOf(lastLoggedInTimestamps.reduce(max));
+    final lastLoggedInRegistration =
+        lastLoggedInIndex != null ? deviceRegistrations?.elementAt(lastLoggedInIndex) : null;
+    final lastLoggedInLocation = lastLoggedInRegistration?.location?.nullIfInvalid;
+    return lastLoggedInLocation?.nullIfInvalid;
+  }
 }
