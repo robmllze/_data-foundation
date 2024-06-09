@@ -42,6 +42,7 @@ class ModelJobPub extends _ModelJobPub {
   static const K_ID = 'id';
   static const K_PHONE_BOOK = 'phone_book';
   static const K_REF = 'ref';
+  static const K_REGISTRATION = 'registration';
   static const K_TODO_BOOK = 'todo_book';
   static const K_WHEN_CLOSED = 'when_closed';
   static const K_WHEN_OPENED = 'when_opened';
@@ -52,8 +53,8 @@ class ModelJobPub extends _ModelJobPub {
   String get $class => CLASS;
 
   Map<String, ModelAddressEntry>? addressBook;
-  Map<DateTime, String>? clockIns;
-  Map<DateTime, String>? clockOuts;
+  Set<ModelRegistration>? clockIns;
+  Set<ModelRegistration>? clockOuts;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
@@ -69,6 +70,7 @@ class ModelJobPub extends _ModelJobPub {
   String? id;
   Map<String, ModelPhoneEntry>? phoneBook;
   DataRefModel? ref;
+  ModelRegistration? registration;
   Map<DateTime, ModelTodoEntry>? todoBook;
   Map<String, DateTime>? whenClosed;
   Map<String, DateTime>? whenOpened;
@@ -85,8 +87,8 @@ class ModelJobPub extends _ModelJobPub {
 
   factory ModelJobPub({
     Map<String, ModelAddressEntry>? addressBook,
-    Map<DateTime, String>? clockIns,
-    Map<DateTime, String>? clockOuts,
+    Set<ModelRegistration>? clockIns,
+    Set<ModelRegistration>? clockOuts,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
@@ -102,6 +104,7 @@ class ModelJobPub extends _ModelJobPub {
     String? id,
     Map<String, ModelPhoneEntry>? phoneBook,
     required DataRefModel ref,
+    ModelRegistration? registration,
     Map<DateTime, ModelTodoEntry>? todoBook,
     Map<String, DateTime>? whenClosed,
     Map<String, DateTime>? whenOpened,
@@ -125,6 +128,7 @@ class ModelJobPub extends _ModelJobPub {
       id: id,
       phoneBook: phoneBook,
       ref: ref,
+      registration: registration,
       todoBook: todoBook,
       whenClosed: whenClosed,
       whenOpened: whenOpened,
@@ -154,6 +158,7 @@ class ModelJobPub extends _ModelJobPub {
     this.id,
     this.phoneBook,
     this.ref,
+    this.registration,
     this.todoBook,
     this.whenClosed,
     this.whenOpened,
@@ -271,6 +276,7 @@ class ModelJobPub extends _ModelJobPub {
         ..$id = otherData?[K_ID]
         ..$phoneBook = otherData?[K_PHONE_BOOK]
         ..$ref = otherData?[K_REF]
+        ..$registration = otherData?[K_REGISTRATION]
         ..$todoBook = otherData?[K_TODO_BOOK]
         ..$whenClosed = otherData?[K_WHEN_CLOSED]
         ..$whenOpened = otherData?[K_WHEN_OPENED];
@@ -337,6 +343,7 @@ class ModelJobPub extends _ModelJobPub {
         K_ID: this.$id,
         K_PHONE_BOOK: this.$phoneBook,
         K_REF: this.$ref,
+        K_REGISTRATION: this.$registration,
         K_TODO_BOOK: this.$todoBook,
         K_WHEN_CLOSED: this.$whenClosed,
         K_WHEN_OPENED: this.$whenOpened,
@@ -430,6 +437,9 @@ class ModelJobPub extends _ModelJobPub {
       if (other.ref != null) {
         this.ref = other.ref!;
       }
+      if (other.registration != null) {
+        this.registration = other.registration!;
+      }
       if (other.todoBook != null) {
         this.todoBook = other.todoBook!;
       }
@@ -477,62 +487,54 @@ class ModelJobPub extends _ModelJobPub {
       ?.cast();
 
   // clockIns.
-  Map<DateTime, String>? get clockInsField => this.clockIns;
-  set clockInsField(Map<DateTime, String>? v) => this.clockIns = v;
+  Set<ModelRegistration>? get clockInsField => this.clockIns;
+  set clockInsField(Set<ModelRegistration>? v) => this.clockIns = v;
   @protected
   dynamic get $clockIns => this
       .clockIns
       ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toUtc()?.toIso8601String(),
-          p1?.toString().trim().nullIfEmpty,
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $clockIns(v) => this.clockIns = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          () {
-            final a = p0;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-          p1?.toString().trim().nullIfEmpty,
-        ),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
-      ?.cast();
+      ?.toList();
+  @protected
+  set $clockIns(v) => this.clockIns = letSet(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
 
   // clockOuts.
-  Map<DateTime, String>? get clockOutsField => this.clockOuts;
-  set clockOutsField(Map<DateTime, String>? v) => this.clockOuts = v;
+  Set<ModelRegistration>? get clockOutsField => this.clockOuts;
+  set clockOutsField(Set<ModelRegistration>? v) => this.clockOuts = v;
   @protected
   dynamic get $clockOuts => this
       .clockOuts
       ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toUtc()?.toIso8601String(),
-          p1?.toString().trim().nullIfEmpty,
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $clockOuts(v) => this.clockOuts = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          () {
-            final a = p0;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-          p1?.toString().trim().nullIfEmpty,
-        ),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
-      ?.cast();
+      ?.toList();
+  @protected
+  set $clockOuts(v) => this.clockOuts = letSet(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -758,6 +760,17 @@ class ModelJobPub extends _ModelJobPub {
   set $ref(v) => this.ref = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+
+  // registration.
+  ModelRegistration? get registrationField => this.registration;
+  set registrationField(ModelRegistration? v) => this.registration = v;
+  @protected
+  dynamic get $registration => this.registration?.toJson();
+  @protected
+  set $registration(v) => this.registration = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
   // todoBook.

@@ -20,8 +20,8 @@ part '_model_job_pub.g.dart';
   shouldInherit: true,
   fields: {
     ...PUBLIC_MODEL_FIELDS,
-    ('clock_ins?', Map<DateTime, String>),
-    ('clock_outs?', Map<DateTime, String>),
+    ('clock_ins?', Set<ModelRegistration>),
+    ('clock_outs?', Set<ModelRegistration>),
     ('when_opened?', Map<String, DateTime>),
     ('when_closed?', Map<String, DateTime>),
     ('todo_book?', Map<DateTime, ModelTodoEntry>),
@@ -53,8 +53,8 @@ extension ModelJobPubExtension on ModelJobPub {
 
   DateTime? lastClockInFor(String? pid) => (this.clockInsFor(pid).toList()..sort()).lastOrNull;
 
-  Iterable<DateTime> clockInsFor(String? pid) =>
-      this.clockIns?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
+  Iterable<DateTime?> clockInsFor(String? pid) =>
+      this.clockIns?.where((e) => e.registrantPid == pid).map((e) => e.registeredAt) ?? [];
 
   bool canClockOut(String? pid) {
     final lastClockIn = this.lastClockInFor(pid);
@@ -73,16 +73,16 @@ extension ModelJobPubExtension on ModelJobPub {
 
   DateTime? lastClockOutFor(String? pid) => (this.clockOutsFor(pid).toList()..sort()).lastOrNull;
 
-  Iterable<DateTime> clockOutsFor(String? pid) =>
-      this.clockOuts?.entries.where((e) => e.value == pid).map((e) => e.key) ?? [];
+  Iterable<DateTime?> clockOutsFor(String? pid) =>
+      this.clockOuts?.where((e) => e.registrantPid == pid).map((e) => e.registeredAt) ?? [];
 
   //
   //
   //
 
   Iterable<({DateTime date, Duration? durationSinceClockIn})> clockedDatesFor(String? pid) {
-    final clockInDates = this.clockInsFor(pid);
-    final clockOutDates = this.clockOutsFor(pid);
+    final clockInDates = this.clockInsFor(pid).nonNulls;
+    final clockOutDates = this.clockOutsFor(pid).nonNulls;
 
     // Combine and label clock-in and clock-out dates
     final events = <DateTime, bool>{};

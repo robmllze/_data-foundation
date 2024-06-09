@@ -15,35 +15,29 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_device_registration.dart';
+part of 'model_registration.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelDeviceRegistration extends _ModelDeviceRegistration {
+class ModelRegistration extends _ModelRegistration {
   //
   //
   //
 
-  static const K_DEVICE_INFO = 'device_info';
   static const K_ID = 'id';
   static const K_IPV_4_ADDRESS = 'ipv_4_address';
-  static const K_LAST_LOGGED_IN_AT = 'last_logged_in_at';
   static const K_LOCATION = 'location';
-  static const K_NOTIFICATION_TOKEN = 'notification_token';
   static const K_REGISTERED_AT = 'registered_at';
   static const K_REGISTRANT_PID = 'registrant_pid';
 
-  static const CLASS = 'ModelDeviceRegistration';
+  static const CLASS = 'ModelRegistration';
 
   @override
   String get $class => CLASS;
 
-  ModelBasicDeviceInfo? deviceInfo;
   String? id;
   String? ipv4Address;
-  DateTime? lastLoggedInAt;
   ModelLocation? location;
-  String? notificationToken;
   DateTime? registeredAt;
   String? registrantPid;
 
@@ -51,29 +45,23 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
   //
 
-  ModelDeviceRegistration.empty();
+  ModelRegistration.empty();
 
   //
   //
   //
 
-  factory ModelDeviceRegistration({
-    ModelBasicDeviceInfo? deviceInfo,
+  factory ModelRegistration({
     String? id,
     String? ipv4Address,
-    DateTime? lastLoggedInAt,
     ModelLocation? location,
-    String? notificationToken,
     DateTime? registeredAt,
     String? registrantPid,
   }) {
-    return ModelDeviceRegistration.b(
-      deviceInfo: deviceInfo,
+    return ModelRegistration.b(
       id: id,
       ipv4Address: ipv4Address,
-      lastLoggedInAt: lastLoggedInAt,
       location: location,
-      notificationToken: notificationToken,
       registeredAt: registeredAt,
       registrantPid: registrantPid,
     );
@@ -83,13 +71,10 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
   //
 
-  ModelDeviceRegistration.b({
-    this.deviceInfo,
+  ModelRegistration.b({
     this.id,
     this.ipv4Address,
-    this.lastLoggedInAt,
     this.location,
-    this.notificationToken,
     this.registeredAt,
     this.registrantPid,
   }) {}
@@ -98,18 +83,18 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
   //
 
-  factory ModelDeviceRegistration.from(
+  factory ModelRegistration.from(
     Model? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelDeviceRegistration.from: $e');
+      assert(false, 'ModelRegistration.from: $e');
       rethrow;
     }
   }
 
-  static ModelDeviceRegistration? fromOrNull(
+  static ModelRegistration? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
@@ -119,19 +104,19 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
   //
 
-  factory ModelDeviceRegistration.of(
-    ModelDeviceRegistration other,
+  factory ModelRegistration.of(
+    ModelRegistration other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelDeviceRegistration.of: $e');
+      assert(false, 'ModelRegistration.of: $e');
       rethrow;
     }
   }
 
-  static ModelDeviceRegistration? ofOrNull(
-    ModelDeviceRegistration? other,
+  static ModelRegistration? ofOrNull(
+    ModelRegistration? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -140,26 +125,26 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
   //
 
-  factory ModelDeviceRegistration.fromJsonString(
+  factory ModelRegistration.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'ModelDeviceRegistration.fromJsonString: $e');
+      assert(false, 'ModelRegistration.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static ModelDeviceRegistration? fromJsonStringOrNull(
+  static ModelRegistration? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelDeviceRegistration.fromJson(decoded);
+        return ModelRegistration.fromJson(decoded);
       } else {
-        return ModelDeviceRegistration.empty();
+        return ModelRegistration.empty();
       }
     } catch (_) {
       return null;
@@ -170,28 +155,25 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
   //
 
-  factory ModelDeviceRegistration.fromJson(
+  factory ModelRegistration.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'ModelDeviceRegistration.fromJson: $e');
+      assert(false, 'ModelRegistration.fromJson: $e');
       rethrow;
     }
   }
 
-  static ModelDeviceRegistration? fromJsonOrNull(
+  static ModelRegistration? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelDeviceRegistration.empty()
-        ..$deviceInfo = otherData?[K_DEVICE_INFO]
+      return ModelRegistration.empty()
         ..$id = otherData?[K_ID]
         ..$ipv4Address = otherData?[K_IPV_4_ADDRESS]
-        ..$lastLoggedInAt = otherData?[K_LAST_LOGGED_IN_AT]
         ..$location = otherData?[K_LOCATION]
-        ..$notificationToken = otherData?[K_NOTIFICATION_TOKEN]
         ..$registeredAt = otherData?[K_REGISTERED_AT]
         ..$registrantPid = otherData?[K_REGISTRANT_PID];
     } catch (e) {
@@ -203,25 +185,25 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
   //
 
-  factory ModelDeviceRegistration.fromUri(
+  factory ModelRegistration.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'ModelDeviceRegistration.fromUri: $e');
+      assert(false, 'ModelRegistration.fromUri: $e');
       rethrow;
     }
   }
 
-  static ModelDeviceRegistration? fromUriOrNull(
+  static ModelRegistration? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelDeviceRegistration.fromJson(uri.queryParameters);
+        return ModelRegistration.fromJson(uri.queryParameters);
       } else {
-        return ModelDeviceRegistration.empty();
+        return ModelRegistration.empty();
       }
     } catch (_) {
       return null;
@@ -239,18 +221,15 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_DEVICE_INFO: this.$deviceInfo,
         K_ID: this.$id,
         K_IPV_4_ADDRESS: this.$ipv4Address,
-        K_LAST_LOGGED_IN_AT: this.$lastLoggedInAt,
         K_LOCATION: this.$location,
-        K_NOTIFICATION_TOKEN: this.$notificationToken,
         K_REGISTERED_AT: this.$registeredAt,
         K_REGISTRANT_PID: this.$registrantPid,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'ModelDeviceRegistration.toJson: $e');
+      assert(false, 'ModelRegistration.toJson: $e');
       rethrow;
     }
   }
@@ -261,7 +240,7 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
 
   @override
   T empty<T extends Model>() {
-    return ModelDeviceRegistration.b() as T;
+    return ModelRegistration.b() as T;
   }
 
   //
@@ -270,7 +249,7 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
 
   @override
   T copy<T extends Model>() {
-    return (ModelDeviceRegistration.b()..updateWith(this)) as T;
+    return (ModelRegistration.b()..updateWith(this)) as T;
   }
 
   //
@@ -282,24 +261,15 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelDeviceRegistration.fromJson(otherData);
-      if (other.deviceInfo != null) {
-        this.deviceInfo = other.deviceInfo!;
-      }
+      final other = ModelRegistration.fromJson(otherData);
       if (other.id != null) {
         this.id = other.id!;
       }
       if (other.ipv4Address != null) {
         this.ipv4Address = other.ipv4Address!;
       }
-      if (other.lastLoggedInAt != null) {
-        this.lastLoggedInAt = other.lastLoggedInAt!;
-      }
       if (other.location != null) {
         this.location = other.location!;
-      }
-      if (other.notificationToken != null) {
-        this.notificationToken = other.notificationToken!;
       }
       if (other.registeredAt != null) {
         this.registeredAt = other.registeredAt!;
@@ -313,17 +283,6 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
   //
   //
-
-  // deviceInfo.
-  ModelBasicDeviceInfo? get deviceInfoField => this.deviceInfo;
-  set deviceInfoField(ModelBasicDeviceInfo? v) => this.deviceInfo = v;
-  @protected
-  dynamic get $deviceInfo => this.deviceInfo?.toJson();
-  @protected
-  set $deviceInfo(v) => this.deviceInfo = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelBasicDeviceInfo.fromJson(a) : null;
-      }();
 
   // id.
   String? get idField => this.id;
@@ -341,18 +300,6 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   @protected
   set $ipv4Address(v) => this.ipv4Address = v?.toString().trim().nullIfEmpty;
 
-  // lastLoggedInAt.
-  DateTime? get lastLoggedInAtField => this.lastLoggedInAt;
-  set lastLoggedInAtField(DateTime? v) => this.lastLoggedInAt = v;
-  @protected
-  dynamic get $lastLoggedInAt =>
-      this.lastLoggedInAt?.toUtc()?.toIso8601String();
-  @protected
-  set $lastLoggedInAt(v) => this.lastLoggedInAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
-
   // location.
   ModelLocation? get locationField => this.location;
   set locationField(ModelLocation? v) => this.location = v;
@@ -363,16 +310,6 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelLocation.fromJson(a) : null;
       }();
-
-  // notificationToken.
-  String? get notificationTokenField => this.notificationToken;
-  set notificationTokenField(String? v) => this.notificationToken = v;
-  @protected
-  dynamic get $notificationToken =>
-      this.notificationToken?.toString().trim().nullIfEmpty;
-  @protected
-  set $notificationToken(v) =>
-      this.notificationToken = v?.toString().trim().nullIfEmpty;
 
   // registeredAt.
   DateTime? get registeredAtField => this.registeredAt;

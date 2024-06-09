@@ -43,6 +43,7 @@ class ModelRelationship extends _ModelRelationship {
   static const K_MEMBER_PIDS = 'member_pids';
   static const K_PHONE_BOOK = 'phone_book';
   static const K_REF = 'ref';
+  static const K_REGISTRATION = 'registration';
   static const K_WHEN_DISABLED = 'when_disabled';
   static const K_WHEN_ENABLED = 'when_enabled';
   static const K_WHEN_NOTED = 'when_noted';
@@ -71,6 +72,7 @@ class ModelRelationship extends _ModelRelationship {
   Set<String>? memberPids;
   Map<String, ModelPhoneEntry>? phoneBook;
   DataRefModel? ref;
+  ModelRegistration? registration;
   Map<String, DateTime>? whenDisabled;
   Map<String, DateTime>? whenEnabled;
   Map<String, DateTime>? whenNoted;
@@ -105,6 +107,7 @@ class ModelRelationship extends _ModelRelationship {
     Set<String>? memberPids,
     Map<String, ModelPhoneEntry>? phoneBook,
     required DataRefModel ref,
+    ModelRegistration? registration,
     Map<String, DateTime>? whenDisabled,
     Map<String, DateTime>? whenEnabled,
     Map<String, DateTime>? whenNoted,
@@ -129,6 +132,7 @@ class ModelRelationship extends _ModelRelationship {
       memberPids: memberPids,
       phoneBook: phoneBook,
       ref: ref,
+      registration: registration,
       whenDisabled: whenDisabled,
       whenEnabled: whenEnabled,
       whenNoted: whenNoted,
@@ -159,6 +163,7 @@ class ModelRelationship extends _ModelRelationship {
     this.memberPids,
     this.phoneBook,
     this.ref,
+    this.registration,
     this.whenDisabled,
     this.whenEnabled,
     this.whenNoted,
@@ -277,6 +282,7 @@ class ModelRelationship extends _ModelRelationship {
         ..$memberPids = otherData?[K_MEMBER_PIDS]
         ..$phoneBook = otherData?[K_PHONE_BOOK]
         ..$ref = otherData?[K_REF]
+        ..$registration = otherData?[K_REGISTRATION]
         ..$whenDisabled = otherData?[K_WHEN_DISABLED]
         ..$whenEnabled = otherData?[K_WHEN_ENABLED]
         ..$whenNoted = otherData?[K_WHEN_NOTED];
@@ -344,6 +350,7 @@ class ModelRelationship extends _ModelRelationship {
         K_MEMBER_PIDS: this.$memberPids,
         K_PHONE_BOOK: this.$phoneBook,
         K_REF: this.$ref,
+        K_REGISTRATION: this.$registration,
         K_WHEN_DISABLED: this.$whenDisabled,
         K_WHEN_ENABLED: this.$whenEnabled,
         K_WHEN_NOTED: this.$whenNoted,
@@ -439,6 +446,9 @@ class ModelRelationship extends _ModelRelationship {
       }
       if (other.ref != null) {
         this.ref = other.ref!;
+      }
+      if (other.registration != null) {
+        this.registration = other.registration!;
       }
       if (other.whenDisabled != null) {
         this.whenDisabled = other.whenDisabled!;
@@ -752,6 +762,17 @@ class ModelRelationship extends _ModelRelationship {
   set $ref(v) => this.ref = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+
+  // registration.
+  ModelRegistration? get registrationField => this.registration;
+  set registrationField(ModelRegistration? v) => this.registration = v;
+  @protected
+  dynamic get $registration => this.registration?.toJson();
+  @protected
+  set $registration(v) => this.registration = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
   // whenDisabled.

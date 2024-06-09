@@ -7,11 +7,9 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:xyz_device_info/xyz_device_info.dart';
-
 import '/_common.dart';
 
-part '_model_device_registration.g.dart';
+part '_model_registration.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -23,9 +21,6 @@ part '_model_device_registration.g.dart';
     ('registered_at?', DateTime),
     ('ipv4_address?', String),
     ('location?', ModelLocation),
-    ('last_logged_in_at?', DateTime),
-    ('notification_token?', String),
-    ('device_info?', ModelBasicDeviceInfo),
   },
 )
-abstract class _ModelDeviceRegistration extends Model implements ModelRegistration {}
+abstract class _ModelRegistration extends Model {}

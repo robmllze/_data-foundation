@@ -33,6 +33,7 @@ const PUBLIC_MODEL_FIELDS = {
   ('file_book?', Map<String, ModelFileEntry>),
   ('phone_book?', Map<String, ModelPhoneEntry>),
   ('device_registrations?', Map<String, ModelDeviceRegistration>),
+  ('registration?', ModelRegistration),
 };
 
 @GenerateModel(fields: PUBLIC_MODEL_FIELDS)

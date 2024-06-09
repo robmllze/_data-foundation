@@ -40,6 +40,7 @@ class ModelProjectPub extends _ModelProjectPub {
   static const K_ID = 'id';
   static const K_PHONE_BOOK = 'phone_book';
   static const K_REF = 'ref';
+  static const K_REGISTRATION = 'registration';
   static const K_WHEN_CLOSED = 'when_closed';
   static const K_WHEN_OPENED = 'when_opened';
 
@@ -64,6 +65,7 @@ class ModelProjectPub extends _ModelProjectPub {
   String? id;
   Map<String, ModelPhoneEntry>? phoneBook;
   DataRefModel? ref;
+  ModelRegistration? registration;
   Map<String, DateTime>? whenClosed;
   Map<String, DateTime>? whenOpened;
 
@@ -94,6 +96,7 @@ class ModelProjectPub extends _ModelProjectPub {
     String? id,
     Map<String, ModelPhoneEntry>? phoneBook,
     required DataRefModel ref,
+    ModelRegistration? registration,
     Map<String, DateTime>? whenClosed,
     Map<String, DateTime>? whenOpened,
   }) {
@@ -114,6 +117,7 @@ class ModelProjectPub extends _ModelProjectPub {
       id: id,
       phoneBook: phoneBook,
       ref: ref,
+      registration: registration,
       whenClosed: whenClosed,
       whenOpened: whenOpened,
     );
@@ -140,6 +144,7 @@ class ModelProjectPub extends _ModelProjectPub {
     this.id,
     this.phoneBook,
     this.ref,
+    this.registration,
     this.whenClosed,
     this.whenOpened,
   }) {
@@ -254,6 +259,7 @@ class ModelProjectPub extends _ModelProjectPub {
         ..$id = otherData?[K_ID]
         ..$phoneBook = otherData?[K_PHONE_BOOK]
         ..$ref = otherData?[K_REF]
+        ..$registration = otherData?[K_REGISTRATION]
         ..$whenClosed = otherData?[K_WHEN_CLOSED]
         ..$whenOpened = otherData?[K_WHEN_OPENED];
     } catch (e) {
@@ -317,6 +323,7 @@ class ModelProjectPub extends _ModelProjectPub {
         K_ID: this.$id,
         K_PHONE_BOOK: this.$phoneBook,
         K_REF: this.$ref,
+        K_REGISTRATION: this.$registration,
         K_WHEN_CLOSED: this.$whenClosed,
         K_WHEN_OPENED: this.$whenOpened,
       }.mapWithDefault(defaultValue);
@@ -402,6 +409,9 @@ class ModelProjectPub extends _ModelProjectPub {
       }
       if (other.ref != null) {
         this.ref = other.ref!;
+      }
+      if (other.registration != null) {
+        this.registration = other.registration!;
       }
       if (other.whenClosed != null) {
         this.whenClosed = other.whenClosed!;
@@ -670,6 +680,17 @@ class ModelProjectPub extends _ModelProjectPub {
   set $ref(v) => this.ref = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+
+  // registration.
+  ModelRegistration? get registrationField => this.registration;
+  set registrationField(ModelRegistration? v) => this.registration = v;
+  @protected
+  dynamic get $registration => this.registration?.toJson();
+  @protected
+  set $registration(v) => this.registration = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
   // whenClosed.

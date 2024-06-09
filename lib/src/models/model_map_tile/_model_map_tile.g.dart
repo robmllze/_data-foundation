@@ -25,9 +25,10 @@ class ModelMapTile extends Model {
   //
 
   static const K_ACCESS_TOKEN = 'access_token';
+  static const K_DARK_STYLE_ID = 'dark_style_id';
   static const K_IS_HIGH_DPI = 'is_high_dpi';
+  static const K_LIGHT_STYLE_ID = 'light_style_id';
   static const K_SOURCE = 'source';
-  static const K_STYLE_ID = 'style_id';
   static const K_TILE_SIZE = 'tile_size';
   static const K_USERNAME = 'username';
   static const K_X = 'x';
@@ -40,9 +41,10 @@ class ModelMapTile extends Model {
   String get $class => CLASS;
 
   String? accessToken;
+  String? darkStyleId;
   bool? isHighDpi;
+  String? lightStyleId;
   String? source;
-  String? styleId;
   int? tileSize;
   String? username;
   int? x;
@@ -61,9 +63,10 @@ class ModelMapTile extends Model {
 
   factory ModelMapTile({
     required String accessToken,
+    required String darkStyleId,
     bool? isHighDpi,
+    required String lightStyleId,
     String? source,
-    required String styleId,
     required int tileSize,
     required String username,
     int? x,
@@ -72,9 +75,10 @@ class ModelMapTile extends Model {
   }) {
     return ModelMapTile.b(
       accessToken: accessToken,
+      darkStyleId: darkStyleId,
       isHighDpi: isHighDpi,
+      lightStyleId: lightStyleId,
       source: source,
-      styleId: styleId,
       tileSize: tileSize,
       username: username,
       x: x,
@@ -89,9 +93,10 @@ class ModelMapTile extends Model {
 
   ModelMapTile.b({
     this.accessToken,
+    this.darkStyleId,
     this.isHighDpi,
+    this.lightStyleId,
     this.source,
-    this.styleId,
     this.tileSize,
     this.username,
     this.x,
@@ -99,7 +104,8 @@ class ModelMapTile extends Model {
     this.z,
   }) {
     assert(accessToken != null);
-    assert(styleId != null);
+    assert(darkStyleId != null);
+    assert(lightStyleId != null);
     assert(tileSize != null);
     assert(username != null);
   }
@@ -197,9 +203,10 @@ class ModelMapTile extends Model {
     try {
       return ModelMapTile.empty()
         ..$accessToken = otherData?[K_ACCESS_TOKEN]
+        ..$darkStyleId = otherData?[K_DARK_STYLE_ID]
         ..$isHighDpi = otherData?[K_IS_HIGH_DPI]
+        ..$lightStyleId = otherData?[K_LIGHT_STYLE_ID]
         ..$source = otherData?[K_SOURCE]
-        ..$styleId = otherData?[K_STYLE_ID]
         ..$tileSize = otherData?[K_TILE_SIZE]
         ..$username = otherData?[K_USERNAME]
         ..$x = otherData?[K_X]
@@ -251,9 +258,10 @@ class ModelMapTile extends Model {
     try {
       final withNulls = <String, dynamic>{
         K_ACCESS_TOKEN: this.$accessToken,
+        K_DARK_STYLE_ID: this.$darkStyleId,
         K_IS_HIGH_DPI: this.$isHighDpi,
+        K_LIGHT_STYLE_ID: this.$lightStyleId,
         K_SOURCE: this.$source,
-        K_STYLE_ID: this.$styleId,
         K_TILE_SIZE: this.$tileSize,
         K_USERNAME: this.$username,
         K_X: this.$x,
@@ -298,14 +306,17 @@ class ModelMapTile extends Model {
       if (other.accessToken != null) {
         this.accessToken = other.accessToken!;
       }
+      if (other.darkStyleId != null) {
+        this.darkStyleId = other.darkStyleId!;
+      }
       if (other.isHighDpi != null) {
         this.isHighDpi = other.isHighDpi!;
       }
+      if (other.lightStyleId != null) {
+        this.lightStyleId = other.lightStyleId!;
+      }
       if (other.source != null) {
         this.source = other.source!;
-      }
-      if (other.styleId != null) {
-        this.styleId = other.styleId!;
       }
       if (other.tileSize != null) {
         this.tileSize = other.tileSize!;
@@ -337,6 +348,14 @@ class ModelMapTile extends Model {
   @protected
   set $accessToken(v) => this.accessToken = v?.toString().trim().nullIfEmpty;
 
+  // darkStyleId.
+  String get darkStyleIdField => this.darkStyleId!;
+  set darkStyleIdField(String v) => this.darkStyleId = v;
+  @protected
+  dynamic get $darkStyleId => this.darkStyleId?.toString().trim().nullIfEmpty;
+  @protected
+  set $darkStyleId(v) => this.darkStyleId = v?.toString().trim().nullIfEmpty;
+
   // isHighDpi.
   bool? get isHighDpiField => this.isHighDpi;
   set isHighDpiField(bool? v) => this.isHighDpi = v;
@@ -345,6 +364,14 @@ class ModelMapTile extends Model {
   @protected
   set $isHighDpi(v) => this.isHighDpi = letBool(v);
 
+  // lightStyleId.
+  String get lightStyleIdField => this.lightStyleId!;
+  set lightStyleIdField(String v) => this.lightStyleId = v;
+  @protected
+  dynamic get $lightStyleId => this.lightStyleId?.toString().trim().nullIfEmpty;
+  @protected
+  set $lightStyleId(v) => this.lightStyleId = v?.toString().trim().nullIfEmpty;
+
   // source.
   String? get sourceField => this.source;
   set sourceField(String? v) => this.source = v;
@@ -352,14 +379,6 @@ class ModelMapTile extends Model {
   dynamic get $source => this.source?.toString().trim().nullIfEmpty;
   @protected
   set $source(v) => this.source = v?.toString().trim().nullIfEmpty;
-
-  // styleId.
-  String get styleIdField => this.styleId!;
-  set styleIdField(String v) => this.styleId = v;
-  @protected
-  dynamic get $styleId => this.styleId?.toString().trim().nullIfEmpty;
-  @protected
-  set $styleId(v) => this.styleId = v?.toString().trim().nullIfEmpty;
 
   // tileSize.
   int get tileSizeField => this.tileSize!;

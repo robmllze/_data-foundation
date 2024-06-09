@@ -7,6 +7,8 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'dart:ui';
+
 import '/_common.dart';
 
 part '_model_map_tile.g.dart';
@@ -17,7 +19,8 @@ part '_model_map_tile.g.dart';
   fields: {
     ('source?', String),
     ('username', String),
-    ('style_id', String),
+    ('light_style_id', String),
+    ('dark_style_id', String),
     ('access_token', String),
     ('tile_size', int),
     ('z?', int),
@@ -36,10 +39,10 @@ extension ModelMapTileExtension on ModelMapTile {
   //
   //
 
-  String? mapboxTileUrlTemplate() {
+  String? mapboxTileUrlTemplate({required Brightness brightness}) {
     return getMapboxTileUrlTemplate(
       username: username!,
-      styleId: styleId!,
+      styleId: brightness == Brightness.light ? lightStyleId! : darkStyleId!,
       accessToken: accessToken!,
       tileSize: tileSize!,
       isHighDpi: isHighDpi ?? true,
