@@ -42,4 +42,5 @@ export 'model_device_registration/model_device_registration.dart';
 export 'model_event/model_event.dart';
 export 'model_invitation/model_invitation.dart';
 export 'model_location/model_location.dart';
+export 'model_map_tile/model_map_tile.dart';
 export 'model_screen_configuration/model_screen_configuration.dart';

@@ -42,6 +42,7 @@ export 'models/model_device_registration/model_device_registration.dart';
 export 'models/model_event/model_event.dart';
 export 'models/model_invitation/model_invitation.dart';
 export 'models/model_location/model_location.dart';
+export 'models/model_map_tile/model_map_tile.dart';
 export 'models/model_screen_configuration/model_screen_configuration.dart';
 export 'types/access_status_type/access_status_type.dart';
 export 'types/access_type/access_type.dart';
