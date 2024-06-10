@@ -30,11 +30,14 @@ extension ModelLocationExtension on ModelLocation {
   //
   //
 
-  /// Returns the distance to another location on Earth in meters.
-  double getDistanceTo(ModelLocation other) {
-    return calculateHavershire3DDistance(
-      location1: this,
-      location2: other,
+  TLocationComponents? get components {
+    if (this.nullIfInvalid == null) {
+      return null;
+    }
+    return (
+      altitude: this.altitude!,
+      latitude: this.latitude!,
+      longitude: this.longitude!,
     );
   }
 
@@ -48,6 +51,18 @@ extension ModelLocationExtension on ModelLocation {
     }
     altitude ??= 0.0;
     return this;
+  }
+
+  //
+  //
+  //
+
+  /// Returns the distance to another location on Earth in meters.
+  double getDistanceToInMetres(ModelLocation other) {
+    return LocationUtilsPackage().calculateHavershire3DDistance(
+      location1: this.components!,
+      location2: other.components!,
+    );
   }
 
   //
@@ -104,6 +119,18 @@ extension ModelLocationExtension on ModelLocation {
         // 'h' for aerial, 'r' for road.
         'style': 'h',
       },
+    );
+  }
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+extension ToModelLocationOnTLocationExtension on TLocationComponents {
+  ModelLocation toModelLocation() {
+    return ModelLocation(
+      altitude: this.altitude,
+      latitude: this.latitude,
+      longitude: this.longitude,
     );
   }
 }
