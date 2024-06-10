@@ -24,7 +24,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
   //
 
-  static const K_ARGUMENTS = 'arguments';
+  static const K_ARGS = 'args';
   static const K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN =
       'is_accessible_only_if_logged_in';
   static const K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN_AND_VERIFIED =
@@ -41,7 +41,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   @override
   String get $class => CLASS;
 
-  Map<dynamic, dynamic>? arguments;
+  Map<dynamic, dynamic>? args;
   bool? isAccessibleOnlyIfLoggedIn;
   bool? isAccessibleOnlyIfLoggedInAndVerified;
   bool? isAccessibleOnlyIfLoggedOut;
@@ -61,7 +61,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
 
   factory ModelScreenConfiguration({
-    Map<dynamic, dynamic>? arguments,
+    Map<dynamic, dynamic>? args,
     bool? isAccessibleOnlyIfLoggedIn,
     bool? isAccessibleOnlyIfLoggedInAndVerified,
     bool? isAccessibleOnlyIfLoggedOut,
@@ -71,7 +71,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
     String? title,
   }) {
     return ModelScreenConfiguration.b(
-      arguments: arguments,
+      args: args,
       isAccessibleOnlyIfLoggedIn: isAccessibleOnlyIfLoggedIn,
       isAccessibleOnlyIfLoggedInAndVerified:
           isAccessibleOnlyIfLoggedInAndVerified,
@@ -88,7 +88,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
 
   ModelScreenConfiguration.b({
-    this.arguments,
+    this.args,
     this.isAccessibleOnlyIfLoggedIn,
     this.isAccessibleOnlyIfLoggedInAndVerified,
     this.isAccessibleOnlyIfLoggedOut,
@@ -190,7 +190,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   ) {
     try {
       return ModelScreenConfiguration.empty()
-        ..$arguments = otherData?[K_ARGUMENTS]
+        ..$args = otherData?[K_ARGS]
         ..$isAccessibleOnlyIfLoggedIn =
             otherData?[K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN]
         ..$isAccessibleOnlyIfLoggedInAndVerified =
@@ -246,7 +246,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_ARGUMENTS: this.$arguments,
+        K_ARGS: this.$args,
         K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN: this.$isAccessibleOnlyIfLoggedIn,
         K_IS_ACCESSIBLE_ONLY_IF_LOGGED_IN_AND_VERIFIED:
             this.$isAccessibleOnlyIfLoggedInAndVerified,
@@ -291,8 +291,8 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelScreenConfiguration.fromJson(otherData);
-      if (other.arguments != null) {
-        this.arguments = other.arguments!;
+      if (other.args != null) {
+        this.args = other.args!;
       }
       if (other.isAccessibleOnlyIfLoggedIn != null) {
         this.isAccessibleOnlyIfLoggedIn = other.isAccessibleOnlyIfLoggedIn!;
@@ -323,12 +323,12 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
   //
 
-  // arguments.
-  Map<dynamic, dynamic>? get argumentsField => this.arguments;
-  set argumentsField(Map<dynamic, dynamic>? v) => this.arguments = v;
+  // args.
+  Map<dynamic, dynamic>? get argsField => this.args;
+  set argsField(Map<dynamic, dynamic>? v) => this.args = v;
   @protected
-  dynamic get $arguments => this
-      .arguments
+  dynamic get $args => this
+      .args
       ?.map(
         (p0, p1) => MapEntry(
           p0,
@@ -338,7 +338,7 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $arguments(v) => this.arguments = letMap(v)
+  set $args(v) => this.args = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0,

@@ -17,7 +17,7 @@ part '_model_screen_configuration.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('arguments?', Map<dynamic, dynamic>),
+    ('args?', Map<dynamic, dynamic>),
     ('is_accessible_only_if_logged_in_and_verified?', bool),
     ('is_accessible_only_if_logged_in?', bool),
     ('is_accessible_only_if_logged_out?', bool),
@@ -27,8 +27,12 @@ part '_model_screen_configuration.g.dart';
     ('title?', String),
   },
 )
-abstract class _ModelScreenConfiguration extends ThisModel<ModelScreenConfiguration> {
-  T? arg<T>(dynamic key) => letAs<T>(model.arguments?[key]);
+abstract class _ModelScreenConfiguration extends Model {}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+extension ArgsOnModelScreenConfigurationExtension on ModelScreenConfiguration {
+  T? arg<T>(dynamic key) => letAs<T>(this.args?[key]);
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -36,7 +40,7 @@ abstract class _ModelScreenConfiguration extends ThisModel<ModelScreenConfigurat
 /// Creates a [ModelScreenConfiguration] from the current base URL.
 ModelScreenConfiguration currentBaseConfiguration() {
   return ModelScreenConfiguration(
-    arguments: Uri.base.queryParameters,
+    args: Uri.base.queryParameters,
     path: Uri.base.path,
   );
 }
@@ -51,12 +55,12 @@ ModelScreenConfiguration urlToScreenConfiguration({
   required String? title,
 }) {
   final path = url.path;
-  final parameters = <dynamic, dynamic>{...url.queryParameters};
+  final args = <dynamic, dynamic>{...url.queryParameters};
   for (var n = 0; n < url.pathSegments.length; n++) {
-    parameters[n] = url.pathSegments[n];
+    args[n] = url.pathSegments[n];
   }
   return ModelScreenConfiguration(
-    arguments: parameters,
+    args: args,
     isAccessibleOnlyIfLoggedIn: isAccessibleOnlyIfLoggedIn,
     isAccessibleOnlyIfLoggedInAndVerified: isAccessibleOnlyIfLoggedInAndVerified,
     isAccessibleOnlyIfLoggedOut: isAccessibleOnlyIfLoggedOut,
