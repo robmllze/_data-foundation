@@ -47,6 +47,7 @@ extension PublicModelExtension on PublicModel {
   //
   //
 
+  /// Whether this model's [id] is not `null` and not empty.
   bool isIdNotEmpty() {
     return this.id != null && this.id!.isNotEmpty;
   }
@@ -54,9 +55,11 @@ extension PublicModelExtension on PublicModel {
   //
   //
 
+  /// Returns all the download URLs for the files in the public model if they
+  /// exist, or`null`.
   Iterable<String>? get fileDownloadUrls {
     final a = this.sortedFilesByCreatedAt(ascending: false);
-    final b = a?.map((e) => e.downloadUrl.toString());
+    final b = a?.map((e) => e.downloadUrl.toString()).nullIfEmpty;
     return b;
   }
 
@@ -64,6 +67,8 @@ extension PublicModelExtension on PublicModel {
   //
   //
 
+  /// Returns the avatar image download URL for the public model if it exists,
+  /// or `null`.
   String? get avatarImageDownloadUrl {
     return this.avatarImage?.downloadUrl.toString();
   }
@@ -72,6 +77,8 @@ extension PublicModelExtension on PublicModel {
   //
   //
 
+  /// Returns the avatar image file entry for the public model if it exists, or
+  /// `null`.
   ModelFileEntry? get avatarImage {
     final a = this.sortedFilesByCreatedAt(ascending: false);
     final b = a?.firstWhereOrNull((e) => e.isAvatarImage());
@@ -82,7 +89,10 @@ extension PublicModelExtension on PublicModel {
   //
   //
 
-  bool isUploadingFile(String fileId) {
+  /// Whether the file with the given [fileId] has a `download_url` or not. The
+  /// assumption is that if the file has a `download_url`, then it has been
+  /// uploaded successfully and is available for download.
+  bool IsFileUploadingAssumtion(String fileId) {
     final a = this.fileBook?[fileId];
     final b = a != null && a.downloadUrl == null;
     return b;
@@ -92,7 +102,10 @@ extension PublicModelExtension on PublicModel {
   //
   //
 
-  bool isUploadingAvatarImage() {
+  /// Whether the avatar image is being uploaded or not. The assumption is that
+  /// if the avatar image has a `download_url`, then it has been uploaded
+  /// successfully and is available for download.
+  bool isUploadingAvatarImageAssumtion() {
     final a = this.avatarImage;
     final b = a != null && a.downloadUrl == null;
     return b;

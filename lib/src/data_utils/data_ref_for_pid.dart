@@ -12,6 +12,8 @@ import '/_common.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
+/// Returns the [DataRef] for the given [pid]. The PID can be a user, job,
+/// project, or organization PID.
 DataRef dataRefForPid(String pid) {
   if (IdUtils.isUserPid(pid)) {
     return Schema.userPubsRef(userPid: pid);

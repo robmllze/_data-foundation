@@ -1,6 +1,12 @@
 # About
 
-The Data Layer is a component of the [foundation](https://github.com/robmllze/foundation) template used to build Flutter projects.1
+The [Foundation](https://github.com/robmllze/foundation) template is divided into several modules. This helps separate concerns and makes it easier to manage the codebase.
+
+This is the Foundation's Data Module and it contains the following:
+
+- **Data Model Classes**: maps raw data from the database <---> Dart models.
+- **Data Models**: maps raw strings <---> Dart Types (Enums).
+- **Data Utils**:
 
 ## Notes
 
