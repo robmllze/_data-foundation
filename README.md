@@ -10,6 +10,7 @@ It comprises of the following:
 
 - **Data Models**: A collection of Data Models (Classes) that represent the data structures within the app.
 - **Data Model Extensions**: Extensions to enhance the capabilities of the aforementioned data classes.
+- **Data Pool Extensions**: Filtering and sorting extensions for collections of data models.
 - **Data Types**: A collection of Data Types (Enums) that classify raw data, helping identify the correct mappers to transform this data into structured models.
 - **Data Utils**: A collection of versatile utilities designed for working with Models and Types.
 
