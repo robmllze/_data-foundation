@@ -7,8 +7,8 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'dart:math';
 import 'dart:ui';
+import 'dart:math' as math;
 
 import '/_common.dart';
 
@@ -39,8 +39,6 @@ const PUBLIC_MODEL_FIELDS = {
 @GenerateModel(fields: PUBLIC_MODEL_FIELDS)
 // ignore: unused_element
 abstract class _PublicModel {}
-
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 extension PublicModelExtension on PublicModel {
   //
@@ -147,7 +145,7 @@ extension PublicModelExtension on PublicModel {
     final lastLoggedInTimestamps =
         deviceRegistrations?.map((e) => e.lastLoggedInAt?.millisecondsSinceEpoch).nonNulls;
     final lastLoggedInIndex =
-        lastLoggedInTimestamps?.toList().indexOf(lastLoggedInTimestamps.reduce(max));
+        lastLoggedInTimestamps?.toList().indexOf(lastLoggedInTimestamps.reduce(math.max));
     final lastLoggedInRegistration =
         lastLoggedInIndex != null ? deviceRegistrations?.elementAt(lastLoggedInIndex) : null;
     final lastLoggedInLocation = lastLoggedInRegistration?.location?.nullIfInvalid;

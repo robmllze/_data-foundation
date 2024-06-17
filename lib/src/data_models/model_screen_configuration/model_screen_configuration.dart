@@ -31,7 +31,7 @@ abstract class _ModelScreenConfiguration extends Model {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-extension ArgsOnModelScreenConfigurationExtension on ModelScreenConfiguration {
+extension ModelScreenConfigurationExtension on ModelScreenConfiguration {
   T? arg<T>(dynamic key) => letAs<T>(this.args?[key]);
 }
 

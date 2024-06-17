@@ -2,14 +2,16 @@
 
 ## About
 
-This is the Foundation's Data Module and it contains the following:
-
-- **Data Models (Classes)**: Maps raw data from the database <---> Generated Dart Models.
-- **Data Model Extensions**: Dart extensions to enhance the capabilities of the above mentioned data classes with tailored methods.
-- **Data Types (Enums)**: Maps raw strings <---> Generated Dart Types.
-- **Data Utils**: A set of general-purpose utilities that are not necessarily tied to a specific Model or Type.
-
 The [Foundation](https://github.com/robmllze/foundation) template is divided into several modules. This helps separate concerns and makes it easier to manage the codebase.
+
+This is the Foundation's Data Module. It plays a crucial role in defining the data within the app.
+
+It comprises of the following:
+
+- **Data Models**: A collection of Data Models (Classes) that represent the data structures within the app.
+- **Data Model Extensions**: Extensions to enhance the capabilities of the aforementioned data classes.
+- **Data Types**: A collection of Data Types (Enums) that classify raw data, helping identify the correct mappers to transform this data into structured models.
+- **Data Utils**: A collection of versatile utilities designed for working with Models and Types.
 
 ## Notes
 
