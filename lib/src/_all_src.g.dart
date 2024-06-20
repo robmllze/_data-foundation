@@ -44,7 +44,6 @@ export 'data_models/model_invitation/model_invitation.dart';
 export 'data_models/model_location/model_location.dart';
 export 'data_models/model_map_tile/model_map_tile.dart';
 export 'data_models/model_registration/model_registration.dart';
-export 'data_models/model_screen_configuration/model_screen_configuration.dart';
 export 'data_pool_extensions/entry_model_extension.dart';
 export 'data_pool_extensions/file_entry_pool_extension.dart';
 export 'data_pool_extensions/job_pub_pool_extension.dart';
