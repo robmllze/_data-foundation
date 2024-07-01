@@ -59,7 +59,7 @@ extension ModelLocationExtension on ModelLocation {
 
   /// Returns the distance to another location on Earth in meters.
   double getDistanceToInMetres(ModelLocation other) {
-    return LocationUtilsPackage().calculateHavershire3DDistance(
+    return LocationUtils().calculateHavershire3DDistance(
       location1: this.components!,
       location2: other.components!,
     );
