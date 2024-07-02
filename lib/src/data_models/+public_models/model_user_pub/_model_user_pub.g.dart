@@ -24,22 +24,22 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
-  static const K_ADDRESS_BOOK = 'address_book';
-  static const K_CREATED_AT = 'created_at';
-  static const K_CREATED_BY = 'created_by';
-  static const K_DELETED_AT = 'deleted_at';
-  static const K_DELETED_BY = 'deleted_by';
-  static const K_DESCRIPTION = 'description';
-  static const K_DEVICE_REGISTRATIONS = 'device_registrations';
-  static const K_DISPLAY_COLOR = 'display_color';
-  static const K_DISPLAY_NAME = 'display_name';
-  static const K_DISPLAY_NAME_SEARCHABLE = 'display_name_searchable';
-  static const K_EMAIL = 'email';
-  static const K_EMAIL_BOOK = 'email_book';
-  static const K_FILE_BOOK = 'file_book';
-  static const K_ID = 'id';
-  static const K_PHONE_BOOK = 'phone_book';
   static const K_REF = 'ref';
+  static const K_ID = 'id';
+  static const K_DISPLAY_NAME = 'displayName';
+  static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
+  static const K_DISPLAY_COLOR = 'displayColor';
+  static const K_EMAIL = 'email';
+  static const K_CREATED_AT = 'createdAt';
+  static const K_CREATED_BY = 'createdBy';
+  static const K_DELETED_AT = 'deletedAt';
+  static const K_DELETED_BY = 'deletedBy';
+  static const K_DESCRIPTION = 'description';
+  static const K_ADDRESS_BOOK = 'addressBook';
+  static const K_EMAIL_BOOK = 'emailBook';
+  static const K_FILE_BOOK = 'fileBook';
+  static const K_PHONE_BOOK = 'phoneBook';
+  static const K_DEVICE_REGISTRATIONS = 'deviceRegistrations';
   static const K_REGISTRATION = 'registration';
 
   static const CLASS = 'ModelUserPub';
@@ -47,22 +47,22 @@ class ModelUserPub extends _ModelUserPub {
   @override
   String get $class => CLASS;
 
-  Map<String, ModelAddressEntry>? addressBook;
+  DataRefModel? ref;
+  String? id;
+  String? displayName;
+  String? displayNameSearchable;
+  Color? displayColor;
+  String? email;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
   String? deletedBy;
   String? description;
-  Map<String, ModelDeviceRegistration>? deviceRegistrations;
-  Color? displayColor;
-  String? displayName;
-  String? displayNameSearchable;
-  String? email;
+  Map<String, ModelAddressEntry>? addressBook;
   Map<String, ModelEmailEntry>? emailBook;
   Map<String, ModelFileEntry>? fileBook;
-  String? id;
   Map<String, ModelPhoneEntry>? phoneBook;
-  DataRefModel? ref;
+  Map<String, ModelDeviceRegistration>? deviceRegistrations;
   ModelRegistration? registration;
 
   //
@@ -76,41 +76,41 @@ class ModelUserPub extends _ModelUserPub {
   //
 
   factory ModelUserPub({
-    Map<String, ModelAddressEntry>? addressBook,
+    required DataRefModel ref,
+    String? id,
+    String? displayName,
+    String? displayNameSearchable,
+    Color? displayColor,
+    String? email,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
     String? deletedBy,
     String? description,
-    Map<String, ModelDeviceRegistration>? deviceRegistrations,
-    Color? displayColor,
-    String? displayName,
-    String? displayNameSearchable,
-    String? email,
+    Map<String, ModelAddressEntry>? addressBook,
     Map<String, ModelEmailEntry>? emailBook,
     Map<String, ModelFileEntry>? fileBook,
-    String? id,
     Map<String, ModelPhoneEntry>? phoneBook,
-    required DataRefModel ref,
+    Map<String, ModelDeviceRegistration>? deviceRegistrations,
     ModelRegistration? registration,
   }) {
     return ModelUserPub.b(
-      addressBook: addressBook,
+      ref: ref,
+      id: id,
+      displayName: displayName,
+      displayNameSearchable: displayNameSearchable,
+      displayColor: displayColor,
+      email: email,
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
       deletedBy: deletedBy,
       description: description,
-      deviceRegistrations: deviceRegistrations,
-      displayColor: displayColor,
-      displayName: displayName,
-      displayNameSearchable: displayNameSearchable,
-      email: email,
+      addressBook: addressBook,
       emailBook: emailBook,
       fileBook: fileBook,
-      id: id,
       phoneBook: phoneBook,
-      ref: ref,
+      deviceRegistrations: deviceRegistrations,
       registration: registration,
     );
   }
@@ -120,25 +120,40 @@ class ModelUserPub extends _ModelUserPub {
   //
 
   ModelUserPub.b({
-    this.addressBook,
+    this.ref,
+    this.id,
+    this.displayName,
+    this.displayNameSearchable,
+    this.displayColor,
+    this.email,
     this.createdAt,
     this.createdBy,
     this.deletedAt,
     this.deletedBy,
     this.description,
-    this.deviceRegistrations,
-    this.displayColor,
-    this.displayName,
-    this.displayNameSearchable,
-    this.email,
+    this.addressBook,
     this.emailBook,
     this.fileBook,
-    this.id,
     this.phoneBook,
-    this.ref,
+    this.deviceRegistrations,
     this.registration,
   }) {
-    assert(ref != null);
+    assert(this.id != null);
+    assert(this.displayName != null);
+    assert(this.displayNameSearchable != null);
+    assert(this.displayColor != null);
+    assert(this.email != null);
+    assert(this.createdAt != null);
+    assert(this.createdBy != null);
+    assert(this.deletedAt != null);
+    assert(this.deletedBy != null);
+    assert(this.description != null);
+    assert(this.addressBook != null);
+    assert(this.emailBook != null);
+    assert(this.fileBook != null);
+    assert(this.phoneBook != null);
+    assert(this.deviceRegistrations != null);
+    assert(this.registration != null);
   }
 
   //
@@ -233,22 +248,22 @@ class ModelUserPub extends _ModelUserPub {
   ) {
     try {
       return ModelUserPub.empty()
-        ..$addressBook = otherData?[K_ADDRESS_BOOK]
+        ..$ref = otherData?[K_REF]
+        ..$id = otherData?[K_ID]
+        ..$displayName = otherData?[K_DISPLAY_NAME]
+        ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
+        ..$displayColor = otherData?[K_DISPLAY_COLOR]
+        ..$email = otherData?[K_EMAIL]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
         ..$deletedBy = otherData?[K_DELETED_BY]
         ..$description = otherData?[K_DESCRIPTION]
-        ..$deviceRegistrations = otherData?[K_DEVICE_REGISTRATIONS]
-        ..$displayColor = otherData?[K_DISPLAY_COLOR]
-        ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
-        ..$email = otherData?[K_EMAIL]
+        ..$addressBook = otherData?[K_ADDRESS_BOOK]
         ..$emailBook = otherData?[K_EMAIL_BOOK]
         ..$fileBook = otherData?[K_FILE_BOOK]
-        ..$id = otherData?[K_ID]
         ..$phoneBook = otherData?[K_PHONE_BOOK]
-        ..$ref = otherData?[K_REF]
+        ..$deviceRegistrations = otherData?[K_DEVICE_REGISTRATIONS]
         ..$registration = otherData?[K_REGISTRATION];
     } catch (e) {
       return null;
@@ -295,22 +310,22 @@ class ModelUserPub extends _ModelUserPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_ADDRESS_BOOK: this.$addressBook,
+        K_REF: this.$ref,
+        K_ID: this.$id,
+        K_DISPLAY_NAME: this.$displayName,
+        K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
+        K_DISPLAY_COLOR: this.$displayColor,
+        K_EMAIL: this.$email,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
         K_DELETED_BY: this.$deletedBy,
         K_DESCRIPTION: this.$description,
-        K_DEVICE_REGISTRATIONS: this.$deviceRegistrations,
-        K_DISPLAY_COLOR: this.$displayColor,
-        K_DISPLAY_NAME: this.$displayName,
-        K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
-        K_EMAIL: this.$email,
+        K_ADDRESS_BOOK: this.$addressBook,
         K_EMAIL_BOOK: this.$emailBook,
         K_FILE_BOOK: this.$fileBook,
-        K_ID: this.$id,
         K_PHONE_BOOK: this.$phoneBook,
-        K_REF: this.$ref,
+        K_DEVICE_REGISTRATIONS: this.$deviceRegistrations,
         K_REGISTRATION: this.$registration,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -348,8 +363,23 @@ class ModelUserPub extends _ModelUserPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUserPub.fromJson(otherData);
-      if (other.addressBook != null) {
-        this.addressBook = other.addressBook!;
+      if (other.ref != null) {
+        this.ref = other.ref!;
+      }
+      if (other.id != null) {
+        this.id = other.id!;
+      }
+      if (other.displayName != null) {
+        this.displayName = other.displayName!;
+      }
+      if (other.displayNameSearchable != null) {
+        this.displayNameSearchable = other.displayNameSearchable!;
+      }
+      if (other.displayColor != null) {
+        this.displayColor = other.displayColor!;
+      }
+      if (other.email != null) {
+        this.email = other.email!;
       }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
@@ -366,20 +396,8 @@ class ModelUserPub extends _ModelUserPub {
       if (other.description != null) {
         this.description = other.description!;
       }
-      if (other.deviceRegistrations != null) {
-        this.deviceRegistrations = other.deviceRegistrations!;
-      }
-      if (other.displayColor != null) {
-        this.displayColor = other.displayColor!;
-      }
-      if (other.displayName != null) {
-        this.displayName = other.displayName!;
-      }
-      if (other.displayNameSearchable != null) {
-        this.displayNameSearchable = other.displayNameSearchable!;
-      }
-      if (other.email != null) {
-        this.email = other.email!;
+      if (other.addressBook != null) {
+        this.addressBook = other.addressBook!;
       }
       if (other.emailBook != null) {
         this.emailBook = other.emailBook!;
@@ -387,14 +405,11 @@ class ModelUserPub extends _ModelUserPub {
       if (other.fileBook != null) {
         this.fileBook = other.fileBook!;
       }
-      if (other.id != null) {
-        this.id = other.id!;
-      }
       if (other.phoneBook != null) {
         this.phoneBook = other.phoneBook!;
       }
-      if (other.ref != null) {
-        this.ref = other.ref!;
+      if (other.deviceRegistrations != null) {
+        this.deviceRegistrations = other.deviceRegistrations!;
       }
       if (other.registration != null) {
         this.registration = other.registration!;
@@ -406,35 +421,67 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
-  // addressBook.
-  Map<String, ModelAddressEntry>? get addressBookField => this.addressBook;
-  set addressBookField(Map<String, ModelAddressEntry>? v) =>
-      this.addressBook = v;
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
   @protected
-  dynamic get $addressBook => this
-      .addressBook
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
+  dynamic get $ref => this.ref?.toJson();
   @protected
-  set $addressBook(v) => this.addressBook = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelAddressEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+
+  // id.
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // displayName.
+  String? get displayNameField => this.displayName;
+  set displayNameField(String? v) => this.displayName = v;
+  @protected
+  dynamic get $displayName => this.displayName?.toString().trim().nullIfEmpty;
+  @protected
+  set $displayName(v) => this.displayName = v?.toString().trim().nullIfEmpty;
+
+  // displayNameSearchable.
+  String? get displayNameSearchableField => this.displayNameSearchable;
+  set displayNameSearchableField(String? v) => this.displayNameSearchable = v;
+  @protected
+  dynamic get $displayNameSearchable => this
+      .displayNameSearchable
+      ?.toString()
+      .trim()
       .nullIfEmpty
-      ?.cast();
+      ?.toLowerCase()
+      .replaceAll(r'[^\w]', '');
+  @protected
+  set $displayNameSearchable(v) => this.displayNameSearchable =
+      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+
+  // displayColor.
+  Color? get displayColorField => this.displayColor;
+  set displayColorField(Color? v) => this.displayColor = v;
+  @protected
+  dynamic get $displayColor => this.displayColor?.value;
+  @protected
+  set $displayColor(v) => this.displayColor = () {
+        final a = letAs<int>(v);
+        return a is int ? Color(a) : null;
+      }();
+
+  // email.
+  String? get emailField => this.email;
+  set emailField(String? v) => this.email = v;
+  @protected
+  dynamic get $email =>
+      this.email?.toString().trim().nullIfEmpty?.toLowerCase();
+  @protected
+  set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -482,14 +529,13 @@ class ModelUserPub extends _ModelUserPub {
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
-  // deviceRegistrations.
-  Map<String, ModelDeviceRegistration>? get deviceRegistrationsField =>
-      this.deviceRegistrations;
-  set deviceRegistrationsField(Map<String, ModelDeviceRegistration>? v) =>
-      this.deviceRegistrations = v;
+  // addressBook.
+  Map<String, ModelAddressEntry>? get addressBookField => this.addressBook;
+  set addressBookField(Map<String, ModelAddressEntry>? v) =>
+      this.addressBook = v;
   @protected
-  dynamic get $deviceRegistrations => this
-      .deviceRegistrations
+  dynamic get $addressBook => this
+      .addressBook
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -499,62 +545,19 @@ class ModelUserPub extends _ModelUserPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $deviceRegistrations(v) => this.deviceRegistrations = letMap(v)
+  set $addressBook(v) => this.addressBook = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
           () {
             final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelDeviceRegistration.fromJson(a) : null;
+            return a != null ? ModelAddressEntry.fromJson(a) : null;
           }(),
         ),
       )
       .nonNulls
       .nullIfEmpty
       ?.cast();
-
-  // displayColor.
-  Color? get displayColorField => this.displayColor;
-  set displayColorField(Color? v) => this.displayColor = v;
-  @protected
-  dynamic get $displayColor => this.displayColor?.value;
-  @protected
-  set $displayColor(v) => this.displayColor = () {
-        final a = letAs<int>(v);
-        return a is int ? Color(a) : null;
-      }();
-
-  // displayName.
-  String? get displayNameField => this.displayName;
-  set displayNameField(String? v) => this.displayName = v;
-  @protected
-  dynamic get $displayName => this.displayName?.toString().trim().nullIfEmpty;
-  @protected
-  set $displayName(v) => this.displayName = v?.toString().trim().nullIfEmpty;
-
-  // displayNameSearchable.
-  String? get displayNameSearchableField => this.displayNameSearchable;
-  set displayNameSearchableField(String? v) => this.displayNameSearchable = v;
-  @protected
-  dynamic get $displayNameSearchable => this
-      .displayNameSearchable
-      ?.toString()
-      .trim()
-      .nullIfEmpty
-      ?.toLowerCase()
-      .replaceAll(r'[^\w]', '');
-  @protected
-  set $displayNameSearchable(v) => this.displayNameSearchable =
-      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
-
-  // email.
-  String? get emailField => this.email;
-  set emailField(String? v) => this.email = v;
-  @protected
-  dynamic get $email =>
-      this.email?.toString().trim().nullIfEmpty?.toLowerCase();
-  @protected
-  set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
   // emailBook.
   Map<String, ModelEmailEntry>? get emailBookField => this.emailBook;
@@ -614,14 +617,6 @@ class ModelUserPub extends _ModelUserPub {
       .nullIfEmpty
       ?.cast();
 
-  // id.
-  String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
-
   // phoneBook.
   Map<String, ModelPhoneEntry>? get phoneBookField => this.phoneBook;
   set phoneBookField(Map<String, ModelPhoneEntry>? v) => this.phoneBook = v;
@@ -651,16 +646,36 @@ class ModelUserPub extends _ModelUserPub {
       .nullIfEmpty
       ?.cast();
 
-  // ref.
-  DataRefModel get refField => this.ref!;
-  set refField(DataRefModel v) => this.ref = v;
+  // deviceRegistrations.
+  Map<String, ModelDeviceRegistration>? get deviceRegistrationsField =>
+      this.deviceRegistrations;
+  set deviceRegistrationsField(Map<String, ModelDeviceRegistration>? v) =>
+      this.deviceRegistrations = v;
   @protected
-  dynamic get $ref => this.ref?.toJson();
+  dynamic get $deviceRegistrations => this
+      .deviceRegistrations
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
   @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
+  set $deviceRegistrations(v) => this.deviceRegistrations = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = letMap<String, dynamic>(p1);
+            return a != null ? ModelDeviceRegistration.fromJson(a) : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 
   // registration.
   ModelRegistration? get registrationField => this.registration;

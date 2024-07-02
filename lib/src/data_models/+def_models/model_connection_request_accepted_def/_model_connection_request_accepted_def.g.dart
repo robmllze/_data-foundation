@@ -25,20 +25,20 @@ class ModelConnectionRequestAcceptedDef
   //
   //
 
+  static const K_RELATIONSHIP_ID = 'relationshipId';
+  static const K_SENDER_PID = 'senderPid';
+  static const K_RECEIVER_PID = 'receiverPid';
   static const K_MESSAGE = 'message';
-  static const K_RECEIVER_PID = 'receiver_pid';
-  static const K_RELATIONSHIP_ID = 'relationship_id';
-  static const K_SENDER_PID = 'sender_pid';
 
   static const CLASS = 'ModelConnectionRequestAcceptedDef';
 
   @override
   String get $class => CLASS;
 
-  String? message;
-  String? receiverPid;
   String? relationshipId;
   String? senderPid;
+  String? receiverPid;
+  String? message;
 
   //
   //
@@ -51,16 +51,16 @@ class ModelConnectionRequestAcceptedDef
   //
 
   factory ModelConnectionRequestAcceptedDef({
-    String? message,
-    String? receiverPid,
     String? relationshipId,
     String? senderPid,
+    String? receiverPid,
+    String? message,
   }) {
     return ModelConnectionRequestAcceptedDef.b(
-      message: message,
-      receiverPid: receiverPid,
       relationshipId: relationshipId,
       senderPid: senderPid,
+      receiverPid: receiverPid,
+      message: message,
     );
   }
 
@@ -69,11 +69,16 @@ class ModelConnectionRequestAcceptedDef
   //
 
   ModelConnectionRequestAcceptedDef.b({
-    this.message,
-    this.receiverPid,
     this.relationshipId,
     this.senderPid,
-  }) {}
+    this.receiverPid,
+    this.message,
+  }) {
+    assert(this.relationshipId != null);
+    assert(this.senderPid != null);
+    assert(this.receiverPid != null);
+    assert(this.message != null);
+  }
 
   //
   //
@@ -167,10 +172,10 @@ class ModelConnectionRequestAcceptedDef
   ) {
     try {
       return ModelConnectionRequestAcceptedDef.empty()
-        ..$message = otherData?[K_MESSAGE]
-        ..$receiverPid = otherData?[K_RECEIVER_PID]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
-        ..$senderPid = otherData?[K_SENDER_PID];
+        ..$senderPid = otherData?[K_SENDER_PID]
+        ..$receiverPid = otherData?[K_RECEIVER_PID]
+        ..$message = otherData?[K_MESSAGE];
     } catch (e) {
       return null;
     }
@@ -216,10 +221,10 @@ class ModelConnectionRequestAcceptedDef
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_MESSAGE: this.$message,
-        K_RECEIVER_PID: this.$receiverPid,
         K_RELATIONSHIP_ID: this.$relationshipId,
         K_SENDER_PID: this.$senderPid,
+        K_RECEIVER_PID: this.$receiverPid,
+        K_MESSAGE: this.$message,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -256,17 +261,17 @@ class ModelConnectionRequestAcceptedDef
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelConnectionRequestAcceptedDef.fromJson(otherData);
-      if (other.message != null) {
-        this.message = other.message!;
-      }
-      if (other.receiverPid != null) {
-        this.receiverPid = other.receiverPid!;
-      }
       if (other.relationshipId != null) {
         this.relationshipId = other.relationshipId!;
       }
       if (other.senderPid != null) {
         this.senderPid = other.senderPid!;
+      }
+      if (other.receiverPid != null) {
+        this.receiverPid = other.receiverPid!;
+      }
+      if (other.message != null) {
+        this.message = other.message!;
       }
     }
   }
@@ -274,22 +279,6 @@ class ModelConnectionRequestAcceptedDef
   //
   //
   //
-
-  // message.
-  String? get messageField => this.message;
-  set messageField(String? v) => this.message = v;
-  @protected
-  dynamic get $message => this.message?.toString().trim().nullIfEmpty;
-  @protected
-  set $message(v) => this.message = v?.toString().trim().nullIfEmpty;
-
-  // receiverPid.
-  String? get receiverPidField => this.receiverPid;
-  set receiverPidField(String? v) => this.receiverPid = v;
-  @protected
-  dynamic get $receiverPid => this.receiverPid?.toString().trim().nullIfEmpty;
-  @protected
-  set $receiverPid(v) => this.receiverPid = v?.toString().trim().nullIfEmpty;
 
   // relationshipId.
   String? get relationshipIdField => this.relationshipId;
@@ -308,4 +297,20 @@ class ModelConnectionRequestAcceptedDef
   dynamic get $senderPid => this.senderPid?.toString().trim().nullIfEmpty;
   @protected
   set $senderPid(v) => this.senderPid = v?.toString().trim().nullIfEmpty;
+
+  // receiverPid.
+  String? get receiverPidField => this.receiverPid;
+  set receiverPidField(String? v) => this.receiverPid = v;
+  @protected
+  dynamic get $receiverPid => this.receiverPid?.toString().trim().nullIfEmpty;
+  @protected
+  set $receiverPid(v) => this.receiverPid = v?.toString().trim().nullIfEmpty;
+
+  // message.
+  String? get messageField => this.message;
+  set messageField(String? v) => this.message = v;
+  @protected
+  dynamic get $message => this.message?.toString().trim().nullIfEmpty;
+  @protected
+  set $message(v) => this.message = v?.toString().trim().nullIfEmpty;
 }

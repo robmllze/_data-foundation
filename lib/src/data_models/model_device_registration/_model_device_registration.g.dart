@@ -24,28 +24,28 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
   //
 
-  static const K_DEVICE_INFO = 'device_info';
   static const K_ID = 'id';
-  static const K_IPV_4_ADDRESS = 'ipv_4_address';
-  static const K_LAST_LOGGED_IN_AT = 'last_logged_in_at';
+  static const K_REGISTRANT_PID = 'registrantPid';
+  static const K_REGISTERED_AT = 'registeredAt';
+  static const K_IPV_4_ADDRESS = 'ipv4Address';
   static const K_LOCATION = 'location';
-  static const K_NOTIFICATION_TOKEN = 'notification_token';
-  static const K_REGISTERED_AT = 'registered_at';
-  static const K_REGISTRANT_PID = 'registrant_pid';
+  static const K_LAST_LOGGED_IN_AT = 'lastLoggedInAt';
+  static const K_NOTIFICATION_TOKEN = 'notificationToken';
+  static const K_DEVICE_INFO = 'deviceInfo';
 
   static const CLASS = 'ModelDeviceRegistration';
 
   @override
   String get $class => CLASS;
 
-  ModelBasicDeviceInfo? deviceInfo;
   String? id;
-  String? ipv4Address;
-  DateTime? lastLoggedInAt;
-  ModelLocation? location;
-  String? notificationToken;
-  DateTime? registeredAt;
   String? registrantPid;
+  DateTime? registeredAt;
+  String? ipv4Address;
+  ModelLocation? location;
+  DateTime? lastLoggedInAt;
+  String? notificationToken;
+  ModelBasicDeviceInfo? deviceInfo;
 
   //
   //
@@ -58,24 +58,24 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
 
   factory ModelDeviceRegistration({
-    ModelBasicDeviceInfo? deviceInfo,
     String? id,
-    String? ipv4Address,
-    DateTime? lastLoggedInAt,
-    ModelLocation? location,
-    String? notificationToken,
-    DateTime? registeredAt,
     String? registrantPid,
+    DateTime? registeredAt,
+    String? ipv4Address,
+    ModelLocation? location,
+    DateTime? lastLoggedInAt,
+    String? notificationToken,
+    ModelBasicDeviceInfo? deviceInfo,
   }) {
     return ModelDeviceRegistration.b(
-      deviceInfo: deviceInfo,
       id: id,
-      ipv4Address: ipv4Address,
-      lastLoggedInAt: lastLoggedInAt,
-      location: location,
-      notificationToken: notificationToken,
-      registeredAt: registeredAt,
       registrantPid: registrantPid,
+      registeredAt: registeredAt,
+      ipv4Address: ipv4Address,
+      location: location,
+      lastLoggedInAt: lastLoggedInAt,
+      notificationToken: notificationToken,
+      deviceInfo: deviceInfo,
     );
   }
 
@@ -84,15 +84,24 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
 
   ModelDeviceRegistration.b({
-    this.deviceInfo,
     this.id,
-    this.ipv4Address,
-    this.lastLoggedInAt,
-    this.location,
-    this.notificationToken,
-    this.registeredAt,
     this.registrantPid,
-  }) {}
+    this.registeredAt,
+    this.ipv4Address,
+    this.location,
+    this.lastLoggedInAt,
+    this.notificationToken,
+    this.deviceInfo,
+  }) {
+    assert(this.id != null);
+    assert(this.registrantPid != null);
+    assert(this.registeredAt != null);
+    assert(this.ipv4Address != null);
+    assert(this.location != null);
+    assert(this.lastLoggedInAt != null);
+    assert(this.notificationToken != null);
+    assert(this.deviceInfo != null);
+  }
 
   //
   //
@@ -186,14 +195,14 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   ) {
     try {
       return ModelDeviceRegistration.empty()
-        ..$deviceInfo = otherData?[K_DEVICE_INFO]
         ..$id = otherData?[K_ID]
-        ..$ipv4Address = otherData?[K_IPV_4_ADDRESS]
-        ..$lastLoggedInAt = otherData?[K_LAST_LOGGED_IN_AT]
-        ..$location = otherData?[K_LOCATION]
-        ..$notificationToken = otherData?[K_NOTIFICATION_TOKEN]
+        ..$registrantPid = otherData?[K_REGISTRANT_PID]
         ..$registeredAt = otherData?[K_REGISTERED_AT]
-        ..$registrantPid = otherData?[K_REGISTRANT_PID];
+        ..$ipv4Address = otherData?[K_IPV_4_ADDRESS]
+        ..$location = otherData?[K_LOCATION]
+        ..$lastLoggedInAt = otherData?[K_LAST_LOGGED_IN_AT]
+        ..$notificationToken = otherData?[K_NOTIFICATION_TOKEN]
+        ..$deviceInfo = otherData?[K_DEVICE_INFO];
     } catch (e) {
       return null;
     }
@@ -239,14 +248,14 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_DEVICE_INFO: this.$deviceInfo,
         K_ID: this.$id,
-        K_IPV_4_ADDRESS: this.$ipv4Address,
-        K_LAST_LOGGED_IN_AT: this.$lastLoggedInAt,
-        K_LOCATION: this.$location,
-        K_NOTIFICATION_TOKEN: this.$notificationToken,
-        K_REGISTERED_AT: this.$registeredAt,
         K_REGISTRANT_PID: this.$registrantPid,
+        K_REGISTERED_AT: this.$registeredAt,
+        K_IPV_4_ADDRESS: this.$ipv4Address,
+        K_LOCATION: this.$location,
+        K_LAST_LOGGED_IN_AT: this.$lastLoggedInAt,
+        K_NOTIFICATION_TOKEN: this.$notificationToken,
+        K_DEVICE_INFO: this.$deviceInfo,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -283,29 +292,29 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelDeviceRegistration.fromJson(otherData);
-      if (other.deviceInfo != null) {
-        this.deviceInfo = other.deviceInfo!;
-      }
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.ipv4Address != null) {
-        this.ipv4Address = other.ipv4Address!;
-      }
-      if (other.lastLoggedInAt != null) {
-        this.lastLoggedInAt = other.lastLoggedInAt!;
-      }
-      if (other.location != null) {
-        this.location = other.location!;
-      }
-      if (other.notificationToken != null) {
-        this.notificationToken = other.notificationToken!;
+      if (other.registrantPid != null) {
+        this.registrantPid = other.registrantPid!;
       }
       if (other.registeredAt != null) {
         this.registeredAt = other.registeredAt!;
       }
-      if (other.registrantPid != null) {
-        this.registrantPid = other.registrantPid!;
+      if (other.ipv4Address != null) {
+        this.ipv4Address = other.ipv4Address!;
+      }
+      if (other.location != null) {
+        this.location = other.location!;
+      }
+      if (other.lastLoggedInAt != null) {
+        this.lastLoggedInAt = other.lastLoggedInAt!;
+      }
+      if (other.notificationToken != null) {
+        this.notificationToken = other.notificationToken!;
+      }
+      if (other.deviceInfo != null) {
+        this.deviceInfo = other.deviceInfo!;
       }
     }
   }
@@ -313,17 +322,6 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
   //
   //
-
-  // deviceInfo.
-  ModelBasicDeviceInfo? get deviceInfoField => this.deviceInfo;
-  set deviceInfoField(ModelBasicDeviceInfo? v) => this.deviceInfo = v;
-  @protected
-  dynamic get $deviceInfo => this.deviceInfo?.toJson();
-  @protected
-  set $deviceInfo(v) => this.deviceInfo = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelBasicDeviceInfo.fromJson(a) : null;
-      }();
 
   // id.
   String? get idField => this.id;
@@ -333,6 +331,27 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
+  // registrantPid.
+  String? get registrantPidField => this.registrantPid;
+  set registrantPidField(String? v) => this.registrantPid = v;
+  @protected
+  dynamic get $registrantPid =>
+      this.registrantPid?.toString().trim().nullIfEmpty;
+  @protected
+  set $registrantPid(v) =>
+      this.registrantPid = v?.toString().trim().nullIfEmpty;
+
+  // registeredAt.
+  DateTime? get registeredAtField => this.registeredAt;
+  set registeredAtField(DateTime? v) => this.registeredAt = v;
+  @protected
+  dynamic get $registeredAt => this.registeredAt?.toUtc()?.toIso8601String();
+  @protected
+  set $registeredAt(v) => this.registeredAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
   // ipv4Address.
   String? get ipv4AddressField => this.ipv4Address;
   set ipv4AddressField(String? v) => this.ipv4Address = v;
@@ -340,6 +359,17 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   dynamic get $ipv4Address => this.ipv4Address?.toString().trim().nullIfEmpty;
   @protected
   set $ipv4Address(v) => this.ipv4Address = v?.toString().trim().nullIfEmpty;
+
+  // location.
+  ModelLocation? get locationField => this.location;
+  set locationField(ModelLocation? v) => this.location = v;
+  @protected
+  dynamic get $location => this.location?.toJson();
+  @protected
+  set $location(v) => this.location = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelLocation.fromJson(a) : null;
+      }();
 
   // lastLoggedInAt.
   DateTime? get lastLoggedInAtField => this.lastLoggedInAt;
@@ -353,17 +383,6 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
-  // location.
-  ModelLocation? get locationField => this.location;
-  set locationField(ModelLocation? v) => this.location = v;
-  @protected
-  dynamic get $location => this.location?.toJson();
-  @protected
-  set $location(v) => this.location = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelLocation.fromJson(a) : null;
-      }();
-
   // notificationToken.
   String? get notificationTokenField => this.notificationToken;
   set notificationTokenField(String? v) => this.notificationToken = v;
@@ -374,24 +393,14 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   set $notificationToken(v) =>
       this.notificationToken = v?.toString().trim().nullIfEmpty;
 
-  // registeredAt.
-  DateTime? get registeredAtField => this.registeredAt;
-  set registeredAtField(DateTime? v) => this.registeredAt = v;
+  // deviceInfo.
+  ModelBasicDeviceInfo? get deviceInfoField => this.deviceInfo;
+  set deviceInfoField(ModelBasicDeviceInfo? v) => this.deviceInfo = v;
   @protected
-  dynamic get $registeredAt => this.registeredAt?.toUtc()?.toIso8601String();
+  dynamic get $deviceInfo => this.deviceInfo?.toJson();
   @protected
-  set $registeredAt(v) => this.registeredAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $deviceInfo(v) => this.deviceInfo = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelBasicDeviceInfo.fromJson(a) : null;
       }();
-
-  // registrantPid.
-  String? get registrantPidField => this.registrantPid;
-  set registrantPidField(String? v) => this.registrantPid = v;
-  @protected
-  dynamic get $registrantPid =>
-      this.registrantPid?.toString().trim().nullIfEmpty;
-  @protected
-  set $registrantPid(v) =>
-      this.registrantPid = v?.toString().trim().nullIfEmpty;
 }

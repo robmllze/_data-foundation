@@ -24,35 +24,35 @@ class ModelUser extends _ModelUser {
   //
   //
 
-  static const K_CREATED_AT = 'created_at';
-  static const K_CREATED_BY = 'created_by';
-  static const K_DELETED_AT = 'deleted_at';
-  static const K_DELETED_BY = 'deleted_by';
-  static const K_DID_SEND_WELCOME_EMAIL = 'did_send_welcome_email';
-  static const K_EMAIL_SUBSCRIPTIONS = 'email_subscriptions';
+  static const K_REF = 'ref';
   static const K_ID = 'id';
   static const K_PID = 'pid';
-  static const K_PUSH_SUBSCRIPTIONS = 'push_subscriptions';
-  static const K_REF = 'ref';
   static const K_SEED = 'seed';
-  static const K_SMS_SUBSCRIPTIONS = 'sms_subscriptions';
+  static const K_CREATED_AT = 'createdAt';
+  static const K_CREATED_BY = 'createdBy';
+  static const K_DELETED_AT = 'deletedAt';
+  static const K_DELETED_BY = 'deletedBy';
+  static const K_DID_SEND_WELCOME_EMAIL = 'didSendWelcomeEmail';
+  static const K_EMAIL_SUBSCRIPTIONS = 'emailSubscriptions';
+  static const K_PUSH_SUBSCRIPTIONS = 'pushSubscriptions';
+  static const K_SMS_SUBSCRIPTIONS = 'smsSubscriptions';
 
   static const CLASS = 'ModelUser';
 
   @override
   String get $class => CLASS;
 
+  DataRefModel? ref;
+  String? id;
+  String? pid;
+  String? seed;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
   String? deletedBy;
   bool? didSendWelcomeEmail;
   Set<String>? emailSubscriptions;
-  String? id;
-  String? pid;
   Set<String>? pushSubscriptions;
-  DataRefModel? ref;
-  String? seed;
   Set<String>? smsSubscriptions;
 
   //
@@ -66,31 +66,31 @@ class ModelUser extends _ModelUser {
   //
 
   factory ModelUser({
+    required DataRefModel ref,
+    String? id,
+    String? pid,
+    String? seed,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
     String? deletedBy,
     bool? didSendWelcomeEmail,
     Set<String>? emailSubscriptions,
-    String? id,
-    String? pid,
     Set<String>? pushSubscriptions,
-    required DataRefModel ref,
-    String? seed,
     Set<String>? smsSubscriptions,
   }) {
     return ModelUser.b(
+      ref: ref,
+      id: id,
+      pid: pid,
+      seed: seed,
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
       deletedBy: deletedBy,
       didSendWelcomeEmail: didSendWelcomeEmail,
       emailSubscriptions: emailSubscriptions,
-      id: id,
-      pid: pid,
       pushSubscriptions: pushSubscriptions,
-      ref: ref,
-      seed: seed,
       smsSubscriptions: smsSubscriptions,
     );
   }
@@ -100,20 +100,30 @@ class ModelUser extends _ModelUser {
   //
 
   ModelUser.b({
+    this.ref,
+    this.id,
+    this.pid,
+    this.seed,
     this.createdAt,
     this.createdBy,
     this.deletedAt,
     this.deletedBy,
     this.didSendWelcomeEmail,
     this.emailSubscriptions,
-    this.id,
-    this.pid,
     this.pushSubscriptions,
-    this.ref,
-    this.seed,
     this.smsSubscriptions,
   }) {
-    assert(ref != null);
+    assert(this.id != null);
+    assert(this.pid != null);
+    assert(this.seed != null);
+    assert(this.createdAt != null);
+    assert(this.createdBy != null);
+    assert(this.deletedAt != null);
+    assert(this.deletedBy != null);
+    assert(this.didSendWelcomeEmail != null);
+    assert(this.emailSubscriptions != null);
+    assert(this.pushSubscriptions != null);
+    assert(this.smsSubscriptions != null);
   }
 
   //
@@ -208,17 +218,17 @@ class ModelUser extends _ModelUser {
   ) {
     try {
       return ModelUser.empty()
+        ..$ref = otherData?[K_REF]
+        ..$id = otherData?[K_ID]
+        ..$pid = otherData?[K_PID]
+        ..$seed = otherData?[K_SEED]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
         ..$deletedBy = otherData?[K_DELETED_BY]
         ..$didSendWelcomeEmail = otherData?[K_DID_SEND_WELCOME_EMAIL]
         ..$emailSubscriptions = otherData?[K_EMAIL_SUBSCRIPTIONS]
-        ..$id = otherData?[K_ID]
-        ..$pid = otherData?[K_PID]
         ..$pushSubscriptions = otherData?[K_PUSH_SUBSCRIPTIONS]
-        ..$ref = otherData?[K_REF]
-        ..$seed = otherData?[K_SEED]
         ..$smsSubscriptions = otherData?[K_SMS_SUBSCRIPTIONS];
     } catch (e) {
       return null;
@@ -265,17 +275,17 @@ class ModelUser extends _ModelUser {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_REF: this.$ref,
+        K_ID: this.$id,
+        K_PID: this.$pid,
+        K_SEED: this.$seed,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
         K_DELETED_BY: this.$deletedBy,
         K_DID_SEND_WELCOME_EMAIL: this.$didSendWelcomeEmail,
         K_EMAIL_SUBSCRIPTIONS: this.$emailSubscriptions,
-        K_ID: this.$id,
-        K_PID: this.$pid,
         K_PUSH_SUBSCRIPTIONS: this.$pushSubscriptions,
-        K_REF: this.$ref,
-        K_SEED: this.$seed,
         K_SMS_SUBSCRIPTIONS: this.$smsSubscriptions,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -313,6 +323,18 @@ class ModelUser extends _ModelUser {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelUser.fromJson(otherData);
+      if (other.ref != null) {
+        this.ref = other.ref!;
+      }
+      if (other.id != null) {
+        this.id = other.id!;
+      }
+      if (other.pid != null) {
+        this.pid = other.pid!;
+      }
+      if (other.seed != null) {
+        this.seed = other.seed!;
+      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -331,20 +353,8 @@ class ModelUser extends _ModelUser {
       if (other.emailSubscriptions != null) {
         this.emailSubscriptions = other.emailSubscriptions!;
       }
-      if (other.id != null) {
-        this.id = other.id!;
-      }
-      if (other.pid != null) {
-        this.pid = other.pid!;
-      }
       if (other.pushSubscriptions != null) {
         this.pushSubscriptions = other.pushSubscriptions!;
-      }
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
-      if (other.seed != null) {
-        this.seed = other.seed!;
       }
       if (other.smsSubscriptions != null) {
         this.smsSubscriptions = other.smsSubscriptions!;
@@ -355,6 +365,41 @@ class ModelUser extends _ModelUser {
   //
   //
   //
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => this.ref?.toJson();
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+
+  // id.
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // pid.
+  String? get pidField => this.pid;
+  set pidField(String? v) => this.pid = v;
+  @protected
+  dynamic get $pid => this.pid?.toString().trim().nullIfEmpty;
+  @protected
+  set $pid(v) => this.pid = v?.toString().trim().nullIfEmpty;
+
+  // seed.
+  String? get seedField => this.seed;
+  set seedField(String? v) => this.seed = v;
+  @protected
+  dynamic get $seed => this.seed?.toString().trim().nullIfEmpty;
+  @protected
+  set $seed(v) => this.seed = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -424,22 +469,6 @@ class ModelUser extends _ModelUser {
       ?.toSet()
       .cast();
 
-  // id.
-  String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
-
-  // pid.
-  String? get pidField => this.pid;
-  set pidField(String? v) => this.pid = v;
-  @protected
-  dynamic get $pid => this.pid?.toString().trim().nullIfEmpty;
-  @protected
-  set $pid(v) => this.pid = v?.toString().trim().nullIfEmpty;
-
   // pushSubscriptions.
   Set<String>? get pushSubscriptionsField => this.pushSubscriptions;
   set pushSubscriptionsField(Set<String>? v) => this.pushSubscriptions = v;
@@ -461,25 +490,6 @@ class ModelUser extends _ModelUser {
       .nullIfEmpty
       ?.toSet()
       .cast();
-
-  // ref.
-  DataRefModel get refField => this.ref!;
-  set refField(DataRefModel v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
-
-  // seed.
-  String? get seedField => this.seed;
-  set seedField(String? v) => this.seed = v;
-  @protected
-  dynamic get $seed => this.seed?.toString().trim().nullIfEmpty;
-  @protected
-  set $seed(v) => this.seed = v?.toString().trim().nullIfEmpty;
 
   // smsSubscriptions.
   Set<String>? get smsSubscriptionsField => this.smsSubscriptions;

@@ -24,53 +24,53 @@ class ModelEvent extends _ModelEvent {
   //
   //
 
-  static const K_CREATED_AT = 'created_at';
-  static const K_CREATED_BY = 'created_by';
-  static const K_DEF = 'def';
-  static const K_DEF_TYPE = 'def_type';
-  static const K_DELETED_AT = 'deleted_at';
-  static const K_DELETED_BY = 'deleted_by';
-  static const K_DESCRIPTION = 'description';
-  static const K_ID = 'id';
-  static const K_MEMBER_PIDS = 'member_pids';
-  static const K_MODIFIED_AT = 'modified_at';
-  static const K_MODIFIED_BY = 'modified_by';
   static const K_REF = 'ref';
-  static const K_RELATIONSHIP_ID = 'relationship_id';
-  static const K_TIMEOUT = 'timeout';
+  static const K_ID = 'id';
   static const K_TITLE = 'title';
-  static const K_TITLE_SEARCHABLE = 'title_searchable';
-  static const K_WHEN_ARCHIVED = 'when_archived';
-  static const K_WHEN_HIDDEN = 'when_hidden';
-  static const K_WHEN_LIKED = 'when_liked';
-  static const K_WHEN_READ = 'when_read';
-  static const K_WHEN_RECEIVED = 'when_received';
+  static const K_TITLE_SEARCHABLE = 'titleSearchable';
+  static const K_DESCRIPTION = 'description';
+  static const K_CREATED_AT = 'createdAt';
+  static const K_CREATED_BY = 'createdBy';
+  static const K_DELETED_AT = 'deletedAt';
+  static const K_DELETED_BY = 'deletedBy';
+  static const K_MODIFIED_AT = 'modifiedAt';
+  static const K_MODIFIED_BY = 'modifiedBy';
+  static const K_RELATIONSHIP_ID = 'relationshipId';
+  static const K_MEMBER_PIDS = 'memberPids';
+  static const K_DEF_TYPE = 'defType';
+  static const K_DEF = 'def';
+  static const K_TIMEOUT = 'timeout';
+  static const K_WHEN_READ = 'whenRead';
+  static const K_WHEN_ARCHIVED = 'whenArchived';
+  static const K_WHEN_HIDDEN = 'whenHidden';
+  static const K_WHEN_LIKED = 'whenLiked';
+  static const K_WHEN_RECEIVED = 'whenReceived';
 
   static const CLASS = 'ModelEvent';
 
   @override
   String get $class => CLASS;
 
-  DateTime? createdAt;
-  String? createdBy;
-  DataModel? def;
-  EventDefType? defType;
-  DateTime? deletedAt;
-  String? deletedBy;
-  String? description;
-  String? id;
-  Set<String>? memberPids;
-  DateTime? modifiedAt;
-  String? modifiedBy;
   DataRefModel? ref;
-  String? relationshipId;
-  int? timeout;
+  String? id;
   String? title;
   String? titleSearchable;
+  String? description;
+  DateTime? createdAt;
+  String? createdBy;
+  DateTime? deletedAt;
+  String? deletedBy;
+  DateTime? modifiedAt;
+  String? modifiedBy;
+  String? relationshipId;
+  Set<String>? memberPids;
+  EventDefType? defType;
+  DataModel? def;
+  int? timeout;
+  Map<String, DateTime>? whenRead;
   Map<String, DateTime>? whenArchived;
   Map<String, DateTime>? whenHidden;
   Map<String, DateTime>? whenLiked;
-  Map<String, DateTime>? whenRead;
   Map<String, DateTime>? whenReceived;
 
   //
@@ -84,49 +84,49 @@ class ModelEvent extends _ModelEvent {
   //
 
   factory ModelEvent({
-    DateTime? createdAt,
-    String? createdBy,
-    DataModel? def,
-    EventDefType? defType,
-    DateTime? deletedAt,
-    String? deletedBy,
-    String? description,
-    String? id,
-    Set<String>? memberPids,
-    DateTime? modifiedAt,
-    String? modifiedBy,
     required DataRefModel ref,
-    String? relationshipId,
-    int? timeout,
+    String? id,
     String? title,
     String? titleSearchable,
+    String? description,
+    DateTime? createdAt,
+    String? createdBy,
+    DateTime? deletedAt,
+    String? deletedBy,
+    DateTime? modifiedAt,
+    String? modifiedBy,
+    String? relationshipId,
+    Set<String>? memberPids,
+    EventDefType? defType,
+    DataModel? def,
+    int? timeout,
+    Map<String, DateTime>? whenRead,
     Map<String, DateTime>? whenArchived,
     Map<String, DateTime>? whenHidden,
     Map<String, DateTime>? whenLiked,
-    Map<String, DateTime>? whenRead,
     Map<String, DateTime>? whenReceived,
   }) {
     return ModelEvent.b(
-      createdAt: createdAt,
-      createdBy: createdBy,
-      def: def,
-      defType: defType,
-      deletedAt: deletedAt,
-      deletedBy: deletedBy,
-      description: description,
-      id: id,
-      memberPids: memberPids,
-      modifiedAt: modifiedAt,
-      modifiedBy: modifiedBy,
       ref: ref,
-      relationshipId: relationshipId,
-      timeout: timeout,
+      id: id,
       title: title,
       titleSearchable: titleSearchable,
+      description: description,
+      createdAt: createdAt,
+      createdBy: createdBy,
+      deletedAt: deletedAt,
+      deletedBy: deletedBy,
+      modifiedAt: modifiedAt,
+      modifiedBy: modifiedBy,
+      relationshipId: relationshipId,
+      memberPids: memberPids,
+      defType: defType,
+      def: def,
+      timeout: timeout,
+      whenRead: whenRead,
       whenArchived: whenArchived,
       whenHidden: whenHidden,
       whenLiked: whenLiked,
-      whenRead: whenRead,
       whenReceived: whenReceived,
     );
   }
@@ -136,29 +136,48 @@ class ModelEvent extends _ModelEvent {
   //
 
   ModelEvent.b({
-    this.createdAt,
-    this.createdBy,
-    this.def,
-    this.defType,
-    this.deletedAt,
-    this.deletedBy,
-    this.description,
-    this.id,
-    this.memberPids,
-    this.modifiedAt,
-    this.modifiedBy,
     this.ref,
-    this.relationshipId,
-    this.timeout,
+    this.id,
     this.title,
     this.titleSearchable,
+    this.description,
+    this.createdAt,
+    this.createdBy,
+    this.deletedAt,
+    this.deletedBy,
+    this.modifiedAt,
+    this.modifiedBy,
+    this.relationshipId,
+    this.memberPids,
+    this.defType,
+    this.def,
+    this.timeout,
+    this.whenRead,
     this.whenArchived,
     this.whenHidden,
     this.whenLiked,
-    this.whenRead,
     this.whenReceived,
   }) {
-    assert(ref != null);
+    assert(this.id != null);
+    assert(this.title != null);
+    assert(this.titleSearchable != null);
+    assert(this.description != null);
+    assert(this.createdAt != null);
+    assert(this.createdBy != null);
+    assert(this.deletedAt != null);
+    assert(this.deletedBy != null);
+    assert(this.modifiedAt != null);
+    assert(this.modifiedBy != null);
+    assert(this.relationshipId != null);
+    assert(this.memberPids != null);
+    assert(this.defType != null);
+    assert(this.def != null);
+    assert(this.timeout != null);
+    assert(this.whenRead != null);
+    assert(this.whenArchived != null);
+    assert(this.whenHidden != null);
+    assert(this.whenLiked != null);
+    assert(this.whenReceived != null);
   }
 
   //
@@ -253,26 +272,26 @@ class ModelEvent extends _ModelEvent {
   ) {
     try {
       return ModelEvent.empty()
-        ..$createdAt = otherData?[K_CREATED_AT]
-        ..$createdBy = otherData?[K_CREATED_BY]
-        ..$def = otherData?[K_DEF]
-        ..$defType = otherData?[K_DEF_TYPE]
-        ..$deletedAt = otherData?[K_DELETED_AT]
-        ..$deletedBy = otherData?[K_DELETED_BY]
-        ..$description = otherData?[K_DESCRIPTION]
-        ..$id = otherData?[K_ID]
-        ..$memberPids = otherData?[K_MEMBER_PIDS]
-        ..$modifiedAt = otherData?[K_MODIFIED_AT]
-        ..$modifiedBy = otherData?[K_MODIFIED_BY]
         ..$ref = otherData?[K_REF]
-        ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
-        ..$timeout = otherData?[K_TIMEOUT]
+        ..$id = otherData?[K_ID]
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE]
+        ..$description = otherData?[K_DESCRIPTION]
+        ..$createdAt = otherData?[K_CREATED_AT]
+        ..$createdBy = otherData?[K_CREATED_BY]
+        ..$deletedAt = otherData?[K_DELETED_AT]
+        ..$deletedBy = otherData?[K_DELETED_BY]
+        ..$modifiedAt = otherData?[K_MODIFIED_AT]
+        ..$modifiedBy = otherData?[K_MODIFIED_BY]
+        ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
+        ..$memberPids = otherData?[K_MEMBER_PIDS]
+        ..$defType = otherData?[K_DEF_TYPE]
+        ..$def = otherData?[K_DEF]
+        ..$timeout = otherData?[K_TIMEOUT]
+        ..$whenRead = otherData?[K_WHEN_READ]
         ..$whenArchived = otherData?[K_WHEN_ARCHIVED]
         ..$whenHidden = otherData?[K_WHEN_HIDDEN]
         ..$whenLiked = otherData?[K_WHEN_LIKED]
-        ..$whenRead = otherData?[K_WHEN_READ]
         ..$whenReceived = otherData?[K_WHEN_RECEIVED];
     } catch (e) {
       return null;
@@ -319,26 +338,26 @@ class ModelEvent extends _ModelEvent {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_CREATED_AT: this.$createdAt,
-        K_CREATED_BY: this.$createdBy,
-        K_DEF: this.$def,
-        K_DEF_TYPE: this.$defType,
-        K_DELETED_AT: this.$deletedAt,
-        K_DELETED_BY: this.$deletedBy,
-        K_DESCRIPTION: this.$description,
-        K_ID: this.$id,
-        K_MEMBER_PIDS: this.$memberPids,
-        K_MODIFIED_AT: this.$modifiedAt,
-        K_MODIFIED_BY: this.$modifiedBy,
         K_REF: this.$ref,
-        K_RELATIONSHIP_ID: this.$relationshipId,
-        K_TIMEOUT: this.$timeout,
+        K_ID: this.$id,
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
+        K_DESCRIPTION: this.$description,
+        K_CREATED_AT: this.$createdAt,
+        K_CREATED_BY: this.$createdBy,
+        K_DELETED_AT: this.$deletedAt,
+        K_DELETED_BY: this.$deletedBy,
+        K_MODIFIED_AT: this.$modifiedAt,
+        K_MODIFIED_BY: this.$modifiedBy,
+        K_RELATIONSHIP_ID: this.$relationshipId,
+        K_MEMBER_PIDS: this.$memberPids,
+        K_DEF_TYPE: this.$defType,
+        K_DEF: this.$def,
+        K_TIMEOUT: this.$timeout,
+        K_WHEN_READ: this.$whenRead,
         K_WHEN_ARCHIVED: this.$whenArchived,
         K_WHEN_HIDDEN: this.$whenHidden,
         K_WHEN_LIKED: this.$whenLiked,
-        K_WHEN_READ: this.$whenRead,
         K_WHEN_RECEIVED: this.$whenReceived,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -376,17 +395,26 @@ class ModelEvent extends _ModelEvent {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelEvent.fromJson(otherData);
+      if (other.ref != null) {
+        this.ref = other.ref!;
+      }
+      if (other.id != null) {
+        this.id = other.id!;
+      }
+      if (other.title != null) {
+        this.title = other.title!;
+      }
+      if (other.titleSearchable != null) {
+        this.titleSearchable = other.titleSearchable!;
+      }
+      if (other.description != null) {
+        this.description = other.description!;
+      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
       if (other.createdBy != null) {
         this.createdBy = other.createdBy!;
-      }
-      if (other.def != null) {
-        this.def = other.def!;
-      }
-      if (other.defType != null) {
-        this.defType = other.defType!;
       }
       if (other.deletedAt != null) {
         this.deletedAt = other.deletedAt!;
@@ -394,35 +422,29 @@ class ModelEvent extends _ModelEvent {
       if (other.deletedBy != null) {
         this.deletedBy = other.deletedBy!;
       }
-      if (other.description != null) {
-        this.description = other.description!;
-      }
-      if (other.id != null) {
-        this.id = other.id!;
-      }
-      if (other.memberPids != null) {
-        this.memberPids = other.memberPids!;
-      }
       if (other.modifiedAt != null) {
         this.modifiedAt = other.modifiedAt!;
       }
       if (other.modifiedBy != null) {
         this.modifiedBy = other.modifiedBy!;
       }
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
       if (other.relationshipId != null) {
         this.relationshipId = other.relationshipId!;
+      }
+      if (other.memberPids != null) {
+        this.memberPids = other.memberPids!;
+      }
+      if (other.defType != null) {
+        this.defType = other.defType!;
+      }
+      if (other.def != null) {
+        this.def = other.def!;
       }
       if (other.timeout != null) {
         this.timeout = other.timeout!;
       }
-      if (other.title != null) {
-        this.title = other.title!;
-      }
-      if (other.titleSearchable != null) {
-        this.titleSearchable = other.titleSearchable!;
+      if (other.whenRead != null) {
+        this.whenRead = other.whenRead!;
       }
       if (other.whenArchived != null) {
         this.whenArchived = other.whenArchived!;
@@ -433,9 +455,6 @@ class ModelEvent extends _ModelEvent {
       if (other.whenLiked != null) {
         this.whenLiked = other.whenLiked!;
       }
-      if (other.whenRead != null) {
-        this.whenRead = other.whenRead!;
-      }
       if (other.whenReceived != null) {
         this.whenReceived = other.whenReceived!;
       }
@@ -445,121 +464,6 @@ class ModelEvent extends _ModelEvent {
   //
   //
   //
-
-  // createdAt.
-  DateTime? get createdAtField => this.createdAt;
-  set createdAtField(DateTime? v) => this.createdAt = v;
-  @protected
-  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
-  @protected
-  set $createdAt(v) => this.createdAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
-
-  // createdBy.
-  String? get createdByField => this.createdBy;
-  set createdByField(String? v) => this.createdBy = v;
-  @protected
-  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
-  @protected
-  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
-
-  // def.
-  DataModel? get defField => this.def;
-  set defField(DataModel? v) => this.def = v;
-  @protected
-  dynamic get $def => this.def?.data;
-  @protected
-  set $def(v) => this.def = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataModel(data: a) : null;
-      }();
-
-  // defType.
-  EventDefType? get defTypeField => this.defType;
-  set defTypeField(EventDefType? v) => this.defType = v;
-  @protected
-  dynamic get $defType => this.defType?.name;
-  @protected
-  set $defType(v) =>
-      this.defType = EventDefType.values.valueOf(letAs<String>(v));
-
-  // deletedAt.
-  DateTime? get deletedAtField => this.deletedAt;
-  set deletedAtField(DateTime? v) => this.deletedAt = v;
-  @protected
-  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
-  @protected
-  set $deletedAt(v) => this.deletedAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
-
-  // deletedBy.
-  String? get deletedByField => this.deletedBy;
-  set deletedByField(String? v) => this.deletedBy = v;
-  @protected
-  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
-  @protected
-  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
-
-  // description.
-  String? get descriptionField => this.description;
-  set descriptionField(String? v) => this.description = v;
-  @protected
-  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
-  @protected
-  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
-
-  // id.
-  String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
-
-  // memberPids.
-  Set<String>? get memberPidsField => this.memberPids;
-  set memberPidsField(Set<String>? v) => this.memberPids = v;
-  @protected
-  dynamic get $memberPids => this
-      .memberPids
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $memberPids(v) => this.memberPids = letSet(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
-
-  // modifiedAt.
-  DateTime? get modifiedAtField => this.modifiedAt;
-  set modifiedAtField(DateTime? v) => this.modifiedAt = v;
-  @protected
-  dynamic get $modifiedAt => this.modifiedAt?.toUtc()?.toIso8601String();
-  @protected
-  set $modifiedAt(v) => this.modifiedAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
-
-  // modifiedBy.
-  String? get modifiedByField => this.modifiedBy;
-  set modifiedByField(String? v) => this.modifiedBy = v;
-  @protected
-  dynamic get $modifiedBy => this.modifiedBy?.toString().trim().nullIfEmpty;
-  @protected
-  set $modifiedBy(v) => this.modifiedBy = v?.toString().trim().nullIfEmpty;
 
   // ref.
   DataRefModel get refField => this.ref!;
@@ -572,23 +476,13 @@ class ModelEvent extends _ModelEvent {
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
 
-  // relationshipId.
-  String? get relationshipIdField => this.relationshipId;
-  set relationshipIdField(String? v) => this.relationshipId = v;
+  // id.
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
   @protected
-  dynamic get $relationshipId =>
-      this.relationshipId?.toString().trim().nullIfEmpty;
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
   @protected
-  set $relationshipId(v) =>
-      this.relationshipId = v?.toString().trim().nullIfEmpty;
-
-  // timeout.
-  int? get timeoutField => this.timeout;
-  set timeoutField(int? v) => this.timeout = v;
-  @protected
-  dynamic get $timeout => this.timeout;
-  @protected
-  set $timeout(v) => this.timeout = letInt(v);
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // title.
   String? get titleField => this.title;
@@ -612,6 +506,160 @@ class ModelEvent extends _ModelEvent {
   @protected
   set $titleSearchable(v) => this.titleSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+
+  // description.
+  String? get descriptionField => this.description;
+  set descriptionField(String? v) => this.description = v;
+  @protected
+  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
+  @protected
+  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
+
+  // createdAt.
+  DateTime? get createdAtField => this.createdAt;
+  set createdAtField(DateTime? v) => this.createdAt = v;
+  @protected
+  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  @protected
+  set $createdAt(v) => this.createdAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // createdBy.
+  String? get createdByField => this.createdBy;
+  set createdByField(String? v) => this.createdBy = v;
+  @protected
+  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
+
+  // deletedAt.
+  DateTime? get deletedAtField => this.deletedAt;
+  set deletedAtField(DateTime? v) => this.deletedAt = v;
+  @protected
+  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $deletedAt(v) => this.deletedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // deletedBy.
+  String? get deletedByField => this.deletedBy;
+  set deletedByField(String? v) => this.deletedBy = v;
+  @protected
+  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
+
+  // modifiedAt.
+  DateTime? get modifiedAtField => this.modifiedAt;
+  set modifiedAtField(DateTime? v) => this.modifiedAt = v;
+  @protected
+  dynamic get $modifiedAt => this.modifiedAt?.toUtc()?.toIso8601String();
+  @protected
+  set $modifiedAt(v) => this.modifiedAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
+  // modifiedBy.
+  String? get modifiedByField => this.modifiedBy;
+  set modifiedByField(String? v) => this.modifiedBy = v;
+  @protected
+  dynamic get $modifiedBy => this.modifiedBy?.toString().trim().nullIfEmpty;
+  @protected
+  set $modifiedBy(v) => this.modifiedBy = v?.toString().trim().nullIfEmpty;
+
+  // relationshipId.
+  String? get relationshipIdField => this.relationshipId;
+  set relationshipIdField(String? v) => this.relationshipId = v;
+  @protected
+  dynamic get $relationshipId =>
+      this.relationshipId?.toString().trim().nullIfEmpty;
+  @protected
+  set $relationshipId(v) =>
+      this.relationshipId = v?.toString().trim().nullIfEmpty;
+
+  // memberPids.
+  Set<String>? get memberPidsField => this.memberPids;
+  set memberPidsField(Set<String>? v) => this.memberPids = v;
+  @protected
+  dynamic get $memberPids => this
+      .memberPids
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $memberPids(v) => this.memberPids = letSet(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
+
+  // defType.
+  EventDefType? get defTypeField => this.defType;
+  set defTypeField(EventDefType? v) => this.defType = v;
+  @protected
+  dynamic get $defType => this.defType?.name;
+  @protected
+  set $defType(v) =>
+      this.defType = EventDefType.values.valueOf(letAs<String>(v));
+
+  // def.
+  DataModel? get defField => this.def;
+  set defField(DataModel? v) => this.def = v;
+  @protected
+  dynamic get $def => this.def?.data;
+  @protected
+  set $def(v) => this.def = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataModel(data: a) : null;
+      }();
+
+  // timeout.
+  int? get timeoutField => this.timeout;
+  set timeoutField(int? v) => this.timeout = v;
+  @protected
+  dynamic get $timeout => this.timeout;
+  @protected
+  set $timeout(v) => this.timeout = letInt(v);
+
+  // whenRead.
+  Map<String, DateTime>? get whenReadField => this.whenRead;
+  set whenReadField(Map<String, DateTime>? v) => this.whenRead = v;
+  @protected
+  dynamic get $whenRead => this
+      .whenRead
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          p1?.toUtc()?.toIso8601String(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $whenRead(v) => this.whenRead = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toString().trim().nullIfEmpty,
+          () {
+            final a = p1;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
 
   // whenArchived.
   Map<String, DateTime>? get whenArchivedField => this.whenArchived;
@@ -687,35 +735,6 @@ class ModelEvent extends _ModelEvent {
       .nullIfEmpty;
   @protected
   set $whenLiked(v) => this.whenLiked = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = p1;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
-
-  // whenRead.
-  Map<String, DateTime>? get whenReadField => this.whenRead;
-  set whenReadField(Map<String, DateTime>? v) => this.whenRead = v;
-  @protected
-  dynamic get $whenRead => this
-      .whenRead
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toUtc()?.toIso8601String(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $whenRead(v) => this.whenRead = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,

@@ -24,34 +24,34 @@ class ModelInvitation extends _ModelInvitation {
   //
   //
 
-  static const K_CREATED_AT = 'created_at';
-  static const K_CREATED_BY = 'created_by';
-  static const K_DEF = 'def';
-  static const K_DEF_TYPE = 'def_type';
-  static const K_EXPIRES_AT = 'expires_at';
-  static const K_ID = 'id';
-  static const K_INVITATION_LINK = 'invitation_link';
-  static const K_INVITEE_ACCEPTED_EMAILS = 'invitee_accepted_emails';
-  static const K_INVITEE_EMAILS = 'invitee_emails';
-  static const K_INVITEE_REJECTED_EMAILS = 'invitee_rejected_emails';
   static const K_REF = 'ref';
+  static const K_ID = 'id';
+  static const K_CREATED_AT = 'createdAt';
+  static const K_CREATED_BY = 'createdBy';
+  static const K_EXPIRES_AT = 'expiresAt';
+  static const K_DEF_TYPE = 'defType';
+  static const K_DEF = 'def';
+  static const K_INVITATION_LINK = 'invitationLink';
+  static const K_INVITEE_EMAILS = 'inviteeEmails';
+  static const K_INVITEE_ACCEPTED_EMAILS = 'inviteeAcceptedEmails';
+  static const K_INVITEE_REJECTED_EMAILS = 'inviteeRejectedEmails';
 
   static const CLASS = 'ModelInvitation';
 
   @override
   String get $class => CLASS;
 
+  DataRefModel? ref;
+  String? id;
   DateTime? createdAt;
   String? createdBy;
-  DataModel? def;
-  InvitationDefType? defType;
   DateTime? expiresAt;
-  String? id;
+  InvitationDefType? defType;
+  DataModel? def;
   Uri? invitationLink;
-  Set<String>? inviteeAcceptedEmails;
   Set<String>? inviteeEmails;
+  Set<String>? inviteeAcceptedEmails;
   Set<String>? inviteeRejectedEmails;
-  DataRefModel? ref;
 
   //
   //
@@ -64,30 +64,30 @@ class ModelInvitation extends _ModelInvitation {
   //
 
   factory ModelInvitation({
+    required DataRefModel ref,
+    String? id,
     required DateTime createdAt,
     required String createdBy,
-    DataModel? def,
-    InvitationDefType? defType,
     DateTime? expiresAt,
-    String? id,
+    InvitationDefType? defType,
+    DataModel? def,
     Uri? invitationLink,
-    Set<String>? inviteeAcceptedEmails,
     Set<String>? inviteeEmails,
+    Set<String>? inviteeAcceptedEmails,
     Set<String>? inviteeRejectedEmails,
-    required DataRefModel ref,
   }) {
     return ModelInvitation.b(
+      ref: ref,
+      id: id,
       createdAt: createdAt,
       createdBy: createdBy,
-      def: def,
-      defType: defType,
       expiresAt: expiresAt,
-      id: id,
+      defType: defType,
+      def: def,
       invitationLink: invitationLink,
-      inviteeAcceptedEmails: inviteeAcceptedEmails,
       inviteeEmails: inviteeEmails,
+      inviteeAcceptedEmails: inviteeAcceptedEmails,
       inviteeRejectedEmails: inviteeRejectedEmails,
-      ref: ref,
     );
   }
 
@@ -96,21 +96,27 @@ class ModelInvitation extends _ModelInvitation {
   //
 
   ModelInvitation.b({
+    this.ref,
+    this.id,
     this.createdAt,
     this.createdBy,
-    this.def,
-    this.defType,
     this.expiresAt,
-    this.id,
+    this.defType,
+    this.def,
     this.invitationLink,
-    this.inviteeAcceptedEmails,
     this.inviteeEmails,
+    this.inviteeAcceptedEmails,
     this.inviteeRejectedEmails,
-    this.ref,
   }) {
-    assert(createdAt != null);
-    assert(createdBy != null);
-    assert(ref != null);
+    assert(this.id != null);
+
+    assert(this.expiresAt != null);
+    assert(this.defType != null);
+    assert(this.def != null);
+    assert(this.invitationLink != null);
+    assert(this.inviteeEmails != null);
+    assert(this.inviteeAcceptedEmails != null);
+    assert(this.inviteeRejectedEmails != null);
   }
 
   //
@@ -205,17 +211,17 @@ class ModelInvitation extends _ModelInvitation {
   ) {
     try {
       return ModelInvitation.empty()
+        ..$ref = otherData?[K_REF]
+        ..$id = otherData?[K_ID]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
-        ..$def = otherData?[K_DEF]
-        ..$defType = otherData?[K_DEF_TYPE]
         ..$expiresAt = otherData?[K_EXPIRES_AT]
-        ..$id = otherData?[K_ID]
+        ..$defType = otherData?[K_DEF_TYPE]
+        ..$def = otherData?[K_DEF]
         ..$invitationLink = otherData?[K_INVITATION_LINK]
-        ..$inviteeAcceptedEmails = otherData?[K_INVITEE_ACCEPTED_EMAILS]
         ..$inviteeEmails = otherData?[K_INVITEE_EMAILS]
-        ..$inviteeRejectedEmails = otherData?[K_INVITEE_REJECTED_EMAILS]
-        ..$ref = otherData?[K_REF];
+        ..$inviteeAcceptedEmails = otherData?[K_INVITEE_ACCEPTED_EMAILS]
+        ..$inviteeRejectedEmails = otherData?[K_INVITEE_REJECTED_EMAILS];
     } catch (e) {
       return null;
     }
@@ -261,17 +267,17 @@ class ModelInvitation extends _ModelInvitation {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_REF: this.$ref,
+        K_ID: this.$id,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
-        K_DEF: this.$def,
-        K_DEF_TYPE: this.$defType,
         K_EXPIRES_AT: this.$expiresAt,
-        K_ID: this.$id,
+        K_DEF_TYPE: this.$defType,
+        K_DEF: this.$def,
         K_INVITATION_LINK: this.$invitationLink,
-        K_INVITEE_ACCEPTED_EMAILS: this.$inviteeAcceptedEmails,
         K_INVITEE_EMAILS: this.$inviteeEmails,
+        K_INVITEE_ACCEPTED_EMAILS: this.$inviteeAcceptedEmails,
         K_INVITEE_REJECTED_EMAILS: this.$inviteeRejectedEmails,
-        K_REF: this.$ref,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -308,38 +314,38 @@ class ModelInvitation extends _ModelInvitation {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelInvitation.fromJson(otherData);
+      if (other.ref != null) {
+        this.ref = other.ref!;
+      }
+      if (other.id != null) {
+        this.id = other.id!;
+      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
       if (other.createdBy != null) {
         this.createdBy = other.createdBy!;
       }
-      if (other.def != null) {
-        this.def = other.def!;
+      if (other.expiresAt != null) {
+        this.expiresAt = other.expiresAt!;
       }
       if (other.defType != null) {
         this.defType = other.defType!;
       }
-      if (other.expiresAt != null) {
-        this.expiresAt = other.expiresAt!;
-      }
-      if (other.id != null) {
-        this.id = other.id!;
+      if (other.def != null) {
+        this.def = other.def!;
       }
       if (other.invitationLink != null) {
         this.invitationLink = other.invitationLink!;
       }
-      if (other.inviteeAcceptedEmails != null) {
-        this.inviteeAcceptedEmails = other.inviteeAcceptedEmails!;
-      }
       if (other.inviteeEmails != null) {
         this.inviteeEmails = other.inviteeEmails!;
       }
+      if (other.inviteeAcceptedEmails != null) {
+        this.inviteeAcceptedEmails = other.inviteeAcceptedEmails!;
+      }
       if (other.inviteeRejectedEmails != null) {
         this.inviteeRejectedEmails = other.inviteeRejectedEmails!;
-      }
-      if (other.ref != null) {
-        this.ref = other.ref!;
       }
     }
   }
@@ -347,6 +353,25 @@ class ModelInvitation extends _ModelInvitation {
   //
   //
   //
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => this.ref?.toJson();
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+
+  // id.
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
   DateTime get createdAtField => this.createdAt!;
@@ -367,26 +392,6 @@ class ModelInvitation extends _ModelInvitation {
   @protected
   set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
-  // def.
-  DataModel? get defField => this.def;
-  set defField(DataModel? v) => this.def = v;
-  @protected
-  dynamic get $def => this.def?.data;
-  @protected
-  set $def(v) => this.def = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataModel(data: a) : null;
-      }();
-
-  // defType.
-  InvitationDefType? get defTypeField => this.defType;
-  set defTypeField(InvitationDefType? v) => this.defType = v;
-  @protected
-  dynamic get $defType => this.defType?.name;
-  @protected
-  set $defType(v) =>
-      this.defType = InvitationDefType.values.valueOf(letAs<String>(v));
-
   // expiresAt.
   DateTime? get expiresAtField => this.expiresAt;
   set expiresAtField(DateTime? v) => this.expiresAt = v;
@@ -398,13 +403,25 @@ class ModelInvitation extends _ModelInvitation {
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
-  // id.
-  String? get idField => this.id;
-  set idField(String? v) => this.id = v;
+  // defType.
+  InvitationDefType? get defTypeField => this.defType;
+  set defTypeField(InvitationDefType? v) => this.defType = v;
   @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  dynamic get $defType => this.defType?.name;
   @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+  set $defType(v) =>
+      this.defType = InvitationDefType.values.valueOf(letAs<String>(v));
+
+  // def.
+  DataModel? get defField => this.def;
+  set defField(DataModel? v) => this.def = v;
+  @protected
+  dynamic get $def => this.def?.data;
+  @protected
+  set $def(v) => this.def = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataModel(data: a) : null;
+      }();
 
   // invitationLink.
   Uri? get invitationLinkField => this.invitationLink;
@@ -416,6 +433,38 @@ class ModelInvitation extends _ModelInvitation {
         final a = v;
         return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
       }();
+
+  // inviteeEmails.
+  Set<String>? get inviteeEmailsField => this.inviteeEmails;
+  set inviteeEmailsField(Set<String>? v) => this.inviteeEmails = v;
+  @protected
+  dynamic get $inviteeEmails => this
+      .inviteeEmails
+      ?.map(
+        (p0) => p0
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ''),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $inviteeEmails(v) => this.inviteeEmails = letSet(v)
+      ?.map(
+        (p0) => p0
+            ?.toString()
+            .trim()
+            .nullIfEmpty
+            ?.toLowerCase()
+            .replaceAll(r'[^\w]', ''),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
 
   // inviteeAcceptedEmails.
   Set<String>? get inviteeAcceptedEmailsField => this.inviteeAcceptedEmails;
@@ -437,38 +486,6 @@ class ModelInvitation extends _ModelInvitation {
       ?.toList();
   @protected
   set $inviteeAcceptedEmails(v) => this.inviteeAcceptedEmails = letSet(v)
-      ?.map(
-        (p0) => p0
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ''),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
-
-  // inviteeEmails.
-  Set<String>? get inviteeEmailsField => this.inviteeEmails;
-  set inviteeEmailsField(Set<String>? v) => this.inviteeEmails = v;
-  @protected
-  dynamic get $inviteeEmails => this
-      .inviteeEmails
-      ?.map(
-        (p0) => p0
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ''),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $inviteeEmails(v) => this.inviteeEmails = letSet(v)
       ?.map(
         (p0) => p0
             ?.toString()
@@ -514,15 +531,4 @@ class ModelInvitation extends _ModelInvitation {
       .nullIfEmpty
       ?.toSet()
       .cast();
-
-  // ref.
-  DataRefModel get refField => this.ref!;
-  set refField(DataRefModel v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
 }

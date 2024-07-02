@@ -24,28 +24,28 @@ class ModelAuthUser extends _ModelAuthUser {
   //
   //
 
-  static const K_DISPLAY_NAME = 'display_name';
-  static const K_EMAIL = 'email';
-  static const K_EMAIL_VERIFIED = 'email_verified';
-  static const K_ID = 'id';
-  static const K_ID_TOKEN = 'id_token';
-  static const K_PASSWORD = 'password';
-  static const K_PHOTO_URL = 'photo_url';
   static const K_REF = 'ref';
+  static const K_ID = 'id';
+  static const K_EMAIL = 'email';
+  static const K_PASSWORD = 'password';
+  static const K_ID_TOKEN = 'idToken';
+  static const K_DISPLAY_NAME = 'displayName';
+  static const K_PHOTO_URL = 'photoUrl';
+  static const K_EMAIL_VERIFIED = 'emailVerified';
 
   static const CLASS = 'ModelAuthUser';
 
   @override
   String get $class => CLASS;
 
-  String? displayName;
-  String? email;
-  bool? emailVerified;
-  String? id;
-  String? idToken;
-  String? password;
-  String? photoUrl;
   DataRefModel? ref;
+  String? id;
+  String? email;
+  String? password;
+  String? idToken;
+  String? displayName;
+  String? photoUrl;
+  bool? emailVerified;
 
   //
   //
@@ -58,24 +58,24 @@ class ModelAuthUser extends _ModelAuthUser {
   //
 
   factory ModelAuthUser({
-    String? displayName,
-    String? email,
-    bool? emailVerified,
-    String? id,
-    String? idToken,
-    String? password,
-    String? photoUrl,
     DataRefModel? ref,
+    String? id,
+    String? email,
+    String? password,
+    String? idToken,
+    String? displayName,
+    String? photoUrl,
+    bool? emailVerified,
   }) {
     return ModelAuthUser.b(
-      displayName: displayName,
-      email: email,
-      emailVerified: emailVerified,
-      id: id,
-      idToken: idToken,
-      password: password,
-      photoUrl: photoUrl,
       ref: ref,
+      id: id,
+      email: email,
+      password: password,
+      idToken: idToken,
+      displayName: displayName,
+      photoUrl: photoUrl,
+      emailVerified: emailVerified,
     );
   }
 
@@ -84,15 +84,24 @@ class ModelAuthUser extends _ModelAuthUser {
   //
 
   ModelAuthUser.b({
-    this.displayName,
-    this.email,
-    this.emailVerified,
-    this.id,
-    this.idToken,
-    this.password,
-    this.photoUrl,
     this.ref,
-  }) {}
+    this.id,
+    this.email,
+    this.password,
+    this.idToken,
+    this.displayName,
+    this.photoUrl,
+    this.emailVerified,
+  }) {
+    assert(this.ref != null);
+    assert(this.id != null);
+    assert(this.email != null);
+    assert(this.password != null);
+    assert(this.idToken != null);
+    assert(this.displayName != null);
+    assert(this.photoUrl != null);
+    assert(this.emailVerified != null);
+  }
 
   //
   //
@@ -186,14 +195,14 @@ class ModelAuthUser extends _ModelAuthUser {
   ) {
     try {
       return ModelAuthUser.empty()
-        ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$email = otherData?[K_EMAIL]
-        ..$emailVerified = otherData?[K_EMAIL_VERIFIED]
+        ..$ref = otherData?[K_REF]
         ..$id = otherData?[K_ID]
-        ..$idToken = otherData?[K_ID_TOKEN]
+        ..$email = otherData?[K_EMAIL]
         ..$password = otherData?[K_PASSWORD]
+        ..$idToken = otherData?[K_ID_TOKEN]
+        ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$photoUrl = otherData?[K_PHOTO_URL]
-        ..$ref = otherData?[K_REF];
+        ..$emailVerified = otherData?[K_EMAIL_VERIFIED];
     } catch (e) {
       return null;
     }
@@ -239,14 +248,14 @@ class ModelAuthUser extends _ModelAuthUser {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_DISPLAY_NAME: this.$displayName,
-        K_EMAIL: this.$email,
-        K_EMAIL_VERIFIED: this.$emailVerified,
-        K_ID: this.$id,
-        K_ID_TOKEN: this.$idToken,
-        K_PASSWORD: this.$password,
-        K_PHOTO_URL: this.$photoUrl,
         K_REF: this.$ref,
+        K_ID: this.$id,
+        K_EMAIL: this.$email,
+        K_PASSWORD: this.$password,
+        K_ID_TOKEN: this.$idToken,
+        K_DISPLAY_NAME: this.$displayName,
+        K_PHOTO_URL: this.$photoUrl,
+        K_EMAIL_VERIFIED: this.$emailVerified,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -283,29 +292,29 @@ class ModelAuthUser extends _ModelAuthUser {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelAuthUser.fromJson(otherData);
-      if (other.displayName != null) {
-        this.displayName = other.displayName!;
-      }
-      if (other.email != null) {
-        this.email = other.email!;
-      }
-      if (other.emailVerified != null) {
-        this.emailVerified = other.emailVerified!;
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.idToken != null) {
-        this.idToken = other.idToken!;
+      if (other.email != null) {
+        this.email = other.email!;
       }
       if (other.password != null) {
         this.password = other.password!;
       }
+      if (other.idToken != null) {
+        this.idToken = other.idToken!;
+      }
+      if (other.displayName != null) {
+        this.displayName = other.displayName!;
+      }
       if (other.photoUrl != null) {
         this.photoUrl = other.photoUrl!;
       }
-      if (other.ref != null) {
-        this.ref = other.ref!;
+      if (other.emailVerified != null) {
+        this.emailVerified = other.emailVerified!;
       }
     }
   }
@@ -313,62 +322,6 @@ class ModelAuthUser extends _ModelAuthUser {
   //
   //
   //
-
-  // displayName.
-  String? get displayNameField => this.displayName;
-  set displayNameField(String? v) => this.displayName = v;
-  @protected
-  dynamic get $displayName => this.displayName?.toString().trim().nullIfEmpty;
-  @protected
-  set $displayName(v) => this.displayName = v?.toString().trim().nullIfEmpty;
-
-  // email.
-  String? get emailField => this.email;
-  set emailField(String? v) => this.email = v;
-  @protected
-  dynamic get $email => this.email?.toString().trim().nullIfEmpty;
-  @protected
-  set $email(v) => this.email = v?.toString().trim().nullIfEmpty;
-
-  // emailVerified.
-  bool? get emailVerifiedField => this.emailVerified;
-  set emailVerifiedField(bool? v) => this.emailVerified = v;
-  @protected
-  dynamic get $emailVerified => this.emailVerified;
-  @protected
-  set $emailVerified(v) => this.emailVerified = letBool(v);
-
-  // id.
-  String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
-
-  // idToken.
-  String? get idTokenField => this.idToken;
-  set idTokenField(String? v) => this.idToken = v;
-  @protected
-  dynamic get $idToken => this.idToken?.toString().trim().nullIfEmpty;
-  @protected
-  set $idToken(v) => this.idToken = v?.toString().trim().nullIfEmpty;
-
-  // password.
-  String? get passwordField => this.password;
-  set passwordField(String? v) => this.password = v;
-  @protected
-  dynamic get $password => this.password?.toString().trim().nullIfEmpty;
-  @protected
-  set $password(v) => this.password = v?.toString().trim().nullIfEmpty;
-
-  // photoUrl.
-  String? get photoUrlField => this.photoUrl;
-  set photoUrlField(String? v) => this.photoUrl = v;
-  @protected
-  dynamic get $photoUrl => this.photoUrl?.toString().trim().nullIfEmpty;
-  @protected
-  set $photoUrl(v) => this.photoUrl = v?.toString().trim().nullIfEmpty;
 
   // ref.
   DataRefModel? get refField => this.ref;
@@ -380,4 +333,60 @@ class ModelAuthUser extends _ModelAuthUser {
         final a = letMap<String, dynamic>(v);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
+
+  // id.
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // email.
+  String? get emailField => this.email;
+  set emailField(String? v) => this.email = v;
+  @protected
+  dynamic get $email => this.email?.toString().trim().nullIfEmpty;
+  @protected
+  set $email(v) => this.email = v?.toString().trim().nullIfEmpty;
+
+  // password.
+  String? get passwordField => this.password;
+  set passwordField(String? v) => this.password = v;
+  @protected
+  dynamic get $password => this.password?.toString().trim().nullIfEmpty;
+  @protected
+  set $password(v) => this.password = v?.toString().trim().nullIfEmpty;
+
+  // idToken.
+  String? get idTokenField => this.idToken;
+  set idTokenField(String? v) => this.idToken = v;
+  @protected
+  dynamic get $idToken => this.idToken?.toString().trim().nullIfEmpty;
+  @protected
+  set $idToken(v) => this.idToken = v?.toString().trim().nullIfEmpty;
+
+  // displayName.
+  String? get displayNameField => this.displayName;
+  set displayNameField(String? v) => this.displayName = v;
+  @protected
+  dynamic get $displayName => this.displayName?.toString().trim().nullIfEmpty;
+  @protected
+  set $displayName(v) => this.displayName = v?.toString().trim().nullIfEmpty;
+
+  // photoUrl.
+  String? get photoUrlField => this.photoUrl;
+  set photoUrlField(String? v) => this.photoUrl = v;
+  @protected
+  dynamic get $photoUrl => this.photoUrl?.toString().trim().nullIfEmpty;
+  @protected
+  set $photoUrl(v) => this.photoUrl = v?.toString().trim().nullIfEmpty;
+
+  // emailVerified.
+  bool? get emailVerifiedField => this.emailVerified;
+  set emailVerifiedField(bool? v) => this.emailVerified = v;
+  @protected
+  dynamic get $emailVerified => this.emailVerified;
+  @protected
+  set $emailVerified(v) => this.emailVerified = letBool(v);
 }

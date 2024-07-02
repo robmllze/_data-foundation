@@ -24,36 +24,36 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
   //
 
-  static const K_CREATED_AT = 'created_at';
-  static const K_CREATED_BY = 'created_by';
-  static const K_DELETED_AT = 'deleted_at';
-  static const K_DELETED_BY = 'deleted_by';
-  static const K_DESCRIPTION = 'description';
-  static const K_ID = 'id';
-  static const K_MODIFIED_AT = 'modified_at';
-  static const K_MODIFIED_BY = 'modified_by';
-  static const K_NOTE = 'note';
   static const K_REF = 'ref';
+  static const K_ID = 'id';
   static const K_TITLE = 'title';
-  static const K_TITLE_SEARCHABLE = 'title_searchable';
+  static const K_TITLE_SEARCHABLE = 'titleSearchable';
+  static const K_DESCRIPTION = 'description';
+  static const K_CREATED_AT = 'createdAt';
+  static const K_CREATED_BY = 'createdBy';
+  static const K_DELETED_AT = 'deletedAt';
+  static const K_DELETED_BY = 'deletedBy';
+  static const K_MODIFIED_AT = 'modifiedAt';
+  static const K_MODIFIED_BY = 'modifiedBy';
+  static const K_NOTE = 'note';
 
   static const CLASS = 'ModelNoteEntry';
 
   @override
   String get $class => CLASS;
 
+  DataRefModel? ref;
+  String? id;
+  String? title;
+  String? titleSearchable;
+  String? description;
   DateTime? createdAt;
   String? createdBy;
   DateTime? deletedAt;
   String? deletedBy;
-  String? description;
-  String? id;
   DateTime? modifiedAt;
   String? modifiedBy;
   String? note;
-  DataRefModel? ref;
-  String? title;
-  String? titleSearchable;
 
   //
   //
@@ -66,32 +66,32 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
 
   factory ModelNoteEntry({
+    required DataRefModel ref,
+    String? id,
+    String? title,
+    String? titleSearchable,
+    String? description,
     DateTime? createdAt,
     String? createdBy,
     DateTime? deletedAt,
     String? deletedBy,
-    String? description,
-    String? id,
     DateTime? modifiedAt,
     String? modifiedBy,
     String? note,
-    required DataRefModel ref,
-    String? title,
-    String? titleSearchable,
   }) {
     return ModelNoteEntry.b(
+      ref: ref,
+      id: id,
+      title: title,
+      titleSearchable: titleSearchable,
+      description: description,
       createdAt: createdAt,
       createdBy: createdBy,
       deletedAt: deletedAt,
       deletedBy: deletedBy,
-      description: description,
-      id: id,
       modifiedAt: modifiedAt,
       modifiedBy: modifiedBy,
       note: note,
-      ref: ref,
-      title: title,
-      titleSearchable: titleSearchable,
     );
   }
 
@@ -100,20 +100,30 @@ class ModelNoteEntry extends _ModelNoteEntry {
   //
 
   ModelNoteEntry.b({
+    this.ref,
+    this.id,
+    this.title,
+    this.titleSearchable,
+    this.description,
     this.createdAt,
     this.createdBy,
     this.deletedAt,
     this.deletedBy,
-    this.description,
-    this.id,
     this.modifiedAt,
     this.modifiedBy,
     this.note,
-    this.ref,
-    this.title,
-    this.titleSearchable,
   }) {
-    assert(ref != null);
+    assert(this.id != null);
+    assert(this.title != null);
+    assert(this.titleSearchable != null);
+    assert(this.description != null);
+    assert(this.createdAt != null);
+    assert(this.createdBy != null);
+    assert(this.deletedAt != null);
+    assert(this.deletedBy != null);
+    assert(this.modifiedAt != null);
+    assert(this.modifiedBy != null);
+    assert(this.note != null);
   }
 
   //
@@ -208,18 +218,18 @@ class ModelNoteEntry extends _ModelNoteEntry {
   ) {
     try {
       return ModelNoteEntry.empty()
+        ..$ref = otherData?[K_REF]
+        ..$id = otherData?[K_ID]
+        ..$title = otherData?[K_TITLE]
+        ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE]
+        ..$description = otherData?[K_DESCRIPTION]
         ..$createdAt = otherData?[K_CREATED_AT]
         ..$createdBy = otherData?[K_CREATED_BY]
         ..$deletedAt = otherData?[K_DELETED_AT]
         ..$deletedBy = otherData?[K_DELETED_BY]
-        ..$description = otherData?[K_DESCRIPTION]
-        ..$id = otherData?[K_ID]
         ..$modifiedAt = otherData?[K_MODIFIED_AT]
         ..$modifiedBy = otherData?[K_MODIFIED_BY]
-        ..$note = otherData?[K_NOTE]
-        ..$ref = otherData?[K_REF]
-        ..$title = otherData?[K_TITLE]
-        ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE];
+        ..$note = otherData?[K_NOTE];
     } catch (e) {
       return null;
     }
@@ -265,18 +275,18 @@ class ModelNoteEntry extends _ModelNoteEntry {
   }) {
     try {
       final withNulls = <String, dynamic>{
+        K_REF: this.$ref,
+        K_ID: this.$id,
+        K_TITLE: this.$title,
+        K_TITLE_SEARCHABLE: this.$titleSearchable,
+        K_DESCRIPTION: this.$description,
         K_CREATED_AT: this.$createdAt,
         K_CREATED_BY: this.$createdBy,
         K_DELETED_AT: this.$deletedAt,
         K_DELETED_BY: this.$deletedBy,
-        K_DESCRIPTION: this.$description,
-        K_ID: this.$id,
         K_MODIFIED_AT: this.$modifiedAt,
         K_MODIFIED_BY: this.$modifiedBy,
         K_NOTE: this.$note,
-        K_REF: this.$ref,
-        K_TITLE: this.$title,
-        K_TITLE_SEARCHABLE: this.$titleSearchable,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -313,6 +323,21 @@ class ModelNoteEntry extends _ModelNoteEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelNoteEntry.fromJson(otherData);
+      if (other.ref != null) {
+        this.ref = other.ref!;
+      }
+      if (other.id != null) {
+        this.id = other.id!;
+      }
+      if (other.title != null) {
+        this.title = other.title!;
+      }
+      if (other.titleSearchable != null) {
+        this.titleSearchable = other.titleSearchable!;
+      }
+      if (other.description != null) {
+        this.description = other.description!;
+      }
       if (other.createdAt != null) {
         this.createdAt = other.createdAt!;
       }
@@ -325,12 +350,6 @@ class ModelNoteEntry extends _ModelNoteEntry {
       if (other.deletedBy != null) {
         this.deletedBy = other.deletedBy!;
       }
-      if (other.description != null) {
-        this.description = other.description!;
-      }
-      if (other.id != null) {
-        this.id = other.id!;
-      }
       if (other.modifiedAt != null) {
         this.modifiedAt = other.modifiedAt!;
       }
@@ -340,21 +359,62 @@ class ModelNoteEntry extends _ModelNoteEntry {
       if (other.note != null) {
         this.note = other.note!;
       }
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
-      if (other.title != null) {
-        this.title = other.title!;
-      }
-      if (other.titleSearchable != null) {
-        this.titleSearchable = other.titleSearchable!;
-      }
     }
   }
 
   //
   //
   //
+
+  // ref.
+  DataRefModel get refField => this.ref!;
+  set refField(DataRefModel v) => this.ref = v;
+  @protected
+  dynamic get $ref => this.ref?.toJson();
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+
+  // id.
+  String? get idField => this.id;
+  set idField(String? v) => this.id = v;
+  @protected
+  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
+  @protected
+  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // title.
+  String? get titleField => this.title;
+  set titleField(String? v) => this.title = v;
+  @protected
+  dynamic get $title => this.title?.toString().trim().nullIfEmpty;
+  @protected
+  set $title(v) => this.title = v?.toString().trim().nullIfEmpty;
+
+  // titleSearchable.
+  String? get titleSearchableField => this.titleSearchable;
+  set titleSearchableField(String? v) => this.titleSearchable = v;
+  @protected
+  dynamic get $titleSearchable => this
+      .titleSearchable
+      ?.toString()
+      .trim()
+      .nullIfEmpty
+      ?.toLowerCase()
+      .replaceAll(r'[^\w]', '');
+  @protected
+  set $titleSearchable(v) => this.titleSearchable =
+      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+
+  // description.
+  String? get descriptionField => this.description;
+  set descriptionField(String? v) => this.description = v;
+  @protected
+  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
+  @protected
+  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
   // createdAt.
   DateTime? get createdAtField => this.createdAt;
@@ -394,22 +454,6 @@ class ModelNoteEntry extends _ModelNoteEntry {
   @protected
   set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
-  // description.
-  String? get descriptionField => this.description;
-  set descriptionField(String? v) => this.description = v;
-  @protected
-  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
-  @protected
-  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
-
-  // id.
-  String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
-
   // modifiedAt.
   DateTime? get modifiedAtField => this.modifiedAt;
   set modifiedAtField(DateTime? v) => this.modifiedAt = v;
@@ -436,38 +480,4 @@ class ModelNoteEntry extends _ModelNoteEntry {
   dynamic get $note => this.note?.toString().trim().nullIfEmpty;
   @protected
   set $note(v) => this.note = v?.toString().trim().nullIfEmpty;
-
-  // ref.
-  DataRefModel get refField => this.ref!;
-  set refField(DataRefModel v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
-
-  // title.
-  String? get titleField => this.title;
-  set titleField(String? v) => this.title = v;
-  @protected
-  dynamic get $title => this.title?.toString().trim().nullIfEmpty;
-  @protected
-  set $title(v) => this.title = v?.toString().trim().nullIfEmpty;
-
-  // titleSearchable.
-  String? get titleSearchableField => this.titleSearchable;
-  set titleSearchableField(String? v) => this.titleSearchable = v;
-  @protected
-  dynamic get $titleSearchable => this
-      .titleSearchable
-      ?.toString()
-      .trim()
-      .nullIfEmpty
-      ?.toLowerCase()
-      .replaceAll(r'[^\w]', '');
-  @protected
-  set $titleSearchable(v) => this.titleSearchable =
-      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
 }
