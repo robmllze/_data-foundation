@@ -113,17 +113,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     this.modifiedBy,
     this.email,
   }) {
-    assert(this.id != null);
-    assert(this.title != null);
-    assert(this.titleSearchable != null);
-    assert(this.description != null);
-    assert(this.createdAt != null);
-    assert(this.createdBy != null);
-    assert(this.deletedAt != null);
-    assert(this.deletedBy != null);
-    assert(this.modifiedAt != null);
-    assert(this.modifiedBy != null);
-    assert(this.email != null);
+    assert(this.ref != null);
   }
 
   //

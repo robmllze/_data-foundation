@@ -102,18 +102,7 @@ class ModelConnectionPermissions extends Model {
     this.notificationRequest,
     this.readOnlyPermit,
     this.readOnlyRequest,
-  }) {
-    assert(this.minimalPermit != null);
-    assert(this.minimalRequest != null);
-    assert(this.editorPermit != null);
-    assert(this.editorRequest != null);
-    assert(this.messagingPermit != null);
-    assert(this.messagingRequest != null);
-    assert(this.notificationPermit != null);
-    assert(this.notificationRequest != null);
-    assert(this.readOnlyPermit != null);
-    assert(this.readOnlyRequest != null);
-  }
+  }) {}
 
   //
   //

@@ -57,9 +57,7 @@ class ModelConnectionsRelDef extends Model {
 
   ModelConnectionsRelDef.b({
     this.permissions,
-  }) {
-    assert(this.permissions != null);
-  }
+  }) {}
 
   //
   //

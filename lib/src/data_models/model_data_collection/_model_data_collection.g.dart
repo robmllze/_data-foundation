@@ -63,7 +63,7 @@ class ModelDataCollection extends _ModelDataCollection {
     this.ref,
     this.documents,
   }) {
-    assert(this.documents != null);
+    assert(this.ref != null);
   }
 
   //

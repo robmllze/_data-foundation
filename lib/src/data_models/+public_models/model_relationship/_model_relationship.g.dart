@@ -168,28 +168,7 @@ class ModelRelationship extends _ModelRelationship {
     this.defType,
     this.def,
   }) {
-    assert(this.id != null);
-    assert(this.displayName != null);
-    assert(this.displayNameSearchable != null);
-    assert(this.displayColor != null);
-    assert(this.email != null);
-    assert(this.createdAt != null);
-    assert(this.createdBy != null);
-    assert(this.deletedAt != null);
-    assert(this.deletedBy != null);
-    assert(this.description != null);
-    assert(this.addressBook != null);
-    assert(this.emailBook != null);
-    assert(this.fileBook != null);
-    assert(this.phoneBook != null);
-    assert(this.deviceRegistrations != null);
-    assert(this.registration != null);
-    assert(this.memberPids != null);
-    assert(this.whenDisabled != null);
-    assert(this.whenEnabled != null);
-    assert(this.whenNoted != null);
-    assert(this.defType != null);
-    assert(this.def != null);
+    assert(this.ref != null);
   }
 
   //

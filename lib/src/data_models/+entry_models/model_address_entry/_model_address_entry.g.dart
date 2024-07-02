@@ -138,22 +138,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
     this.postalCode,
     this.country,
   }) {
-    assert(this.id != null);
-    assert(this.title != null);
-    assert(this.titleSearchable != null);
-    assert(this.description != null);
-    assert(this.createdAt != null);
-    assert(this.createdBy != null);
-    assert(this.deletedAt != null);
-    assert(this.deletedBy != null);
-    assert(this.modifiedAt != null);
-    assert(this.modifiedBy != null);
-    assert(this.addressLine1 != null);
-    assert(this.addressLine2 != null);
-    assert(this.city != null);
-    assert(this.stateOrProvince != null);
-    assert(this.postalCode != null);
-    assert(this.country != null);
+    assert(this.ref != null);
   }
 
   //

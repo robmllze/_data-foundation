@@ -108,15 +108,10 @@ class ModelInvitation extends _ModelInvitation {
     this.inviteeAcceptedEmails,
     this.inviteeRejectedEmails,
   }) {
-    assert(this.id != null);
+    assert(this.ref != null);
 
-    assert(this.expiresAt != null);
-    assert(this.defType != null);
-    assert(this.def != null);
-    assert(this.invitationLink != null);
-    assert(this.inviteeEmails != null);
-    assert(this.inviteeAcceptedEmails != null);
-    assert(this.inviteeRejectedEmails != null);
+    assert(this.createdAt != null);
+    assert(this.createdBy != null);
   }
 
   //

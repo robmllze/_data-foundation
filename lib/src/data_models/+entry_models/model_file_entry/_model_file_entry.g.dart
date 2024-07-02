@@ -138,22 +138,7 @@ class ModelFileEntry extends _ModelFileEntry {
     this.size,
     this.extension,
   }) {
-    assert(this.id != null);
-    assert(this.title != null);
-    assert(this.titleSearchable != null);
-    assert(this.description != null);
-    assert(this.createdAt != null);
-    assert(this.createdBy != null);
-    assert(this.deletedAt != null);
-    assert(this.deletedBy != null);
-    assert(this.modifiedAt != null);
-    assert(this.modifiedBy != null);
-    assert(this.name != null);
-    assert(this.downloadUrl != null);
-    assert(this.storagePath != null);
-    assert(this.definitionPath != null);
-    assert(this.size != null);
-    assert(this.extension != null);
+    assert(this.ref != null);
   }
 
   //

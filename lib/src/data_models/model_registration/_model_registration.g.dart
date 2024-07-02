@@ -77,13 +77,7 @@ class ModelRegistration extends _ModelRegistration {
     this.registeredAt,
     this.ipv4Address,
     this.location,
-  }) {
-    assert(this.id != null);
-    assert(this.registrantPid != null);
-    assert(this.registeredAt != null);
-    assert(this.ipv4Address != null);
-    assert(this.location != null);
-  }
+  }) {}
 
   //
   //

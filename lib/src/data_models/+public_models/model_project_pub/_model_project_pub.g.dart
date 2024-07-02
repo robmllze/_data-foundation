@@ -148,24 +148,7 @@ class ModelProjectPub extends _ModelProjectPub {
     this.whenOpened,
     this.whenClosed,
   }) {
-    assert(this.id != null);
-    assert(this.displayName != null);
-    assert(this.displayNameSearchable != null);
-    assert(this.displayColor != null);
-    assert(this.email != null);
-    assert(this.createdAt != null);
-    assert(this.createdBy != null);
-    assert(this.deletedAt != null);
-    assert(this.deletedBy != null);
-    assert(this.description != null);
-    assert(this.addressBook != null);
-    assert(this.emailBook != null);
-    assert(this.fileBook != null);
-    assert(this.phoneBook != null);
-    assert(this.deviceRegistrations != null);
-    assert(this.registration != null);
-    assert(this.whenOpened != null);
-    assert(this.whenClosed != null);
+    assert(this.ref != null);
   }
 
   //

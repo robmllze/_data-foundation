@@ -103,12 +103,11 @@ class ModelMapTile extends Model {
     this.y,
     this.isHighDpi,
   }) {
-    assert(this.source != null);
-
-    assert(this.z != null);
-    assert(this.x != null);
-    assert(this.y != null);
-    assert(this.isHighDpi != null);
+    assert(this.username != null);
+    assert(this.lightStyleId != null);
+    assert(this.darkStyleId != null);
+    assert(this.accessToken != null);
+    assert(this.tileSize != null);
   }
 
   //

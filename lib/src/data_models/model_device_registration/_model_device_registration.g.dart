@@ -92,16 +92,7 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
     this.lastLoggedInAt,
     this.notificationToken,
     this.deviceInfo,
-  }) {
-    assert(this.id != null);
-    assert(this.registrantPid != null);
-    assert(this.registeredAt != null);
-    assert(this.ipv4Address != null);
-    assert(this.location != null);
-    assert(this.lastLoggedInAt != null);
-    assert(this.notificationToken != null);
-    assert(this.deviceInfo != null);
-  }
+  }) {}
 
   //
   //

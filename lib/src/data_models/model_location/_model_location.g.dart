@@ -67,11 +67,7 @@ class ModelLocation extends Model {
     this.altitude,
     this.latitude,
     this.longitude,
-  }) {
-    assert(this.altitude != null);
-    assert(this.latitude != null);
-    assert(this.longitude != null);
-  }
+  }) {}
 
   //
   //

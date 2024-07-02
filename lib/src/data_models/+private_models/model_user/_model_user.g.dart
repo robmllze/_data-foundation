@@ -113,17 +113,7 @@ class ModelUser extends _ModelUser {
     this.pushSubscriptions,
     this.smsSubscriptions,
   }) {
-    assert(this.id != null);
-    assert(this.pid != null);
-    assert(this.seed != null);
-    assert(this.createdAt != null);
-    assert(this.createdBy != null);
-    assert(this.deletedAt != null);
-    assert(this.deletedBy != null);
-    assert(this.didSendWelcomeEmail != null);
-    assert(this.emailSubscriptions != null);
-    assert(this.pushSubscriptions != null);
-    assert(this.smsSubscriptions != null);
+    assert(this.ref != null);
   }
 
   //

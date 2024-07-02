@@ -158,26 +158,7 @@ class ModelEvent extends _ModelEvent {
     this.whenLiked,
     this.whenReceived,
   }) {
-    assert(this.id != null);
-    assert(this.title != null);
-    assert(this.titleSearchable != null);
-    assert(this.description != null);
-    assert(this.createdAt != null);
-    assert(this.createdBy != null);
-    assert(this.deletedAt != null);
-    assert(this.deletedBy != null);
-    assert(this.modifiedAt != null);
-    assert(this.modifiedBy != null);
-    assert(this.relationshipId != null);
-    assert(this.memberPids != null);
-    assert(this.defType != null);
-    assert(this.def != null);
-    assert(this.timeout != null);
-    assert(this.whenRead != null);
-    assert(this.whenArchived != null);
-    assert(this.whenHidden != null);
-    assert(this.whenLiked != null);
-    assert(this.whenReceived != null);
+    assert(this.ref != null);
   }
 
   //

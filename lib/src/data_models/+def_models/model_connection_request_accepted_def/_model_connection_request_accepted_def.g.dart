@@ -73,12 +73,7 @@ class ModelConnectionRequestAcceptedDef
     this.senderPid,
     this.receiverPid,
     this.message,
-  }) {
-    assert(this.relationshipId != null);
-    assert(this.senderPid != null);
-    assert(this.receiverPid != null);
-    assert(this.message != null);
-  }
+  }) {}
 
   //
   //

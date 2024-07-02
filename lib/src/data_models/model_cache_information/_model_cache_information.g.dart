@@ -57,7 +57,9 @@ class ModelCacheInformation extends _ModelCacheInformation {
 
   ModelCacheInformation.b({
     this.files,
-  }) {}
+  }) {
+    assert(this.files != null);
+  }
 
   //
   //

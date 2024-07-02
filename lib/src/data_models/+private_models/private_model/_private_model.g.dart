@@ -93,13 +93,7 @@ class PrivateModel extends Model {
     this.deletedAt,
     this.deletedBy,
   }) {
-    assert(this.id != null);
-    assert(this.pid != null);
-    assert(this.seed != null);
-    assert(this.createdAt != null);
-    assert(this.createdBy != null);
-    assert(this.deletedAt != null);
-    assert(this.deletedBy != null);
+    assert(this.ref != null);
   }
 
   //

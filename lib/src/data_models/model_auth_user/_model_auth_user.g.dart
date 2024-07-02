@@ -92,16 +92,7 @@ class ModelAuthUser extends _ModelAuthUser {
     this.displayName,
     this.photoUrl,
     this.emailVerified,
-  }) {
-    assert(this.ref != null);
-    assert(this.id != null);
-    assert(this.email != null);
-    assert(this.password != null);
-    assert(this.idToken != null);
-    assert(this.displayName != null);
-    assert(this.photoUrl != null);
-    assert(this.emailVerified != null);
-  }
+  }) {}
 
   //
   //
