@@ -15,12 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_connection_request_rejected_def.dart';
+part of 'model_event_body.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelConnectionRequestRejectedDef
-    extends _ModelConnectionRequestRejectedDef {
+class ModelEventBody extends Model {
   //
   //
   //
@@ -30,7 +29,7 @@ class ModelConnectionRequestRejectedDef
   static const K_RECEIVER_PID = 'receiverPid';
   static const K_MESSAGE = 'message';
 
-  static const CLASS = 'ModelConnectionRequestRejectedDef';
+  static const CLASS = 'DefModel';
 
   @override
   String get $class => CLASS;
@@ -44,19 +43,19 @@ class ModelConnectionRequestRejectedDef
   //
   //
 
-  ModelConnectionRequestRejectedDef.empty();
+  ModelEventBody.empty();
 
   //
   //
   //
 
-  factory ModelConnectionRequestRejectedDef({
+  factory ModelEventBody({
     String? relationshipId,
     String? senderPid,
     String? receiverPid,
     String? message,
   }) {
-    return ModelConnectionRequestRejectedDef.b(
+    return ModelEventBody.b(
       relationshipId: relationshipId,
       senderPid: senderPid,
       receiverPid: receiverPid,
@@ -68,7 +67,7 @@ class ModelConnectionRequestRejectedDef
   //
   //
 
-  ModelConnectionRequestRejectedDef.b({
+  ModelEventBody.b({
     this.relationshipId,
     this.senderPid,
     this.receiverPid,
@@ -79,18 +78,18 @@ class ModelConnectionRequestRejectedDef
   //
   //
 
-  factory ModelConnectionRequestRejectedDef.from(
+  factory ModelEventBody.from(
     Model? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelConnectionRequestRejectedDef.from: $e');
+      assert(false, 'DefModel.from: $e');
       rethrow;
     }
   }
 
-  static ModelConnectionRequestRejectedDef? fromOrNull(
+  static ModelEventBody? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
@@ -100,19 +99,19 @@ class ModelConnectionRequestRejectedDef
   //
   //
 
-  factory ModelConnectionRequestRejectedDef.of(
-    ModelConnectionRequestRejectedDef other,
+  factory ModelEventBody.of(
+    ModelEventBody other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelConnectionRequestRejectedDef.of: $e');
+      assert(false, 'DefModel.of: $e');
       rethrow;
     }
   }
 
-  static ModelConnectionRequestRejectedDef? ofOrNull(
-    ModelConnectionRequestRejectedDef? other,
+  static ModelEventBody? ofOrNull(
+    ModelEventBody? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -121,26 +120,26 @@ class ModelConnectionRequestRejectedDef
   //
   //
 
-  factory ModelConnectionRequestRejectedDef.fromJsonString(
+  factory ModelEventBody.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'ModelConnectionRequestRejectedDef.fromJsonString: $e');
+      assert(false, 'DefModel.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static ModelConnectionRequestRejectedDef? fromJsonStringOrNull(
+  static ModelEventBody? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelConnectionRequestRejectedDef.fromJson(decoded);
+        return ModelEventBody.fromJson(decoded);
       } else {
-        return ModelConnectionRequestRejectedDef.empty();
+        return ModelEventBody.empty();
       }
     } catch (_) {
       return null;
@@ -151,22 +150,22 @@ class ModelConnectionRequestRejectedDef
   //
   //
 
-  factory ModelConnectionRequestRejectedDef.fromJson(
+  factory ModelEventBody.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'ModelConnectionRequestRejectedDef.fromJson: $e');
+      assert(false, 'DefModel.fromJson: $e');
       rethrow;
     }
   }
 
-  static ModelConnectionRequestRejectedDef? fromJsonOrNull(
+  static ModelEventBody? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelConnectionRequestRejectedDef.empty()
+      return ModelEventBody.empty()
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$senderPid = otherData?[K_SENDER_PID]
         ..$receiverPid = otherData?[K_RECEIVER_PID]
@@ -180,25 +179,25 @@ class ModelConnectionRequestRejectedDef
   //
   //
 
-  factory ModelConnectionRequestRejectedDef.fromUri(
+  factory ModelEventBody.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'ModelConnectionRequestRejectedDef.fromUri: $e');
+      assert(false, 'DefModel.fromUri: $e');
       rethrow;
     }
   }
 
-  static ModelConnectionRequestRejectedDef? fromUriOrNull(
+  static ModelEventBody? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelConnectionRequestRejectedDef.fromJson(uri.queryParameters);
+        return ModelEventBody.fromJson(uri.queryParameters);
       } else {
-        return ModelConnectionRequestRejectedDef.empty();
+        return ModelEventBody.empty();
       }
     } catch (_) {
       return null;
@@ -223,7 +222,7 @@ class ModelConnectionRequestRejectedDef
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'ModelConnectionRequestRejectedDef.toJson: $e');
+      assert(false, 'DefModel.toJson: $e');
       rethrow;
     }
   }
@@ -234,7 +233,7 @@ class ModelConnectionRequestRejectedDef
 
   @override
   T empty<T extends Model>() {
-    return ModelConnectionRequestRejectedDef.b() as T;
+    return ModelEventBody.b() as T;
   }
 
   //
@@ -243,7 +242,7 @@ class ModelConnectionRequestRejectedDef
 
   @override
   T copy<T extends Model>() {
-    return (ModelConnectionRequestRejectedDef.b()..updateWith(this)) as T;
+    return (ModelEventBody.b()..updateWith(this)) as T;
   }
 
   //
@@ -255,7 +254,7 @@ class ModelConnectionRequestRejectedDef
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelConnectionRequestRejectedDef.fromJson(otherData);
+      final other = ModelEventBody.fromJson(otherData);
       if (other.relationshipId != null) {
         this.relationshipId = other.relationshipId!;
       }
@@ -279,11 +278,9 @@ class ModelConnectionRequestRejectedDef
   String? get relationshipIdField => this.relationshipId;
   set relationshipIdField(String? v) => this.relationshipId = v;
   @protected
-  dynamic get $relationshipId =>
-      this.relationshipId?.toString().trim().nullIfEmpty;
+  dynamic get $relationshipId => this.relationshipId?.toString().trim().nullIfEmpty;
   @protected
-  set $relationshipId(v) =>
-      this.relationshipId = v?.toString().trim().nullIfEmpty;
+  set $relationshipId(v) => this.relationshipId = v?.toString().trim().nullIfEmpty;
 
   // senderPid.
   String? get senderPidField => this.senderPid;

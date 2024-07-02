@@ -7,15 +7,7 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export 'data_models/+def_models/def_model/def_model.dart';
-export 'data_models/+def_models/model_connection_request_accepted_def/model_connection_request_accepted_def.dart';
-export 'data_models/+def_models/model_connection_request_def/model_connection_request_def.dart';
-export 'data_models/+def_models/model_connection_request_rejected_def/model_connection_request_rejected_def.dart';
-export 'data_models/+def_models/model_message_def/model_message_def.dart';
-export 'data_models/+def_models/model_rel_changed_def/model_rel_changed_def.dart';
-export 'data_models/+def_models/model_rel_disabled_def/model_rel_disabled_def.dart';
-export 'data_models/+def_models/model_rel_removed_def/model_rel_removed_def.dart';
-export 'data_models/+def_models/rel_def/model_connections_rel_def/model_connections_rel_def.dart';
+export 'data_models/model_event_body/model_event_body.dart';
 export 'data_models/+entry_models/entry_model/entry_model.dart';
 export 'data_models/+entry_models/model_address_entry/model_address_entry.dart';
 export 'data_models/+entry_models/model_email_entry/model_email_entry.dart';
