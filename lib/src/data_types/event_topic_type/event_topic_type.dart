@@ -10,12 +10,12 @@
 
 import '/_common.dart';
 
-part '_event_def_type.g.dart';
+part '_event_topic_type.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateTypeUtils()
-enum EventDefType {
+enum EventTopicType {
   CONNECTION_REQUEST_ACCEPTED,
   CONNECTION_REQUEST_REJECTED,
   CONNECTION_REQUEST,

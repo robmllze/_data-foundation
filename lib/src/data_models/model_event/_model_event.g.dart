@@ -64,7 +64,7 @@ class ModelEvent extends _ModelEvent {
   String? modifiedBy;
   String? relationshipId;
   Set<String>? memberPids;
-  EventDefType? defType;
+  EventTopicType? defType;
   DataModel? def;
   int? timeout;
   Map<String, DateTime>? whenRead;
@@ -97,7 +97,7 @@ class ModelEvent extends _ModelEvent {
     String? modifiedBy,
     String? relationshipId,
     Set<String>? memberPids,
-    EventDefType? defType,
+    EventTopicType? defType,
     DataModel? def,
     int? timeout,
     Map<String, DateTime>? whenRead,
@@ -477,13 +477,8 @@ class ModelEvent extends _ModelEvent {
   String? get titleSearchableField => this.titleSearchable;
   set titleSearchableField(String? v) => this.titleSearchable = v;
   @protected
-  dynamic get $titleSearchable => this
-      .titleSearchable
-      ?.toString()
-      .trim()
-      .nullIfEmpty
-      ?.toLowerCase()
-      .replaceAll(r'[^\w]', '');
+  dynamic get $titleSearchable =>
+      this.titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
   @protected
   set $titleSearchable(v) => this.titleSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
@@ -557,11 +552,9 @@ class ModelEvent extends _ModelEvent {
   String? get relationshipIdField => this.relationshipId;
   set relationshipIdField(String? v) => this.relationshipId = v;
   @protected
-  dynamic get $relationshipId =>
-      this.relationshipId?.toString().trim().nullIfEmpty;
+  dynamic get $relationshipId => this.relationshipId?.toString().trim().nullIfEmpty;
   @protected
-  set $relationshipId(v) =>
-      this.relationshipId = v?.toString().trim().nullIfEmpty;
+  set $relationshipId(v) => this.relationshipId = v?.toString().trim().nullIfEmpty;
 
   // memberPids.
   Set<String>? get memberPidsField => this.memberPids;
@@ -586,13 +579,12 @@ class ModelEvent extends _ModelEvent {
       .cast();
 
   // defType.
-  EventDefType? get defTypeField => this.defType;
-  set defTypeField(EventDefType? v) => this.defType = v;
+  EventTopicType? get defTypeField => this.defType;
+  set defTypeField(EventTopicType? v) => this.defType = v;
   @protected
   dynamic get $defType => this.defType?.name;
   @protected
-  set $defType(v) =>
-      this.defType = EventDefType.values.valueOf(letAs<String>(v));
+  set $defType(v) => this.defType = EventTopicType.values.valueOf(letAs<String>(v));
 
   // def.
   DataModel? get defField => this.def;

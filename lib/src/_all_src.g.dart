@@ -54,7 +54,7 @@ export 'data_pool_extensions/public_pool_extension.dart';
 export 'data_pool_extensions/relationship_pool_extension.dart';
 export 'data_types/access_status_type/access_status_type.dart';
 export 'data_types/access_type/access_type.dart';
-export 'data_types/event_def_type/event_def_type.dart';
+export 'data_types/event_topic_type/event_topic_type.dart';
 export 'data_types/invitation_def_type/invitation_def_type.dart';
 export 'data_types/relationship_def_type/relationship_def_type.dart';
 export 'data_utils/data_ref_for_pid.dart';
