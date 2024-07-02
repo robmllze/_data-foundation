@@ -7,19 +7,19 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-part of 'event_topic_type.dart';
+part of 'topic_type.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-extension EventTopicTypeUtils on EventTopicType {
-  EventTopicType get next {
-    final index = (this.index + 1) % EventTopicType.values.length;
-    return EventTopicType.values[index];
+extension TopicTypeUtils on TopicType {
+  TopicType get next {
+    final index = (this.index + 1) % TopicType.values.length;
+    return TopicType.values[index];
   }
 
-  EventTopicType get previous {
-    final index = (this.index - 1 + EventTopicType.values.length) % EventTopicType.values.length;
-    return EventTopicType.values[index];
+  TopicType get previous {
+    final index = (this.index - 1 + TopicType.values.length) % TopicType.values.length;
+    return TopicType.values[index];
   }
 
   String trFromSection(String section, [Map args = const {}]) {

@@ -64,7 +64,7 @@ class ModelEvent extends _ModelEvent {
   String? modifiedBy;
   String? relationshipId;
   Set<String>? memberPids;
-  EventTopicType? defType;
+  TopicType? defType;
   DataModel? def;
   int? timeout;
   Map<String, DateTime>? whenRead;
@@ -97,7 +97,7 @@ class ModelEvent extends _ModelEvent {
     String? modifiedBy,
     String? relationshipId,
     Set<String>? memberPids,
-    EventTopicType? defType,
+    TopicType? defType,
     DataModel? def,
     int? timeout,
     Map<String, DateTime>? whenRead,
@@ -579,12 +579,12 @@ class ModelEvent extends _ModelEvent {
       .cast();
 
   // defType.
-  EventTopicType? get defTypeField => this.defType;
-  set defTypeField(EventTopicType? v) => this.defType = v;
+  TopicType? get defTypeField => this.defType;
+  set defTypeField(TopicType? v) => this.defType = v;
   @protected
   dynamic get $defType => this.defType?.name;
   @protected
-  set $defType(v) => this.defType = EventTopicType.values.valueOf(letAs<String>(v));
+  set $defType(v) => this.defType = TopicType.values.valueOf(letAs<String>(v));
 
   // def.
   DataModel? get defField => this.def;
