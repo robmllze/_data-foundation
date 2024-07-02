@@ -140,7 +140,7 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: userPid,
-      collection: const ['user_pubs'],
+      collection: const ['userPubs'],
     );
   }
 
@@ -152,7 +152,7 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: eventId,
-      collection: ['user_pubs', '$userPid', 'events'],
+      collection: ['userPubs', '$userPid', 'events'],
     );
   }
 
@@ -197,7 +197,7 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: projectPid,
-      collection: const ['project_pubs'],
+      collection: const ['projectPubs'],
     );
   }
 
@@ -219,7 +219,7 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: jobPid,
-      collection: const ['job_pubs'],
+      collection: const ['jobPubs'],
     );
   }
 
@@ -241,7 +241,7 @@ abstract final class Schema {
   }) {
     return DataRef(
       id: organizationPid,
-      collection: const ['organization_pubs'],
+      collection: const ['organizationPubs'],
     );
   }
 }
