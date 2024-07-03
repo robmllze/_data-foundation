@@ -37,8 +37,8 @@ class ModelEvent extends _ModelEvent {
   static const K_MODIFIED_BY = 'modifiedBy';
   static const K_RELATIONSHIP_ID = 'relationshipId';
   static const K_MEMBER_PIDS = 'memberPids';
-  static const K_DEF_TYPE = 'defType';
-  static const K_DEF = 'def';
+  static const K_TOPIC = 'topic';
+  static const K_BODY = 'body';
   static const K_TIMEOUT = 'timeout';
   static const K_WHEN_READ = 'whenRead';
   static const K_WHEN_ARCHIVED = 'whenArchived';
@@ -64,8 +64,8 @@ class ModelEvent extends _ModelEvent {
   String? modifiedBy;
   String? relationshipId;
   Set<String>? memberPids;
-  TopicType? defType;
-  DataModel? def;
+  TopicType? topic;
+  DataModel? body;
   int? timeout;
   Map<String, DateTime>? whenRead;
   Map<String, DateTime>? whenArchived;
@@ -97,8 +97,8 @@ class ModelEvent extends _ModelEvent {
     String? modifiedBy,
     String? relationshipId,
     Set<String>? memberPids,
-    TopicType? defType,
-    DataModel? def,
+    TopicType? topic,
+    DataModel? body,
     int? timeout,
     Map<String, DateTime>? whenRead,
     Map<String, DateTime>? whenArchived,
@@ -120,8 +120,8 @@ class ModelEvent extends _ModelEvent {
       modifiedBy: modifiedBy,
       relationshipId: relationshipId,
       memberPids: memberPids,
-      defType: defType,
-      def: def,
+      topic: topic,
+      body: body,
       timeout: timeout,
       whenRead: whenRead,
       whenArchived: whenArchived,
@@ -149,8 +149,8 @@ class ModelEvent extends _ModelEvent {
     this.modifiedBy,
     this.relationshipId,
     this.memberPids,
-    this.defType,
-    this.def,
+    this.topic,
+    this.body,
     this.timeout,
     this.whenRead,
     this.whenArchived,
@@ -266,8 +266,8 @@ class ModelEvent extends _ModelEvent {
         ..$modifiedBy = otherData?[K_MODIFIED_BY]
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$memberPids = otherData?[K_MEMBER_PIDS]
-        ..$defType = otherData?[K_DEF_TYPE]
-        ..$def = otherData?[K_DEF]
+        ..$topic = otherData?[K_TOPIC]
+        ..$body = otherData?[K_BODY]
         ..$timeout = otherData?[K_TIMEOUT]
         ..$whenRead = otherData?[K_WHEN_READ]
         ..$whenArchived = otherData?[K_WHEN_ARCHIVED]
@@ -332,8 +332,8 @@ class ModelEvent extends _ModelEvent {
         K_MODIFIED_BY: this.$modifiedBy,
         K_RELATIONSHIP_ID: this.$relationshipId,
         K_MEMBER_PIDS: this.$memberPids,
-        K_DEF_TYPE: this.$defType,
-        K_DEF: this.$def,
+        K_TOPIC: this.$topic,
+        K_BODY: this.$body,
         K_TIMEOUT: this.$timeout,
         K_WHEN_READ: this.$whenRead,
         K_WHEN_ARCHIVED: this.$whenArchived,
@@ -415,11 +415,11 @@ class ModelEvent extends _ModelEvent {
       if (other.memberPids != null) {
         this.memberPids = other.memberPids!;
       }
-      if (other.defType != null) {
-        this.defType = other.defType!;
+      if (other.topic != null) {
+        this.topic = other.topic!;
       }
-      if (other.def != null) {
-        this.def = other.def!;
+      if (other.body != null) {
+        this.body = other.body!;
       }
       if (other.timeout != null) {
         this.timeout = other.timeout!;
@@ -477,8 +477,13 @@ class ModelEvent extends _ModelEvent {
   String? get titleSearchableField => this.titleSearchable;
   set titleSearchableField(String? v) => this.titleSearchable = v;
   @protected
-  dynamic get $titleSearchable =>
-      this.titleSearchable?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+  dynamic get $titleSearchable => this
+      .titleSearchable
+      ?.toString()
+      .trim()
+      .nullIfEmpty
+      ?.toLowerCase()
+      .replaceAll(r'[^\w]', '');
   @protected
   set $titleSearchable(v) => this.titleSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
@@ -552,9 +557,11 @@ class ModelEvent extends _ModelEvent {
   String? get relationshipIdField => this.relationshipId;
   set relationshipIdField(String? v) => this.relationshipId = v;
   @protected
-  dynamic get $relationshipId => this.relationshipId?.toString().trim().nullIfEmpty;
+  dynamic get $relationshipId =>
+      this.relationshipId?.toString().trim().nullIfEmpty;
   @protected
-  set $relationshipId(v) => this.relationshipId = v?.toString().trim().nullIfEmpty;
+  set $relationshipId(v) =>
+      this.relationshipId = v?.toString().trim().nullIfEmpty;
 
   // memberPids.
   Set<String>? get memberPidsField => this.memberPids;
@@ -578,21 +585,21 @@ class ModelEvent extends _ModelEvent {
       ?.toSet()
       .cast();
 
-  // defType.
-  TopicType? get defTypeField => this.defType;
-  set defTypeField(TopicType? v) => this.defType = v;
+  // topic.
+  TopicType? get topicField => this.topic;
+  set topicField(TopicType? v) => this.topic = v;
   @protected
-  dynamic get $defType => this.defType?.name;
+  dynamic get $topic => this.topic?.name;
   @protected
-  set $defType(v) => this.defType = TopicType.values.valueOf(letAs<String>(v));
+  set $topic(v) => this.topic = TopicType.values.valueOf(letAs<String>(v));
 
-  // def.
-  DataModel? get defField => this.def;
-  set defField(DataModel? v) => this.def = v;
+  // body.
+  DataModel? get bodyField => this.body;
+  set bodyField(DataModel? v) => this.body = v;
   @protected
-  dynamic get $def => this.def?.data;
+  dynamic get $body => this.body?.data;
   @protected
-  set $def(v) => this.def = () {
+  set $body(v) => this.body = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? DataModel(data: a) : null;
       }();

@@ -29,7 +29,7 @@ class ModelEventBody extends Model {
   static const K_RECEIVER_PID = 'receiverPid';
   static const K_MESSAGE = 'message';
 
-  static const CLASS = 'DefModel';
+  static const CLASS = 'ModelEventBody';
 
   @override
   String get $class => CLASS;
@@ -84,7 +84,7 @@ class ModelEventBody extends Model {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'DefModel.from: $e');
+      assert(false, 'ModelEventBody.from: $e');
       rethrow;
     }
   }
@@ -105,7 +105,7 @@ class ModelEventBody extends Model {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'DefModel.of: $e');
+      assert(false, 'ModelEventBody.of: $e');
       rethrow;
     }
   }
@@ -126,7 +126,7 @@ class ModelEventBody extends Model {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'DefModel.fromJsonString: $e');
+      assert(false, 'ModelEventBody.fromJsonString: $e');
       rethrow;
     }
   }
@@ -156,7 +156,7 @@ class ModelEventBody extends Model {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'DefModel.fromJson: $e');
+      assert(false, 'ModelEventBody.fromJson: $e');
       rethrow;
     }
   }
@@ -185,7 +185,7 @@ class ModelEventBody extends Model {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'DefModel.fromUri: $e');
+      assert(false, 'ModelEventBody.fromUri: $e');
       rethrow;
     }
   }
@@ -222,7 +222,7 @@ class ModelEventBody extends Model {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'DefModel.toJson: $e');
+      assert(false, 'ModelEventBody.toJson: $e');
       rethrow;
     }
   }
@@ -278,9 +278,11 @@ class ModelEventBody extends Model {
   String? get relationshipIdField => this.relationshipId;
   set relationshipIdField(String? v) => this.relationshipId = v;
   @protected
-  dynamic get $relationshipId => this.relationshipId?.toString().trim().nullIfEmpty;
+  dynamic get $relationshipId =>
+      this.relationshipId?.toString().trim().nullIfEmpty;
   @protected
-  set $relationshipId(v) => this.relationshipId = v?.toString().trim().nullIfEmpty;
+  set $relationshipId(v) =>
+      this.relationshipId = v?.toString().trim().nullIfEmpty;
 
   // senderPid.
   String? get senderPidField => this.senderPid;
