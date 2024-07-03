@@ -11,8 +11,6 @@
 import 'package:uuid/uuid.dart';
 import 'package:xyz_security/xyz_security.dart';
 
-import '/_common.dart';
-
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 /// A collection of utilities for generating and converting IDs and Public IDs
@@ -142,15 +140,9 @@ final class IdUtils {
     required String id,
     String prefix = '',
   }) {
-    final a = prefix.nullIfEmpty;
-    final b = BijectiveUuidMapper(
-      seed: seed,
-      charList: BASE_62_CHAR_LIST,
-    ).map(
-      id,
-    );
-    final pid = [a, b].nonNulls.join(_SEPARATOR);
-    return pid;
+    final mapper = BijectiveUuidMapper(seed: seed, charList: BASE_62_CHAR_LIST);
+    final b = mapper.map(id);
+    return prefix.isNotEmpty ? '$prefix$_SEPARATOR$b' : b;
   }
 
   /// Converts a PID to an ID.
@@ -159,11 +151,8 @@ final class IdUtils {
     required String pid,
   }) {
     final [_, b] = pid.split(_SEPARATOR);
-    final id = BijectiveUuidMapper(
-      seed: seed,
-      charList: BASE_62_CHAR_LIST,
-    ).unmap(b);
-    return id;
+    final mapper = BijectiveUuidMapper(seed: seed, charList: BASE_62_CHAR_LIST);
+    return mapper.unmap(b);
   }
 
   /// Creates a new UUID v4.
@@ -187,10 +176,9 @@ final class IdUtils {
     String prefix = '',
     String? seed,
   }) {
-    final src = newUuidV4();
     final result = idToPid(
-      seed: seed ?? const Uuid().v4(),
-      id: src,
+      seed: seed ?? newUuidV4(),
+      id: newUuidV4(),
       prefix: prefix,
     );
     return result;
