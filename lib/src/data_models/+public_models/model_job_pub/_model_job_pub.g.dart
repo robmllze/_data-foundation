@@ -46,6 +46,7 @@ class ModelJobPub extends _ModelJobPub {
   static const K_WHEN_OPENED = 'whenOpened';
   static const K_WHEN_CLOSED = 'whenClosed';
   static const K_TODO_BOOK = 'todoBook';
+  static const K_STATUS = 'status';
 
   static const CLASS = 'ModelJobPub';
 
@@ -74,6 +75,7 @@ class ModelJobPub extends _ModelJobPub {
   Map<String, DateTime>? whenOpened;
   Map<String, DateTime>? whenClosed;
   Map<DateTime, ModelTodoEntry>? todoBook;
+  JobStatusType? status;
 
   //
   //
@@ -108,6 +110,7 @@ class ModelJobPub extends _ModelJobPub {
     Map<String, DateTime>? whenOpened,
     Map<String, DateTime>? whenClosed,
     Map<DateTime, ModelTodoEntry>? todoBook,
+    JobStatusType? status,
   }) {
     return ModelJobPub.b(
       ref: ref,
@@ -132,6 +135,7 @@ class ModelJobPub extends _ModelJobPub {
       whenOpened: whenOpened,
       whenClosed: whenClosed,
       todoBook: todoBook,
+      status: status,
     );
   }
 
@@ -162,6 +166,7 @@ class ModelJobPub extends _ModelJobPub {
     this.whenOpened,
     this.whenClosed,
     this.todoBook,
+    this.status,
   }) {
     assert(this.ref != null);
   }
@@ -279,7 +284,8 @@ class ModelJobPub extends _ModelJobPub {
         ..$clockOuts = otherData?[K_CLOCK_OUTS]
         ..$whenOpened = otherData?[K_WHEN_OPENED]
         ..$whenClosed = otherData?[K_WHEN_CLOSED]
-        ..$todoBook = otherData?[K_TODO_BOOK];
+        ..$todoBook = otherData?[K_TODO_BOOK]
+        ..$status = otherData?[K_STATUS];
     } catch (e) {
       return null;
     }
@@ -347,6 +353,7 @@ class ModelJobPub extends _ModelJobPub {
         K_WHEN_OPENED: this.$whenOpened,
         K_WHEN_CLOSED: this.$whenClosed,
         K_TODO_BOOK: this.$todoBook,
+        K_STATUS: this.$status,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -448,6 +455,9 @@ class ModelJobPub extends _ModelJobPub {
       }
       if (other.todoBook != null) {
         this.todoBook = other.todoBook!;
+      }
+      if (other.status != null) {
+        this.status = other.status!;
       }
     }
   }
@@ -862,4 +872,13 @@ class ModelJobPub extends _ModelJobPub {
       .nonNulls
       .nullIfEmpty
       ?.cast();
+
+  // status.
+  JobStatusType? get statusField => this.status;
+  set statusField(JobStatusType? v) => this.status = v;
+  @protected
+  dynamic get $status => this.status?.name;
+  @protected
+  set $status(v) =>
+      this.status = JobStatusType.values.valueOf(letAs<String>(v));
 }

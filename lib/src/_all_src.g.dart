@@ -7,7 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export 'data_models/model_event_body/model_event_body.dart';
 export 'data_models/+entry_models/entry_model/entry_model.dart';
 export 'data_models/+entry_models/model_address_entry/model_address_entry.dart';
 export 'data_models/+entry_models/model_email_entry/model_email_entry.dart';
@@ -32,6 +31,7 @@ export 'data_models/model_connection_permissions/model_connection_permissions.da
 export 'data_models/model_data_collection/model_data_collection.dart';
 export 'data_models/model_device_registration/model_device_registration.dart';
 export 'data_models/model_event/model_event.dart';
+export 'data_models/model_event_body/model_event_body.dart';
 export 'data_models/model_invitation/model_invitation.dart';
 export 'data_models/model_location/model_location.dart';
 export 'data_models/model_map_tile/model_map_tile.dart';
@@ -46,9 +46,10 @@ export 'data_pool_extensions/public_pool_extension.dart';
 export 'data_pool_extensions/relationship_pool_extension.dart';
 export 'data_types/access_status_type/access_status_type.dart';
 export 'data_types/access_type/access_type.dart';
-export 'data_types/topic_type/topic_type.dart';
 export 'data_types/invitation_def_type/invitation_def_type.dart';
+export 'data_types/job_status_type/job_status_type.dart';
 export 'data_types/relationship_def_type/relationship_def_type.dart';
+export 'data_types/topic_type/topic_type.dart';
 export 'data_utils/data_ref_for_pid.dart';
 export 'data_utils/file_schema.dart';
 export 'data_utils/id_utils.dart';

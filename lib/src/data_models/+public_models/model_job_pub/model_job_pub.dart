@@ -25,6 +25,7 @@ part '_model_job_pub.g.dart';
     ('when_opened?', Map<String, DateTime>),
     ('when_closed?', Map<String, DateTime>),
     ('todo_book?', Map<DateTime, ModelTodoEntry>),
+    ('status?', JobStatusType),
   },
 )
 abstract class _ModelJobPub extends Model implements PublicModel {}
