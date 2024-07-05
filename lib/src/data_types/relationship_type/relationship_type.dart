@@ -10,12 +10,12 @@
 
 import '/_common.dart';
 
-part '_relationship_def_type.g.dart';
+part '_relationship_type.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @GenerateTypeUtils()
-enum RelationshipDefType {
+enum RelationshipType {
   //
   //
   //
@@ -44,7 +44,7 @@ enum RelationshipDefType {
 
   final String code;
 
-  const RelationshipDefType(this.code);
+  const RelationshipType(this.code);
 
   //
   //
@@ -68,11 +68,11 @@ enum RelationshipDefType {
   //
   //
 
-  static List<RelationshipDefType> fromMemberPids(Set<String>? memberPids) {
+  static List<RelationshipType> fromMemberPids(Set<String>? memberPids) {
     final code = memberPidsToCode(memberPids);
     if (code == null) return [];
-    final result = <RelationshipDefType>[];
-    for (final value in RelationshipDefType.values) {
+    final result = <RelationshipType>[];
+    for (final value in RelationshipType.values) {
       if (code.contains(value.code)) {
         result.add(value);
       }

@@ -7,20 +7,20 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-part of 'relationship_def_type.dart';
+part of 'relationship_type.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-extension RelationshipDefTypeUtils on RelationshipDefType {
-  RelationshipDefType get next {
-    final index = (this.index + 1) % RelationshipDefType.values.length;
-    return RelationshipDefType.values[index];
+extension RelationshipTypeUtils on RelationshipType {
+  RelationshipType get next {
+    final index = (this.index + 1) % RelationshipType.values.length;
+    return RelationshipType.values[index];
   }
 
-  RelationshipDefType get previous {
-    final index = (this.index - 1 + RelationshipDefType.values.length) %
-        RelationshipDefType.values.length;
-    return RelationshipDefType.values[index];
+  RelationshipType get previous {
+    final index =
+        (this.index - 1 + RelationshipType.values.length) % RelationshipType.values.length;
+    return RelationshipType.values[index];
   }
 
   String trFromSection(String section, [Map args = const {}]) {
@@ -28,11 +28,6 @@ extension RelationshipDefTypeUtils on RelationshipDefType {
   }
 
   String get friendlyName {
-    return this
-        .name
-        .toSnakeCase()
-        .split('_')
-        .map((e) => e.capitalize())
-        .join(' ');
+    return this.name.toSnakeCase().split('_').map((e) => e.capitalize()).join(' ');
   }
 }

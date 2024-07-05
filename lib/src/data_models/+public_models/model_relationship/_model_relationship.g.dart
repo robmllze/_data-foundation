@@ -43,8 +43,8 @@ class ModelRelationship extends _ModelRelationship {
   static const K_DISABLED_REGS = 'disabledRegs';
   static const K_ENABLED_REGS = 'enabledRegs';
   static const K_NOTED_REGS = 'notedRegs';
-  static const K_DEF_TYPE = 'defType';
-  static const K_DEF = 'def';
+  static const K_TYPE = 'type';
+  static const K_BODY = 'body';
 
   static const CLASS = 'ModelRelationship';
 
@@ -70,8 +70,8 @@ class ModelRelationship extends _ModelRelationship {
   List<ModelRegistration>? disabledRegs;
   List<ModelRegistration>? enabledRegs;
   List<ModelRegistration>? notedRegs;
-  RelationshipDefType? defType;
-  DataModel? def;
+  RelationshipType? type;
+  DataModel? body;
 
   //
   //
@@ -103,8 +103,8 @@ class ModelRelationship extends _ModelRelationship {
     List<ModelRegistration>? disabledRegs,
     List<ModelRegistration>? enabledRegs,
     List<ModelRegistration>? notedRegs,
-    RelationshipDefType? defType,
-    DataModel? def,
+    RelationshipType? type,
+    DataModel? body,
   }) {
     return ModelRelationship.b(
       ref: ref,
@@ -126,8 +126,8 @@ class ModelRelationship extends _ModelRelationship {
       disabledRegs: disabledRegs,
       enabledRegs: enabledRegs,
       notedRegs: notedRegs,
-      defType: defType,
-      def: def,
+      type: type,
+      body: body,
     );
   }
 
@@ -155,8 +155,8 @@ class ModelRelationship extends _ModelRelationship {
     this.disabledRegs,
     this.enabledRegs,
     this.notedRegs,
-    this.defType,
-    this.def,
+    this.type,
+    this.body,
   }) {
     assert(this.ref != null);
   }
@@ -272,8 +272,8 @@ class ModelRelationship extends _ModelRelationship {
         ..$disabledRegs = otherData?[K_DISABLED_REGS]
         ..$enabledRegs = otherData?[K_ENABLED_REGS]
         ..$notedRegs = otherData?[K_NOTED_REGS]
-        ..$defType = otherData?[K_DEF_TYPE]
-        ..$def = otherData?[K_DEF];
+        ..$type = otherData?[K_TYPE]
+        ..$body = otherData?[K_BODY];
     } catch (e) {
       return null;
     }
@@ -338,8 +338,8 @@ class ModelRelationship extends _ModelRelationship {
         K_DISABLED_REGS: this.$disabledRegs,
         K_ENABLED_REGS: this.$enabledRegs,
         K_NOTED_REGS: this.$notedRegs,
-        K_DEF_TYPE: this.$defType,
-        K_DEF: this.$def,
+        K_TYPE: this.$type,
+        K_BODY: this.$body,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -433,11 +433,11 @@ class ModelRelationship extends _ModelRelationship {
       if (other.notedRegs != null) {
         this.notedRegs = other.notedRegs!;
       }
-      if (other.defType != null) {
-        this.defType = other.defType!;
+      if (other.type != null) {
+        this.type = other.type!;
       }
-      if (other.def != null) {
-        this.def = other.def!;
+      if (other.body != null) {
+        this.body = other.body!;
       }
     }
   }
@@ -788,22 +788,21 @@ class ModelRelationship extends _ModelRelationship {
       ?.toList()
       .cast();
 
-  // defType.
-  RelationshipDefType? get defTypeField => this.defType;
-  set defTypeField(RelationshipDefType? v) => this.defType = v;
+  // type.
+  RelationshipType? get typeField => this.type;
+  set typeField(RelationshipType? v) => this.type = v;
   @protected
-  dynamic get $defType => this.defType?.name;
+  dynamic get $type => this.type?.name;
   @protected
-  set $defType(v) =>
-      this.defType = RelationshipDefType.values.valueOf(letAs<String>(v));
+  set $type(v) => this.type = RelationshipType.values.valueOf(letAs<String>(v));
 
-  // def.
-  DataModel? get defField => this.def;
-  set defField(DataModel? v) => this.def = v;
+  // body.
+  DataModel? get bodyField => this.body;
+  set bodyField(DataModel? v) => this.body = v;
   @protected
-  dynamic get $def => this.def?.data;
+  dynamic get $body => this.body?.data;
   @protected
-  set $def(v) => this.def = () {
+  set $body(v) => this.body = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? DataModel(data: a) : null;
       }();

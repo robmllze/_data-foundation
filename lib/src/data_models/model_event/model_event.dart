@@ -18,7 +18,6 @@ part '_model_event.g.dart';
   shouldInherit: true,
   fields: {
     ...ENTRY_MODEL_FIELDS,
-    ('relationship_id?', String),
     ('member_pids?', Set<String>),
     ('topic?', TopicType),
     ('body?', DataModel),
@@ -48,21 +47,19 @@ extension ModelEventExtension on ModelEvent {
   //
   //
 
-  bool get isReadByAnyone => this.readRegs?.isNotEmpty == true;
-  bool get isArchivedByAnyone => this.archivedRegs?.isNotEmpty == true;
-  bool get isHiddenByAnyone => this.hiddenRegs?.isNotEmpty == true;
-  bool get isLikedByAnyone => this.likedRegs?.isNotEmpty == true;
-  bool get isReceivedByAnyone => this.receivedRegs?.isNotEmpty == true;
+  bool get isReadByAnyone => this.readRegs?.more.hasValue(true) == true;
+  bool get isArchivedByAnyone => this.archivedRegs?.more.hasValue(true) == true;
+  bool get isHiddenByAnyone => this.hiddenRegs?.more.hasValue(true) == true;
+  bool get isLikedByAnyone => this.likedRegs?.more.hasValue(true) == true;
+  bool get isReceivedByAnyone => this.receivedRegs?.more.hasValue(true) == true;
 
   //
   //
   //
 
-  bool isReadBy(String? id) => RegistrationListUtils.registrationsContainsId(this.readRegs, id);
-  bool isArchivedBy(String? id) =>
-      RegistrationListUtils.registrationsContainsId(this.archivedRegs, id);
-  bool isHiddenBy(String? id) => RegistrationListUtils.registrationsContainsId(this.hiddenRegs, id);
-  bool isLikedBy(String? id) => RegistrationListUtils.registrationsContainsId(this.likedRegs, id);
-  bool isReceivedBy(String? id) =>
-      RegistrationListUtils.registrationsContainsId(this.receivedRegs, id);
+  bool isReadBy(String? id) => this.readRegs?.more.valueBy(id) == true;
+  bool isArchivedBy(String? id) => this.archivedRegs?.more.valueBy(id) == true;
+  bool isHiddenBy(String? id) => this.hiddenRegs?.more.valueBy(id) == true;
+  bool isLikedBy(String? id) => this.likedRegs?.more.valueBy(id) == true;
+  bool isReceivedBy(String? id) => this.receivedRegs?.more.valueBy(id) == true;
 }

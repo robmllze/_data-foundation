@@ -31,7 +31,7 @@ class ModelRegistration extends _ModelRegistration {
   static const K_IP_V_4_ADDRESS = 'ipV4Address';
   static const K_IP_V_6_ADDRESS = 'ipV6Address';
   static const K_LOCATION = 'location';
-  static const K_ENABLED = 'enabled';
+  static const K_VALUE = 'value';
 
   static const CLASS = 'ModelRegistration';
 
@@ -45,7 +45,7 @@ class ModelRegistration extends _ModelRegistration {
   String? ipV4Address;
   String? ipV6Address;
   ModelLocation? location;
-  bool? enabled;
+  bool? value;
 
   //
   //
@@ -65,7 +65,7 @@ class ModelRegistration extends _ModelRegistration {
     String? ipV4Address,
     String? ipV6Address,
     ModelLocation? location,
-    bool? enabled,
+    bool? value,
   }) {
     return ModelRegistration.b(
       id: id,
@@ -75,7 +75,7 @@ class ModelRegistration extends _ModelRegistration {
       ipV4Address: ipV4Address,
       ipV6Address: ipV6Address,
       location: location,
-      enabled: enabled,
+      value: value,
     );
   }
 
@@ -91,7 +91,7 @@ class ModelRegistration extends _ModelRegistration {
     this.ipV4Address,
     this.ipV6Address,
     this.location,
-    this.enabled,
+    this.value,
   }) {}
 
   //
@@ -193,7 +193,7 @@ class ModelRegistration extends _ModelRegistration {
         ..$ipV4Address = otherData?[K_IP_V_4_ADDRESS]
         ..$ipV6Address = otherData?[K_IP_V_6_ADDRESS]
         ..$location = otherData?[K_LOCATION]
-        ..$enabled = otherData?[K_ENABLED];
+        ..$value = otherData?[K_VALUE];
     } catch (e) {
       return null;
     }
@@ -246,7 +246,7 @@ class ModelRegistration extends _ModelRegistration {
         K_IP_V_4_ADDRESS: this.$ipV4Address,
         K_IP_V_6_ADDRESS: this.$ipV6Address,
         K_LOCATION: this.$location,
-        K_ENABLED: this.$enabled,
+        K_VALUE: this.$value,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -304,8 +304,8 @@ class ModelRegistration extends _ModelRegistration {
       if (other.location != null) {
         this.location = other.location!;
       }
-      if (other.enabled != null) {
-        this.enabled = other.enabled!;
+      if (other.value != null) {
+        this.value = other.value!;
       }
     }
   }
@@ -379,11 +379,11 @@ class ModelRegistration extends _ModelRegistration {
         return a != null ? ModelLocation.fromJson(a) : null;
       }();
 
-  // enabled.
-  bool? get enabledField => this.enabled;
-  set enabledField(bool? v) => this.enabled = v;
+  // value.
+  bool? get valueField => this.value;
+  set valueField(bool? v) => this.value = v;
   @protected
-  dynamic get $enabled => this.enabled;
+  dynamic get $value => this.value;
   @protected
-  set $enabled(v) => this.enabled = letBool(v);
+  set $value(v) => this.value = letBool(v);
 }

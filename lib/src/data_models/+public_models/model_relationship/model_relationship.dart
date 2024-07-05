@@ -24,8 +24,8 @@ part '_model_relationship.g.dart';
     ('disabled_regs?', List<ModelRegistration>),
     ('enabled_regs?', List<ModelRegistration>),
     ('noted_regs?', List<ModelRegistration>),
-    ('def_type?', RelationshipDefType),
-    ('def?', DataModel),
+    ('type?', RelationshipType),
+    ('body?', DataModel),
   },
 )
 abstract class _ModelRelationship extends Model implements PublicModel {}

@@ -21,7 +21,7 @@ const MODEL_REGISTRATION_FIELDS = {
   ('ip_v4_address?', String),
   ('ip_v6_address?', String),
   ('location?', ModelLocation),
-  ('enabled?', bool),
+  ('value?', bool),
 };
 
 @GenerateModel(
@@ -74,12 +74,12 @@ class RegistrationListUtils<TModelRegistration extends ModelRegistration> {
     })?.by;
   }
 
-  bool containsId(String? id) {
-    return this._registrations.any((e) => e.by == id);
+  bool? valueBy(String? id) {
+    return this._registrations.firstWhereOrNull((e) => e.by == id)?.value != false;
   }
 
-  static bool registrationsContainsId(List<ModelRegistration>? registrations, String? id) {
-    return registrations?.more.containsId(id) == true;
+  bool hasValue(bool value) {
+    return this._registrations.any((e) => (e.value != false) == value);
   }
 }
 

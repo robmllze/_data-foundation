@@ -32,7 +32,6 @@ class ModelEvent extends _ModelEvent {
   static const K_CREATED_REG = 'createdReg';
   static const K_DELETED_REG = 'deletedReg';
   static const K_MODIFIED_REG = 'modifiedReg';
-  static const K_RELATIONSHIP_ID = 'relationshipId';
   static const K_MEMBER_PIDS = 'memberPids';
   static const K_TOPIC = 'topic';
   static const K_BODY = 'body';
@@ -56,7 +55,6 @@ class ModelEvent extends _ModelEvent {
   ModelRegistration? createdReg;
   ModelRegistration? deletedReg;
   ModelRegistration? modifiedReg;
-  String? relationshipId;
   Set<String>? memberPids;
   TopicType? topic;
   DataModel? body;
@@ -86,7 +84,6 @@ class ModelEvent extends _ModelEvent {
     ModelRegistration? createdReg,
     ModelRegistration? deletedReg,
     ModelRegistration? modifiedReg,
-    String? relationshipId,
     Set<String>? memberPids,
     TopicType? topic,
     DataModel? body,
@@ -106,7 +103,6 @@ class ModelEvent extends _ModelEvent {
       createdReg: createdReg,
       deletedReg: deletedReg,
       modifiedReg: modifiedReg,
-      relationshipId: relationshipId,
       memberPids: memberPids,
       topic: topic,
       body: body,
@@ -132,7 +128,6 @@ class ModelEvent extends _ModelEvent {
     this.createdReg,
     this.deletedReg,
     this.modifiedReg,
-    this.relationshipId,
     this.memberPids,
     this.topic,
     this.body,
@@ -246,7 +241,6 @@ class ModelEvent extends _ModelEvent {
         ..$createdReg = otherData?[K_CREATED_REG]
         ..$deletedReg = otherData?[K_DELETED_REG]
         ..$modifiedReg = otherData?[K_MODIFIED_REG]
-        ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$memberPids = otherData?[K_MEMBER_PIDS]
         ..$topic = otherData?[K_TOPIC]
         ..$body = otherData?[K_BODY]
@@ -309,7 +303,6 @@ class ModelEvent extends _ModelEvent {
         K_CREATED_REG: this.$createdReg,
         K_DELETED_REG: this.$deletedReg,
         K_MODIFIED_REG: this.$modifiedReg,
-        K_RELATIONSHIP_ID: this.$relationshipId,
         K_MEMBER_PIDS: this.$memberPids,
         K_TOPIC: this.$topic,
         K_BODY: this.$body,
@@ -378,9 +371,6 @@ class ModelEvent extends _ModelEvent {
       }
       if (other.modifiedReg != null) {
         this.modifiedReg = other.modifiedReg!;
-      }
-      if (other.relationshipId != null) {
-        this.relationshipId = other.relationshipId!;
       }
       if (other.memberPids != null) {
         this.memberPids = other.memberPids!;
@@ -498,16 +488,6 @@ class ModelEvent extends _ModelEvent {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-
-  // relationshipId.
-  String? get relationshipIdField => this.relationshipId;
-  set relationshipIdField(String? v) => this.relationshipId = v;
-  @protected
-  dynamic get $relationshipId =>
-      this.relationshipId?.toString().trim().nullIfEmpty;
-  @protected
-  set $relationshipId(v) =>
-      this.relationshipId = v?.toString().trim().nullIfEmpty;
 
   // memberPids.
   Set<String>? get memberPidsField => this.memberPids;

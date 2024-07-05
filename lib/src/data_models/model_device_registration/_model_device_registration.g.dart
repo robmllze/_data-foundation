@@ -31,7 +31,7 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   static const K_IP_V_4_ADDRESS = 'ipV4Address';
   static const K_IP_V_6_ADDRESS = 'ipV6Address';
   static const K_LOCATION = 'location';
-  static const K_ENABLED = 'enabled';
+  static const K_VALUE = 'value';
   static const K_LAST_LOGGED_IN_AT = 'lastLoggedInAt';
   static const K_NOTIFICATION_TOKEN = 'notificationToken';
   static const K_DEVICE_INFO = 'deviceInfo';
@@ -48,7 +48,7 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   String? ipV4Address;
   String? ipV6Address;
   ModelLocation? location;
-  bool? enabled;
+  bool? value;
   DateTime? lastLoggedInAt;
   String? notificationToken;
   ModelBasicDeviceInfo? deviceInfo;
@@ -71,7 +71,7 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
     String? ipV4Address,
     String? ipV6Address,
     ModelLocation? location,
-    bool? enabled,
+    bool? value,
     DateTime? lastLoggedInAt,
     String? notificationToken,
     ModelBasicDeviceInfo? deviceInfo,
@@ -84,7 +84,7 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
       ipV4Address: ipV4Address,
       ipV6Address: ipV6Address,
       location: location,
-      enabled: enabled,
+      value: value,
       lastLoggedInAt: lastLoggedInAt,
       notificationToken: notificationToken,
       deviceInfo: deviceInfo,
@@ -103,7 +103,7 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
     this.ipV4Address,
     this.ipV6Address,
     this.location,
-    this.enabled,
+    this.value,
     this.lastLoggedInAt,
     this.notificationToken,
     this.deviceInfo,
@@ -208,7 +208,7 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
         ..$ipV4Address = otherData?[K_IP_V_4_ADDRESS]
         ..$ipV6Address = otherData?[K_IP_V_6_ADDRESS]
         ..$location = otherData?[K_LOCATION]
-        ..$enabled = otherData?[K_ENABLED]
+        ..$value = otherData?[K_VALUE]
         ..$lastLoggedInAt = otherData?[K_LAST_LOGGED_IN_AT]
         ..$notificationToken = otherData?[K_NOTIFICATION_TOKEN]
         ..$deviceInfo = otherData?[K_DEVICE_INFO];
@@ -264,7 +264,7 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
         K_IP_V_4_ADDRESS: this.$ipV4Address,
         K_IP_V_6_ADDRESS: this.$ipV6Address,
         K_LOCATION: this.$location,
-        K_ENABLED: this.$enabled,
+        K_VALUE: this.$value,
         K_LAST_LOGGED_IN_AT: this.$lastLoggedInAt,
         K_NOTIFICATION_TOKEN: this.$notificationToken,
         K_DEVICE_INFO: this.$deviceInfo,
@@ -325,8 +325,8 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
       if (other.location != null) {
         this.location = other.location!;
       }
-      if (other.enabled != null) {
-        this.enabled = other.enabled!;
+      if (other.value != null) {
+        this.value = other.value!;
       }
       if (other.lastLoggedInAt != null) {
         this.lastLoggedInAt = other.lastLoggedInAt!;
@@ -409,13 +409,13 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
         return a != null ? ModelLocation.fromJson(a) : null;
       }();
 
-  // enabled.
-  bool? get enabledField => this.enabled;
-  set enabledField(bool? v) => this.enabled = v;
+  // value.
+  bool? get valueField => this.value;
+  set valueField(bool? v) => this.value = v;
   @protected
-  dynamic get $enabled => this.enabled;
+  dynamic get $value => this.value;
   @protected
-  set $enabled(v) => this.enabled = letBool(v);
+  set $value(v) => this.value = letBool(v);
 
   // lastLoggedInAt.
   DateTime? get lastLoggedInAtField => this.lastLoggedInAt;
