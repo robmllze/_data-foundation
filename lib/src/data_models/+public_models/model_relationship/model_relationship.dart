@@ -21,9 +21,9 @@ part '_model_relationship.g.dart';
   fields: {
     ...PUBLIC_MODEL_FIELDS,
     ('member_pids?', Set<String>),
-    ('when_disabled?', Map<String, DateTime>),
-    ('when_enabled?', Map<String, DateTime>),
-    ('when_noted?', Map<String, DateTime>),
+    ('disabled_regs?', List<ModelRegistration>),
+    ('enabled_regs?', List<ModelRegistration>),
+    ('noted_regs?', List<ModelRegistration>),
     ('def_type?', RelationshipDefType),
     ('def?', DataModel),
   },
@@ -37,22 +37,10 @@ extension ModelRelationshipExtension on ModelRelationship {
   //
   //
 
-  DateTime? get firstNoted => getFirstDate(this.whenNoted?.values);
-  DateTime? get firstEnabled => getFirstDate(this.whenEnabled?.values);
-  DateTime? get firstDisabled => getFirstDate(this.whenDisabled?.values);
-
-  DateTime? get lastNoted => getLastDate(this.whenNoted?.values);
-  DateTime? get lastEnabled => getLastDate(this.whenEnabled?.values);
-  DateTime? get lastDisabled => getLastDate(this.whenDisabled?.values);
-
-  //
-  //
-  //
-
   /// Whether this relationship is marked as "enabled" by any Member.
   bool get isEnabled {
-    final a = this.lastEnabled;
-    final b = this.lastDisabled;
+    final a = this.enabledRegs?.more.lastDate;
+    final b = this.disabledRegs?.more.lastDate;
     if (a == null) {
       return false;
     }
@@ -64,8 +52,8 @@ extension ModelRelationshipExtension on ModelRelationship {
 
   /// Whether this relationship is marked as "enabled" by any Member.
   bool get isDisabled {
-    final a = this.lastEnabled;
-    final b = this.lastDisabled;
+    final a = this.enabledRegs?.more.lastDate;
+    final b = this.disabledRegs?.more.lastDate;
     if (b == null) {
       return false;
     }
@@ -82,15 +70,19 @@ extension ModelRelationshipExtension on ModelRelationship {
   ///
   /// It is useful for tracking if this relationship is new to a Member or not.
   void markAsNotedFor(String memberPid) {
-    this.whenNoted = {
-      ...?this.whenNoted,
-      memberPid: DateTime.now(),
-    };
+    if (!this.isMarkedAsNotedFor(memberPid)) {
+      (this.notedRegs ?? []).add(
+        ModelRegistration(
+          by: memberPid,
+          at: DateTime.now(),
+        ),
+      );
+    }
   }
 
   /// Whether this relationship is marked as "noted" for the Member with [memberPid].
   bool isMarkedAsNotedFor(String memberPid) {
-    return this.whenNoted?[memberPid] == null;
+    return this.notedRegs?.any((e) => e.by == memberPid) == true;
   }
 
   /// Marks this relationship as "enabled" for the Member with [memberPid].
@@ -101,14 +93,20 @@ extension ModelRelationshipExtension on ModelRelationship {
   /// If not explicitly marked as enabled or disabled then the relationship is
   /// assumed to be enabled.
   void markAsEnabledFor(String memberPid) {
-    this.whenEnabled = {
-      ...?this.whenEnabled,
-      memberPid: DateTime.now(),
-    };
+    if (!this.isMarkedAsEnabledFor(memberPid)) {
+      (this.enabledRegs ?? []).add(
+        ModelRegistration(
+          by: memberPid,
+          at: DateTime.now(),
+        ),
+      );
+    }
   }
 
   /// Whether this relationship is marked as "enabled" for the Member with [memberPid].
-  bool isMarkedAsEnabledFor(String memberPid) => this.whenEnabled?[memberPid] == null;
+  bool isMarkedAsEnabledFor(String memberPid) {
+    return this.enabledRegs?.any((e) => e.by == memberPid) == true;
+  }
 
   /// Marks this relationship as "disabled" for the Member with [memberPid].
   ///
@@ -117,14 +115,20 @@ extension ModelRelationshipExtension on ModelRelationship {
   ///
   /// It is useful for temporarily disabling a relationship for a Member.
   void markAsDisabledFor(String memberPid) {
-    this.whenDisabled = {
-      ...?this.whenDisabled,
-      memberPid: DateTime.now(),
-    };
+    if (!this.isMarkedAsDisabledFor(memberPid)) {
+      (this.disabledRegs ?? []).add(
+        ModelRegistration(
+          by: memberPid,
+          at: DateTime.now(),
+        ),
+      );
+    }
   }
 
   /// Whether this relationship is marked as "disabled" for the Member with [memberPid].
-  bool isMarkedAsDisabledFor(String memberPid) => this.whenDisabled?[memberPid] == null;
+  bool isMarkedAsDisabledFor(String memberPid) {
+    return this.disabledRegs?.any((e) => e.by == memberPid) == true;
+  }
 
   /// Whether this relationship involves the Member with [memberPid].
   bool involvesMember(String memberPid) {

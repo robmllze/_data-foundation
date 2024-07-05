@@ -19,14 +19,17 @@ const ENTRY_MODEL_FIELDS = {
   ('title?', String),
   ('title_searchable?', T_SEARCHABLE_STRING),
   ('description?', String),
-  ('created_at?', DateTime),
-  ('created_by?', String),
-  ('deleted_at?', DateTime),
-  ('deleted_by?', String),
-  ('modified_at?', DateTime),
-  ('modified_by?', String),
+  ('created_reg?', ModelRegistration),
+  ('deleted_reg?', ModelRegistration),
+  ('modified_reg?', ModelRegistration),
 };
 
-@GenerateModel(fields: ENTRY_MODEL_FIELDS)
+@GenerateModel(
+  fields: ENTRY_MODEL_FIELDS,
+)
 // ignore: unused_element
 abstract class _EntryModel {}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+extension EntryModelExtension on EntryModel {}

@@ -8,7 +8,6 @@
 //.title~
 
 import 'dart:ui';
-import 'dart:math' as math;
 
 import '/_common.dart';
 
@@ -23,22 +22,22 @@ const PUBLIC_MODEL_FIELDS = {
   ('display_name_searchable?', T_SEARCHABLE_STRING),
   ('display_color?', Color),
   ('email?', T_LOWER_CASE_STRING),
-  ('created_at?', DateTime),
-  ('created_by?', String),
-  ('deleted_at?', DateTime),
-  ('deleted_by?', String),
+  ('created_reg?', ModelRegistration),
+  ('deleted_reg?', ModelRegistration),
   ('description?', String),
   ('address_book?', Map<String, ModelAddressEntry>),
   ('email_book?', Map<String, ModelEmailEntry>),
   ('file_book?', Map<String, ModelFileEntry>),
   ('phone_book?', Map<String, ModelPhoneEntry>),
-  ('device_registrations?', Map<String, ModelDeviceRegistration>),
+  ('device_regs?', List<ModelDeviceRegistration>),
   ('registration?', ModelRegistration),
 };
 
 @GenerateModel(fields: PUBLIC_MODEL_FIELDS)
 // ignore: unused_element
 abstract class _PublicModel {}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 extension PublicModelExtension on PublicModel {
   //
@@ -117,7 +116,8 @@ extension PublicModelExtension on PublicModel {
     return this.fileBook?.values.toList()
       ?..sort((a, b) {
         final now = DateTime.now();
-        return (ascending ? 1 : -1) * (a.createdAt ?? now).compareTo((b.createdAt ?? now));
+        return (ascending ? 1 : -1) *
+            (a.createdReg?.at ?? now).compareTo((b.createdReg?.at ?? now));
       });
   }
 
@@ -134,21 +134,5 @@ extension PublicModelExtension on PublicModel {
   //
 
   Set<String> get notificationTokens =>
-      this.deviceRegistrations?.values.map((e) => e.notificationToken).nonNulls.toSet() ?? {};
-
-  //
-  //
-  //
-
-  ModelLocation? get lastRegisteredLocation {
-    final deviceRegistrations = this.deviceRegistrations?.values;
-    final lastLoggedInTimestamps =
-        deviceRegistrations?.map((e) => e.lastLoggedInAt?.millisecondsSinceEpoch).nonNulls;
-    final lastLoggedInIndex =
-        lastLoggedInTimestamps?.toList().indexOf(lastLoggedInTimestamps.reduce(math.max));
-    final lastLoggedInRegistration =
-        lastLoggedInIndex != null ? deviceRegistrations?.elementAt(lastLoggedInIndex) : null;
-    final lastLoggedInLocation = lastLoggedInRegistration?.location?.nullIfInvalid;
-    return lastLoggedInLocation?.nullIfInvalid;
-  }
+      this.deviceRegs?.map((e) => e.notificationToken).nonNulls.toSet() ?? {};
 }

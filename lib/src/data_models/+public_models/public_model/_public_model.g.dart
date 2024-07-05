@@ -30,16 +30,14 @@ class PublicModel extends Model {
   static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
   static const K_DISPLAY_COLOR = 'displayColor';
   static const K_EMAIL = 'email';
-  static const K_CREATED_AT = 'createdAt';
-  static const K_CREATED_BY = 'createdBy';
-  static const K_DELETED_AT = 'deletedAt';
-  static const K_DELETED_BY = 'deletedBy';
+  static const K_CREATED_REG = 'createdReg';
+  static const K_DELETED_REG = 'deletedReg';
   static const K_DESCRIPTION = 'description';
   static const K_ADDRESS_BOOK = 'addressBook';
   static const K_EMAIL_BOOK = 'emailBook';
   static const K_FILE_BOOK = 'fileBook';
   static const K_PHONE_BOOK = 'phoneBook';
-  static const K_DEVICE_REGISTRATIONS = 'deviceRegistrations';
+  static const K_DEVICE_REGS = 'deviceRegs';
   static const K_REGISTRATION = 'registration';
 
   static const CLASS = 'PublicModel';
@@ -53,16 +51,14 @@ class PublicModel extends Model {
   String? displayNameSearchable;
   Color? displayColor;
   String? email;
-  DateTime? createdAt;
-  String? createdBy;
-  DateTime? deletedAt;
-  String? deletedBy;
+  ModelRegistration? createdReg;
+  ModelRegistration? deletedReg;
   String? description;
   Map<String, ModelAddressEntry>? addressBook;
   Map<String, ModelEmailEntry>? emailBook;
   Map<String, ModelFileEntry>? fileBook;
   Map<String, ModelPhoneEntry>? phoneBook;
-  Map<String, ModelDeviceRegistration>? deviceRegistrations;
+  List<ModelDeviceRegistration>? deviceRegs;
   ModelRegistration? registration;
 
   //
@@ -82,16 +78,14 @@ class PublicModel extends Model {
     String? displayNameSearchable,
     Color? displayColor,
     String? email,
-    DateTime? createdAt,
-    String? createdBy,
-    DateTime? deletedAt,
-    String? deletedBy,
+    ModelRegistration? createdReg,
+    ModelRegistration? deletedReg,
     String? description,
     Map<String, ModelAddressEntry>? addressBook,
     Map<String, ModelEmailEntry>? emailBook,
     Map<String, ModelFileEntry>? fileBook,
     Map<String, ModelPhoneEntry>? phoneBook,
-    Map<String, ModelDeviceRegistration>? deviceRegistrations,
+    List<ModelDeviceRegistration>? deviceRegs,
     ModelRegistration? registration,
   }) {
     return PublicModel.b(
@@ -101,16 +95,14 @@ class PublicModel extends Model {
       displayNameSearchable: displayNameSearchable,
       displayColor: displayColor,
       email: email,
-      createdAt: createdAt,
-      createdBy: createdBy,
-      deletedAt: deletedAt,
-      deletedBy: deletedBy,
+      createdReg: createdReg,
+      deletedReg: deletedReg,
       description: description,
       addressBook: addressBook,
       emailBook: emailBook,
       fileBook: fileBook,
       phoneBook: phoneBook,
-      deviceRegistrations: deviceRegistrations,
+      deviceRegs: deviceRegs,
       registration: registration,
     );
   }
@@ -126,16 +118,14 @@ class PublicModel extends Model {
     this.displayNameSearchable,
     this.displayColor,
     this.email,
-    this.createdAt,
-    this.createdBy,
-    this.deletedAt,
-    this.deletedBy,
+    this.createdReg,
+    this.deletedReg,
     this.description,
     this.addressBook,
     this.emailBook,
     this.fileBook,
     this.phoneBook,
-    this.deviceRegistrations,
+    this.deviceRegs,
     this.registration,
   }) {
     assert(this.ref != null);
@@ -239,16 +229,14 @@ class PublicModel extends Model {
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
         ..$email = otherData?[K_EMAIL]
-        ..$createdAt = otherData?[K_CREATED_AT]
-        ..$createdBy = otherData?[K_CREATED_BY]
-        ..$deletedAt = otherData?[K_DELETED_AT]
-        ..$deletedBy = otherData?[K_DELETED_BY]
+        ..$createdReg = otherData?[K_CREATED_REG]
+        ..$deletedReg = otherData?[K_DELETED_REG]
         ..$description = otherData?[K_DESCRIPTION]
         ..$addressBook = otherData?[K_ADDRESS_BOOK]
         ..$emailBook = otherData?[K_EMAIL_BOOK]
         ..$fileBook = otherData?[K_FILE_BOOK]
         ..$phoneBook = otherData?[K_PHONE_BOOK]
-        ..$deviceRegistrations = otherData?[K_DEVICE_REGISTRATIONS]
+        ..$deviceRegs = otherData?[K_DEVICE_REGS]
         ..$registration = otherData?[K_REGISTRATION];
     } catch (e) {
       return null;
@@ -301,16 +289,14 @@ class PublicModel extends Model {
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_DISPLAY_COLOR: this.$displayColor,
         K_EMAIL: this.$email,
-        K_CREATED_AT: this.$createdAt,
-        K_CREATED_BY: this.$createdBy,
-        K_DELETED_AT: this.$deletedAt,
-        K_DELETED_BY: this.$deletedBy,
+        K_CREATED_REG: this.$createdReg,
+        K_DELETED_REG: this.$deletedReg,
         K_DESCRIPTION: this.$description,
         K_ADDRESS_BOOK: this.$addressBook,
         K_EMAIL_BOOK: this.$emailBook,
         K_FILE_BOOK: this.$fileBook,
         K_PHONE_BOOK: this.$phoneBook,
-        K_DEVICE_REGISTRATIONS: this.$deviceRegistrations,
+        K_DEVICE_REGS: this.$deviceRegs,
         K_REGISTRATION: this.$registration,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -366,17 +352,11 @@ class PublicModel extends Model {
       if (other.email != null) {
         this.email = other.email!;
       }
-      if (other.createdAt != null) {
-        this.createdAt = other.createdAt!;
+      if (other.createdReg != null) {
+        this.createdReg = other.createdReg!;
       }
-      if (other.createdBy != null) {
-        this.createdBy = other.createdBy!;
-      }
-      if (other.deletedAt != null) {
-        this.deletedAt = other.deletedAt!;
-      }
-      if (other.deletedBy != null) {
-        this.deletedBy = other.deletedBy!;
+      if (other.deletedReg != null) {
+        this.deletedReg = other.deletedReg!;
       }
       if (other.description != null) {
         this.description = other.description!;
@@ -393,8 +373,8 @@ class PublicModel extends Model {
       if (other.phoneBook != null) {
         this.phoneBook = other.phoneBook!;
       }
-      if (other.deviceRegistrations != null) {
-        this.deviceRegistrations = other.deviceRegistrations!;
+      if (other.deviceRegs != null) {
+        this.deviceRegs = other.deviceRegs!;
       }
       if (other.registration != null) {
         this.registration = other.registration!;
@@ -468,43 +448,27 @@ class PublicModel extends Model {
   @protected
   set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
-  // createdAt.
-  DateTime? get createdAtField => this.createdAt;
-  set createdAtField(DateTime? v) => this.createdAt = v;
+  // createdReg.
+  ModelRegistration? get createdRegField => this.createdReg;
+  set createdRegField(ModelRegistration? v) => this.createdReg = v;
   @protected
-  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  dynamic get $createdReg => this.createdReg?.toJson();
   @protected
-  set $createdAt(v) => this.createdAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $createdReg(v) => this.createdReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // createdBy.
-  String? get createdByField => this.createdBy;
-  set createdByField(String? v) => this.createdBy = v;
+  // deletedReg.
+  ModelRegistration? get deletedRegField => this.deletedReg;
+  set deletedRegField(ModelRegistration? v) => this.deletedReg = v;
   @protected
-  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  dynamic get $deletedReg => this.deletedReg?.toJson();
   @protected
-  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
-
-  // deletedAt.
-  DateTime? get deletedAtField => this.deletedAt;
-  set deletedAtField(DateTime? v) => this.deletedAt = v;
-  @protected
-  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
-  @protected
-  set $deletedAt(v) => this.deletedAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $deletedReg(v) => this.deletedReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-
-  // deletedBy.
-  String? get deletedByField => this.deletedBy;
-  set deletedByField(String? v) => this.deletedBy = v;
-  @protected
-  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
-  @protected
-  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
   // description.
   String? get descriptionField => this.description;
@@ -631,36 +595,30 @@ class PublicModel extends Model {
       .nullIfEmpty
       ?.cast();
 
-  // deviceRegistrations.
-  Map<String, ModelDeviceRegistration>? get deviceRegistrationsField =>
-      this.deviceRegistrations;
-  set deviceRegistrationsField(Map<String, ModelDeviceRegistration>? v) =>
-      this.deviceRegistrations = v;
+  // deviceRegs.
+  List<ModelDeviceRegistration>? get deviceRegsField => this.deviceRegs;
+  set deviceRegsField(List<ModelDeviceRegistration>? v) => this.deviceRegs = v;
   @protected
-  dynamic get $deviceRegistrations => this
-      .deviceRegistrations
+  dynamic get $deviceRegs => this
+      .deviceRegs
       ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $deviceRegistrations(v) => this.deviceRegistrations = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelDeviceRegistration.fromJson(a) : null;
-          }(),
-        ),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
-      ?.cast();
+      ?.toList();
+  @protected
+  set $deviceRegs(v) => this.deviceRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelDeviceRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
 
   // registration.
   ModelRegistration? get registrationField => this.registration;

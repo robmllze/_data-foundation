@@ -18,8 +18,7 @@ part '_model_invitation.g.dart';
   fields: {
     ('ref', DataRefModel),
     ('id?', String),
-    ('created_at', DateTime),
-    ('created_by', String),
+    ('created_reg', ModelRegistration),
     ('expires_at?', DateTime),
     ('def_type?', InvitationDefType),
     ('def?', DataModel),

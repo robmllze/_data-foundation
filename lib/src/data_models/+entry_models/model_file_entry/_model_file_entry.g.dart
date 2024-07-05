@@ -29,12 +29,9 @@ class ModelFileEntry extends _ModelFileEntry {
   static const K_TITLE = 'title';
   static const K_TITLE_SEARCHABLE = 'titleSearchable';
   static const K_DESCRIPTION = 'description';
-  static const K_CREATED_AT = 'createdAt';
-  static const K_CREATED_BY = 'createdBy';
-  static const K_DELETED_AT = 'deletedAt';
-  static const K_DELETED_BY = 'deletedBy';
-  static const K_MODIFIED_AT = 'modifiedAt';
-  static const K_MODIFIED_BY = 'modifiedBy';
+  static const K_CREATED_REG = 'createdReg';
+  static const K_DELETED_REG = 'deletedReg';
+  static const K_MODIFIED_REG = 'modifiedReg';
   static const K_NAME = 'name';
   static const K_DOWNLOAD_URL = 'downloadUrl';
   static const K_STORAGE_PATH = 'storagePath';
@@ -52,12 +49,9 @@ class ModelFileEntry extends _ModelFileEntry {
   String? title;
   String? titleSearchable;
   String? description;
-  DateTime? createdAt;
-  String? createdBy;
-  DateTime? deletedAt;
-  String? deletedBy;
-  DateTime? modifiedAt;
-  String? modifiedBy;
+  ModelRegistration? createdReg;
+  ModelRegistration? deletedReg;
+  ModelRegistration? modifiedReg;
   String? name;
   Uri? downloadUrl;
   String? storagePath;
@@ -81,12 +75,9 @@ class ModelFileEntry extends _ModelFileEntry {
     String? title,
     String? titleSearchable,
     String? description,
-    DateTime? createdAt,
-    String? createdBy,
-    DateTime? deletedAt,
-    String? deletedBy,
-    DateTime? modifiedAt,
-    String? modifiedBy,
+    ModelRegistration? createdReg,
+    ModelRegistration? deletedReg,
+    ModelRegistration? modifiedReg,
     String? name,
     Uri? downloadUrl,
     String? storagePath,
@@ -100,12 +91,9 @@ class ModelFileEntry extends _ModelFileEntry {
       title: title,
       titleSearchable: titleSearchable,
       description: description,
-      createdAt: createdAt,
-      createdBy: createdBy,
-      deletedAt: deletedAt,
-      deletedBy: deletedBy,
-      modifiedAt: modifiedAt,
-      modifiedBy: modifiedBy,
+      createdReg: createdReg,
+      deletedReg: deletedReg,
+      modifiedReg: modifiedReg,
       name: name,
       downloadUrl: downloadUrl,
       storagePath: storagePath,
@@ -125,12 +113,9 @@ class ModelFileEntry extends _ModelFileEntry {
     this.title,
     this.titleSearchable,
     this.description,
-    this.createdAt,
-    this.createdBy,
-    this.deletedAt,
-    this.deletedBy,
-    this.modifiedAt,
-    this.modifiedBy,
+    this.createdReg,
+    this.deletedReg,
+    this.modifiedReg,
     this.name,
     this.downloadUrl,
     this.storagePath,
@@ -238,12 +223,9 @@ class ModelFileEntry extends _ModelFileEntry {
         ..$title = otherData?[K_TITLE]
         ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE]
         ..$description = otherData?[K_DESCRIPTION]
-        ..$createdAt = otherData?[K_CREATED_AT]
-        ..$createdBy = otherData?[K_CREATED_BY]
-        ..$deletedAt = otherData?[K_DELETED_AT]
-        ..$deletedBy = otherData?[K_DELETED_BY]
-        ..$modifiedAt = otherData?[K_MODIFIED_AT]
-        ..$modifiedBy = otherData?[K_MODIFIED_BY]
+        ..$createdReg = otherData?[K_CREATED_REG]
+        ..$deletedReg = otherData?[K_DELETED_REG]
+        ..$modifiedReg = otherData?[K_MODIFIED_REG]
         ..$name = otherData?[K_NAME]
         ..$downloadUrl = otherData?[K_DOWNLOAD_URL]
         ..$storagePath = otherData?[K_STORAGE_PATH]
@@ -300,12 +282,9 @@ class ModelFileEntry extends _ModelFileEntry {
         K_TITLE: this.$title,
         K_TITLE_SEARCHABLE: this.$titleSearchable,
         K_DESCRIPTION: this.$description,
-        K_CREATED_AT: this.$createdAt,
-        K_CREATED_BY: this.$createdBy,
-        K_DELETED_AT: this.$deletedAt,
-        K_DELETED_BY: this.$deletedBy,
-        K_MODIFIED_AT: this.$modifiedAt,
-        K_MODIFIED_BY: this.$modifiedBy,
+        K_CREATED_REG: this.$createdReg,
+        K_DELETED_REG: this.$deletedReg,
+        K_MODIFIED_REG: this.$modifiedReg,
         K_NAME: this.$name,
         K_DOWNLOAD_URL: this.$downloadUrl,
         K_STORAGE_PATH: this.$storagePath,
@@ -363,23 +342,14 @@ class ModelFileEntry extends _ModelFileEntry {
       if (other.description != null) {
         this.description = other.description!;
       }
-      if (other.createdAt != null) {
-        this.createdAt = other.createdAt!;
+      if (other.createdReg != null) {
+        this.createdReg = other.createdReg!;
       }
-      if (other.createdBy != null) {
-        this.createdBy = other.createdBy!;
+      if (other.deletedReg != null) {
+        this.deletedReg = other.deletedReg!;
       }
-      if (other.deletedAt != null) {
-        this.deletedAt = other.deletedAt!;
-      }
-      if (other.deletedBy != null) {
-        this.deletedBy = other.deletedBy!;
-      }
-      if (other.modifiedAt != null) {
-        this.modifiedAt = other.modifiedAt!;
-      }
-      if (other.modifiedBy != null) {
-        this.modifiedBy = other.modifiedBy!;
+      if (other.modifiedReg != null) {
+        this.modifiedReg = other.modifiedReg!;
       }
       if (other.name != null) {
         this.name = other.name!;
@@ -456,62 +426,38 @@ class ModelFileEntry extends _ModelFileEntry {
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
-  // createdAt.
-  DateTime? get createdAtField => this.createdAt;
-  set createdAtField(DateTime? v) => this.createdAt = v;
+  // createdReg.
+  ModelRegistration? get createdRegField => this.createdReg;
+  set createdRegField(ModelRegistration? v) => this.createdReg = v;
   @protected
-  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  dynamic get $createdReg => this.createdReg?.toJson();
   @protected
-  set $createdAt(v) => this.createdAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $createdReg(v) => this.createdReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // createdBy.
-  String? get createdByField => this.createdBy;
-  set createdByField(String? v) => this.createdBy = v;
+  // deletedReg.
+  ModelRegistration? get deletedRegField => this.deletedReg;
+  set deletedRegField(ModelRegistration? v) => this.deletedReg = v;
   @protected
-  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  dynamic get $deletedReg => this.deletedReg?.toJson();
   @protected
-  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
-
-  // deletedAt.
-  DateTime? get deletedAtField => this.deletedAt;
-  set deletedAtField(DateTime? v) => this.deletedAt = v;
-  @protected
-  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
-  @protected
-  set $deletedAt(v) => this.deletedAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $deletedReg(v) => this.deletedReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // deletedBy.
-  String? get deletedByField => this.deletedBy;
-  set deletedByField(String? v) => this.deletedBy = v;
+  // modifiedReg.
+  ModelRegistration? get modifiedRegField => this.modifiedReg;
+  set modifiedRegField(ModelRegistration? v) => this.modifiedReg = v;
   @protected
-  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
+  dynamic get $modifiedReg => this.modifiedReg?.toJson();
   @protected
-  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
-
-  // modifiedAt.
-  DateTime? get modifiedAtField => this.modifiedAt;
-  set modifiedAtField(DateTime? v) => this.modifiedAt = v;
-  @protected
-  dynamic get $modifiedAt => this.modifiedAt?.toUtc()?.toIso8601String();
-  @protected
-  set $modifiedAt(v) => this.modifiedAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $modifiedReg(v) => this.modifiedReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-
-  // modifiedBy.
-  String? get modifiedByField => this.modifiedBy;
-  set modifiedByField(String? v) => this.modifiedBy = v;
-  @protected
-  dynamic get $modifiedBy => this.modifiedBy?.toString().trim().nullIfEmpty;
-  @protected
-  set $modifiedBy(v) => this.modifiedBy = v?.toString().trim().nullIfEmpty;
 
   // name.
   String? get nameField => this.name;

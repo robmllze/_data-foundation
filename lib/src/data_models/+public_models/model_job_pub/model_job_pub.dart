@@ -20,10 +20,10 @@ part '_model_job_pub.g.dart';
   shouldInherit: true,
   fields: {
     ...PUBLIC_MODEL_FIELDS,
-    ('clock_ins?', Set<ModelRegistration>),
-    ('clock_outs?', Set<ModelRegistration>),
-    ('when_opened?', Map<String, DateTime>),
-    ('when_closed?', Map<String, DateTime>),
+    ('clock_in_regs?', List<ModelRegistration>),
+    ('clock_out_regs?', List<ModelRegistration>),
+    ('opened_regs?', List<ModelRegistration>),
+    ('closed_regs?', List<ModelRegistration>),
     ('todo_book?', Map<DateTime, ModelTodoEntry>),
     ('status?', JobStatusType),
   },
@@ -55,7 +55,7 @@ extension ModelJobPubExtension on ModelJobPub {
   DateTime? lastClockInFor(String? pid) => (this.clockInsFor(pid).toList()..sort()).lastOrNull;
 
   Iterable<DateTime?> clockInsFor(String? pid) =>
-      this.clockIns?.where((e) => e.registrantPid == pid).map((e) => e.registeredAt) ?? [];
+      this.clockInRegs?.where((e) => e.by == pid).map((e) => e.at) ?? [];
 
   bool canClockOut(String? pid) {
     final lastClockIn = this.lastClockInFor(pid);
@@ -75,7 +75,7 @@ extension ModelJobPubExtension on ModelJobPub {
   DateTime? lastClockOutFor(String? pid) => (this.clockOutsFor(pid).toList()..sort()).lastOrNull;
 
   Iterable<DateTime?> clockOutsFor(String? pid) =>
-      this.clockOuts?.where((e) => e.registrantPid == pid).map((e) => e.registeredAt) ?? [];
+      this.clockOutRegs?.where((e) => e.by == pid).map((e) => e.at) ?? [];
 
   //
   //
@@ -120,24 +120,4 @@ extension ModelJobPubExtension on ModelJobPub {
 
     return result;
   }
-
-  //
-  //
-  //
-
-  // Opened.
-  Iterable<DateTime> get datesOpened => this.whenOpened?.values ?? [];
-  DateTime? get openedAt => getFirstDate(this.datesOpened);
-  String? get openedById =>
-      this.whenOpened?.entries.firstWhereOrNull((e) => e.value == this.openedAt)?.key;
-  bool get isOpened => this.whenOpened != null;
-  bool isOpenedBy({required String id}) => this.whenOpened?.keys.contains(id) == true;
-
-  // Closed.
-  Iterable<DateTime> get datesClosed => this.whenClosed?.values ?? [];
-  DateTime? get closedAt => getFirstDate(this.datesClosed);
-  String? get closedById =>
-      this.whenClosed?.entries.firstWhereOrNull((e) => e.value == this.closedAt)?.key;
-  bool get isClosed => this.whenClosed != null;
-  bool isClosedBy({required String id}) => this.whenClosed?.keys.contains(id) == true;
 }

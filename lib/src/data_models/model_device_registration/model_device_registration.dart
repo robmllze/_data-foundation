@@ -18,11 +18,7 @@ part '_model_device_registration.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ('id?', String),
-    ('registrant_pid?', String),
-    ('registered_at?', DateTime),
-    ('ipv4_address?', String),
-    ('location?', ModelLocation),
+    ...MODEL_REGISTRATION_FIELDS,
     ('last_logged_in_at?', DateTime),
     ('notification_token?', String),
     ('device_info?', ModelBasicDeviceInfo),

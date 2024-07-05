@@ -26,8 +26,7 @@ class ModelInvitation extends _ModelInvitation {
 
   static const K_REF = 'ref';
   static const K_ID = 'id';
-  static const K_CREATED_AT = 'createdAt';
-  static const K_CREATED_BY = 'createdBy';
+  static const K_CREATED_REG = 'createdReg';
   static const K_EXPIRES_AT = 'expiresAt';
   static const K_DEF_TYPE = 'defType';
   static const K_DEF = 'def';
@@ -43,8 +42,7 @@ class ModelInvitation extends _ModelInvitation {
 
   DataRefModel? ref;
   String? id;
-  DateTime? createdAt;
-  String? createdBy;
+  ModelRegistration? createdReg;
   DateTime? expiresAt;
   InvitationDefType? defType;
   DataModel? def;
@@ -66,8 +64,7 @@ class ModelInvitation extends _ModelInvitation {
   factory ModelInvitation({
     required DataRefModel ref,
     String? id,
-    required DateTime createdAt,
-    required String createdBy,
+    required ModelRegistration createdReg,
     DateTime? expiresAt,
     InvitationDefType? defType,
     DataModel? def,
@@ -79,8 +76,7 @@ class ModelInvitation extends _ModelInvitation {
     return ModelInvitation.b(
       ref: ref,
       id: id,
-      createdAt: createdAt,
-      createdBy: createdBy,
+      createdReg: createdReg,
       expiresAt: expiresAt,
       defType: defType,
       def: def,
@@ -98,8 +94,7 @@ class ModelInvitation extends _ModelInvitation {
   ModelInvitation.b({
     this.ref,
     this.id,
-    this.createdAt,
-    this.createdBy,
+    this.createdReg,
     this.expiresAt,
     this.defType,
     this.def,
@@ -110,8 +105,7 @@ class ModelInvitation extends _ModelInvitation {
   }) {
     assert(this.ref != null);
 
-    assert(this.createdAt != null);
-    assert(this.createdBy != null);
+    assert(this.createdReg != null);
   }
 
   //
@@ -208,8 +202,7 @@ class ModelInvitation extends _ModelInvitation {
       return ModelInvitation.empty()
         ..$ref = otherData?[K_REF]
         ..$id = otherData?[K_ID]
-        ..$createdAt = otherData?[K_CREATED_AT]
-        ..$createdBy = otherData?[K_CREATED_BY]
+        ..$createdReg = otherData?[K_CREATED_REG]
         ..$expiresAt = otherData?[K_EXPIRES_AT]
         ..$defType = otherData?[K_DEF_TYPE]
         ..$def = otherData?[K_DEF]
@@ -264,8 +257,7 @@ class ModelInvitation extends _ModelInvitation {
       final withNulls = <String, dynamic>{
         K_REF: this.$ref,
         K_ID: this.$id,
-        K_CREATED_AT: this.$createdAt,
-        K_CREATED_BY: this.$createdBy,
+        K_CREATED_REG: this.$createdReg,
         K_EXPIRES_AT: this.$expiresAt,
         K_DEF_TYPE: this.$defType,
         K_DEF: this.$def,
@@ -315,11 +307,8 @@ class ModelInvitation extends _ModelInvitation {
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.createdAt != null) {
-        this.createdAt = other.createdAt!;
-      }
-      if (other.createdBy != null) {
-        this.createdBy = other.createdBy!;
+      if (other.createdReg != null) {
+        this.createdReg = other.createdReg!;
       }
       if (other.expiresAt != null) {
         this.expiresAt = other.expiresAt!;
@@ -368,24 +357,16 @@ class ModelInvitation extends _ModelInvitation {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // createdAt.
-  DateTime get createdAtField => this.createdAt!;
-  set createdAtField(DateTime v) => this.createdAt = v;
+  // createdReg.
+  ModelRegistration get createdRegField => this.createdReg!;
+  set createdRegField(ModelRegistration v) => this.createdReg = v;
   @protected
-  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  dynamic get $createdReg => this.createdReg?.toJson();
   @protected
-  set $createdAt(v) => this.createdAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $createdReg(v) => this.createdReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-
-  // createdBy.
-  String get createdByField => this.createdBy!;
-  set createdByField(String v) => this.createdBy = v;
-  @protected
-  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
-  @protected
-  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
 
   // expiresAt.
   DateTime? get expiresAtField => this.expiresAt;

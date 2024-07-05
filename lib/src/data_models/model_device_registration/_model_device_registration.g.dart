@@ -25,10 +25,13 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   //
 
   static const K_ID = 'id';
-  static const K_REGISTRANT_PID = 'registrantPid';
-  static const K_REGISTERED_AT = 'registeredAt';
-  static const K_IPV_4_ADDRESS = 'ipv4Address';
+  static const K_REF = 'ref';
+  static const K_BY = 'by';
+  static const K_AT = 'at';
+  static const K_IP_V_4_ADDRESS = 'ipV4Address';
+  static const K_IP_V_6_ADDRESS = 'ipV6Address';
   static const K_LOCATION = 'location';
+  static const K_ENABLED = 'enabled';
   static const K_LAST_LOGGED_IN_AT = 'lastLoggedInAt';
   static const K_NOTIFICATION_TOKEN = 'notificationToken';
   static const K_DEVICE_INFO = 'deviceInfo';
@@ -39,10 +42,13 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   String get $class => CLASS;
 
   String? id;
-  String? registrantPid;
-  DateTime? registeredAt;
-  String? ipv4Address;
+  DataRefModel? ref;
+  String? by;
+  DateTime? at;
+  String? ipV4Address;
+  String? ipV6Address;
   ModelLocation? location;
+  bool? enabled;
   DateTime? lastLoggedInAt;
   String? notificationToken;
   ModelBasicDeviceInfo? deviceInfo;
@@ -59,20 +65,26 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
 
   factory ModelDeviceRegistration({
     String? id,
-    String? registrantPid,
-    DateTime? registeredAt,
-    String? ipv4Address,
+    DataRefModel? ref,
+    String? by,
+    DateTime? at,
+    String? ipV4Address,
+    String? ipV6Address,
     ModelLocation? location,
+    bool? enabled,
     DateTime? lastLoggedInAt,
     String? notificationToken,
     ModelBasicDeviceInfo? deviceInfo,
   }) {
     return ModelDeviceRegistration.b(
       id: id,
-      registrantPid: registrantPid,
-      registeredAt: registeredAt,
-      ipv4Address: ipv4Address,
+      ref: ref,
+      by: by,
+      at: at,
+      ipV4Address: ipV4Address,
+      ipV6Address: ipV6Address,
       location: location,
+      enabled: enabled,
       lastLoggedInAt: lastLoggedInAt,
       notificationToken: notificationToken,
       deviceInfo: deviceInfo,
@@ -85,10 +97,13 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
 
   ModelDeviceRegistration.b({
     this.id,
-    this.registrantPid,
-    this.registeredAt,
-    this.ipv4Address,
+    this.ref,
+    this.by,
+    this.at,
+    this.ipV4Address,
+    this.ipV6Address,
     this.location,
+    this.enabled,
     this.lastLoggedInAt,
     this.notificationToken,
     this.deviceInfo,
@@ -187,10 +202,13 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
     try {
       return ModelDeviceRegistration.empty()
         ..$id = otherData?[K_ID]
-        ..$registrantPid = otherData?[K_REGISTRANT_PID]
-        ..$registeredAt = otherData?[K_REGISTERED_AT]
-        ..$ipv4Address = otherData?[K_IPV_4_ADDRESS]
+        ..$ref = otherData?[K_REF]
+        ..$by = otherData?[K_BY]
+        ..$at = otherData?[K_AT]
+        ..$ipV4Address = otherData?[K_IP_V_4_ADDRESS]
+        ..$ipV6Address = otherData?[K_IP_V_6_ADDRESS]
         ..$location = otherData?[K_LOCATION]
+        ..$enabled = otherData?[K_ENABLED]
         ..$lastLoggedInAt = otherData?[K_LAST_LOGGED_IN_AT]
         ..$notificationToken = otherData?[K_NOTIFICATION_TOKEN]
         ..$deviceInfo = otherData?[K_DEVICE_INFO];
@@ -240,10 +258,13 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
     try {
       final withNulls = <String, dynamic>{
         K_ID: this.$id,
-        K_REGISTRANT_PID: this.$registrantPid,
-        K_REGISTERED_AT: this.$registeredAt,
-        K_IPV_4_ADDRESS: this.$ipv4Address,
+        K_REF: this.$ref,
+        K_BY: this.$by,
+        K_AT: this.$at,
+        K_IP_V_4_ADDRESS: this.$ipV4Address,
+        K_IP_V_6_ADDRESS: this.$ipV6Address,
         K_LOCATION: this.$location,
+        K_ENABLED: this.$enabled,
         K_LAST_LOGGED_IN_AT: this.$lastLoggedInAt,
         K_NOTIFICATION_TOKEN: this.$notificationToken,
         K_DEVICE_INFO: this.$deviceInfo,
@@ -286,17 +307,26 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.registrantPid != null) {
-        this.registrantPid = other.registrantPid!;
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
-      if (other.registeredAt != null) {
-        this.registeredAt = other.registeredAt!;
+      if (other.by != null) {
+        this.by = other.by!;
       }
-      if (other.ipv4Address != null) {
-        this.ipv4Address = other.ipv4Address!;
+      if (other.at != null) {
+        this.at = other.at!;
+      }
+      if (other.ipV4Address != null) {
+        this.ipV4Address = other.ipV4Address!;
+      }
+      if (other.ipV6Address != null) {
+        this.ipV6Address = other.ipV6Address!;
       }
       if (other.location != null) {
         this.location = other.location!;
+      }
+      if (other.enabled != null) {
+        this.enabled = other.enabled!;
       }
       if (other.lastLoggedInAt != null) {
         this.lastLoggedInAt = other.lastLoggedInAt!;
@@ -322,34 +352,51 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // registrantPid.
-  String? get registrantPidField => this.registrantPid;
-  set registrantPidField(String? v) => this.registrantPid = v;
+  // ref.
+  DataRefModel? get refField => this.ref;
+  set refField(DataRefModel? v) => this.ref = v;
   @protected
-  dynamic get $registrantPid =>
-      this.registrantPid?.toString().trim().nullIfEmpty;
+  dynamic get $ref => this.ref?.toJson();
   @protected
-  set $registrantPid(v) =>
-      this.registrantPid = v?.toString().trim().nullIfEmpty;
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
-  // registeredAt.
-  DateTime? get registeredAtField => this.registeredAt;
-  set registeredAtField(DateTime? v) => this.registeredAt = v;
+  // by.
+  String? get byField => this.by;
+  set byField(String? v) => this.by = v;
   @protected
-  dynamic get $registeredAt => this.registeredAt?.toUtc()?.toIso8601String();
+  dynamic get $by => this.by?.toString().trim().nullIfEmpty;
   @protected
-  set $registeredAt(v) => this.registeredAt = () {
+  set $by(v) => this.by = v?.toString().trim().nullIfEmpty;
+
+  // at.
+  DateTime? get atField => this.at;
+  set atField(DateTime? v) => this.at = v;
+  @protected
+  dynamic get $at => this.at?.toUtc()?.toIso8601String();
+  @protected
+  set $at(v) => this.at = () {
         final a = v;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
-  // ipv4Address.
-  String? get ipv4AddressField => this.ipv4Address;
-  set ipv4AddressField(String? v) => this.ipv4Address = v;
+  // ipV4Address.
+  String? get ipV4AddressField => this.ipV4Address;
+  set ipV4AddressField(String? v) => this.ipV4Address = v;
   @protected
-  dynamic get $ipv4Address => this.ipv4Address?.toString().trim().nullIfEmpty;
+  dynamic get $ipV4Address => this.ipV4Address?.toString().trim().nullIfEmpty;
   @protected
-  set $ipv4Address(v) => this.ipv4Address = v?.toString().trim().nullIfEmpty;
+  set $ipV4Address(v) => this.ipV4Address = v?.toString().trim().nullIfEmpty;
+
+  // ipV6Address.
+  String? get ipV6AddressField => this.ipV6Address;
+  set ipV6AddressField(String? v) => this.ipV6Address = v;
+  @protected
+  dynamic get $ipV6Address => this.ipV6Address?.toString().trim().nullIfEmpty;
+  @protected
+  set $ipV6Address(v) => this.ipV6Address = v?.toString().trim().nullIfEmpty;
 
   // location.
   ModelLocation? get locationField => this.location;
@@ -361,6 +408,14 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelLocation.fromJson(a) : null;
       }();
+
+  // enabled.
+  bool? get enabledField => this.enabled;
+  set enabledField(bool? v) => this.enabled = v;
+  @protected
+  dynamic get $enabled => this.enabled;
+  @protected
+  set $enabled(v) => this.enabled = letBool(v);
 
   // lastLoggedInAt.
   DateTime? get lastLoggedInAtField => this.lastLoggedInAt;

@@ -23,11 +23,11 @@ part '_model_event.g.dart';
     ('topic?', TopicType),
     ('body?', DataModel),
     ('timeout?', int),
-    ('when_read?', Map<String, DateTime>),
-    ('when_archived?', Map<String, DateTime>),
-    ('when_hidden?', Map<String, DateTime>),
-    ('when_liked?', Map<String, DateTime>),
-    ('when_received?', Map<String, DateTime>),
+    ('read_regs?', List<ModelRegistration>),
+    ('archived_regs?', List<ModelRegistration>),
+    ('hidden_regs?', List<ModelRegistration>),
+    ('liked_regs?', List<ModelRegistration>),
+    ('received_regs?', List<ModelRegistration>),
   },
 )
 abstract class _ModelEvent extends Model implements EntryModel {}
@@ -44,51 +44,25 @@ extension ModelEventExtension on ModelEvent {
     return timeout != null && timeout < DateTime.now().millisecondsSinceEpoch;
   }
 
-  // Read.
-  Iterable<DateTime> get datesRead => this.whenRead?.values ?? [];
-  DateTime? get lastReadAt => getLastDate(this.datesRead);
-  String? get lastReadBy =>
-      this.whenRead?.entries.firstWhereOrNull((e) => e.value == this.lastReadAt)?.key;
-  bool get isRead => this.whenRead?.nullIfEmpty != null;
-  bool isReadBy(String id) => this.whenRead?.keys.contains(id) == true;
+  //
+  //
+  //
 
-  // Archived.
-  Iterable<DateTime> get datesArchived => this.whenArchived?.values ?? [];
-  DateTime? get archivedAt => getFirstDate(this.datesArchived);
-  String? get archivedBy =>
-      this.whenArchived?.entries.firstWhereOrNull((e) => e.value == this.archivedAt)?.key;
-  bool get isArchived => this.whenArchived?.nullIfEmpty != null;
-  bool isArchivedBy({required String id}) => this.whenArchived?.keys.contains(id) == true;
+  bool get isReadByAnyone => this.readRegs?.isNotEmpty == true;
+  bool get isArchivedByAnyone => this.archivedRegs?.isNotEmpty == true;
+  bool get isHiddenByAnyone => this.hiddenRegs?.isNotEmpty == true;
+  bool get isLikedByAnyone => this.likedRegs?.isNotEmpty == true;
+  bool get isReceivedByAnyone => this.receivedRegs?.isNotEmpty == true;
 
-  // Hidden.
-  Iterable<DateTime> get datesHidden => this.whenHidden?.values ?? [];
-  DateTime? get hiddenAt => getFirstDate(this.datesHidden);
-  String? get hiddenBy =>
-      this.whenHidden?.entries.firstWhereOrNull((e) => e.value == this.hiddenAt)?.key;
-  bool get isHidden => this.whenHidden?.nullIfEmpty != null;
-  bool isHiddenBy({required String id}) => this.whenHidden?.keys.contains(id) == true;
+  //
+  //
+  //
 
-  // Liked.
-  Iterable<DateTime> get datesLiked => this.whenLiked?.values ?? [];
-  DateTime? get likedAt => getFirstDate(this.datesLiked);
-  String? get likedBy =>
-      this.whenLiked?.entries.firstWhereOrNull((e) => e.value == this.likedAt)?.key;
-  bool get isLiked => this.whenLiked?.nullIfEmpty != null;
-  bool isLikedBy({required String id}) => this.whenLiked?.keys.contains(id) == true;
-
-  // Received.
-  Iterable<DateTime> get datesReceived => this.whenReceived?.values ?? [];
-  DateTime? get receivedAt => getFirstDate(this.datesReceived);
-  String? get receivedBy =>
-      this.whenReceived?.entries.firstWhereOrNull((e) => e.value == this.receivedAt)?.key;
-  bool get isReceived => this.whenReceived?.nullIfEmpty != null;
-  bool isReceivedBy({required String id}) => this.whenReceived?.keys.contains(id) == true;
-
-  // // Sent.
-  // Iterable<DateTime> get datesSent => this.whenSent?.values ?? [];
-  // DateTime? get sentAt => getFirstDate(this.datesSent);
-  // String? get sentBy =>
-  //     this.whenSent?.entries.firstWhereOrNull((e) => e.value == this.sentAt)?.key;
-  // bool get isSent => this.whenSent?.nullIfEmpty != null;
-  // bool isSentBy({required String id}) => this.whenSent?.keys.contains(id) == true;
+  bool isReadBy(String? id) => RegistrationListUtils.registrationsContainsId(this.readRegs, id);
+  bool isArchivedBy(String? id) =>
+      RegistrationListUtils.registrationsContainsId(this.archivedRegs, id);
+  bool isHiddenBy(String? id) => RegistrationListUtils.registrationsContainsId(this.hiddenRegs, id);
+  bool isLikedBy(String? id) => RegistrationListUtils.registrationsContainsId(this.likedRegs, id);
+  bool isReceivedBy(String? id) =>
+      RegistrationListUtils.registrationsContainsId(this.receivedRegs, id);
 }

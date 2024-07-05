@@ -30,21 +30,19 @@ class ModelRelationship extends _ModelRelationship {
   static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
   static const K_DISPLAY_COLOR = 'displayColor';
   static const K_EMAIL = 'email';
-  static const K_CREATED_AT = 'createdAt';
-  static const K_CREATED_BY = 'createdBy';
-  static const K_DELETED_AT = 'deletedAt';
-  static const K_DELETED_BY = 'deletedBy';
+  static const K_CREATED_REG = 'createdReg';
+  static const K_DELETED_REG = 'deletedReg';
   static const K_DESCRIPTION = 'description';
   static const K_ADDRESS_BOOK = 'addressBook';
   static const K_EMAIL_BOOK = 'emailBook';
   static const K_FILE_BOOK = 'fileBook';
   static const K_PHONE_BOOK = 'phoneBook';
-  static const K_DEVICE_REGISTRATIONS = 'deviceRegistrations';
+  static const K_DEVICE_REGS = 'deviceRegs';
   static const K_REGISTRATION = 'registration';
   static const K_MEMBER_PIDS = 'memberPids';
-  static const K_WHEN_DISABLED = 'whenDisabled';
-  static const K_WHEN_ENABLED = 'whenEnabled';
-  static const K_WHEN_NOTED = 'whenNoted';
+  static const K_DISABLED_REGS = 'disabledRegs';
+  static const K_ENABLED_REGS = 'enabledRegs';
+  static const K_NOTED_REGS = 'notedRegs';
   static const K_DEF_TYPE = 'defType';
   static const K_DEF = 'def';
 
@@ -59,21 +57,19 @@ class ModelRelationship extends _ModelRelationship {
   String? displayNameSearchable;
   Color? displayColor;
   String? email;
-  DateTime? createdAt;
-  String? createdBy;
-  DateTime? deletedAt;
-  String? deletedBy;
+  ModelRegistration? createdReg;
+  ModelRegistration? deletedReg;
   String? description;
   Map<String, ModelAddressEntry>? addressBook;
   Map<String, ModelEmailEntry>? emailBook;
   Map<String, ModelFileEntry>? fileBook;
   Map<String, ModelPhoneEntry>? phoneBook;
-  Map<String, ModelDeviceRegistration>? deviceRegistrations;
+  List<ModelDeviceRegistration>? deviceRegs;
   ModelRegistration? registration;
   Set<String>? memberPids;
-  Map<String, DateTime>? whenDisabled;
-  Map<String, DateTime>? whenEnabled;
-  Map<String, DateTime>? whenNoted;
+  List<ModelRegistration>? disabledRegs;
+  List<ModelRegistration>? enabledRegs;
+  List<ModelRegistration>? notedRegs;
   RelationshipDefType? defType;
   DataModel? def;
 
@@ -94,21 +90,19 @@ class ModelRelationship extends _ModelRelationship {
     String? displayNameSearchable,
     Color? displayColor,
     String? email,
-    DateTime? createdAt,
-    String? createdBy,
-    DateTime? deletedAt,
-    String? deletedBy,
+    ModelRegistration? createdReg,
+    ModelRegistration? deletedReg,
     String? description,
     Map<String, ModelAddressEntry>? addressBook,
     Map<String, ModelEmailEntry>? emailBook,
     Map<String, ModelFileEntry>? fileBook,
     Map<String, ModelPhoneEntry>? phoneBook,
-    Map<String, ModelDeviceRegistration>? deviceRegistrations,
+    List<ModelDeviceRegistration>? deviceRegs,
     ModelRegistration? registration,
     Set<String>? memberPids,
-    Map<String, DateTime>? whenDisabled,
-    Map<String, DateTime>? whenEnabled,
-    Map<String, DateTime>? whenNoted,
+    List<ModelRegistration>? disabledRegs,
+    List<ModelRegistration>? enabledRegs,
+    List<ModelRegistration>? notedRegs,
     RelationshipDefType? defType,
     DataModel? def,
   }) {
@@ -119,21 +113,19 @@ class ModelRelationship extends _ModelRelationship {
       displayNameSearchable: displayNameSearchable,
       displayColor: displayColor,
       email: email,
-      createdAt: createdAt,
-      createdBy: createdBy,
-      deletedAt: deletedAt,
-      deletedBy: deletedBy,
+      createdReg: createdReg,
+      deletedReg: deletedReg,
       description: description,
       addressBook: addressBook,
       emailBook: emailBook,
       fileBook: fileBook,
       phoneBook: phoneBook,
-      deviceRegistrations: deviceRegistrations,
+      deviceRegs: deviceRegs,
       registration: registration,
       memberPids: memberPids,
-      whenDisabled: whenDisabled,
-      whenEnabled: whenEnabled,
-      whenNoted: whenNoted,
+      disabledRegs: disabledRegs,
+      enabledRegs: enabledRegs,
+      notedRegs: notedRegs,
       defType: defType,
       def: def,
     );
@@ -150,21 +142,19 @@ class ModelRelationship extends _ModelRelationship {
     this.displayNameSearchable,
     this.displayColor,
     this.email,
-    this.createdAt,
-    this.createdBy,
-    this.deletedAt,
-    this.deletedBy,
+    this.createdReg,
+    this.deletedReg,
     this.description,
     this.addressBook,
     this.emailBook,
     this.fileBook,
     this.phoneBook,
-    this.deviceRegistrations,
+    this.deviceRegs,
     this.registration,
     this.memberPids,
-    this.whenDisabled,
-    this.whenEnabled,
-    this.whenNoted,
+    this.disabledRegs,
+    this.enabledRegs,
+    this.notedRegs,
     this.defType,
     this.def,
   }) {
@@ -269,21 +259,19 @@ class ModelRelationship extends _ModelRelationship {
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
         ..$email = otherData?[K_EMAIL]
-        ..$createdAt = otherData?[K_CREATED_AT]
-        ..$createdBy = otherData?[K_CREATED_BY]
-        ..$deletedAt = otherData?[K_DELETED_AT]
-        ..$deletedBy = otherData?[K_DELETED_BY]
+        ..$createdReg = otherData?[K_CREATED_REG]
+        ..$deletedReg = otherData?[K_DELETED_REG]
         ..$description = otherData?[K_DESCRIPTION]
         ..$addressBook = otherData?[K_ADDRESS_BOOK]
         ..$emailBook = otherData?[K_EMAIL_BOOK]
         ..$fileBook = otherData?[K_FILE_BOOK]
         ..$phoneBook = otherData?[K_PHONE_BOOK]
-        ..$deviceRegistrations = otherData?[K_DEVICE_REGISTRATIONS]
+        ..$deviceRegs = otherData?[K_DEVICE_REGS]
         ..$registration = otherData?[K_REGISTRATION]
         ..$memberPids = otherData?[K_MEMBER_PIDS]
-        ..$whenDisabled = otherData?[K_WHEN_DISABLED]
-        ..$whenEnabled = otherData?[K_WHEN_ENABLED]
-        ..$whenNoted = otherData?[K_WHEN_NOTED]
+        ..$disabledRegs = otherData?[K_DISABLED_REGS]
+        ..$enabledRegs = otherData?[K_ENABLED_REGS]
+        ..$notedRegs = otherData?[K_NOTED_REGS]
         ..$defType = otherData?[K_DEF_TYPE]
         ..$def = otherData?[K_DEF];
     } catch (e) {
@@ -337,21 +325,19 @@ class ModelRelationship extends _ModelRelationship {
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_DISPLAY_COLOR: this.$displayColor,
         K_EMAIL: this.$email,
-        K_CREATED_AT: this.$createdAt,
-        K_CREATED_BY: this.$createdBy,
-        K_DELETED_AT: this.$deletedAt,
-        K_DELETED_BY: this.$deletedBy,
+        K_CREATED_REG: this.$createdReg,
+        K_DELETED_REG: this.$deletedReg,
         K_DESCRIPTION: this.$description,
         K_ADDRESS_BOOK: this.$addressBook,
         K_EMAIL_BOOK: this.$emailBook,
         K_FILE_BOOK: this.$fileBook,
         K_PHONE_BOOK: this.$phoneBook,
-        K_DEVICE_REGISTRATIONS: this.$deviceRegistrations,
+        K_DEVICE_REGS: this.$deviceRegs,
         K_REGISTRATION: this.$registration,
         K_MEMBER_PIDS: this.$memberPids,
-        K_WHEN_DISABLED: this.$whenDisabled,
-        K_WHEN_ENABLED: this.$whenEnabled,
-        K_WHEN_NOTED: this.$whenNoted,
+        K_DISABLED_REGS: this.$disabledRegs,
+        K_ENABLED_REGS: this.$enabledRegs,
+        K_NOTED_REGS: this.$notedRegs,
         K_DEF_TYPE: this.$defType,
         K_DEF: this.$def,
       }.mapWithDefault(defaultValue);
@@ -408,17 +394,11 @@ class ModelRelationship extends _ModelRelationship {
       if (other.email != null) {
         this.email = other.email!;
       }
-      if (other.createdAt != null) {
-        this.createdAt = other.createdAt!;
+      if (other.createdReg != null) {
+        this.createdReg = other.createdReg!;
       }
-      if (other.createdBy != null) {
-        this.createdBy = other.createdBy!;
-      }
-      if (other.deletedAt != null) {
-        this.deletedAt = other.deletedAt!;
-      }
-      if (other.deletedBy != null) {
-        this.deletedBy = other.deletedBy!;
+      if (other.deletedReg != null) {
+        this.deletedReg = other.deletedReg!;
       }
       if (other.description != null) {
         this.description = other.description!;
@@ -435,8 +415,8 @@ class ModelRelationship extends _ModelRelationship {
       if (other.phoneBook != null) {
         this.phoneBook = other.phoneBook!;
       }
-      if (other.deviceRegistrations != null) {
-        this.deviceRegistrations = other.deviceRegistrations!;
+      if (other.deviceRegs != null) {
+        this.deviceRegs = other.deviceRegs!;
       }
       if (other.registration != null) {
         this.registration = other.registration!;
@@ -444,14 +424,14 @@ class ModelRelationship extends _ModelRelationship {
       if (other.memberPids != null) {
         this.memberPids = other.memberPids!;
       }
-      if (other.whenDisabled != null) {
-        this.whenDisabled = other.whenDisabled!;
+      if (other.disabledRegs != null) {
+        this.disabledRegs = other.disabledRegs!;
       }
-      if (other.whenEnabled != null) {
-        this.whenEnabled = other.whenEnabled!;
+      if (other.enabledRegs != null) {
+        this.enabledRegs = other.enabledRegs!;
       }
-      if (other.whenNoted != null) {
-        this.whenNoted = other.whenNoted!;
+      if (other.notedRegs != null) {
+        this.notedRegs = other.notedRegs!;
       }
       if (other.defType != null) {
         this.defType = other.defType!;
@@ -528,43 +508,27 @@ class ModelRelationship extends _ModelRelationship {
   @protected
   set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
-  // createdAt.
-  DateTime? get createdAtField => this.createdAt;
-  set createdAtField(DateTime? v) => this.createdAt = v;
+  // createdReg.
+  ModelRegistration? get createdRegField => this.createdReg;
+  set createdRegField(ModelRegistration? v) => this.createdReg = v;
   @protected
-  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  dynamic get $createdReg => this.createdReg?.toJson();
   @protected
-  set $createdAt(v) => this.createdAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $createdReg(v) => this.createdReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // createdBy.
-  String? get createdByField => this.createdBy;
-  set createdByField(String? v) => this.createdBy = v;
+  // deletedReg.
+  ModelRegistration? get deletedRegField => this.deletedReg;
+  set deletedRegField(ModelRegistration? v) => this.deletedReg = v;
   @protected
-  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  dynamic get $deletedReg => this.deletedReg?.toJson();
   @protected
-  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
-
-  // deletedAt.
-  DateTime? get deletedAtField => this.deletedAt;
-  set deletedAtField(DateTime? v) => this.deletedAt = v;
-  @protected
-  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
-  @protected
-  set $deletedAt(v) => this.deletedAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $deletedReg(v) => this.deletedReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-
-  // deletedBy.
-  String? get deletedByField => this.deletedBy;
-  set deletedByField(String? v) => this.deletedBy = v;
-  @protected
-  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
-  @protected
-  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 
   // description.
   String? get descriptionField => this.description;
@@ -691,36 +655,30 @@ class ModelRelationship extends _ModelRelationship {
       .nullIfEmpty
       ?.cast();
 
-  // deviceRegistrations.
-  Map<String, ModelDeviceRegistration>? get deviceRegistrationsField =>
-      this.deviceRegistrations;
-  set deviceRegistrationsField(Map<String, ModelDeviceRegistration>? v) =>
-      this.deviceRegistrations = v;
+  // deviceRegs.
+  List<ModelDeviceRegistration>? get deviceRegsField => this.deviceRegs;
+  set deviceRegsField(List<ModelDeviceRegistration>? v) => this.deviceRegs = v;
   @protected
-  dynamic get $deviceRegistrations => this
-      .deviceRegistrations
+  dynamic get $deviceRegs => this
+      .deviceRegs
       ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $deviceRegistrations(v) => this.deviceRegistrations = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelDeviceRegistration.fromJson(a) : null;
-          }(),
-        ),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
-      ?.cast();
+      ?.toList();
+  @protected
+  set $deviceRegs(v) => this.deviceRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelDeviceRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
 
   // registration.
   ModelRegistration? get registrationField => this.registration;
@@ -755,92 +713,80 @@ class ModelRelationship extends _ModelRelationship {
       ?.toSet()
       .cast();
 
-  // whenDisabled.
-  Map<String, DateTime>? get whenDisabledField => this.whenDisabled;
-  set whenDisabledField(Map<String, DateTime>? v) => this.whenDisabled = v;
+  // disabledRegs.
+  List<ModelRegistration>? get disabledRegsField => this.disabledRegs;
+  set disabledRegsField(List<ModelRegistration>? v) => this.disabledRegs = v;
   @protected
-  dynamic get $whenDisabled => this
-      .whenDisabled
+  dynamic get $disabledRegs => this
+      .disabledRegs
       ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toUtc()?.toIso8601String(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $whenDisabled(v) => this.whenDisabled = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = p1;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-        ),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
-      ?.cast();
+      ?.toList();
+  @protected
+  set $disabledRegs(v) => this.disabledRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
 
-  // whenEnabled.
-  Map<String, DateTime>? get whenEnabledField => this.whenEnabled;
-  set whenEnabledField(Map<String, DateTime>? v) => this.whenEnabled = v;
+  // enabledRegs.
+  List<ModelRegistration>? get enabledRegsField => this.enabledRegs;
+  set enabledRegsField(List<ModelRegistration>? v) => this.enabledRegs = v;
   @protected
-  dynamic get $whenEnabled => this
-      .whenEnabled
+  dynamic get $enabledRegs => this
+      .enabledRegs
       ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toUtc()?.toIso8601String(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $whenEnabled(v) => this.whenEnabled = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = p1;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-        ),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
-      ?.cast();
+      ?.toList();
+  @protected
+  set $enabledRegs(v) => this.enabledRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
 
-  // whenNoted.
-  Map<String, DateTime>? get whenNotedField => this.whenNoted;
-  set whenNotedField(Map<String, DateTime>? v) => this.whenNoted = v;
+  // notedRegs.
+  List<ModelRegistration>? get notedRegsField => this.notedRegs;
+  set notedRegsField(List<ModelRegistration>? v) => this.notedRegs = v;
   @protected
-  dynamic get $whenNoted => this
-      .whenNoted
+  dynamic get $notedRegs => this
+      .notedRegs
       ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toUtc()?.toIso8601String(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $whenNoted(v) => this.whenNoted = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = p1;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-        ),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
-      ?.cast();
+      ?.toList();
+  @protected
+  set $notedRegs(v) => this.notedRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
 
   // defType.
   RelationshipDefType? get defTypeField => this.defType;

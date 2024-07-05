@@ -18,10 +18,8 @@ const PRIVATE_MODEL_FIELDS = {
   ('id?', String),
   ('pid?', String),
   ('seed?', String),
-  ('created_at?', DateTime),
-  ('created_by?', String),
-  ('deleted_at?', DateTime),
-  ('deleted_by?', String),
+  ('created_reg?', ModelRegistration),
+  ('deleted_reg?', ModelRegistration),
 };
 
 @GenerateModel(fields: PRIVATE_MODEL_FIELDS)

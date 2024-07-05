@@ -28,10 +28,8 @@ class ModelOrganization extends _ModelOrganization {
   static const K_ID = 'id';
   static const K_PID = 'pid';
   static const K_SEED = 'seed';
-  static const K_CREATED_AT = 'createdAt';
-  static const K_CREATED_BY = 'createdBy';
-  static const K_DELETED_AT = 'deletedAt';
-  static const K_DELETED_BY = 'deletedBy';
+  static const K_CREATED_REG = 'createdReg';
+  static const K_DELETED_REG = 'deletedReg';
 
   static const CLASS = 'ModelOrganization';
 
@@ -42,10 +40,8 @@ class ModelOrganization extends _ModelOrganization {
   String? id;
   String? pid;
   String? seed;
-  DateTime? createdAt;
-  String? createdBy;
-  DateTime? deletedAt;
-  String? deletedBy;
+  ModelRegistration? createdReg;
+  ModelRegistration? deletedReg;
 
   //
   //
@@ -62,20 +58,16 @@ class ModelOrganization extends _ModelOrganization {
     String? id,
     String? pid,
     String? seed,
-    DateTime? createdAt,
-    String? createdBy,
-    DateTime? deletedAt,
-    String? deletedBy,
+    ModelRegistration? createdReg,
+    ModelRegistration? deletedReg,
   }) {
     return ModelOrganization.b(
       ref: ref,
       id: id,
       pid: pid,
       seed: seed,
-      createdAt: createdAt,
-      createdBy: createdBy,
-      deletedAt: deletedAt,
-      deletedBy: deletedBy,
+      createdReg: createdReg,
+      deletedReg: deletedReg,
     );
   }
 
@@ -88,10 +80,8 @@ class ModelOrganization extends _ModelOrganization {
     this.id,
     this.pid,
     this.seed,
-    this.createdAt,
-    this.createdBy,
-    this.deletedAt,
-    this.deletedBy,
+    this.createdReg,
+    this.deletedReg,
   }) {
     assert(this.ref != null);
   }
@@ -192,10 +182,8 @@ class ModelOrganization extends _ModelOrganization {
         ..$id = otherData?[K_ID]
         ..$pid = otherData?[K_PID]
         ..$seed = otherData?[K_SEED]
-        ..$createdAt = otherData?[K_CREATED_AT]
-        ..$createdBy = otherData?[K_CREATED_BY]
-        ..$deletedAt = otherData?[K_DELETED_AT]
-        ..$deletedBy = otherData?[K_DELETED_BY];
+        ..$createdReg = otherData?[K_CREATED_REG]
+        ..$deletedReg = otherData?[K_DELETED_REG];
     } catch (e) {
       return null;
     }
@@ -245,10 +233,8 @@ class ModelOrganization extends _ModelOrganization {
         K_ID: this.$id,
         K_PID: this.$pid,
         K_SEED: this.$seed,
-        K_CREATED_AT: this.$createdAt,
-        K_CREATED_BY: this.$createdBy,
-        K_DELETED_AT: this.$deletedAt,
-        K_DELETED_BY: this.$deletedBy,
+        K_CREATED_REG: this.$createdReg,
+        K_DELETED_REG: this.$deletedReg,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -297,17 +283,11 @@ class ModelOrganization extends _ModelOrganization {
       if (other.seed != null) {
         this.seed = other.seed!;
       }
-      if (other.createdAt != null) {
-        this.createdAt = other.createdAt!;
+      if (other.createdReg != null) {
+        this.createdReg = other.createdReg!;
       }
-      if (other.createdBy != null) {
-        this.createdBy = other.createdBy!;
-      }
-      if (other.deletedAt != null) {
-        this.deletedAt = other.deletedAt!;
-      }
-      if (other.deletedBy != null) {
-        this.deletedBy = other.deletedBy!;
+      if (other.deletedReg != null) {
+        this.deletedReg = other.deletedReg!;
       }
     }
   }
@@ -351,41 +331,25 @@ class ModelOrganization extends _ModelOrganization {
   @protected
   set $seed(v) => this.seed = v?.toString().trim().nullIfEmpty;
 
-  // createdAt.
-  DateTime? get createdAtField => this.createdAt;
-  set createdAtField(DateTime? v) => this.createdAt = v;
+  // createdReg.
+  ModelRegistration? get createdRegField => this.createdReg;
+  set createdRegField(ModelRegistration? v) => this.createdReg = v;
   @protected
-  dynamic get $createdAt => this.createdAt?.toUtc()?.toIso8601String();
+  dynamic get $createdReg => this.createdReg?.toJson();
   @protected
-  set $createdAt(v) => this.createdAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $createdReg(v) => this.createdReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // createdBy.
-  String? get createdByField => this.createdBy;
-  set createdByField(String? v) => this.createdBy = v;
+  // deletedReg.
+  ModelRegistration? get deletedRegField => this.deletedReg;
+  set deletedRegField(ModelRegistration? v) => this.deletedReg = v;
   @protected
-  dynamic get $createdBy => this.createdBy?.toString().trim().nullIfEmpty;
+  dynamic get $deletedReg => this.deletedReg?.toJson();
   @protected
-  set $createdBy(v) => this.createdBy = v?.toString().trim().nullIfEmpty;
-
-  // deletedAt.
-  DateTime? get deletedAtField => this.deletedAt;
-  set deletedAtField(DateTime? v) => this.deletedAt = v;
-  @protected
-  dynamic get $deletedAt => this.deletedAt?.toUtc()?.toIso8601String();
-  @protected
-  set $deletedAt(v) => this.deletedAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $deletedReg(v) => this.deletedReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-
-  // deletedBy.
-  String? get deletedByField => this.deletedBy;
-  set deletedByField(String? v) => this.deletedBy = v;
-  @protected
-  dynamic get $deletedBy => this.deletedBy?.toString().trim().nullIfEmpty;
-  @protected
-  set $deletedBy(v) => this.deletedBy = v?.toString().trim().nullIfEmpty;
 }
