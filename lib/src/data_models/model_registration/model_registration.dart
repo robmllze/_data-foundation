@@ -16,12 +16,12 @@ part '_model_registration.g.dart';
 const MODEL_REGISTRATION_FIELDS = {
   ('id?', String),
   ('ref?', DataRefModel),
-  ('by?', String),
-  ('at?', DateTime),
+  ('registered_by?', String),
+  ('registered_at?', DateTime),
   ('ip_v4_address?', String),
   ('ip_v6_address?', String),
   ('location?', ModelLocation),
-  ('value?', bool),
+  ('enabled?', bool),
 };
 
 @GenerateModel(
@@ -32,60 +32,7 @@ abstract class _ModelRegistration extends Model {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class RegistrationListUtils<TModelRegistration extends ModelRegistration> {
-  //
-  //
-  //
-
-  final Iterable<TModelRegistration> _registrations;
-
-  //
-  //
-  //
-
-  const RegistrationListUtils(Iterable<TModelRegistration> registrations)
-      : _registrations = registrations;
-
-  //
-  //
-  //
-
-  Iterable<DateTime> get dates {
-    return this._registrations.map((e) => e.at).nonNulls;
-  }
-
-  DateTime? get firstDate {
-    return getFirstDate(this.dates);
-  }
-
-  DateTime? get lastDate {
-    return getLastDate(this.dates);
-  }
-
-  String? get firstId {
-    return this._registrations.firstWhereOrNull((e) {
-      return e == this.firstDate;
-    })?.by;
-  }
-
-  String? get lastId {
-    return this._registrations.firstWhereOrNull((e) {
-      return e.at == this.lastDate;
-    })?.by;
-  }
-
-  bool? valueBy(String? id) {
-    return this._registrations.firstWhereOrNull((e) => e.by == id)?.value != false;
-  }
-
-  bool hasValue(bool value) {
-    return this._registrations.any((e) => (e.value != false) == value);
-  }
+extension ModelRegistrationExtension on ModelRegistration {
+  bool get impliesEnabled => this.enabled != false;
 }
 
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-extension MoreOnRegistrationListExtension<TModelRegistration extends ModelRegistration>
-    on Iterable<TModelRegistration> {
-  RegistrationListUtils get more => RegistrationListUtils(this);
-}

@@ -45,8 +45,8 @@ extension EntryModelPoolExtension<TModel extends EntryModel> on Iterable<TModel>
     return this.toList()
       ..sort((e0, e1) {
         final now = DateTime.now();
-        final d0 = e0.createdReg?.at ?? now;
-        final d1 = e1.createdReg?.at ?? now;
+        final d0 = e0.createdReg?.registeredAt ?? now;
+        final d1 = e1.createdReg?.registeredAt ?? now;
         final n = d0.compareTo(d1);
         return n;
       });

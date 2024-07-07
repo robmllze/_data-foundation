@@ -55,7 +55,7 @@ extension ModelJobPubExtension on ModelJobPub {
   DateTime? lastClockInFor(String? pid) => (this.clockInsFor(pid).toList()..sort()).lastOrNull;
 
   Iterable<DateTime?> clockInsFor(String? pid) =>
-      this.clockInRegs?.where((e) => e.by == pid).map((e) => e.at) ?? [];
+      this.clockInRegs?.where((e) => e.registeredBy == pid).map((e) => e.registeredAt) ?? [];
 
   bool canClockOut(String? pid) {
     final lastClockIn = this.lastClockInFor(pid);
@@ -75,7 +75,7 @@ extension ModelJobPubExtension on ModelJobPub {
   DateTime? lastClockOutFor(String? pid) => (this.clockOutsFor(pid).toList()..sort()).lastOrNull;
 
   Iterable<DateTime?> clockOutsFor(String? pid) =>
-      this.clockOutRegs?.where((e) => e.by == pid).map((e) => e.at) ?? [];
+      this.clockOutRegs?.where((e) => e.registeredBy == pid).map((e) => e.registeredAt) ?? [];
 
   //
   //

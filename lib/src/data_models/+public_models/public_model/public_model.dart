@@ -117,7 +117,7 @@ extension PublicModelExtension on PublicModel {
       ?..sort((a, b) {
         final now = DateTime.now();
         return (ascending ? 1 : -1) *
-            (a.createdReg?.at ?? now).compareTo((b.createdReg?.at ?? now));
+            (a.createdReg?.registeredAt ?? now).compareTo((b.createdReg?.registeredAt ?? now));
       });
   }
 

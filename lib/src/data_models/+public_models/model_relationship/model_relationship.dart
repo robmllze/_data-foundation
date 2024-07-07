@@ -39,8 +39,8 @@ extension ModelRelationshipExtension on ModelRelationship {
 
   /// Whether this relationship is marked as "enabled" by any Member.
   bool get isEnabled {
-    final a = this.enabledRegs?.more.lastDate;
-    final b = this.disabledRegs?.more.lastDate;
+    final a = this.enabledRegs?.latestRegistrationDate;
+    final b = this.disabledRegs?.latestRegistrationDate;
     if (a == null) {
       return false;
     }
@@ -52,8 +52,8 @@ extension ModelRelationshipExtension on ModelRelationship {
 
   /// Whether this relationship is marked as "enabled" by any Member.
   bool get isDisabled {
-    final a = this.enabledRegs?.more.lastDate;
-    final b = this.disabledRegs?.more.lastDate;
+    final a = this.enabledRegs?.latestRegistrationDate;
+    final b = this.disabledRegs?.latestRegistrationDate;
     if (b == null) {
       return false;
     }
@@ -73,8 +73,8 @@ extension ModelRelationshipExtension on ModelRelationship {
     if (!this.isMarkedAsNotedFor(memberPid)) {
       (this.notedRegs ?? []).add(
         ModelRegistration(
-          by: memberPid,
-          at: DateTime.now(),
+          registeredBy: memberPid,
+          registeredAt: DateTime.now(),
         ),
       );
     }
@@ -82,7 +82,7 @@ extension ModelRelationshipExtension on ModelRelationship {
 
   /// Whether this relationship is marked as "noted" for the Member with [memberPid].
   bool isMarkedAsNotedFor(String memberPid) {
-    return this.notedRegs?.any((e) => e.by == memberPid) == true;
+    return this.notedRegs?.any((e) => e.registeredBy == memberPid) == true;
   }
 
   /// Marks this relationship as "enabled" for the Member with [memberPid].
@@ -96,8 +96,8 @@ extension ModelRelationshipExtension on ModelRelationship {
     if (!this.isMarkedAsEnabledFor(memberPid)) {
       (this.enabledRegs ?? []).add(
         ModelRegistration(
-          by: memberPid,
-          at: DateTime.now(),
+          registeredBy: memberPid,
+          registeredAt: DateTime.now(),
         ),
       );
     }
@@ -105,7 +105,7 @@ extension ModelRelationshipExtension on ModelRelationship {
 
   /// Whether this relationship is marked as "enabled" for the Member with [memberPid].
   bool isMarkedAsEnabledFor(String memberPid) {
-    return this.enabledRegs?.any((e) => e.by == memberPid) == true;
+    return this.enabledRegs?.any((e) => e.registeredBy == memberPid) == true;
   }
 
   /// Marks this relationship as "disabled" for the Member with [memberPid].
@@ -118,8 +118,8 @@ extension ModelRelationshipExtension on ModelRelationship {
     if (!this.isMarkedAsDisabledFor(memberPid)) {
       (this.disabledRegs ?? []).add(
         ModelRegistration(
-          by: memberPid,
-          at: DateTime.now(),
+          registeredBy: memberPid,
+          registeredAt: DateTime.now(),
         ),
       );
     }
@@ -127,7 +127,7 @@ extension ModelRelationshipExtension on ModelRelationship {
 
   /// Whether this relationship is marked as "disabled" for the Member with [memberPid].
   bool isMarkedAsDisabledFor(String memberPid) {
-    return this.disabledRegs?.any((e) => e.by == memberPid) == true;
+    return this.disabledRegs?.any((e) => e.registeredBy == memberPid) == true;
   }
 
   /// Whether this relationship involves the Member with [memberPid].

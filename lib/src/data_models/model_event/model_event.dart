@@ -43,23 +43,63 @@ extension ModelEventExtension on ModelEvent {
     return timeout != null && timeout < DateTime.now().millisecondsSinceEpoch;
   }
 
-  //
-  //
-  //
+  bool isReadByAnyone() {
+    return this.readRegs?.isImpliedEnabledByAnyone() == true;
+  }
 
-  bool get isReadByAnyone => this.readRegs?.more.hasValue(true) == true;
-  bool get isArchivedByAnyone => this.archivedRegs?.more.hasValue(true) == true;
-  bool get isHiddenByAnyone => this.hiddenRegs?.more.hasValue(true) == true;
-  bool get isLikedByAnyone => this.likedRegs?.more.hasValue(true) == true;
-  bool get isReceivedByAnyone => this.receivedRegs?.more.hasValue(true) == true;
+  bool isArchivedByAnyone() {
+    return this.archivedRegs?.isImpliedEnabledByAnyone() == true;
+  }
 
-  //
-  //
-  //
+  bool isHiddenByAnyone() {
+    return this.hiddenRegs?.isImpliedEnabledByAnyone() == true;
+  }
 
-  bool isReadBy(String? id) => this.readRegs?.more.valueBy(id) == true;
-  bool isArchivedBy(String? id) => this.archivedRegs?.more.valueBy(id) == true;
-  bool isHiddenBy(String? id) => this.hiddenRegs?.more.valueBy(id) == true;
-  bool isLikedBy(String? id) => this.likedRegs?.more.valueBy(id) == true;
-  bool isReceivedBy(String? id) => this.receivedRegs?.more.valueBy(id) == true;
+  bool isLikedByAnyone() {
+    return this.likedRegs?.isImpliedEnabledByAnyone() == true;
+  }
+
+  bool isReceivedByAnyone() {
+    return this.receivedRegs?.isImpliedEnabledByAnyone() == true;
+  }
+
+  bool isReadByAnyoneElse(String id) {
+    return this.readRegs?.isImpliedEnabledByAnyoneElse(id) == true;
+  }
+
+  bool isArchivedByAnyoneElse(String id) {
+    return this.archivedRegs?.isImpliedEnabledByAnyoneElse(id) == true;
+  }
+
+  bool isHiddenByAnyoneElse(String id) {
+    return this.hiddenRegs?.isImpliedEnabledByAnyoneElse(id) == true;
+  }
+
+  bool isLikedByAnyoneElse(String id) {
+    return this.likedRegs?.isImpliedEnabledByAnyoneElse(id) == true;
+  }
+
+  bool isReceivedByAnyoneElse(String id) {
+    return this.receivedRegs?.isImpliedEnabledByAnyoneElse(id) == true;
+  }
+
+  bool isReadBy(String id) {
+    return this.readRegs?.isImpliedEnabledBy(id) == true;
+  }
+
+  bool isArchivedBy(String id) {
+    return this.archivedRegs?.isImpliedEnabledBy(id) == true;
+  }
+
+  bool isHiddenBy(String id) {
+    return this.hiddenRegs?.isImpliedEnabledBy(id) == true;
+  }
+
+  bool isLikedBy(String id) {
+    return this.likedRegs?.isImpliedEnabledBy(id) == true;
+  }
+
+  bool isReceivedBy(String id) {
+    return this.receivedRegs?.isImpliedEnabledBy(id) == true;
+  }
 }

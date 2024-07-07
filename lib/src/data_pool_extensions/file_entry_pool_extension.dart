@@ -22,7 +22,7 @@ extension FileEntryPoolExtension on Iterable<ModelFileEntry> {
   Iterable<ModelFileEntry> filterByCreatedBy({
     required String createdBy,
   }) {
-    final results = this.where((file) => file.createdReg?.by == createdBy);
+    final results = this.where((file) => file.createdReg?.registeredBy == createdBy);
     return results;
   }
 }
