@@ -15,17 +15,17 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'entry_model.dart';
+part of 'model_entry.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class EntryModel extends _EntryModel {
+class ModelEntry extends _ModelEntry {
   //
   //
   //
 
-  static const K_REF = 'ref';
   static const K_ID = 'id';
+  static const K_REF = 'ref';
   static const K_DISPLAY_NAME = 'displayName';
   static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
   static const K_DISPLAY_COLOR = 'displayColor';
@@ -33,15 +33,15 @@ class EntryModel extends _EntryModel {
   static const K_ARCHIVED_G_REG = 'archivedGReg';
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
-  static const K_UPDATE_G_REG = 'updateGReg';
+  static const K_UPDATED_G_REG = 'updatedGReg';
 
-  static const CLASS = 'EntryModel';
+  static const CLASS = 'ModelEntry';
 
   @override
   String get $class => CLASS;
 
-  DataRefModel? ref;
   String? id;
+  DataRefModel? ref;
   String? displayName;
   String? displayNameSearchable;
   Color? displayColor;
@@ -49,21 +49,21 @@ class EntryModel extends _EntryModel {
   ModelRegistration? archivedGReg;
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
-  ModelRegistration? updateGReg;
+  ModelRegistration? updatedGReg;
 
   //
   //
   //
 
-  EntryModel.empty();
+  ModelEntry.empty();
 
   //
   //
   //
 
-  factory EntryModel({
-    required DataRefModel ref,
+  factory ModelEntry({
     String? id,
+    DataRefModel? ref,
     String? displayName,
     String? displayNameSearchable,
     Color? displayColor,
@@ -71,11 +71,11 @@ class EntryModel extends _EntryModel {
     ModelRegistration? archivedGReg,
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
-    ModelRegistration? updateGReg,
+    ModelRegistration? updatedGReg,
   }) {
-    return EntryModel.b(
-      ref: ref,
+    return ModelEntry.b(
       id: id,
+      ref: ref,
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
       displayColor: displayColor,
@@ -83,7 +83,7 @@ class EntryModel extends _EntryModel {
       archivedGReg: archivedGReg,
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
-      updateGReg: updateGReg,
+      updatedGReg: updatedGReg,
     );
   }
 
@@ -91,9 +91,9 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  EntryModel.b({
-    this.ref,
+  ModelEntry.b({
     this.id,
+    this.ref,
     this.displayName,
     this.displayNameSearchable,
     this.displayColor,
@@ -101,27 +101,25 @@ class EntryModel extends _EntryModel {
     this.archivedGReg,
     this.createdGReg,
     this.deletedGReg,
-    this.updateGReg,
-  }) {
-    assert(this.ref != null);
-  }
+    this.updatedGReg,
+  }) {}
 
   //
   //
   //
 
-  factory EntryModel.from(
+  factory ModelEntry.from(
     Model? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'EntryModel.from: $e');
+      assert(false, 'ModelEntry.from: $e');
       rethrow;
     }
   }
 
-  static EntryModel? fromOrNull(
+  static ModelEntry? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
@@ -131,19 +129,19 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  factory EntryModel.of(
-    EntryModel other,
+  factory ModelEntry.of(
+    ModelEntry other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'EntryModel.of: $e');
+      assert(false, 'ModelEntry.of: $e');
       rethrow;
     }
   }
 
-  static EntryModel? ofOrNull(
-    EntryModel? other,
+  static ModelEntry? ofOrNull(
+    ModelEntry? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -152,26 +150,26 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  factory EntryModel.fromJsonString(
+  factory ModelEntry.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'EntryModel.fromJsonString: $e');
+      assert(false, 'ModelEntry.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static EntryModel? fromJsonStringOrNull(
+  static ModelEntry? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return EntryModel.fromJson(decoded);
+        return ModelEntry.fromJson(decoded);
       } else {
-        return EntryModel.empty();
+        return ModelEntry.empty();
       }
     } catch (_) {
       return null;
@@ -182,24 +180,24 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  factory EntryModel.fromJson(
+  factory ModelEntry.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'EntryModel.fromJson: $e');
+      assert(false, 'ModelEntry.fromJson: $e');
       rethrow;
     }
   }
 
-  static EntryModel? fromJsonOrNull(
+  static ModelEntry? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return EntryModel.empty()
-        ..$ref = otherData?[K_REF]
+      return ModelEntry.empty()
         ..$id = otherData?[K_ID]
+        ..$ref = otherData?[K_REF]
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
@@ -207,7 +205,7 @@ class EntryModel extends _EntryModel {
         ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
-        ..$updateGReg = otherData?[K_UPDATE_G_REG];
+        ..$updatedGReg = otherData?[K_UPDATED_G_REG];
     } catch (e) {
       return null;
     }
@@ -217,25 +215,25 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  factory EntryModel.fromUri(
+  factory ModelEntry.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'EntryModel.fromUri: $e');
+      assert(false, 'ModelEntry.fromUri: $e');
       rethrow;
     }
   }
 
-  static EntryModel? fromUriOrNull(
+  static ModelEntry? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return EntryModel.fromJson(uri.queryParameters);
+        return ModelEntry.fromJson(uri.queryParameters);
       } else {
-        return EntryModel.empty();
+        return ModelEntry.empty();
       }
     } catch (_) {
       return null;
@@ -253,8 +251,8 @@ class EntryModel extends _EntryModel {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_REF: this.$ref,
         K_ID: this.$id,
+        K_REF: this.$ref,
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_DISPLAY_COLOR: this.$displayColor,
@@ -262,11 +260,11 @@ class EntryModel extends _EntryModel {
         K_ARCHIVED_G_REG: this.$archivedGReg,
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
-        K_UPDATE_G_REG: this.$updateGReg,
+        K_UPDATED_G_REG: this.$updatedGReg,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'EntryModel.toJson: $e');
+      assert(false, 'ModelEntry.toJson: $e');
       rethrow;
     }
   }
@@ -277,7 +275,7 @@ class EntryModel extends _EntryModel {
 
   @override
   T empty<T extends Model>() {
-    return EntryModel.b() as T;
+    return ModelEntry.b() as T;
   }
 
   //
@@ -286,7 +284,7 @@ class EntryModel extends _EntryModel {
 
   @override
   T copy<T extends Model>() {
-    return (EntryModel.b()..updateWith(this)) as T;
+    return (ModelEntry.b()..updateWith(this)) as T;
   }
 
   //
@@ -298,12 +296,12 @@ class EntryModel extends _EntryModel {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = EntryModel.fromJson(otherData);
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
+      final other = ModelEntry.fromJson(otherData);
       if (other.id != null) {
         this.id = other.id!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.displayName != null) {
         this.displayName = other.displayName!;
@@ -326,8 +324,8 @@ class EntryModel extends _EntryModel {
       if (other.deletedGReg != null) {
         this.deletedGReg = other.deletedGReg!;
       }
-      if (other.updateGReg != null) {
-        this.updateGReg = other.updateGReg!;
+      if (other.updatedGReg != null) {
+        this.updatedGReg = other.updatedGReg!;
       }
     }
   }
@@ -336,17 +334,6 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  // ref.
-  DataRefModel get refField => this.ref!;
-  set refField(DataRefModel v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
-
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -354,6 +341,17 @@ class EntryModel extends _EntryModel {
   dynamic get $id => this.id?.toString().trim().nullIfEmpty;
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // ref.
+  DataRefModel? get refField => this.ref;
+  set refField(DataRefModel? v) => this.ref = v;
+  @protected
+  dynamic get $ref => this.ref?.toJson();
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // displayName.
   String? get displayNameField => this.displayName;
@@ -430,13 +428,13 @@ class EntryModel extends _EntryModel {
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // updateGReg.
-  ModelRegistration? get updateGRegField => this.updateGReg;
-  set updateGRegField(ModelRegistration? v) => this.updateGReg = v;
+  // updatedGReg.
+  ModelRegistration? get updatedGRegField => this.updatedGReg;
+  set updatedGRegField(ModelRegistration? v) => this.updatedGReg = v;
   @protected
-  dynamic get $updateGReg => this.updateGReg?.toJson();
+  dynamic get $updatedGReg => this.updatedGReg?.toJson();
   @protected
-  set $updateGReg(v) => this.updateGReg = () {
+  set $updatedGReg(v) => this.updatedGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();

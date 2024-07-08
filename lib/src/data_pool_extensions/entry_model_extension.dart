@@ -12,7 +12,7 @@ import '/_common.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-extension EntryModelPoolExtension<TModel extends EntryModel> on Iterable<TModel> {
+extension ModelEntryPoolExtension<TModel extends ModelEntry> on Iterable<TModel> {
   //
   //
   //

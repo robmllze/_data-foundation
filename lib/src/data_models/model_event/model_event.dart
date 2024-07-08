@@ -17,7 +17,7 @@ part '_model_event.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...ENTRY_MODEL_FIELDS,
+    ...MODEL_ENTRY_FIELDS,
     ('member_pids?', Set<String>),
     ('topic?', TopicType),
     ('body?', DataModel),
@@ -29,7 +29,7 @@ part '_model_event.g.dart';
     ('received_regs?', List<ModelRegistration>),
   },
 )
-abstract class _ModelEvent extends Model implements EntryModel {}
+abstract class _ModelEvent extends Model implements ModelEntry {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

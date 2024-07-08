@@ -16,7 +16,7 @@ part '_model_phone_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...ENTRY_MODEL_FIELDS,
+    ...MODEL_ENTRY_FIELDS,
     ('country_code?', String),
     ('number_without_country_code?', String),
     ('full_number?', String),
@@ -24,4 +24,4 @@ part '_model_phone_entry.g.dart';
     ('type?', String),
   },
 )
-abstract class _ModelPhoneEntry extends Model implements EntryModel {}
+abstract class _ModelPhoneEntry extends Model implements ModelEntry {}

@@ -7,9 +7,9 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export 'data_models/display_model/display_model.dart';
-export 'data_models/entry_models_etc/entry_model/entry_model.dart';
+export 'data_models/entry_models_etc/model_entry/model_entry.dart';
 export 'data_models/entry_models_etc/model_address_entry/model_address_entry.dart';
+export 'data_models/model_display/model_display.dart';
 export 'data_models/entry_models_etc/model_email_entry/model_email_entry.dart';
 export 'data_models/entry_models_etc/model_file_entry/model_file_entry.dart';
 export 'data_models/entry_models_etc/model_note_entry/model_note_entry.dart';

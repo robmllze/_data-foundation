@@ -14,20 +14,22 @@ part '_public_model.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 const PUBLIC_MODEL_FIELDS = {
-  ...ENTRY_MODEL_FIELDS,
+  ...MODEL_ENTRY_FIELDS,
   ('email_searchable?', T_LOWER_CASE_STRING),
   ('address_entries?', Map<String, ModelAddressEntry>),
   ('email_entries?', Map<String, ModelEmailEntry>),
   ('file_entries?', Map<String, ModelFileEntry>),
   ('phone_entries?', Map<String, ModelPhoneEntry>),
   ('device_regs?', List<ModelDeviceRegistration>),
+  ('opened_regs?', List<ModelRegistration>),
+  ('closed_regs?', List<ModelRegistration>),
 };
 
 @GenerateModel(
   shouldInherit: true,
   fields: PUBLIC_MODEL_FIELDS,
 )
-abstract class _PublicModel extends Model implements EntryModel, DisplayModel {}
+abstract class _PublicModel extends Model implements ModelEntry, ModelDisplay {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

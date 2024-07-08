@@ -7,8 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'dart:ui';
-
 import '/_common.dart';
 
 part '_model_file_entry.g.dart';
@@ -18,7 +16,7 @@ part '_model_file_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...ENTRY_MODEL_FIELDS,
+    ...MODEL_ENTRY_FIELDS,
     ('name?', String),
     ('download_url?', Uri),
     ('storage_path?', String),
@@ -27,7 +25,7 @@ part '_model_file_entry.g.dart';
     ('extension?', T_LOWER_CASE_STRING),
   },
 )
-abstract class _ModelFileEntry extends Model implements EntryModel {}
+abstract class _ModelFileEntry extends Model implements ModelEntry {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

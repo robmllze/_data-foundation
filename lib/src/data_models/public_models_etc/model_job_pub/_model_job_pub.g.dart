@@ -24,8 +24,8 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
 
-  static const K_REF = 'ref';
   static const K_ID = 'id';
+  static const K_REF = 'ref';
   static const K_DISPLAY_NAME = 'displayName';
   static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
   static const K_DISPLAY_COLOR = 'displayColor';
@@ -33,18 +33,18 @@ class ModelJobPub extends _ModelJobPub {
   static const K_ARCHIVED_G_REG = 'archivedGReg';
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
-  static const K_UPDATE_G_REG = 'updateGReg';
+  static const K_UPDATED_G_REG = 'updatedGReg';
   static const K_EMAIL_SEARCHABLE = 'emailSearchable';
   static const K_ADDRESS_ENTRIES = 'addressEntries';
   static const K_EMAIL_ENTRIES = 'emailEntries';
   static const K_FILE_ENTRIES = 'fileEntries';
   static const K_PHONE_ENTRIES = 'phoneEntries';
   static const K_DEVICE_REGS = 'deviceRegs';
-  static const K_CLOCK_IN_REGS = 'clockInRegs';
-  static const K_CLOCK_OUT_REGS = 'clockOutRegs';
   static const K_OPENED_REGS = 'openedRegs';
   static const K_CLOSED_REGS = 'closedRegs';
-  static const K_TODO_BOOK = 'todoBook';
+  static const K_CLOCK_IN_REGS = 'clockInRegs';
+  static const K_CLOCK_OUT_REGS = 'clockOutRegs';
+  static const K_TODO_ENTRIES = 'todoEntries';
   static const K_STATUS = 'status';
 
   static const CLASS = 'ModelJobPub';
@@ -52,8 +52,8 @@ class ModelJobPub extends _ModelJobPub {
   @override
   String get $class => CLASS;
 
-  DataRefModel? ref;
   String? id;
+  DataRefModel? ref;
   String? displayName;
   String? displayNameSearchable;
   Color? displayColor;
@@ -61,18 +61,18 @@ class ModelJobPub extends _ModelJobPub {
   ModelRegistration? archivedGReg;
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
-  ModelRegistration? updateGReg;
+  ModelRegistration? updatedGReg;
   String? emailSearchable;
   Map<String, ModelAddressEntry>? addressEntries;
   Map<String, ModelEmailEntry>? emailEntries;
   Map<String, ModelFileEntry>? fileEntries;
   Map<String, ModelPhoneEntry>? phoneEntries;
   List<ModelDeviceRegistration>? deviceRegs;
-  List<ModelRegistration>? clockInRegs;
-  List<ModelRegistration>? clockOutRegs;
   List<ModelRegistration>? openedRegs;
   List<ModelRegistration>? closedRegs;
-  Map<DateTime, ModelTodoEntry>? todoBook;
+  List<ModelRegistration>? clockInRegs;
+  List<ModelRegistration>? clockOutRegs;
+  Map<DateTime, ModelTodoEntry>? todoEntries;
   JobStatusType? status;
 
   //
@@ -86,8 +86,8 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   factory ModelJobPub({
-    required DataRefModel ref,
     String? id,
+    DataRefModel? ref,
     String? displayName,
     String? displayNameSearchable,
     Color? displayColor,
@@ -95,23 +95,23 @@ class ModelJobPub extends _ModelJobPub {
     ModelRegistration? archivedGReg,
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
-    ModelRegistration? updateGReg,
+    ModelRegistration? updatedGReg,
     String? emailSearchable,
     Map<String, ModelAddressEntry>? addressEntries,
     Map<String, ModelEmailEntry>? emailEntries,
     Map<String, ModelFileEntry>? fileEntries,
     Map<String, ModelPhoneEntry>? phoneEntries,
     List<ModelDeviceRegistration>? deviceRegs,
-    List<ModelRegistration>? clockInRegs,
-    List<ModelRegistration>? clockOutRegs,
     List<ModelRegistration>? openedRegs,
     List<ModelRegistration>? closedRegs,
-    Map<DateTime, ModelTodoEntry>? todoBook,
+    List<ModelRegistration>? clockInRegs,
+    List<ModelRegistration>? clockOutRegs,
+    Map<DateTime, ModelTodoEntry>? todoEntries,
     JobStatusType? status,
   }) {
     return ModelJobPub.b(
-      ref: ref,
       id: id,
+      ref: ref,
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
       displayColor: displayColor,
@@ -119,18 +119,18 @@ class ModelJobPub extends _ModelJobPub {
       archivedGReg: archivedGReg,
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
-      updateGReg: updateGReg,
+      updatedGReg: updatedGReg,
       emailSearchable: emailSearchable,
       addressEntries: addressEntries,
       emailEntries: emailEntries,
       fileEntries: fileEntries,
       phoneEntries: phoneEntries,
       deviceRegs: deviceRegs,
-      clockInRegs: clockInRegs,
-      clockOutRegs: clockOutRegs,
       openedRegs: openedRegs,
       closedRegs: closedRegs,
-      todoBook: todoBook,
+      clockInRegs: clockInRegs,
+      clockOutRegs: clockOutRegs,
+      todoEntries: todoEntries,
       status: status,
     );
   }
@@ -140,8 +140,8 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   ModelJobPub.b({
-    this.ref,
     this.id,
+    this.ref,
     this.displayName,
     this.displayNameSearchable,
     this.displayColor,
@@ -149,22 +149,20 @@ class ModelJobPub extends _ModelJobPub {
     this.archivedGReg,
     this.createdGReg,
     this.deletedGReg,
-    this.updateGReg,
+    this.updatedGReg,
     this.emailSearchable,
     this.addressEntries,
     this.emailEntries,
     this.fileEntries,
     this.phoneEntries,
     this.deviceRegs,
-    this.clockInRegs,
-    this.clockOutRegs,
     this.openedRegs,
     this.closedRegs,
-    this.todoBook,
+    this.clockInRegs,
+    this.clockOutRegs,
+    this.todoEntries,
     this.status,
-  }) {
-    assert(this.ref != null);
-  }
+  }) {}
 
   //
   //
@@ -258,8 +256,8 @@ class ModelJobPub extends _ModelJobPub {
   ) {
     try {
       return ModelJobPub.empty()
-        ..$ref = otherData?[K_REF]
         ..$id = otherData?[K_ID]
+        ..$ref = otherData?[K_REF]
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
@@ -267,18 +265,18 @@ class ModelJobPub extends _ModelJobPub {
         ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
-        ..$updateGReg = otherData?[K_UPDATE_G_REG]
+        ..$updatedGReg = otherData?[K_UPDATED_G_REG]
         ..$emailSearchable = otherData?[K_EMAIL_SEARCHABLE]
         ..$addressEntries = otherData?[K_ADDRESS_ENTRIES]
         ..$emailEntries = otherData?[K_EMAIL_ENTRIES]
         ..$fileEntries = otherData?[K_FILE_ENTRIES]
         ..$phoneEntries = otherData?[K_PHONE_ENTRIES]
         ..$deviceRegs = otherData?[K_DEVICE_REGS]
-        ..$clockInRegs = otherData?[K_CLOCK_IN_REGS]
-        ..$clockOutRegs = otherData?[K_CLOCK_OUT_REGS]
         ..$openedRegs = otherData?[K_OPENED_REGS]
         ..$closedRegs = otherData?[K_CLOSED_REGS]
-        ..$todoBook = otherData?[K_TODO_BOOK]
+        ..$clockInRegs = otherData?[K_CLOCK_IN_REGS]
+        ..$clockOutRegs = otherData?[K_CLOCK_OUT_REGS]
+        ..$todoEntries = otherData?[K_TODO_ENTRIES]
         ..$status = otherData?[K_STATUS];
     } catch (e) {
       return null;
@@ -325,8 +323,8 @@ class ModelJobPub extends _ModelJobPub {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_REF: this.$ref,
         K_ID: this.$id,
+        K_REF: this.$ref,
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_DISPLAY_COLOR: this.$displayColor,
@@ -334,18 +332,18 @@ class ModelJobPub extends _ModelJobPub {
         K_ARCHIVED_G_REG: this.$archivedGReg,
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
-        K_UPDATE_G_REG: this.$updateGReg,
+        K_UPDATED_G_REG: this.$updatedGReg,
         K_EMAIL_SEARCHABLE: this.$emailSearchable,
         K_ADDRESS_ENTRIES: this.$addressEntries,
         K_EMAIL_ENTRIES: this.$emailEntries,
         K_FILE_ENTRIES: this.$fileEntries,
         K_PHONE_ENTRIES: this.$phoneEntries,
         K_DEVICE_REGS: this.$deviceRegs,
-        K_CLOCK_IN_REGS: this.$clockInRegs,
-        K_CLOCK_OUT_REGS: this.$clockOutRegs,
         K_OPENED_REGS: this.$openedRegs,
         K_CLOSED_REGS: this.$closedRegs,
-        K_TODO_BOOK: this.$todoBook,
+        K_CLOCK_IN_REGS: this.$clockInRegs,
+        K_CLOCK_OUT_REGS: this.$clockOutRegs,
+        K_TODO_ENTRIES: this.$todoEntries,
         K_STATUS: this.$status,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -383,11 +381,11 @@ class ModelJobPub extends _ModelJobPub {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelJobPub.fromJson(otherData);
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
       if (other.id != null) {
         this.id = other.id!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.displayName != null) {
         this.displayName = other.displayName!;
@@ -410,8 +408,8 @@ class ModelJobPub extends _ModelJobPub {
       if (other.deletedGReg != null) {
         this.deletedGReg = other.deletedGReg!;
       }
-      if (other.updateGReg != null) {
-        this.updateGReg = other.updateGReg!;
+      if (other.updatedGReg != null) {
+        this.updatedGReg = other.updatedGReg!;
       }
       if (other.emailSearchable != null) {
         this.emailSearchable = other.emailSearchable!;
@@ -431,20 +429,20 @@ class ModelJobPub extends _ModelJobPub {
       if (other.deviceRegs != null) {
         this.deviceRegs = other.deviceRegs!;
       }
-      if (other.clockInRegs != null) {
-        this.clockInRegs = other.clockInRegs!;
-      }
-      if (other.clockOutRegs != null) {
-        this.clockOutRegs = other.clockOutRegs!;
-      }
       if (other.openedRegs != null) {
         this.openedRegs = other.openedRegs!;
       }
       if (other.closedRegs != null) {
         this.closedRegs = other.closedRegs!;
       }
-      if (other.todoBook != null) {
-        this.todoBook = other.todoBook!;
+      if (other.clockInRegs != null) {
+        this.clockInRegs = other.clockInRegs!;
+      }
+      if (other.clockOutRegs != null) {
+        this.clockOutRegs = other.clockOutRegs!;
+      }
+      if (other.todoEntries != null) {
+        this.todoEntries = other.todoEntries!;
       }
       if (other.status != null) {
         this.status = other.status!;
@@ -456,17 +454,6 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
 
-  // ref.
-  DataRefModel get refField => this.ref!;
-  set refField(DataRefModel v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
-
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -474,6 +461,17 @@ class ModelJobPub extends _ModelJobPub {
   dynamic get $id => this.id?.toString().trim().nullIfEmpty;
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // ref.
+  DataRefModel? get refField => this.ref;
+  set refField(DataRefModel? v) => this.ref = v;
+  @protected
+  dynamic get $ref => this.ref?.toJson();
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // displayName.
   String? get displayNameField => this.displayName;
@@ -550,13 +548,13 @@ class ModelJobPub extends _ModelJobPub {
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // updateGReg.
-  ModelRegistration? get updateGRegField => this.updateGReg;
-  set updateGRegField(ModelRegistration? v) => this.updateGReg = v;
+  // updatedGReg.
+  ModelRegistration? get updatedGRegField => this.updatedGReg;
+  set updatedGRegField(ModelRegistration? v) => this.updatedGReg = v;
   @protected
-  dynamic get $updateGReg => this.updateGReg?.toJson();
+  dynamic get $updatedGReg => this.updatedGReg?.toJson();
   @protected
-  set $updateGReg(v) => this.updateGReg = () {
+  set $updatedGReg(v) => this.updatedGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
@@ -716,56 +714,6 @@ class ModelJobPub extends _ModelJobPub {
       ?.toList()
       .cast();
 
-  // clockInRegs.
-  List<ModelRegistration>? get clockInRegsField => this.clockInRegs;
-  set clockInRegsField(List<ModelRegistration>? v) => this.clockInRegs = v;
-  @protected
-  dynamic get $clockInRegs => this
-      .clockInRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $clockInRegs(v) => this.clockInRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
-
-  // clockOutRegs.
-  List<ModelRegistration>? get clockOutRegsField => this.clockOutRegs;
-  set clockOutRegsField(List<ModelRegistration>? v) => this.clockOutRegs = v;
-  @protected
-  dynamic get $clockOutRegs => this
-      .clockOutRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $clockOutRegs(v) => this.clockOutRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
-
   // openedRegs.
   List<ModelRegistration>? get openedRegsField => this.openedRegs;
   set openedRegsField(List<ModelRegistration>? v) => this.openedRegs = v;
@@ -816,12 +764,63 @@ class ModelJobPub extends _ModelJobPub {
       ?.toList()
       .cast();
 
-  // todoBook.
-  Map<DateTime, ModelTodoEntry>? get todoBookField => this.todoBook;
-  set todoBookField(Map<DateTime, ModelTodoEntry>? v) => this.todoBook = v;
+  // clockInRegs.
+  List<ModelRegistration>? get clockInRegsField => this.clockInRegs;
+  set clockInRegsField(List<ModelRegistration>? v) => this.clockInRegs = v;
   @protected
-  dynamic get $todoBook => this
-      .todoBook
+  dynamic get $clockInRegs => this
+      .clockInRegs
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $clockInRegs(v) => this.clockInRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // clockOutRegs.
+  List<ModelRegistration>? get clockOutRegsField => this.clockOutRegs;
+  set clockOutRegsField(List<ModelRegistration>? v) => this.clockOutRegs = v;
+  @protected
+  dynamic get $clockOutRegs => this
+      .clockOutRegs
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $clockOutRegs(v) => this.clockOutRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // todoEntries.
+  Map<DateTime, ModelTodoEntry>? get todoEntriesField => this.todoEntries;
+  set todoEntriesField(Map<DateTime, ModelTodoEntry>? v) =>
+      this.todoEntries = v;
+  @protected
+  dynamic get $todoEntries => this
+      .todoEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toUtc()?.toIso8601String(),
@@ -831,7 +830,7 @@ class ModelJobPub extends _ModelJobPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $todoBook(v) => this.todoBook = letMap(v)
+  set $todoEntries(v) => this.todoEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           () {

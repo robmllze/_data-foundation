@@ -24,8 +24,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  static const K_REF = 'ref';
   static const K_ID = 'id';
+  static const K_REF = 'ref';
   static const K_DISPLAY_NAME = 'displayName';
   static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
   static const K_DISPLAY_COLOR = 'displayColor';
@@ -33,7 +33,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
   static const K_ARCHIVED_G_REG = 'archivedGReg';
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
-  static const K_UPDATE_G_REG = 'updateGReg';
+  static const K_UPDATED_G_REG = 'updatedGReg';
   static const K_EMAIL_SEARCHABLE = 'emailSearchable';
 
   static const CLASS = 'ModelEmailEntry';
@@ -41,8 +41,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   @override
   String get $class => CLASS;
 
-  DataRefModel? ref;
   String? id;
+  DataRefModel? ref;
   String? displayName;
   String? displayNameSearchable;
   Color? displayColor;
@@ -50,7 +50,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
   ModelRegistration? archivedGReg;
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
-  ModelRegistration? updateGReg;
+  ModelRegistration? updatedGReg;
   String? emailSearchable;
 
   //
@@ -64,8 +64,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
 
   factory ModelEmailEntry({
-    required DataRefModel ref,
     String? id,
+    DataRefModel? ref,
     String? displayName,
     String? displayNameSearchable,
     Color? displayColor,
@@ -73,12 +73,12 @@ class ModelEmailEntry extends _ModelEmailEntry {
     ModelRegistration? archivedGReg,
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
-    ModelRegistration? updateGReg,
+    ModelRegistration? updatedGReg,
     String? emailSearchable,
   }) {
     return ModelEmailEntry.b(
-      ref: ref,
       id: id,
+      ref: ref,
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
       displayColor: displayColor,
@@ -86,7 +86,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
       archivedGReg: archivedGReg,
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
-      updateGReg: updateGReg,
+      updatedGReg: updatedGReg,
       emailSearchable: emailSearchable,
     );
   }
@@ -96,8 +96,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
 
   ModelEmailEntry.b({
-    this.ref,
     this.id,
+    this.ref,
     this.displayName,
     this.displayNameSearchable,
     this.displayColor,
@@ -105,11 +105,9 @@ class ModelEmailEntry extends _ModelEmailEntry {
     this.archivedGReg,
     this.createdGReg,
     this.deletedGReg,
-    this.updateGReg,
+    this.updatedGReg,
     this.emailSearchable,
-  }) {
-    assert(this.ref != null);
-  }
+  }) {}
 
   //
   //
@@ -203,8 +201,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   ) {
     try {
       return ModelEmailEntry.empty()
-        ..$ref = otherData?[K_REF]
         ..$id = otherData?[K_ID]
+        ..$ref = otherData?[K_REF]
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
@@ -212,7 +210,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
         ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
-        ..$updateGReg = otherData?[K_UPDATE_G_REG]
+        ..$updatedGReg = otherData?[K_UPDATED_G_REG]
         ..$emailSearchable = otherData?[K_EMAIL_SEARCHABLE];
     } catch (e) {
       return null;
@@ -259,8 +257,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_REF: this.$ref,
         K_ID: this.$id,
+        K_REF: this.$ref,
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_DISPLAY_COLOR: this.$displayColor,
@@ -268,7 +266,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
         K_ARCHIVED_G_REG: this.$archivedGReg,
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
-        K_UPDATE_G_REG: this.$updateGReg,
+        K_UPDATED_G_REG: this.$updatedGReg,
         K_EMAIL_SEARCHABLE: this.$emailSearchable,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -306,11 +304,11 @@ class ModelEmailEntry extends _ModelEmailEntry {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelEmailEntry.fromJson(otherData);
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
       if (other.id != null) {
         this.id = other.id!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.displayName != null) {
         this.displayName = other.displayName!;
@@ -333,8 +331,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
       if (other.deletedGReg != null) {
         this.deletedGReg = other.deletedGReg!;
       }
-      if (other.updateGReg != null) {
-        this.updateGReg = other.updateGReg!;
+      if (other.updatedGReg != null) {
+        this.updatedGReg = other.updatedGReg!;
       }
       if (other.emailSearchable != null) {
         this.emailSearchable = other.emailSearchable!;
@@ -346,17 +344,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
   //
   //
 
-  // ref.
-  DataRefModel get refField => this.ref!;
-  set refField(DataRefModel v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
-
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -364,6 +351,17 @@ class ModelEmailEntry extends _ModelEmailEntry {
   dynamic get $id => this.id?.toString().trim().nullIfEmpty;
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // ref.
+  DataRefModel? get refField => this.ref;
+  set refField(DataRefModel? v) => this.ref = v;
+  @protected
+  dynamic get $ref => this.ref?.toJson();
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // displayName.
   String? get displayNameField => this.displayName;
@@ -440,13 +438,13 @@ class ModelEmailEntry extends _ModelEmailEntry {
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // updateGReg.
-  ModelRegistration? get updateGRegField => this.updateGReg;
-  set updateGRegField(ModelRegistration? v) => this.updateGReg = v;
+  // updatedGReg.
+  ModelRegistration? get updatedGRegField => this.updatedGReg;
+  set updatedGRegField(ModelRegistration? v) => this.updatedGReg = v;
   @protected
-  dynamic get $updateGReg => this.updateGReg?.toJson();
+  dynamic get $updatedGReg => this.updatedGReg?.toJson();
   @protected
-  set $updateGReg(v) => this.updateGReg = () {
+  set $updatedGReg(v) => this.updatedGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();

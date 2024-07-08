@@ -7,8 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'dart:ui';
-
 import '/_common.dart';
 
 part '_model_address_entry.g.dart';
@@ -18,7 +16,7 @@ part '_model_address_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...ENTRY_MODEL_FIELDS,
+    ...MODEL_ENTRY_FIELDS,
     ('address_line_1?', String),
     ('address_line_2?', String),
     ('city?', String),
@@ -27,4 +25,4 @@ part '_model_address_entry.g.dart';
     ('country?', String),
   },
 )
-abstract class _ModelAddressEntry extends Model implements EntryModel {}
+abstract class _ModelAddressEntry extends Model implements ModelEntry {}

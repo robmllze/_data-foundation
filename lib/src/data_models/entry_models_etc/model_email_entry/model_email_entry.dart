@@ -16,8 +16,8 @@ part '_model_email_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...ENTRY_MODEL_FIELDS,
+    ...MODEL_ENTRY_FIELDS,
     ('email_searchable?', T_LOWER_CASE_STRING),
   },
 )
-abstract class _ModelEmailEntry extends Model implements EntryModel {}
+abstract class _ModelEmailEntry extends Model implements ModelEntry {}

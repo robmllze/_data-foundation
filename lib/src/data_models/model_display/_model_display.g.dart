@@ -15,29 +15,29 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'display_model.dart';
+part of 'model_display.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class DisplayModel extends Model {
+class ModelDisplay extends _ModelDisplay {
   //
   //
   //
 
-  static const K_REF = 'ref';
   static const K_ID = 'id';
+  static const K_REF = 'ref';
   static const K_DISPLAY_NAME = 'displayName';
   static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
   static const K_DISPLAY_COLOR = 'displayColor';
   static const K_DESCRIPTION = 'description';
 
-  static const CLASS = 'DisplayModel';
+  static const CLASS = 'ModelDisplay';
 
   @override
   String get $class => CLASS;
 
-  DataRefModel? ref;
   String? id;
+  DataRefModel? ref;
   String? displayName;
   String? displayNameSearchable;
   Color? displayColor;
@@ -47,23 +47,23 @@ class DisplayModel extends Model {
   //
   //
 
-  DisplayModel.empty();
+  ModelDisplay.empty();
 
   //
   //
   //
 
-  factory DisplayModel({
-    required DataRefModel ref,
+  factory ModelDisplay({
     String? id,
+    DataRefModel? ref,
     String? displayName,
     String? displayNameSearchable,
     Color? displayColor,
     String? description,
   }) {
-    return DisplayModel.b(
-      ref: ref,
+    return ModelDisplay.b(
       id: id,
+      ref: ref,
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
       displayColor: displayColor,
@@ -75,33 +75,31 @@ class DisplayModel extends Model {
   //
   //
 
-  DisplayModel.b({
-    this.ref,
+  ModelDisplay.b({
     this.id,
+    this.ref,
     this.displayName,
     this.displayNameSearchable,
     this.displayColor,
     this.description,
-  }) {
-    assert(this.ref != null);
-  }
+  }) {}
 
   //
   //
   //
 
-  factory DisplayModel.from(
+  factory ModelDisplay.from(
     Model? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'DisplayModel.from: $e');
+      assert(false, 'ModelDisplay.from: $e');
       rethrow;
     }
   }
 
-  static DisplayModel? fromOrNull(
+  static ModelDisplay? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
@@ -111,19 +109,19 @@ class DisplayModel extends Model {
   //
   //
 
-  factory DisplayModel.of(
-    DisplayModel other,
+  factory ModelDisplay.of(
+    ModelDisplay other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'DisplayModel.of: $e');
+      assert(false, 'ModelDisplay.of: $e');
       rethrow;
     }
   }
 
-  static DisplayModel? ofOrNull(
-    DisplayModel? other,
+  static ModelDisplay? ofOrNull(
+    ModelDisplay? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -132,26 +130,26 @@ class DisplayModel extends Model {
   //
   //
 
-  factory DisplayModel.fromJsonString(
+  factory ModelDisplay.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'DisplayModel.fromJsonString: $e');
+      assert(false, 'ModelDisplay.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static DisplayModel? fromJsonStringOrNull(
+  static ModelDisplay? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return DisplayModel.fromJson(decoded);
+        return ModelDisplay.fromJson(decoded);
       } else {
-        return DisplayModel.empty();
+        return ModelDisplay.empty();
       }
     } catch (_) {
       return null;
@@ -162,24 +160,24 @@ class DisplayModel extends Model {
   //
   //
 
-  factory DisplayModel.fromJson(
+  factory ModelDisplay.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'DisplayModel.fromJson: $e');
+      assert(false, 'ModelDisplay.fromJson: $e');
       rethrow;
     }
   }
 
-  static DisplayModel? fromJsonOrNull(
+  static ModelDisplay? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return DisplayModel.empty()
-        ..$ref = otherData?[K_REF]
+      return ModelDisplay.empty()
         ..$id = otherData?[K_ID]
+        ..$ref = otherData?[K_REF]
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
@@ -193,25 +191,25 @@ class DisplayModel extends Model {
   //
   //
 
-  factory DisplayModel.fromUri(
+  factory ModelDisplay.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'DisplayModel.fromUri: $e');
+      assert(false, 'ModelDisplay.fromUri: $e');
       rethrow;
     }
   }
 
-  static DisplayModel? fromUriOrNull(
+  static ModelDisplay? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return DisplayModel.fromJson(uri.queryParameters);
+        return ModelDisplay.fromJson(uri.queryParameters);
       } else {
-        return DisplayModel.empty();
+        return ModelDisplay.empty();
       }
     } catch (_) {
       return null;
@@ -229,8 +227,8 @@ class DisplayModel extends Model {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_REF: this.$ref,
         K_ID: this.$id,
+        K_REF: this.$ref,
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_DISPLAY_COLOR: this.$displayColor,
@@ -238,7 +236,7 @@ class DisplayModel extends Model {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'DisplayModel.toJson: $e');
+      assert(false, 'ModelDisplay.toJson: $e');
       rethrow;
     }
   }
@@ -249,7 +247,7 @@ class DisplayModel extends Model {
 
   @override
   T empty<T extends Model>() {
-    return DisplayModel.b() as T;
+    return ModelDisplay.b() as T;
   }
 
   //
@@ -258,7 +256,7 @@ class DisplayModel extends Model {
 
   @override
   T copy<T extends Model>() {
-    return (DisplayModel.b()..updateWith(this)) as T;
+    return (ModelDisplay.b()..updateWith(this)) as T;
   }
 
   //
@@ -270,12 +268,12 @@ class DisplayModel extends Model {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = DisplayModel.fromJson(otherData);
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
+      final other = ModelDisplay.fromJson(otherData);
       if (other.id != null) {
         this.id = other.id!;
+      }
+      if (other.ref != null) {
+        this.ref = other.ref!;
       }
       if (other.displayName != null) {
         this.displayName = other.displayName!;
@@ -296,17 +294,6 @@ class DisplayModel extends Model {
   //
   //
 
-  // ref.
-  DataRefModel get refField => this.ref!;
-  set refField(DataRefModel v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
-
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -314,6 +301,17 @@ class DisplayModel extends Model {
   dynamic get $id => this.id?.toString().trim().nullIfEmpty;
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
+
+  // ref.
+  DataRefModel? get refField => this.ref;
+  set refField(DataRefModel? v) => this.ref = v;
+  @protected
+  dynamic get $ref => this.ref?.toJson();
+  @protected
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
 
   // displayName.
   String? get displayNameField => this.displayName;

@@ -9,21 +9,20 @@
 
 import '/_common.dart';
 
-part '_entry_model.g.dart';
+part '_model_entry.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-const ENTRY_MODEL_FIELDS = {
-  ...DISPLAY_MODEL_FIELDS,
+const MODEL_ENTRY_FIELDS = {
+  ...MODEL_DISPLAY_FIELDS,
   ('archived_g_reg?', ModelRegistration),
   ('created_g_reg?', ModelRegistration),
   ('deleted_g_reg?', ModelRegistration),
-  ('update_g_reg?', ModelRegistration),
+  ('updated_g_reg?', ModelRegistration),
 };
 
 @GenerateModel(
   shouldInherit: true,
-  fields: ENTRY_MODEL_FIELDS,
+  fields: MODEL_ENTRY_FIELDS,
 )
-// ignore: unused_element
-abstract class _EntryModel extends Model implements DisplayModel {}
+abstract class _ModelEntry extends Model implements ModelDisplay {}

@@ -14,7 +14,7 @@ part '_private_model.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 const PRIVATE_MODEL_FIELDS = {
-  ...ENTRY_MODEL_FIELDS,
+  ...MODEL_ENTRY_FIELDS,
   ('pid?', String),
   ('seed?', String),
 };
@@ -24,4 +24,4 @@ const PRIVATE_MODEL_FIELDS = {
   fields: PRIVATE_MODEL_FIELDS,
 )
 // ignore: unused_element
-abstract class _PrivateModel extends Model implements EntryModel {}
+abstract class _PrivateModel extends Model implements ModelEntry {}

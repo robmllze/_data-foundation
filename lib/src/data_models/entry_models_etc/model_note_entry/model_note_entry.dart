@@ -7,8 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'dart:ui';
-
 import '/_common.dart';
 
 part '_model_note_entry.g.dart';
@@ -18,8 +16,8 @@ part '_model_note_entry.g.dart';
 @GenerateModel(
   shouldInherit: true,
   fields: {
-    ...ENTRY_MODEL_FIELDS,
+    ...MODEL_ENTRY_FIELDS,
     ('note?', String),
   },
 )
-abstract class _ModelNoteEntry extends Model implements EntryModel {}
+abstract class _ModelNoteEntry extends Model implements ModelEntry {}

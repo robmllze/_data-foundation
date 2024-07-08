@@ -7,17 +7,15 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'dart:ui';
-
 import '/_common.dart';
 
-part '_display_model.g.dart';
+part '_model_display.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-const DISPLAY_MODEL_FIELDS = {
-  ('ref', DataRefModel),
+const MODEL_DISPLAY_FIELDS = {
   ('id?', String),
+  ('ref?', DataRef),
   ('display_name?', String),
   ('display_name_searchable?', T_SEARCHABLE_STRING),
   ('display_color?', Color),
@@ -25,7 +23,7 @@ const DISPLAY_MODEL_FIELDS = {
 };
 
 @GenerateModel(
-  fields: DISPLAY_MODEL_FIELDS,
+  shouldInherit: true,
+  fields: MODEL_DISPLAY_FIELDS,
 )
-// ignore: unused_element
-abstract class _DisplayModel extends Model {}
+abstract class _ModelDisplay extends Model {}

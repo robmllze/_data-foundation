@@ -8,7 +8,6 @@
 //.title~
 
 import 'dart:collection';
-import 'dart:ui';
 
 import '/_common.dart';
 
@@ -22,9 +21,7 @@ part '_model_job_pub.g.dart';
     ...PUBLIC_MODEL_FIELDS,
     ('clock_in_regs?', List<ModelRegistration>),
     ('clock_out_regs?', List<ModelRegistration>),
-    ('opened_regs?', List<ModelRegistration>),
-    ('closed_regs?', List<ModelRegistration>),
-    ('todo_book?', Map<DateTime, ModelTodoEntry>),
+    ('todo_entries?', Map<DateTime, ModelTodoEntry>),
     ('status?', JobStatusType),
   },
 )
