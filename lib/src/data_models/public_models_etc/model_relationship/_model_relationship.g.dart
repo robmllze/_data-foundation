@@ -27,14 +27,13 @@ class ModelRelationship extends _ModelRelationship {
   static const K_ID = 'id';
   static const K_REF = 'ref';
   static const K_DISPLAY_NAME = 'displayName';
-  static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
   static const K_DISPLAY_COLOR = 'displayColor';
   static const K_DESCRIPTION = 'description';
   static const K_ARCHIVED_G_REG = 'archivedGReg';
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
   static const K_UPDATED_G_REG = 'updatedGReg';
-  static const K_EMAIL_SEARCHABLE = 'emailSearchable';
+  static const K_EMAIL = 'email';
   static const K_ADDRESS_ENTRIES = 'addressEntries';
   static const K_EMAIL_ENTRIES = 'emailEntries';
   static const K_FILE_ENTRIES = 'fileEntries';
@@ -56,15 +55,14 @@ class ModelRelationship extends _ModelRelationship {
 
   String? id;
   DataRefModel? ref;
-  String? displayName;
-  String? displayNameSearchable;
+  ModelQueryable? displayName;
   Color? displayColor;
   String? description;
   ModelRegistration? archivedGReg;
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
   ModelRegistration? updatedGReg;
-  String? emailSearchable;
+  ModelQueryable? email;
   Map<String, ModelAddressEntry>? addressEntries;
   Map<String, ModelEmailEntry>? emailEntries;
   Map<String, ModelFileEntry>? fileEntries;
@@ -92,15 +90,14 @@ class ModelRelationship extends _ModelRelationship {
   factory ModelRelationship({
     String? id,
     DataRefModel? ref,
-    String? displayName,
-    String? displayNameSearchable,
+    ModelQueryable? displayName,
     Color? displayColor,
     String? description,
     ModelRegistration? archivedGReg,
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
     ModelRegistration? updatedGReg,
-    String? emailSearchable,
+    ModelQueryable? email,
     Map<String, ModelAddressEntry>? addressEntries,
     Map<String, ModelEmailEntry>? emailEntries,
     Map<String, ModelFileEntry>? fileEntries,
@@ -119,14 +116,13 @@ class ModelRelationship extends _ModelRelationship {
       id: id,
       ref: ref,
       displayName: displayName,
-      displayNameSearchable: displayNameSearchable,
       displayColor: displayColor,
       description: description,
       archivedGReg: archivedGReg,
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
       updatedGReg: updatedGReg,
-      emailSearchable: emailSearchable,
+      email: email,
       addressEntries: addressEntries,
       emailEntries: emailEntries,
       fileEntries: fileEntries,
@@ -151,14 +147,13 @@ class ModelRelationship extends _ModelRelationship {
     this.id,
     this.ref,
     this.displayName,
-    this.displayNameSearchable,
     this.displayColor,
     this.description,
     this.archivedGReg,
     this.createdGReg,
     this.deletedGReg,
     this.updatedGReg,
-    this.emailSearchable,
+    this.email,
     this.addressEntries,
     this.emailEntries,
     this.fileEntries,
@@ -269,14 +264,13 @@ class ModelRelationship extends _ModelRelationship {
         ..$id = otherData?[K_ID]
         ..$ref = otherData?[K_REF]
         ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
         ..$description = otherData?[K_DESCRIPTION]
         ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
         ..$updatedGReg = otherData?[K_UPDATED_G_REG]
-        ..$emailSearchable = otherData?[K_EMAIL_SEARCHABLE]
+        ..$email = otherData?[K_EMAIL]
         ..$addressEntries = otherData?[K_ADDRESS_ENTRIES]
         ..$emailEntries = otherData?[K_EMAIL_ENTRIES]
         ..$fileEntries = otherData?[K_FILE_ENTRIES]
@@ -338,14 +332,13 @@ class ModelRelationship extends _ModelRelationship {
         K_ID: this.$id,
         K_REF: this.$ref,
         K_DISPLAY_NAME: this.$displayName,
-        K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_DISPLAY_COLOR: this.$displayColor,
         K_DESCRIPTION: this.$description,
         K_ARCHIVED_G_REG: this.$archivedGReg,
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
         K_UPDATED_G_REG: this.$updatedGReg,
-        K_EMAIL_SEARCHABLE: this.$emailSearchable,
+        K_EMAIL: this.$email,
         K_ADDRESS_ENTRIES: this.$addressEntries,
         K_EMAIL_ENTRIES: this.$emailEntries,
         K_FILE_ENTRIES: this.$fileEntries,
@@ -404,9 +397,6 @@ class ModelRelationship extends _ModelRelationship {
       if (other.displayName != null) {
         this.displayName = other.displayName!;
       }
-      if (other.displayNameSearchable != null) {
-        this.displayNameSearchable = other.displayNameSearchable!;
-      }
       if (other.displayColor != null) {
         this.displayColor = other.displayColor!;
       }
@@ -425,8 +415,8 @@ class ModelRelationship extends _ModelRelationship {
       if (other.updatedGReg != null) {
         this.updatedGReg = other.updatedGReg!;
       }
-      if (other.emailSearchable != null) {
-        this.emailSearchable = other.emailSearchable!;
+      if (other.email != null) {
+        this.email = other.email!;
       }
       if (other.addressEntries != null) {
         this.addressEntries = other.addressEntries!;
@@ -494,27 +484,15 @@ class ModelRelationship extends _ModelRelationship {
       }();
 
   // displayName.
-  String? get displayNameField => this.displayName;
-  set displayNameField(String? v) => this.displayName = v;
+  ModelQueryable? get displayNameField => this.displayName;
+  set displayNameField(ModelQueryable? v) => this.displayName = v;
   @protected
-  dynamic get $displayName => this.displayName?.toString().trim().nullIfEmpty;
+  dynamic get $displayName => this.displayName?.toJson();
   @protected
-  set $displayName(v) => this.displayName = v?.toString().trim().nullIfEmpty;
-
-  // displayNameSearchable.
-  String? get displayNameSearchableField => this.displayNameSearchable;
-  set displayNameSearchableField(String? v) => this.displayNameSearchable = v;
-  @protected
-  dynamic get $displayNameSearchable => this
-      .displayNameSearchable
-      ?.toString()
-      .trim()
-      .nullIfEmpty
-      ?.toLowerCase()
-      .replaceAll(r'[^\w]', '');
-  @protected
-  set $displayNameSearchable(v) => this.displayNameSearchable =
-      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+  set $displayName(v) => this.displayName = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
 
   // displayColor.
   Color? get displayColorField => this.displayColor;
@@ -579,15 +557,16 @@ class ModelRelationship extends _ModelRelationship {
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // emailSearchable.
-  String? get emailSearchableField => this.emailSearchable;
-  set emailSearchableField(String? v) => this.emailSearchable = v;
+  // email.
+  ModelQueryable? get emailField => this.email;
+  set emailField(ModelQueryable? v) => this.email = v;
   @protected
-  dynamic get $emailSearchable =>
-      this.emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase();
+  dynamic get $email => this.email?.toJson();
   @protected
-  set $emailSearchable(v) =>
-      this.emailSearchable = v?.toString().trim().nullIfEmpty?.toLowerCase();
+  set $email(v) => this.email = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
 
   // addressEntries.
   Map<String, ModelAddressEntry>? get addressEntriesField =>

@@ -17,7 +17,7 @@ part '_model_email_entry.g.dart';
   shouldInherit: true,
   fields: {
     ...MODEL_ENTRY_FIELDS,
-    ('email_searchable?', T_LOWER_CASE_STRING),
+    ('email?', ModelQueryable),
   },
 )
 abstract class _ModelEmailEntry extends Model implements ModelEntry {}

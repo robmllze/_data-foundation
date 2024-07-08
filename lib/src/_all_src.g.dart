@@ -7,10 +7,9 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export 'data_models/entry_models_etc/model_entry/model_entry.dart';
 export 'data_models/entry_models_etc/model_address_entry/model_address_entry.dart';
-export 'data_models/model_display/model_display.dart';
 export 'data_models/entry_models_etc/model_email_entry/model_email_entry.dart';
+export 'data_models/entry_models_etc/model_entry/model_entry.dart';
 export 'data_models/entry_models_etc/model_file_entry/model_file_entry.dart';
 export 'data_models/entry_models_etc/model_note_entry/model_note_entry.dart';
 export 'data_models/entry_models_etc/model_phone_entry/model_phone_entry.dart';
@@ -20,12 +19,14 @@ export 'data_models/model_cache_information/model_cache_information.dart';
 export 'data_models/model_connection_permissions/model_connection_permissions.dart';
 export 'data_models/model_data_collection/model_data_collection.dart';
 export 'data_models/model_device_registration/model_device_registration.dart';
+export 'data_models/model_display/model_display.dart';
 export 'data_models/model_event_body/model_event_body.dart';
 export 'data_models/model_event/model_event.dart';
 export 'data_models/model_invitation/model_invitation.dart';
 export 'data_models/model_location/model_location.dart';
 export 'data_models/model_map_tile/model_map_tile.dart';
 export 'data_models/model_registration/model_registration.dart';
+export 'data_models/model_queryable/model_queryable.dart';
 export 'data_models/private_models_etc/model_job/model_job.dart';
 export 'data_models/private_models_etc/model_organization/model_organization.dart';
 export 'data_models/private_models_etc/model_project/model_project.dart';

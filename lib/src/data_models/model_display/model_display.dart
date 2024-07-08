@@ -16,8 +16,7 @@ part '_model_display.g.dart';
 const MODEL_DISPLAY_FIELDS = {
   ('id?', String),
   ('ref?', DataRef),
-  ('display_name?', String),
-  ('display_name_searchable?', T_SEARCHABLE_STRING),
+  ('display_name?', ModelQueryable),
   ('display_color?', Color),
   ('description?', String),
 };

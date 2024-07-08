@@ -27,7 +27,6 @@ class ModelFileEntry extends _ModelFileEntry {
   static const K_ID = 'id';
   static const K_REF = 'ref';
   static const K_DISPLAY_NAME = 'displayName';
-  static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
   static const K_DISPLAY_COLOR = 'displayColor';
   static const K_DESCRIPTION = 'description';
   static const K_ARCHIVED_G_REG = 'archivedGReg';
@@ -48,8 +47,7 @@ class ModelFileEntry extends _ModelFileEntry {
 
   String? id;
   DataRefModel? ref;
-  String? displayName;
-  String? displayNameSearchable;
+  ModelQueryable? displayName;
   Color? displayColor;
   String? description;
   ModelRegistration? archivedGReg;
@@ -76,8 +74,7 @@ class ModelFileEntry extends _ModelFileEntry {
   factory ModelFileEntry({
     String? id,
     DataRefModel? ref,
-    String? displayName,
-    String? displayNameSearchable,
+    ModelQueryable? displayName,
     Color? displayColor,
     String? description,
     ModelRegistration? archivedGReg,
@@ -95,7 +92,6 @@ class ModelFileEntry extends _ModelFileEntry {
       id: id,
       ref: ref,
       displayName: displayName,
-      displayNameSearchable: displayNameSearchable,
       displayColor: displayColor,
       description: description,
       archivedGReg: archivedGReg,
@@ -119,7 +115,6 @@ class ModelFileEntry extends _ModelFileEntry {
     this.id,
     this.ref,
     this.displayName,
-    this.displayNameSearchable,
     this.displayColor,
     this.description,
     this.archivedGReg,
@@ -229,7 +224,6 @@ class ModelFileEntry extends _ModelFileEntry {
         ..$id = otherData?[K_ID]
         ..$ref = otherData?[K_REF]
         ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
         ..$description = otherData?[K_DESCRIPTION]
         ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
@@ -290,7 +284,6 @@ class ModelFileEntry extends _ModelFileEntry {
         K_ID: this.$id,
         K_REF: this.$ref,
         K_DISPLAY_NAME: this.$displayName,
-        K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_DISPLAY_COLOR: this.$displayColor,
         K_DESCRIPTION: this.$description,
         K_ARCHIVED_G_REG: this.$archivedGReg,
@@ -347,9 +340,6 @@ class ModelFileEntry extends _ModelFileEntry {
       }
       if (other.displayName != null) {
         this.displayName = other.displayName!;
-      }
-      if (other.displayNameSearchable != null) {
-        this.displayNameSearchable = other.displayNameSearchable!;
       }
       if (other.displayColor != null) {
         this.displayColor = other.displayColor!;
@@ -414,27 +404,15 @@ class ModelFileEntry extends _ModelFileEntry {
       }();
 
   // displayName.
-  String? get displayNameField => this.displayName;
-  set displayNameField(String? v) => this.displayName = v;
+  ModelQueryable? get displayNameField => this.displayName;
+  set displayNameField(ModelQueryable? v) => this.displayName = v;
   @protected
-  dynamic get $displayName => this.displayName?.toString().trim().nullIfEmpty;
+  dynamic get $displayName => this.displayName?.toJson();
   @protected
-  set $displayName(v) => this.displayName = v?.toString().trim().nullIfEmpty;
-
-  // displayNameSearchable.
-  String? get displayNameSearchableField => this.displayNameSearchable;
-  set displayNameSearchableField(String? v) => this.displayNameSearchable = v;
-  @protected
-  dynamic get $displayNameSearchable => this
-      .displayNameSearchable
-      ?.toString()
-      .trim()
-      .nullIfEmpty
-      ?.toLowerCase()
-      .replaceAll(r'[^\w]', '');
-  @protected
-  set $displayNameSearchable(v) => this.displayNameSearchable =
-      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+  set $displayName(v) => this.displayName = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
 
   // displayColor.
   Color? get displayColorField => this.displayColor;

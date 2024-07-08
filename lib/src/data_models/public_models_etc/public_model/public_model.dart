@@ -15,7 +15,7 @@ part '_public_model.g.dart';
 
 const PUBLIC_MODEL_FIELDS = {
   ...MODEL_ENTRY_FIELDS,
-  ('email_searchable?', T_LOWER_CASE_STRING),
+  ('email?', ModelQueryable),
   ('address_entries?', Map<String, ModelAddressEntry>),
   ('email_entries?', Map<String, ModelEmailEntry>),
   ('file_entries?', Map<String, ModelFileEntry>),

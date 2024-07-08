@@ -22,8 +22,8 @@ extension PublicPoolExtension<TModel extends PublicModel> on Iterable<TModel> {
   Iterable<TModel> byDisplayNameAscending() {
     return this.toList()
       ..sort((e0, e1) {
-        final t0 = e0.displayNameSearchable ?? e0.displayName ?? '';
-        final t1 = e1.displayNameSearchable ?? e1.displayName ?? '';
+        final t0 = e0.displayName?.queryableValue ?? '';
+        final t1 = e1.displayName?.queryableValue ?? '';
         final n = t0.compareTo(t1);
         return n;
       });
@@ -56,7 +56,7 @@ extension PublicPoolExtension<TModel extends PublicModel> on Iterable<TModel> {
   }) {
     final query = partialName.toLowerCase();
     final results = this.where((user) {
-      final name = (user.displayNameSearchable ?? user.displayName)?.toLowerCase();
+      final name = user.displayName?.queryableValue;
       final cases = [
         if (name != null) ...[
           name.contains(query),
@@ -77,11 +77,11 @@ extension PublicPoolExtension<TModel extends PublicModel> on Iterable<TModel> {
   }) {
     final query = partialEmail.toLowerCase();
     final results = this.where((user) {
-      final emailSearchable = user.emailSearchable;
+      final email = user.email?.queryableValue;
       final cases = [
-        if (emailSearchable != null) ...[
-          emailSearchable.contains(query),
-          query.contains(emailSearchable),
+        if (email != null) ...[
+          email.contains(query),
+          query.contains(email),
         ],
       ];
       return cases.contains(true);

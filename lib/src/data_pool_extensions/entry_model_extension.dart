@@ -22,8 +22,8 @@ extension ModelEntryPoolExtension<TModel extends ModelEntry> on Iterable<TModel>
   Iterable<TModel> byDisplayNameAscending() {
     return this.toList()
       ..sort((e0, e1) {
-        final t0 = e0.displayNameSearchable ?? e0.displayName ?? '';
-        final t1 = e1.displayNameSearchable ?? e1.displayName ?? '';
+        final t0 = e0.displayName?.queryableValue ?? '';
+        final t1 = e1.displayName?.queryableValue ?? '';
         final n = t0.compareTo(t1);
         return n;
       });

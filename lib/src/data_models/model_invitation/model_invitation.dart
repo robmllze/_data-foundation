@@ -23,9 +23,9 @@ part '_model_invitation.g.dart';
     ('type?', InvitationType),
     ('body?', DataModel),
     ('invitation_link?', Uri),
-    ('invitee_searchable_emails?', 'Set<Searchable-String>'),
-    ('invitee_accepted_searchable_emails?', 'Set<Searchable-String>'),
-    ('invitee_rejected_searchable_emails?', 'Set<Searchable-String>'),
+    ('invitee_emails?', 'Set<ModelQueryable>'),
+    ('invitee_accepted_emails?', 'Set<ModelQueryable>'),
+    ('invitee_rejected_emails?', 'Set<ModelQueryable>'),
   },
 )
 abstract class _ModelInvitation extends ThisModel<ModelInvitation> {

@@ -27,14 +27,13 @@ class ModelEmailEntry extends _ModelEmailEntry {
   static const K_ID = 'id';
   static const K_REF = 'ref';
   static const K_DISPLAY_NAME = 'displayName';
-  static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
   static const K_DISPLAY_COLOR = 'displayColor';
   static const K_DESCRIPTION = 'description';
   static const K_ARCHIVED_G_REG = 'archivedGReg';
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
   static const K_UPDATED_G_REG = 'updatedGReg';
-  static const K_EMAIL_SEARCHABLE = 'emailSearchable';
+  static const K_EMAIL = 'email';
 
   static const CLASS = 'ModelEmailEntry';
 
@@ -43,15 +42,14 @@ class ModelEmailEntry extends _ModelEmailEntry {
 
   String? id;
   DataRefModel? ref;
-  String? displayName;
-  String? displayNameSearchable;
+  ModelQueryable? displayName;
   Color? displayColor;
   String? description;
   ModelRegistration? archivedGReg;
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
   ModelRegistration? updatedGReg;
-  String? emailSearchable;
+  ModelQueryable? email;
 
   //
   //
@@ -66,28 +64,26 @@ class ModelEmailEntry extends _ModelEmailEntry {
   factory ModelEmailEntry({
     String? id,
     DataRefModel? ref,
-    String? displayName,
-    String? displayNameSearchable,
+    ModelQueryable? displayName,
     Color? displayColor,
     String? description,
     ModelRegistration? archivedGReg,
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
     ModelRegistration? updatedGReg,
-    String? emailSearchable,
+    ModelQueryable? email,
   }) {
     return ModelEmailEntry.b(
       id: id,
       ref: ref,
       displayName: displayName,
-      displayNameSearchable: displayNameSearchable,
       displayColor: displayColor,
       description: description,
       archivedGReg: archivedGReg,
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
       updatedGReg: updatedGReg,
-      emailSearchable: emailSearchable,
+      email: email,
     );
   }
 
@@ -99,14 +95,13 @@ class ModelEmailEntry extends _ModelEmailEntry {
     this.id,
     this.ref,
     this.displayName,
-    this.displayNameSearchable,
     this.displayColor,
     this.description,
     this.archivedGReg,
     this.createdGReg,
     this.deletedGReg,
     this.updatedGReg,
-    this.emailSearchable,
+    this.email,
   }) {}
 
   //
@@ -204,14 +199,13 @@ class ModelEmailEntry extends _ModelEmailEntry {
         ..$id = otherData?[K_ID]
         ..$ref = otherData?[K_REF]
         ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
         ..$description = otherData?[K_DESCRIPTION]
         ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
         ..$updatedGReg = otherData?[K_UPDATED_G_REG]
-        ..$emailSearchable = otherData?[K_EMAIL_SEARCHABLE];
+        ..$email = otherData?[K_EMAIL];
     } catch (e) {
       return null;
     }
@@ -260,14 +254,13 @@ class ModelEmailEntry extends _ModelEmailEntry {
         K_ID: this.$id,
         K_REF: this.$ref,
         K_DISPLAY_NAME: this.$displayName,
-        K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_DISPLAY_COLOR: this.$displayColor,
         K_DESCRIPTION: this.$description,
         K_ARCHIVED_G_REG: this.$archivedGReg,
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
         K_UPDATED_G_REG: this.$updatedGReg,
-        K_EMAIL_SEARCHABLE: this.$emailSearchable,
+        K_EMAIL: this.$email,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -313,9 +306,6 @@ class ModelEmailEntry extends _ModelEmailEntry {
       if (other.displayName != null) {
         this.displayName = other.displayName!;
       }
-      if (other.displayNameSearchable != null) {
-        this.displayNameSearchable = other.displayNameSearchable!;
-      }
       if (other.displayColor != null) {
         this.displayColor = other.displayColor!;
       }
@@ -334,8 +324,8 @@ class ModelEmailEntry extends _ModelEmailEntry {
       if (other.updatedGReg != null) {
         this.updatedGReg = other.updatedGReg!;
       }
-      if (other.emailSearchable != null) {
-        this.emailSearchable = other.emailSearchable!;
+      if (other.email != null) {
+        this.email = other.email!;
       }
     }
   }
@@ -364,27 +354,15 @@ class ModelEmailEntry extends _ModelEmailEntry {
       }();
 
   // displayName.
-  String? get displayNameField => this.displayName;
-  set displayNameField(String? v) => this.displayName = v;
+  ModelQueryable? get displayNameField => this.displayName;
+  set displayNameField(ModelQueryable? v) => this.displayName = v;
   @protected
-  dynamic get $displayName => this.displayName?.toString().trim().nullIfEmpty;
+  dynamic get $displayName => this.displayName?.toJson();
   @protected
-  set $displayName(v) => this.displayName = v?.toString().trim().nullIfEmpty;
-
-  // displayNameSearchable.
-  String? get displayNameSearchableField => this.displayNameSearchable;
-  set displayNameSearchableField(String? v) => this.displayNameSearchable = v;
-  @protected
-  dynamic get $displayNameSearchable => this
-      .displayNameSearchable
-      ?.toString()
-      .trim()
-      .nullIfEmpty
-      ?.toLowerCase()
-      .replaceAll(r'[^\w]', '');
-  @protected
-  set $displayNameSearchable(v) => this.displayNameSearchable =
-      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+  set $displayName(v) => this.displayName = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
 
   // displayColor.
   Color? get displayColorField => this.displayColor;
@@ -449,13 +427,14 @@ class ModelEmailEntry extends _ModelEmailEntry {
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // emailSearchable.
-  String? get emailSearchableField => this.emailSearchable;
-  set emailSearchableField(String? v) => this.emailSearchable = v;
+  // email.
+  ModelQueryable? get emailField => this.email;
+  set emailField(ModelQueryable? v) => this.email = v;
   @protected
-  dynamic get $emailSearchable =>
-      this.emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase();
+  dynamic get $email => this.email?.toJson();
   @protected
-  set $emailSearchable(v) =>
-      this.emailSearchable = v?.toString().trim().nullIfEmpty?.toLowerCase();
+  set $email(v) => this.email = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
 }

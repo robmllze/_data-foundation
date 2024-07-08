@@ -31,11 +31,9 @@ class ModelInvitation extends _ModelInvitation {
   static const K_TYPE = 'type';
   static const K_BODY = 'body';
   static const K_INVITATION_LINK = 'invitationLink';
-  static const K_INVITEE_SEARCHABLE_EMAILS = 'inviteeSearchableEmails';
-  static const K_INVITEE_ACCEPTED_SEARCHABLE_EMAILS =
-      'inviteeAcceptedSearchableEmails';
-  static const K_INVITEE_REJECTED_SEARCHABLE_EMAILS =
-      'inviteeRejectedSearchableEmails';
+  static const K_INVITEE_EMAILS = 'inviteeEmails';
+  static const K_INVITEE_ACCEPTED_EMAILS = 'inviteeAcceptedEmails';
+  static const K_INVITEE_REJECTED_EMAILS = 'inviteeRejectedEmails';
 
   static const CLASS = 'ModelInvitation';
 
@@ -49,9 +47,9 @@ class ModelInvitation extends _ModelInvitation {
   InvitationType? type;
   DataModel? body;
   Uri? invitationLink;
-  Set<String>? inviteeSearchableEmails;
-  Set<String>? inviteeAcceptedSearchableEmails;
-  Set<String>? inviteeRejectedSearchableEmails;
+  Set<ModelQueryable>? inviteeEmails;
+  Set<ModelQueryable>? inviteeAcceptedEmails;
+  Set<ModelQueryable>? inviteeRejectedEmails;
 
   //
   //
@@ -71,9 +69,9 @@ class ModelInvitation extends _ModelInvitation {
     InvitationType? type,
     DataModel? body,
     Uri? invitationLink,
-    Set<String>? inviteeSearchableEmails,
-    Set<String>? inviteeAcceptedSearchableEmails,
-    Set<String>? inviteeRejectedSearchableEmails,
+    Set<ModelQueryable>? inviteeEmails,
+    Set<ModelQueryable>? inviteeAcceptedEmails,
+    Set<ModelQueryable>? inviteeRejectedEmails,
   }) {
     return ModelInvitation.b(
       ref: ref,
@@ -83,9 +81,9 @@ class ModelInvitation extends _ModelInvitation {
       type: type,
       body: body,
       invitationLink: invitationLink,
-      inviteeSearchableEmails: inviteeSearchableEmails,
-      inviteeAcceptedSearchableEmails: inviteeAcceptedSearchableEmails,
-      inviteeRejectedSearchableEmails: inviteeRejectedSearchableEmails,
+      inviteeEmails: inviteeEmails,
+      inviteeAcceptedEmails: inviteeAcceptedEmails,
+      inviteeRejectedEmails: inviteeRejectedEmails,
     );
   }
 
@@ -101,9 +99,9 @@ class ModelInvitation extends _ModelInvitation {
     this.type,
     this.body,
     this.invitationLink,
-    this.inviteeSearchableEmails,
-    this.inviteeAcceptedSearchableEmails,
-    this.inviteeRejectedSearchableEmails,
+    this.inviteeEmails,
+    this.inviteeAcceptedEmails,
+    this.inviteeRejectedEmails,
   }) {
     assert(this.ref != null);
 
@@ -209,11 +207,9 @@ class ModelInvitation extends _ModelInvitation {
         ..$type = otherData?[K_TYPE]
         ..$body = otherData?[K_BODY]
         ..$invitationLink = otherData?[K_INVITATION_LINK]
-        ..$inviteeSearchableEmails = otherData?[K_INVITEE_SEARCHABLE_EMAILS]
-        ..$inviteeAcceptedSearchableEmails =
-            otherData?[K_INVITEE_ACCEPTED_SEARCHABLE_EMAILS]
-        ..$inviteeRejectedSearchableEmails =
-            otherData?[K_INVITEE_REJECTED_SEARCHABLE_EMAILS];
+        ..$inviteeEmails = otherData?[K_INVITEE_EMAILS]
+        ..$inviteeAcceptedEmails = otherData?[K_INVITEE_ACCEPTED_EMAILS]
+        ..$inviteeRejectedEmails = otherData?[K_INVITEE_REJECTED_EMAILS];
     } catch (e) {
       return null;
     }
@@ -266,11 +262,9 @@ class ModelInvitation extends _ModelInvitation {
         K_TYPE: this.$type,
         K_BODY: this.$body,
         K_INVITATION_LINK: this.$invitationLink,
-        K_INVITEE_SEARCHABLE_EMAILS: this.$inviteeSearchableEmails,
-        K_INVITEE_ACCEPTED_SEARCHABLE_EMAILS:
-            this.$inviteeAcceptedSearchableEmails,
-        K_INVITEE_REJECTED_SEARCHABLE_EMAILS:
-            this.$inviteeRejectedSearchableEmails,
+        K_INVITEE_EMAILS: this.$inviteeEmails,
+        K_INVITEE_ACCEPTED_EMAILS: this.$inviteeAcceptedEmails,
+        K_INVITEE_REJECTED_EMAILS: this.$inviteeRejectedEmails,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -328,16 +322,14 @@ class ModelInvitation extends _ModelInvitation {
       if (other.invitationLink != null) {
         this.invitationLink = other.invitationLink!;
       }
-      if (other.inviteeSearchableEmails != null) {
-        this.inviteeSearchableEmails = other.inviteeSearchableEmails!;
+      if (other.inviteeEmails != null) {
+        this.inviteeEmails = other.inviteeEmails!;
       }
-      if (other.inviteeAcceptedSearchableEmails != null) {
-        this.inviteeAcceptedSearchableEmails =
-            other.inviteeAcceptedSearchableEmails!;
+      if (other.inviteeAcceptedEmails != null) {
+        this.inviteeAcceptedEmails = other.inviteeAcceptedEmails!;
       }
-      if (other.inviteeRejectedSearchableEmails != null) {
-        this.inviteeRejectedSearchableEmails =
-            other.inviteeRejectedSearchableEmails!;
+      if (other.inviteeRejectedEmails != null) {
+        this.inviteeRejectedEmails = other.inviteeRejectedEmails!;
       }
     }
   }
@@ -417,106 +409,82 @@ class ModelInvitation extends _ModelInvitation {
         return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
       }();
 
-  // inviteeSearchableEmails.
-  Set<String>? get inviteeSearchableEmailsField => this.inviteeSearchableEmails;
-  set inviteeSearchableEmailsField(Set<String>? v) =>
-      this.inviteeSearchableEmails = v;
+  // inviteeEmails.
+  Set<ModelQueryable>? get inviteeEmailsField => this.inviteeEmails;
+  set inviteeEmailsField(Set<ModelQueryable>? v) => this.inviteeEmails = v;
   @protected
-  dynamic get $inviteeSearchableEmails => this
-      .inviteeSearchableEmails
+  dynamic get $inviteeEmails => this
+      .inviteeEmails
       ?.map(
-        (p0) => p0
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ''),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
   @protected
-  set $inviteeSearchableEmails(v) => this.inviteeSearchableEmails = letSet(v)
+  set $inviteeEmails(v) => this.inviteeEmails = letSet(v)
       ?.map(
-        (p0) => p0
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ''),
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelQueryable.fromJson(a) : null;
+        }(),
       )
       .nonNulls
       .nullIfEmpty
       ?.toSet()
       .cast();
 
-  // inviteeAcceptedSearchableEmails.
-  Set<String>? get inviteeAcceptedSearchableEmailsField =>
-      this.inviteeAcceptedSearchableEmails;
-  set inviteeAcceptedSearchableEmailsField(Set<String>? v) =>
-      this.inviteeAcceptedSearchableEmails = v;
+  // inviteeAcceptedEmails.
+  Set<ModelQueryable>? get inviteeAcceptedEmailsField =>
+      this.inviteeAcceptedEmails;
+  set inviteeAcceptedEmailsField(Set<ModelQueryable>? v) =>
+      this.inviteeAcceptedEmails = v;
   @protected
-  dynamic get $inviteeAcceptedSearchableEmails => this
-      .inviteeAcceptedSearchableEmails
+  dynamic get $inviteeAcceptedEmails => this
+      .inviteeAcceptedEmails
       ?.map(
-        (p0) => p0
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ''),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
   @protected
-  set $inviteeAcceptedSearchableEmails(v) =>
-      this.inviteeAcceptedSearchableEmails = letSet(v)
-          ?.map(
-            (p0) => p0
-                ?.toString()
-                .trim()
-                .nullIfEmpty
-                ?.toLowerCase()
-                .replaceAll(r'[^\w]', ''),
-          )
-          .nonNulls
-          .nullIfEmpty
-          ?.toSet()
-          .cast();
+  set $inviteeAcceptedEmails(v) => this.inviteeAcceptedEmails = letSet(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelQueryable.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
 
-  // inviteeRejectedSearchableEmails.
-  Set<String>? get inviteeRejectedSearchableEmailsField =>
-      this.inviteeRejectedSearchableEmails;
-  set inviteeRejectedSearchableEmailsField(Set<String>? v) =>
-      this.inviteeRejectedSearchableEmails = v;
+  // inviteeRejectedEmails.
+  Set<ModelQueryable>? get inviteeRejectedEmailsField =>
+      this.inviteeRejectedEmails;
+  set inviteeRejectedEmailsField(Set<ModelQueryable>? v) =>
+      this.inviteeRejectedEmails = v;
   @protected
-  dynamic get $inviteeRejectedSearchableEmails => this
-      .inviteeRejectedSearchableEmails
+  dynamic get $inviteeRejectedEmails => this
+      .inviteeRejectedEmails
       ?.map(
-        (p0) => p0
-            ?.toString()
-            .trim()
-            .nullIfEmpty
-            ?.toLowerCase()
-            .replaceAll(r'[^\w]', ''),
+        (p0) => p0?.toJson(),
       )
       .nonNulls
       .nullIfEmpty
       ?.toList();
   @protected
-  set $inviteeRejectedSearchableEmails(v) =>
-      this.inviteeRejectedSearchableEmails = letSet(v)
-          ?.map(
-            (p0) => p0
-                ?.toString()
-                .trim()
-                .nullIfEmpty
-                ?.toLowerCase()
-                .replaceAll(r'[^\w]', ''),
-          )
-          .nonNulls
-          .nullIfEmpty
-          ?.toSet()
-          .cast();
+  set $inviteeRejectedEmails(v) => this.inviteeRejectedEmails = letSet(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelQueryable.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
 }
