@@ -26,7 +26,7 @@ dependencies:
   xyz_gen_annotations: ^0.48.3
   xyz_security: ^0.1.2
   xyz_utils: ^0.62.0
-  xyz_device_info: ^0.4.1
+  xyz_device_info: ^0.5.0
 
   uuid: 4.4.0
   crypto: 3.0.3
