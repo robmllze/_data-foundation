@@ -25,10 +25,10 @@ const PUBLIC_MODEL_FIELDS = {
   ('created_reg?', ModelRegistration),
   ('deleted_reg?', ModelRegistration),
   ('description?', String),
-  ('address_book?', Map<String, ModelAddressEntry>),
-  ('email_book?', Map<String, ModelEmailEntry>),
-  ('file_book?', Map<String, ModelFileEntry>),
-  ('phone_book?', Map<String, ModelPhoneEntry>),
+  ('address_entries?', Map<String, ModelAddressEntry>),
+  ('email_entries?', Map<String, ModelEmailEntry>),
+  ('file_entries?', Map<String, ModelFileEntry>),
+  ('phone_entries?', Map<String, ModelPhoneEntry>),
   ('device_regs?', List<ModelDeviceRegistration>),
   ('registration?', ModelRegistration),
 };
@@ -90,7 +90,7 @@ extension PublicModelExtension on PublicModel {
   /// assumption is that if the file has a `download_url`, then it has been
   /// uploaded successfully and is available for download.
   bool IsFileUploadingAssumtion(String fileId) {
-    final a = this.fileBook?[fileId];
+    final a = this.fileEntries?[fileId];
     final b = a != null && a.downloadUrl == null;
     return b;
   }
@@ -113,7 +113,7 @@ extension PublicModelExtension on PublicModel {
   //
 
   Iterable<ModelFileEntry>? sortedFilesByCreatedAt({bool ascending = true}) {
-    return this.fileBook?.values.toList()
+    return this.fileEntries?.values.toList()
       ?..sort((a, b) {
         final now = DateTime.now();
         return (ascending ? 1 : -1) *

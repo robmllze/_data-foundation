@@ -33,10 +33,10 @@ class ModelProjectPub extends _ModelProjectPub {
   static const K_CREATED_REG = 'createdReg';
   static const K_DELETED_REG = 'deletedReg';
   static const K_DESCRIPTION = 'description';
-  static const K_ADDRESS_BOOK = 'addressBook';
-  static const K_EMAIL_BOOK = 'emailBook';
-  static const K_FILE_BOOK = 'fileBook';
-  static const K_PHONE_BOOK = 'phoneBook';
+  static const K_ADDRESS_ENTRIES = 'addressEntries';
+  static const K_EMAIL_ENTRIES = 'emailEntries';
+  static const K_FILE_ENTRIES = 'fileEntries';
+  static const K_PHONE_ENTRIES = 'phoneEntries';
   static const K_DEVICE_REGS = 'deviceRegs';
   static const K_REGISTRATION = 'registration';
   static const K_REGS_OPENED = 'regsOpened';
@@ -56,10 +56,10 @@ class ModelProjectPub extends _ModelProjectPub {
   ModelRegistration? createdReg;
   ModelRegistration? deletedReg;
   String? description;
-  Map<String, ModelAddressEntry>? addressBook;
-  Map<String, ModelEmailEntry>? emailBook;
-  Map<String, ModelFileEntry>? fileBook;
-  Map<String, ModelPhoneEntry>? phoneBook;
+  Map<String, ModelAddressEntry>? addressEntries;
+  Map<String, ModelEmailEntry>? emailEntries;
+  Map<String, ModelFileEntry>? fileEntries;
+  Map<String, ModelPhoneEntry>? phoneEntries;
   List<ModelDeviceRegistration>? deviceRegs;
   ModelRegistration? registration;
   List<ModelRegistration>? regsOpened;
@@ -85,10 +85,10 @@ class ModelProjectPub extends _ModelProjectPub {
     ModelRegistration? createdReg,
     ModelRegistration? deletedReg,
     String? description,
-    Map<String, ModelAddressEntry>? addressBook,
-    Map<String, ModelEmailEntry>? emailBook,
-    Map<String, ModelFileEntry>? fileBook,
-    Map<String, ModelPhoneEntry>? phoneBook,
+    Map<String, ModelAddressEntry>? addressEntries,
+    Map<String, ModelEmailEntry>? emailEntries,
+    Map<String, ModelFileEntry>? fileEntries,
+    Map<String, ModelPhoneEntry>? phoneEntries,
     List<ModelDeviceRegistration>? deviceRegs,
     ModelRegistration? registration,
     List<ModelRegistration>? regsOpened,
@@ -104,10 +104,10 @@ class ModelProjectPub extends _ModelProjectPub {
       createdReg: createdReg,
       deletedReg: deletedReg,
       description: description,
-      addressBook: addressBook,
-      emailBook: emailBook,
-      fileBook: fileBook,
-      phoneBook: phoneBook,
+      addressEntries: addressEntries,
+      emailEntries: emailEntries,
+      fileEntries: fileEntries,
+      phoneEntries: phoneEntries,
       deviceRegs: deviceRegs,
       registration: registration,
       regsOpened: regsOpened,
@@ -129,10 +129,10 @@ class ModelProjectPub extends _ModelProjectPub {
     this.createdReg,
     this.deletedReg,
     this.description,
-    this.addressBook,
-    this.emailBook,
-    this.fileBook,
-    this.phoneBook,
+    this.addressEntries,
+    this.emailEntries,
+    this.fileEntries,
+    this.phoneEntries,
     this.deviceRegs,
     this.registration,
     this.regsOpened,
@@ -242,10 +242,10 @@ class ModelProjectPub extends _ModelProjectPub {
         ..$createdReg = otherData?[K_CREATED_REG]
         ..$deletedReg = otherData?[K_DELETED_REG]
         ..$description = otherData?[K_DESCRIPTION]
-        ..$addressBook = otherData?[K_ADDRESS_BOOK]
-        ..$emailBook = otherData?[K_EMAIL_BOOK]
-        ..$fileBook = otherData?[K_FILE_BOOK]
-        ..$phoneBook = otherData?[K_PHONE_BOOK]
+        ..$addressEntries = otherData?[K_ADDRESS_ENTRIES]
+        ..$emailEntries = otherData?[K_EMAIL_ENTRIES]
+        ..$fileEntries = otherData?[K_FILE_ENTRIES]
+        ..$phoneEntries = otherData?[K_PHONE_ENTRIES]
         ..$deviceRegs = otherData?[K_DEVICE_REGS]
         ..$registration = otherData?[K_REGISTRATION]
         ..$regsOpened = otherData?[K_REGS_OPENED]
@@ -304,10 +304,10 @@ class ModelProjectPub extends _ModelProjectPub {
         K_CREATED_REG: this.$createdReg,
         K_DELETED_REG: this.$deletedReg,
         K_DESCRIPTION: this.$description,
-        K_ADDRESS_BOOK: this.$addressBook,
-        K_EMAIL_BOOK: this.$emailBook,
-        K_FILE_BOOK: this.$fileBook,
-        K_PHONE_BOOK: this.$phoneBook,
+        K_ADDRESS_ENTRIES: this.$addressEntries,
+        K_EMAIL_ENTRIES: this.$emailEntries,
+        K_FILE_ENTRIES: this.$fileEntries,
+        K_PHONE_ENTRIES: this.$phoneEntries,
         K_DEVICE_REGS: this.$deviceRegs,
         K_REGISTRATION: this.$registration,
         K_REGS_OPENED: this.$regsOpened,
@@ -375,17 +375,17 @@ class ModelProjectPub extends _ModelProjectPub {
       if (other.description != null) {
         this.description = other.description!;
       }
-      if (other.addressBook != null) {
-        this.addressBook = other.addressBook!;
+      if (other.addressEntries != null) {
+        this.addressEntries = other.addressEntries!;
       }
-      if (other.emailBook != null) {
-        this.emailBook = other.emailBook!;
+      if (other.emailEntries != null) {
+        this.emailEntries = other.emailEntries!;
       }
-      if (other.fileBook != null) {
-        this.fileBook = other.fileBook!;
+      if (other.fileEntries != null) {
+        this.fileEntries = other.fileEntries!;
       }
-      if (other.phoneBook != null) {
-        this.phoneBook = other.phoneBook!;
+      if (other.phoneEntries != null) {
+        this.phoneEntries = other.phoneEntries!;
       }
       if (other.deviceRegs != null) {
         this.deviceRegs = other.deviceRegs!;
@@ -498,13 +498,14 @@ class ModelProjectPub extends _ModelProjectPub {
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
-  // addressBook.
-  Map<String, ModelAddressEntry>? get addressBookField => this.addressBook;
-  set addressBookField(Map<String, ModelAddressEntry>? v) =>
-      this.addressBook = v;
+  // addressEntries.
+  Map<String, ModelAddressEntry>? get addressEntriesField =>
+      this.addressEntries;
+  set addressEntriesField(Map<String, ModelAddressEntry>? v) =>
+      this.addressEntries = v;
   @protected
-  dynamic get $addressBook => this
-      .addressBook
+  dynamic get $addressEntries => this
+      .addressEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -514,7 +515,7 @@ class ModelProjectPub extends _ModelProjectPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $addressBook(v) => this.addressBook = letMap(v)
+  set $addressEntries(v) => this.addressEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -528,12 +529,13 @@ class ModelProjectPub extends _ModelProjectPub {
       .nullIfEmpty
       ?.cast();
 
-  // emailBook.
-  Map<String, ModelEmailEntry>? get emailBookField => this.emailBook;
-  set emailBookField(Map<String, ModelEmailEntry>? v) => this.emailBook = v;
+  // emailEntries.
+  Map<String, ModelEmailEntry>? get emailEntriesField => this.emailEntries;
+  set emailEntriesField(Map<String, ModelEmailEntry>? v) =>
+      this.emailEntries = v;
   @protected
-  dynamic get $emailBook => this
-      .emailBook
+  dynamic get $emailEntries => this
+      .emailEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -543,7 +545,7 @@ class ModelProjectPub extends _ModelProjectPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $emailBook(v) => this.emailBook = letMap(v)
+  set $emailEntries(v) => this.emailEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -557,12 +559,12 @@ class ModelProjectPub extends _ModelProjectPub {
       .nullIfEmpty
       ?.cast();
 
-  // fileBook.
-  Map<String, ModelFileEntry>? get fileBookField => this.fileBook;
-  set fileBookField(Map<String, ModelFileEntry>? v) => this.fileBook = v;
+  // fileEntries.
+  Map<String, ModelFileEntry>? get fileEntriesField => this.fileEntries;
+  set fileEntriesField(Map<String, ModelFileEntry>? v) => this.fileEntries = v;
   @protected
-  dynamic get $fileBook => this
-      .fileBook
+  dynamic get $fileEntries => this
+      .fileEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -572,7 +574,7 @@ class ModelProjectPub extends _ModelProjectPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $fileBook(v) => this.fileBook = letMap(v)
+  set $fileEntries(v) => this.fileEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -586,12 +588,13 @@ class ModelProjectPub extends _ModelProjectPub {
       .nullIfEmpty
       ?.cast();
 
-  // phoneBook.
-  Map<String, ModelPhoneEntry>? get phoneBookField => this.phoneBook;
-  set phoneBookField(Map<String, ModelPhoneEntry>? v) => this.phoneBook = v;
+  // phoneEntries.
+  Map<String, ModelPhoneEntry>? get phoneEntriesField => this.phoneEntries;
+  set phoneEntriesField(Map<String, ModelPhoneEntry>? v) =>
+      this.phoneEntries = v;
   @protected
-  dynamic get $phoneBook => this
-      .phoneBook
+  dynamic get $phoneEntries => this
+      .phoneEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -601,7 +604,7 @@ class ModelProjectPub extends _ModelProjectPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $phoneBook(v) => this.phoneBook = letMap(v)
+  set $phoneEntries(v) => this.phoneEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,

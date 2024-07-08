@@ -15,11 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_organization_pub.dart';
+part of 'model_job_pub.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelOrganizationPub extends _ModelOrganizationPub {
+class ModelJobPub extends _ModelJobPub {
   //
   //
   //
@@ -33,14 +33,20 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   static const K_CREATED_REG = 'createdReg';
   static const K_DELETED_REG = 'deletedReg';
   static const K_DESCRIPTION = 'description';
-  static const K_ADDRESS_BOOK = 'addressBook';
-  static const K_EMAIL_BOOK = 'emailBook';
-  static const K_FILE_BOOK = 'fileBook';
-  static const K_PHONE_BOOK = 'phoneBook';
+  static const K_ADDRESS_ENTRIES = 'addressEntries';
+  static const K_EMAIL_ENTRIES = 'emailEntries';
+  static const K_FILE_ENTRIES = 'fileEntries';
+  static const K_PHONE_ENTRIES = 'phoneEntries';
   static const K_DEVICE_REGS = 'deviceRegs';
   static const K_REGISTRATION = 'registration';
+  static const K_CLOCK_IN_REGS = 'clockInRegs';
+  static const K_CLOCK_OUT_REGS = 'clockOutRegs';
+  static const K_OPENED_REGS = 'openedRegs';
+  static const K_CLOSED_REGS = 'closedRegs';
+  static const K_TODO_BOOK = 'todoBook';
+  static const K_STATUS = 'status';
 
-  static const CLASS = 'ModelOrganizationPub';
+  static const CLASS = 'ModelJobPub';
 
   @override
   String get $class => CLASS;
@@ -54,24 +60,30 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   ModelRegistration? createdReg;
   ModelRegistration? deletedReg;
   String? description;
-  Map<String, ModelAddressEntry>? addressBook;
-  Map<String, ModelEmailEntry>? emailBook;
-  Map<String, ModelFileEntry>? fileBook;
-  Map<String, ModelPhoneEntry>? phoneBook;
+  Map<String, ModelAddressEntry>? addressEntries;
+  Map<String, ModelEmailEntry>? emailEntries;
+  Map<String, ModelFileEntry>? fileEntries;
+  Map<String, ModelPhoneEntry>? phoneEntries;
   List<ModelDeviceRegistration>? deviceRegs;
   ModelRegistration? registration;
+  List<ModelRegistration>? clockInRegs;
+  List<ModelRegistration>? clockOutRegs;
+  List<ModelRegistration>? openedRegs;
+  List<ModelRegistration>? closedRegs;
+  Map<DateTime, ModelTodoEntry>? todoBook;
+  JobStatusType? status;
 
   //
   //
   //
 
-  ModelOrganizationPub.empty();
+  ModelJobPub.empty();
 
   //
   //
   //
 
-  factory ModelOrganizationPub({
+  factory ModelJobPub({
     required DataRefModel ref,
     String? id,
     String? displayName,
@@ -81,14 +93,20 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     ModelRegistration? createdReg,
     ModelRegistration? deletedReg,
     String? description,
-    Map<String, ModelAddressEntry>? addressBook,
-    Map<String, ModelEmailEntry>? emailBook,
-    Map<String, ModelFileEntry>? fileBook,
-    Map<String, ModelPhoneEntry>? phoneBook,
+    Map<String, ModelAddressEntry>? addressEntries,
+    Map<String, ModelEmailEntry>? emailEntries,
+    Map<String, ModelFileEntry>? fileEntries,
+    Map<String, ModelPhoneEntry>? phoneEntries,
     List<ModelDeviceRegistration>? deviceRegs,
     ModelRegistration? registration,
+    List<ModelRegistration>? clockInRegs,
+    List<ModelRegistration>? clockOutRegs,
+    List<ModelRegistration>? openedRegs,
+    List<ModelRegistration>? closedRegs,
+    Map<DateTime, ModelTodoEntry>? todoBook,
+    JobStatusType? status,
   }) {
-    return ModelOrganizationPub.b(
+    return ModelJobPub.b(
       ref: ref,
       id: id,
       displayName: displayName,
@@ -98,12 +116,18 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       createdReg: createdReg,
       deletedReg: deletedReg,
       description: description,
-      addressBook: addressBook,
-      emailBook: emailBook,
-      fileBook: fileBook,
-      phoneBook: phoneBook,
+      addressEntries: addressEntries,
+      emailEntries: emailEntries,
+      fileEntries: fileEntries,
+      phoneEntries: phoneEntries,
       deviceRegs: deviceRegs,
       registration: registration,
+      clockInRegs: clockInRegs,
+      clockOutRegs: clockOutRegs,
+      openedRegs: openedRegs,
+      closedRegs: closedRegs,
+      todoBook: todoBook,
+      status: status,
     );
   }
 
@@ -111,7 +135,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
 
-  ModelOrganizationPub.b({
+  ModelJobPub.b({
     this.ref,
     this.id,
     this.displayName,
@@ -121,12 +145,18 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     this.createdReg,
     this.deletedReg,
     this.description,
-    this.addressBook,
-    this.emailBook,
-    this.fileBook,
-    this.phoneBook,
+    this.addressEntries,
+    this.emailEntries,
+    this.fileEntries,
+    this.phoneEntries,
     this.deviceRegs,
     this.registration,
+    this.clockInRegs,
+    this.clockOutRegs,
+    this.openedRegs,
+    this.closedRegs,
+    this.todoBook,
+    this.status,
   }) {
     assert(this.ref != null);
   }
@@ -135,18 +165,18 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
 
-  factory ModelOrganizationPub.from(
+  factory ModelJobPub.from(
     Model? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelOrganizationPub.from: $e');
+      assert(false, 'ModelJobPub.from: $e');
       rethrow;
     }
   }
 
-  static ModelOrganizationPub? fromOrNull(
+  static ModelJobPub? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
@@ -156,19 +186,19 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
 
-  factory ModelOrganizationPub.of(
-    ModelOrganizationPub other,
+  factory ModelJobPub.of(
+    ModelJobPub other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelOrganizationPub.of: $e');
+      assert(false, 'ModelJobPub.of: $e');
       rethrow;
     }
   }
 
-  static ModelOrganizationPub? ofOrNull(
-    ModelOrganizationPub? other,
+  static ModelJobPub? ofOrNull(
+    ModelJobPub? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -177,26 +207,26 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
 
-  factory ModelOrganizationPub.fromJsonString(
+  factory ModelJobPub.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'ModelOrganizationPub.fromJsonString: $e');
+      assert(false, 'ModelJobPub.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static ModelOrganizationPub? fromJsonStringOrNull(
+  static ModelJobPub? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelOrganizationPub.fromJson(decoded);
+        return ModelJobPub.fromJson(decoded);
       } else {
-        return ModelOrganizationPub.empty();
+        return ModelJobPub.empty();
       }
     } catch (_) {
       return null;
@@ -207,22 +237,22 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
 
-  factory ModelOrganizationPub.fromJson(
+  factory ModelJobPub.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'ModelOrganizationPub.fromJson: $e');
+      assert(false, 'ModelJobPub.fromJson: $e');
       rethrow;
     }
   }
 
-  static ModelOrganizationPub? fromJsonOrNull(
+  static ModelJobPub? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelOrganizationPub.empty()
+      return ModelJobPub.empty()
         ..$ref = otherData?[K_REF]
         ..$id = otherData?[K_ID]
         ..$displayName = otherData?[K_DISPLAY_NAME]
@@ -232,12 +262,18 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         ..$createdReg = otherData?[K_CREATED_REG]
         ..$deletedReg = otherData?[K_DELETED_REG]
         ..$description = otherData?[K_DESCRIPTION]
-        ..$addressBook = otherData?[K_ADDRESS_BOOK]
-        ..$emailBook = otherData?[K_EMAIL_BOOK]
-        ..$fileBook = otherData?[K_FILE_BOOK]
-        ..$phoneBook = otherData?[K_PHONE_BOOK]
+        ..$addressEntries = otherData?[K_ADDRESS_ENTRIES]
+        ..$emailEntries = otherData?[K_EMAIL_ENTRIES]
+        ..$fileEntries = otherData?[K_FILE_ENTRIES]
+        ..$phoneEntries = otherData?[K_PHONE_ENTRIES]
         ..$deviceRegs = otherData?[K_DEVICE_REGS]
-        ..$registration = otherData?[K_REGISTRATION];
+        ..$registration = otherData?[K_REGISTRATION]
+        ..$clockInRegs = otherData?[K_CLOCK_IN_REGS]
+        ..$clockOutRegs = otherData?[K_CLOCK_OUT_REGS]
+        ..$openedRegs = otherData?[K_OPENED_REGS]
+        ..$closedRegs = otherData?[K_CLOSED_REGS]
+        ..$todoBook = otherData?[K_TODO_BOOK]
+        ..$status = otherData?[K_STATUS];
     } catch (e) {
       return null;
     }
@@ -247,25 +283,25 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   //
   //
 
-  factory ModelOrganizationPub.fromUri(
+  factory ModelJobPub.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'ModelOrganizationPub.fromUri: $e');
+      assert(false, 'ModelJobPub.fromUri: $e');
       rethrow;
     }
   }
 
-  static ModelOrganizationPub? fromUriOrNull(
+  static ModelJobPub? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelOrganizationPub.fromJson(uri.queryParameters);
+        return ModelJobPub.fromJson(uri.queryParameters);
       } else {
-        return ModelOrganizationPub.empty();
+        return ModelJobPub.empty();
       }
     } catch (_) {
       return null;
@@ -292,16 +328,22 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         K_CREATED_REG: this.$createdReg,
         K_DELETED_REG: this.$deletedReg,
         K_DESCRIPTION: this.$description,
-        K_ADDRESS_BOOK: this.$addressBook,
-        K_EMAIL_BOOK: this.$emailBook,
-        K_FILE_BOOK: this.$fileBook,
-        K_PHONE_BOOK: this.$phoneBook,
+        K_ADDRESS_ENTRIES: this.$addressEntries,
+        K_EMAIL_ENTRIES: this.$emailEntries,
+        K_FILE_ENTRIES: this.$fileEntries,
+        K_PHONE_ENTRIES: this.$phoneEntries,
         K_DEVICE_REGS: this.$deviceRegs,
         K_REGISTRATION: this.$registration,
+        K_CLOCK_IN_REGS: this.$clockInRegs,
+        K_CLOCK_OUT_REGS: this.$clockOutRegs,
+        K_OPENED_REGS: this.$openedRegs,
+        K_CLOSED_REGS: this.$closedRegs,
+        K_TODO_BOOK: this.$todoBook,
+        K_STATUS: this.$status,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'ModelOrganizationPub.toJson: $e');
+      assert(false, 'ModelJobPub.toJson: $e');
       rethrow;
     }
   }
@@ -312,7 +354,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
 
   @override
   T empty<T extends Model>() {
-    return ModelOrganizationPub.b() as T;
+    return ModelJobPub.b() as T;
   }
 
   //
@@ -321,7 +363,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
 
   @override
   T copy<T extends Model>() {
-    return (ModelOrganizationPub.b()..updateWith(this)) as T;
+    return (ModelJobPub.b()..updateWith(this)) as T;
   }
 
   //
@@ -333,7 +375,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelOrganizationPub.fromJson(otherData);
+      final other = ModelJobPub.fromJson(otherData);
       if (other.ref != null) {
         this.ref = other.ref!;
       }
@@ -361,23 +403,41 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       if (other.description != null) {
         this.description = other.description!;
       }
-      if (other.addressBook != null) {
-        this.addressBook = other.addressBook!;
+      if (other.addressEntries != null) {
+        this.addressEntries = other.addressEntries!;
       }
-      if (other.emailBook != null) {
-        this.emailBook = other.emailBook!;
+      if (other.emailEntries != null) {
+        this.emailEntries = other.emailEntries!;
       }
-      if (other.fileBook != null) {
-        this.fileBook = other.fileBook!;
+      if (other.fileEntries != null) {
+        this.fileEntries = other.fileEntries!;
       }
-      if (other.phoneBook != null) {
-        this.phoneBook = other.phoneBook!;
+      if (other.phoneEntries != null) {
+        this.phoneEntries = other.phoneEntries!;
       }
       if (other.deviceRegs != null) {
         this.deviceRegs = other.deviceRegs!;
       }
       if (other.registration != null) {
         this.registration = other.registration!;
+      }
+      if (other.clockInRegs != null) {
+        this.clockInRegs = other.clockInRegs!;
+      }
+      if (other.clockOutRegs != null) {
+        this.clockOutRegs = other.clockOutRegs!;
+      }
+      if (other.openedRegs != null) {
+        this.openedRegs = other.openedRegs!;
+      }
+      if (other.closedRegs != null) {
+        this.closedRegs = other.closedRegs!;
+      }
+      if (other.todoBook != null) {
+        this.todoBook = other.todoBook!;
+      }
+      if (other.status != null) {
+        this.status = other.status!;
       }
     }
   }
@@ -478,13 +538,14 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
-  // addressBook.
-  Map<String, ModelAddressEntry>? get addressBookField => this.addressBook;
-  set addressBookField(Map<String, ModelAddressEntry>? v) =>
-      this.addressBook = v;
+  // addressEntries.
+  Map<String, ModelAddressEntry>? get addressEntriesField =>
+      this.addressEntries;
+  set addressEntriesField(Map<String, ModelAddressEntry>? v) =>
+      this.addressEntries = v;
   @protected
-  dynamic get $addressBook => this
-      .addressBook
+  dynamic get $addressEntries => this
+      .addressEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -494,7 +555,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $addressBook(v) => this.addressBook = letMap(v)
+  set $addressEntries(v) => this.addressEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -508,12 +569,13 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       .nullIfEmpty
       ?.cast();
 
-  // emailBook.
-  Map<String, ModelEmailEntry>? get emailBookField => this.emailBook;
-  set emailBookField(Map<String, ModelEmailEntry>? v) => this.emailBook = v;
+  // emailEntries.
+  Map<String, ModelEmailEntry>? get emailEntriesField => this.emailEntries;
+  set emailEntriesField(Map<String, ModelEmailEntry>? v) =>
+      this.emailEntries = v;
   @protected
-  dynamic get $emailBook => this
-      .emailBook
+  dynamic get $emailEntries => this
+      .emailEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -523,7 +585,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $emailBook(v) => this.emailBook = letMap(v)
+  set $emailEntries(v) => this.emailEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -537,12 +599,12 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       .nullIfEmpty
       ?.cast();
 
-  // fileBook.
-  Map<String, ModelFileEntry>? get fileBookField => this.fileBook;
-  set fileBookField(Map<String, ModelFileEntry>? v) => this.fileBook = v;
+  // fileEntries.
+  Map<String, ModelFileEntry>? get fileEntriesField => this.fileEntries;
+  set fileEntriesField(Map<String, ModelFileEntry>? v) => this.fileEntries = v;
   @protected
-  dynamic get $fileBook => this
-      .fileBook
+  dynamic get $fileEntries => this
+      .fileEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -552,7 +614,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $fileBook(v) => this.fileBook = letMap(v)
+  set $fileEntries(v) => this.fileEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -566,12 +628,13 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       .nullIfEmpty
       ?.cast();
 
-  // phoneBook.
-  Map<String, ModelPhoneEntry>? get phoneBookField => this.phoneBook;
-  set phoneBookField(Map<String, ModelPhoneEntry>? v) => this.phoneBook = v;
+  // phoneEntries.
+  Map<String, ModelPhoneEntry>? get phoneEntriesField => this.phoneEntries;
+  set phoneEntriesField(Map<String, ModelPhoneEntry>? v) =>
+      this.phoneEntries = v;
   @protected
-  dynamic get $phoneBook => this
-      .phoneBook
+  dynamic get $phoneEntries => this
+      .phoneEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -581,7 +644,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $phoneBook(v) => this.phoneBook = letMap(v)
+  set $phoneEntries(v) => this.phoneEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -630,4 +693,145 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
+
+  // clockInRegs.
+  List<ModelRegistration>? get clockInRegsField => this.clockInRegs;
+  set clockInRegsField(List<ModelRegistration>? v) => this.clockInRegs = v;
+  @protected
+  dynamic get $clockInRegs => this
+      .clockInRegs
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $clockInRegs(v) => this.clockInRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // clockOutRegs.
+  List<ModelRegistration>? get clockOutRegsField => this.clockOutRegs;
+  set clockOutRegsField(List<ModelRegistration>? v) => this.clockOutRegs = v;
+  @protected
+  dynamic get $clockOutRegs => this
+      .clockOutRegs
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $clockOutRegs(v) => this.clockOutRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // openedRegs.
+  List<ModelRegistration>? get openedRegsField => this.openedRegs;
+  set openedRegsField(List<ModelRegistration>? v) => this.openedRegs = v;
+  @protected
+  dynamic get $openedRegs => this
+      .openedRegs
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $openedRegs(v) => this.openedRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // closedRegs.
+  List<ModelRegistration>? get closedRegsField => this.closedRegs;
+  set closedRegsField(List<ModelRegistration>? v) => this.closedRegs = v;
+  @protected
+  dynamic get $closedRegs => this
+      .closedRegs
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $closedRegs(v) => this.closedRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // todoBook.
+  Map<DateTime, ModelTodoEntry>? get todoBookField => this.todoBook;
+  set todoBookField(Map<DateTime, ModelTodoEntry>? v) => this.todoBook = v;
+  @protected
+  dynamic get $todoBook => this
+      .todoBook
+      ?.map(
+        (p0, p1) => MapEntry(
+          p0?.toUtc()?.toIso8601String(),
+          p1?.toJson(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty;
+  @protected
+  set $todoBook(v) => this.todoBook = letMap(v)
+      ?.map(
+        (p0, p1) => MapEntry(
+          () {
+            final a = p0;
+            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+          }(),
+          () {
+            final a = letMap<String, dynamic>(p1);
+            return a != null ? ModelTodoEntry.fromJson(a) : null;
+          }(),
+        ),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.cast();
+
+  // status.
+  JobStatusType? get statusField => this.status;
+  set statusField(JobStatusType? v) => this.status = v;
+  @protected
+  dynamic get $status => this.status?.name;
+  @protected
+  set $status(v) =>
+      this.status = JobStatusType.values.valueOf(letAs<String>(v));
 }

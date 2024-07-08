@@ -15,11 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_user_pub.dart';
+part of 'model_relationship.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelUserPub extends _ModelUserPub {
+class ModelRelationship extends _ModelRelationship {
   //
   //
   //
@@ -33,14 +33,20 @@ class ModelUserPub extends _ModelUserPub {
   static const K_CREATED_REG = 'createdReg';
   static const K_DELETED_REG = 'deletedReg';
   static const K_DESCRIPTION = 'description';
-  static const K_ADDRESS_BOOK = 'addressBook';
-  static const K_EMAIL_BOOK = 'emailBook';
-  static const K_FILE_BOOK = 'fileBook';
-  static const K_PHONE_BOOK = 'phoneBook';
+  static const K_ADDRESS_ENTRIES = 'addressEntries';
+  static const K_EMAIL_ENTRIES = 'emailEntries';
+  static const K_FILE_ENTRIES = 'fileEntries';
+  static const K_PHONE_ENTRIES = 'phoneEntries';
   static const K_DEVICE_REGS = 'deviceRegs';
   static const K_REGISTRATION = 'registration';
+  static const K_MEMBER_PIDS = 'memberPids';
+  static const K_DISABLED_REGS = 'disabledRegs';
+  static const K_ENABLED_REGS = 'enabledRegs';
+  static const K_NOTED_REGS = 'notedRegs';
+  static const K_TYPE = 'type';
+  static const K_BODY = 'body';
 
-  static const CLASS = 'ModelUserPub';
+  static const CLASS = 'ModelRelationship';
 
   @override
   String get $class => CLASS;
@@ -54,24 +60,30 @@ class ModelUserPub extends _ModelUserPub {
   ModelRegistration? createdReg;
   ModelRegistration? deletedReg;
   String? description;
-  Map<String, ModelAddressEntry>? addressBook;
-  Map<String, ModelEmailEntry>? emailBook;
-  Map<String, ModelFileEntry>? fileBook;
-  Map<String, ModelPhoneEntry>? phoneBook;
+  Map<String, ModelAddressEntry>? addressEntries;
+  Map<String, ModelEmailEntry>? emailEntries;
+  Map<String, ModelFileEntry>? fileEntries;
+  Map<String, ModelPhoneEntry>? phoneEntries;
   List<ModelDeviceRegistration>? deviceRegs;
   ModelRegistration? registration;
+  Set<String>? memberPids;
+  List<ModelRegistration>? disabledRegs;
+  List<ModelRegistration>? enabledRegs;
+  List<ModelRegistration>? notedRegs;
+  RelationshipType? type;
+  DataModel? body;
 
   //
   //
   //
 
-  ModelUserPub.empty();
+  ModelRelationship.empty();
 
   //
   //
   //
 
-  factory ModelUserPub({
+  factory ModelRelationship({
     required DataRefModel ref,
     String? id,
     String? displayName,
@@ -81,14 +93,20 @@ class ModelUserPub extends _ModelUserPub {
     ModelRegistration? createdReg,
     ModelRegistration? deletedReg,
     String? description,
-    Map<String, ModelAddressEntry>? addressBook,
-    Map<String, ModelEmailEntry>? emailBook,
-    Map<String, ModelFileEntry>? fileBook,
-    Map<String, ModelPhoneEntry>? phoneBook,
+    Map<String, ModelAddressEntry>? addressEntries,
+    Map<String, ModelEmailEntry>? emailEntries,
+    Map<String, ModelFileEntry>? fileEntries,
+    Map<String, ModelPhoneEntry>? phoneEntries,
     List<ModelDeviceRegistration>? deviceRegs,
     ModelRegistration? registration,
+    Set<String>? memberPids,
+    List<ModelRegistration>? disabledRegs,
+    List<ModelRegistration>? enabledRegs,
+    List<ModelRegistration>? notedRegs,
+    RelationshipType? type,
+    DataModel? body,
   }) {
-    return ModelUserPub.b(
+    return ModelRelationship.b(
       ref: ref,
       id: id,
       displayName: displayName,
@@ -98,12 +116,18 @@ class ModelUserPub extends _ModelUserPub {
       createdReg: createdReg,
       deletedReg: deletedReg,
       description: description,
-      addressBook: addressBook,
-      emailBook: emailBook,
-      fileBook: fileBook,
-      phoneBook: phoneBook,
+      addressEntries: addressEntries,
+      emailEntries: emailEntries,
+      fileEntries: fileEntries,
+      phoneEntries: phoneEntries,
       deviceRegs: deviceRegs,
       registration: registration,
+      memberPids: memberPids,
+      disabledRegs: disabledRegs,
+      enabledRegs: enabledRegs,
+      notedRegs: notedRegs,
+      type: type,
+      body: body,
     );
   }
 
@@ -111,7 +135,7 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
-  ModelUserPub.b({
+  ModelRelationship.b({
     this.ref,
     this.id,
     this.displayName,
@@ -121,12 +145,18 @@ class ModelUserPub extends _ModelUserPub {
     this.createdReg,
     this.deletedReg,
     this.description,
-    this.addressBook,
-    this.emailBook,
-    this.fileBook,
-    this.phoneBook,
+    this.addressEntries,
+    this.emailEntries,
+    this.fileEntries,
+    this.phoneEntries,
     this.deviceRegs,
     this.registration,
+    this.memberPids,
+    this.disabledRegs,
+    this.enabledRegs,
+    this.notedRegs,
+    this.type,
+    this.body,
   }) {
     assert(this.ref != null);
   }
@@ -135,18 +165,18 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
-  factory ModelUserPub.from(
+  factory ModelRelationship.from(
     Model? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelUserPub.from: $e');
+      assert(false, 'ModelRelationship.from: $e');
       rethrow;
     }
   }
 
-  static ModelUserPub? fromOrNull(
+  static ModelRelationship? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
@@ -156,19 +186,19 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
-  factory ModelUserPub.of(
-    ModelUserPub other,
+  factory ModelRelationship.of(
+    ModelRelationship other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelUserPub.of: $e');
+      assert(false, 'ModelRelationship.of: $e');
       rethrow;
     }
   }
 
-  static ModelUserPub? ofOrNull(
-    ModelUserPub? other,
+  static ModelRelationship? ofOrNull(
+    ModelRelationship? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -177,26 +207,26 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
-  factory ModelUserPub.fromJsonString(
+  factory ModelRelationship.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'ModelUserPub.fromJsonString: $e');
+      assert(false, 'ModelRelationship.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static ModelUserPub? fromJsonStringOrNull(
+  static ModelRelationship? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelUserPub.fromJson(decoded);
+        return ModelRelationship.fromJson(decoded);
       } else {
-        return ModelUserPub.empty();
+        return ModelRelationship.empty();
       }
     } catch (_) {
       return null;
@@ -207,22 +237,22 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
-  factory ModelUserPub.fromJson(
+  factory ModelRelationship.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'ModelUserPub.fromJson: $e');
+      assert(false, 'ModelRelationship.fromJson: $e');
       rethrow;
     }
   }
 
-  static ModelUserPub? fromJsonOrNull(
+  static ModelRelationship? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelUserPub.empty()
+      return ModelRelationship.empty()
         ..$ref = otherData?[K_REF]
         ..$id = otherData?[K_ID]
         ..$displayName = otherData?[K_DISPLAY_NAME]
@@ -232,12 +262,18 @@ class ModelUserPub extends _ModelUserPub {
         ..$createdReg = otherData?[K_CREATED_REG]
         ..$deletedReg = otherData?[K_DELETED_REG]
         ..$description = otherData?[K_DESCRIPTION]
-        ..$addressBook = otherData?[K_ADDRESS_BOOK]
-        ..$emailBook = otherData?[K_EMAIL_BOOK]
-        ..$fileBook = otherData?[K_FILE_BOOK]
-        ..$phoneBook = otherData?[K_PHONE_BOOK]
+        ..$addressEntries = otherData?[K_ADDRESS_ENTRIES]
+        ..$emailEntries = otherData?[K_EMAIL_ENTRIES]
+        ..$fileEntries = otherData?[K_FILE_ENTRIES]
+        ..$phoneEntries = otherData?[K_PHONE_ENTRIES]
         ..$deviceRegs = otherData?[K_DEVICE_REGS]
-        ..$registration = otherData?[K_REGISTRATION];
+        ..$registration = otherData?[K_REGISTRATION]
+        ..$memberPids = otherData?[K_MEMBER_PIDS]
+        ..$disabledRegs = otherData?[K_DISABLED_REGS]
+        ..$enabledRegs = otherData?[K_ENABLED_REGS]
+        ..$notedRegs = otherData?[K_NOTED_REGS]
+        ..$type = otherData?[K_TYPE]
+        ..$body = otherData?[K_BODY];
     } catch (e) {
       return null;
     }
@@ -247,25 +283,25 @@ class ModelUserPub extends _ModelUserPub {
   //
   //
 
-  factory ModelUserPub.fromUri(
+  factory ModelRelationship.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'ModelUserPub.fromUri: $e');
+      assert(false, 'ModelRelationship.fromUri: $e');
       rethrow;
     }
   }
 
-  static ModelUserPub? fromUriOrNull(
+  static ModelRelationship? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelUserPub.fromJson(uri.queryParameters);
+        return ModelRelationship.fromJson(uri.queryParameters);
       } else {
-        return ModelUserPub.empty();
+        return ModelRelationship.empty();
       }
     } catch (_) {
       return null;
@@ -292,16 +328,22 @@ class ModelUserPub extends _ModelUserPub {
         K_CREATED_REG: this.$createdReg,
         K_DELETED_REG: this.$deletedReg,
         K_DESCRIPTION: this.$description,
-        K_ADDRESS_BOOK: this.$addressBook,
-        K_EMAIL_BOOK: this.$emailBook,
-        K_FILE_BOOK: this.$fileBook,
-        K_PHONE_BOOK: this.$phoneBook,
+        K_ADDRESS_ENTRIES: this.$addressEntries,
+        K_EMAIL_ENTRIES: this.$emailEntries,
+        K_FILE_ENTRIES: this.$fileEntries,
+        K_PHONE_ENTRIES: this.$phoneEntries,
         K_DEVICE_REGS: this.$deviceRegs,
         K_REGISTRATION: this.$registration,
+        K_MEMBER_PIDS: this.$memberPids,
+        K_DISABLED_REGS: this.$disabledRegs,
+        K_ENABLED_REGS: this.$enabledRegs,
+        K_NOTED_REGS: this.$notedRegs,
+        K_TYPE: this.$type,
+        K_BODY: this.$body,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'ModelUserPub.toJson: $e');
+      assert(false, 'ModelRelationship.toJson: $e');
       rethrow;
     }
   }
@@ -312,7 +354,7 @@ class ModelUserPub extends _ModelUserPub {
 
   @override
   T empty<T extends Model>() {
-    return ModelUserPub.b() as T;
+    return ModelRelationship.b() as T;
   }
 
   //
@@ -321,7 +363,7 @@ class ModelUserPub extends _ModelUserPub {
 
   @override
   T copy<T extends Model>() {
-    return (ModelUserPub.b()..updateWith(this)) as T;
+    return (ModelRelationship.b()..updateWith(this)) as T;
   }
 
   //
@@ -333,7 +375,7 @@ class ModelUserPub extends _ModelUserPub {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelUserPub.fromJson(otherData);
+      final other = ModelRelationship.fromJson(otherData);
       if (other.ref != null) {
         this.ref = other.ref!;
       }
@@ -361,23 +403,41 @@ class ModelUserPub extends _ModelUserPub {
       if (other.description != null) {
         this.description = other.description!;
       }
-      if (other.addressBook != null) {
-        this.addressBook = other.addressBook!;
+      if (other.addressEntries != null) {
+        this.addressEntries = other.addressEntries!;
       }
-      if (other.emailBook != null) {
-        this.emailBook = other.emailBook!;
+      if (other.emailEntries != null) {
+        this.emailEntries = other.emailEntries!;
       }
-      if (other.fileBook != null) {
-        this.fileBook = other.fileBook!;
+      if (other.fileEntries != null) {
+        this.fileEntries = other.fileEntries!;
       }
-      if (other.phoneBook != null) {
-        this.phoneBook = other.phoneBook!;
+      if (other.phoneEntries != null) {
+        this.phoneEntries = other.phoneEntries!;
       }
       if (other.deviceRegs != null) {
         this.deviceRegs = other.deviceRegs!;
       }
       if (other.registration != null) {
         this.registration = other.registration!;
+      }
+      if (other.memberPids != null) {
+        this.memberPids = other.memberPids!;
+      }
+      if (other.disabledRegs != null) {
+        this.disabledRegs = other.disabledRegs!;
+      }
+      if (other.enabledRegs != null) {
+        this.enabledRegs = other.enabledRegs!;
+      }
+      if (other.notedRegs != null) {
+        this.notedRegs = other.notedRegs!;
+      }
+      if (other.type != null) {
+        this.type = other.type!;
+      }
+      if (other.body != null) {
+        this.body = other.body!;
       }
     }
   }
@@ -478,13 +538,14 @@ class ModelUserPub extends _ModelUserPub {
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
-  // addressBook.
-  Map<String, ModelAddressEntry>? get addressBookField => this.addressBook;
-  set addressBookField(Map<String, ModelAddressEntry>? v) =>
-      this.addressBook = v;
+  // addressEntries.
+  Map<String, ModelAddressEntry>? get addressEntriesField =>
+      this.addressEntries;
+  set addressEntriesField(Map<String, ModelAddressEntry>? v) =>
+      this.addressEntries = v;
   @protected
-  dynamic get $addressBook => this
-      .addressBook
+  dynamic get $addressEntries => this
+      .addressEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -494,7 +555,7 @@ class ModelUserPub extends _ModelUserPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $addressBook(v) => this.addressBook = letMap(v)
+  set $addressEntries(v) => this.addressEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -508,12 +569,13 @@ class ModelUserPub extends _ModelUserPub {
       .nullIfEmpty
       ?.cast();
 
-  // emailBook.
-  Map<String, ModelEmailEntry>? get emailBookField => this.emailBook;
-  set emailBookField(Map<String, ModelEmailEntry>? v) => this.emailBook = v;
+  // emailEntries.
+  Map<String, ModelEmailEntry>? get emailEntriesField => this.emailEntries;
+  set emailEntriesField(Map<String, ModelEmailEntry>? v) =>
+      this.emailEntries = v;
   @protected
-  dynamic get $emailBook => this
-      .emailBook
+  dynamic get $emailEntries => this
+      .emailEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -523,7 +585,7 @@ class ModelUserPub extends _ModelUserPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $emailBook(v) => this.emailBook = letMap(v)
+  set $emailEntries(v) => this.emailEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -537,12 +599,12 @@ class ModelUserPub extends _ModelUserPub {
       .nullIfEmpty
       ?.cast();
 
-  // fileBook.
-  Map<String, ModelFileEntry>? get fileBookField => this.fileBook;
-  set fileBookField(Map<String, ModelFileEntry>? v) => this.fileBook = v;
+  // fileEntries.
+  Map<String, ModelFileEntry>? get fileEntriesField => this.fileEntries;
+  set fileEntriesField(Map<String, ModelFileEntry>? v) => this.fileEntries = v;
   @protected
-  dynamic get $fileBook => this
-      .fileBook
+  dynamic get $fileEntries => this
+      .fileEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -552,7 +614,7 @@ class ModelUserPub extends _ModelUserPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $fileBook(v) => this.fileBook = letMap(v)
+  set $fileEntries(v) => this.fileEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -566,12 +628,13 @@ class ModelUserPub extends _ModelUserPub {
       .nullIfEmpty
       ?.cast();
 
-  // phoneBook.
-  Map<String, ModelPhoneEntry>? get phoneBookField => this.phoneBook;
-  set phoneBookField(Map<String, ModelPhoneEntry>? v) => this.phoneBook = v;
+  // phoneEntries.
+  Map<String, ModelPhoneEntry>? get phoneEntriesField => this.phoneEntries;
+  set phoneEntriesField(Map<String, ModelPhoneEntry>? v) =>
+      this.phoneEntries = v;
   @protected
-  dynamic get $phoneBook => this
-      .phoneBook
+  dynamic get $phoneEntries => this
+      .phoneEntries
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -581,7 +644,7 @@ class ModelUserPub extends _ModelUserPub {
       .nonNulls
       .nullIfEmpty;
   @protected
-  set $phoneBook(v) => this.phoneBook = letMap(v)
+  set $phoneEntries(v) => this.phoneEntries = letMap(v)
       ?.map(
         (p0, p1) => MapEntry(
           p0?.toString().trim().nullIfEmpty,
@@ -629,5 +692,121 @@ class ModelUserPub extends _ModelUserPub {
   set $registration(v) => this.registration = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // memberPids.
+  Set<String>? get memberPidsField => this.memberPids;
+  set memberPidsField(Set<String>? v) => this.memberPids = v;
+  @protected
+  dynamic get $memberPids => this
+      .memberPids
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $memberPids(v) => this.memberPids = letSet(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
+
+  // disabledRegs.
+  List<ModelRegistration>? get disabledRegsField => this.disabledRegs;
+  set disabledRegsField(List<ModelRegistration>? v) => this.disabledRegs = v;
+  @protected
+  dynamic get $disabledRegs => this
+      .disabledRegs
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $disabledRegs(v) => this.disabledRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // enabledRegs.
+  List<ModelRegistration>? get enabledRegsField => this.enabledRegs;
+  set enabledRegsField(List<ModelRegistration>? v) => this.enabledRegs = v;
+  @protected
+  dynamic get $enabledRegs => this
+      .enabledRegs
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $enabledRegs(v) => this.enabledRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // notedRegs.
+  List<ModelRegistration>? get notedRegsField => this.notedRegs;
+  set notedRegsField(List<ModelRegistration>? v) => this.notedRegs = v;
+  @protected
+  dynamic get $notedRegs => this
+      .notedRegs
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $notedRegs(v) => this.notedRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // type.
+  RelationshipType? get typeField => this.type;
+  set typeField(RelationshipType? v) => this.type = v;
+  @protected
+  dynamic get $type => this.type?.name;
+  @protected
+  set $type(v) => this.type = RelationshipType.values.valueOf(letAs<String>(v));
+
+  // body.
+  DataModel? get bodyField => this.body;
+  set bodyField(DataModel? v) => this.body = v;
+  @protected
+  dynamic get $body => this.body?.data;
+  @protected
+  set $body(v) => this.body = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataModel(data: a) : null;
       }();
 }
