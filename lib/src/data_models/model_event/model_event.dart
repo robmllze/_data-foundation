@@ -21,7 +21,7 @@ part '_model_event.g.dart';
     ('member_pids?', Set<String>),
     ('topic?', TopicType),
     ('body?', DataModel),
-    ('timeout?', int),
+    ('expire_at?', DateTime),
     ('read_regs?', List<ModelRegistration>),
     ('archived_regs?', List<ModelRegistration>),
     ('hidden_regs?', List<ModelRegistration>),
@@ -38,9 +38,8 @@ extension ModelEventExtension on ModelEvent {
   //
   //
 
-  bool get didTimeout {
-    final timeout = this.timeout;
-    return timeout != null && timeout < DateTime.now().millisecondsSinceEpoch;
+  bool isExpired() {
+    return this.expireAt != null && this.expireAt!.isAfter(DateTime.now());
   }
 
   bool isReadByAnyone() {

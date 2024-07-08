@@ -35,7 +35,7 @@ class ModelEvent extends _ModelEvent {
   static const K_MEMBER_PIDS = 'memberPids';
   static const K_TOPIC = 'topic';
   static const K_BODY = 'body';
-  static const K_TIMEOUT = 'timeout';
+  static const K_EXPIRE_AT = 'expireAt';
   static const K_READ_REGS = 'readRegs';
   static const K_ARCHIVED_REGS = 'archivedRegs';
   static const K_HIDDEN_REGS = 'hiddenRegs';
@@ -58,7 +58,7 @@ class ModelEvent extends _ModelEvent {
   Set<String>? memberPids;
   TopicType? topic;
   DataModel? body;
-  int? timeout;
+  DateTime? expireAt;
   List<ModelRegistration>? readRegs;
   List<ModelRegistration>? archivedRegs;
   List<ModelRegistration>? hiddenRegs;
@@ -87,7 +87,7 @@ class ModelEvent extends _ModelEvent {
     Set<String>? memberPids,
     TopicType? topic,
     DataModel? body,
-    int? timeout,
+    DateTime? expireAt,
     List<ModelRegistration>? readRegs,
     List<ModelRegistration>? archivedRegs,
     List<ModelRegistration>? hiddenRegs,
@@ -106,7 +106,7 @@ class ModelEvent extends _ModelEvent {
       memberPids: memberPids,
       topic: topic,
       body: body,
-      timeout: timeout,
+      expireAt: expireAt,
       readRegs: readRegs,
       archivedRegs: archivedRegs,
       hiddenRegs: hiddenRegs,
@@ -131,7 +131,7 @@ class ModelEvent extends _ModelEvent {
     this.memberPids,
     this.topic,
     this.body,
-    this.timeout,
+    this.expireAt,
     this.readRegs,
     this.archivedRegs,
     this.hiddenRegs,
@@ -244,7 +244,7 @@ class ModelEvent extends _ModelEvent {
         ..$memberPids = otherData?[K_MEMBER_PIDS]
         ..$topic = otherData?[K_TOPIC]
         ..$body = otherData?[K_BODY]
-        ..$timeout = otherData?[K_TIMEOUT]
+        ..$expireAt = otherData?[K_EXPIRE_AT]
         ..$readRegs = otherData?[K_READ_REGS]
         ..$archivedRegs = otherData?[K_ARCHIVED_REGS]
         ..$hiddenRegs = otherData?[K_HIDDEN_REGS]
@@ -306,7 +306,7 @@ class ModelEvent extends _ModelEvent {
         K_MEMBER_PIDS: this.$memberPids,
         K_TOPIC: this.$topic,
         K_BODY: this.$body,
-        K_TIMEOUT: this.$timeout,
+        K_EXPIRE_AT: this.$expireAt,
         K_READ_REGS: this.$readRegs,
         K_ARCHIVED_REGS: this.$archivedRegs,
         K_HIDDEN_REGS: this.$hiddenRegs,
@@ -381,8 +381,8 @@ class ModelEvent extends _ModelEvent {
       if (other.body != null) {
         this.body = other.body!;
       }
-      if (other.timeout != null) {
-        this.timeout = other.timeout!;
+      if (other.expireAt != null) {
+        this.expireAt = other.expireAt!;
       }
       if (other.readRegs != null) {
         this.readRegs = other.readRegs!;
@@ -530,13 +530,16 @@ class ModelEvent extends _ModelEvent {
         return a != null ? DataModel(data: a) : null;
       }();
 
-  // timeout.
-  int? get timeoutField => this.timeout;
-  set timeoutField(int? v) => this.timeout = v;
+  // expireAt.
+  DateTime? get expireAtField => this.expireAt;
+  set expireAtField(DateTime? v) => this.expireAt = v;
   @protected
-  dynamic get $timeout => this.timeout;
+  dynamic get $expireAt => this.expireAt?.toUtc()?.toIso8601String();
   @protected
-  set $timeout(v) => this.timeout = letInt(v);
+  set $expireAt(v) => this.expireAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
 
   // readRegs.
   List<ModelRegistration>? get readRegsField => this.readRegs;

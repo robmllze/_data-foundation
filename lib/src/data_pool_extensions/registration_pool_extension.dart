@@ -61,7 +61,8 @@ extension RegistrationPoolExtension on Iterable<ModelRegistration> {
         .any((e) => isImpliedEnabledBy(e.registeredBy!));
   }
 
-  /// Checks if any `impliesEnabled` property in `this` is `true`.
+  /// Checks if any `enabled` property in elements `this` implies
+  /// true (its value is `true` or `null`) or not (its value is `false`).
   bool isImpliedEnabledByAnyone() {
     return this.any((e) => e.impliesEnabled);
   }
