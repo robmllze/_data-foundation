@@ -18,26 +18,26 @@ extension RegistrationPoolExtension on Iterable<ModelRegistration> {
   //
 
   /// Returns all registration dates ("registeredAt" properties) in `this`.
-  Iterable<DateTime> get registrationDates => this.map((e) => e.registeredAt).nonNulls;
+  Iterable<DateTime> getRegistrationDates() => this.map((e) => e.registeredAt).nonNulls;
 
   /// Returns the earliest registration date ("registeredAt" property) in `this`.
-  DateTime get earliestRegistrationDate => getFirstDate(this.registrationDates)!;
+  DateTime getEarliestRegistrationDate() => getFirstDate(this.getRegistrationDates())!;
 
   /// Returns the latest registration date ("registeredAt" property) in `this`.
-  DateTime get latestRegistrationDate => getLastDate(this.registrationDates)!;
+  DateTime getLatestRegistrationDate() => getLastDate(this.getRegistrationDates())!;
 
   /// Returns the ID of the element in `this` with the earliest
   /// registration date ("registeredAt" property) in `this`.
   String get firstRegisteredById {
-    final e1 = this.earliestRegistrationDate;
-    return this.firstWhere((e) => e == e1).registeredBy!;
+    final d = this.getEarliestRegistrationDate();
+    return this.firstWhere((e) => e.registeredAt == d).registeredBy!;
   }
 
   /// Returns the ID of the element in `this` with the latest
   /// registration date ("registeredAt" property) in `this`.
   String get lastRegisteredById {
-    final e1 = this.latestRegistrationDate;
-    return this.firstWhere((e) => e.registeredAt == e1).registeredBy!;
+    final d = this.getLatestRegistrationDate();
+    return this.firstWhere((e) => e.registeredAt == d).registeredBy!;
   }
 
   /// Returns the first element e in `this` where
