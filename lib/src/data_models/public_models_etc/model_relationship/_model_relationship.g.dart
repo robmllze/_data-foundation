@@ -33,20 +33,17 @@ class ModelRelationship extends _ModelRelationship {
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
   static const K_UPDATED_G_REG = 'updatedGReg';
-  static const K_EMAIL = 'email';
-  static const K_ADDRESS_ENTRIES = 'addressEntries';
-  static const K_EMAIL_ENTRIES = 'emailEntries';
-  static const K_FILE_ENTRIES = 'fileEntries';
-  static const K_PHONE_ENTRIES = 'phoneEntries';
-  static const K_DEVICE_REGS = 'deviceRegs';
-  static const K_OPENED_REGS = 'openedRegs';
-  static const K_CLOSED_REGS = 'closedRegs';
+  static const K_EXPIRES_AT = 'expiresAt';
   static const K_MEMBER_PIDS = 'memberPids';
-  static const K_DISABLED_REGS = 'disabledRegs';
-  static const K_ENABLED_REGS = 'enabledRegs';
-  static const K_NOTED_REGS = 'notedRegs';
+  static const K_TAGS = 'tags';
+  static const K_CONTENT_TYPE = 'contentType';
+  static const K_CONTENT = 'content';
+  static const K_READ_REGS = 'readRegs';
+  static const K_ARCHIVED_REGS = 'archivedRegs';
+  static const K_HIDDEN_REGS = 'hiddenRegs';
+  static const K_LIKED_REGS = 'likedRegs';
+  static const K_RECEIVED_REGS = 'receivedRegs';
   static const K_TYPE = 'type';
-  static const K_BODY = 'body';
 
   static const CLASS = 'ModelRelationship';
 
@@ -62,20 +59,17 @@ class ModelRelationship extends _ModelRelationship {
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
   ModelRegistration? updatedGReg;
-  ModelQueryable? email;
-  Map<String, ModelAddressEntry>? addressEntries;
-  Map<String, ModelEmailEntry>? emailEntries;
-  Map<String, ModelFileEntry>? fileEntries;
-  Map<String, ModelPhoneEntry>? phoneEntries;
-  List<ModelDeviceRegistration>? deviceRegs;
-  List<ModelRegistration>? openedRegs;
-  List<ModelRegistration>? closedRegs;
+  DateTime? expiresAt;
   Set<String>? memberPids;
-  List<ModelRegistration>? disabledRegs;
-  List<ModelRegistration>? enabledRegs;
-  List<ModelRegistration>? notedRegs;
+  Set<String>? tags;
+  ModelEnum? contentType;
+  DataModel? content;
+  List<ModelRegistration>? readRegs;
+  List<ModelRegistration>? archivedRegs;
+  List<ModelRegistration>? hiddenRegs;
+  List<ModelRegistration>? likedRegs;
+  List<ModelRegistration>? receivedRegs;
   RelationshipType? type;
-  DataModel? body;
 
   //
   //
@@ -97,20 +91,17 @@ class ModelRelationship extends _ModelRelationship {
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
     ModelRegistration? updatedGReg,
-    ModelQueryable? email,
-    Map<String, ModelAddressEntry>? addressEntries,
-    Map<String, ModelEmailEntry>? emailEntries,
-    Map<String, ModelFileEntry>? fileEntries,
-    Map<String, ModelPhoneEntry>? phoneEntries,
-    List<ModelDeviceRegistration>? deviceRegs,
-    List<ModelRegistration>? openedRegs,
-    List<ModelRegistration>? closedRegs,
+    DateTime? expiresAt,
     Set<String>? memberPids,
-    List<ModelRegistration>? disabledRegs,
-    List<ModelRegistration>? enabledRegs,
-    List<ModelRegistration>? notedRegs,
+    Set<String>? tags,
+    ModelEnum? contentType,
+    DataModel? content,
+    List<ModelRegistration>? readRegs,
+    List<ModelRegistration>? archivedRegs,
+    List<ModelRegistration>? hiddenRegs,
+    List<ModelRegistration>? likedRegs,
+    List<ModelRegistration>? receivedRegs,
     RelationshipType? type,
-    DataModel? body,
   }) {
     return ModelRelationship.b(
       id: id,
@@ -122,20 +113,17 @@ class ModelRelationship extends _ModelRelationship {
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
       updatedGReg: updatedGReg,
-      email: email,
-      addressEntries: addressEntries,
-      emailEntries: emailEntries,
-      fileEntries: fileEntries,
-      phoneEntries: phoneEntries,
-      deviceRegs: deviceRegs,
-      openedRegs: openedRegs,
-      closedRegs: closedRegs,
+      expiresAt: expiresAt,
       memberPids: memberPids,
-      disabledRegs: disabledRegs,
-      enabledRegs: enabledRegs,
-      notedRegs: notedRegs,
+      tags: tags,
+      contentType: contentType,
+      content: content,
+      readRegs: readRegs,
+      archivedRegs: archivedRegs,
+      hiddenRegs: hiddenRegs,
+      likedRegs: likedRegs,
+      receivedRegs: receivedRegs,
       type: type,
-      body: body,
     );
   }
 
@@ -153,20 +141,17 @@ class ModelRelationship extends _ModelRelationship {
     this.createdGReg,
     this.deletedGReg,
     this.updatedGReg,
-    this.email,
-    this.addressEntries,
-    this.emailEntries,
-    this.fileEntries,
-    this.phoneEntries,
-    this.deviceRegs,
-    this.openedRegs,
-    this.closedRegs,
+    this.expiresAt,
     this.memberPids,
-    this.disabledRegs,
-    this.enabledRegs,
-    this.notedRegs,
+    this.tags,
+    this.contentType,
+    this.content,
+    this.readRegs,
+    this.archivedRegs,
+    this.hiddenRegs,
+    this.likedRegs,
+    this.receivedRegs,
     this.type,
-    this.body,
   }) {}
 
   //
@@ -270,20 +255,17 @@ class ModelRelationship extends _ModelRelationship {
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
         ..$updatedGReg = otherData?[K_UPDATED_G_REG]
-        ..$email = otherData?[K_EMAIL]
-        ..$addressEntries = otherData?[K_ADDRESS_ENTRIES]
-        ..$emailEntries = otherData?[K_EMAIL_ENTRIES]
-        ..$fileEntries = otherData?[K_FILE_ENTRIES]
-        ..$phoneEntries = otherData?[K_PHONE_ENTRIES]
-        ..$deviceRegs = otherData?[K_DEVICE_REGS]
-        ..$openedRegs = otherData?[K_OPENED_REGS]
-        ..$closedRegs = otherData?[K_CLOSED_REGS]
+        ..$expiresAt = otherData?[K_EXPIRES_AT]
         ..$memberPids = otherData?[K_MEMBER_PIDS]
-        ..$disabledRegs = otherData?[K_DISABLED_REGS]
-        ..$enabledRegs = otherData?[K_ENABLED_REGS]
-        ..$notedRegs = otherData?[K_NOTED_REGS]
-        ..$type = otherData?[K_TYPE]
-        ..$body = otherData?[K_BODY];
+        ..$tags = otherData?[K_TAGS]
+        ..$contentType = otherData?[K_CONTENT_TYPE]
+        ..$content = otherData?[K_CONTENT]
+        ..$readRegs = otherData?[K_READ_REGS]
+        ..$archivedRegs = otherData?[K_ARCHIVED_REGS]
+        ..$hiddenRegs = otherData?[K_HIDDEN_REGS]
+        ..$likedRegs = otherData?[K_LIKED_REGS]
+        ..$receivedRegs = otherData?[K_RECEIVED_REGS]
+        ..$type = otherData?[K_TYPE];
     } catch (e) {
       return null;
     }
@@ -338,20 +320,17 @@ class ModelRelationship extends _ModelRelationship {
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
         K_UPDATED_G_REG: this.$updatedGReg,
-        K_EMAIL: this.$email,
-        K_ADDRESS_ENTRIES: this.$addressEntries,
-        K_EMAIL_ENTRIES: this.$emailEntries,
-        K_FILE_ENTRIES: this.$fileEntries,
-        K_PHONE_ENTRIES: this.$phoneEntries,
-        K_DEVICE_REGS: this.$deviceRegs,
-        K_OPENED_REGS: this.$openedRegs,
-        K_CLOSED_REGS: this.$closedRegs,
+        K_EXPIRES_AT: this.$expiresAt,
         K_MEMBER_PIDS: this.$memberPids,
-        K_DISABLED_REGS: this.$disabledRegs,
-        K_ENABLED_REGS: this.$enabledRegs,
-        K_NOTED_REGS: this.$notedRegs,
+        K_TAGS: this.$tags,
+        K_CONTENT_TYPE: this.$contentType,
+        K_CONTENT: this.$content,
+        K_READ_REGS: this.$readRegs,
+        K_ARCHIVED_REGS: this.$archivedRegs,
+        K_HIDDEN_REGS: this.$hiddenRegs,
+        K_LIKED_REGS: this.$likedRegs,
+        K_RECEIVED_REGS: this.$receivedRegs,
         K_TYPE: this.$type,
-        K_BODY: this.$body,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -415,47 +394,38 @@ class ModelRelationship extends _ModelRelationship {
       if (other.updatedGReg != null) {
         this.updatedGReg = other.updatedGReg!;
       }
-      if (other.email != null) {
-        this.email = other.email!;
-      }
-      if (other.addressEntries != null) {
-        this.addressEntries = other.addressEntries!;
-      }
-      if (other.emailEntries != null) {
-        this.emailEntries = other.emailEntries!;
-      }
-      if (other.fileEntries != null) {
-        this.fileEntries = other.fileEntries!;
-      }
-      if (other.phoneEntries != null) {
-        this.phoneEntries = other.phoneEntries!;
-      }
-      if (other.deviceRegs != null) {
-        this.deviceRegs = other.deviceRegs!;
-      }
-      if (other.openedRegs != null) {
-        this.openedRegs = other.openedRegs!;
-      }
-      if (other.closedRegs != null) {
-        this.closedRegs = other.closedRegs!;
+      if (other.expiresAt != null) {
+        this.expiresAt = other.expiresAt!;
       }
       if (other.memberPids != null) {
         this.memberPids = other.memberPids!;
       }
-      if (other.disabledRegs != null) {
-        this.disabledRegs = other.disabledRegs!;
+      if (other.tags != null) {
+        this.tags = other.tags!;
       }
-      if (other.enabledRegs != null) {
-        this.enabledRegs = other.enabledRegs!;
+      if (other.contentType != null) {
+        this.contentType = other.contentType!;
       }
-      if (other.notedRegs != null) {
-        this.notedRegs = other.notedRegs!;
+      if (other.content != null) {
+        this.content = other.content!;
+      }
+      if (other.readRegs != null) {
+        this.readRegs = other.readRegs!;
+      }
+      if (other.archivedRegs != null) {
+        this.archivedRegs = other.archivedRegs!;
+      }
+      if (other.hiddenRegs != null) {
+        this.hiddenRegs = other.hiddenRegs!;
+      }
+      if (other.likedRegs != null) {
+        this.likedRegs = other.likedRegs!;
+      }
+      if (other.receivedRegs != null) {
+        this.receivedRegs = other.receivedRegs!;
       }
       if (other.type != null) {
         this.type = other.type!;
-      }
-      if (other.body != null) {
-        this.body = other.body!;
       }
     }
   }
@@ -557,211 +527,16 @@ class ModelRelationship extends _ModelRelationship {
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // email.
-  ModelQueryable? get emailField => this.email;
-  set emailField(ModelQueryable? v) => this.email = v;
+  // expiresAt.
+  DateTime? get expiresAtField => this.expiresAt;
+  set expiresAtField(DateTime? v) => this.expiresAt = v;
   @protected
-  dynamic get $email => this.email?.toJson();
+  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
   @protected
-  set $email(v) => this.email = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelQueryable.fromJson(a) : null;
+  set $expiresAt(v) => this.expiresAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-
-  // addressEntries.
-  Map<String, ModelAddressEntry>? get addressEntriesField =>
-      this.addressEntries;
-  set addressEntriesField(Map<String, ModelAddressEntry>? v) =>
-      this.addressEntries = v;
-  @protected
-  dynamic get $addressEntries => this
-      .addressEntries
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $addressEntries(v) => this.addressEntries = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelAddressEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
-
-  // emailEntries.
-  Map<String, ModelEmailEntry>? get emailEntriesField => this.emailEntries;
-  set emailEntriesField(Map<String, ModelEmailEntry>? v) =>
-      this.emailEntries = v;
-  @protected
-  dynamic get $emailEntries => this
-      .emailEntries
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $emailEntries(v) => this.emailEntries = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelEmailEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
-
-  // fileEntries.
-  Map<String, ModelFileEntry>? get fileEntriesField => this.fileEntries;
-  set fileEntriesField(Map<String, ModelFileEntry>? v) => this.fileEntries = v;
-  @protected
-  dynamic get $fileEntries => this
-      .fileEntries
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $fileEntries(v) => this.fileEntries = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelFileEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
-
-  // phoneEntries.
-  Map<String, ModelPhoneEntry>? get phoneEntriesField => this.phoneEntries;
-  set phoneEntriesField(Map<String, ModelPhoneEntry>? v) =>
-      this.phoneEntries = v;
-  @protected
-  dynamic get $phoneEntries => this
-      .phoneEntries
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $phoneEntries(v) => this.phoneEntries = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelPhoneEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
-
-  // deviceRegs.
-  List<ModelDeviceRegistration>? get deviceRegsField => this.deviceRegs;
-  set deviceRegsField(List<ModelDeviceRegistration>? v) => this.deviceRegs = v;
-  @protected
-  dynamic get $deviceRegs => this
-      .deviceRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $deviceRegs(v) => this.deviceRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelDeviceRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
-
-  // openedRegs.
-  List<ModelRegistration>? get openedRegsField => this.openedRegs;
-  set openedRegsField(List<ModelRegistration>? v) => this.openedRegs = v;
-  @protected
-  dynamic get $openedRegs => this
-      .openedRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $openedRegs(v) => this.openedRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
-
-  // closedRegs.
-  List<ModelRegistration>? get closedRegsField => this.closedRegs;
-  set closedRegsField(List<ModelRegistration>? v) => this.closedRegs = v;
-  @protected
-  dynamic get $closedRegs => this
-      .closedRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $closedRegs(v) => this.closedRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
 
   // memberPids.
   Set<String>? get memberPidsField => this.memberPids;
@@ -785,12 +560,56 @@ class ModelRelationship extends _ModelRelationship {
       ?.toSet()
       .cast();
 
-  // disabledRegs.
-  List<ModelRegistration>? get disabledRegsField => this.disabledRegs;
-  set disabledRegsField(List<ModelRegistration>? v) => this.disabledRegs = v;
+  // tags.
+  Set<String>? get tagsField => this.tags;
+  set tagsField(Set<String>? v) => this.tags = v;
   @protected
-  dynamic get $disabledRegs => this
-      .disabledRegs
+  dynamic get $tags => this
+      .tags
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $tags(v) => this.tags = letSet(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
+
+  // contentType.
+  ModelEnum? get contentTypeField => this.contentType;
+  set contentTypeField(ModelEnum? v) => this.contentType = v;
+  @protected
+  dynamic get $contentType => this.contentType?.toJson();
+  @protected
+  set $contentType(v) => this.contentType = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelEnum.fromJson(a) : null;
+      }();
+
+  // content.
+  DataModel? get contentField => this.content;
+  set contentField(DataModel? v) => this.content = v;
+  @protected
+  dynamic get $content => this.content?.data;
+  @protected
+  set $content(v) => this.content = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataModel(data: a) : null;
+      }();
+
+  // readRegs.
+  List<ModelRegistration>? get readRegsField => this.readRegs;
+  set readRegsField(List<ModelRegistration>? v) => this.readRegs = v;
+  @protected
+  dynamic get $readRegs => this
+      .readRegs
       ?.map(
         (p0) => p0?.toJson(),
       )
@@ -798,7 +617,7 @@ class ModelRelationship extends _ModelRelationship {
       .nullIfEmpty
       ?.toList();
   @protected
-  set $disabledRegs(v) => this.disabledRegs = letList(v)
+  set $readRegs(v) => this.readRegs = letList(v)
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
@@ -810,12 +629,12 @@ class ModelRelationship extends _ModelRelationship {
       ?.toList()
       .cast();
 
-  // enabledRegs.
-  List<ModelRegistration>? get enabledRegsField => this.enabledRegs;
-  set enabledRegsField(List<ModelRegistration>? v) => this.enabledRegs = v;
+  // archivedRegs.
+  List<ModelRegistration>? get archivedRegsField => this.archivedRegs;
+  set archivedRegsField(List<ModelRegistration>? v) => this.archivedRegs = v;
   @protected
-  dynamic get $enabledRegs => this
-      .enabledRegs
+  dynamic get $archivedRegs => this
+      .archivedRegs
       ?.map(
         (p0) => p0?.toJson(),
       )
@@ -823,7 +642,7 @@ class ModelRelationship extends _ModelRelationship {
       .nullIfEmpty
       ?.toList();
   @protected
-  set $enabledRegs(v) => this.enabledRegs = letList(v)
+  set $archivedRegs(v) => this.archivedRegs = letList(v)
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
@@ -835,12 +654,12 @@ class ModelRelationship extends _ModelRelationship {
       ?.toList()
       .cast();
 
-  // notedRegs.
-  List<ModelRegistration>? get notedRegsField => this.notedRegs;
-  set notedRegsField(List<ModelRegistration>? v) => this.notedRegs = v;
+  // hiddenRegs.
+  List<ModelRegistration>? get hiddenRegsField => this.hiddenRegs;
+  set hiddenRegsField(List<ModelRegistration>? v) => this.hiddenRegs = v;
   @protected
-  dynamic get $notedRegs => this
-      .notedRegs
+  dynamic get $hiddenRegs => this
+      .hiddenRegs
       ?.map(
         (p0) => p0?.toJson(),
       )
@@ -848,7 +667,57 @@ class ModelRelationship extends _ModelRelationship {
       .nullIfEmpty
       ?.toList();
   @protected
-  set $notedRegs(v) => this.notedRegs = letList(v)
+  set $hiddenRegs(v) => this.hiddenRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // likedRegs.
+  List<ModelRegistration>? get likedRegsField => this.likedRegs;
+  set likedRegsField(List<ModelRegistration>? v) => this.likedRegs = v;
+  @protected
+  dynamic get $likedRegs => this
+      .likedRegs
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $likedRegs(v) => this.likedRegs = letList(v)
+      ?.map(
+        (p0) => () {
+          final a = letMap<String, dynamic>(p0);
+          return a != null ? ModelRegistration.fromJson(a) : null;
+        }(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList()
+      .cast();
+
+  // receivedRegs.
+  List<ModelRegistration>? get receivedRegsField => this.receivedRegs;
+  set receivedRegsField(List<ModelRegistration>? v) => this.receivedRegs = v;
+  @protected
+  dynamic get $receivedRegs => this
+      .receivedRegs
+      ?.map(
+        (p0) => p0?.toJson(),
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
+  @protected
+  set $receivedRegs(v) => this.receivedRegs = letList(v)
       ?.map(
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
@@ -867,15 +736,4 @@ class ModelRelationship extends _ModelRelationship {
   dynamic get $type => this.type?.name;
   @protected
   set $type(v) => this.type = RelationshipType.values.valueOf(letAs<String>(v));
-
-  // body.
-  DataModel? get bodyField => this.body;
-  set bodyField(DataModel? v) => this.body = v;
-  @protected
-  dynamic get $body => this.body?.data;
-  @protected
-  set $body(v) => this.body = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataModel(data: a) : null;
-      }();
 }

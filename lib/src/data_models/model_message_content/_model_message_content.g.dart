@@ -15,11 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'model_event_body.dart';
+part of 'model_message_content.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelEventBody extends Model {
+class ModelMessageContent extends Model {
   //
   //
   //
@@ -29,7 +29,7 @@ class ModelEventBody extends Model {
   static const K_RECEIVER_PID = 'receiverPid';
   static const K_MESSAGE = 'message';
 
-  static const CLASS = 'ModelEventBody';
+  static const CLASS = 'ModelMessageContent';
 
   @override
   String get $class => CLASS;
@@ -43,19 +43,19 @@ class ModelEventBody extends Model {
   //
   //
 
-  ModelEventBody.empty();
+  ModelMessageContent.empty();
 
   //
   //
   //
 
-  factory ModelEventBody({
+  factory ModelMessageContent({
     String? relationshipId,
     String? senderPid,
     String? receiverPid,
     String? message,
   }) {
-    return ModelEventBody.b(
+    return ModelMessageContent.b(
       relationshipId: relationshipId,
       senderPid: senderPid,
       receiverPid: receiverPid,
@@ -67,7 +67,7 @@ class ModelEventBody extends Model {
   //
   //
 
-  ModelEventBody.b({
+  ModelMessageContent.b({
     this.relationshipId,
     this.senderPid,
     this.receiverPid,
@@ -78,18 +78,18 @@ class ModelEventBody extends Model {
   //
   //
 
-  factory ModelEventBody.from(
+  factory ModelMessageContent.from(
     Model? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelEventBody.from: $e');
+      assert(false, 'ModelMessageContent.from: $e');
       rethrow;
     }
   }
 
-  static ModelEventBody? fromOrNull(
+  static ModelMessageContent? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
@@ -99,19 +99,19 @@ class ModelEventBody extends Model {
   //
   //
 
-  factory ModelEventBody.of(
-    ModelEventBody other,
+  factory ModelMessageContent.of(
+    ModelMessageContent other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelEventBody.of: $e');
+      assert(false, 'ModelMessageContent.of: $e');
       rethrow;
     }
   }
 
-  static ModelEventBody? ofOrNull(
-    ModelEventBody? other,
+  static ModelMessageContent? ofOrNull(
+    ModelMessageContent? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -120,26 +120,26 @@ class ModelEventBody extends Model {
   //
   //
 
-  factory ModelEventBody.fromJsonString(
+  factory ModelMessageContent.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'ModelEventBody.fromJsonString: $e');
+      assert(false, 'ModelMessageContent.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static ModelEventBody? fromJsonStringOrNull(
+  static ModelMessageContent? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelEventBody.fromJson(decoded);
+        return ModelMessageContent.fromJson(decoded);
       } else {
-        return ModelEventBody.empty();
+        return ModelMessageContent.empty();
       }
     } catch (_) {
       return null;
@@ -150,22 +150,22 @@ class ModelEventBody extends Model {
   //
   //
 
-  factory ModelEventBody.fromJson(
+  factory ModelMessageContent.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'ModelEventBody.fromJson: $e');
+      assert(false, 'ModelMessageContent.fromJson: $e');
       rethrow;
     }
   }
 
-  static ModelEventBody? fromJsonOrNull(
+  static ModelMessageContent? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelEventBody.empty()
+      return ModelMessageContent.empty()
         ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
         ..$senderPid = otherData?[K_SENDER_PID]
         ..$receiverPid = otherData?[K_RECEIVER_PID]
@@ -179,25 +179,25 @@ class ModelEventBody extends Model {
   //
   //
 
-  factory ModelEventBody.fromUri(
+  factory ModelMessageContent.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'ModelEventBody.fromUri: $e');
+      assert(false, 'ModelMessageContent.fromUri: $e');
       rethrow;
     }
   }
 
-  static ModelEventBody? fromUriOrNull(
+  static ModelMessageContent? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return ModelEventBody.fromJson(uri.queryParameters);
+        return ModelMessageContent.fromJson(uri.queryParameters);
       } else {
-        return ModelEventBody.empty();
+        return ModelMessageContent.empty();
       }
     } catch (_) {
       return null;
@@ -222,7 +222,7 @@ class ModelEventBody extends Model {
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'ModelEventBody.toJson: $e');
+      assert(false, 'ModelMessageContent.toJson: $e');
       rethrow;
     }
   }
@@ -233,7 +233,7 @@ class ModelEventBody extends Model {
 
   @override
   T empty<T extends Model>() {
-    return ModelEventBody.b() as T;
+    return ModelMessageContent.b() as T;
   }
 
   //
@@ -242,7 +242,7 @@ class ModelEventBody extends Model {
 
   @override
   T copy<T extends Model>() {
-    return (ModelEventBody.b()..updateWith(this)) as T;
+    return (ModelMessageContent.b()..updateWith(this)) as T;
   }
 
   //
@@ -254,7 +254,7 @@ class ModelEventBody extends Model {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelEventBody.fromJson(otherData);
+      final other = ModelMessageContent.fromJson(otherData);
       if (other.relationshipId != null) {
         this.relationshipId = other.relationshipId!;
       }

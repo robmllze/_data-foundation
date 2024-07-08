@@ -21,8 +21,6 @@ const PUBLIC_MODEL_FIELDS = {
   ('file_entries?', Map<String, ModelFileEntry>),
   ('phone_entries?', Map<String, ModelPhoneEntry>),
   ('device_regs?', List<ModelDeviceRegistration>),
-  ('opened_regs?', List<ModelRegistration>),
-  ('closed_regs?', List<ModelRegistration>),
 };
 
 @GenerateModel(
@@ -83,7 +81,7 @@ extension PublicModelExtension on PublicModel {
   /// Whether the file with the given [fileId] has a `download_url` or not. The
   /// assumption is that if the file has a `download_url`, then it has been
   /// uploaded successfully and is available for download.
-  bool IsFileUploadingAssumtion(String fileId) {
+  bool isFileUploadingAssumtion(String fileId) {
     final a = this.fileEntries?[fileId];
     final b = a != null && a.downloadUrl == null;
     return b;

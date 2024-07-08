@@ -20,7 +20,7 @@ export 'model_cache_information/model_cache_information.dart';
 export 'model_connection_permissions/model_connection_permissions.dart';
 export 'model_data_collection/model_data_collection.dart';
 export 'model_device_registration/model_device_registration.dart';
-export 'model_event_body/model_event_body.dart';
+export 'model_message_content/model_message_content.dart';
 export 'model_event/model_event.dart';
 export 'model_invitation/model_invitation.dart';
 export 'model_location/model_location.dart';

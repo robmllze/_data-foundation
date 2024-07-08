@@ -24,12 +24,18 @@ class ModelInvitation extends _ModelInvitation {
   //
   //
 
-  static const K_REF = 'ref';
   static const K_ID = 'id';
-  static const K_CREATED_REG = 'createdReg';
+  static const K_REF = 'ref';
+  static const K_DISPLAY_NAME = 'displayName';
+  static const K_DISPLAY_COLOR = 'displayColor';
+  static const K_DESCRIPTION = 'description';
+  static const K_ARCHIVED_G_REG = 'archivedGReg';
+  static const K_CREATED_G_REG = 'createdGReg';
+  static const K_DELETED_G_REG = 'deletedGReg';
+  static const K_UPDATED_G_REG = 'updatedGReg';
   static const K_EXPIRES_AT = 'expiresAt';
-  static const K_TYPE = 'type';
-  static const K_BODY = 'body';
+  static const K_CONTENT_TYPE = 'contentType';
+  static const K_CONTENT = 'content';
   static const K_INVITATION_LINK = 'invitationLink';
   static const K_INVITEE_EMAILS = 'inviteeEmails';
   static const K_INVITEE_ACCEPTED_EMAILS = 'inviteeAcceptedEmails';
@@ -40,12 +46,18 @@ class ModelInvitation extends _ModelInvitation {
   @override
   String get $class => CLASS;
 
-  DataRefModel? ref;
   String? id;
-  ModelRegistration? createdReg;
+  DataRefModel? ref;
+  ModelQueryable? displayName;
+  Color? displayColor;
+  String? description;
+  ModelRegistration? archivedGReg;
+  ModelRegistration? createdGReg;
+  ModelRegistration? deletedGReg;
+  ModelRegistration? updatedGReg;
   DateTime? expiresAt;
-  InvitationType? type;
-  DataModel? body;
+  ModelEnum? contentType;
+  DataModel? content;
   Uri? invitationLink;
   Set<ModelQueryable>? inviteeEmails;
   Set<ModelQueryable>? inviteeAcceptedEmails;
@@ -62,24 +74,36 @@ class ModelInvitation extends _ModelInvitation {
   //
 
   factory ModelInvitation({
-    required DataRefModel ref,
     String? id,
-    required ModelRegistration createdReg,
+    DataRefModel? ref,
+    ModelQueryable? displayName,
+    Color? displayColor,
+    String? description,
+    ModelRegistration? archivedGReg,
+    ModelRegistration? createdGReg,
+    ModelRegistration? deletedGReg,
+    ModelRegistration? updatedGReg,
     DateTime? expiresAt,
-    InvitationType? type,
-    DataModel? body,
+    ModelEnum? contentType,
+    DataModel? content,
     Uri? invitationLink,
     Set<ModelQueryable>? inviteeEmails,
     Set<ModelQueryable>? inviteeAcceptedEmails,
     Set<ModelQueryable>? inviteeRejectedEmails,
   }) {
     return ModelInvitation.b(
-      ref: ref,
       id: id,
-      createdReg: createdReg,
+      ref: ref,
+      displayName: displayName,
+      displayColor: displayColor,
+      description: description,
+      archivedGReg: archivedGReg,
+      createdGReg: createdGReg,
+      deletedGReg: deletedGReg,
+      updatedGReg: updatedGReg,
       expiresAt: expiresAt,
-      type: type,
-      body: body,
+      contentType: contentType,
+      content: content,
       invitationLink: invitationLink,
       inviteeEmails: inviteeEmails,
       inviteeAcceptedEmails: inviteeAcceptedEmails,
@@ -92,21 +116,23 @@ class ModelInvitation extends _ModelInvitation {
   //
 
   ModelInvitation.b({
-    this.ref,
     this.id,
-    this.createdReg,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
     this.expiresAt,
-    this.type,
-    this.body,
+    this.contentType,
+    this.content,
     this.invitationLink,
     this.inviteeEmails,
     this.inviteeAcceptedEmails,
     this.inviteeRejectedEmails,
-  }) {
-    assert(this.ref != null);
-
-    assert(this.createdReg != null);
-  }
+  }) {}
 
   //
   //
@@ -200,12 +226,18 @@ class ModelInvitation extends _ModelInvitation {
   ) {
     try {
       return ModelInvitation.empty()
-        ..$ref = otherData?[K_REF]
         ..$id = otherData?[K_ID]
-        ..$createdReg = otherData?[K_CREATED_REG]
+        ..$ref = otherData?[K_REF]
+        ..$displayName = otherData?[K_DISPLAY_NAME]
+        ..$displayColor = otherData?[K_DISPLAY_COLOR]
+        ..$description = otherData?[K_DESCRIPTION]
+        ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
+        ..$createdGReg = otherData?[K_CREATED_G_REG]
+        ..$deletedGReg = otherData?[K_DELETED_G_REG]
+        ..$updatedGReg = otherData?[K_UPDATED_G_REG]
         ..$expiresAt = otherData?[K_EXPIRES_AT]
-        ..$type = otherData?[K_TYPE]
-        ..$body = otherData?[K_BODY]
+        ..$contentType = otherData?[K_CONTENT_TYPE]
+        ..$content = otherData?[K_CONTENT]
         ..$invitationLink = otherData?[K_INVITATION_LINK]
         ..$inviteeEmails = otherData?[K_INVITEE_EMAILS]
         ..$inviteeAcceptedEmails = otherData?[K_INVITEE_ACCEPTED_EMAILS]
@@ -255,12 +287,18 @@ class ModelInvitation extends _ModelInvitation {
   }) {
     try {
       final withNulls = <String, dynamic>{
-        K_REF: this.$ref,
         K_ID: this.$id,
-        K_CREATED_REG: this.$createdReg,
+        K_REF: this.$ref,
+        K_DISPLAY_NAME: this.$displayName,
+        K_DISPLAY_COLOR: this.$displayColor,
+        K_DESCRIPTION: this.$description,
+        K_ARCHIVED_G_REG: this.$archivedGReg,
+        K_CREATED_G_REG: this.$createdGReg,
+        K_DELETED_G_REG: this.$deletedGReg,
+        K_UPDATED_G_REG: this.$updatedGReg,
         K_EXPIRES_AT: this.$expiresAt,
-        K_TYPE: this.$type,
-        K_BODY: this.$body,
+        K_CONTENT_TYPE: this.$contentType,
+        K_CONTENT: this.$content,
         K_INVITATION_LINK: this.$invitationLink,
         K_INVITEE_EMAILS: this.$inviteeEmails,
         K_INVITEE_ACCEPTED_EMAILS: this.$inviteeAcceptedEmails,
@@ -301,23 +339,41 @@ class ModelInvitation extends _ModelInvitation {
   ) {
     if (otherData != null && otherData.isNotEmpty) {
       final other = ModelInvitation.fromJson(otherData);
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.createdReg != null) {
-        this.createdReg = other.createdReg!;
+      if (other.ref != null) {
+        this.ref = other.ref!;
+      }
+      if (other.displayName != null) {
+        this.displayName = other.displayName!;
+      }
+      if (other.displayColor != null) {
+        this.displayColor = other.displayColor!;
+      }
+      if (other.description != null) {
+        this.description = other.description!;
+      }
+      if (other.archivedGReg != null) {
+        this.archivedGReg = other.archivedGReg!;
+      }
+      if (other.createdGReg != null) {
+        this.createdGReg = other.createdGReg!;
+      }
+      if (other.deletedGReg != null) {
+        this.deletedGReg = other.deletedGReg!;
+      }
+      if (other.updatedGReg != null) {
+        this.updatedGReg = other.updatedGReg!;
       }
       if (other.expiresAt != null) {
         this.expiresAt = other.expiresAt!;
       }
-      if (other.type != null) {
-        this.type = other.type!;
+      if (other.contentType != null) {
+        this.contentType = other.contentType!;
       }
-      if (other.body != null) {
-        this.body = other.body!;
+      if (other.content != null) {
+        this.content = other.content!;
       }
       if (other.invitationLink != null) {
         this.invitationLink = other.invitationLink!;
@@ -338,17 +394,6 @@ class ModelInvitation extends _ModelInvitation {
   //
   //
 
-  // ref.
-  DataRefModel get refField => this.ref!;
-  set refField(DataRefModel v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
-
   // id.
   String? get idField => this.id;
   set idField(String? v) => this.id = v;
@@ -357,13 +402,87 @@ class ModelInvitation extends _ModelInvitation {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // createdReg.
-  ModelRegistration get createdRegField => this.createdReg!;
-  set createdRegField(ModelRegistration v) => this.createdReg = v;
+  // ref.
+  DataRefModel? get refField => this.ref;
+  set refField(DataRefModel? v) => this.ref = v;
   @protected
-  dynamic get $createdReg => this.createdReg?.toJson();
+  dynamic get $ref => this.ref?.toJson();
   @protected
-  set $createdReg(v) => this.createdReg = () {
+  set $ref(v) => this.ref = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+
+  // displayName.
+  ModelQueryable? get displayNameField => this.displayName;
+  set displayNameField(ModelQueryable? v) => this.displayName = v;
+  @protected
+  dynamic get $displayName => this.displayName?.toJson();
+  @protected
+  set $displayName(v) => this.displayName = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
+
+  // displayColor.
+  Color? get displayColorField => this.displayColor;
+  set displayColorField(Color? v) => this.displayColor = v;
+  @protected
+  dynamic get $displayColor => this.displayColor?.value;
+  @protected
+  set $displayColor(v) => this.displayColor = () {
+        final a = letAs<int>(v);
+        return a is int ? Color(a) : null;
+      }();
+
+  // description.
+  String? get descriptionField => this.description;
+  set descriptionField(String? v) => this.description = v;
+  @protected
+  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
+  @protected
+  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
+
+  // archivedGReg.
+  ModelRegistration? get archivedGRegField => this.archivedGReg;
+  set archivedGRegField(ModelRegistration? v) => this.archivedGReg = v;
+  @protected
+  dynamic get $archivedGReg => this.archivedGReg?.toJson();
+  @protected
+  set $archivedGReg(v) => this.archivedGReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // createdGReg.
+  ModelRegistration? get createdGRegField => this.createdGReg;
+  set createdGRegField(ModelRegistration? v) => this.createdGReg = v;
+  @protected
+  dynamic get $createdGReg => this.createdGReg?.toJson();
+  @protected
+  set $createdGReg(v) => this.createdGReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // deletedGReg.
+  ModelRegistration? get deletedGRegField => this.deletedGReg;
+  set deletedGRegField(ModelRegistration? v) => this.deletedGReg = v;
+  @protected
+  dynamic get $deletedGReg => this.deletedGReg?.toJson();
+  @protected
+  set $deletedGReg(v) => this.deletedGReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // updatedGReg.
+  ModelRegistration? get updatedGRegField => this.updatedGReg;
+  set updatedGRegField(ModelRegistration? v) => this.updatedGReg = v;
+  @protected
+  dynamic get $updatedGReg => this.updatedGReg?.toJson();
+  @protected
+  set $updatedGReg(v) => this.updatedGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
@@ -379,21 +498,24 @@ class ModelInvitation extends _ModelInvitation {
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
-  // type.
-  InvitationType? get typeField => this.type;
-  set typeField(InvitationType? v) => this.type = v;
+  // contentType.
+  ModelEnum? get contentTypeField => this.contentType;
+  set contentTypeField(ModelEnum? v) => this.contentType = v;
   @protected
-  dynamic get $type => this.type?.name;
+  dynamic get $contentType => this.contentType?.toJson();
   @protected
-  set $type(v) => this.type = InvitationType.values.valueOf(letAs<String>(v));
+  set $contentType(v) => this.contentType = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelEnum.fromJson(a) : null;
+      }();
 
-  // body.
-  DataModel? get bodyField => this.body;
-  set bodyField(DataModel? v) => this.body = v;
+  // content.
+  DataModel? get contentField => this.content;
+  set contentField(DataModel? v) => this.content = v;
   @protected
-  dynamic get $body => this.body?.data;
+  dynamic get $content => this.content?.data;
   @protected
-  set $body(v) => this.body = () {
+  set $content(v) => this.content = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? DataModel(data: a) : null;
       }();

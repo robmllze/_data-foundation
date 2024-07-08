@@ -33,6 +33,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
   static const K_UPDATED_G_REG = 'updatedGReg';
+  static const K_EXPIRES_AT = 'expiresAt';
   static const K_EMAIL = 'email';
 
   static const CLASS = 'ModelEmailEntry';
@@ -49,6 +50,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
   ModelRegistration? updatedGReg;
+  DateTime? expiresAt;
   ModelQueryable? email;
 
   //
@@ -71,6 +73,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
     ModelRegistration? updatedGReg,
+    DateTime? expiresAt,
     ModelQueryable? email,
   }) {
     return ModelEmailEntry.b(
@@ -83,6 +86,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
       updatedGReg: updatedGReg,
+      expiresAt: expiresAt,
       email: email,
     );
   }
@@ -101,6 +105,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
     this.createdGReg,
     this.deletedGReg,
     this.updatedGReg,
+    this.expiresAt,
     this.email,
   }) {}
 
@@ -205,6 +210,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
         ..$updatedGReg = otherData?[K_UPDATED_G_REG]
+        ..$expiresAt = otherData?[K_EXPIRES_AT]
         ..$email = otherData?[K_EMAIL];
     } catch (e) {
       return null;
@@ -260,6 +266,7 @@ class ModelEmailEntry extends _ModelEmailEntry {
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
         K_UPDATED_G_REG: this.$updatedGReg,
+        K_EXPIRES_AT: this.$expiresAt,
         K_EMAIL: this.$email,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -323,6 +330,9 @@ class ModelEmailEntry extends _ModelEmailEntry {
       }
       if (other.updatedGReg != null) {
         this.updatedGReg = other.updatedGReg!;
+      }
+      if (other.expiresAt != null) {
+        this.expiresAt = other.expiresAt!;
       }
       if (other.email != null) {
         this.email = other.email!;
@@ -425,6 +435,17 @@ class ModelEmailEntry extends _ModelEmailEntry {
   set $updatedGReg(v) => this.updatedGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // expiresAt.
+  DateTime? get expiresAtField => this.expiresAt;
+  set expiresAtField(DateTime? v) => this.expiresAt = v;
+  @protected
+  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
+  @protected
+  set $expiresAt(v) => this.expiresAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // email.

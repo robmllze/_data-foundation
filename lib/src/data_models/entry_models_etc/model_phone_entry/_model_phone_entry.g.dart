@@ -33,6 +33,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
   static const K_UPDATED_G_REG = 'updatedGReg';
+  static const K_EXPIRES_AT = 'expiresAt';
   static const K_COUNTRY_CODE = 'countryCode';
   static const K_NUMBER_WITHOUT_COUNTRY_CODE = 'numberWithoutCountryCode';
   static const K_FULL_NUMBER = 'fullNumber';
@@ -53,6 +54,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
   ModelRegistration? updatedGReg;
+  DateTime? expiresAt;
   String? countryCode;
   String? numberWithoutCountryCode;
   String? fullNumber;
@@ -79,6 +81,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
     ModelRegistration? updatedGReg,
+    DateTime? expiresAt,
     String? countryCode,
     String? numberWithoutCountryCode,
     String? fullNumber,
@@ -95,6 +98,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
       updatedGReg: updatedGReg,
+      expiresAt: expiresAt,
       countryCode: countryCode,
       numberWithoutCountryCode: numberWithoutCountryCode,
       fullNumber: fullNumber,
@@ -117,6 +121,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     this.createdGReg,
     this.deletedGReg,
     this.updatedGReg,
+    this.expiresAt,
     this.countryCode,
     this.numberWithoutCountryCode,
     this.fullNumber,
@@ -225,6 +230,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
         ..$updatedGReg = otherData?[K_UPDATED_G_REG]
+        ..$expiresAt = otherData?[K_EXPIRES_AT]
         ..$countryCode = otherData?[K_COUNTRY_CODE]
         ..$numberWithoutCountryCode = otherData?[K_NUMBER_WITHOUT_COUNTRY_CODE]
         ..$fullNumber = otherData?[K_FULL_NUMBER]
@@ -284,6 +290,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
         K_UPDATED_G_REG: this.$updatedGReg,
+        K_EXPIRES_AT: this.$expiresAt,
         K_COUNTRY_CODE: this.$countryCode,
         K_NUMBER_WITHOUT_COUNTRY_CODE: this.$numberWithoutCountryCode,
         K_FULL_NUMBER: this.$fullNumber,
@@ -351,6 +358,9 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
       }
       if (other.updatedGReg != null) {
         this.updatedGReg = other.updatedGReg!;
+      }
+      if (other.expiresAt != null) {
+        this.expiresAt = other.expiresAt!;
       }
       if (other.countryCode != null) {
         this.countryCode = other.countryCode!;
@@ -465,6 +475,17 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   set $updatedGReg(v) => this.updatedGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // expiresAt.
+  DateTime? get expiresAtField => this.expiresAt;
+  set expiresAtField(DateTime? v) => this.expiresAt = v;
+  @protected
+  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
+  @protected
+  set $expiresAt(v) => this.expiresAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // countryCode.

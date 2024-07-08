@@ -33,6 +33,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
   static const K_UPDATED_G_REG = 'updatedGReg';
+  static const K_EXPIRES_AT = 'expiresAt';
   static const K_ADDRESS_LINE_1 = 'addressLine1';
   static const K_ADDRESS_LINE_2 = 'addressLine2';
   static const K_CITY = 'city';
@@ -54,6 +55,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
   ModelRegistration? updatedGReg;
+  DateTime? expiresAt;
   String? addressLine1;
   String? addressLine2;
   String? city;
@@ -81,6 +83,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
     ModelRegistration? updatedGReg,
+    DateTime? expiresAt,
     String? addressLine1,
     String? addressLine2,
     String? city,
@@ -98,6 +101,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
       updatedGReg: updatedGReg,
+      expiresAt: expiresAt,
       addressLine1: addressLine1,
       addressLine2: addressLine2,
       city: city,
@@ -121,6 +125,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
     this.createdGReg,
     this.deletedGReg,
     this.updatedGReg,
+    this.expiresAt,
     this.addressLine1,
     this.addressLine2,
     this.city,
@@ -230,6 +235,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
         ..$updatedGReg = otherData?[K_UPDATED_G_REG]
+        ..$expiresAt = otherData?[K_EXPIRES_AT]
         ..$addressLine1 = otherData?[K_ADDRESS_LINE_1]
         ..$addressLine2 = otherData?[K_ADDRESS_LINE_2]
         ..$city = otherData?[K_CITY]
@@ -290,6 +296,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
         K_UPDATED_G_REG: this.$updatedGReg,
+        K_EXPIRES_AT: this.$expiresAt,
         K_ADDRESS_LINE_1: this.$addressLine1,
         K_ADDRESS_LINE_2: this.$addressLine2,
         K_CITY: this.$city,
@@ -358,6 +365,9 @@ class ModelAddressEntry extends _ModelAddressEntry {
       }
       if (other.updatedGReg != null) {
         this.updatedGReg = other.updatedGReg!;
+      }
+      if (other.expiresAt != null) {
+        this.expiresAt = other.expiresAt!;
       }
       if (other.addressLine1 != null) {
         this.addressLine1 = other.addressLine1!;
@@ -475,6 +485,17 @@ class ModelAddressEntry extends _ModelAddressEntry {
   set $updatedGReg(v) => this.updatedGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // expiresAt.
+  DateTime? get expiresAtField => this.expiresAt;
+  set expiresAtField(DateTime? v) => this.expiresAt = v;
+  @protected
+  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
+  @protected
+  set $expiresAt(v) => this.expiresAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // addressLine1.

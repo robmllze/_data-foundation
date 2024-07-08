@@ -19,6 +19,7 @@ const MODEL_ENTRY_FIELDS = {
   ('created_g_reg?', ModelRegistration),
   ('deleted_g_reg?', ModelRegistration),
   ('updated_g_reg?', ModelRegistration),
+  ('expires_at?', DateTime),
 };
 
 @GenerateModel(
@@ -26,3 +27,21 @@ const MODEL_ENTRY_FIELDS = {
   fields: MODEL_ENTRY_FIELDS,
 )
 abstract class _ModelEntry extends Model implements ModelDisplay {}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+extension ModelEntryExtension on ModelEntry {
+  //
+  //
+  //
+
+  bool isGloballyMarkedAsArchived() => this.archivedGReg?.impliesEnabled == true;
+  bool isGloballyMarkedAsCreated() => this.createdGReg?.impliesEnabled == true;
+  bool isGloballyMarkedAsDeleted() => this.deletedGReg?.impliesEnabled == true;
+  bool isGloballyMarkedAsUpdated() => this.updatedGReg?.impliesEnabled == true;
+
+  bool isExpired() => this.expiresAt?.isBefore(DateTime.now()) ?? false;
+
+  bool isObsolete() =>
+      this.isGloballyMarkedAsArchived() || this.isGloballyMarkedAsDeleted() || this.isExpired();
+}

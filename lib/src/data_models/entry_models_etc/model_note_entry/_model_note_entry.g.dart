@@ -33,6 +33,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
   static const K_UPDATED_G_REG = 'updatedGReg';
+  static const K_EXPIRES_AT = 'expiresAt';
   static const K_NOTE = 'note';
 
   static const CLASS = 'ModelNoteEntry';
@@ -49,6 +50,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
   ModelRegistration? updatedGReg;
+  DateTime? expiresAt;
   String? note;
 
   //
@@ -71,6 +73,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
     ModelRegistration? updatedGReg,
+    DateTime? expiresAt,
     String? note,
   }) {
     return ModelNoteEntry.b(
@@ -83,6 +86,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
       updatedGReg: updatedGReg,
+      expiresAt: expiresAt,
       note: note,
     );
   }
@@ -101,6 +105,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
     this.createdGReg,
     this.deletedGReg,
     this.updatedGReg,
+    this.expiresAt,
     this.note,
   }) {}
 
@@ -205,6 +210,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
         ..$updatedGReg = otherData?[K_UPDATED_G_REG]
+        ..$expiresAt = otherData?[K_EXPIRES_AT]
         ..$note = otherData?[K_NOTE];
     } catch (e) {
       return null;
@@ -260,6 +266,7 @@ class ModelNoteEntry extends _ModelNoteEntry {
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
         K_UPDATED_G_REG: this.$updatedGReg,
+        K_EXPIRES_AT: this.$expiresAt,
         K_NOTE: this.$note,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -323,6 +330,9 @@ class ModelNoteEntry extends _ModelNoteEntry {
       }
       if (other.updatedGReg != null) {
         this.updatedGReg = other.updatedGReg!;
+      }
+      if (other.expiresAt != null) {
+        this.expiresAt = other.expiresAt!;
       }
       if (other.note != null) {
         this.note = other.note!;
@@ -425,6 +435,17 @@ class ModelNoteEntry extends _ModelNoteEntry {
   set $updatedGReg(v) => this.updatedGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // expiresAt.
+  DateTime? get expiresAtField => this.expiresAt;
+  set expiresAtField(DateTime? v) => this.expiresAt = v;
+  @protected
+  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
+  @protected
+  set $expiresAt(v) => this.expiresAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // note.

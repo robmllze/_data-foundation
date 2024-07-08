@@ -33,10 +33,11 @@ class ModelEvent extends _ModelEvent {
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
   static const K_UPDATED_G_REG = 'updatedGReg';
+  static const K_EXPIRES_AT = 'expiresAt';
   static const K_MEMBER_PIDS = 'memberPids';
-  static const K_TOPIC = 'topic';
-  static const K_BODY = 'body';
-  static const K_EXPIRE_AT = 'expireAt';
+  static const K_TAGS = 'tags';
+  static const K_CONTENT_TYPE = 'contentType';
+  static const K_CONTENT = 'content';
   static const K_READ_REGS = 'readRegs';
   static const K_ARCHIVED_REGS = 'archivedRegs';
   static const K_HIDDEN_REGS = 'hiddenRegs';
@@ -57,10 +58,11 @@ class ModelEvent extends _ModelEvent {
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
   ModelRegistration? updatedGReg;
+  DateTime? expiresAt;
   Set<String>? memberPids;
-  TopicType? topic;
-  DataModel? body;
-  DateTime? expireAt;
+  Set<String>? tags;
+  ModelEnum? contentType;
+  DataModel? content;
   List<ModelRegistration>? readRegs;
   List<ModelRegistration>? archivedRegs;
   List<ModelRegistration>? hiddenRegs;
@@ -87,10 +89,11 @@ class ModelEvent extends _ModelEvent {
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
     ModelRegistration? updatedGReg,
+    DateTime? expiresAt,
     Set<String>? memberPids,
-    TopicType? topic,
-    DataModel? body,
-    DateTime? expireAt,
+    Set<String>? tags,
+    ModelEnum? contentType,
+    DataModel? content,
     List<ModelRegistration>? readRegs,
     List<ModelRegistration>? archivedRegs,
     List<ModelRegistration>? hiddenRegs,
@@ -107,10 +110,11 @@ class ModelEvent extends _ModelEvent {
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
       updatedGReg: updatedGReg,
+      expiresAt: expiresAt,
       memberPids: memberPids,
-      topic: topic,
-      body: body,
-      expireAt: expireAt,
+      tags: tags,
+      contentType: contentType,
+      content: content,
       readRegs: readRegs,
       archivedRegs: archivedRegs,
       hiddenRegs: hiddenRegs,
@@ -133,10 +137,11 @@ class ModelEvent extends _ModelEvent {
     this.createdGReg,
     this.deletedGReg,
     this.updatedGReg,
+    this.expiresAt,
     this.memberPids,
-    this.topic,
-    this.body,
-    this.expireAt,
+    this.tags,
+    this.contentType,
+    this.content,
     this.readRegs,
     this.archivedRegs,
     this.hiddenRegs,
@@ -245,10 +250,11 @@ class ModelEvent extends _ModelEvent {
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
         ..$updatedGReg = otherData?[K_UPDATED_G_REG]
+        ..$expiresAt = otherData?[K_EXPIRES_AT]
         ..$memberPids = otherData?[K_MEMBER_PIDS]
-        ..$topic = otherData?[K_TOPIC]
-        ..$body = otherData?[K_BODY]
-        ..$expireAt = otherData?[K_EXPIRE_AT]
+        ..$tags = otherData?[K_TAGS]
+        ..$contentType = otherData?[K_CONTENT_TYPE]
+        ..$content = otherData?[K_CONTENT]
         ..$readRegs = otherData?[K_READ_REGS]
         ..$archivedRegs = otherData?[K_ARCHIVED_REGS]
         ..$hiddenRegs = otherData?[K_HIDDEN_REGS]
@@ -308,10 +314,11 @@ class ModelEvent extends _ModelEvent {
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
         K_UPDATED_G_REG: this.$updatedGReg,
+        K_EXPIRES_AT: this.$expiresAt,
         K_MEMBER_PIDS: this.$memberPids,
-        K_TOPIC: this.$topic,
-        K_BODY: this.$body,
-        K_EXPIRE_AT: this.$expireAt,
+        K_TAGS: this.$tags,
+        K_CONTENT_TYPE: this.$contentType,
+        K_CONTENT: this.$content,
         K_READ_REGS: this.$readRegs,
         K_ARCHIVED_REGS: this.$archivedRegs,
         K_HIDDEN_REGS: this.$hiddenRegs,
@@ -380,17 +387,20 @@ class ModelEvent extends _ModelEvent {
       if (other.updatedGReg != null) {
         this.updatedGReg = other.updatedGReg!;
       }
+      if (other.expiresAt != null) {
+        this.expiresAt = other.expiresAt!;
+      }
       if (other.memberPids != null) {
         this.memberPids = other.memberPids!;
       }
-      if (other.topic != null) {
-        this.topic = other.topic!;
+      if (other.tags != null) {
+        this.tags = other.tags!;
       }
-      if (other.body != null) {
-        this.body = other.body!;
+      if (other.contentType != null) {
+        this.contentType = other.contentType!;
       }
-      if (other.expireAt != null) {
-        this.expireAt = other.expireAt!;
+      if (other.content != null) {
+        this.content = other.content!;
       }
       if (other.readRegs != null) {
         this.readRegs = other.readRegs!;
@@ -507,6 +517,17 @@ class ModelEvent extends _ModelEvent {
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
+  // expiresAt.
+  DateTime? get expiresAtField => this.expiresAt;
+  set expiresAtField(DateTime? v) => this.expiresAt = v;
+  @protected
+  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
+  @protected
+  set $expiresAt(v) => this.expiresAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+
   // memberPids.
   Set<String>? get memberPidsField => this.memberPids;
   set memberPidsField(Set<String>? v) => this.memberPids = v;
@@ -529,34 +550,48 @@ class ModelEvent extends _ModelEvent {
       ?.toSet()
       .cast();
 
-  // topic.
-  TopicType? get topicField => this.topic;
-  set topicField(TopicType? v) => this.topic = v;
+  // tags.
+  Set<String>? get tagsField => this.tags;
+  set tagsField(Set<String>? v) => this.tags = v;
   @protected
-  dynamic get $topic => this.topic?.name;
+  dynamic get $tags => this
+      .tags
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toList();
   @protected
-  set $topic(v) => this.topic = TopicType.values.valueOf(letAs<String>(v));
+  set $tags(v) => this.tags = letSet(v)
+      ?.map(
+        (p0) => p0?.toString().trim().nullIfEmpty,
+      )
+      .nonNulls
+      .nullIfEmpty
+      ?.toSet()
+      .cast();
 
-  // body.
-  DataModel? get bodyField => this.body;
-  set bodyField(DataModel? v) => this.body = v;
+  // contentType.
+  ModelEnum? get contentTypeField => this.contentType;
+  set contentTypeField(ModelEnum? v) => this.contentType = v;
   @protected
-  dynamic get $body => this.body?.data;
+  dynamic get $contentType => this.contentType?.toJson();
   @protected
-  set $body(v) => this.body = () {
+  set $contentType(v) => this.contentType = () {
         final a = letMap<String, dynamic>(v);
-        return a != null ? DataModel(data: a) : null;
+        return a != null ? ModelEnum.fromJson(a) : null;
       }();
 
-  // expireAt.
-  DateTime? get expireAtField => this.expireAt;
-  set expireAtField(DateTime? v) => this.expireAt = v;
+  // content.
+  DataModel? get contentField => this.content;
+  set contentField(DataModel? v) => this.content = v;
   @protected
-  dynamic get $expireAt => this.expireAt?.toUtc()?.toIso8601String();
+  dynamic get $content => this.content?.data;
   @protected
-  set $expireAt(v) => this.expireAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+  set $content(v) => this.content = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? DataModel(data: a) : null;
       }();
 
   // readRegs.

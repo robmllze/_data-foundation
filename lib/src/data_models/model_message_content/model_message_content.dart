@@ -9,17 +9,17 @@
 
 import '/_common.dart';
 
-part '_model_event_body.g.dart';
+part '_model_message_content.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-const DEF_MODEL_FIELDS = {
+const MODEL_MESSAGE_CONTENT_FIELDS = {
   ('relationship_id?', String),
   ('sender_pid?', String),
   ('receiver_pid?', String),
   ('message?', String),
 };
 
-@GenerateModel(fields: DEF_MODEL_FIELDS)
+@GenerateModel(fields: MODEL_MESSAGE_CONTENT_FIELDS)
 // ignore: unused_element
-abstract class _ModelEventBody {}
+abstract class _ModelMessageContent {}

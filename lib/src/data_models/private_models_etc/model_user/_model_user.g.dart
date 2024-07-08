@@ -33,6 +33,7 @@ class ModelUser extends _ModelUser {
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
   static const K_UPDATED_G_REG = 'updatedGReg';
+  static const K_EXPIRES_AT = 'expiresAt';
   static const K_PID = 'pid';
   static const K_SEED = 'seed';
   static const K_DID_SEND_WELCOME_EMAIL = 'didSendWelcomeEmail';
@@ -54,6 +55,7 @@ class ModelUser extends _ModelUser {
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
   ModelRegistration? updatedGReg;
+  DateTime? expiresAt;
   String? pid;
   String? seed;
   bool? didSendWelcomeEmail;
@@ -81,6 +83,7 @@ class ModelUser extends _ModelUser {
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
     ModelRegistration? updatedGReg,
+    DateTime? expiresAt,
     String? pid,
     String? seed,
     bool? didSendWelcomeEmail,
@@ -98,6 +101,7 @@ class ModelUser extends _ModelUser {
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
       updatedGReg: updatedGReg,
+      expiresAt: expiresAt,
       pid: pid,
       seed: seed,
       didSendWelcomeEmail: didSendWelcomeEmail,
@@ -121,6 +125,7 @@ class ModelUser extends _ModelUser {
     this.createdGReg,
     this.deletedGReg,
     this.updatedGReg,
+    this.expiresAt,
     this.pid,
     this.seed,
     this.didSendWelcomeEmail,
@@ -230,6 +235,7 @@ class ModelUser extends _ModelUser {
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
         ..$updatedGReg = otherData?[K_UPDATED_G_REG]
+        ..$expiresAt = otherData?[K_EXPIRES_AT]
         ..$pid = otherData?[K_PID]
         ..$seed = otherData?[K_SEED]
         ..$didSendWelcomeEmail = otherData?[K_DID_SEND_WELCOME_EMAIL]
@@ -290,6 +296,7 @@ class ModelUser extends _ModelUser {
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
         K_UPDATED_G_REG: this.$updatedGReg,
+        K_EXPIRES_AT: this.$expiresAt,
         K_PID: this.$pid,
         K_SEED: this.$seed,
         K_DID_SEND_WELCOME_EMAIL: this.$didSendWelcomeEmail,
@@ -358,6 +365,9 @@ class ModelUser extends _ModelUser {
       }
       if (other.updatedGReg != null) {
         this.updatedGReg = other.updatedGReg!;
+      }
+      if (other.expiresAt != null) {
+        this.expiresAt = other.expiresAt!;
       }
       if (other.pid != null) {
         this.pid = other.pid!;
@@ -475,6 +485,17 @@ class ModelUser extends _ModelUser {
   set $updatedGReg(v) => this.updatedGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // expiresAt.
+  DateTime? get expiresAtField => this.expiresAt;
+  set expiresAtField(DateTime? v) => this.expiresAt = v;
+  @protected
+  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
+  @protected
+  set $expiresAt(v) => this.expiresAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // pid.

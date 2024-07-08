@@ -33,14 +33,13 @@ class PublicModel extends _PublicModel {
   static const K_CREATED_G_REG = 'createdGReg';
   static const K_DELETED_G_REG = 'deletedGReg';
   static const K_UPDATED_G_REG = 'updatedGReg';
+  static const K_EXPIRES_AT = 'expiresAt';
   static const K_EMAIL = 'email';
   static const K_ADDRESS_ENTRIES = 'addressEntries';
   static const K_EMAIL_ENTRIES = 'emailEntries';
   static const K_FILE_ENTRIES = 'fileEntries';
   static const K_PHONE_ENTRIES = 'phoneEntries';
   static const K_DEVICE_REGS = 'deviceRegs';
-  static const K_OPENED_REGS = 'openedRegs';
-  static const K_CLOSED_REGS = 'closedRegs';
 
   static const CLASS = 'PublicModel';
 
@@ -56,14 +55,13 @@ class PublicModel extends _PublicModel {
   ModelRegistration? createdGReg;
   ModelRegistration? deletedGReg;
   ModelRegistration? updatedGReg;
+  DateTime? expiresAt;
   ModelQueryable? email;
   Map<String, ModelAddressEntry>? addressEntries;
   Map<String, ModelEmailEntry>? emailEntries;
   Map<String, ModelFileEntry>? fileEntries;
   Map<String, ModelPhoneEntry>? phoneEntries;
   List<ModelDeviceRegistration>? deviceRegs;
-  List<ModelRegistration>? openedRegs;
-  List<ModelRegistration>? closedRegs;
 
   //
   //
@@ -85,14 +83,13 @@ class PublicModel extends _PublicModel {
     ModelRegistration? createdGReg,
     ModelRegistration? deletedGReg,
     ModelRegistration? updatedGReg,
+    DateTime? expiresAt,
     ModelQueryable? email,
     Map<String, ModelAddressEntry>? addressEntries,
     Map<String, ModelEmailEntry>? emailEntries,
     Map<String, ModelFileEntry>? fileEntries,
     Map<String, ModelPhoneEntry>? phoneEntries,
     List<ModelDeviceRegistration>? deviceRegs,
-    List<ModelRegistration>? openedRegs,
-    List<ModelRegistration>? closedRegs,
   }) {
     return PublicModel.b(
       id: id,
@@ -104,14 +101,13 @@ class PublicModel extends _PublicModel {
       createdGReg: createdGReg,
       deletedGReg: deletedGReg,
       updatedGReg: updatedGReg,
+      expiresAt: expiresAt,
       email: email,
       addressEntries: addressEntries,
       emailEntries: emailEntries,
       fileEntries: fileEntries,
       phoneEntries: phoneEntries,
       deviceRegs: deviceRegs,
-      openedRegs: openedRegs,
-      closedRegs: closedRegs,
     );
   }
 
@@ -129,14 +125,13 @@ class PublicModel extends _PublicModel {
     this.createdGReg,
     this.deletedGReg,
     this.updatedGReg,
+    this.expiresAt,
     this.email,
     this.addressEntries,
     this.emailEntries,
     this.fileEntries,
     this.phoneEntries,
     this.deviceRegs,
-    this.openedRegs,
-    this.closedRegs,
   }) {}
 
   //
@@ -240,14 +235,13 @@ class PublicModel extends _PublicModel {
         ..$createdGReg = otherData?[K_CREATED_G_REG]
         ..$deletedGReg = otherData?[K_DELETED_G_REG]
         ..$updatedGReg = otherData?[K_UPDATED_G_REG]
+        ..$expiresAt = otherData?[K_EXPIRES_AT]
         ..$email = otherData?[K_EMAIL]
         ..$addressEntries = otherData?[K_ADDRESS_ENTRIES]
         ..$emailEntries = otherData?[K_EMAIL_ENTRIES]
         ..$fileEntries = otherData?[K_FILE_ENTRIES]
         ..$phoneEntries = otherData?[K_PHONE_ENTRIES]
-        ..$deviceRegs = otherData?[K_DEVICE_REGS]
-        ..$openedRegs = otherData?[K_OPENED_REGS]
-        ..$closedRegs = otherData?[K_CLOSED_REGS];
+        ..$deviceRegs = otherData?[K_DEVICE_REGS];
     } catch (e) {
       return null;
     }
@@ -302,14 +296,13 @@ class PublicModel extends _PublicModel {
         K_CREATED_G_REG: this.$createdGReg,
         K_DELETED_G_REG: this.$deletedGReg,
         K_UPDATED_G_REG: this.$updatedGReg,
+        K_EXPIRES_AT: this.$expiresAt,
         K_EMAIL: this.$email,
         K_ADDRESS_ENTRIES: this.$addressEntries,
         K_EMAIL_ENTRIES: this.$emailEntries,
         K_FILE_ENTRIES: this.$fileEntries,
         K_PHONE_ENTRIES: this.$phoneEntries,
         K_DEVICE_REGS: this.$deviceRegs,
-        K_OPENED_REGS: this.$openedRegs,
-        K_CLOSED_REGS: this.$closedRegs,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -373,6 +366,9 @@ class PublicModel extends _PublicModel {
       if (other.updatedGReg != null) {
         this.updatedGReg = other.updatedGReg!;
       }
+      if (other.expiresAt != null) {
+        this.expiresAt = other.expiresAt!;
+      }
       if (other.email != null) {
         this.email = other.email!;
       }
@@ -390,12 +386,6 @@ class PublicModel extends _PublicModel {
       }
       if (other.deviceRegs != null) {
         this.deviceRegs = other.deviceRegs!;
-      }
-      if (other.openedRegs != null) {
-        this.openedRegs = other.openedRegs!;
-      }
-      if (other.closedRegs != null) {
-        this.closedRegs = other.closedRegs!;
       }
     }
   }
@@ -495,6 +485,17 @@ class PublicModel extends _PublicModel {
   set $updatedGReg(v) => this.updatedGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // expiresAt.
+  DateTime? get expiresAtField => this.expiresAt;
+  set expiresAtField(DateTime? v) => this.expiresAt = v;
+  @protected
+  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
+  @protected
+  set $expiresAt(v) => this.expiresAt = () {
+        final a = v;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
 
   // email.
@@ -646,56 +647,6 @@ class PublicModel extends _PublicModel {
         (p0) => () {
           final a = letMap<String, dynamic>(p0);
           return a != null ? ModelDeviceRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
-
-  // openedRegs.
-  List<ModelRegistration>? get openedRegsField => this.openedRegs;
-  set openedRegsField(List<ModelRegistration>? v) => this.openedRegs = v;
-  @protected
-  dynamic get $openedRegs => this
-      .openedRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $openedRegs(v) => this.openedRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
-
-  // closedRegs.
-  List<ModelRegistration>? get closedRegsField => this.closedRegs;
-  set closedRegsField(List<ModelRegistration>? v) => this.closedRegs = v;
-  @protected
-  dynamic get $closedRegs => this
-      .closedRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $closedRegs(v) => this.closedRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
         }(),
       )
       .nonNulls

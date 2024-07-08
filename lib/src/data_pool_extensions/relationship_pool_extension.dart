@@ -26,8 +26,8 @@ extension RelationshipPoolExtension on Iterable<ModelRelationship> {
   }) {
     if (types.isEmpty) return [];
     return this.where(
-      (rel) {
-        final type = rel.type;
+      (e) {
+        final type = e.type;
         return type != null ? types.contains(type) : false;
       },
     );

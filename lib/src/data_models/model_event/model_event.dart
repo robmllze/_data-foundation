@@ -14,20 +14,22 @@ part '_model_event.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
+const MODEL_EVENT_FIELDS = {
+  ...MODEL_ENTRY_FIELDS,
+  ('member_pids?', Set<String>),
+  ('tags?', Set<String>),
+  ('content_type?', ModelEnum),
+  ('content?', DataModel),
+  ('read_regs?', List<ModelRegistration>),
+  ('archived_regs?', List<ModelRegistration>),
+  ('hidden_regs?', List<ModelRegistration>),
+  ('liked_regs?', List<ModelRegistration>),
+  ('received_regs?', List<ModelRegistration>),
+};
+
 @GenerateModel(
   shouldInherit: true,
-  fields: {
-    ...MODEL_ENTRY_FIELDS,
-    ('member_pids?', Set<String>),
-    ('topic?', TopicType),
-    ('body?', DataModel),
-    ('expire_at?', DateTime),
-    ('read_regs?', List<ModelRegistration>),
-    ('archived_regs?', List<ModelRegistration>),
-    ('hidden_regs?', List<ModelRegistration>),
-    ('liked_regs?', List<ModelRegistration>),
-    ('received_regs?', List<ModelRegistration>),
-  },
+  fields: MODEL_EVENT_FIELDS,
 )
 abstract class _ModelEvent extends Model implements ModelEntry {}
 
@@ -37,10 +39,6 @@ extension ModelEventExtension on ModelEvent {
   //
   //
   //
-
-  bool isExpired() {
-    return this.expireAt != null && this.expireAt!.isAfter(DateTime.now());
-  }
 
   bool isReadByAnyone() {
     return this.readRegs?.isImpliedEnabledByAnyone() == true;
@@ -100,5 +98,16 @@ extension ModelEventExtension on ModelEvent {
 
   bool isReceivedBy(String id) {
     return this.receivedRegs?.isImpliedEnabledBy(id) == true;
+  }
+
+  bool doesInvolveMember(String memberPid) {
+    return this.memberPids?.contains(memberPid) == true;
+  }
+
+  Set<String> extractMemberPidsByPrefixes(Iterable<String> prefixes) {
+    final memberPids = this.memberPids ?? {};
+    return prefixes.isNotEmpty
+        ? memberPids.where((a) => prefixes.any((b) => a.startsWith(b))).toSet()
+        : memberPids;
   }
 }

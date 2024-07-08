@@ -100,9 +100,7 @@ extension PublicPoolExtension<TModel extends PublicModel> on Iterable<TModel> {
   }) {
     final relationship = relationshipPool.firstWhereOrNull((e) => e.id == relationshipId);
     if (relationship != null) {
-      final pids = relationship.extractMemberPids(
-        memberPidPrefixes: memberPidPrefixes,
-      );
+      final pids = relationship.extractMemberPidsByPrefixes(memberPidPrefixes);
       final result = pids.map((pid) => this.firstWhereOrNull((e) => e.id == pid)).nonNulls;
       return result;
     } else {
