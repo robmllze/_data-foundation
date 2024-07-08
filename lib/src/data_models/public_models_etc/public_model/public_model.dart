@@ -7,8 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'dart:ui';
-
 import '/_common.dart';
 
 part '_public_model.g.dart';
@@ -16,26 +14,20 @@ part '_public_model.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 const PUBLIC_MODEL_FIELDS = {
-  ('ref', DataRefModel),
-  ('id?', String),
-  ('display_name?', String),
-  ('display_name_searchable?', T_SEARCHABLE_STRING),
-  ('display_color?', Color),
-  ('email?', T_LOWER_CASE_STRING),
-  ('created_reg?', ModelRegistration),
-  ('deleted_reg?', ModelRegistration),
-  ('description?', String),
+  ...ENTRY_MODEL_FIELDS,
+  ('email_searchable?', T_LOWER_CASE_STRING),
   ('address_entries?', Map<String, ModelAddressEntry>),
   ('email_entries?', Map<String, ModelEmailEntry>),
   ('file_entries?', Map<String, ModelFileEntry>),
   ('phone_entries?', Map<String, ModelPhoneEntry>),
   ('device_regs?', List<ModelDeviceRegistration>),
-  ('registration?', ModelRegistration),
 };
 
-@GenerateModel(fields: PUBLIC_MODEL_FIELDS)
-// ignore: unused_element
-abstract class _PublicModel {}
+@GenerateModel(
+  shouldInherit: true,
+  fields: PUBLIC_MODEL_FIELDS,
+)
+abstract class _PublicModel extends Model implements EntryModel, DisplayModel {}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -117,7 +109,7 @@ extension PublicModelExtension on PublicModel {
       ?..sort((a, b) {
         final now = DateTime.now();
         return (ascending ? 1 : -1) *
-            (a.createdReg?.registeredAt ?? now).compareTo((b.createdReg?.registeredAt ?? now));
+            (a.createdGReg?.registeredAt ?? now).compareTo((b.createdGReg?.registeredAt ?? now));
       });
   }
 

@@ -77,11 +77,11 @@ extension PublicPoolExtension<TModel extends PublicModel> on Iterable<TModel> {
   }) {
     final query = partialEmail.toLowerCase();
     final results = this.where((user) {
-      final email = user.email;
+      final emailSearchable = user.emailSearchable;
       final cases = [
-        if (email != null) ...[
-          email.contains(query),
-          query.contains(email),
+        if (emailSearchable != null) ...[
+          emailSearchable.contains(query),
+          query.contains(emailSearchable),
         ],
       ];
       return cases.contains(true);

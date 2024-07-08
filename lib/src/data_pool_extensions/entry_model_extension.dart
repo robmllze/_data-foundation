@@ -19,11 +19,11 @@ extension EntryModelPoolExtension<TModel extends EntryModel> on Iterable<TModel>
 
   // --- Sorting ---------------------------------------------------------------
 
-  Iterable<TModel> byTitleAscending() {
+  Iterable<TModel> byDisplayNameAscending() {
     return this.toList()
       ..sort((e0, e1) {
-        final t0 = e0.titleSearchable ?? e0.title ?? '';
-        final t1 = e1.titleSearchable ?? e1.title ?? '';
+        final t0 = e0.displayNameSearchable ?? e0.displayName ?? '';
+        final t1 = e1.displayNameSearchable ?? e1.displayName ?? '';
         final n = t0.compareTo(t1);
         return n;
       });
@@ -33,8 +33,8 @@ extension EntryModelPoolExtension<TModel extends EntryModel> on Iterable<TModel>
   //
   //
 
-  Iterable<TModel> byTitleDescending() {
-    return this.byTitleAscending().toList().reversed;
+  Iterable<TModel> byDisplayNameDescending() {
+    return this.byDisplayNameAscending().toList().reversed;
   }
 
   //
@@ -45,8 +45,8 @@ extension EntryModelPoolExtension<TModel extends EntryModel> on Iterable<TModel>
     return this.toList()
       ..sort((e0, e1) {
         final now = DateTime.now();
-        final d0 = e0.createdReg?.registeredAt ?? now;
-        final d1 = e1.createdReg?.registeredAt ?? now;
+        final d0 = e0.createdGReg?.registeredAt ?? now;
+        final d1 = e1.createdGReg?.registeredAt ?? now;
         final n = d0.compareTo(d1);
         return n;
       });

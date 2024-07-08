@@ -29,16 +29,17 @@ class ModelUserPub extends _ModelUserPub {
   static const K_DISPLAY_NAME = 'displayName';
   static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
   static const K_DISPLAY_COLOR = 'displayColor';
-  static const K_EMAIL = 'email';
-  static const K_CREATED_REG = 'createdReg';
-  static const K_DELETED_REG = 'deletedReg';
   static const K_DESCRIPTION = 'description';
+  static const K_ARCHIVED_G_REG = 'archivedGReg';
+  static const K_CREATED_G_REG = 'createdGReg';
+  static const K_DELETED_G_REG = 'deletedGReg';
+  static const K_UPDATE_G_REG = 'updateGReg';
+  static const K_EMAIL_SEARCHABLE = 'emailSearchable';
   static const K_ADDRESS_ENTRIES = 'addressEntries';
   static const K_EMAIL_ENTRIES = 'emailEntries';
   static const K_FILE_ENTRIES = 'fileEntries';
   static const K_PHONE_ENTRIES = 'phoneEntries';
   static const K_DEVICE_REGS = 'deviceRegs';
-  static const K_REGISTRATION = 'registration';
 
   static const CLASS = 'ModelUserPub';
 
@@ -50,16 +51,17 @@ class ModelUserPub extends _ModelUserPub {
   String? displayName;
   String? displayNameSearchable;
   Color? displayColor;
-  String? email;
-  ModelRegistration? createdReg;
-  ModelRegistration? deletedReg;
   String? description;
+  ModelRegistration? archivedGReg;
+  ModelRegistration? createdGReg;
+  ModelRegistration? deletedGReg;
+  ModelRegistration? updateGReg;
+  String? emailSearchable;
   Map<String, ModelAddressEntry>? addressEntries;
   Map<String, ModelEmailEntry>? emailEntries;
   Map<String, ModelFileEntry>? fileEntries;
   Map<String, ModelPhoneEntry>? phoneEntries;
   List<ModelDeviceRegistration>? deviceRegs;
-  ModelRegistration? registration;
 
   //
   //
@@ -77,16 +79,17 @@ class ModelUserPub extends _ModelUserPub {
     String? displayName,
     String? displayNameSearchable,
     Color? displayColor,
-    String? email,
-    ModelRegistration? createdReg,
-    ModelRegistration? deletedReg,
     String? description,
+    ModelRegistration? archivedGReg,
+    ModelRegistration? createdGReg,
+    ModelRegistration? deletedGReg,
+    ModelRegistration? updateGReg,
+    String? emailSearchable,
     Map<String, ModelAddressEntry>? addressEntries,
     Map<String, ModelEmailEntry>? emailEntries,
     Map<String, ModelFileEntry>? fileEntries,
     Map<String, ModelPhoneEntry>? phoneEntries,
     List<ModelDeviceRegistration>? deviceRegs,
-    ModelRegistration? registration,
   }) {
     return ModelUserPub.b(
       ref: ref,
@@ -94,16 +97,17 @@ class ModelUserPub extends _ModelUserPub {
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
       displayColor: displayColor,
-      email: email,
-      createdReg: createdReg,
-      deletedReg: deletedReg,
       description: description,
+      archivedGReg: archivedGReg,
+      createdGReg: createdGReg,
+      deletedGReg: deletedGReg,
+      updateGReg: updateGReg,
+      emailSearchable: emailSearchable,
       addressEntries: addressEntries,
       emailEntries: emailEntries,
       fileEntries: fileEntries,
       phoneEntries: phoneEntries,
       deviceRegs: deviceRegs,
-      registration: registration,
     );
   }
 
@@ -117,16 +121,17 @@ class ModelUserPub extends _ModelUserPub {
     this.displayName,
     this.displayNameSearchable,
     this.displayColor,
-    this.email,
-    this.createdReg,
-    this.deletedReg,
     this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updateGReg,
+    this.emailSearchable,
     this.addressEntries,
     this.emailEntries,
     this.fileEntries,
     this.phoneEntries,
     this.deviceRegs,
-    this.registration,
   }) {
     assert(this.ref != null);
   }
@@ -228,16 +233,17 @@ class ModelUserPub extends _ModelUserPub {
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
-        ..$email = otherData?[K_EMAIL]
-        ..$createdReg = otherData?[K_CREATED_REG]
-        ..$deletedReg = otherData?[K_DELETED_REG]
         ..$description = otherData?[K_DESCRIPTION]
+        ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
+        ..$createdGReg = otherData?[K_CREATED_G_REG]
+        ..$deletedGReg = otherData?[K_DELETED_G_REG]
+        ..$updateGReg = otherData?[K_UPDATE_G_REG]
+        ..$emailSearchable = otherData?[K_EMAIL_SEARCHABLE]
         ..$addressEntries = otherData?[K_ADDRESS_ENTRIES]
         ..$emailEntries = otherData?[K_EMAIL_ENTRIES]
         ..$fileEntries = otherData?[K_FILE_ENTRIES]
         ..$phoneEntries = otherData?[K_PHONE_ENTRIES]
-        ..$deviceRegs = otherData?[K_DEVICE_REGS]
-        ..$registration = otherData?[K_REGISTRATION];
+        ..$deviceRegs = otherData?[K_DEVICE_REGS];
     } catch (e) {
       return null;
     }
@@ -288,16 +294,17 @@ class ModelUserPub extends _ModelUserPub {
         K_DISPLAY_NAME: this.$displayName,
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_DISPLAY_COLOR: this.$displayColor,
-        K_EMAIL: this.$email,
-        K_CREATED_REG: this.$createdReg,
-        K_DELETED_REG: this.$deletedReg,
         K_DESCRIPTION: this.$description,
+        K_ARCHIVED_G_REG: this.$archivedGReg,
+        K_CREATED_G_REG: this.$createdGReg,
+        K_DELETED_G_REG: this.$deletedGReg,
+        K_UPDATE_G_REG: this.$updateGReg,
+        K_EMAIL_SEARCHABLE: this.$emailSearchable,
         K_ADDRESS_ENTRIES: this.$addressEntries,
         K_EMAIL_ENTRIES: this.$emailEntries,
         K_FILE_ENTRIES: this.$fileEntries,
         K_PHONE_ENTRIES: this.$phoneEntries,
         K_DEVICE_REGS: this.$deviceRegs,
-        K_REGISTRATION: this.$registration,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -349,17 +356,23 @@ class ModelUserPub extends _ModelUserPub {
       if (other.displayColor != null) {
         this.displayColor = other.displayColor!;
       }
-      if (other.email != null) {
-        this.email = other.email!;
-      }
-      if (other.createdReg != null) {
-        this.createdReg = other.createdReg!;
-      }
-      if (other.deletedReg != null) {
-        this.deletedReg = other.deletedReg!;
-      }
       if (other.description != null) {
         this.description = other.description!;
+      }
+      if (other.archivedGReg != null) {
+        this.archivedGReg = other.archivedGReg!;
+      }
+      if (other.createdGReg != null) {
+        this.createdGReg = other.createdGReg!;
+      }
+      if (other.deletedGReg != null) {
+        this.deletedGReg = other.deletedGReg!;
+      }
+      if (other.updateGReg != null) {
+        this.updateGReg = other.updateGReg!;
+      }
+      if (other.emailSearchable != null) {
+        this.emailSearchable = other.emailSearchable!;
       }
       if (other.addressEntries != null) {
         this.addressEntries = other.addressEntries!;
@@ -375,9 +388,6 @@ class ModelUserPub extends _ModelUserPub {
       }
       if (other.deviceRegs != null) {
         this.deviceRegs = other.deviceRegs!;
-      }
-      if (other.registration != null) {
-        this.registration = other.registration!;
       }
     }
   }
@@ -439,37 +449,6 @@ class ModelUserPub extends _ModelUserPub {
         return a is int ? Color(a) : null;
       }();
 
-  // email.
-  String? get emailField => this.email;
-  set emailField(String? v) => this.email = v;
-  @protected
-  dynamic get $email =>
-      this.email?.toString().trim().nullIfEmpty?.toLowerCase();
-  @protected
-  set $email(v) => this.email = v?.toString().trim().nullIfEmpty?.toLowerCase();
-
-  // createdReg.
-  ModelRegistration? get createdRegField => this.createdReg;
-  set createdRegField(ModelRegistration? v) => this.createdReg = v;
-  @protected
-  dynamic get $createdReg => this.createdReg?.toJson();
-  @protected
-  set $createdReg(v) => this.createdReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
-
-  // deletedReg.
-  ModelRegistration? get deletedRegField => this.deletedReg;
-  set deletedRegField(ModelRegistration? v) => this.deletedReg = v;
-  @protected
-  dynamic get $deletedReg => this.deletedReg?.toJson();
-  @protected
-  set $deletedReg(v) => this.deletedReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
-
   // description.
   String? get descriptionField => this.description;
   set descriptionField(String? v) => this.description = v;
@@ -477,6 +456,60 @@ class ModelUserPub extends _ModelUserPub {
   dynamic get $description => this.description?.toString().trim().nullIfEmpty;
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
+
+  // archivedGReg.
+  ModelRegistration? get archivedGRegField => this.archivedGReg;
+  set archivedGRegField(ModelRegistration? v) => this.archivedGReg = v;
+  @protected
+  dynamic get $archivedGReg => this.archivedGReg?.toJson();
+  @protected
+  set $archivedGReg(v) => this.archivedGReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // createdGReg.
+  ModelRegistration? get createdGRegField => this.createdGReg;
+  set createdGRegField(ModelRegistration? v) => this.createdGReg = v;
+  @protected
+  dynamic get $createdGReg => this.createdGReg?.toJson();
+  @protected
+  set $createdGReg(v) => this.createdGReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // deletedGReg.
+  ModelRegistration? get deletedGRegField => this.deletedGReg;
+  set deletedGRegField(ModelRegistration? v) => this.deletedGReg = v;
+  @protected
+  dynamic get $deletedGReg => this.deletedGReg?.toJson();
+  @protected
+  set $deletedGReg(v) => this.deletedGReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // updateGReg.
+  ModelRegistration? get updateGRegField => this.updateGReg;
+  set updateGRegField(ModelRegistration? v) => this.updateGReg = v;
+  @protected
+  dynamic get $updateGReg => this.updateGReg?.toJson();
+  @protected
+  set $updateGReg(v) => this.updateGReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // emailSearchable.
+  String? get emailSearchableField => this.emailSearchable;
+  set emailSearchableField(String? v) => this.emailSearchable = v;
+  @protected
+  dynamic get $emailSearchable =>
+      this.emailSearchable?.toString().trim().nullIfEmpty?.toLowerCase();
+  @protected
+  set $emailSearchable(v) =>
+      this.emailSearchable = v?.toString().trim().nullIfEmpty?.toLowerCase();
 
   // addressEntries.
   Map<String, ModelAddressEntry>? get addressEntriesField =>
@@ -622,15 +655,4 @@ class ModelUserPub extends _ModelUserPub {
       .nullIfEmpty
       ?.toList()
       .cast();
-
-  // registration.
-  ModelRegistration? get registrationField => this.registration;
-  set registrationField(ModelRegistration? v) => this.registration = v;
-  @protected
-  dynamic get $registration => this.registration?.toJson();
-  @protected
-  set $registration(v) => this.registration = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 }

@@ -9,7 +9,7 @@
 
 export 'access_status_type/access_status_type.dart';
 export 'access_type/access_type.dart';
-export 'invitation_def_type/invitation_def_type.dart';
+export 'invitation_type/invitation_type.dart';
 export 'job_status_type/job_status_type.dart';
 export 'relationship_type/relationship_type.dart';
 export 'topic_type/topic_type.dart';

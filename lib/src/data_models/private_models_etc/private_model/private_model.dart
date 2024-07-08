@@ -14,14 +14,14 @@ part '_private_model.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 const PRIVATE_MODEL_FIELDS = {
-  ('ref', DataRefModel),
-  ('id?', String),
+  ...ENTRY_MODEL_FIELDS,
   ('pid?', String),
   ('seed?', String),
-  ('created_reg?', ModelRegistration),
-  ('deleted_reg?', ModelRegistration),
 };
 
-@GenerateModel(fields: PRIVATE_MODEL_FIELDS)
+@GenerateModel(
+  shouldInherit: true,
+  fields: PRIVATE_MODEL_FIELDS,
+)
 // ignore: unused_element
-abstract class _PrivateModel {}
+abstract class _PrivateModel extends Model implements EntryModel {}

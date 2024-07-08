@@ -20,12 +20,12 @@ part '_model_invitation.g.dart';
     ('id?', String),
     ('created_reg', ModelRegistration),
     ('expires_at?', DateTime),
-    ('def_type?', InvitationDefType),
-    ('def?', DataModel),
+    ('type?', InvitationType),
+    ('body?', DataModel),
     ('invitation_link?', Uri),
-    ('invitee_emails?', 'Set<Searchable-String>'),
-    ('invitee_accepted_emails?', 'Set<Searchable-String>'),
-    ('invitee_rejected_emails?', 'Set<Searchable-String>'),
+    ('invitee_searchable_emails?', 'Set<Searchable-String>'),
+    ('invitee_accepted_searchable_emails?', 'Set<Searchable-String>'),
+    ('invitee_rejected_searchable_emails?', 'Set<Searchable-String>'),
   },
 )
 abstract class _ModelInvitation extends ThisModel<ModelInvitation> {

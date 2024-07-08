@@ -7,20 +7,19 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-part of 'invitation_def_type.dart';
+part of 'invitation_type.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-extension InvitationDefTypeUtils on InvitationDefType {
-  InvitationDefType get next {
-    final index = (this.index + 1) % InvitationDefType.values.length;
-    return InvitationDefType.values[index];
+extension InvitationTypeUtils on InvitationType {
+  InvitationType get next {
+    final index = (this.index + 1) % InvitationType.values.length;
+    return InvitationType.values[index];
   }
 
-  InvitationDefType get previous {
-    final index = (this.index - 1 + InvitationDefType.values.length) %
-        InvitationDefType.values.length;
-    return InvitationDefType.values[index];
+  InvitationType get previous {
+    final index = (this.index - 1 + InvitationType.values.length) % InvitationType.values.length;
+    return InvitationType.values[index];
   }
 
   String trFromSection(String section, [Map args = const {}]) {
@@ -28,11 +27,6 @@ extension InvitationDefTypeUtils on InvitationDefType {
   }
 
   String get friendlyName {
-    return this
-        .name
-        .toSnakeCase()
-        .split('_')
-        .map((e) => e.capitalize())
-        .join(' ');
+    return this.name.toSnakeCase().split('_').map((e) => e.capitalize()).join(' ');
   }
 }

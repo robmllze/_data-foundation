@@ -15,11 +15,11 @@
 // ignore_for_file: unnecessary_null_comparison
 // ignore_for_file: unnecessary_this
 
-part of 'entry_model.dart';
+part of 'display_model.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class EntryModel extends _EntryModel {
+class DisplayModel extends Model {
   //
   //
   //
@@ -30,12 +30,8 @@ class EntryModel extends _EntryModel {
   static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
   static const K_DISPLAY_COLOR = 'displayColor';
   static const K_DESCRIPTION = 'description';
-  static const K_ARCHIVED_G_REG = 'archivedGReg';
-  static const K_CREATED_G_REG = 'createdGReg';
-  static const K_DELETED_G_REG = 'deletedGReg';
-  static const K_UPDATE_G_REG = 'updateGReg';
 
-  static const CLASS = 'EntryModel';
+  static const CLASS = 'DisplayModel';
 
   @override
   String get $class => CLASS;
@@ -46,44 +42,32 @@ class EntryModel extends _EntryModel {
   String? displayNameSearchable;
   Color? displayColor;
   String? description;
-  ModelRegistration? archivedGReg;
-  ModelRegistration? createdGReg;
-  ModelRegistration? deletedGReg;
-  ModelRegistration? updateGReg;
 
   //
   //
   //
 
-  EntryModel.empty();
+  DisplayModel.empty();
 
   //
   //
   //
 
-  factory EntryModel({
+  factory DisplayModel({
     required DataRefModel ref,
     String? id,
     String? displayName,
     String? displayNameSearchable,
     Color? displayColor,
     String? description,
-    ModelRegistration? archivedGReg,
-    ModelRegistration? createdGReg,
-    ModelRegistration? deletedGReg,
-    ModelRegistration? updateGReg,
   }) {
-    return EntryModel.b(
+    return DisplayModel.b(
       ref: ref,
       id: id,
       displayName: displayName,
       displayNameSearchable: displayNameSearchable,
       displayColor: displayColor,
       description: description,
-      archivedGReg: archivedGReg,
-      createdGReg: createdGReg,
-      deletedGReg: deletedGReg,
-      updateGReg: updateGReg,
     );
   }
 
@@ -91,17 +75,13 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  EntryModel.b({
+  DisplayModel.b({
     this.ref,
     this.id,
     this.displayName,
     this.displayNameSearchable,
     this.displayColor,
     this.description,
-    this.archivedGReg,
-    this.createdGReg,
-    this.deletedGReg,
-    this.updateGReg,
   }) {
     assert(this.ref != null);
   }
@@ -110,18 +90,18 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  factory EntryModel.from(
+  factory DisplayModel.from(
     Model? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'EntryModel.from: $e');
+      assert(false, 'DisplayModel.from: $e');
       rethrow;
     }
   }
 
-  static EntryModel? fromOrNull(
+  static DisplayModel? fromOrNull(
     Model? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
@@ -131,19 +111,19 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  factory EntryModel.of(
-    EntryModel other,
+  factory DisplayModel.of(
+    DisplayModel other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'EntryModel.of: $e');
+      assert(false, 'DisplayModel.of: $e');
       rethrow;
     }
   }
 
-  static EntryModel? ofOrNull(
-    EntryModel? other,
+  static DisplayModel? ofOrNull(
+    DisplayModel? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
@@ -152,26 +132,26 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  factory EntryModel.fromJsonString(
+  factory DisplayModel.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'EntryModel.fromJsonString: $e');
+      assert(false, 'DisplayModel.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static EntryModel? fromJsonStringOrNull(
+  static DisplayModel? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return EntryModel.fromJson(decoded);
+        return DisplayModel.fromJson(decoded);
       } else {
-        return EntryModel.empty();
+        return DisplayModel.empty();
       }
     } catch (_) {
       return null;
@@ -182,32 +162,28 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  factory EntryModel.fromJson(
+  factory DisplayModel.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'EntryModel.fromJson: $e');
+      assert(false, 'DisplayModel.fromJson: $e');
       rethrow;
     }
   }
 
-  static EntryModel? fromJsonOrNull(
+  static DisplayModel? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return EntryModel.empty()
+      return DisplayModel.empty()
         ..$ref = otherData?[K_REF]
         ..$id = otherData?[K_ID]
         ..$displayName = otherData?[K_DISPLAY_NAME]
         ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
         ..$displayColor = otherData?[K_DISPLAY_COLOR]
-        ..$description = otherData?[K_DESCRIPTION]
-        ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
-        ..$createdGReg = otherData?[K_CREATED_G_REG]
-        ..$deletedGReg = otherData?[K_DELETED_G_REG]
-        ..$updateGReg = otherData?[K_UPDATE_G_REG];
+        ..$description = otherData?[K_DESCRIPTION];
     } catch (e) {
       return null;
     }
@@ -217,25 +193,25 @@ class EntryModel extends _EntryModel {
   //
   //
 
-  factory EntryModel.fromUri(
+  factory DisplayModel.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'EntryModel.fromUri: $e');
+      assert(false, 'DisplayModel.fromUri: $e');
       rethrow;
     }
   }
 
-  static EntryModel? fromUriOrNull(
+  static DisplayModel? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS) {
-        return EntryModel.fromJson(uri.queryParameters);
+        return DisplayModel.fromJson(uri.queryParameters);
       } else {
-        return EntryModel.empty();
+        return DisplayModel.empty();
       }
     } catch (_) {
       return null;
@@ -259,14 +235,10 @@ class EntryModel extends _EntryModel {
         K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
         K_DISPLAY_COLOR: this.$displayColor,
         K_DESCRIPTION: this.$description,
-        K_ARCHIVED_G_REG: this.$archivedGReg,
-        K_CREATED_G_REG: this.$createdGReg,
-        K_DELETED_G_REG: this.$deletedGReg,
-        K_UPDATE_G_REG: this.$updateGReg,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'EntryModel.toJson: $e');
+      assert(false, 'DisplayModel.toJson: $e');
       rethrow;
     }
   }
@@ -277,7 +249,7 @@ class EntryModel extends _EntryModel {
 
   @override
   T empty<T extends Model>() {
-    return EntryModel.b() as T;
+    return DisplayModel.b() as T;
   }
 
   //
@@ -286,7 +258,7 @@ class EntryModel extends _EntryModel {
 
   @override
   T copy<T extends Model>() {
-    return (EntryModel.b()..updateWith(this)) as T;
+    return (DisplayModel.b()..updateWith(this)) as T;
   }
 
   //
@@ -298,7 +270,7 @@ class EntryModel extends _EntryModel {
     Map<String, dynamic>? otherData,
   ) {
     if (otherData != null && otherData.isNotEmpty) {
-      final other = EntryModel.fromJson(otherData);
+      final other = DisplayModel.fromJson(otherData);
       if (other.ref != null) {
         this.ref = other.ref!;
       }
@@ -316,18 +288,6 @@ class EntryModel extends _EntryModel {
       }
       if (other.description != null) {
         this.description = other.description!;
-      }
-      if (other.archivedGReg != null) {
-        this.archivedGReg = other.archivedGReg!;
-      }
-      if (other.createdGReg != null) {
-        this.createdGReg = other.createdGReg!;
-      }
-      if (other.deletedGReg != null) {
-        this.deletedGReg = other.deletedGReg!;
-      }
-      if (other.updateGReg != null) {
-        this.updateGReg = other.updateGReg!;
       }
     }
   }
@@ -396,48 +356,4 @@ class EntryModel extends _EntryModel {
   dynamic get $description => this.description?.toString().trim().nullIfEmpty;
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
-
-  // archivedGReg.
-  ModelRegistration? get archivedGRegField => this.archivedGReg;
-  set archivedGRegField(ModelRegistration? v) => this.archivedGReg = v;
-  @protected
-  dynamic get $archivedGReg => this.archivedGReg?.toJson();
-  @protected
-  set $archivedGReg(v) => this.archivedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
-
-  // createdGReg.
-  ModelRegistration? get createdGRegField => this.createdGReg;
-  set createdGRegField(ModelRegistration? v) => this.createdGReg = v;
-  @protected
-  dynamic get $createdGReg => this.createdGReg?.toJson();
-  @protected
-  set $createdGReg(v) => this.createdGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
-
-  // deletedGReg.
-  ModelRegistration? get deletedGRegField => this.deletedGReg;
-  set deletedGRegField(ModelRegistration? v) => this.deletedGReg = v;
-  @protected
-  dynamic get $deletedGReg => this.deletedGReg?.toJson();
-  @protected
-  set $deletedGReg(v) => this.deletedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
-
-  // updateGReg.
-  ModelRegistration? get updateGRegField => this.updateGReg;
-  set updateGRegField(ModelRegistration? v) => this.updateGReg = v;
-  @protected
-  dynamic get $updateGReg => this.updateGReg?.toJson();
-  @protected
-  set $updateGReg(v) => this.updateGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 }

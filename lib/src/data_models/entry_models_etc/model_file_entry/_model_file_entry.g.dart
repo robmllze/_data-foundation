@@ -26,12 +26,14 @@ class ModelFileEntry extends _ModelFileEntry {
 
   static const K_REF = 'ref';
   static const K_ID = 'id';
-  static const K_TITLE = 'title';
-  static const K_TITLE_SEARCHABLE = 'titleSearchable';
+  static const K_DISPLAY_NAME = 'displayName';
+  static const K_DISPLAY_NAME_SEARCHABLE = 'displayNameSearchable';
+  static const K_DISPLAY_COLOR = 'displayColor';
   static const K_DESCRIPTION = 'description';
-  static const K_CREATED_REG = 'createdReg';
-  static const K_DELETED_REG = 'deletedReg';
-  static const K_MODIFIED_REG = 'modifiedReg';
+  static const K_ARCHIVED_G_REG = 'archivedGReg';
+  static const K_CREATED_G_REG = 'createdGReg';
+  static const K_DELETED_G_REG = 'deletedGReg';
+  static const K_UPDATE_G_REG = 'updateGReg';
   static const K_NAME = 'name';
   static const K_DOWNLOAD_URL = 'downloadUrl';
   static const K_STORAGE_PATH = 'storagePath';
@@ -46,12 +48,14 @@ class ModelFileEntry extends _ModelFileEntry {
 
   DataRefModel? ref;
   String? id;
-  String? title;
-  String? titleSearchable;
+  String? displayName;
+  String? displayNameSearchable;
+  Color? displayColor;
   String? description;
-  ModelRegistration? createdReg;
-  ModelRegistration? deletedReg;
-  ModelRegistration? modifiedReg;
+  ModelRegistration? archivedGReg;
+  ModelRegistration? createdGReg;
+  ModelRegistration? deletedGReg;
+  ModelRegistration? updateGReg;
   String? name;
   Uri? downloadUrl;
   String? storagePath;
@@ -72,12 +76,14 @@ class ModelFileEntry extends _ModelFileEntry {
   factory ModelFileEntry({
     required DataRefModel ref,
     String? id,
-    String? title,
-    String? titleSearchable,
+    String? displayName,
+    String? displayNameSearchable,
+    Color? displayColor,
     String? description,
-    ModelRegistration? createdReg,
-    ModelRegistration? deletedReg,
-    ModelRegistration? modifiedReg,
+    ModelRegistration? archivedGReg,
+    ModelRegistration? createdGReg,
+    ModelRegistration? deletedGReg,
+    ModelRegistration? updateGReg,
     String? name,
     Uri? downloadUrl,
     String? storagePath,
@@ -88,12 +94,14 @@ class ModelFileEntry extends _ModelFileEntry {
     return ModelFileEntry.b(
       ref: ref,
       id: id,
-      title: title,
-      titleSearchable: titleSearchable,
+      displayName: displayName,
+      displayNameSearchable: displayNameSearchable,
+      displayColor: displayColor,
       description: description,
-      createdReg: createdReg,
-      deletedReg: deletedReg,
-      modifiedReg: modifiedReg,
+      archivedGReg: archivedGReg,
+      createdGReg: createdGReg,
+      deletedGReg: deletedGReg,
+      updateGReg: updateGReg,
       name: name,
       downloadUrl: downloadUrl,
       storagePath: storagePath,
@@ -110,12 +118,14 @@ class ModelFileEntry extends _ModelFileEntry {
   ModelFileEntry.b({
     this.ref,
     this.id,
-    this.title,
-    this.titleSearchable,
+    this.displayName,
+    this.displayNameSearchable,
+    this.displayColor,
     this.description,
-    this.createdReg,
-    this.deletedReg,
-    this.modifiedReg,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updateGReg,
     this.name,
     this.downloadUrl,
     this.storagePath,
@@ -220,12 +230,14 @@ class ModelFileEntry extends _ModelFileEntry {
       return ModelFileEntry.empty()
         ..$ref = otherData?[K_REF]
         ..$id = otherData?[K_ID]
-        ..$title = otherData?[K_TITLE]
-        ..$titleSearchable = otherData?[K_TITLE_SEARCHABLE]
+        ..$displayName = otherData?[K_DISPLAY_NAME]
+        ..$displayNameSearchable = otherData?[K_DISPLAY_NAME_SEARCHABLE]
+        ..$displayColor = otherData?[K_DISPLAY_COLOR]
         ..$description = otherData?[K_DESCRIPTION]
-        ..$createdReg = otherData?[K_CREATED_REG]
-        ..$deletedReg = otherData?[K_DELETED_REG]
-        ..$modifiedReg = otherData?[K_MODIFIED_REG]
+        ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
+        ..$createdGReg = otherData?[K_CREATED_G_REG]
+        ..$deletedGReg = otherData?[K_DELETED_G_REG]
+        ..$updateGReg = otherData?[K_UPDATE_G_REG]
         ..$name = otherData?[K_NAME]
         ..$downloadUrl = otherData?[K_DOWNLOAD_URL]
         ..$storagePath = otherData?[K_STORAGE_PATH]
@@ -279,12 +291,14 @@ class ModelFileEntry extends _ModelFileEntry {
       final withNulls = <String, dynamic>{
         K_REF: this.$ref,
         K_ID: this.$id,
-        K_TITLE: this.$title,
-        K_TITLE_SEARCHABLE: this.$titleSearchable,
+        K_DISPLAY_NAME: this.$displayName,
+        K_DISPLAY_NAME_SEARCHABLE: this.$displayNameSearchable,
+        K_DISPLAY_COLOR: this.$displayColor,
         K_DESCRIPTION: this.$description,
-        K_CREATED_REG: this.$createdReg,
-        K_DELETED_REG: this.$deletedReg,
-        K_MODIFIED_REG: this.$modifiedReg,
+        K_ARCHIVED_G_REG: this.$archivedGReg,
+        K_CREATED_G_REG: this.$createdGReg,
+        K_DELETED_G_REG: this.$deletedGReg,
+        K_UPDATE_G_REG: this.$updateGReg,
         K_NAME: this.$name,
         K_DOWNLOAD_URL: this.$downloadUrl,
         K_STORAGE_PATH: this.$storagePath,
@@ -333,23 +347,29 @@ class ModelFileEntry extends _ModelFileEntry {
       if (other.id != null) {
         this.id = other.id!;
       }
-      if (other.title != null) {
-        this.title = other.title!;
+      if (other.displayName != null) {
+        this.displayName = other.displayName!;
       }
-      if (other.titleSearchable != null) {
-        this.titleSearchable = other.titleSearchable!;
+      if (other.displayNameSearchable != null) {
+        this.displayNameSearchable = other.displayNameSearchable!;
+      }
+      if (other.displayColor != null) {
+        this.displayColor = other.displayColor!;
       }
       if (other.description != null) {
         this.description = other.description!;
       }
-      if (other.createdReg != null) {
-        this.createdReg = other.createdReg!;
+      if (other.archivedGReg != null) {
+        this.archivedGReg = other.archivedGReg!;
       }
-      if (other.deletedReg != null) {
-        this.deletedReg = other.deletedReg!;
+      if (other.createdGReg != null) {
+        this.createdGReg = other.createdGReg!;
       }
-      if (other.modifiedReg != null) {
-        this.modifiedReg = other.modifiedReg!;
+      if (other.deletedGReg != null) {
+        this.deletedGReg = other.deletedGReg!;
+      }
+      if (other.updateGReg != null) {
+        this.updateGReg = other.updateGReg!;
       }
       if (other.name != null) {
         this.name = other.name!;
@@ -395,28 +415,39 @@ class ModelFileEntry extends _ModelFileEntry {
   @protected
   set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
-  // title.
-  String? get titleField => this.title;
-  set titleField(String? v) => this.title = v;
+  // displayName.
+  String? get displayNameField => this.displayName;
+  set displayNameField(String? v) => this.displayName = v;
   @protected
-  dynamic get $title => this.title?.toString().trim().nullIfEmpty;
+  dynamic get $displayName => this.displayName?.toString().trim().nullIfEmpty;
   @protected
-  set $title(v) => this.title = v?.toString().trim().nullIfEmpty;
+  set $displayName(v) => this.displayName = v?.toString().trim().nullIfEmpty;
 
-  // titleSearchable.
-  String? get titleSearchableField => this.titleSearchable;
-  set titleSearchableField(String? v) => this.titleSearchable = v;
+  // displayNameSearchable.
+  String? get displayNameSearchableField => this.displayNameSearchable;
+  set displayNameSearchableField(String? v) => this.displayNameSearchable = v;
   @protected
-  dynamic get $titleSearchable => this
-      .titleSearchable
+  dynamic get $displayNameSearchable => this
+      .displayNameSearchable
       ?.toString()
       .trim()
       .nullIfEmpty
       ?.toLowerCase()
       .replaceAll(r'[^\w]', '');
   @protected
-  set $titleSearchable(v) => this.titleSearchable =
+  set $displayNameSearchable(v) => this.displayNameSearchable =
       v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+
+  // displayColor.
+  Color? get displayColorField => this.displayColor;
+  set displayColorField(Color? v) => this.displayColor = v;
+  @protected
+  dynamic get $displayColor => this.displayColor?.value;
+  @protected
+  set $displayColor(v) => this.displayColor = () {
+        final a = letAs<int>(v);
+        return a is int ? Color(a) : null;
+      }();
 
   // description.
   String? get descriptionField => this.description;
@@ -426,35 +457,46 @@ class ModelFileEntry extends _ModelFileEntry {
   @protected
   set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
-  // createdReg.
-  ModelRegistration? get createdRegField => this.createdReg;
-  set createdRegField(ModelRegistration? v) => this.createdReg = v;
+  // archivedGReg.
+  ModelRegistration? get archivedGRegField => this.archivedGReg;
+  set archivedGRegField(ModelRegistration? v) => this.archivedGReg = v;
   @protected
-  dynamic get $createdReg => this.createdReg?.toJson();
+  dynamic get $archivedGReg => this.archivedGReg?.toJson();
   @protected
-  set $createdReg(v) => this.createdReg = () {
+  set $archivedGReg(v) => this.archivedGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // deletedReg.
-  ModelRegistration? get deletedRegField => this.deletedReg;
-  set deletedRegField(ModelRegistration? v) => this.deletedReg = v;
+  // createdGReg.
+  ModelRegistration? get createdGRegField => this.createdGReg;
+  set createdGRegField(ModelRegistration? v) => this.createdGReg = v;
   @protected
-  dynamic get $deletedReg => this.deletedReg?.toJson();
+  dynamic get $createdGReg => this.createdGReg?.toJson();
   @protected
-  set $deletedReg(v) => this.deletedReg = () {
+  set $createdGReg(v) => this.createdGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
 
-  // modifiedReg.
-  ModelRegistration? get modifiedRegField => this.modifiedReg;
-  set modifiedRegField(ModelRegistration? v) => this.modifiedReg = v;
+  // deletedGReg.
+  ModelRegistration? get deletedGRegField => this.deletedGReg;
+  set deletedGRegField(ModelRegistration? v) => this.deletedGReg = v;
   @protected
-  dynamic get $modifiedReg => this.modifiedReg?.toJson();
+  dynamic get $deletedGReg => this.deletedGReg?.toJson();
   @protected
-  set $modifiedReg(v) => this.modifiedReg = () {
+  set $deletedGReg(v) => this.deletedGReg = () {
+        final a = letMap<String, dynamic>(v);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+
+  // updateGReg.
+  ModelRegistration? get updateGRegField => this.updateGReg;
+  set updateGRegField(ModelRegistration? v) => this.updateGReg = v;
+  @protected
+  dynamic get $updateGReg => this.updateGReg?.toJson();
+  @protected
+  set $updateGReg(v) => this.updateGReg = () {
         final a = letMap<String, dynamic>(v);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();

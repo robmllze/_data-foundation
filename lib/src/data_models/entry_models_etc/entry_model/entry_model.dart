@@ -14,22 +14,16 @@ part '_entry_model.g.dart';
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 const ENTRY_MODEL_FIELDS = {
-  ('ref', DataRefModel),
-  ('id?', String),
-  ('title?', String),
-  ('title_searchable?', T_SEARCHABLE_STRING),
-  ('description?', String),
-  ('created_reg?', ModelRegistration),
-  ('deleted_reg?', ModelRegistration),
-  ('modified_reg?', ModelRegistration),
+  ...DISPLAY_MODEL_FIELDS,
+  ('archived_g_reg?', ModelRegistration),
+  ('created_g_reg?', ModelRegistration),
+  ('deleted_g_reg?', ModelRegistration),
+  ('update_g_reg?', ModelRegistration),
 };
 
 @GenerateModel(
+  shouldInherit: true,
   fields: ENTRY_MODEL_FIELDS,
 )
 // ignore: unused_element
-abstract class _EntryModel {}
-
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-extension EntryModelExtension on EntryModel {}
+abstract class _EntryModel extends Model implements DisplayModel {}
