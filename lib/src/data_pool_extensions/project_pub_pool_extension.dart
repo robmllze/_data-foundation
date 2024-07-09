@@ -23,7 +23,7 @@ extension ProjectPubPoolExtension on Iterable<ModelProjectPub> {
     required String relationshipId,
     required Iterable<ModelRelationship> relationshipPool,
   }) {
-    return this.filterByRelationship(
+    return this.filterInRelationship(
       relationshipId: relationshipId,
       relationshipPool: relationshipPool,
       memberPidPrefixes: {

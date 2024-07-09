@@ -39,19 +39,19 @@ extension PublicPoolExtension<TModel extends PublicModel> on Iterable<TModel> {
 
   // --- Filtering -------------------------------------------------------------
 
-  Iterable<TModel> filterByPartialNameOrEmail({
+  Iterable<TModel> filterInPartialNameOrEmail({
     required String partialNameOrEmail,
   }) {
     return this
-        .filterByPartialEmail(partialEmail: partialNameOrEmail)
-        .filterByPartialName(partialName: partialNameOrEmail);
+        .filterInPartialEmail(partialEmail: partialNameOrEmail)
+        .filterInPartialName(partialName: partialNameOrEmail);
   }
 
   //
   //
   //
 
-  Iterable<TModel> filterByPartialName({
+  Iterable<TModel> filterInPartialName({
     required String partialName,
   }) {
     final query = partialName.toLowerCase();
@@ -72,7 +72,7 @@ extension PublicPoolExtension<TModel extends PublicModel> on Iterable<TModel> {
   //
   //
 
-  Iterable<TModel> filterByPartialEmail({
+  Iterable<TModel> filterInPartialEmail({
     required String partialEmail,
   }) {
     final query = partialEmail.toLowerCase();
@@ -93,7 +93,7 @@ extension PublicPoolExtension<TModel extends PublicModel> on Iterable<TModel> {
   //
   //
 
-  Iterable<TModel> filterByRelationship({
+  Iterable<TModel> filterInRelationship({
     required String relationshipId,
     required Iterable<ModelRelationship> relationshipPool,
     required Iterable<String> memberPidPrefixes,

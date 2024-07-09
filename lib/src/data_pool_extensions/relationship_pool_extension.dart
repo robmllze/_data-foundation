@@ -21,7 +21,7 @@ extension RelationshipPoolExtension on Iterable<ModelRelationship> {
 
   // --- Filtering -------------------------------------------------------------
 
-  Iterable<ModelRelationship> filterByDefType({
+  Iterable<ModelRelationship> filterInTypes({
     required Iterable<RelationshipType> types,
   }) {
     if (types.isEmpty) return [];
@@ -37,7 +37,7 @@ extension RelationshipPoolExtension on Iterable<ModelRelationship> {
   //
   //
 
-  Iterable<ModelRelationship> filterByEveryMember({
+  Iterable<ModelRelationship> filterInEveryMember({
     required Iterable<String> memberPids,
   }) {
     if (memberPids.isEmpty) return [];
@@ -54,7 +54,7 @@ extension RelationshipPoolExtension on Iterable<ModelRelationship> {
   //
   //
 
-  Iterable<ModelRelationship> filterByAnyMember({
+  Iterable<ModelRelationship> filterInAnyMember({
     required Iterable<String> memberPids,
   }) {
     if (memberPids.isEmpty) return [];

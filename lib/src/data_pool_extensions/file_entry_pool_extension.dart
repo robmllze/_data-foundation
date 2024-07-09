@@ -19,7 +19,7 @@ extension FileEntryPoolExtension on Iterable<ModelFileEntry> {
 
   // --- Filtering -------------------------------------------------------------
 
-  Iterable<ModelFileEntry> filterByCreatedBy({
+  Iterable<ModelFileEntry> filterInCreatedBy({
     required String createdBy,
   }) {
     final results = this.where((file) => file.createdGReg?.registeredBy == createdBy);
