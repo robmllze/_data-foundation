@@ -50,9 +50,6 @@ enum JobStatusType {
 
   /// Job has been cancelled and will not be completed.
   CANCELLED,
-
-  /// Job has been archived for record-keeping purposes.
-  ARCHIVED
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
