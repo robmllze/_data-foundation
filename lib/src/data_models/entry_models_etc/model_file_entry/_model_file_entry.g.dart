@@ -201,61 +201,61 @@ class ModelFileEntry extends _ModelFileEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelFileEntryFields.id.name];
+      final id0 = otherData?[ModelFileEntryFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelFileEntryFields.ref.name];
+      final ref0 = otherData?[ModelFileEntryFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelFileEntryFields.displayName.name];
+      final displayName0 = otherData?[ModelFileEntryFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelFileEntryFields.displayColor.name];
+      final displayColor0 = otherData?[ModelFileEntryFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelFileEntryFields.description.name];
+      final description0 = otherData?[ModelFileEntryFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelFileEntryFields.archivedGReg.name];
+      final archivedGReg0 = otherData?[ModelFileEntryFieldNames.archivedGReg];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelFileEntryFields.createdGReg.name];
+      final createdGReg0 = otherData?[ModelFileEntryFieldNames.createdGReg];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelFileEntryFields.deletedGReg.name];
+      final deletedGReg0 = otherData?[ModelFileEntryFieldNames.deletedGReg];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelFileEntryFields.updatedGReg.name];
+      final updatedGReg0 = otherData?[ModelFileEntryFieldNames.updatedGReg];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelFileEntryFields.expiresAt.name];
+      final expiresAt0 = otherData?[ModelFileEntryFieldNames.expiresAt];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final name0 = otherData?[ModelFileEntryFields.name.name];
+      final name0 = otherData?[ModelFileEntryFieldNames.name];
       final name = name0?.toString().trim().nullIfEmpty;
-      final downloadUrl0 = otherData?[ModelFileEntryFields.downloadUrl.name];
+      final downloadUrl0 = otherData?[ModelFileEntryFieldNames.downloadUrl];
       final downloadUrl = () {
         final a = downloadUrl0;
         return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
       }();
-      final storagePath0 = otherData?[ModelFileEntryFields.storagePath.name];
+      final storagePath0 = otherData?[ModelFileEntryFieldNames.storagePath];
       final storagePath = storagePath0?.toString().trim().nullIfEmpty;
       final definitionPath0 =
-          otherData?[ModelFileEntryFields.definitionPath.name];
+          otherData?[ModelFileEntryFieldNames.definitionPath];
       final definitionPath = letList(definitionPath0)
           ?.map(
             (p0) => p0?.toString().trim().nullIfEmpty,
@@ -263,9 +263,9 @@ class ModelFileEntry extends _ModelFileEntry {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final size0 = otherData?[ModelFileEntryFields.size.name];
+      final size0 = otherData?[ModelFileEntryFieldNames.size];
       final size = letInt(size0);
-      final extension0 = otherData?[ModelFileEntryFields.extension.name];
+      final extension0 = otherData?[ModelFileEntryFieldNames.extension];
       final extension =
           extension0?.toString().trim().nullIfEmpty?.toLowerCase();
       return ModelFileEntry(
@@ -350,22 +350,22 @@ class ModelFileEntry extends _ModelFileEntry {
       final size0 = this.size;
       final extension0 = this.extension?.trim().nullIfEmpty?.toLowerCase();
       final withNulls = <String, dynamic>{
-        ModelFileEntryFields.id.name: id0,
-        ModelFileEntryFields.ref.name: ref0,
-        ModelFileEntryFields.displayName.name: displayName0,
-        ModelFileEntryFields.displayColor.name: displayColor0,
-        ModelFileEntryFields.description.name: description0,
-        ModelFileEntryFields.archivedGReg.name: archivedGReg0,
-        ModelFileEntryFields.createdGReg.name: createdGReg0,
-        ModelFileEntryFields.deletedGReg.name: deletedGReg0,
-        ModelFileEntryFields.updatedGReg.name: updatedGReg0,
-        ModelFileEntryFields.expiresAt.name: expiresAt0,
-        ModelFileEntryFields.name.name: name0,
-        ModelFileEntryFields.downloadUrl.name: downloadUrl0,
-        ModelFileEntryFields.storagePath.name: storagePath0,
-        ModelFileEntryFields.definitionPath.name: definitionPath0,
-        ModelFileEntryFields.size.name: size0,
-        ModelFileEntryFields.extension.name: extension0,
+        ModelFileEntryFieldNames.id: id0,
+        ModelFileEntryFieldNames.ref: ref0,
+        ModelFileEntryFieldNames.displayName: displayName0,
+        ModelFileEntryFieldNames.displayColor: displayColor0,
+        ModelFileEntryFieldNames.description: description0,
+        ModelFileEntryFieldNames.archivedGReg: archivedGReg0,
+        ModelFileEntryFieldNames.createdGReg: createdGReg0,
+        ModelFileEntryFieldNames.deletedGReg: deletedGReg0,
+        ModelFileEntryFieldNames.updatedGReg: updatedGReg0,
+        ModelFileEntryFieldNames.expiresAt: expiresAt0,
+        ModelFileEntryFieldNames.name: name0,
+        ModelFileEntryFieldNames.downloadUrl: downloadUrl0,
+        ModelFileEntryFieldNames.storagePath: storagePath0,
+        ModelFileEntryFieldNames.definitionPath: definitionPath0,
+        ModelFileEntryFieldNames.size: size0,
+        ModelFileEntryFieldNames.extension: extension0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -441,139 +441,31 @@ class ModelFileEntry extends _ModelFileEntry {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelFileEntryFields {
+final class ModelFileEntryFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  archivedGReg(
-    const Field(
-      fieldName: 'archivedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  createdGReg(
-    const Field(
-      fieldName: 'createdGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  deletedGReg(
-    const Field(
-      fieldName: 'deletedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  updatedGReg(
-    const Field(
-      fieldName: 'updatedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  expiresAt(
-    const Field(
-      fieldName: 'expiresAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  name(
-    const Field(
-      fieldName: 'name',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  downloadUrl(
-    const Field(
-      fieldName: 'downloadUrl',
-      fieldType: 'Uri',
-      nullable: true,
-    ),
-  ),
-  storagePath(
-    const Field(
-      fieldName: 'storagePath',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  definitionPath(
-    const Field(
-      fieldName: 'definitionPath',
-      fieldType: 'List<String>',
-      nullable: true,
-    ),
-  ),
-  size(
-    const Field(
-      fieldName: 'size',
-      fieldType: 'int',
-      nullable: true,
-    ),
-  ),
-  extension(
-    const Field(
-      fieldName: 'extension',
-      fieldType: 'LowerCase-String',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
+  static const archivedGReg = 'archivedGReg';
+  static const createdGReg = 'createdGReg';
+  static const deletedGReg = 'deletedGReg';
+  static const updatedGReg = 'updatedGReg';
+  static const expiresAt = 'expiresAt';
+  static const name = 'name';
+  static const downloadUrl = 'downloadUrl';
+  static const storagePath = 'storagePath';
+  static const definitionPath = 'definitionPath';
+  static const size = 'size';
+  static const extension = 'extension';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelFileEntryFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelFileEntryFieldNames._();
 }

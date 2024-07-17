@@ -139,11 +139,11 @@ class ModelLocation extends Model {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final altitude0 = otherData?[ModelLocationFields.altitude.name];
+      final altitude0 = otherData?[ModelLocationFieldNames.altitude];
       final altitude = letDouble(altitude0);
-      final latitude0 = otherData?[ModelLocationFields.latitude.name];
+      final latitude0 = otherData?[ModelLocationFieldNames.latitude];
       final latitude = letDouble(latitude0);
-      final longitude0 = otherData?[ModelLocationFields.longitude.name];
+      final longitude0 = otherData?[ModelLocationFieldNames.longitude];
       final longitude = letDouble(longitude0);
       return ModelLocation(
         altitude: altitude,
@@ -194,9 +194,9 @@ class ModelLocation extends Model {
       final latitude0 = this.latitude;
       final longitude0 = this.longitude;
       final withNulls = <String, dynamic>{
-        ModelLocationFields.altitude.name: altitude0,
-        ModelLocationFields.latitude.name: latitude0,
-        ModelLocationFields.longitude.name: longitude0,
+        ModelLocationFieldNames.altitude: altitude0,
+        ModelLocationFieldNames.latitude: latitude0,
+        ModelLocationFieldNames.longitude: longitude0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -233,48 +233,18 @@ class ModelLocation extends Model {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelLocationFields {
+final class ModelLocationFieldNames {
   //
   //
   //
 
-  altitude(
-    const Field(
-      fieldName: 'altitude',
-      fieldType: 'double',
-      nullable: false,
-    ),
-  ),
-  latitude(
-    const Field(
-      fieldName: 'latitude',
-      fieldType: 'double',
-      nullable: false,
-    ),
-  ),
-  longitude(
-    const Field(
-      fieldName: 'longitude',
-      fieldType: 'double',
-      nullable: false,
-    ),
-  );
+  static const altitude = 'altitude';
+  static const latitude = 'latitude';
+  static const longitude = 'longitude';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelLocationFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelLocationFieldNames._();
 }

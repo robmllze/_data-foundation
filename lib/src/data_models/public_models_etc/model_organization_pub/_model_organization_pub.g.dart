@@ -201,64 +201,64 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelOrganizationPubFields.id.name];
+      final id0 = otherData?[ModelOrganizationPubFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelOrganizationPubFields.ref.name];
+      final ref0 = otherData?[ModelOrganizationPubFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
       final displayName0 =
-          otherData?[ModelOrganizationPubFields.displayName.name];
+          otherData?[ModelOrganizationPubFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
       final displayColor0 =
-          otherData?[ModelOrganizationPubFields.displayColor.name];
+          otherData?[ModelOrganizationPubFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
       final description0 =
-          otherData?[ModelOrganizationPubFields.description.name];
+          otherData?[ModelOrganizationPubFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
       final archivedGReg0 =
-          otherData?[ModelOrganizationPubFields.archivedGReg.name];
+          otherData?[ModelOrganizationPubFieldNames.archivedGReg];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
       final createdGReg0 =
-          otherData?[ModelOrganizationPubFields.createdGReg.name];
+          otherData?[ModelOrganizationPubFieldNames.createdGReg];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
       final deletedGReg0 =
-          otherData?[ModelOrganizationPubFields.deletedGReg.name];
+          otherData?[ModelOrganizationPubFieldNames.deletedGReg];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
       final updatedGReg0 =
-          otherData?[ModelOrganizationPubFields.updatedGReg.name];
+          otherData?[ModelOrganizationPubFieldNames.updatedGReg];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelOrganizationPubFields.expiresAt.name];
+      final expiresAt0 = otherData?[ModelOrganizationPubFieldNames.expiresAt];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final email0 = otherData?[ModelOrganizationPubFields.email.name];
+      final email0 = otherData?[ModelOrganizationPubFieldNames.email];
       final email = () {
         final a = letMap<String, dynamic>(email0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
       final addressEntries0 =
-          otherData?[ModelOrganizationPubFields.addressEntries.name];
+          otherData?[ModelOrganizationPubFieldNames.addressEntries];
       final addressEntries = letMap(addressEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -272,7 +272,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           .nonNulls
           .nullIfEmpty;
       final emailEntries0 =
-          otherData?[ModelOrganizationPubFields.emailEntries.name];
+          otherData?[ModelOrganizationPubFieldNames.emailEntries];
       final emailEntries = letMap(emailEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -286,7 +286,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           .nonNulls
           .nullIfEmpty;
       final fileEntries0 =
-          otherData?[ModelOrganizationPubFields.fileEntries.name];
+          otherData?[ModelOrganizationPubFieldNames.fileEntries];
       final fileEntries = letMap(fileEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -300,7 +300,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           .nonNulls
           .nullIfEmpty;
       final phoneEntries0 =
-          otherData?[ModelOrganizationPubFields.phoneEntries.name];
+          otherData?[ModelOrganizationPubFieldNames.phoneEntries];
       final phoneEntries = letMap(phoneEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -313,8 +313,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final deviceRegs0 =
-          otherData?[ModelOrganizationPubFields.deviceRegs.name];
+      final deviceRegs0 = otherData?[ModelOrganizationPubFieldNames.deviceRegs];
       final deviceRegs = letList(deviceRegs0)
           ?.map(
             (p0) => () {
@@ -443,22 +442,22 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           .nullIfEmpty
           ?.toList();
       final withNulls = <String, dynamic>{
-        ModelOrganizationPubFields.id.name: id0,
-        ModelOrganizationPubFields.ref.name: ref0,
-        ModelOrganizationPubFields.displayName.name: displayName0,
-        ModelOrganizationPubFields.displayColor.name: displayColor0,
-        ModelOrganizationPubFields.description.name: description0,
-        ModelOrganizationPubFields.archivedGReg.name: archivedGReg0,
-        ModelOrganizationPubFields.createdGReg.name: createdGReg0,
-        ModelOrganizationPubFields.deletedGReg.name: deletedGReg0,
-        ModelOrganizationPubFields.updatedGReg.name: updatedGReg0,
-        ModelOrganizationPubFields.expiresAt.name: expiresAt0,
-        ModelOrganizationPubFields.email.name: email0,
-        ModelOrganizationPubFields.addressEntries.name: addressEntries0,
-        ModelOrganizationPubFields.emailEntries.name: emailEntries0,
-        ModelOrganizationPubFields.fileEntries.name: fileEntries0,
-        ModelOrganizationPubFields.phoneEntries.name: phoneEntries0,
-        ModelOrganizationPubFields.deviceRegs.name: deviceRegs0,
+        ModelOrganizationPubFieldNames.id: id0,
+        ModelOrganizationPubFieldNames.ref: ref0,
+        ModelOrganizationPubFieldNames.displayName: displayName0,
+        ModelOrganizationPubFieldNames.displayColor: displayColor0,
+        ModelOrganizationPubFieldNames.description: description0,
+        ModelOrganizationPubFieldNames.archivedGReg: archivedGReg0,
+        ModelOrganizationPubFieldNames.createdGReg: createdGReg0,
+        ModelOrganizationPubFieldNames.deletedGReg: deletedGReg0,
+        ModelOrganizationPubFieldNames.updatedGReg: updatedGReg0,
+        ModelOrganizationPubFieldNames.expiresAt: expiresAt0,
+        ModelOrganizationPubFieldNames.email: email0,
+        ModelOrganizationPubFieldNames.addressEntries: addressEntries0,
+        ModelOrganizationPubFieldNames.emailEntries: emailEntries0,
+        ModelOrganizationPubFieldNames.fileEntries: fileEntries0,
+        ModelOrganizationPubFieldNames.phoneEntries: phoneEntries0,
+        ModelOrganizationPubFieldNames.deviceRegs: deviceRegs0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -535,139 +534,31 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelOrganizationPubFields {
+final class ModelOrganizationPubFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  archivedGReg(
-    const Field(
-      fieldName: 'archivedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  createdGReg(
-    const Field(
-      fieldName: 'createdGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  deletedGReg(
-    const Field(
-      fieldName: 'deletedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  updatedGReg(
-    const Field(
-      fieldName: 'updatedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  expiresAt(
-    const Field(
-      fieldName: 'expiresAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  email(
-    const Field(
-      fieldName: 'email',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  addressEntries(
-    const Field(
-      fieldName: 'addressEntries',
-      fieldType: 'Map<String, ModelAddressEntry>',
-      nullable: true,
-    ),
-  ),
-  emailEntries(
-    const Field(
-      fieldName: 'emailEntries',
-      fieldType: 'Map<String, ModelEmailEntry>',
-      nullable: true,
-    ),
-  ),
-  fileEntries(
-    const Field(
-      fieldName: 'fileEntries',
-      fieldType: 'Map<String, ModelFileEntry>',
-      nullable: true,
-    ),
-  ),
-  phoneEntries(
-    const Field(
-      fieldName: 'phoneEntries',
-      fieldType: 'Map<String, ModelPhoneEntry>',
-      nullable: true,
-    ),
-  ),
-  deviceRegs(
-    const Field(
-      fieldName: 'deviceRegs',
-      fieldType: 'List<ModelDeviceRegistration>',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
+  static const archivedGReg = 'archivedGReg';
+  static const createdGReg = 'createdGReg';
+  static const deletedGReg = 'deletedGReg';
+  static const updatedGReg = 'updatedGReg';
+  static const expiresAt = 'expiresAt';
+  static const email = 'email';
+  static const addressEntries = 'addressEntries';
+  static const emailEntries = 'emailEntries';
+  static const fileEntries = 'fileEntries';
+  static const phoneEntries = 'phoneEntries';
+  static const deviceRegs = 'deviceRegs';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelOrganizationPubFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelOrganizationPubFieldNames._();
 }

@@ -176,47 +176,47 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelDeviceRegistrationFields.id.name];
+      final id0 = otherData?[ModelDeviceRegistrationFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelDeviceRegistrationFields.ref.name];
+      final ref0 = otherData?[ModelDeviceRegistrationFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
       final registeredBy0 =
-          otherData?[ModelDeviceRegistrationFields.registeredBy.name];
+          otherData?[ModelDeviceRegistrationFieldNames.registeredBy];
       final registeredBy = registeredBy0?.toString().trim().nullIfEmpty;
       final registeredAt0 =
-          otherData?[ModelDeviceRegistrationFields.registeredAt.name];
+          otherData?[ModelDeviceRegistrationFieldNames.registeredAt];
       final registeredAt = () {
         final a = registeredAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
       final ipV4Address0 =
-          otherData?[ModelDeviceRegistrationFields.ipV4Address.name];
+          otherData?[ModelDeviceRegistrationFieldNames.ipV4Address];
       final ipV4Address = ipV4Address0?.toString().trim().nullIfEmpty;
       final ipV6Address0 =
-          otherData?[ModelDeviceRegistrationFields.ipV6Address.name];
+          otherData?[ModelDeviceRegistrationFieldNames.ipV6Address];
       final ipV6Address = ipV6Address0?.toString().trim().nullIfEmpty;
-      final location0 = otherData?[ModelDeviceRegistrationFields.location.name];
+      final location0 = otherData?[ModelDeviceRegistrationFieldNames.location];
       final location = () {
         final a = letMap<String, dynamic>(location0);
         return a != null ? ModelLocation.fromJson(a) : null;
       }();
-      final enabled0 = otherData?[ModelDeviceRegistrationFields.enabled.name];
+      final enabled0 = otherData?[ModelDeviceRegistrationFieldNames.enabled];
       final enabled = letBool(enabled0);
       final lastLoggedInAt0 =
-          otherData?[ModelDeviceRegistrationFields.lastLoggedInAt.name];
+          otherData?[ModelDeviceRegistrationFieldNames.lastLoggedInAt];
       final lastLoggedInAt = () {
         final a = lastLoggedInAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
       final notificationToken0 =
-          otherData?[ModelDeviceRegistrationFields.notificationToken.name];
+          otherData?[ModelDeviceRegistrationFieldNames.notificationToken];
       final notificationToken =
           notificationToken0?.toString().trim().nullIfEmpty;
       final deviceInfo0 =
-          otherData?[ModelDeviceRegistrationFields.deviceInfo.name];
+          otherData?[ModelDeviceRegistrationFieldNames.deviceInfo];
       final deviceInfo = () {
         final a = letMap<String, dynamic>(deviceInfo0);
         return a != null ? ModelBasicDeviceInfo.fromJson(a) : null;
@@ -286,18 +286,17 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
       final notificationToken0 = this.notificationToken?.trim().nullIfEmpty;
       final deviceInfo0 = this.deviceInfo?.toJson();
       final withNulls = <String, dynamic>{
-        ModelDeviceRegistrationFields.id.name: id0,
-        ModelDeviceRegistrationFields.ref.name: ref0,
-        ModelDeviceRegistrationFields.registeredBy.name: registeredBy0,
-        ModelDeviceRegistrationFields.registeredAt.name: registeredAt0,
-        ModelDeviceRegistrationFields.ipV4Address.name: ipV4Address0,
-        ModelDeviceRegistrationFields.ipV6Address.name: ipV6Address0,
-        ModelDeviceRegistrationFields.location.name: location0,
-        ModelDeviceRegistrationFields.enabled.name: enabled0,
-        ModelDeviceRegistrationFields.lastLoggedInAt.name: lastLoggedInAt0,
-        ModelDeviceRegistrationFields.notificationToken.name:
-            notificationToken0,
-        ModelDeviceRegistrationFields.deviceInfo.name: deviceInfo0,
+        ModelDeviceRegistrationFieldNames.id: id0,
+        ModelDeviceRegistrationFieldNames.ref: ref0,
+        ModelDeviceRegistrationFieldNames.registeredBy: registeredBy0,
+        ModelDeviceRegistrationFieldNames.registeredAt: registeredAt0,
+        ModelDeviceRegistrationFieldNames.ipV4Address: ipV4Address0,
+        ModelDeviceRegistrationFieldNames.ipV6Address: ipV6Address0,
+        ModelDeviceRegistrationFieldNames.location: location0,
+        ModelDeviceRegistrationFieldNames.enabled: enabled0,
+        ModelDeviceRegistrationFieldNames.lastLoggedInAt: lastLoggedInAt0,
+        ModelDeviceRegistrationFieldNames.notificationToken: notificationToken0,
+        ModelDeviceRegistrationFieldNames.deviceInfo: deviceInfo0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -358,104 +357,26 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelDeviceRegistrationFields {
+final class ModelDeviceRegistrationFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  registeredBy(
-    const Field(
-      fieldName: 'registeredBy',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  registeredAt(
-    const Field(
-      fieldName: 'registeredAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  ipV4Address(
-    const Field(
-      fieldName: 'ipV4Address',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ipV6Address(
-    const Field(
-      fieldName: 'ipV6Address',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  location(
-    const Field(
-      fieldName: 'location',
-      fieldType: 'ModelLocation',
-      nullable: true,
-    ),
-  ),
-  enabled(
-    const Field(
-      fieldName: 'enabled',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  ),
-  lastLoggedInAt(
-    const Field(
-      fieldName: 'lastLoggedInAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  notificationToken(
-    const Field(
-      fieldName: 'notificationToken',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  deviceInfo(
-    const Field(
-      fieldName: 'deviceInfo',
-      fieldType: 'ModelBasicDeviceInfo',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const registeredBy = 'registeredBy';
+  static const registeredAt = 'registeredAt';
+  static const ipV4Address = 'ipV4Address';
+  static const ipV6Address = 'ipV6Address';
+  static const location = 'location';
+  static const enabled = 'enabled';
+  static const lastLoggedInAt = 'lastLoggedInAt';
+  static const notificationToken = 'notificationToken';
+  static const deviceInfo = 'deviceInfo';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelDeviceRegistrationFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelDeviceRegistrationFieldNames._();
 }

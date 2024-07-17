@@ -176,51 +176,51 @@ class ModelEmailEntry extends _ModelEmailEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelEmailEntryFields.id.name];
+      final id0 = otherData?[ModelEmailEntryFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelEmailEntryFields.ref.name];
+      final ref0 = otherData?[ModelEmailEntryFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelEmailEntryFields.displayName.name];
+      final displayName0 = otherData?[ModelEmailEntryFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelEmailEntryFields.displayColor.name];
+      final displayColor0 = otherData?[ModelEmailEntryFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelEmailEntryFields.description.name];
+      final description0 = otherData?[ModelEmailEntryFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelEmailEntryFields.archivedGReg.name];
+      final archivedGReg0 = otherData?[ModelEmailEntryFieldNames.archivedGReg];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelEmailEntryFields.createdGReg.name];
+      final createdGReg0 = otherData?[ModelEmailEntryFieldNames.createdGReg];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelEmailEntryFields.deletedGReg.name];
+      final deletedGReg0 = otherData?[ModelEmailEntryFieldNames.deletedGReg];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelEmailEntryFields.updatedGReg.name];
+      final updatedGReg0 = otherData?[ModelEmailEntryFieldNames.updatedGReg];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelEmailEntryFields.expiresAt.name];
+      final expiresAt0 = otherData?[ModelEmailEntryFieldNames.expiresAt];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final email0 = otherData?[ModelEmailEntryFields.email.name];
+      final email0 = otherData?[ModelEmailEntryFieldNames.email];
       final email = () {
         final a = letMap<String, dynamic>(email0);
         return a != null ? ModelQueryable.fromJson(a) : null;
@@ -290,17 +290,17 @@ class ModelEmailEntry extends _ModelEmailEntry {
       final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
       final email0 = this.email?.toJson();
       final withNulls = <String, dynamic>{
-        ModelEmailEntryFields.id.name: id0,
-        ModelEmailEntryFields.ref.name: ref0,
-        ModelEmailEntryFields.displayName.name: displayName0,
-        ModelEmailEntryFields.displayColor.name: displayColor0,
-        ModelEmailEntryFields.description.name: description0,
-        ModelEmailEntryFields.archivedGReg.name: archivedGReg0,
-        ModelEmailEntryFields.createdGReg.name: createdGReg0,
-        ModelEmailEntryFields.deletedGReg.name: deletedGReg0,
-        ModelEmailEntryFields.updatedGReg.name: updatedGReg0,
-        ModelEmailEntryFields.expiresAt.name: expiresAt0,
-        ModelEmailEntryFields.email.name: email0,
+        ModelEmailEntryFieldNames.id: id0,
+        ModelEmailEntryFieldNames.ref: ref0,
+        ModelEmailEntryFieldNames.displayName: displayName0,
+        ModelEmailEntryFieldNames.displayColor: displayColor0,
+        ModelEmailEntryFieldNames.description: description0,
+        ModelEmailEntryFieldNames.archivedGReg: archivedGReg0,
+        ModelEmailEntryFieldNames.createdGReg: createdGReg0,
+        ModelEmailEntryFieldNames.deletedGReg: deletedGReg0,
+        ModelEmailEntryFieldNames.updatedGReg: updatedGReg0,
+        ModelEmailEntryFieldNames.expiresAt: expiresAt0,
+        ModelEmailEntryFieldNames.email: email0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -361,104 +361,26 @@ class ModelEmailEntry extends _ModelEmailEntry {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelEmailEntryFields {
+final class ModelEmailEntryFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  archivedGReg(
-    const Field(
-      fieldName: 'archivedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  createdGReg(
-    const Field(
-      fieldName: 'createdGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  deletedGReg(
-    const Field(
-      fieldName: 'deletedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  updatedGReg(
-    const Field(
-      fieldName: 'updatedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  expiresAt(
-    const Field(
-      fieldName: 'expiresAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  email(
-    const Field(
-      fieldName: 'email',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
+  static const archivedGReg = 'archivedGReg';
+  static const createdGReg = 'createdGReg';
+  static const deletedGReg = 'deletedGReg';
+  static const updatedGReg = 'updatedGReg';
+  static const expiresAt = 'expiresAt';
+  static const email = 'email';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelEmailEntryFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelEmailEntryFieldNames._();
 }

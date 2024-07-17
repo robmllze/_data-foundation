@@ -133,12 +133,12 @@ class ModelDataCollection extends _ModelDataCollection {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final ref0 = otherData?[ModelDataCollectionFields.ref.name];
+      final ref0 = otherData?[ModelDataCollectionFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final documents0 = otherData?[ModelDataCollectionFields.documents.name];
+      final documents0 = otherData?[ModelDataCollectionFieldNames.documents];
       final documents = letSet(documents0)
           ?.map(
             (p0) => () {
@@ -203,8 +203,8 @@ class ModelDataCollection extends _ModelDataCollection {
           .nullIfEmpty
           ?.toList();
       final withNulls = <String, dynamic>{
-        ModelDataCollectionFields.ref.name: ref0,
-        ModelDataCollectionFields.documents.name: documents0,
+        ModelDataCollectionFieldNames.ref: ref0,
+        ModelDataCollectionFieldNames.documents: documents0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -238,41 +238,17 @@ class ModelDataCollection extends _ModelDataCollection {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelDataCollectionFields {
+final class ModelDataCollectionFieldNames {
   //
   //
   //
 
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: false,
-    ),
-  ),
-  documents(
-    const Field(
-      fieldName: 'documents',
-      fieldType: 'Set<DataRefModel>',
-      nullable: true,
-    ),
-  );
+  static const ref = 'ref';
+  static const documents = 'documents';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelDataCollectionFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelDataCollectionFieldNames._();
 }

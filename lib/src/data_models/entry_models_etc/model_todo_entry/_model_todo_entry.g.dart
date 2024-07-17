@@ -176,51 +176,51 @@ class ModelTodoEntry extends _ModelTodoEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelTodoEntryFields.id.name];
+      final id0 = otherData?[ModelTodoEntryFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelTodoEntryFields.ref.name];
+      final ref0 = otherData?[ModelTodoEntryFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelTodoEntryFields.displayName.name];
+      final displayName0 = otherData?[ModelTodoEntryFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelTodoEntryFields.displayColor.name];
+      final displayColor0 = otherData?[ModelTodoEntryFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelTodoEntryFields.description.name];
+      final description0 = otherData?[ModelTodoEntryFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelTodoEntryFields.archivedGReg.name];
+      final archivedGReg0 = otherData?[ModelTodoEntryFieldNames.archivedGReg];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelTodoEntryFields.createdGReg.name];
+      final createdGReg0 = otherData?[ModelTodoEntryFieldNames.createdGReg];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelTodoEntryFields.deletedGReg.name];
+      final deletedGReg0 = otherData?[ModelTodoEntryFieldNames.deletedGReg];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelTodoEntryFields.updatedGReg.name];
+      final updatedGReg0 = otherData?[ModelTodoEntryFieldNames.updatedGReg];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelTodoEntryFields.expiresAt.name];
+      final expiresAt0 = otherData?[ModelTodoEntryFieldNames.expiresAt];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final status0 = otherData?[ModelTodoEntryFields.status.name];
+      final status0 = otherData?[ModelTodoEntryFieldNames.status];
       final status = letMap(status0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -307,17 +307,17 @@ class ModelTodoEntry extends _ModelTodoEntry {
           .nonNulls
           .nullIfEmpty;
       final withNulls = <String, dynamic>{
-        ModelTodoEntryFields.id.name: id0,
-        ModelTodoEntryFields.ref.name: ref0,
-        ModelTodoEntryFields.displayName.name: displayName0,
-        ModelTodoEntryFields.displayColor.name: displayColor0,
-        ModelTodoEntryFields.description.name: description0,
-        ModelTodoEntryFields.archivedGReg.name: archivedGReg0,
-        ModelTodoEntryFields.createdGReg.name: createdGReg0,
-        ModelTodoEntryFields.deletedGReg.name: deletedGReg0,
-        ModelTodoEntryFields.updatedGReg.name: updatedGReg0,
-        ModelTodoEntryFields.expiresAt.name: expiresAt0,
-        ModelTodoEntryFields.status.name: status0,
+        ModelTodoEntryFieldNames.id: id0,
+        ModelTodoEntryFieldNames.ref: ref0,
+        ModelTodoEntryFieldNames.displayName: displayName0,
+        ModelTodoEntryFieldNames.displayColor: displayColor0,
+        ModelTodoEntryFieldNames.description: description0,
+        ModelTodoEntryFieldNames.archivedGReg: archivedGReg0,
+        ModelTodoEntryFieldNames.createdGReg: createdGReg0,
+        ModelTodoEntryFieldNames.deletedGReg: deletedGReg0,
+        ModelTodoEntryFieldNames.updatedGReg: updatedGReg0,
+        ModelTodoEntryFieldNames.expiresAt: expiresAt0,
+        ModelTodoEntryFieldNames.status: status0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -378,104 +378,26 @@ class ModelTodoEntry extends _ModelTodoEntry {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelTodoEntryFields {
+final class ModelTodoEntryFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  archivedGReg(
-    const Field(
-      fieldName: 'archivedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  createdGReg(
-    const Field(
-      fieldName: 'createdGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  deletedGReg(
-    const Field(
-      fieldName: 'deletedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  updatedGReg(
-    const Field(
-      fieldName: 'updatedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  expiresAt(
-    const Field(
-      fieldName: 'expiresAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  status(
-    const Field(
-      fieldName: 'status',
-      fieldType: 'Map<DateTime, String>',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
+  static const archivedGReg = 'archivedGReg';
+  static const createdGReg = 'createdGReg';
+  static const deletedGReg = 'deletedGReg';
+  static const updatedGReg = 'updatedGReg';
+  static const expiresAt = 'expiresAt';
+  static const status = 'status';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelTodoEntryFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelTodoEntryFieldNames._();
 }

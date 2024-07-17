@@ -142,14 +142,14 @@ class ModelMessageContent extends Model {
   ) {
     try {
       final relationshipId0 =
-          otherData?[ModelMessageContentFields.relationshipId.name];
+          otherData?[ModelMessageContentFieldNames.relationshipId];
       final relationshipId = relationshipId0?.toString().trim().nullIfEmpty;
-      final senderPid0 = otherData?[ModelMessageContentFields.senderPid.name];
+      final senderPid0 = otherData?[ModelMessageContentFieldNames.senderPid];
       final senderPid = senderPid0?.toString().trim().nullIfEmpty;
       final receiverPid0 =
-          otherData?[ModelMessageContentFields.receiverPid.name];
+          otherData?[ModelMessageContentFieldNames.receiverPid];
       final receiverPid = receiverPid0?.toString().trim().nullIfEmpty;
-      final message0 = otherData?[ModelMessageContentFields.message.name];
+      final message0 = otherData?[ModelMessageContentFieldNames.message];
       final message = message0?.toString().trim().nullIfEmpty;
       return ModelMessageContent(
         relationshipId: relationshipId,
@@ -202,10 +202,10 @@ class ModelMessageContent extends Model {
       final receiverPid0 = this.receiverPid?.trim().nullIfEmpty;
       final message0 = this.message?.trim().nullIfEmpty;
       final withNulls = <String, dynamic>{
-        ModelMessageContentFields.relationshipId.name: relationshipId0,
-        ModelMessageContentFields.senderPid.name: senderPid0,
-        ModelMessageContentFields.receiverPid.name: receiverPid0,
-        ModelMessageContentFields.message.name: message0,
+        ModelMessageContentFieldNames.relationshipId: relationshipId0,
+        ModelMessageContentFieldNames.senderPid: senderPid0,
+        ModelMessageContentFieldNames.receiverPid: receiverPid0,
+        ModelMessageContentFieldNames.message: message0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -245,55 +245,19 @@ class ModelMessageContent extends Model {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelMessageContentFields {
+final class ModelMessageContentFieldNames {
   //
   //
   //
 
-  relationshipId(
-    const Field(
-      fieldName: 'relationshipId',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  senderPid(
-    const Field(
-      fieldName: 'senderPid',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  receiverPid(
-    const Field(
-      fieldName: 'receiverPid',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  message(
-    const Field(
-      fieldName: 'message',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  );
+  static const relationshipId = 'relationshipId';
+  static const senderPid = 'senderPid';
+  static const receiverPid = 'receiverPid';
+  static const message = 'message';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelMessageContentFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelMessageContentFieldNames._();
 }

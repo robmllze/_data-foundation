@@ -181,55 +181,55 @@ class ModelOrganization extends _ModelOrganization {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelOrganizationFields.id.name];
+      final id0 = otherData?[ModelOrganizationFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelOrganizationFields.ref.name];
+      final ref0 = otherData?[ModelOrganizationFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelOrganizationFields.displayName.name];
+      final displayName0 = otherData?[ModelOrganizationFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
       final displayColor0 =
-          otherData?[ModelOrganizationFields.displayColor.name];
+          otherData?[ModelOrganizationFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelOrganizationFields.description.name];
+      final description0 = otherData?[ModelOrganizationFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
       final archivedGReg0 =
-          otherData?[ModelOrganizationFields.archivedGReg.name];
+          otherData?[ModelOrganizationFieldNames.archivedGReg];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelOrganizationFields.createdGReg.name];
+      final createdGReg0 = otherData?[ModelOrganizationFieldNames.createdGReg];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelOrganizationFields.deletedGReg.name];
+      final deletedGReg0 = otherData?[ModelOrganizationFieldNames.deletedGReg];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelOrganizationFields.updatedGReg.name];
+      final updatedGReg0 = otherData?[ModelOrganizationFieldNames.updatedGReg];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelOrganizationFields.expiresAt.name];
+      final expiresAt0 = otherData?[ModelOrganizationFieldNames.expiresAt];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final pid0 = otherData?[ModelOrganizationFields.pid.name];
+      final pid0 = otherData?[ModelOrganizationFieldNames.pid];
       final pid = pid0?.toString().trim().nullIfEmpty;
-      final seed0 = otherData?[ModelOrganizationFields.seed.name];
+      final seed0 = otherData?[ModelOrganizationFieldNames.seed];
       final seed = seed0?.toString().trim().nullIfEmpty;
       return ModelOrganization(
         id: id,
@@ -298,18 +298,18 @@ class ModelOrganization extends _ModelOrganization {
       final pid0 = this.pid?.trim().nullIfEmpty;
       final seed0 = this.seed?.trim().nullIfEmpty;
       final withNulls = <String, dynamic>{
-        ModelOrganizationFields.id.name: id0,
-        ModelOrganizationFields.ref.name: ref0,
-        ModelOrganizationFields.displayName.name: displayName0,
-        ModelOrganizationFields.displayColor.name: displayColor0,
-        ModelOrganizationFields.description.name: description0,
-        ModelOrganizationFields.archivedGReg.name: archivedGReg0,
-        ModelOrganizationFields.createdGReg.name: createdGReg0,
-        ModelOrganizationFields.deletedGReg.name: deletedGReg0,
-        ModelOrganizationFields.updatedGReg.name: updatedGReg0,
-        ModelOrganizationFields.expiresAt.name: expiresAt0,
-        ModelOrganizationFields.pid.name: pid0,
-        ModelOrganizationFields.seed.name: seed0,
+        ModelOrganizationFieldNames.id: id0,
+        ModelOrganizationFieldNames.ref: ref0,
+        ModelOrganizationFieldNames.displayName: displayName0,
+        ModelOrganizationFieldNames.displayColor: displayColor0,
+        ModelOrganizationFieldNames.description: description0,
+        ModelOrganizationFieldNames.archivedGReg: archivedGReg0,
+        ModelOrganizationFieldNames.createdGReg: createdGReg0,
+        ModelOrganizationFieldNames.deletedGReg: deletedGReg0,
+        ModelOrganizationFieldNames.updatedGReg: updatedGReg0,
+        ModelOrganizationFieldNames.expiresAt: expiresAt0,
+        ModelOrganizationFieldNames.pid: pid0,
+        ModelOrganizationFieldNames.seed: seed0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -373,111 +373,27 @@ class ModelOrganization extends _ModelOrganization {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelOrganizationFields {
+final class ModelOrganizationFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  archivedGReg(
-    const Field(
-      fieldName: 'archivedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  createdGReg(
-    const Field(
-      fieldName: 'createdGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  deletedGReg(
-    const Field(
-      fieldName: 'deletedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  updatedGReg(
-    const Field(
-      fieldName: 'updatedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  expiresAt(
-    const Field(
-      fieldName: 'expiresAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  pid(
-    const Field(
-      fieldName: 'pid',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  seed(
-    const Field(
-      fieldName: 'seed',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
+  static const archivedGReg = 'archivedGReg';
+  static const createdGReg = 'createdGReg';
+  static const deletedGReg = 'deletedGReg';
+  static const updatedGReg = 'updatedGReg';
+  static const expiresAt = 'expiresAt';
+  static const pid = 'pid';
+  static const seed = 'seed';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelOrganizationFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelOrganizationFieldNames._();
 }

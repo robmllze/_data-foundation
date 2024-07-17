@@ -201,68 +201,68 @@ class ModelInvitation extends _ModelInvitation {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelInvitationFields.id.name];
+      final id0 = otherData?[ModelInvitationFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelInvitationFields.ref.name];
+      final ref0 = otherData?[ModelInvitationFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelInvitationFields.displayName.name];
+      final displayName0 = otherData?[ModelInvitationFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelInvitationFields.displayColor.name];
+      final displayColor0 = otherData?[ModelInvitationFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelInvitationFields.description.name];
+      final description0 = otherData?[ModelInvitationFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelInvitationFields.archivedGReg.name];
+      final archivedGReg0 = otherData?[ModelInvitationFieldNames.archivedGReg];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelInvitationFields.createdGReg.name];
+      final createdGReg0 = otherData?[ModelInvitationFieldNames.createdGReg];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelInvitationFields.deletedGReg.name];
+      final deletedGReg0 = otherData?[ModelInvitationFieldNames.deletedGReg];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelInvitationFields.updatedGReg.name];
+      final updatedGReg0 = otherData?[ModelInvitationFieldNames.updatedGReg];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelInvitationFields.expiresAt.name];
+      final expiresAt0 = otherData?[ModelInvitationFieldNames.expiresAt];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final contentType0 = otherData?[ModelInvitationFields.contentType.name];
+      final contentType0 = otherData?[ModelInvitationFieldNames.contentType];
       final contentType = () {
         final a = letMap<String, dynamic>(contentType0);
         return a != null ? ModelEnum.fromJson(a) : null;
       }();
-      final content0 = otherData?[ModelInvitationFields.content.name];
+      final content0 = otherData?[ModelInvitationFieldNames.content];
       final content = () {
         final a = letMap<String, dynamic>(content0);
         return a != null ? Model.fromJson(a) : null;
       }();
       final invitationLink0 =
-          otherData?[ModelInvitationFields.invitationLink.name];
+          otherData?[ModelInvitationFieldNames.invitationLink];
       final invitationLink = () {
         final a = invitationLink0;
         return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
       }();
       final inviteeEmails0 =
-          otherData?[ModelInvitationFields.inviteeEmails.name];
+          otherData?[ModelInvitationFieldNames.inviteeEmails];
       final inviteeEmails = letSet(inviteeEmails0)
           ?.map(
             (p0) => () {
@@ -274,7 +274,7 @@ class ModelInvitation extends _ModelInvitation {
           .nullIfEmpty
           ?.toSet();
       final inviteeAcceptedEmails0 =
-          otherData?[ModelInvitationFields.inviteeAcceptedEmails.name];
+          otherData?[ModelInvitationFieldNames.inviteeAcceptedEmails];
       final inviteeAcceptedEmails = letSet(inviteeAcceptedEmails0)
           ?.map(
             (p0) => () {
@@ -286,7 +286,7 @@ class ModelInvitation extends _ModelInvitation {
           .nullIfEmpty
           ?.toSet();
       final inviteeRejectedEmails0 =
-          otherData?[ModelInvitationFields.inviteeRejectedEmails.name];
+          otherData?[ModelInvitationFieldNames.inviteeRejectedEmails];
       final inviteeRejectedEmails = letSet(inviteeRejectedEmails0)
           ?.map(
             (p0) => () {
@@ -393,24 +393,22 @@ class ModelInvitation extends _ModelInvitation {
           .nullIfEmpty
           ?.toList();
       final withNulls = <String, dynamic>{
-        ModelInvitationFields.id.name: id0,
-        ModelInvitationFields.ref.name: ref0,
-        ModelInvitationFields.displayName.name: displayName0,
-        ModelInvitationFields.displayColor.name: displayColor0,
-        ModelInvitationFields.description.name: description0,
-        ModelInvitationFields.archivedGReg.name: archivedGReg0,
-        ModelInvitationFields.createdGReg.name: createdGReg0,
-        ModelInvitationFields.deletedGReg.name: deletedGReg0,
-        ModelInvitationFields.updatedGReg.name: updatedGReg0,
-        ModelInvitationFields.expiresAt.name: expiresAt0,
-        ModelInvitationFields.contentType.name: contentType0,
-        ModelInvitationFields.content.name: content0,
-        ModelInvitationFields.invitationLink.name: invitationLink0,
-        ModelInvitationFields.inviteeEmails.name: inviteeEmails0,
-        ModelInvitationFields.inviteeAcceptedEmails.name:
-            inviteeAcceptedEmails0,
-        ModelInvitationFields.inviteeRejectedEmails.name:
-            inviteeRejectedEmails0,
+        ModelInvitationFieldNames.id: id0,
+        ModelInvitationFieldNames.ref: ref0,
+        ModelInvitationFieldNames.displayName: displayName0,
+        ModelInvitationFieldNames.displayColor: displayColor0,
+        ModelInvitationFieldNames.description: description0,
+        ModelInvitationFieldNames.archivedGReg: archivedGReg0,
+        ModelInvitationFieldNames.createdGReg: createdGReg0,
+        ModelInvitationFieldNames.deletedGReg: deletedGReg0,
+        ModelInvitationFieldNames.updatedGReg: updatedGReg0,
+        ModelInvitationFieldNames.expiresAt: expiresAt0,
+        ModelInvitationFieldNames.contentType: contentType0,
+        ModelInvitationFieldNames.content: content0,
+        ModelInvitationFieldNames.invitationLink: invitationLink0,
+        ModelInvitationFieldNames.inviteeEmails: inviteeEmails0,
+        ModelInvitationFieldNames.inviteeAcceptedEmails: inviteeAcceptedEmails0,
+        ModelInvitationFieldNames.inviteeRejectedEmails: inviteeRejectedEmails0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -488,139 +486,31 @@ class ModelInvitation extends _ModelInvitation {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelInvitationFields {
+final class ModelInvitationFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  archivedGReg(
-    const Field(
-      fieldName: 'archivedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  createdGReg(
-    const Field(
-      fieldName: 'createdGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  deletedGReg(
-    const Field(
-      fieldName: 'deletedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  updatedGReg(
-    const Field(
-      fieldName: 'updatedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  expiresAt(
-    const Field(
-      fieldName: 'expiresAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  contentType(
-    const Field(
-      fieldName: 'contentType',
-      fieldType: 'ModelEnum',
-      nullable: true,
-    ),
-  ),
-  content(
-    const Field(
-      fieldName: 'content',
-      fieldType: 'Model',
-      nullable: true,
-    ),
-  ),
-  invitationLink(
-    const Field(
-      fieldName: 'invitationLink',
-      fieldType: 'Uri',
-      nullable: true,
-    ),
-  ),
-  inviteeEmails(
-    const Field(
-      fieldName: 'inviteeEmails',
-      fieldType: 'Set<ModelQueryable>',
-      nullable: true,
-    ),
-  ),
-  inviteeAcceptedEmails(
-    const Field(
-      fieldName: 'inviteeAcceptedEmails',
-      fieldType: 'Set<ModelQueryable>',
-      nullable: true,
-    ),
-  ),
-  inviteeRejectedEmails(
-    const Field(
-      fieldName: 'inviteeRejectedEmails',
-      fieldType: 'Set<ModelQueryable>',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
+  static const archivedGReg = 'archivedGReg';
+  static const createdGReg = 'createdGReg';
+  static const deletedGReg = 'deletedGReg';
+  static const updatedGReg = 'updatedGReg';
+  static const expiresAt = 'expiresAt';
+  static const contentType = 'contentType';
+  static const content = 'content';
+  static const invitationLink = 'invitationLink';
+  static const inviteeEmails = 'inviteeEmails';
+  static const inviteeAcceptedEmails = 'inviteeAcceptedEmails';
+  static const inviteeRejectedEmails = 'inviteeRejectedEmails';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelInvitationFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelInvitationFieldNames._();
 }

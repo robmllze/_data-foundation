@@ -127,7 +127,7 @@ class ModelCacheInformation extends _ModelCacheInformation {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final files0 = otherData?[ModelCacheInformationFields.files.name];
+      final files0 = otherData?[ModelCacheInformationFieldNames.files];
       final files = letSet(files0)
           ?.map(
             (p0) => () {
@@ -190,7 +190,7 @@ class ModelCacheInformation extends _ModelCacheInformation {
           .nullIfEmpty
           ?.toList();
       final withNulls = <String, dynamic>{
-        ModelCacheInformationFields.files.name: files0,
+        ModelCacheInformationFieldNames.files: files0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -221,34 +221,16 @@ class ModelCacheInformation extends _ModelCacheInformation {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelCacheInformationFields {
+final class ModelCacheInformationFieldNames {
   //
   //
   //
 
-  files(
-    const Field(
-      fieldName: 'files',
-      fieldType: 'Set<ModelFileEntry>',
-      nullable: false,
-    ),
-  );
+  static const files = 'files';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelCacheInformationFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelCacheInformationFieldNames._();
 }

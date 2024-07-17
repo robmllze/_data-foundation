@@ -127,7 +127,7 @@ class ModelEnum extends _ModelEnum {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final name0 = otherData?[ModelEnumFields.name.name];
+      final name0 = otherData?[ModelEnumFieldNames.name];
       final name = name0?.toString().trim().nullIfEmpty;
       return ModelEnum(
         name: name,
@@ -174,7 +174,7 @@ class ModelEnum extends _ModelEnum {
     try {
       final name0 = this.name?.trim().nullIfEmpty;
       final withNulls = <String, dynamic>{
-        ModelEnumFields.name.name: name0,
+        ModelEnumFieldNames.name: name0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -205,34 +205,16 @@ class ModelEnum extends _ModelEnum {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelEnumFields {
+final class ModelEnumFieldNames {
   //
   //
   //
 
-  name(
-    const Field(
-      fieldName: 'name',
-      fieldType: 'String',
-      nullable: false,
-    ),
-  );
+  static const name = 'name';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelEnumFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelEnumFieldNames._();
 }

@@ -146,24 +146,24 @@ class ModelDisplay extends _ModelDisplay {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelDisplayFields.id.name];
+      final id0 = otherData?[ModelDisplayFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelDisplayFields.ref.name];
+      final ref0 = otherData?[ModelDisplayFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelDisplayFields.displayName.name];
+      final displayName0 = otherData?[ModelDisplayFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelDisplayFields.displayColor.name];
+      final displayColor0 = otherData?[ModelDisplayFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelDisplayFields.description.name];
+      final description0 = otherData?[ModelDisplayFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
       return ModelDisplay(
         id: id,
@@ -218,11 +218,11 @@ class ModelDisplay extends _ModelDisplay {
       final displayColor0 = this.displayColor?.value;
       final description0 = this.description?.trim().nullIfEmpty;
       final withNulls = <String, dynamic>{
-        ModelDisplayFields.id.name: id0,
-        ModelDisplayFields.ref.name: ref0,
-        ModelDisplayFields.displayName.name: displayName0,
-        ModelDisplayFields.displayColor.name: displayColor0,
-        ModelDisplayFields.description.name: description0,
+        ModelDisplayFieldNames.id: id0,
+        ModelDisplayFieldNames.ref: ref0,
+        ModelDisplayFieldNames.displayName: displayName0,
+        ModelDisplayFieldNames.displayColor: displayColor0,
+        ModelDisplayFieldNames.description: description0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -265,62 +265,20 @@ class ModelDisplay extends _ModelDisplay {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelDisplayFields {
+final class ModelDisplayFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelDisplayFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelDisplayFieldNames._();
 }

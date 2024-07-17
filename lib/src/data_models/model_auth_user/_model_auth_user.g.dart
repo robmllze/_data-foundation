@@ -161,24 +161,24 @@ class ModelAuthUser extends _ModelAuthUser {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final ref0 = otherData?[ModelAuthUserFields.ref.name];
+      final ref0 = otherData?[ModelAuthUserFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final id0 = otherData?[ModelAuthUserFields.id.name];
+      final id0 = otherData?[ModelAuthUserFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final email0 = otherData?[ModelAuthUserFields.email.name];
+      final email0 = otherData?[ModelAuthUserFieldNames.email];
       final email = email0?.toString().trim().nullIfEmpty;
-      final password0 = otherData?[ModelAuthUserFields.password.name];
+      final password0 = otherData?[ModelAuthUserFieldNames.password];
       final password = password0?.toString().trim().nullIfEmpty;
-      final idToken0 = otherData?[ModelAuthUserFields.idToken.name];
+      final idToken0 = otherData?[ModelAuthUserFieldNames.idToken];
       final idToken = idToken0?.toString().trim().nullIfEmpty;
-      final displayName0 = otherData?[ModelAuthUserFields.displayName.name];
+      final displayName0 = otherData?[ModelAuthUserFieldNames.displayName];
       final displayName = displayName0?.toString().trim().nullIfEmpty;
-      final photoUrl0 = otherData?[ModelAuthUserFields.photoUrl.name];
+      final photoUrl0 = otherData?[ModelAuthUserFieldNames.photoUrl];
       final photoUrl = photoUrl0?.toString().trim().nullIfEmpty;
-      final emailVerified0 = otherData?[ModelAuthUserFields.emailVerified.name];
+      final emailVerified0 = otherData?[ModelAuthUserFieldNames.emailVerified];
       final emailVerified = letBool(emailVerified0);
       return ModelAuthUser(
         ref: ref,
@@ -239,14 +239,14 @@ class ModelAuthUser extends _ModelAuthUser {
       final photoUrl0 = this.photoUrl?.trim().nullIfEmpty;
       final emailVerified0 = this.emailVerified;
       final withNulls = <String, dynamic>{
-        ModelAuthUserFields.ref.name: ref0,
-        ModelAuthUserFields.id.name: id0,
-        ModelAuthUserFields.email.name: email0,
-        ModelAuthUserFields.password.name: password0,
-        ModelAuthUserFields.idToken.name: idToken0,
-        ModelAuthUserFields.displayName.name: displayName0,
-        ModelAuthUserFields.photoUrl.name: photoUrl0,
-        ModelAuthUserFields.emailVerified.name: emailVerified0,
+        ModelAuthUserFieldNames.ref: ref0,
+        ModelAuthUserFieldNames.id: id0,
+        ModelAuthUserFieldNames.email: email0,
+        ModelAuthUserFieldNames.password: password0,
+        ModelAuthUserFieldNames.idToken: idToken0,
+        ModelAuthUserFieldNames.displayName: displayName0,
+        ModelAuthUserFieldNames.photoUrl: photoUrl0,
+        ModelAuthUserFieldNames.emailVerified: emailVerified0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -298,83 +298,23 @@ class ModelAuthUser extends _ModelAuthUser {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelAuthUserFields {
+final class ModelAuthUserFieldNames {
   //
   //
   //
 
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  email(
-    const Field(
-      fieldName: 'email',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  password(
-    const Field(
-      fieldName: 'password',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  idToken(
-    const Field(
-      fieldName: 'idToken',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  photoUrl(
-    const Field(
-      fieldName: 'photoUrl',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  emailVerified(
-    const Field(
-      fieldName: 'emailVerified',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  );
+  static const ref = 'ref';
+  static const id = 'id';
+  static const email = 'email';
+  static const password = 'password';
+  static const idToken = 'idToken';
+  static const displayName = 'displayName';
+  static const photoUrl = 'photoUrl';
+  static const emailVerified = 'emailVerified';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelAuthUserFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelAuthUserFieldNames._();
 }

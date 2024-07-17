@@ -133,10 +133,10 @@ class ModelQueryable extends _ModelQueryable {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final value0 = otherData?[ModelQueryableFields.value.name];
+      final value0 = otherData?[ModelQueryableFieldNames.value];
       final value = value0?.toString().trim().nullIfEmpty;
       final queryableValue0 =
-          otherData?[ModelQueryableFields.queryableValue.name];
+          otherData?[ModelQueryableFieldNames.queryableValue];
       final queryableValue = queryableValue0
           ?.toString()
           .trim()
@@ -195,8 +195,8 @@ class ModelQueryable extends _ModelQueryable {
           ?.toLowerCase()
           .replaceAll(r'[^\w]', '');
       final withNulls = <String, dynamic>{
-        ModelQueryableFields.value.name: value0,
-        ModelQueryableFields.queryableValue.name: queryableValue0,
+        ModelQueryableFieldNames.value: value0,
+        ModelQueryableFieldNames.queryableValue: queryableValue0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -230,41 +230,17 @@ class ModelQueryable extends _ModelQueryable {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelQueryableFields {
+final class ModelQueryableFieldNames {
   //
   //
   //
 
-  value(
-    const Field(
-      fieldName: 'value',
-      fieldType: 'String',
-      nullable: false,
-    ),
-  ),
-  queryableValue(
-    const Field(
-      fieldName: 'queryableValue',
-      fieldType: 'Searchable-String',
-      nullable: false,
-    ),
-  );
+  static const value = 'value';
+  static const queryableValue = 'queryableValue';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelQueryableFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelQueryableFieldNames._();
 }

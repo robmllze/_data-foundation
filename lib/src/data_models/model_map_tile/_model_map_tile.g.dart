@@ -177,25 +177,25 @@ class ModelMapTile extends Model {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final source0 = otherData?[ModelMapTileFields.source.name];
+      final source0 = otherData?[ModelMapTileFieldNames.source];
       final source = source0?.toString().trim().nullIfEmpty;
-      final username0 = otherData?[ModelMapTileFields.username.name];
+      final username0 = otherData?[ModelMapTileFieldNames.username];
       final username = username0?.toString().trim().nullIfEmpty;
-      final lightStyleId0 = otherData?[ModelMapTileFields.lightStyleId.name];
+      final lightStyleId0 = otherData?[ModelMapTileFieldNames.lightStyleId];
       final lightStyleId = lightStyleId0?.toString().trim().nullIfEmpty;
-      final darkStyleId0 = otherData?[ModelMapTileFields.darkStyleId.name];
+      final darkStyleId0 = otherData?[ModelMapTileFieldNames.darkStyleId];
       final darkStyleId = darkStyleId0?.toString().trim().nullIfEmpty;
-      final accessToken0 = otherData?[ModelMapTileFields.accessToken.name];
+      final accessToken0 = otherData?[ModelMapTileFieldNames.accessToken];
       final accessToken = accessToken0?.toString().trim().nullIfEmpty;
-      final tileSize0 = otherData?[ModelMapTileFields.tileSize.name];
+      final tileSize0 = otherData?[ModelMapTileFieldNames.tileSize];
       final tileSize = letInt(tileSize0);
-      final z0 = otherData?[ModelMapTileFields.z.name];
+      final z0 = otherData?[ModelMapTileFieldNames.z];
       final z = letInt(z0);
-      final x0 = otherData?[ModelMapTileFields.x.name];
+      final x0 = otherData?[ModelMapTileFieldNames.x];
       final x = letInt(x0);
-      final y0 = otherData?[ModelMapTileFields.y.name];
+      final y0 = otherData?[ModelMapTileFieldNames.y];
       final y = letInt(y0);
-      final isHighDpi0 = otherData?[ModelMapTileFields.isHighDpi.name];
+      final isHighDpi0 = otherData?[ModelMapTileFieldNames.isHighDpi];
       final isHighDpi = letBool(isHighDpi0);
       return ModelMapTile(
         source: source,
@@ -260,16 +260,16 @@ class ModelMapTile extends Model {
       final y0 = this.y;
       final isHighDpi0 = this.isHighDpi;
       final withNulls = <String, dynamic>{
-        ModelMapTileFields.source.name: source0,
-        ModelMapTileFields.username.name: username0,
-        ModelMapTileFields.lightStyleId.name: lightStyleId0,
-        ModelMapTileFields.darkStyleId.name: darkStyleId0,
-        ModelMapTileFields.accessToken.name: accessToken0,
-        ModelMapTileFields.tileSize.name: tileSize0,
-        ModelMapTileFields.z.name: z0,
-        ModelMapTileFields.x.name: x0,
-        ModelMapTileFields.y.name: y0,
-        ModelMapTileFields.isHighDpi.name: isHighDpi0,
+        ModelMapTileFieldNames.source: source0,
+        ModelMapTileFieldNames.username: username0,
+        ModelMapTileFieldNames.lightStyleId: lightStyleId0,
+        ModelMapTileFieldNames.darkStyleId: darkStyleId0,
+        ModelMapTileFieldNames.accessToken: accessToken0,
+        ModelMapTileFieldNames.tileSize: tileSize0,
+        ModelMapTileFieldNames.z: z0,
+        ModelMapTileFieldNames.x: x0,
+        ModelMapTileFieldNames.y: y0,
+        ModelMapTileFieldNames.isHighDpi: isHighDpi0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -327,97 +327,25 @@ class ModelMapTile extends Model {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelMapTileFields {
+final class ModelMapTileFieldNames {
   //
   //
   //
 
-  source(
-    const Field(
-      fieldName: 'source',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  username(
-    const Field(
-      fieldName: 'username',
-      fieldType: 'String',
-      nullable: false,
-    ),
-  ),
-  lightStyleId(
-    const Field(
-      fieldName: 'lightStyleId',
-      fieldType: 'String',
-      nullable: false,
-    ),
-  ),
-  darkStyleId(
-    const Field(
-      fieldName: 'darkStyleId',
-      fieldType: 'String',
-      nullable: false,
-    ),
-  ),
-  accessToken(
-    const Field(
-      fieldName: 'accessToken',
-      fieldType: 'String',
-      nullable: false,
-    ),
-  ),
-  tileSize(
-    const Field(
-      fieldName: 'tileSize',
-      fieldType: 'int',
-      nullable: false,
-    ),
-  ),
-  z(
-    const Field(
-      fieldName: 'z',
-      fieldType: 'int',
-      nullable: true,
-    ),
-  ),
-  x(
-    const Field(
-      fieldName: 'x',
-      fieldType: 'int',
-      nullable: true,
-    ),
-  ),
-  y(
-    const Field(
-      fieldName: 'y',
-      fieldType: 'int',
-      nullable: true,
-    ),
-  ),
-  isHighDpi(
-    const Field(
-      fieldName: 'isHighDpi',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  );
+  static const source = 'source';
+  static const username = 'username';
+  static const lightStyleId = 'lightStyleId';
+  static const darkStyleId = 'darkStyleId';
+  static const accessToken = 'accessToken';
+  static const tileSize = 'tileSize';
+  static const z = 'z';
+  static const x = 'x';
+  static const y = 'y';
+  static const isHighDpi = 'isHighDpi';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelMapTileFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelMapTileFieldNames._();
 }

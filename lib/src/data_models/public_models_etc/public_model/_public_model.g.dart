@@ -201,56 +201,56 @@ class PublicModel extends _PublicModel {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[PublicModelFields.id.name];
+      final id0 = otherData?[PublicModelFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[PublicModelFields.ref.name];
+      final ref0 = otherData?[PublicModelFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[PublicModelFields.displayName.name];
+      final displayName0 = otherData?[PublicModelFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[PublicModelFields.displayColor.name];
+      final displayColor0 = otherData?[PublicModelFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[PublicModelFields.description.name];
+      final description0 = otherData?[PublicModelFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[PublicModelFields.archivedGReg.name];
+      final archivedGReg0 = otherData?[PublicModelFieldNames.archivedGReg];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[PublicModelFields.createdGReg.name];
+      final createdGReg0 = otherData?[PublicModelFieldNames.createdGReg];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[PublicModelFields.deletedGReg.name];
+      final deletedGReg0 = otherData?[PublicModelFieldNames.deletedGReg];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[PublicModelFields.updatedGReg.name];
+      final updatedGReg0 = otherData?[PublicModelFieldNames.updatedGReg];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[PublicModelFields.expiresAt.name];
+      final expiresAt0 = otherData?[PublicModelFieldNames.expiresAt];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final email0 = otherData?[PublicModelFields.email.name];
+      final email0 = otherData?[PublicModelFieldNames.email];
       final email = () {
         final a = letMap<String, dynamic>(email0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final addressEntries0 = otherData?[PublicModelFields.addressEntries.name];
+      final addressEntries0 = otherData?[PublicModelFieldNames.addressEntries];
       final addressEntries = letMap(addressEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -263,7 +263,7 @@ class PublicModel extends _PublicModel {
           )
           .nonNulls
           .nullIfEmpty;
-      final emailEntries0 = otherData?[PublicModelFields.emailEntries.name];
+      final emailEntries0 = otherData?[PublicModelFieldNames.emailEntries];
       final emailEntries = letMap(emailEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -276,7 +276,7 @@ class PublicModel extends _PublicModel {
           )
           .nonNulls
           .nullIfEmpty;
-      final fileEntries0 = otherData?[PublicModelFields.fileEntries.name];
+      final fileEntries0 = otherData?[PublicModelFieldNames.fileEntries];
       final fileEntries = letMap(fileEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -289,7 +289,7 @@ class PublicModel extends _PublicModel {
           )
           .nonNulls
           .nullIfEmpty;
-      final phoneEntries0 = otherData?[PublicModelFields.phoneEntries.name];
+      final phoneEntries0 = otherData?[PublicModelFieldNames.phoneEntries];
       final phoneEntries = letMap(phoneEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -302,7 +302,7 @@ class PublicModel extends _PublicModel {
           )
           .nonNulls
           .nullIfEmpty;
-      final deviceRegs0 = otherData?[PublicModelFields.deviceRegs.name];
+      final deviceRegs0 = otherData?[PublicModelFieldNames.deviceRegs];
       final deviceRegs = letList(deviceRegs0)
           ?.map(
             (p0) => () {
@@ -431,22 +431,22 @@ class PublicModel extends _PublicModel {
           .nullIfEmpty
           ?.toList();
       final withNulls = <String, dynamic>{
-        PublicModelFields.id.name: id0,
-        PublicModelFields.ref.name: ref0,
-        PublicModelFields.displayName.name: displayName0,
-        PublicModelFields.displayColor.name: displayColor0,
-        PublicModelFields.description.name: description0,
-        PublicModelFields.archivedGReg.name: archivedGReg0,
-        PublicModelFields.createdGReg.name: createdGReg0,
-        PublicModelFields.deletedGReg.name: deletedGReg0,
-        PublicModelFields.updatedGReg.name: updatedGReg0,
-        PublicModelFields.expiresAt.name: expiresAt0,
-        PublicModelFields.email.name: email0,
-        PublicModelFields.addressEntries.name: addressEntries0,
-        PublicModelFields.emailEntries.name: emailEntries0,
-        PublicModelFields.fileEntries.name: fileEntries0,
-        PublicModelFields.phoneEntries.name: phoneEntries0,
-        PublicModelFields.deviceRegs.name: deviceRegs0,
+        PublicModelFieldNames.id: id0,
+        PublicModelFieldNames.ref: ref0,
+        PublicModelFieldNames.displayName: displayName0,
+        PublicModelFieldNames.displayColor: displayColor0,
+        PublicModelFieldNames.description: description0,
+        PublicModelFieldNames.archivedGReg: archivedGReg0,
+        PublicModelFieldNames.createdGReg: createdGReg0,
+        PublicModelFieldNames.deletedGReg: deletedGReg0,
+        PublicModelFieldNames.updatedGReg: updatedGReg0,
+        PublicModelFieldNames.expiresAt: expiresAt0,
+        PublicModelFieldNames.email: email0,
+        PublicModelFieldNames.addressEntries: addressEntries0,
+        PublicModelFieldNames.emailEntries: emailEntries0,
+        PublicModelFieldNames.fileEntries: fileEntries0,
+        PublicModelFieldNames.phoneEntries: phoneEntries0,
+        PublicModelFieldNames.deviceRegs: deviceRegs0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -523,139 +523,31 @@ class PublicModel extends _PublicModel {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum PublicModelFields {
+final class PublicModelFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  archivedGReg(
-    const Field(
-      fieldName: 'archivedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  createdGReg(
-    const Field(
-      fieldName: 'createdGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  deletedGReg(
-    const Field(
-      fieldName: 'deletedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  updatedGReg(
-    const Field(
-      fieldName: 'updatedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  expiresAt(
-    const Field(
-      fieldName: 'expiresAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  email(
-    const Field(
-      fieldName: 'email',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  addressEntries(
-    const Field(
-      fieldName: 'addressEntries',
-      fieldType: 'Map<String, ModelAddressEntry>',
-      nullable: true,
-    ),
-  ),
-  emailEntries(
-    const Field(
-      fieldName: 'emailEntries',
-      fieldType: 'Map<String, ModelEmailEntry>',
-      nullable: true,
-    ),
-  ),
-  fileEntries(
-    const Field(
-      fieldName: 'fileEntries',
-      fieldType: 'Map<String, ModelFileEntry>',
-      nullable: true,
-    ),
-  ),
-  phoneEntries(
-    const Field(
-      fieldName: 'phoneEntries',
-      fieldType: 'Map<String, ModelPhoneEntry>',
-      nullable: true,
-    ),
-  ),
-  deviceRegs(
-    const Field(
-      fieldName: 'deviceRegs',
-      fieldType: 'List<ModelDeviceRegistration>',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
+  static const archivedGReg = 'archivedGReg';
+  static const createdGReg = 'createdGReg';
+  static const deletedGReg = 'deletedGReg';
+  static const updatedGReg = 'updatedGReg';
+  static const expiresAt = 'expiresAt';
+  static const email = 'email';
+  static const addressEntries = 'addressEntries';
+  static const emailEntries = 'emailEntries';
+  static const fileEntries = 'fileEntries';
+  static const phoneEntries = 'phoneEntries';
+  static const deviceRegs = 'deviceRegs';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const PublicModelFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const PublicModelFieldNames._();
 }

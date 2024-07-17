@@ -201,59 +201,59 @@ class ModelUser extends _ModelUser {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelUserFields.id.name];
+      final id0 = otherData?[ModelUserFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelUserFields.ref.name];
+      final ref0 = otherData?[ModelUserFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelUserFields.displayName.name];
+      final displayName0 = otherData?[ModelUserFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelUserFields.displayColor.name];
+      final displayColor0 = otherData?[ModelUserFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelUserFields.description.name];
+      final description0 = otherData?[ModelUserFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelUserFields.archivedGReg.name];
+      final archivedGReg0 = otherData?[ModelUserFieldNames.archivedGReg];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelUserFields.createdGReg.name];
+      final createdGReg0 = otherData?[ModelUserFieldNames.createdGReg];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelUserFields.deletedGReg.name];
+      final deletedGReg0 = otherData?[ModelUserFieldNames.deletedGReg];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelUserFields.updatedGReg.name];
+      final updatedGReg0 = otherData?[ModelUserFieldNames.updatedGReg];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelUserFields.expiresAt.name];
+      final expiresAt0 = otherData?[ModelUserFieldNames.expiresAt];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final pid0 = otherData?[ModelUserFields.pid.name];
+      final pid0 = otherData?[ModelUserFieldNames.pid];
       final pid = pid0?.toString().trim().nullIfEmpty;
-      final seed0 = otherData?[ModelUserFields.seed.name];
+      final seed0 = otherData?[ModelUserFieldNames.seed];
       final seed = seed0?.toString().trim().nullIfEmpty;
       final didSendWelcomeEmail0 =
-          otherData?[ModelUserFields.didSendWelcomeEmail.name];
+          otherData?[ModelUserFieldNames.didSendWelcomeEmail];
       final didSendWelcomeEmail = letBool(didSendWelcomeEmail0);
       final emailSubscriptions0 =
-          otherData?[ModelUserFields.emailSubscriptions.name];
+          otherData?[ModelUserFieldNames.emailSubscriptions];
       final emailSubscriptions = letSet(emailSubscriptions0)
           ?.map(
             (p0) => p0?.toString().trim().nullIfEmpty,
@@ -262,7 +262,7 @@ class ModelUser extends _ModelUser {
           .nullIfEmpty
           ?.toSet();
       final pushSubscriptions0 =
-          otherData?[ModelUserFields.pushSubscriptions.name];
+          otherData?[ModelUserFieldNames.pushSubscriptions];
       final pushSubscriptions = letSet(pushSubscriptions0)
           ?.map(
             (p0) => p0?.toString().trim().nullIfEmpty,
@@ -271,7 +271,7 @@ class ModelUser extends _ModelUser {
           .nullIfEmpty
           ?.toSet();
       final smsSubscriptions0 =
-          otherData?[ModelUserFields.smsSubscriptions.name];
+          otherData?[ModelUserFieldNames.smsSubscriptions];
       final smsSubscriptions = letSet(smsSubscriptions0)
           ?.map(
             (p0) => p0?.toString().trim().nullIfEmpty,
@@ -375,22 +375,22 @@ class ModelUser extends _ModelUser {
           .nullIfEmpty
           ?.toList();
       final withNulls = <String, dynamic>{
-        ModelUserFields.id.name: id0,
-        ModelUserFields.ref.name: ref0,
-        ModelUserFields.displayName.name: displayName0,
-        ModelUserFields.displayColor.name: displayColor0,
-        ModelUserFields.description.name: description0,
-        ModelUserFields.archivedGReg.name: archivedGReg0,
-        ModelUserFields.createdGReg.name: createdGReg0,
-        ModelUserFields.deletedGReg.name: deletedGReg0,
-        ModelUserFields.updatedGReg.name: updatedGReg0,
-        ModelUserFields.expiresAt.name: expiresAt0,
-        ModelUserFields.pid.name: pid0,
-        ModelUserFields.seed.name: seed0,
-        ModelUserFields.didSendWelcomeEmail.name: didSendWelcomeEmail0,
-        ModelUserFields.emailSubscriptions.name: emailSubscriptions0,
-        ModelUserFields.pushSubscriptions.name: pushSubscriptions0,
-        ModelUserFields.smsSubscriptions.name: smsSubscriptions0,
+        ModelUserFieldNames.id: id0,
+        ModelUserFieldNames.ref: ref0,
+        ModelUserFieldNames.displayName: displayName0,
+        ModelUserFieldNames.displayColor: displayColor0,
+        ModelUserFieldNames.description: description0,
+        ModelUserFieldNames.archivedGReg: archivedGReg0,
+        ModelUserFieldNames.createdGReg: createdGReg0,
+        ModelUserFieldNames.deletedGReg: deletedGReg0,
+        ModelUserFieldNames.updatedGReg: updatedGReg0,
+        ModelUserFieldNames.expiresAt: expiresAt0,
+        ModelUserFieldNames.pid: pid0,
+        ModelUserFieldNames.seed: seed0,
+        ModelUserFieldNames.didSendWelcomeEmail: didSendWelcomeEmail0,
+        ModelUserFieldNames.emailSubscriptions: emailSubscriptions0,
+        ModelUserFieldNames.pushSubscriptions: pushSubscriptions0,
+        ModelUserFieldNames.smsSubscriptions: smsSubscriptions0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -466,139 +466,31 @@ class ModelUser extends _ModelUser {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelUserFields {
+final class ModelUserFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  archivedGReg(
-    const Field(
-      fieldName: 'archivedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  createdGReg(
-    const Field(
-      fieldName: 'createdGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  deletedGReg(
-    const Field(
-      fieldName: 'deletedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  updatedGReg(
-    const Field(
-      fieldName: 'updatedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  expiresAt(
-    const Field(
-      fieldName: 'expiresAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  pid(
-    const Field(
-      fieldName: 'pid',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  seed(
-    const Field(
-      fieldName: 'seed',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  didSendWelcomeEmail(
-    const Field(
-      fieldName: 'didSendWelcomeEmail',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  ),
-  emailSubscriptions(
-    const Field(
-      fieldName: 'emailSubscriptions',
-      fieldType: 'Set<String>',
-      nullable: true,
-    ),
-  ),
-  pushSubscriptions(
-    const Field(
-      fieldName: 'pushSubscriptions',
-      fieldType: 'Set<String>',
-      nullable: true,
-    ),
-  ),
-  smsSubscriptions(
-    const Field(
-      fieldName: 'smsSubscriptions',
-      fieldType: 'Set<String>',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
+  static const archivedGReg = 'archivedGReg';
+  static const createdGReg = 'createdGReg';
+  static const deletedGReg = 'deletedGReg';
+  static const updatedGReg = 'updatedGReg';
+  static const expiresAt = 'expiresAt';
+  static const pid = 'pid';
+  static const seed = 'seed';
+  static const didSendWelcomeEmail = 'didSendWelcomeEmail';
+  static const emailSubscriptions = 'emailSubscriptions';
+  static const pushSubscriptions = 'pushSubscriptions';
+  static const smsSubscriptions = 'smsSubscriptions';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelUserFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelUserFieldNames._();
 }

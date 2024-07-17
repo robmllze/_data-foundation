@@ -181,53 +181,53 @@ class ModelProject extends _ModelProject {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelProjectFields.id.name];
+      final id0 = otherData?[ModelProjectFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelProjectFields.ref.name];
+      final ref0 = otherData?[ModelProjectFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelProjectFields.displayName.name];
+      final displayName0 = otherData?[ModelProjectFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelProjectFields.displayColor.name];
+      final displayColor0 = otherData?[ModelProjectFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelProjectFields.description.name];
+      final description0 = otherData?[ModelProjectFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelProjectFields.archivedGReg.name];
+      final archivedGReg0 = otherData?[ModelProjectFieldNames.archivedGReg];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelProjectFields.createdGReg.name];
+      final createdGReg0 = otherData?[ModelProjectFieldNames.createdGReg];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelProjectFields.deletedGReg.name];
+      final deletedGReg0 = otherData?[ModelProjectFieldNames.deletedGReg];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelProjectFields.updatedGReg.name];
+      final updatedGReg0 = otherData?[ModelProjectFieldNames.updatedGReg];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelProjectFields.expiresAt.name];
+      final expiresAt0 = otherData?[ModelProjectFieldNames.expiresAt];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final pid0 = otherData?[ModelProjectFields.pid.name];
+      final pid0 = otherData?[ModelProjectFieldNames.pid];
       final pid = pid0?.toString().trim().nullIfEmpty;
-      final seed0 = otherData?[ModelProjectFields.seed.name];
+      final seed0 = otherData?[ModelProjectFieldNames.seed];
       final seed = seed0?.toString().trim().nullIfEmpty;
       return ModelProject(
         id: id,
@@ -296,18 +296,18 @@ class ModelProject extends _ModelProject {
       final pid0 = this.pid?.trim().nullIfEmpty;
       final seed0 = this.seed?.trim().nullIfEmpty;
       final withNulls = <String, dynamic>{
-        ModelProjectFields.id.name: id0,
-        ModelProjectFields.ref.name: ref0,
-        ModelProjectFields.displayName.name: displayName0,
-        ModelProjectFields.displayColor.name: displayColor0,
-        ModelProjectFields.description.name: description0,
-        ModelProjectFields.archivedGReg.name: archivedGReg0,
-        ModelProjectFields.createdGReg.name: createdGReg0,
-        ModelProjectFields.deletedGReg.name: deletedGReg0,
-        ModelProjectFields.updatedGReg.name: updatedGReg0,
-        ModelProjectFields.expiresAt.name: expiresAt0,
-        ModelProjectFields.pid.name: pid0,
-        ModelProjectFields.seed.name: seed0,
+        ModelProjectFieldNames.id: id0,
+        ModelProjectFieldNames.ref: ref0,
+        ModelProjectFieldNames.displayName: displayName0,
+        ModelProjectFieldNames.displayColor: displayColor0,
+        ModelProjectFieldNames.description: description0,
+        ModelProjectFieldNames.archivedGReg: archivedGReg0,
+        ModelProjectFieldNames.createdGReg: createdGReg0,
+        ModelProjectFieldNames.deletedGReg: deletedGReg0,
+        ModelProjectFieldNames.updatedGReg: updatedGReg0,
+        ModelProjectFieldNames.expiresAt: expiresAt0,
+        ModelProjectFieldNames.pid: pid0,
+        ModelProjectFieldNames.seed: seed0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -371,111 +371,27 @@ class ModelProject extends _ModelProject {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelProjectFields {
+final class ModelProjectFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  archivedGReg(
-    const Field(
-      fieldName: 'archivedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  createdGReg(
-    const Field(
-      fieldName: 'createdGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  deletedGReg(
-    const Field(
-      fieldName: 'deletedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  updatedGReg(
-    const Field(
-      fieldName: 'updatedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  expiresAt(
-    const Field(
-      fieldName: 'expiresAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  pid(
-    const Field(
-      fieldName: 'pid',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  seed(
-    const Field(
-      fieldName: 'seed',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
+  static const archivedGReg = 'archivedGReg';
+  static const createdGReg = 'createdGReg';
+  static const deletedGReg = 'deletedGReg';
+  static const updatedGReg = 'updatedGReg';
+  static const expiresAt = 'expiresAt';
+  static const pid = 'pid';
+  static const seed = 'seed';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelProjectFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelProjectFieldNames._();
 }

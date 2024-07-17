@@ -176,51 +176,51 @@ class ModelNoteEntry extends _ModelNoteEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelNoteEntryFields.id.name];
+      final id0 = otherData?[ModelNoteEntryFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelNoteEntryFields.ref.name];
+      final ref0 = otherData?[ModelNoteEntryFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelNoteEntryFields.displayName.name];
+      final displayName0 = otherData?[ModelNoteEntryFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelNoteEntryFields.displayColor.name];
+      final displayColor0 = otherData?[ModelNoteEntryFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelNoteEntryFields.description.name];
+      final description0 = otherData?[ModelNoteEntryFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelNoteEntryFields.archivedGReg.name];
+      final archivedGReg0 = otherData?[ModelNoteEntryFieldNames.archivedGReg];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelNoteEntryFields.createdGReg.name];
+      final createdGReg0 = otherData?[ModelNoteEntryFieldNames.createdGReg];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelNoteEntryFields.deletedGReg.name];
+      final deletedGReg0 = otherData?[ModelNoteEntryFieldNames.deletedGReg];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelNoteEntryFields.updatedGReg.name];
+      final updatedGReg0 = otherData?[ModelNoteEntryFieldNames.updatedGReg];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelNoteEntryFields.expiresAt.name];
+      final expiresAt0 = otherData?[ModelNoteEntryFieldNames.expiresAt];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final note0 = otherData?[ModelNoteEntryFields.note.name];
+      final note0 = otherData?[ModelNoteEntryFieldNames.note];
       final note = note0?.toString().trim().nullIfEmpty;
       return ModelNoteEntry(
         id: id,
@@ -287,17 +287,17 @@ class ModelNoteEntry extends _ModelNoteEntry {
       final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
       final note0 = this.note?.trim().nullIfEmpty;
       final withNulls = <String, dynamic>{
-        ModelNoteEntryFields.id.name: id0,
-        ModelNoteEntryFields.ref.name: ref0,
-        ModelNoteEntryFields.displayName.name: displayName0,
-        ModelNoteEntryFields.displayColor.name: displayColor0,
-        ModelNoteEntryFields.description.name: description0,
-        ModelNoteEntryFields.archivedGReg.name: archivedGReg0,
-        ModelNoteEntryFields.createdGReg.name: createdGReg0,
-        ModelNoteEntryFields.deletedGReg.name: deletedGReg0,
-        ModelNoteEntryFields.updatedGReg.name: updatedGReg0,
-        ModelNoteEntryFields.expiresAt.name: expiresAt0,
-        ModelNoteEntryFields.note.name: note0,
+        ModelNoteEntryFieldNames.id: id0,
+        ModelNoteEntryFieldNames.ref: ref0,
+        ModelNoteEntryFieldNames.displayName: displayName0,
+        ModelNoteEntryFieldNames.displayColor: displayColor0,
+        ModelNoteEntryFieldNames.description: description0,
+        ModelNoteEntryFieldNames.archivedGReg: archivedGReg0,
+        ModelNoteEntryFieldNames.createdGReg: createdGReg0,
+        ModelNoteEntryFieldNames.deletedGReg: deletedGReg0,
+        ModelNoteEntryFieldNames.updatedGReg: updatedGReg0,
+        ModelNoteEntryFieldNames.expiresAt: expiresAt0,
+        ModelNoteEntryFieldNames.note: note0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -358,104 +358,26 @@ class ModelNoteEntry extends _ModelNoteEntry {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelNoteEntryFields {
+final class ModelNoteEntryFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  archivedGReg(
-    const Field(
-      fieldName: 'archivedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  createdGReg(
-    const Field(
-      fieldName: 'createdGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  deletedGReg(
-    const Field(
-      fieldName: 'deletedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  updatedGReg(
-    const Field(
-      fieldName: 'updatedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  expiresAt(
-    const Field(
-      fieldName: 'expiresAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  note(
-    const Field(
-      fieldName: 'note',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
+  static const archivedGReg = 'archivedGReg';
+  static const createdGReg = 'createdGReg';
+  static const deletedGReg = 'deletedGReg';
+  static const updatedGReg = 'updatedGReg';
+  static const expiresAt = 'expiresAt';
+  static const note = 'note';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelNoteEntryFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelNoteEntryFieldNames._();
 }

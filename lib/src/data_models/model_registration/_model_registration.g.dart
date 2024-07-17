@@ -161,32 +161,32 @@ class ModelRegistration extends _ModelRegistration {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelRegistrationFields.id.name];
+      final id0 = otherData?[ModelRegistrationFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelRegistrationFields.ref.name];
+      final ref0 = otherData?[ModelRegistrationFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
       final registeredBy0 =
-          otherData?[ModelRegistrationFields.registeredBy.name];
+          otherData?[ModelRegistrationFieldNames.registeredBy];
       final registeredBy = registeredBy0?.toString().trim().nullIfEmpty;
       final registeredAt0 =
-          otherData?[ModelRegistrationFields.registeredAt.name];
+          otherData?[ModelRegistrationFieldNames.registeredAt];
       final registeredAt = () {
         final a = registeredAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final ipV4Address0 = otherData?[ModelRegistrationFields.ipV4Address.name];
+      final ipV4Address0 = otherData?[ModelRegistrationFieldNames.ipV4Address];
       final ipV4Address = ipV4Address0?.toString().trim().nullIfEmpty;
-      final ipV6Address0 = otherData?[ModelRegistrationFields.ipV6Address.name];
+      final ipV6Address0 = otherData?[ModelRegistrationFieldNames.ipV6Address];
       final ipV6Address = ipV6Address0?.toString().trim().nullIfEmpty;
-      final location0 = otherData?[ModelRegistrationFields.location.name];
+      final location0 = otherData?[ModelRegistrationFieldNames.location];
       final location = () {
         final a = letMap<String, dynamic>(location0);
         return a != null ? ModelLocation.fromJson(a) : null;
       }();
-      final enabled0 = otherData?[ModelRegistrationFields.enabled.name];
+      final enabled0 = otherData?[ModelRegistrationFieldNames.enabled];
       final enabled = letBool(enabled0);
       return ModelRegistration(
         id: id,
@@ -247,14 +247,14 @@ class ModelRegistration extends _ModelRegistration {
       final location0 = this.location?.toJson();
       final enabled0 = this.enabled;
       final withNulls = <String, dynamic>{
-        ModelRegistrationFields.id.name: id0,
-        ModelRegistrationFields.ref.name: ref0,
-        ModelRegistrationFields.registeredBy.name: registeredBy0,
-        ModelRegistrationFields.registeredAt.name: registeredAt0,
-        ModelRegistrationFields.ipV4Address.name: ipV4Address0,
-        ModelRegistrationFields.ipV6Address.name: ipV6Address0,
-        ModelRegistrationFields.location.name: location0,
-        ModelRegistrationFields.enabled.name: enabled0,
+        ModelRegistrationFieldNames.id: id0,
+        ModelRegistrationFieldNames.ref: ref0,
+        ModelRegistrationFieldNames.registeredBy: registeredBy0,
+        ModelRegistrationFieldNames.registeredAt: registeredAt0,
+        ModelRegistrationFieldNames.ipV4Address: ipV4Address0,
+        ModelRegistrationFieldNames.ipV6Address: ipV6Address0,
+        ModelRegistrationFieldNames.location: location0,
+        ModelRegistrationFieldNames.enabled: enabled0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -306,83 +306,23 @@ class ModelRegistration extends _ModelRegistration {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelRegistrationFields {
+final class ModelRegistrationFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  registeredBy(
-    const Field(
-      fieldName: 'registeredBy',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  registeredAt(
-    const Field(
-      fieldName: 'registeredAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  ipV4Address(
-    const Field(
-      fieldName: 'ipV4Address',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ipV6Address(
-    const Field(
-      fieldName: 'ipV6Address',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  location(
-    const Field(
-      fieldName: 'location',
-      fieldType: 'ModelLocation',
-      nullable: true,
-    ),
-  ),
-  enabled(
-    const Field(
-      fieldName: 'enabled',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const registeredBy = 'registeredBy';
+  static const registeredAt = 'registeredAt';
+  static const ipV4Address = 'ipV4Address';
+  static const ipV6Address = 'ipV6Address';
+  static const location = 'location';
+  static const enabled = 'enabled';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelRegistrationFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelRegistrationFieldNames._();
 }

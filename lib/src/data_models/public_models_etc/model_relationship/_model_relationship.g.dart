@@ -221,53 +221,53 @@ class ModelRelationship extends _ModelRelationship {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelRelationshipFields.id.name];
+      final id0 = otherData?[ModelRelationshipFieldNames.id];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelRelationshipFields.ref.name];
+      final ref0 = otherData?[ModelRelationshipFieldNames.ref];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelRelationshipFields.displayName.name];
+      final displayName0 = otherData?[ModelRelationshipFieldNames.displayName];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
       final displayColor0 =
-          otherData?[ModelRelationshipFields.displayColor.name];
+          otherData?[ModelRelationshipFieldNames.displayColor];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelRelationshipFields.description.name];
+      final description0 = otherData?[ModelRelationshipFieldNames.description];
       final description = description0?.toString().trim().nullIfEmpty;
       final archivedGReg0 =
-          otherData?[ModelRelationshipFields.archivedGReg.name];
+          otherData?[ModelRelationshipFieldNames.archivedGReg];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelRelationshipFields.createdGReg.name];
+      final createdGReg0 = otherData?[ModelRelationshipFieldNames.createdGReg];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelRelationshipFields.deletedGReg.name];
+      final deletedGReg0 = otherData?[ModelRelationshipFieldNames.deletedGReg];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelRelationshipFields.updatedGReg.name];
+      final updatedGReg0 = otherData?[ModelRelationshipFieldNames.updatedGReg];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelRelationshipFields.expiresAt.name];
+      final expiresAt0 = otherData?[ModelRelationshipFieldNames.expiresAt];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final memberPids0 = otherData?[ModelRelationshipFields.memberPids.name];
+      final memberPids0 = otherData?[ModelRelationshipFieldNames.memberPids];
       final memberPids = letSet(memberPids0)
           ?.map(
             (p0) => p0?.toString().trim().nullIfEmpty,
@@ -275,7 +275,7 @@ class ModelRelationship extends _ModelRelationship {
           .nonNulls
           .nullIfEmpty
           ?.toSet();
-      final tags0 = otherData?[ModelRelationshipFields.tags.name];
+      final tags0 = otherData?[ModelRelationshipFieldNames.tags];
       final tags = letSet(tags0)
           ?.map(
             (p0) => p0?.toString().trim().nullIfEmpty,
@@ -283,17 +283,17 @@ class ModelRelationship extends _ModelRelationship {
           .nonNulls
           .nullIfEmpty
           ?.toSet();
-      final contentType0 = otherData?[ModelRelationshipFields.contentType.name];
+      final contentType0 = otherData?[ModelRelationshipFieldNames.contentType];
       final contentType = () {
         final a = letMap<String, dynamic>(contentType0);
         return a != null ? ModelEnum.fromJson(a) : null;
       }();
-      final content0 = otherData?[ModelRelationshipFields.content.name];
+      final content0 = otherData?[ModelRelationshipFieldNames.content];
       final content = () {
         final a = letMap<String, dynamic>(content0);
         return a != null ? Model.fromJson(a) : null;
       }();
-      final readRegs0 = otherData?[ModelRelationshipFields.readRegs.name];
+      final readRegs0 = otherData?[ModelRelationshipFieldNames.readRegs];
       final readRegs = letList(readRegs0)
           ?.map(
             (p0) => () {
@@ -305,7 +305,7 @@ class ModelRelationship extends _ModelRelationship {
           .nullIfEmpty
           ?.toList();
       final archivedRegs0 =
-          otherData?[ModelRelationshipFields.archivedRegs.name];
+          otherData?[ModelRelationshipFieldNames.archivedRegs];
       final archivedRegs = letList(archivedRegs0)
           ?.map(
             (p0) => () {
@@ -316,7 +316,7 @@ class ModelRelationship extends _ModelRelationship {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final hiddenRegs0 = otherData?[ModelRelationshipFields.hiddenRegs.name];
+      final hiddenRegs0 = otherData?[ModelRelationshipFieldNames.hiddenRegs];
       final hiddenRegs = letList(hiddenRegs0)
           ?.map(
             (p0) => () {
@@ -327,7 +327,7 @@ class ModelRelationship extends _ModelRelationship {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final likedRegs0 = otherData?[ModelRelationshipFields.likedRegs.name];
+      final likedRegs0 = otherData?[ModelRelationshipFieldNames.likedRegs];
       final likedRegs = letList(likedRegs0)
           ?.map(
             (p0) => () {
@@ -339,7 +339,7 @@ class ModelRelationship extends _ModelRelationship {
           .nullIfEmpty
           ?.toList();
       final receivedRegs0 =
-          otherData?[ModelRelationshipFields.receivedRegs.name];
+          otherData?[ModelRelationshipFieldNames.receivedRegs];
       final receivedRegs = letList(receivedRegs0)
           ?.map(
             (p0) => () {
@@ -350,7 +350,7 @@ class ModelRelationship extends _ModelRelationship {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final type0 = otherData?[ModelRelationshipFields.type.name];
+      final type0 = otherData?[ModelRelationshipFieldNames.type];
       final type = RelationshipType.values.valueOf(letAs<String>(type0));
       return ModelRelationship(
         id: id,
@@ -484,26 +484,26 @@ class ModelRelationship extends _ModelRelationship {
           ?.toList();
       final type0 = this.type?.name;
       final withNulls = <String, dynamic>{
-        ModelRelationshipFields.id.name: id0,
-        ModelRelationshipFields.ref.name: ref0,
-        ModelRelationshipFields.displayName.name: displayName0,
-        ModelRelationshipFields.displayColor.name: displayColor0,
-        ModelRelationshipFields.description.name: description0,
-        ModelRelationshipFields.archivedGReg.name: archivedGReg0,
-        ModelRelationshipFields.createdGReg.name: createdGReg0,
-        ModelRelationshipFields.deletedGReg.name: deletedGReg0,
-        ModelRelationshipFields.updatedGReg.name: updatedGReg0,
-        ModelRelationshipFields.expiresAt.name: expiresAt0,
-        ModelRelationshipFields.memberPids.name: memberPids0,
-        ModelRelationshipFields.tags.name: tags0,
-        ModelRelationshipFields.contentType.name: contentType0,
-        ModelRelationshipFields.content.name: content0,
-        ModelRelationshipFields.readRegs.name: readRegs0,
-        ModelRelationshipFields.archivedRegs.name: archivedRegs0,
-        ModelRelationshipFields.hiddenRegs.name: hiddenRegs0,
-        ModelRelationshipFields.likedRegs.name: likedRegs0,
-        ModelRelationshipFields.receivedRegs.name: receivedRegs0,
-        ModelRelationshipFields.type.name: type0,
+        ModelRelationshipFieldNames.id: id0,
+        ModelRelationshipFieldNames.ref: ref0,
+        ModelRelationshipFieldNames.displayName: displayName0,
+        ModelRelationshipFieldNames.displayColor: displayColor0,
+        ModelRelationshipFieldNames.description: description0,
+        ModelRelationshipFieldNames.archivedGReg: archivedGReg0,
+        ModelRelationshipFieldNames.createdGReg: createdGReg0,
+        ModelRelationshipFieldNames.deletedGReg: deletedGReg0,
+        ModelRelationshipFieldNames.updatedGReg: updatedGReg0,
+        ModelRelationshipFieldNames.expiresAt: expiresAt0,
+        ModelRelationshipFieldNames.memberPids: memberPids0,
+        ModelRelationshipFieldNames.tags: tags0,
+        ModelRelationshipFieldNames.contentType: contentType0,
+        ModelRelationshipFieldNames.content: content0,
+        ModelRelationshipFieldNames.readRegs: readRegs0,
+        ModelRelationshipFieldNames.archivedRegs: archivedRegs0,
+        ModelRelationshipFieldNames.hiddenRegs: hiddenRegs0,
+        ModelRelationshipFieldNames.likedRegs: likedRegs0,
+        ModelRelationshipFieldNames.receivedRegs: receivedRegs0,
+        ModelRelationshipFieldNames.type: type0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -591,167 +591,35 @@ class ModelRelationship extends _ModelRelationship {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelRelationshipFields {
+final class ModelRelationshipFieldNames {
   //
   //
   //
 
-  id(
-    const Field(
-      fieldName: 'id',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  ref(
-    const Field(
-      fieldName: 'ref',
-      fieldType: 'DataRefModel',
-      nullable: true,
-    ),
-  ),
-  displayName(
-    const Field(
-      fieldName: 'displayName',
-      fieldType: 'ModelQueryable',
-      nullable: true,
-    ),
-  ),
-  displayColor(
-    const Field(
-      fieldName: 'displayColor',
-      fieldType: 'Color',
-      nullable: true,
-    ),
-  ),
-  description(
-    const Field(
-      fieldName: 'description',
-      fieldType: 'String',
-      nullable: true,
-    ),
-  ),
-  archivedGReg(
-    const Field(
-      fieldName: 'archivedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  createdGReg(
-    const Field(
-      fieldName: 'createdGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  deletedGReg(
-    const Field(
-      fieldName: 'deletedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  updatedGReg(
-    const Field(
-      fieldName: 'updatedGReg',
-      fieldType: 'ModelRegistration',
-      nullable: true,
-    ),
-  ),
-  expiresAt(
-    const Field(
-      fieldName: 'expiresAt',
-      fieldType: 'DateTime',
-      nullable: true,
-    ),
-  ),
-  memberPids(
-    const Field(
-      fieldName: 'memberPids',
-      fieldType: 'Set<String>',
-      nullable: true,
-    ),
-  ),
-  tags(
-    const Field(
-      fieldName: 'tags',
-      fieldType: 'Set<String>',
-      nullable: true,
-    ),
-  ),
-  contentType(
-    const Field(
-      fieldName: 'contentType',
-      fieldType: 'ModelEnum',
-      nullable: true,
-    ),
-  ),
-  content(
-    const Field(
-      fieldName: 'content',
-      fieldType: 'Model',
-      nullable: true,
-    ),
-  ),
-  readRegs(
-    const Field(
-      fieldName: 'readRegs',
-      fieldType: 'List<ModelRegistration>',
-      nullable: true,
-    ),
-  ),
-  archivedRegs(
-    const Field(
-      fieldName: 'archivedRegs',
-      fieldType: 'List<ModelRegistration>',
-      nullable: true,
-    ),
-  ),
-  hiddenRegs(
-    const Field(
-      fieldName: 'hiddenRegs',
-      fieldType: 'List<ModelRegistration>',
-      nullable: true,
-    ),
-  ),
-  likedRegs(
-    const Field(
-      fieldName: 'likedRegs',
-      fieldType: 'List<ModelRegistration>',
-      nullable: true,
-    ),
-  ),
-  receivedRegs(
-    const Field(
-      fieldName: 'receivedRegs',
-      fieldType: 'List<ModelRegistration>',
-      nullable: true,
-    ),
-  ),
-  type(
-    const Field(
-      fieldName: 'type',
-      fieldType: 'RelationshipType',
-      nullable: true,
-    ),
-  );
+  static const id = 'id';
+  static const ref = 'ref';
+  static const displayName = 'displayName';
+  static const displayColor = 'displayColor';
+  static const description = 'description';
+  static const archivedGReg = 'archivedGReg';
+  static const createdGReg = 'createdGReg';
+  static const deletedGReg = 'deletedGReg';
+  static const updatedGReg = 'updatedGReg';
+  static const expiresAt = 'expiresAt';
+  static const memberPids = 'memberPids';
+  static const tags = 'tags';
+  static const contentType = 'contentType';
+  static const content = 'content';
+  static const readRegs = 'readRegs';
+  static const archivedRegs = 'archivedRegs';
+  static const hiddenRegs = 'hiddenRegs';
+  static const likedRegs = 'likedRegs';
+  static const receivedRegs = 'receivedRegs';
+  static const type = 'type';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelRelationshipFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelRelationshipFieldNames._();
 }

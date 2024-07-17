@@ -172,34 +172,34 @@ class ModelConnectionPermissions extends Model {
   ) {
     try {
       final minimalPermit0 =
-          otherData?[ModelConnectionPermissionsFields.minimalPermit.name];
+          otherData?[ModelConnectionPermissionsFieldNames.minimalPermit];
       final minimalPermit = letBool(minimalPermit0);
       final minimalRequest0 =
-          otherData?[ModelConnectionPermissionsFields.minimalRequest.name];
+          otherData?[ModelConnectionPermissionsFieldNames.minimalRequest];
       final minimalRequest = letBool(minimalRequest0);
       final editorPermit0 =
-          otherData?[ModelConnectionPermissionsFields.editorPermit.name];
+          otherData?[ModelConnectionPermissionsFieldNames.editorPermit];
       final editorPermit = letBool(editorPermit0);
       final editorRequest0 =
-          otherData?[ModelConnectionPermissionsFields.editorRequest.name];
+          otherData?[ModelConnectionPermissionsFieldNames.editorRequest];
       final editorRequest = letBool(editorRequest0);
       final messagingPermit0 =
-          otherData?[ModelConnectionPermissionsFields.messagingPermit.name];
+          otherData?[ModelConnectionPermissionsFieldNames.messagingPermit];
       final messagingPermit = letBool(messagingPermit0);
       final messagingRequest0 =
-          otherData?[ModelConnectionPermissionsFields.messagingRequest.name];
+          otherData?[ModelConnectionPermissionsFieldNames.messagingRequest];
       final messagingRequest = letBool(messagingRequest0);
       final notificationPermit0 =
-          otherData?[ModelConnectionPermissionsFields.notificationPermit.name];
+          otherData?[ModelConnectionPermissionsFieldNames.notificationPermit];
       final notificationPermit = letBool(notificationPermit0);
       final notificationRequest0 =
-          otherData?[ModelConnectionPermissionsFields.notificationRequest.name];
+          otherData?[ModelConnectionPermissionsFieldNames.notificationRequest];
       final notificationRequest = letBool(notificationRequest0);
       final readOnlyPermit0 =
-          otherData?[ModelConnectionPermissionsFields.readOnlyPermit.name];
+          otherData?[ModelConnectionPermissionsFieldNames.readOnlyPermit];
       final readOnlyPermit = letBool(readOnlyPermit0);
       final readOnlyRequest0 =
-          otherData?[ModelConnectionPermissionsFields.readOnlyRequest.name];
+          otherData?[ModelConnectionPermissionsFieldNames.readOnlyRequest];
       final readOnlyRequest = letBool(readOnlyRequest0);
       return ModelConnectionPermissions(
         minimalPermit: minimalPermit,
@@ -264,19 +264,19 @@ class ModelConnectionPermissions extends Model {
       final readOnlyPermit0 = this.readOnlyPermit;
       final readOnlyRequest0 = this.readOnlyRequest;
       final withNulls = <String, dynamic>{
-        ModelConnectionPermissionsFields.minimalPermit.name: minimalPermit0,
-        ModelConnectionPermissionsFields.minimalRequest.name: minimalRequest0,
-        ModelConnectionPermissionsFields.editorPermit.name: editorPermit0,
-        ModelConnectionPermissionsFields.editorRequest.name: editorRequest0,
-        ModelConnectionPermissionsFields.messagingPermit.name: messagingPermit0,
-        ModelConnectionPermissionsFields.messagingRequest.name:
+        ModelConnectionPermissionsFieldNames.minimalPermit: minimalPermit0,
+        ModelConnectionPermissionsFieldNames.minimalRequest: minimalRequest0,
+        ModelConnectionPermissionsFieldNames.editorPermit: editorPermit0,
+        ModelConnectionPermissionsFieldNames.editorRequest: editorRequest0,
+        ModelConnectionPermissionsFieldNames.messagingPermit: messagingPermit0,
+        ModelConnectionPermissionsFieldNames.messagingRequest:
             messagingRequest0,
-        ModelConnectionPermissionsFields.notificationPermit.name:
+        ModelConnectionPermissionsFieldNames.notificationPermit:
             notificationPermit0,
-        ModelConnectionPermissionsFields.notificationRequest.name:
+        ModelConnectionPermissionsFieldNames.notificationRequest:
             notificationRequest0,
-        ModelConnectionPermissionsFields.readOnlyPermit.name: readOnlyPermit0,
-        ModelConnectionPermissionsFields.readOnlyRequest.name: readOnlyRequest0,
+        ModelConnectionPermissionsFieldNames.readOnlyPermit: readOnlyPermit0,
+        ModelConnectionPermissionsFieldNames.readOnlyRequest: readOnlyRequest0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -334,97 +334,25 @@ class ModelConnectionPermissions extends Model {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-enum ModelConnectionPermissionsFields {
+final class ModelConnectionPermissionsFieldNames {
   //
   //
   //
 
-  minimalPermit(
-    const Field(
-      fieldName: 'minimalPermit',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  ),
-  minimalRequest(
-    const Field(
-      fieldName: 'minimalRequest',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  ),
-  editorPermit(
-    const Field(
-      fieldName: 'editorPermit',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  ),
-  editorRequest(
-    const Field(
-      fieldName: 'editorRequest',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  ),
-  messagingPermit(
-    const Field(
-      fieldName: 'messagingPermit',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  ),
-  messagingRequest(
-    const Field(
-      fieldName: 'messagingRequest',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  ),
-  notificationPermit(
-    const Field(
-      fieldName: 'notificationPermit',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  ),
-  notificationRequest(
-    const Field(
-      fieldName: 'notificationRequest',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  ),
-  readOnlyPermit(
-    const Field(
-      fieldName: 'readOnlyPermit',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  ),
-  readOnlyRequest(
-    const Field(
-      fieldName: 'readOnlyRequest',
-      fieldType: 'bool',
-      nullable: true,
-    ),
-  );
+  static const minimalPermit = 'minimalPermit';
+  static const minimalRequest = 'minimalRequest';
+  static const editorPermit = 'editorPermit';
+  static const editorRequest = 'editorRequest';
+  static const messagingPermit = 'messagingPermit';
+  static const messagingRequest = 'messagingRequest';
+  static const notificationPermit = 'notificationPermit';
+  static const notificationRequest = 'notificationRequest';
+  static const readOnlyPermit = 'readOnlyPermit';
+  static const readOnlyRequest = 'readOnlyRequest';
 
   //
   //
   //
 
-  final Field field;
-
-  //
-  //
-  //
-
-  const ModelConnectionPermissionsFields(this.field);
-
-  //
-  //
-  //
-
-  String get fieldName => this.field.fieldName!;
+  const ModelConnectionPermissionsFieldNames._();
 }
