@@ -15,9 +15,9 @@ part '_model_location.g.dart';
 
 @GenerateModel(
   fields: {
-    ('altitude?', double),
-    ('latitude?', double),
-    ('longitude?', double),
+    ('altitude', double),
+    ('latitude', double),
+    ('longitude', double),
   },
 )
 // ignore: unused_element
@@ -49,7 +49,6 @@ extension ModelLocationExtension on ModelLocation {
     if (latitude == null || longitude == null) {
       return null;
     }
-    altitude ??= 0.0;
     return this;
   }
 

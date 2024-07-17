@@ -24,49 +24,36 @@ class ModelCacheInformation extends _ModelCacheInformation {
   //
   //
 
-  static const K_FILES = 'files';
-
-  static const CLASS = 'ModelCacheInformation';
+  static const CLASS_NAME = 'ModelCacheInformation';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  Set<ModelFileEntry>? files;
-
-  //
-  //
-  //
-
-  ModelCacheInformation.empty();
+  final Set<ModelFileEntry>? files;
 
   //
   //
   //
 
-  factory ModelCacheInformation({
-    required Set<ModelFileEntry> files,
+  const ModelCacheInformation({
+    required this.files,
+  });
+
+  const ModelCacheInformation.c2({
+    this.files,
+  });
+
+  factory ModelCacheInformation.c3({
+    Set<ModelFileEntry>? files,
   }) {
-    return ModelCacheInformation.b(
+    assert(files != null);
+    return ModelCacheInformation(
       files: files,
     );
   }
 
-  //
-  //
-  //
-
-  ModelCacheInformation.b({
-    this.files,
-  }) {
-    assert(this.files != null);
-  }
-
-  //
-  //
-  //
-
   factory ModelCacheInformation.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -77,14 +64,10 @@ class ModelCacheInformation extends _ModelCacheInformation {
   }
 
   static ModelCacheInformation? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelCacheInformation.of(
     ModelCacheInformation other,
@@ -102,10 +85,6 @@ class ModelCacheInformation extends _ModelCacheInformation {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelCacheInformation.fromJsonString(
     String source,
@@ -126,16 +105,12 @@ class ModelCacheInformation extends _ModelCacheInformation {
         final decoded = jsonDecode(source);
         return ModelCacheInformation.fromJson(decoded);
       } else {
-        return ModelCacheInformation.empty();
+        return const ModelCacheInformation.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelCacheInformation.fromJson(
     Map<String, dynamic>? otherData,
@@ -152,15 +127,24 @@ class ModelCacheInformation extends _ModelCacheInformation {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelCacheInformation.empty()..$files = otherData?[K_FILES];
+      final files0 = otherData?[ModelCacheInformationFields.files.name];
+      final files = letSet(files0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelFileEntry.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toSet();
+      return ModelCacheInformation(
+        files: files,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelCacheInformation.fromUri(
     Uri? uri,
@@ -177,10 +161,10 @@ class ModelCacheInformation extends _ModelCacheInformation {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelCacheInformation.fromJson(uri.queryParameters);
       } else {
-        return ModelCacheInformation.empty();
+        return const ModelCacheInformation.c2();
       }
     } catch (_) {
       return null;
@@ -197,8 +181,16 @@ class ModelCacheInformation extends _ModelCacheInformation {
     bool includeNulls = false,
   }) {
     try {
+      final files0 = this
+          .files
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
       final withNulls = <String, dynamic>{
-        K_FILES: this.$files,
+        ModelCacheInformationFields.files.name: files0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -212,33 +204,11 @@ class ModelCacheInformation extends _ModelCacheInformation {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelCacheInformation.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelCacheInformation.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelCacheInformation.fromJson(otherData);
-      if (other.files != null) {
-        this.files = other.files!;
-      }
-    }
+  ModelCacheInformation copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelCacheInformation.fromJson(c);
   }
 
   //
@@ -247,26 +217,38 @@ class ModelCacheInformation extends _ModelCacheInformation {
 
   // files.
   Set<ModelFileEntry> get filesField => this.files!;
-  set filesField(Set<ModelFileEntry> v) => this.files = v;
-  @protected
-  dynamic get $files => this
-      .files
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $files(v) => this.files = letSet(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelFileEntry.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelCacheInformationFields {
+  //
+  //
+  //
+
+  files(
+    const Field(
+      fieldName: 'files',
+      fieldType: 'Set<ModelFileEntry>',
+      nullable: false,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelCacheInformationFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

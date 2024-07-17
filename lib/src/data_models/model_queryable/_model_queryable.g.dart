@@ -24,55 +24,42 @@ class ModelQueryable extends _ModelQueryable {
   //
   //
 
-  static const K_VALUE = 'value';
-  static const K_QUERYABLE_VALUE = 'queryableValue';
-
-  static const CLASS = 'ModelQueryable';
+  static const CLASS_NAME = 'ModelQueryable';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  String? value;
-  String? queryableValue;
-
-  //
-  //
-  //
-
-  ModelQueryable.empty();
+  final String? value;
+  final String? queryableValue;
 
   //
   //
   //
 
-  factory ModelQueryable({
-    required String value,
-    required String queryableValue,
+  const ModelQueryable({
+    required this.value,
+    required this.queryableValue,
+  });
+
+  const ModelQueryable.c2({
+    this.value,
+    this.queryableValue,
+  });
+
+  factory ModelQueryable.c3({
+    String? value,
+    String? queryableValue,
   }) {
-    return ModelQueryable.b(
+    assert(value != null);
+    assert(queryableValue != null);
+    return ModelQueryable(
       value: value,
       queryableValue: queryableValue,
     );
   }
 
-  //
-  //
-  //
-
-  ModelQueryable.b({
-    this.value,
-    this.queryableValue,
-  }) {
-    assert(this.value != null);
-    assert(this.queryableValue != null);
-  }
-
-  //
-  //
-  //
-
   factory ModelQueryable.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -83,14 +70,10 @@ class ModelQueryable extends _ModelQueryable {
   }
 
   static ModelQueryable? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelQueryable.of(
     ModelQueryable other,
@@ -108,10 +91,6 @@ class ModelQueryable extends _ModelQueryable {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelQueryable.fromJsonString(
     String source,
@@ -132,16 +111,12 @@ class ModelQueryable extends _ModelQueryable {
         final decoded = jsonDecode(source);
         return ModelQueryable.fromJson(decoded);
       } else {
-        return ModelQueryable.empty();
+        return const ModelQueryable.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelQueryable.fromJson(
     Map<String, dynamic>? otherData,
@@ -158,17 +133,24 @@ class ModelQueryable extends _ModelQueryable {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelQueryable.empty()
-        ..$value = otherData?[K_VALUE]
-        ..$queryableValue = otherData?[K_QUERYABLE_VALUE];
+      final value0 = otherData?[ModelQueryableFields.value.name];
+      final value = value0?.toString().trim().nullIfEmpty;
+      final queryableValue0 =
+          otherData?[ModelQueryableFields.queryableValue.name];
+      final queryableValue = queryableValue0
+          ?.toString()
+          .trim()
+          .nullIfEmpty
+          ?.toLowerCase()
+          .replaceAll(r'[^\w]', '');
+      return ModelQueryable(
+        value: value,
+        queryableValue: queryableValue,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelQueryable.fromUri(
     Uri? uri,
@@ -185,10 +167,10 @@ class ModelQueryable extends _ModelQueryable {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelQueryable.fromJson(uri.queryParameters);
       } else {
-        return ModelQueryable.empty();
+        return const ModelQueryable.c2();
       }
     } catch (_) {
       return null;
@@ -205,9 +187,16 @@ class ModelQueryable extends _ModelQueryable {
     bool includeNulls = false,
   }) {
     try {
+      final value0 = this.value?.trim().nullIfEmpty;
+      final queryableValue0 = this
+          .queryableValue
+          ?.trim()
+          .nullIfEmpty
+          ?.toLowerCase()
+          .replaceAll(r'[^\w]', '');
       final withNulls = <String, dynamic>{
-        K_VALUE: this.$value,
-        K_QUERYABLE_VALUE: this.$queryableValue,
+        ModelQueryableFields.value.name: value0,
+        ModelQueryableFields.queryableValue.name: queryableValue0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -221,36 +210,11 @@ class ModelQueryable extends _ModelQueryable {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelQueryable.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelQueryable.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelQueryable.fromJson(otherData);
-      if (other.value != null) {
-        this.value = other.value!;
-      }
-      if (other.queryableValue != null) {
-        this.queryableValue = other.queryableValue!;
-      }
-    }
+  ModelQueryable copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelQueryable.fromJson(c);
   }
 
   //
@@ -259,24 +223,48 @@ class ModelQueryable extends _ModelQueryable {
 
   // value.
   String get valueField => this.value!;
-  set valueField(String v) => this.value = v;
-  @protected
-  dynamic get $value => this.value?.toString().trim().nullIfEmpty;
-  @protected
-  set $value(v) => this.value = v?.toString().trim().nullIfEmpty;
 
   // queryableValue.
   String get queryableValueField => this.queryableValue!;
-  set queryableValueField(String v) => this.queryableValue = v;
-  @protected
-  dynamic get $queryableValue => this
-      .queryableValue
-      ?.toString()
-      .trim()
-      .nullIfEmpty
-      ?.toLowerCase()
-      .replaceAll(r'[^\w]', '');
-  @protected
-  set $queryableValue(v) => this.queryableValue =
-      v?.toString().trim().nullIfEmpty?.toLowerCase().replaceAll(r'[^\w]', '');
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelQueryableFields {
+  //
+  //
+  //
+
+  value(
+    const Field(
+      fieldName: 'value',
+      fieldType: 'String',
+      nullable: false,
+    ),
+  ),
+  queryableValue(
+    const Field(
+      fieldName: 'queryableValue',
+      fieldType: 'Searchable-String',
+      nullable: false,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelQueryableFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

@@ -28,7 +28,9 @@ part '_model_map_tile.g.dart';
   },
 )
 // ignore: unused_element
-abstract class _ModelMapTile {}
+abstract class _ModelMapTile {
+  const _ModelMapTile();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

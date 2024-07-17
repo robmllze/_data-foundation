@@ -28,11 +28,12 @@ const MODEL_REGISTRATION_FIELDS = {
   shouldInherit: true,
   fields: MODEL_REGISTRATION_FIELDS,
 )
-abstract class _ModelRegistration extends Model {}
+abstract class _ModelRegistration extends Model {
+  const _ModelRegistration();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 extension ModelRegistrationExtension on ModelRegistration {
   bool get impliesEnabled => this.enabled != false;
 }
-

@@ -19,4 +19,6 @@ part '_model_job.g.dart';
     ...PRIVATE_MODEL_FIELDS,
   },
 )
-abstract class _ModelJob extends Model implements PrivateModel {}
+abstract class _ModelJob extends Model implements PrivateModel {
+  const _ModelJob();
+}

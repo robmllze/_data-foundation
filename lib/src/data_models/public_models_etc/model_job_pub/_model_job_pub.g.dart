@@ -24,64 +24,83 @@ class ModelJobPub extends _ModelJobPub {
   //
   //
 
-  static const K_ID = 'id';
-  static const K_REF = 'ref';
-  static const K_DISPLAY_NAME = 'displayName';
-  static const K_DISPLAY_COLOR = 'displayColor';
-  static const K_DESCRIPTION = 'description';
-  static const K_ARCHIVED_G_REG = 'archivedGReg';
-  static const K_CREATED_G_REG = 'createdGReg';
-  static const K_DELETED_G_REG = 'deletedGReg';
-  static const K_UPDATED_G_REG = 'updatedGReg';
-  static const K_EXPIRES_AT = 'expiresAt';
-  static const K_EMAIL = 'email';
-  static const K_ADDRESS_ENTRIES = 'addressEntries';
-  static const K_EMAIL_ENTRIES = 'emailEntries';
-  static const K_FILE_ENTRIES = 'fileEntries';
-  static const K_PHONE_ENTRIES = 'phoneEntries';
-  static const K_DEVICE_REGS = 'deviceRegs';
-  static const K_CLOCK_IN_REGS = 'clockInRegs';
-  static const K_CLOCK_OUT_REGS = 'clockOutRegs';
-  static const K_TODO_ENTRIES = 'todoEntries';
-  static const K_STATUS = 'status';
-
-  static const CLASS = 'ModelJobPub';
+  static const CLASS_NAME = 'ModelJobPub';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  String? id;
-  DataRefModel? ref;
-  ModelQueryable? displayName;
-  Color? displayColor;
-  String? description;
-  ModelRegistration? archivedGReg;
-  ModelRegistration? createdGReg;
-  ModelRegistration? deletedGReg;
-  ModelRegistration? updatedGReg;
-  DateTime? expiresAt;
-  ModelQueryable? email;
-  Map<String, ModelAddressEntry>? addressEntries;
-  Map<String, ModelEmailEntry>? emailEntries;
-  Map<String, ModelFileEntry>? fileEntries;
-  Map<String, ModelPhoneEntry>? phoneEntries;
-  List<ModelDeviceRegistration>? deviceRegs;
-  List<ModelRegistration>? clockInRegs;
-  List<ModelRegistration>? clockOutRegs;
-  Map<DateTime, ModelTodoEntry>? todoEntries;
-  JobStatusType? status;
-
-  //
-  //
-  //
-
-  ModelJobPub.empty();
+  final String? id;
+  final DataRefModel? ref;
+  final ModelQueryable? displayName;
+  final Color? displayColor;
+  final String? description;
+  final ModelRegistration? archivedGReg;
+  final ModelRegistration? createdGReg;
+  final ModelRegistration? deletedGReg;
+  final ModelRegistration? updatedGReg;
+  final DateTime? expiresAt;
+  final ModelQueryable? email;
+  final Map<String, ModelAddressEntry>? addressEntries;
+  final Map<String, ModelEmailEntry>? emailEntries;
+  final Map<String, ModelFileEntry>? fileEntries;
+  final Map<String, ModelPhoneEntry>? phoneEntries;
+  final List<ModelDeviceRegistration>? deviceRegs;
+  final List<ModelRegistration>? clockInRegs;
+  final List<ModelRegistration>? clockOutRegs;
+  final Map<DateTime, ModelTodoEntry>? todoEntries;
+  final JobStatusType? status;
 
   //
   //
   //
 
-  factory ModelJobPub({
+  const ModelJobPub({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.email,
+    this.addressEntries,
+    this.emailEntries,
+    this.fileEntries,
+    this.phoneEntries,
+    this.deviceRegs,
+    this.clockInRegs,
+    this.clockOutRegs,
+    this.todoEntries,
+    this.status,
+  });
+
+  const ModelJobPub.c2({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.email,
+    this.addressEntries,
+    this.emailEntries,
+    this.fileEntries,
+    this.phoneEntries,
+    this.deviceRegs,
+    this.clockInRegs,
+    this.clockOutRegs,
+    this.todoEntries,
+    this.status,
+  });
+
+  factory ModelJobPub.c3({
     String? id,
     DataRefModel? ref,
     ModelQueryable? displayName,
@@ -103,7 +122,7 @@ class ModelJobPub extends _ModelJobPub {
     Map<DateTime, ModelTodoEntry>? todoEntries,
     JobStatusType? status,
   }) {
-    return ModelJobPub.b(
+    return ModelJobPub(
       id: id,
       ref: ref,
       displayName: displayName,
@@ -127,39 +146,8 @@ class ModelJobPub extends _ModelJobPub {
     );
   }
 
-  //
-  //
-  //
-
-  ModelJobPub.b({
-    this.id,
-    this.ref,
-    this.displayName,
-    this.displayColor,
-    this.description,
-    this.archivedGReg,
-    this.createdGReg,
-    this.deletedGReg,
-    this.updatedGReg,
-    this.expiresAt,
-    this.email,
-    this.addressEntries,
-    this.emailEntries,
-    this.fileEntries,
-    this.phoneEntries,
-    this.deviceRegs,
-    this.clockInRegs,
-    this.clockOutRegs,
-    this.todoEntries,
-    this.status,
-  }) {}
-
-  //
-  //
-  //
-
   factory ModelJobPub.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -170,14 +158,10 @@ class ModelJobPub extends _ModelJobPub {
   }
 
   static ModelJobPub? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelJobPub.of(
     ModelJobPub other,
@@ -195,10 +179,6 @@ class ModelJobPub extends _ModelJobPub {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelJobPub.fromJsonString(
     String source,
@@ -219,16 +199,12 @@ class ModelJobPub extends _ModelJobPub {
         final decoded = jsonDecode(source);
         return ModelJobPub.fromJson(decoded);
       } else {
-        return ModelJobPub.empty();
+        return const ModelJobPub.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelJobPub.fromJson(
     Map<String, dynamic>? otherData,
@@ -245,35 +221,184 @@ class ModelJobPub extends _ModelJobPub {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelJobPub.empty()
-        ..$id = otherData?[K_ID]
-        ..$ref = otherData?[K_REF]
-        ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$displayColor = otherData?[K_DISPLAY_COLOR]
-        ..$description = otherData?[K_DESCRIPTION]
-        ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
-        ..$createdGReg = otherData?[K_CREATED_G_REG]
-        ..$deletedGReg = otherData?[K_DELETED_G_REG]
-        ..$updatedGReg = otherData?[K_UPDATED_G_REG]
-        ..$expiresAt = otherData?[K_EXPIRES_AT]
-        ..$email = otherData?[K_EMAIL]
-        ..$addressEntries = otherData?[K_ADDRESS_ENTRIES]
-        ..$emailEntries = otherData?[K_EMAIL_ENTRIES]
-        ..$fileEntries = otherData?[K_FILE_ENTRIES]
-        ..$phoneEntries = otherData?[K_PHONE_ENTRIES]
-        ..$deviceRegs = otherData?[K_DEVICE_REGS]
-        ..$clockInRegs = otherData?[K_CLOCK_IN_REGS]
-        ..$clockOutRegs = otherData?[K_CLOCK_OUT_REGS]
-        ..$todoEntries = otherData?[K_TODO_ENTRIES]
-        ..$status = otherData?[K_STATUS];
+      final id0 = otherData?[ModelJobPubFields.id.name];
+      final id = id0?.toString().trim().nullIfEmpty;
+      final ref0 = otherData?[ModelJobPubFields.ref.name];
+      final ref = () {
+        final a = letMap<String, dynamic>(ref0);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+      final displayName0 = otherData?[ModelJobPubFields.displayName.name];
+      final displayName = () {
+        final a = letMap<String, dynamic>(displayName0);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
+      final displayColor0 = otherData?[ModelJobPubFields.displayColor.name];
+      final displayColor = () {
+        final a = letAs<int>(displayColor0);
+        return a is int ? Color(a) : null;
+      }();
+      final description0 = otherData?[ModelJobPubFields.description.name];
+      final description = description0?.toString().trim().nullIfEmpty;
+      final archivedGReg0 = otherData?[ModelJobPubFields.archivedGReg.name];
+      final archivedGReg = () {
+        final a = letMap<String, dynamic>(archivedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final createdGReg0 = otherData?[ModelJobPubFields.createdGReg.name];
+      final createdGReg = () {
+        final a = letMap<String, dynamic>(createdGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final deletedGReg0 = otherData?[ModelJobPubFields.deletedGReg.name];
+      final deletedGReg = () {
+        final a = letMap<String, dynamic>(deletedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final updatedGReg0 = otherData?[ModelJobPubFields.updatedGReg.name];
+      final updatedGReg = () {
+        final a = letMap<String, dynamic>(updatedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final expiresAt0 = otherData?[ModelJobPubFields.expiresAt.name];
+      final expiresAt = () {
+        final a = expiresAt0;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+      final email0 = otherData?[ModelJobPubFields.email.name];
+      final email = () {
+        final a = letMap<String, dynamic>(email0);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
+      final addressEntries0 = otherData?[ModelJobPubFields.addressEntries.name];
+      final addressEntries = letMap(addressEntries0)
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.toString().trim().nullIfEmpty,
+              () {
+                final a = letMap<String, dynamic>(p1);
+                return a != null ? ModelAddressEntry.fromJson(a) : null;
+              }(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final emailEntries0 = otherData?[ModelJobPubFields.emailEntries.name];
+      final emailEntries = letMap(emailEntries0)
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.toString().trim().nullIfEmpty,
+              () {
+                final a = letMap<String, dynamic>(p1);
+                return a != null ? ModelEmailEntry.fromJson(a) : null;
+              }(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final fileEntries0 = otherData?[ModelJobPubFields.fileEntries.name];
+      final fileEntries = letMap(fileEntries0)
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.toString().trim().nullIfEmpty,
+              () {
+                final a = letMap<String, dynamic>(p1);
+                return a != null ? ModelFileEntry.fromJson(a) : null;
+              }(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final phoneEntries0 = otherData?[ModelJobPubFields.phoneEntries.name];
+      final phoneEntries = letMap(phoneEntries0)
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.toString().trim().nullIfEmpty,
+              () {
+                final a = letMap<String, dynamic>(p1);
+                return a != null ? ModelPhoneEntry.fromJson(a) : null;
+              }(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final deviceRegs0 = otherData?[ModelJobPubFields.deviceRegs.name];
+      final deviceRegs = letList(deviceRegs0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelDeviceRegistration.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final clockInRegs0 = otherData?[ModelJobPubFields.clockInRegs.name];
+      final clockInRegs = letList(clockInRegs0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelRegistration.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final clockOutRegs0 = otherData?[ModelJobPubFields.clockOutRegs.name];
+      final clockOutRegs = letList(clockOutRegs0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelRegistration.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final todoEntries0 = otherData?[ModelJobPubFields.todoEntries.name];
+      final todoEntries = letMap(todoEntries0)
+          ?.map(
+            (p0, p1) => MapEntry(
+              () {
+                final a = p0;
+                return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+              }(),
+              () {
+                final a = letMap<String, dynamic>(p1);
+                return a != null ? ModelTodoEntry.fromJson(a) : null;
+              }(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final status0 = otherData?[ModelJobPubFields.status.name];
+      final status = JobStatusType.values.valueOf(letAs<String>(status0));
+      return ModelJobPub(
+        id: id,
+        ref: ref,
+        displayName: displayName,
+        displayColor: displayColor,
+        description: description,
+        archivedGReg: archivedGReg,
+        createdGReg: createdGReg,
+        deletedGReg: deletedGReg,
+        updatedGReg: updatedGReg,
+        expiresAt: expiresAt,
+        email: email,
+        addressEntries: addressEntries,
+        emailEntries: emailEntries,
+        fileEntries: fileEntries,
+        phoneEntries: phoneEntries,
+        deviceRegs: deviceRegs,
+        clockInRegs: clockInRegs,
+        clockOutRegs: clockOutRegs,
+        todoEntries: todoEntries,
+        status: status,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelJobPub.fromUri(
     Uri? uri,
@@ -290,10 +415,10 @@ class ModelJobPub extends _ModelJobPub {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelJobPub.fromJson(uri.queryParameters);
       } else {
-        return ModelJobPub.empty();
+        return const ModelJobPub.c2();
       }
     } catch (_) {
       return null;
@@ -310,27 +435,113 @@ class ModelJobPub extends _ModelJobPub {
     bool includeNulls = false,
   }) {
     try {
+      final id0 = this.id?.trim().nullIfEmpty;
+      final ref0 = this.ref?.toJson();
+      final displayName0 = this.displayName?.toJson();
+      final displayColor0 = this.displayColor?.value;
+      final description0 = this.description?.trim().nullIfEmpty;
+      final archivedGReg0 = this.archivedGReg?.toJson();
+      final createdGReg0 = this.createdGReg?.toJson();
+      final deletedGReg0 = this.deletedGReg?.toJson();
+      final updatedGReg0 = this.updatedGReg?.toJson();
+      final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
+      final email0 = this.email?.toJson();
+      final addressEntries0 = this
+          .addressEntries
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.trim().nullIfEmpty,
+              p1?.toJson(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final emailEntries0 = this
+          .emailEntries
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.trim().nullIfEmpty,
+              p1?.toJson(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final fileEntries0 = this
+          .fileEntries
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.trim().nullIfEmpty,
+              p1?.toJson(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final phoneEntries0 = this
+          .phoneEntries
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.trim().nullIfEmpty,
+              p1?.toJson(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final deviceRegs0 = this
+          .deviceRegs
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final clockInRegs0 = this
+          .clockInRegs
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final clockOutRegs0 = this
+          .clockOutRegs
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final todoEntries0 = this
+          .todoEntries
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.toUtc()?.toIso8601String(),
+              p1?.toJson(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final status0 = this.status?.name;
       final withNulls = <String, dynamic>{
-        K_ID: this.$id,
-        K_REF: this.$ref,
-        K_DISPLAY_NAME: this.$displayName,
-        K_DISPLAY_COLOR: this.$displayColor,
-        K_DESCRIPTION: this.$description,
-        K_ARCHIVED_G_REG: this.$archivedGReg,
-        K_CREATED_G_REG: this.$createdGReg,
-        K_DELETED_G_REG: this.$deletedGReg,
-        K_UPDATED_G_REG: this.$updatedGReg,
-        K_EXPIRES_AT: this.$expiresAt,
-        K_EMAIL: this.$email,
-        K_ADDRESS_ENTRIES: this.$addressEntries,
-        K_EMAIL_ENTRIES: this.$emailEntries,
-        K_FILE_ENTRIES: this.$fileEntries,
-        K_PHONE_ENTRIES: this.$phoneEntries,
-        K_DEVICE_REGS: this.$deviceRegs,
-        K_CLOCK_IN_REGS: this.$clockInRegs,
-        K_CLOCK_OUT_REGS: this.$clockOutRegs,
-        K_TODO_ENTRIES: this.$todoEntries,
-        K_STATUS: this.$status,
+        ModelJobPubFields.id.name: id0,
+        ModelJobPubFields.ref.name: ref0,
+        ModelJobPubFields.displayName.name: displayName0,
+        ModelJobPubFields.displayColor.name: displayColor0,
+        ModelJobPubFields.description.name: description0,
+        ModelJobPubFields.archivedGReg.name: archivedGReg0,
+        ModelJobPubFields.createdGReg.name: createdGReg0,
+        ModelJobPubFields.deletedGReg.name: deletedGReg0,
+        ModelJobPubFields.updatedGReg.name: updatedGReg0,
+        ModelJobPubFields.expiresAt.name: expiresAt0,
+        ModelJobPubFields.email.name: email0,
+        ModelJobPubFields.addressEntries.name: addressEntries0,
+        ModelJobPubFields.emailEntries.name: emailEntries0,
+        ModelJobPubFields.fileEntries.name: fileEntries0,
+        ModelJobPubFields.phoneEntries.name: phoneEntries0,
+        ModelJobPubFields.deviceRegs.name: deviceRegs0,
+        ModelJobPubFields.clockInRegs.name: clockInRegs0,
+        ModelJobPubFields.clockOutRegs.name: clockOutRegs0,
+        ModelJobPubFields.todoEntries.name: todoEntries0,
+        ModelJobPubFields.status.name: status0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -344,90 +555,11 @@ class ModelJobPub extends _ModelJobPub {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelJobPub.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelJobPub.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelJobPub.fromJson(otherData);
-      if (other.id != null) {
-        this.id = other.id!;
-      }
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
-      if (other.displayName != null) {
-        this.displayName = other.displayName!;
-      }
-      if (other.displayColor != null) {
-        this.displayColor = other.displayColor!;
-      }
-      if (other.description != null) {
-        this.description = other.description!;
-      }
-      if (other.archivedGReg != null) {
-        this.archivedGReg = other.archivedGReg!;
-      }
-      if (other.createdGReg != null) {
-        this.createdGReg = other.createdGReg!;
-      }
-      if (other.deletedGReg != null) {
-        this.deletedGReg = other.deletedGReg!;
-      }
-      if (other.updatedGReg != null) {
-        this.updatedGReg = other.updatedGReg!;
-      }
-      if (other.expiresAt != null) {
-        this.expiresAt = other.expiresAt!;
-      }
-      if (other.email != null) {
-        this.email = other.email!;
-      }
-      if (other.addressEntries != null) {
-        this.addressEntries = other.addressEntries!;
-      }
-      if (other.emailEntries != null) {
-        this.emailEntries = other.emailEntries!;
-      }
-      if (other.fileEntries != null) {
-        this.fileEntries = other.fileEntries!;
-      }
-      if (other.phoneEntries != null) {
-        this.phoneEntries = other.phoneEntries!;
-      }
-      if (other.deviceRegs != null) {
-        this.deviceRegs = other.deviceRegs!;
-      }
-      if (other.clockInRegs != null) {
-        this.clockInRegs = other.clockInRegs!;
-      }
-      if (other.clockOutRegs != null) {
-        this.clockOutRegs = other.clockOutRegs!;
-      }
-      if (other.todoEntries != null) {
-        this.todoEntries = other.todoEntries!;
-      }
-      if (other.status != null) {
-        this.status = other.status!;
-      }
-    }
+  ModelJobPub copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelJobPub.fromJson(c);
   }
 
   //
@@ -436,353 +568,229 @@ class ModelJobPub extends _ModelJobPub {
 
   // id.
   String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // ref.
   DataRefModel? get refField => this.ref;
-  set refField(DataRefModel? v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
 
   // displayName.
   ModelQueryable? get displayNameField => this.displayName;
-  set displayNameField(ModelQueryable? v) => this.displayName = v;
-  @protected
-  dynamic get $displayName => this.displayName?.toJson();
-  @protected
-  set $displayName(v) => this.displayName = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelQueryable.fromJson(a) : null;
-      }();
 
   // displayColor.
   Color? get displayColorField => this.displayColor;
-  set displayColorField(Color? v) => this.displayColor = v;
-  @protected
-  dynamic get $displayColor => this.displayColor?.value;
-  @protected
-  set $displayColor(v) => this.displayColor = () {
-        final a = letAs<int>(v);
-        return a is int ? Color(a) : null;
-      }();
 
   // description.
   String? get descriptionField => this.description;
-  set descriptionField(String? v) => this.description = v;
-  @protected
-  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
-  @protected
-  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
   // archivedGReg.
   ModelRegistration? get archivedGRegField => this.archivedGReg;
-  set archivedGRegField(ModelRegistration? v) => this.archivedGReg = v;
-  @protected
-  dynamic get $archivedGReg => this.archivedGReg?.toJson();
-  @protected
-  set $archivedGReg(v) => this.archivedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // createdGReg.
   ModelRegistration? get createdGRegField => this.createdGReg;
-  set createdGRegField(ModelRegistration? v) => this.createdGReg = v;
-  @protected
-  dynamic get $createdGReg => this.createdGReg?.toJson();
-  @protected
-  set $createdGReg(v) => this.createdGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // deletedGReg.
   ModelRegistration? get deletedGRegField => this.deletedGReg;
-  set deletedGRegField(ModelRegistration? v) => this.deletedGReg = v;
-  @protected
-  dynamic get $deletedGReg => this.deletedGReg?.toJson();
-  @protected
-  set $deletedGReg(v) => this.deletedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // updatedGReg.
   ModelRegistration? get updatedGRegField => this.updatedGReg;
-  set updatedGRegField(ModelRegistration? v) => this.updatedGReg = v;
-  @protected
-  dynamic get $updatedGReg => this.updatedGReg?.toJson();
-  @protected
-  set $updatedGReg(v) => this.updatedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // expiresAt.
   DateTime? get expiresAtField => this.expiresAt;
-  set expiresAtField(DateTime? v) => this.expiresAt = v;
-  @protected
-  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
-  @protected
-  set $expiresAt(v) => this.expiresAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
 
   // email.
   ModelQueryable? get emailField => this.email;
-  set emailField(ModelQueryable? v) => this.email = v;
-  @protected
-  dynamic get $email => this.email?.toJson();
-  @protected
-  set $email(v) => this.email = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelQueryable.fromJson(a) : null;
-      }();
 
   // addressEntries.
   Map<String, ModelAddressEntry>? get addressEntriesField =>
       this.addressEntries;
-  set addressEntriesField(Map<String, ModelAddressEntry>? v) =>
-      this.addressEntries = v;
-  @protected
-  dynamic get $addressEntries => this
-      .addressEntries
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $addressEntries(v) => this.addressEntries = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelAddressEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
 
   // emailEntries.
   Map<String, ModelEmailEntry>? get emailEntriesField => this.emailEntries;
-  set emailEntriesField(Map<String, ModelEmailEntry>? v) =>
-      this.emailEntries = v;
-  @protected
-  dynamic get $emailEntries => this
-      .emailEntries
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $emailEntries(v) => this.emailEntries = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelEmailEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
 
   // fileEntries.
   Map<String, ModelFileEntry>? get fileEntriesField => this.fileEntries;
-  set fileEntriesField(Map<String, ModelFileEntry>? v) => this.fileEntries = v;
-  @protected
-  dynamic get $fileEntries => this
-      .fileEntries
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $fileEntries(v) => this.fileEntries = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelFileEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
 
   // phoneEntries.
   Map<String, ModelPhoneEntry>? get phoneEntriesField => this.phoneEntries;
-  set phoneEntriesField(Map<String, ModelPhoneEntry>? v) =>
-      this.phoneEntries = v;
-  @protected
-  dynamic get $phoneEntries => this
-      .phoneEntries
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $phoneEntries(v) => this.phoneEntries = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toString().trim().nullIfEmpty,
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelPhoneEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
 
   // deviceRegs.
   List<ModelDeviceRegistration>? get deviceRegsField => this.deviceRegs;
-  set deviceRegsField(List<ModelDeviceRegistration>? v) => this.deviceRegs = v;
-  @protected
-  dynamic get $deviceRegs => this
-      .deviceRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $deviceRegs(v) => this.deviceRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelDeviceRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
 
   // clockInRegs.
   List<ModelRegistration>? get clockInRegsField => this.clockInRegs;
-  set clockInRegsField(List<ModelRegistration>? v) => this.clockInRegs = v;
-  @protected
-  dynamic get $clockInRegs => this
-      .clockInRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $clockInRegs(v) => this.clockInRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
 
   // clockOutRegs.
   List<ModelRegistration>? get clockOutRegsField => this.clockOutRegs;
-  set clockOutRegsField(List<ModelRegistration>? v) => this.clockOutRegs = v;
-  @protected
-  dynamic get $clockOutRegs => this
-      .clockOutRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $clockOutRegs(v) => this.clockOutRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
 
   // todoEntries.
   Map<DateTime, ModelTodoEntry>? get todoEntriesField => this.todoEntries;
-  set todoEntriesField(Map<DateTime, ModelTodoEntry>? v) =>
-      this.todoEntries = v;
-  @protected
-  dynamic get $todoEntries => this
-      .todoEntries
-      ?.map(
-        (p0, p1) => MapEntry(
-          p0?.toUtc()?.toIso8601String(),
-          p1?.toJson(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty;
-  @protected
-  set $todoEntries(v) => this.todoEntries = letMap(v)
-      ?.map(
-        (p0, p1) => MapEntry(
-          () {
-            final a = p0;
-            return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-          }(),
-          () {
-            final a = letMap<String, dynamic>(p1);
-            return a != null ? ModelTodoEntry.fromJson(a) : null;
-          }(),
-        ),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.cast();
 
   // status.
   JobStatusType? get statusField => this.status;
-  set statusField(JobStatusType? v) => this.status = v;
-  @protected
-  dynamic get $status => this.status?.name;
-  @protected
-  set $status(v) =>
-      this.status = JobStatusType.values.valueOf(letAs<String>(v));
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelJobPubFields {
+  //
+  //
+  //
+
+  id(
+    const Field(
+      fieldName: 'id',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  ref(
+    const Field(
+      fieldName: 'ref',
+      fieldType: 'DataRefModel',
+      nullable: true,
+    ),
+  ),
+  displayName(
+    const Field(
+      fieldName: 'displayName',
+      fieldType: 'ModelQueryable',
+      nullable: true,
+    ),
+  ),
+  displayColor(
+    const Field(
+      fieldName: 'displayColor',
+      fieldType: 'Color',
+      nullable: true,
+    ),
+  ),
+  description(
+    const Field(
+      fieldName: 'description',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  archivedGReg(
+    const Field(
+      fieldName: 'archivedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  createdGReg(
+    const Field(
+      fieldName: 'createdGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  deletedGReg(
+    const Field(
+      fieldName: 'deletedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  updatedGReg(
+    const Field(
+      fieldName: 'updatedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  expiresAt(
+    const Field(
+      fieldName: 'expiresAt',
+      fieldType: 'DateTime',
+      nullable: true,
+    ),
+  ),
+  email(
+    const Field(
+      fieldName: 'email',
+      fieldType: 'ModelQueryable',
+      nullable: true,
+    ),
+  ),
+  addressEntries(
+    const Field(
+      fieldName: 'addressEntries',
+      fieldType: 'Map<String, ModelAddressEntry>',
+      nullable: true,
+    ),
+  ),
+  emailEntries(
+    const Field(
+      fieldName: 'emailEntries',
+      fieldType: 'Map<String, ModelEmailEntry>',
+      nullable: true,
+    ),
+  ),
+  fileEntries(
+    const Field(
+      fieldName: 'fileEntries',
+      fieldType: 'Map<String, ModelFileEntry>',
+      nullable: true,
+    ),
+  ),
+  phoneEntries(
+    const Field(
+      fieldName: 'phoneEntries',
+      fieldType: 'Map<String, ModelPhoneEntry>',
+      nullable: true,
+    ),
+  ),
+  deviceRegs(
+    const Field(
+      fieldName: 'deviceRegs',
+      fieldType: 'List<ModelDeviceRegistration>',
+      nullable: true,
+    ),
+  ),
+  clockInRegs(
+    const Field(
+      fieldName: 'clockInRegs',
+      fieldType: 'List<ModelRegistration>',
+      nullable: true,
+    ),
+  ),
+  clockOutRegs(
+    const Field(
+      fieldName: 'clockOutRegs',
+      fieldType: 'List<ModelRegistration>',
+      nullable: true,
+    ),
+  ),
+  todoEntries(
+    const Field(
+      fieldName: 'todoEntries',
+      fieldType: 'Map<DateTime, ModelTodoEntry>',
+      nullable: true,
+    ),
+  ),
+  status(
+    const Field(
+      fieldName: 'status',
+      fieldType: 'JobStatusType',
+      nullable: true,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelJobPubFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

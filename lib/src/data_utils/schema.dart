@@ -68,7 +68,7 @@ abstract final class Schema {
     );
   }
 
-  static DataRef phoneRef({
+  static DataRef phonesRef({
     String? phoneId,
   }) {
     return DataRef(

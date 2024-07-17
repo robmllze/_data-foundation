@@ -24,56 +24,71 @@ class ModelFileEntry extends _ModelFileEntry {
   //
   //
 
-  static const K_ID = 'id';
-  static const K_REF = 'ref';
-  static const K_DISPLAY_NAME = 'displayName';
-  static const K_DISPLAY_COLOR = 'displayColor';
-  static const K_DESCRIPTION = 'description';
-  static const K_ARCHIVED_G_REG = 'archivedGReg';
-  static const K_CREATED_G_REG = 'createdGReg';
-  static const K_DELETED_G_REG = 'deletedGReg';
-  static const K_UPDATED_G_REG = 'updatedGReg';
-  static const K_EXPIRES_AT = 'expiresAt';
-  static const K_NAME = 'name';
-  static const K_DOWNLOAD_URL = 'downloadUrl';
-  static const K_STORAGE_PATH = 'storagePath';
-  static const K_DEFINITION_PATH = 'definitionPath';
-  static const K_SIZE = 'size';
-  static const K_EXTENSION = 'extension';
-
-  static const CLASS = 'ModelFileEntry';
+  static const CLASS_NAME = 'ModelFileEntry';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  String? id;
-  DataRefModel? ref;
-  ModelQueryable? displayName;
-  Color? displayColor;
-  String? description;
-  ModelRegistration? archivedGReg;
-  ModelRegistration? createdGReg;
-  ModelRegistration? deletedGReg;
-  ModelRegistration? updatedGReg;
-  DateTime? expiresAt;
-  String? name;
-  Uri? downloadUrl;
-  String? storagePath;
-  List<String>? definitionPath;
-  int? size;
-  String? extension;
-
-  //
-  //
-  //
-
-  ModelFileEntry.empty();
+  final String? id;
+  final DataRefModel? ref;
+  final ModelQueryable? displayName;
+  final Color? displayColor;
+  final String? description;
+  final ModelRegistration? archivedGReg;
+  final ModelRegistration? createdGReg;
+  final ModelRegistration? deletedGReg;
+  final ModelRegistration? updatedGReg;
+  final DateTime? expiresAt;
+  final String? name;
+  final Uri? downloadUrl;
+  final String? storagePath;
+  final List<String>? definitionPath;
+  final int? size;
+  final String? extension;
 
   //
   //
   //
 
-  factory ModelFileEntry({
+  const ModelFileEntry({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.name,
+    this.downloadUrl,
+    this.storagePath,
+    this.definitionPath,
+    this.size,
+    this.extension,
+  });
+
+  const ModelFileEntry.c2({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.name,
+    this.downloadUrl,
+    this.storagePath,
+    this.definitionPath,
+    this.size,
+    this.extension,
+  });
+
+  factory ModelFileEntry.c3({
     String? id,
     DataRefModel? ref,
     ModelQueryable? displayName,
@@ -91,7 +106,7 @@ class ModelFileEntry extends _ModelFileEntry {
     int? size,
     String? extension,
   }) {
-    return ModelFileEntry.b(
+    return ModelFileEntry(
       id: id,
       ref: ref,
       displayName: displayName,
@@ -111,35 +126,8 @@ class ModelFileEntry extends _ModelFileEntry {
     );
   }
 
-  //
-  //
-  //
-
-  ModelFileEntry.b({
-    this.id,
-    this.ref,
-    this.displayName,
-    this.displayColor,
-    this.description,
-    this.archivedGReg,
-    this.createdGReg,
-    this.deletedGReg,
-    this.updatedGReg,
-    this.expiresAt,
-    this.name,
-    this.downloadUrl,
-    this.storagePath,
-    this.definitionPath,
-    this.size,
-    this.extension,
-  }) {}
-
-  //
-  //
-  //
-
   factory ModelFileEntry.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -150,14 +138,10 @@ class ModelFileEntry extends _ModelFileEntry {
   }
 
   static ModelFileEntry? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelFileEntry.of(
     ModelFileEntry other,
@@ -175,10 +159,6 @@ class ModelFileEntry extends _ModelFileEntry {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelFileEntry.fromJsonString(
     String source,
@@ -199,16 +179,12 @@ class ModelFileEntry extends _ModelFileEntry {
         final decoded = jsonDecode(source);
         return ModelFileEntry.fromJson(decoded);
       } else {
-        return ModelFileEntry.empty();
+        return const ModelFileEntry.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelFileEntry.fromJson(
     Map<String, dynamic>? otherData,
@@ -225,31 +201,95 @@ class ModelFileEntry extends _ModelFileEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelFileEntry.empty()
-        ..$id = otherData?[K_ID]
-        ..$ref = otherData?[K_REF]
-        ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$displayColor = otherData?[K_DISPLAY_COLOR]
-        ..$description = otherData?[K_DESCRIPTION]
-        ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
-        ..$createdGReg = otherData?[K_CREATED_G_REG]
-        ..$deletedGReg = otherData?[K_DELETED_G_REG]
-        ..$updatedGReg = otherData?[K_UPDATED_G_REG]
-        ..$expiresAt = otherData?[K_EXPIRES_AT]
-        ..$name = otherData?[K_NAME]
-        ..$downloadUrl = otherData?[K_DOWNLOAD_URL]
-        ..$storagePath = otherData?[K_STORAGE_PATH]
-        ..$definitionPath = otherData?[K_DEFINITION_PATH]
-        ..$size = otherData?[K_SIZE]
-        ..$extension = otherData?[K_EXTENSION];
+      final id0 = otherData?[ModelFileEntryFields.id.name];
+      final id = id0?.toString().trim().nullIfEmpty;
+      final ref0 = otherData?[ModelFileEntryFields.ref.name];
+      final ref = () {
+        final a = letMap<String, dynamic>(ref0);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+      final displayName0 = otherData?[ModelFileEntryFields.displayName.name];
+      final displayName = () {
+        final a = letMap<String, dynamic>(displayName0);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
+      final displayColor0 = otherData?[ModelFileEntryFields.displayColor.name];
+      final displayColor = () {
+        final a = letAs<int>(displayColor0);
+        return a is int ? Color(a) : null;
+      }();
+      final description0 = otherData?[ModelFileEntryFields.description.name];
+      final description = description0?.toString().trim().nullIfEmpty;
+      final archivedGReg0 = otherData?[ModelFileEntryFields.archivedGReg.name];
+      final archivedGReg = () {
+        final a = letMap<String, dynamic>(archivedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final createdGReg0 = otherData?[ModelFileEntryFields.createdGReg.name];
+      final createdGReg = () {
+        final a = letMap<String, dynamic>(createdGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final deletedGReg0 = otherData?[ModelFileEntryFields.deletedGReg.name];
+      final deletedGReg = () {
+        final a = letMap<String, dynamic>(deletedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final updatedGReg0 = otherData?[ModelFileEntryFields.updatedGReg.name];
+      final updatedGReg = () {
+        final a = letMap<String, dynamic>(updatedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final expiresAt0 = otherData?[ModelFileEntryFields.expiresAt.name];
+      final expiresAt = () {
+        final a = expiresAt0;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+      final name0 = otherData?[ModelFileEntryFields.name.name];
+      final name = name0?.toString().trim().nullIfEmpty;
+      final downloadUrl0 = otherData?[ModelFileEntryFields.downloadUrl.name];
+      final downloadUrl = () {
+        final a = downloadUrl0;
+        return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
+      }();
+      final storagePath0 = otherData?[ModelFileEntryFields.storagePath.name];
+      final storagePath = storagePath0?.toString().trim().nullIfEmpty;
+      final definitionPath0 =
+          otherData?[ModelFileEntryFields.definitionPath.name];
+      final definitionPath = letList(definitionPath0)
+          ?.map(
+            (p0) => p0?.toString().trim().nullIfEmpty,
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final size0 = otherData?[ModelFileEntryFields.size.name];
+      final size = letInt(size0);
+      final extension0 = otherData?[ModelFileEntryFields.extension.name];
+      final extension =
+          extension0?.toString().trim().nullIfEmpty?.toLowerCase();
+      return ModelFileEntry(
+        id: id,
+        ref: ref,
+        displayName: displayName,
+        displayColor: displayColor,
+        description: description,
+        archivedGReg: archivedGReg,
+        createdGReg: createdGReg,
+        deletedGReg: deletedGReg,
+        updatedGReg: updatedGReg,
+        expiresAt: expiresAt,
+        name: name,
+        downloadUrl: downloadUrl,
+        storagePath: storagePath,
+        definitionPath: definitionPath,
+        size: size,
+        extension: extension,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelFileEntry.fromUri(
     Uri? uri,
@@ -266,10 +306,10 @@ class ModelFileEntry extends _ModelFileEntry {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelFileEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelFileEntry.empty();
+        return const ModelFileEntry.c2();
       }
     } catch (_) {
       return null;
@@ -286,23 +326,46 @@ class ModelFileEntry extends _ModelFileEntry {
     bool includeNulls = false,
   }) {
     try {
+      final id0 = this.id?.trim().nullIfEmpty;
+      final ref0 = this.ref?.toJson();
+      final displayName0 = this.displayName?.toJson();
+      final displayColor0 = this.displayColor?.value;
+      final description0 = this.description?.trim().nullIfEmpty;
+      final archivedGReg0 = this.archivedGReg?.toJson();
+      final createdGReg0 = this.createdGReg?.toJson();
+      final deletedGReg0 = this.deletedGReg?.toJson();
+      final updatedGReg0 = this.updatedGReg?.toJson();
+      final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
+      final name0 = this.name?.trim().nullIfEmpty;
+      final downloadUrl0 = this.downloadUrl?.toString();
+      final storagePath0 = this.storagePath?.trim().nullIfEmpty;
+      final definitionPath0 = this
+          .definitionPath
+          ?.map(
+            (p0) => p0?.trim().nullIfEmpty,
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final size0 = this.size;
+      final extension0 = this.extension?.trim().nullIfEmpty?.toLowerCase();
       final withNulls = <String, dynamic>{
-        K_ID: this.$id,
-        K_REF: this.$ref,
-        K_DISPLAY_NAME: this.$displayName,
-        K_DISPLAY_COLOR: this.$displayColor,
-        K_DESCRIPTION: this.$description,
-        K_ARCHIVED_G_REG: this.$archivedGReg,
-        K_CREATED_G_REG: this.$createdGReg,
-        K_DELETED_G_REG: this.$deletedGReg,
-        K_UPDATED_G_REG: this.$updatedGReg,
-        K_EXPIRES_AT: this.$expiresAt,
-        K_NAME: this.$name,
-        K_DOWNLOAD_URL: this.$downloadUrl,
-        K_STORAGE_PATH: this.$storagePath,
-        K_DEFINITION_PATH: this.$definitionPath,
-        K_SIZE: this.$size,
-        K_EXTENSION: this.$extension,
+        ModelFileEntryFields.id.name: id0,
+        ModelFileEntryFields.ref.name: ref0,
+        ModelFileEntryFields.displayName.name: displayName0,
+        ModelFileEntryFields.displayColor.name: displayColor0,
+        ModelFileEntryFields.description.name: description0,
+        ModelFileEntryFields.archivedGReg.name: archivedGReg0,
+        ModelFileEntryFields.createdGReg.name: createdGReg0,
+        ModelFileEntryFields.deletedGReg.name: deletedGReg0,
+        ModelFileEntryFields.updatedGReg.name: updatedGReg0,
+        ModelFileEntryFields.expiresAt.name: expiresAt0,
+        ModelFileEntryFields.name.name: name0,
+        ModelFileEntryFields.downloadUrl.name: downloadUrl0,
+        ModelFileEntryFields.storagePath.name: storagePath0,
+        ModelFileEntryFields.definitionPath.name: definitionPath0,
+        ModelFileEntryFields.size.name: size0,
+        ModelFileEntryFields.extension.name: extension0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -316,78 +379,11 @@ class ModelFileEntry extends _ModelFileEntry {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelFileEntry.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelFileEntry.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelFileEntry.fromJson(otherData);
-      if (other.id != null) {
-        this.id = other.id!;
-      }
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
-      if (other.displayName != null) {
-        this.displayName = other.displayName!;
-      }
-      if (other.displayColor != null) {
-        this.displayColor = other.displayColor!;
-      }
-      if (other.description != null) {
-        this.description = other.description!;
-      }
-      if (other.archivedGReg != null) {
-        this.archivedGReg = other.archivedGReg!;
-      }
-      if (other.createdGReg != null) {
-        this.createdGReg = other.createdGReg!;
-      }
-      if (other.deletedGReg != null) {
-        this.deletedGReg = other.deletedGReg!;
-      }
-      if (other.updatedGReg != null) {
-        this.updatedGReg = other.updatedGReg!;
-      }
-      if (other.expiresAt != null) {
-        this.expiresAt = other.expiresAt!;
-      }
-      if (other.name != null) {
-        this.name = other.name!;
-      }
-      if (other.downloadUrl != null) {
-        this.downloadUrl = other.downloadUrl!;
-      }
-      if (other.storagePath != null) {
-        this.storagePath = other.storagePath!;
-      }
-      if (other.definitionPath != null) {
-        this.definitionPath = other.definitionPath!;
-      }
-      if (other.size != null) {
-        this.size = other.size!;
-      }
-      if (other.extension != null) {
-        this.extension = other.extension!;
-      }
-    }
+  ModelFileEntry copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelFileEntry.fromJson(c);
   }
 
   //
@@ -396,172 +392,188 @@ class ModelFileEntry extends _ModelFileEntry {
 
   // id.
   String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // ref.
   DataRefModel? get refField => this.ref;
-  set refField(DataRefModel? v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
 
   // displayName.
   ModelQueryable? get displayNameField => this.displayName;
-  set displayNameField(ModelQueryable? v) => this.displayName = v;
-  @protected
-  dynamic get $displayName => this.displayName?.toJson();
-  @protected
-  set $displayName(v) => this.displayName = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelQueryable.fromJson(a) : null;
-      }();
 
   // displayColor.
   Color? get displayColorField => this.displayColor;
-  set displayColorField(Color? v) => this.displayColor = v;
-  @protected
-  dynamic get $displayColor => this.displayColor?.value;
-  @protected
-  set $displayColor(v) => this.displayColor = () {
-        final a = letAs<int>(v);
-        return a is int ? Color(a) : null;
-      }();
 
   // description.
   String? get descriptionField => this.description;
-  set descriptionField(String? v) => this.description = v;
-  @protected
-  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
-  @protected
-  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
   // archivedGReg.
   ModelRegistration? get archivedGRegField => this.archivedGReg;
-  set archivedGRegField(ModelRegistration? v) => this.archivedGReg = v;
-  @protected
-  dynamic get $archivedGReg => this.archivedGReg?.toJson();
-  @protected
-  set $archivedGReg(v) => this.archivedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // createdGReg.
   ModelRegistration? get createdGRegField => this.createdGReg;
-  set createdGRegField(ModelRegistration? v) => this.createdGReg = v;
-  @protected
-  dynamic get $createdGReg => this.createdGReg?.toJson();
-  @protected
-  set $createdGReg(v) => this.createdGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // deletedGReg.
   ModelRegistration? get deletedGRegField => this.deletedGReg;
-  set deletedGRegField(ModelRegistration? v) => this.deletedGReg = v;
-  @protected
-  dynamic get $deletedGReg => this.deletedGReg?.toJson();
-  @protected
-  set $deletedGReg(v) => this.deletedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // updatedGReg.
   ModelRegistration? get updatedGRegField => this.updatedGReg;
-  set updatedGRegField(ModelRegistration? v) => this.updatedGReg = v;
-  @protected
-  dynamic get $updatedGReg => this.updatedGReg?.toJson();
-  @protected
-  set $updatedGReg(v) => this.updatedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // expiresAt.
   DateTime? get expiresAtField => this.expiresAt;
-  set expiresAtField(DateTime? v) => this.expiresAt = v;
-  @protected
-  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
-  @protected
-  set $expiresAt(v) => this.expiresAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
 
   // name.
   String? get nameField => this.name;
-  set nameField(String? v) => this.name = v;
-  @protected
-  dynamic get $name => this.name?.toString().trim().nullIfEmpty;
-  @protected
-  set $name(v) => this.name = v?.toString().trim().nullIfEmpty;
 
   // downloadUrl.
   Uri? get downloadUrlField => this.downloadUrl;
-  set downloadUrlField(Uri? v) => this.downloadUrl = v;
-  @protected
-  dynamic get $downloadUrl => this.downloadUrl?.toString();
-  @protected
-  set $downloadUrl(v) => this.downloadUrl = () {
-        final a = v;
-        return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
-      }();
 
   // storagePath.
   String? get storagePathField => this.storagePath;
-  set storagePathField(String? v) => this.storagePath = v;
-  @protected
-  dynamic get $storagePath => this.storagePath?.toString().trim().nullIfEmpty;
-  @protected
-  set $storagePath(v) => this.storagePath = v?.toString().trim().nullIfEmpty;
 
   // definitionPath.
   List<String>? get definitionPathField => this.definitionPath;
-  set definitionPathField(List<String>? v) => this.definitionPath = v;
-  @protected
-  dynamic get $definitionPath => this
-      .definitionPath
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $definitionPath(v) => this.definitionPath = letList(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
 
   // size.
   int? get sizeField => this.size;
-  set sizeField(int? v) => this.size = v;
-  @protected
-  dynamic get $size => this.size;
-  @protected
-  set $size(v) => this.size = letInt(v);
 
   // extension.
   String? get extensionField => this.extension;
-  set extensionField(String? v) => this.extension = v;
-  @protected
-  dynamic get $extension =>
-      this.extension?.toString().trim().nullIfEmpty?.toLowerCase();
-  @protected
-  set $extension(v) =>
-      this.extension = v?.toString().trim().nullIfEmpty?.toLowerCase();
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelFileEntryFields {
+  //
+  //
+  //
+
+  id(
+    const Field(
+      fieldName: 'id',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  ref(
+    const Field(
+      fieldName: 'ref',
+      fieldType: 'DataRefModel',
+      nullable: true,
+    ),
+  ),
+  displayName(
+    const Field(
+      fieldName: 'displayName',
+      fieldType: 'ModelQueryable',
+      nullable: true,
+    ),
+  ),
+  displayColor(
+    const Field(
+      fieldName: 'displayColor',
+      fieldType: 'Color',
+      nullable: true,
+    ),
+  ),
+  description(
+    const Field(
+      fieldName: 'description',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  archivedGReg(
+    const Field(
+      fieldName: 'archivedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  createdGReg(
+    const Field(
+      fieldName: 'createdGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  deletedGReg(
+    const Field(
+      fieldName: 'deletedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  updatedGReg(
+    const Field(
+      fieldName: 'updatedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  expiresAt(
+    const Field(
+      fieldName: 'expiresAt',
+      fieldType: 'DateTime',
+      nullable: true,
+    ),
+  ),
+  name(
+    const Field(
+      fieldName: 'name',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  downloadUrl(
+    const Field(
+      fieldName: 'downloadUrl',
+      fieldType: 'Uri',
+      nullable: true,
+    ),
+  ),
+  storagePath(
+    const Field(
+      fieldName: 'storagePath',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  definitionPath(
+    const Field(
+      fieldName: 'definitionPath',
+      fieldType: 'List<String>',
+      nullable: true,
+    ),
+  ),
+  size(
+    const Field(
+      fieldName: 'size',
+      fieldType: 'int',
+      nullable: true,
+    ),
+  ),
+  extension(
+    const Field(
+      fieldName: 'extension',
+      fieldType: 'LowerCase-String',
+      nullable: true,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelFileEntryFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

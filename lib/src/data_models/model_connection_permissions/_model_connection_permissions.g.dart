@@ -24,44 +24,53 @@ class ModelConnectionPermissions extends Model {
   //
   //
 
-  static const K_MINIMAL_PERMIT = 'minimalPermit';
-  static const K_MINIMAL_REQUEST = 'minimalRequest';
-  static const K_EDITOR_PERMIT = 'editorPermit';
-  static const K_EDITOR_REQUEST = 'editorRequest';
-  static const K_MESSAGING_PERMIT = 'messagingPermit';
-  static const K_MESSAGING_REQUEST = 'messagingRequest';
-  static const K_NOTIFICATION_PERMIT = 'notificationPermit';
-  static const K_NOTIFICATION_REQUEST = 'notificationRequest';
-  static const K_READ_ONLY_PERMIT = 'readOnlyPermit';
-  static const K_READ_ONLY_REQUEST = 'readOnlyRequest';
-
-  static const CLASS = 'ModelConnectionPermissions';
+  static const CLASS_NAME = 'ModelConnectionPermissions';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  bool? minimalPermit;
-  bool? minimalRequest;
-  bool? editorPermit;
-  bool? editorRequest;
-  bool? messagingPermit;
-  bool? messagingRequest;
-  bool? notificationPermit;
-  bool? notificationRequest;
-  bool? readOnlyPermit;
-  bool? readOnlyRequest;
-
-  //
-  //
-  //
-
-  ModelConnectionPermissions.empty();
+  final bool? minimalPermit;
+  final bool? minimalRequest;
+  final bool? editorPermit;
+  final bool? editorRequest;
+  final bool? messagingPermit;
+  final bool? messagingRequest;
+  final bool? notificationPermit;
+  final bool? notificationRequest;
+  final bool? readOnlyPermit;
+  final bool? readOnlyRequest;
 
   //
   //
   //
 
-  factory ModelConnectionPermissions({
+  const ModelConnectionPermissions({
+    this.minimalPermit,
+    this.minimalRequest,
+    this.editorPermit,
+    this.editorRequest,
+    this.messagingPermit,
+    this.messagingRequest,
+    this.notificationPermit,
+    this.notificationRequest,
+    this.readOnlyPermit,
+    this.readOnlyRequest,
+  });
+
+  const ModelConnectionPermissions.c2({
+    this.minimalPermit,
+    this.minimalRequest,
+    this.editorPermit,
+    this.editorRequest,
+    this.messagingPermit,
+    this.messagingRequest,
+    this.notificationPermit,
+    this.notificationRequest,
+    this.readOnlyPermit,
+    this.readOnlyRequest,
+  });
+
+  factory ModelConnectionPermissions.c3({
     bool? minimalPermit,
     bool? minimalRequest,
     bool? editorPermit,
@@ -73,7 +82,7 @@ class ModelConnectionPermissions extends Model {
     bool? readOnlyPermit,
     bool? readOnlyRequest,
   }) {
-    return ModelConnectionPermissions.b(
+    return ModelConnectionPermissions(
       minimalPermit: minimalPermit,
       minimalRequest: minimalRequest,
       editorPermit: editorPermit,
@@ -87,29 +96,8 @@ class ModelConnectionPermissions extends Model {
     );
   }
 
-  //
-  //
-  //
-
-  ModelConnectionPermissions.b({
-    this.minimalPermit,
-    this.minimalRequest,
-    this.editorPermit,
-    this.editorRequest,
-    this.messagingPermit,
-    this.messagingRequest,
-    this.notificationPermit,
-    this.notificationRequest,
-    this.readOnlyPermit,
-    this.readOnlyRequest,
-  }) {}
-
-  //
-  //
-  //
-
   factory ModelConnectionPermissions.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -120,14 +108,10 @@ class ModelConnectionPermissions extends Model {
   }
 
   static ModelConnectionPermissions? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelConnectionPermissions.of(
     ModelConnectionPermissions other,
@@ -145,10 +129,6 @@ class ModelConnectionPermissions extends Model {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelConnectionPermissions.fromJsonString(
     String source,
@@ -169,16 +149,12 @@ class ModelConnectionPermissions extends Model {
         final decoded = jsonDecode(source);
         return ModelConnectionPermissions.fromJson(decoded);
       } else {
-        return ModelConnectionPermissions.empty();
+        return const ModelConnectionPermissions.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelConnectionPermissions.fromJson(
     Map<String, dynamic>? otherData,
@@ -195,25 +171,52 @@ class ModelConnectionPermissions extends Model {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelConnectionPermissions.empty()
-        ..$minimalPermit = otherData?[K_MINIMAL_PERMIT]
-        ..$minimalRequest = otherData?[K_MINIMAL_REQUEST]
-        ..$editorPermit = otherData?[K_EDITOR_PERMIT]
-        ..$editorRequest = otherData?[K_EDITOR_REQUEST]
-        ..$messagingPermit = otherData?[K_MESSAGING_PERMIT]
-        ..$messagingRequest = otherData?[K_MESSAGING_REQUEST]
-        ..$notificationPermit = otherData?[K_NOTIFICATION_PERMIT]
-        ..$notificationRequest = otherData?[K_NOTIFICATION_REQUEST]
-        ..$readOnlyPermit = otherData?[K_READ_ONLY_PERMIT]
-        ..$readOnlyRequest = otherData?[K_READ_ONLY_REQUEST];
+      final minimalPermit0 =
+          otherData?[ModelConnectionPermissionsFields.minimalPermit.name];
+      final minimalPermit = letBool(minimalPermit0);
+      final minimalRequest0 =
+          otherData?[ModelConnectionPermissionsFields.minimalRequest.name];
+      final minimalRequest = letBool(minimalRequest0);
+      final editorPermit0 =
+          otherData?[ModelConnectionPermissionsFields.editorPermit.name];
+      final editorPermit = letBool(editorPermit0);
+      final editorRequest0 =
+          otherData?[ModelConnectionPermissionsFields.editorRequest.name];
+      final editorRequest = letBool(editorRequest0);
+      final messagingPermit0 =
+          otherData?[ModelConnectionPermissionsFields.messagingPermit.name];
+      final messagingPermit = letBool(messagingPermit0);
+      final messagingRequest0 =
+          otherData?[ModelConnectionPermissionsFields.messagingRequest.name];
+      final messagingRequest = letBool(messagingRequest0);
+      final notificationPermit0 =
+          otherData?[ModelConnectionPermissionsFields.notificationPermit.name];
+      final notificationPermit = letBool(notificationPermit0);
+      final notificationRequest0 =
+          otherData?[ModelConnectionPermissionsFields.notificationRequest.name];
+      final notificationRequest = letBool(notificationRequest0);
+      final readOnlyPermit0 =
+          otherData?[ModelConnectionPermissionsFields.readOnlyPermit.name];
+      final readOnlyPermit = letBool(readOnlyPermit0);
+      final readOnlyRequest0 =
+          otherData?[ModelConnectionPermissionsFields.readOnlyRequest.name];
+      final readOnlyRequest = letBool(readOnlyRequest0);
+      return ModelConnectionPermissions(
+        minimalPermit: minimalPermit,
+        minimalRequest: minimalRequest,
+        editorPermit: editorPermit,
+        editorRequest: editorRequest,
+        messagingPermit: messagingPermit,
+        messagingRequest: messagingRequest,
+        notificationPermit: notificationPermit,
+        notificationRequest: notificationRequest,
+        readOnlyPermit: readOnlyPermit,
+        readOnlyRequest: readOnlyRequest,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelConnectionPermissions.fromUri(
     Uri? uri,
@@ -230,10 +233,10 @@ class ModelConnectionPermissions extends Model {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelConnectionPermissions.fromJson(uri.queryParameters);
       } else {
-        return ModelConnectionPermissions.empty();
+        return const ModelConnectionPermissions.c2();
       }
     } catch (_) {
       return null;
@@ -250,17 +253,30 @@ class ModelConnectionPermissions extends Model {
     bool includeNulls = false,
   }) {
     try {
+      final minimalPermit0 = this.minimalPermit;
+      final minimalRequest0 = this.minimalRequest;
+      final editorPermit0 = this.editorPermit;
+      final editorRequest0 = this.editorRequest;
+      final messagingPermit0 = this.messagingPermit;
+      final messagingRequest0 = this.messagingRequest;
+      final notificationPermit0 = this.notificationPermit;
+      final notificationRequest0 = this.notificationRequest;
+      final readOnlyPermit0 = this.readOnlyPermit;
+      final readOnlyRequest0 = this.readOnlyRequest;
       final withNulls = <String, dynamic>{
-        K_MINIMAL_PERMIT: this.$minimalPermit,
-        K_MINIMAL_REQUEST: this.$minimalRequest,
-        K_EDITOR_PERMIT: this.$editorPermit,
-        K_EDITOR_REQUEST: this.$editorRequest,
-        K_MESSAGING_PERMIT: this.$messagingPermit,
-        K_MESSAGING_REQUEST: this.$messagingRequest,
-        K_NOTIFICATION_PERMIT: this.$notificationPermit,
-        K_NOTIFICATION_REQUEST: this.$notificationRequest,
-        K_READ_ONLY_PERMIT: this.$readOnlyPermit,
-        K_READ_ONLY_REQUEST: this.$readOnlyRequest,
+        ModelConnectionPermissionsFields.minimalPermit.name: minimalPermit0,
+        ModelConnectionPermissionsFields.minimalRequest.name: minimalRequest0,
+        ModelConnectionPermissionsFields.editorPermit.name: editorPermit0,
+        ModelConnectionPermissionsFields.editorRequest.name: editorRequest0,
+        ModelConnectionPermissionsFields.messagingPermit.name: messagingPermit0,
+        ModelConnectionPermissionsFields.messagingRequest.name:
+            messagingRequest0,
+        ModelConnectionPermissionsFields.notificationPermit.name:
+            notificationPermit0,
+        ModelConnectionPermissionsFields.notificationRequest.name:
+            notificationRequest0,
+        ModelConnectionPermissionsFields.readOnlyPermit.name: readOnlyPermit0,
+        ModelConnectionPermissionsFields.readOnlyRequest.name: readOnlyRequest0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -274,60 +290,11 @@ class ModelConnectionPermissions extends Model {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelConnectionPermissions.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelConnectionPermissions.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelConnectionPermissions.fromJson(otherData);
-      if (other.minimalPermit != null) {
-        this.minimalPermit = other.minimalPermit!;
-      }
-      if (other.minimalRequest != null) {
-        this.minimalRequest = other.minimalRequest!;
-      }
-      if (other.editorPermit != null) {
-        this.editorPermit = other.editorPermit!;
-      }
-      if (other.editorRequest != null) {
-        this.editorRequest = other.editorRequest!;
-      }
-      if (other.messagingPermit != null) {
-        this.messagingPermit = other.messagingPermit!;
-      }
-      if (other.messagingRequest != null) {
-        this.messagingRequest = other.messagingRequest!;
-      }
-      if (other.notificationPermit != null) {
-        this.notificationPermit = other.notificationPermit!;
-      }
-      if (other.notificationRequest != null) {
-        this.notificationRequest = other.notificationRequest!;
-      }
-      if (other.readOnlyPermit != null) {
-        this.readOnlyPermit = other.readOnlyPermit!;
-      }
-      if (other.readOnlyRequest != null) {
-        this.readOnlyRequest = other.readOnlyRequest!;
-      }
-    }
+  ModelConnectionPermissions copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelConnectionPermissions.fromJson(c);
   }
 
   //
@@ -336,81 +303,128 @@ class ModelConnectionPermissions extends Model {
 
   // minimalPermit.
   bool? get minimalPermitField => this.minimalPermit;
-  set minimalPermitField(bool? v) => this.minimalPermit = v;
-  @protected
-  dynamic get $minimalPermit => this.minimalPermit;
-  @protected
-  set $minimalPermit(v) => this.minimalPermit = letBool(v);
 
   // minimalRequest.
   bool? get minimalRequestField => this.minimalRequest;
-  set minimalRequestField(bool? v) => this.minimalRequest = v;
-  @protected
-  dynamic get $minimalRequest => this.minimalRequest;
-  @protected
-  set $minimalRequest(v) => this.minimalRequest = letBool(v);
 
   // editorPermit.
   bool? get editorPermitField => this.editorPermit;
-  set editorPermitField(bool? v) => this.editorPermit = v;
-  @protected
-  dynamic get $editorPermit => this.editorPermit;
-  @protected
-  set $editorPermit(v) => this.editorPermit = letBool(v);
 
   // editorRequest.
   bool? get editorRequestField => this.editorRequest;
-  set editorRequestField(bool? v) => this.editorRequest = v;
-  @protected
-  dynamic get $editorRequest => this.editorRequest;
-  @protected
-  set $editorRequest(v) => this.editorRequest = letBool(v);
 
   // messagingPermit.
   bool? get messagingPermitField => this.messagingPermit;
-  set messagingPermitField(bool? v) => this.messagingPermit = v;
-  @protected
-  dynamic get $messagingPermit => this.messagingPermit;
-  @protected
-  set $messagingPermit(v) => this.messagingPermit = letBool(v);
 
   // messagingRequest.
   bool? get messagingRequestField => this.messagingRequest;
-  set messagingRequestField(bool? v) => this.messagingRequest = v;
-  @protected
-  dynamic get $messagingRequest => this.messagingRequest;
-  @protected
-  set $messagingRequest(v) => this.messagingRequest = letBool(v);
 
   // notificationPermit.
   bool? get notificationPermitField => this.notificationPermit;
-  set notificationPermitField(bool? v) => this.notificationPermit = v;
-  @protected
-  dynamic get $notificationPermit => this.notificationPermit;
-  @protected
-  set $notificationPermit(v) => this.notificationPermit = letBool(v);
 
   // notificationRequest.
   bool? get notificationRequestField => this.notificationRequest;
-  set notificationRequestField(bool? v) => this.notificationRequest = v;
-  @protected
-  dynamic get $notificationRequest => this.notificationRequest;
-  @protected
-  set $notificationRequest(v) => this.notificationRequest = letBool(v);
 
   // readOnlyPermit.
   bool? get readOnlyPermitField => this.readOnlyPermit;
-  set readOnlyPermitField(bool? v) => this.readOnlyPermit = v;
-  @protected
-  dynamic get $readOnlyPermit => this.readOnlyPermit;
-  @protected
-  set $readOnlyPermit(v) => this.readOnlyPermit = letBool(v);
 
   // readOnlyRequest.
   bool? get readOnlyRequestField => this.readOnlyRequest;
-  set readOnlyRequestField(bool? v) => this.readOnlyRequest = v;
-  @protected
-  dynamic get $readOnlyRequest => this.readOnlyRequest;
-  @protected
-  set $readOnlyRequest(v) => this.readOnlyRequest = letBool(v);
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelConnectionPermissionsFields {
+  //
+  //
+  //
+
+  minimalPermit(
+    const Field(
+      fieldName: 'minimalPermit',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  ),
+  minimalRequest(
+    const Field(
+      fieldName: 'minimalRequest',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  ),
+  editorPermit(
+    const Field(
+      fieldName: 'editorPermit',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  ),
+  editorRequest(
+    const Field(
+      fieldName: 'editorRequest',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  ),
+  messagingPermit(
+    const Field(
+      fieldName: 'messagingPermit',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  ),
+  messagingRequest(
+    const Field(
+      fieldName: 'messagingRequest',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  ),
+  notificationPermit(
+    const Field(
+      fieldName: 'notificationPermit',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  ),
+  notificationRequest(
+    const Field(
+      fieldName: 'notificationRequest',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  ),
+  readOnlyPermit(
+    const Field(
+      fieldName: 'readOnlyPermit',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  ),
+  readOnlyRequest(
+    const Field(
+      fieldName: 'readOnlyRequest',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelConnectionPermissionsFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

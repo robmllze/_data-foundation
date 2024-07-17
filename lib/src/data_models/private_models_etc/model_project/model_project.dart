@@ -19,7 +19,9 @@ part '_model_project.g.dart';
     ...PRIVATE_MODEL_FIELDS,
   },
 )
-abstract class _ModelProject extends Model implements PrivateModel {}
+abstract class _ModelProject extends Model implements PrivateModel {
+  const _ModelProject();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

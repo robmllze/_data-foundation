@@ -19,7 +19,7 @@ const MODEL_EVENT_FIELDS = {
   ('member_pids?', Set<String>),
   ('tags?', Set<String>),
   ('content_type?', ModelEnum),
-  ('content?', DataModel),
+  ('content?', Model),
   ('read_regs?', List<ModelRegistration>),
   ('archived_regs?', List<ModelRegistration>),
   ('hidden_regs?', List<ModelRegistration>),
@@ -31,7 +31,9 @@ const MODEL_EVENT_FIELDS = {
   shouldInherit: true,
   fields: MODEL_EVENT_FIELDS,
 )
-abstract class _ModelEvent extends Model implements ModelEntry {}
+abstract class _ModelEvent extends Model implements ModelEntry {
+  const _ModelEvent();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

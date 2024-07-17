@@ -24,4 +24,6 @@ const PRIVATE_MODEL_FIELDS = {
   fields: PRIVATE_MODEL_FIELDS,
 )
 // ignore: unused_element
-abstract class _PrivateModel extends Model implements ModelEntry {}
+abstract class _PrivateModel extends Model implements ModelEntry {
+  const _PrivateModel();
+}

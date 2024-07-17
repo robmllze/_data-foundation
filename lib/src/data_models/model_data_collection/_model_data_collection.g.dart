@@ -24,54 +24,42 @@ class ModelDataCollection extends _ModelDataCollection {
   //
   //
 
-  static const K_REF = 'ref';
-  static const K_DOCUMENTS = 'documents';
-
-  static const CLASS = 'ModelDataCollection';
+  static const CLASS_NAME = 'ModelDataCollection';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  DataRefModel? ref;
-  Set<DataRefModel>? documents;
-
-  //
-  //
-  //
-
-  ModelDataCollection.empty();
+  final DataRefModel? ref;
+  final Set<DataRefModel>? documents;
 
   //
   //
   //
 
-  factory ModelDataCollection({
-    required DataRefModel ref,
+  const ModelDataCollection({
+    required this.ref,
+    this.documents,
+  });
+
+  const ModelDataCollection.c2({
+    this.ref,
+    this.documents,
+  });
+
+  factory ModelDataCollection.c3({
+    DataRefModel? ref,
     Set<DataRefModel>? documents,
   }) {
-    return ModelDataCollection.b(
+    assert(ref != null);
+
+    return ModelDataCollection(
       ref: ref,
       documents: documents,
     );
   }
 
-  //
-  //
-  //
-
-  ModelDataCollection.b({
-    this.ref,
-    this.documents,
-  }) {
-    assert(this.ref != null);
-  }
-
-  //
-  //
-  //
-
   factory ModelDataCollection.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -82,14 +70,10 @@ class ModelDataCollection extends _ModelDataCollection {
   }
 
   static ModelDataCollection? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelDataCollection.of(
     ModelDataCollection other,
@@ -107,10 +91,6 @@ class ModelDataCollection extends _ModelDataCollection {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelDataCollection.fromJsonString(
     String source,
@@ -131,16 +111,12 @@ class ModelDataCollection extends _ModelDataCollection {
         final decoded = jsonDecode(source);
         return ModelDataCollection.fromJson(decoded);
       } else {
-        return ModelDataCollection.empty();
+        return const ModelDataCollection.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelDataCollection.fromJson(
     Map<String, dynamic>? otherData,
@@ -157,17 +133,30 @@ class ModelDataCollection extends _ModelDataCollection {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelDataCollection.empty()
-        ..$ref = otherData?[K_REF]
-        ..$documents = otherData?[K_DOCUMENTS];
+      final ref0 = otherData?[ModelDataCollectionFields.ref.name];
+      final ref = () {
+        final a = letMap<String, dynamic>(ref0);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+      final documents0 = otherData?[ModelDataCollectionFields.documents.name];
+      final documents = letSet(documents0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? DataRefModel.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toSet();
+      return ModelDataCollection(
+        ref: ref,
+        documents: documents,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelDataCollection.fromUri(
     Uri? uri,
@@ -184,10 +173,10 @@ class ModelDataCollection extends _ModelDataCollection {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelDataCollection.fromJson(uri.queryParameters);
       } else {
-        return ModelDataCollection.empty();
+        return const ModelDataCollection.c2();
       }
     } catch (_) {
       return null;
@@ -204,9 +193,18 @@ class ModelDataCollection extends _ModelDataCollection {
     bool includeNulls = false,
   }) {
     try {
+      final ref0 = this.ref?.toJson();
+      final documents0 = this
+          .documents
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
       final withNulls = <String, dynamic>{
-        K_REF: this.$ref,
-        K_DOCUMENTS: this.$documents,
+        ModelDataCollectionFields.ref.name: ref0,
+        ModelDataCollectionFields.documents.name: documents0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -220,36 +218,11 @@ class ModelDataCollection extends _ModelDataCollection {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelDataCollection.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelDataCollection.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelDataCollection.fromJson(otherData);
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
-      if (other.documents != null) {
-        this.documents = other.documents!;
-      }
-    }
+  ModelDataCollection copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelDataCollection.fromJson(c);
   }
 
   //
@@ -258,37 +231,48 @@ class ModelDataCollection extends _ModelDataCollection {
 
   // ref.
   DataRefModel get refField => this.ref!;
-  set refField(DataRefModel v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
 
   // documents.
   Set<DataRefModel>? get documentsField => this.documents;
-  set documentsField(Set<DataRefModel>? v) => this.documents = v;
-  @protected
-  dynamic get $documents => this
-      .documents
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $documents(v) => this.documents = letSet(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? DataRefModel.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelDataCollectionFields {
+  //
+  //
+  //
+
+  ref(
+    const Field(
+      fieldName: 'ref',
+      fieldType: 'DataRefModel',
+      nullable: false,
+    ),
+  ),
+  documents(
+    const Field(
+      fieldName: 'documents',
+      fieldType: 'Set<DataRefModel>',
+      nullable: true,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelDataCollectionFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

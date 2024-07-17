@@ -20,4 +20,6 @@ part '_model_note_entry.g.dart';
     ('note?', String),
   },
 )
-abstract class _ModelNoteEntry extends Model implements ModelEntry {}
+abstract class _ModelNoteEntry extends Model implements ModelEntry {
+  const _ModelNoteEntry();
+}

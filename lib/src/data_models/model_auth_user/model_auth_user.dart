@@ -26,10 +26,12 @@ part '_model_auth_user.g.dart';
     ('email_verified?', bool),
   },
 )
-abstract class _ModelAuthUser extends ThisModel<ModelAuthUser> {
-  //
-  //
-  //
+abstract class _ModelAuthUser extends Model {
+  const _ModelAuthUser();
+}
 
-  Uri? get photoUri => this.model.photoUrl == null ? null : Uri.tryParse(this.model.photoUrl!);
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+extension ModelAuthUserExtension on ModelAuthUser {
+  Uri? get photoUri => this.photoUrl == null ? null : Uri.tryParse(this.photoUrl!);
 }

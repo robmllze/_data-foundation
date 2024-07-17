@@ -24,54 +24,68 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   //
   //
 
-  static const K_ID = 'id';
-  static const K_REF = 'ref';
-  static const K_DISPLAY_NAME = 'displayName';
-  static const K_DISPLAY_COLOR = 'displayColor';
-  static const K_DESCRIPTION = 'description';
-  static const K_ARCHIVED_G_REG = 'archivedGReg';
-  static const K_CREATED_G_REG = 'createdGReg';
-  static const K_DELETED_G_REG = 'deletedGReg';
-  static const K_UPDATED_G_REG = 'updatedGReg';
-  static const K_EXPIRES_AT = 'expiresAt';
-  static const K_COUNTRY_CODE = 'countryCode';
-  static const K_NUMBER_WITHOUT_COUNTRY_CODE = 'numberWithoutCountryCode';
-  static const K_FULL_NUMBER = 'fullNumber';
-  static const K_EXTENSION = 'extension';
-  static const K_TYPE = 'type';
-
-  static const CLASS = 'ModelPhoneEntry';
+  static const CLASS_NAME = 'ModelPhoneEntry';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  String? id;
-  DataRefModel? ref;
-  ModelQueryable? displayName;
-  Color? displayColor;
-  String? description;
-  ModelRegistration? archivedGReg;
-  ModelRegistration? createdGReg;
-  ModelRegistration? deletedGReg;
-  ModelRegistration? updatedGReg;
-  DateTime? expiresAt;
-  String? countryCode;
-  String? numberWithoutCountryCode;
-  String? fullNumber;
-  String? extension;
-  String? type;
-
-  //
-  //
-  //
-
-  ModelPhoneEntry.empty();
+  final String? id;
+  final DataRefModel? ref;
+  final ModelQueryable? displayName;
+  final Color? displayColor;
+  final String? description;
+  final ModelRegistration? archivedGReg;
+  final ModelRegistration? createdGReg;
+  final ModelRegistration? deletedGReg;
+  final ModelRegistration? updatedGReg;
+  final DateTime? expiresAt;
+  final String? countryCode;
+  final String? numberWithoutCountryCode;
+  final String? fullNumber;
+  final String? extension;
+  final String? type;
 
   //
   //
   //
 
-  factory ModelPhoneEntry({
+  const ModelPhoneEntry({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.countryCode,
+    this.numberWithoutCountryCode,
+    this.fullNumber,
+    this.extension,
+    this.type,
+  });
+
+  const ModelPhoneEntry.c2({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.countryCode,
+    this.numberWithoutCountryCode,
+    this.fullNumber,
+    this.extension,
+    this.type,
+  });
+
+  factory ModelPhoneEntry.c3({
     String? id,
     DataRefModel? ref,
     ModelQueryable? displayName,
@@ -88,7 +102,7 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     String? extension,
     String? type,
   }) {
-    return ModelPhoneEntry.b(
+    return ModelPhoneEntry(
       id: id,
       ref: ref,
       displayName: displayName,
@@ -107,34 +121,8 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     );
   }
 
-  //
-  //
-  //
-
-  ModelPhoneEntry.b({
-    this.id,
-    this.ref,
-    this.displayName,
-    this.displayColor,
-    this.description,
-    this.archivedGReg,
-    this.createdGReg,
-    this.deletedGReg,
-    this.updatedGReg,
-    this.expiresAt,
-    this.countryCode,
-    this.numberWithoutCountryCode,
-    this.fullNumber,
-    this.extension,
-    this.type,
-  }) {}
-
-  //
-  //
-  //
-
   factory ModelPhoneEntry.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -145,14 +133,10 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   }
 
   static ModelPhoneEntry? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelPhoneEntry.of(
     ModelPhoneEntry other,
@@ -170,10 +154,6 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelPhoneEntry.fromJsonString(
     String source,
@@ -194,16 +174,12 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
         final decoded = jsonDecode(source);
         return ModelPhoneEntry.fromJson(decoded);
       } else {
-        return ModelPhoneEntry.empty();
+        return const ModelPhoneEntry.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelPhoneEntry.fromJson(
     Map<String, dynamic>? otherData,
@@ -220,30 +196,83 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelPhoneEntry.empty()
-        ..$id = otherData?[K_ID]
-        ..$ref = otherData?[K_REF]
-        ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$displayColor = otherData?[K_DISPLAY_COLOR]
-        ..$description = otherData?[K_DESCRIPTION]
-        ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
-        ..$createdGReg = otherData?[K_CREATED_G_REG]
-        ..$deletedGReg = otherData?[K_DELETED_G_REG]
-        ..$updatedGReg = otherData?[K_UPDATED_G_REG]
-        ..$expiresAt = otherData?[K_EXPIRES_AT]
-        ..$countryCode = otherData?[K_COUNTRY_CODE]
-        ..$numberWithoutCountryCode = otherData?[K_NUMBER_WITHOUT_COUNTRY_CODE]
-        ..$fullNumber = otherData?[K_FULL_NUMBER]
-        ..$extension = otherData?[K_EXTENSION]
-        ..$type = otherData?[K_TYPE];
+      final id0 = otherData?[ModelPhoneEntryFields.id.name];
+      final id = id0?.toString().trim().nullIfEmpty;
+      final ref0 = otherData?[ModelPhoneEntryFields.ref.name];
+      final ref = () {
+        final a = letMap<String, dynamic>(ref0);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+      final displayName0 = otherData?[ModelPhoneEntryFields.displayName.name];
+      final displayName = () {
+        final a = letMap<String, dynamic>(displayName0);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
+      final displayColor0 = otherData?[ModelPhoneEntryFields.displayColor.name];
+      final displayColor = () {
+        final a = letAs<int>(displayColor0);
+        return a is int ? Color(a) : null;
+      }();
+      final description0 = otherData?[ModelPhoneEntryFields.description.name];
+      final description = description0?.toString().trim().nullIfEmpty;
+      final archivedGReg0 = otherData?[ModelPhoneEntryFields.archivedGReg.name];
+      final archivedGReg = () {
+        final a = letMap<String, dynamic>(archivedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final createdGReg0 = otherData?[ModelPhoneEntryFields.createdGReg.name];
+      final createdGReg = () {
+        final a = letMap<String, dynamic>(createdGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final deletedGReg0 = otherData?[ModelPhoneEntryFields.deletedGReg.name];
+      final deletedGReg = () {
+        final a = letMap<String, dynamic>(deletedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final updatedGReg0 = otherData?[ModelPhoneEntryFields.updatedGReg.name];
+      final updatedGReg = () {
+        final a = letMap<String, dynamic>(updatedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final expiresAt0 = otherData?[ModelPhoneEntryFields.expiresAt.name];
+      final expiresAt = () {
+        final a = expiresAt0;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+      final countryCode0 = otherData?[ModelPhoneEntryFields.countryCode.name];
+      final countryCode = countryCode0?.toString().trim().nullIfEmpty;
+      final numberWithoutCountryCode0 =
+          otherData?[ModelPhoneEntryFields.numberWithoutCountryCode.name];
+      final numberWithoutCountryCode =
+          numberWithoutCountryCode0?.toString().trim().nullIfEmpty;
+      final fullNumber0 = otherData?[ModelPhoneEntryFields.fullNumber.name];
+      final fullNumber = fullNumber0?.toString().trim().nullIfEmpty;
+      final extension0 = otherData?[ModelPhoneEntryFields.extension.name];
+      final extension = extension0?.toString().trim().nullIfEmpty;
+      final type0 = otherData?[ModelPhoneEntryFields.type.name];
+      final type = type0?.toString().trim().nullIfEmpty;
+      return ModelPhoneEntry(
+        id: id,
+        ref: ref,
+        displayName: displayName,
+        displayColor: displayColor,
+        description: description,
+        archivedGReg: archivedGReg,
+        createdGReg: createdGReg,
+        deletedGReg: deletedGReg,
+        updatedGReg: updatedGReg,
+        expiresAt: expiresAt,
+        countryCode: countryCode,
+        numberWithoutCountryCode: numberWithoutCountryCode,
+        fullNumber: fullNumber,
+        extension: extension,
+        type: type,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelPhoneEntry.fromUri(
     Uri? uri,
@@ -260,10 +289,10 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelPhoneEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelPhoneEntry.empty();
+        return const ModelPhoneEntry.c2();
       }
     } catch (_) {
       return null;
@@ -280,22 +309,39 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     bool includeNulls = false,
   }) {
     try {
+      final id0 = this.id?.trim().nullIfEmpty;
+      final ref0 = this.ref?.toJson();
+      final displayName0 = this.displayName?.toJson();
+      final displayColor0 = this.displayColor?.value;
+      final description0 = this.description?.trim().nullIfEmpty;
+      final archivedGReg0 = this.archivedGReg?.toJson();
+      final createdGReg0 = this.createdGReg?.toJson();
+      final deletedGReg0 = this.deletedGReg?.toJson();
+      final updatedGReg0 = this.updatedGReg?.toJson();
+      final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
+      final countryCode0 = this.countryCode?.trim().nullIfEmpty;
+      final numberWithoutCountryCode0 =
+          this.numberWithoutCountryCode?.trim().nullIfEmpty;
+      final fullNumber0 = this.fullNumber?.trim().nullIfEmpty;
+      final extension0 = this.extension?.trim().nullIfEmpty;
+      final type0 = this.type?.trim().nullIfEmpty;
       final withNulls = <String, dynamic>{
-        K_ID: this.$id,
-        K_REF: this.$ref,
-        K_DISPLAY_NAME: this.$displayName,
-        K_DISPLAY_COLOR: this.$displayColor,
-        K_DESCRIPTION: this.$description,
-        K_ARCHIVED_G_REG: this.$archivedGReg,
-        K_CREATED_G_REG: this.$createdGReg,
-        K_DELETED_G_REG: this.$deletedGReg,
-        K_UPDATED_G_REG: this.$updatedGReg,
-        K_EXPIRES_AT: this.$expiresAt,
-        K_COUNTRY_CODE: this.$countryCode,
-        K_NUMBER_WITHOUT_COUNTRY_CODE: this.$numberWithoutCountryCode,
-        K_FULL_NUMBER: this.$fullNumber,
-        K_EXTENSION: this.$extension,
-        K_TYPE: this.$type,
+        ModelPhoneEntryFields.id.name: id0,
+        ModelPhoneEntryFields.ref.name: ref0,
+        ModelPhoneEntryFields.displayName.name: displayName0,
+        ModelPhoneEntryFields.displayColor.name: displayColor0,
+        ModelPhoneEntryFields.description.name: description0,
+        ModelPhoneEntryFields.archivedGReg.name: archivedGReg0,
+        ModelPhoneEntryFields.createdGReg.name: createdGReg0,
+        ModelPhoneEntryFields.deletedGReg.name: deletedGReg0,
+        ModelPhoneEntryFields.updatedGReg.name: updatedGReg0,
+        ModelPhoneEntryFields.expiresAt.name: expiresAt0,
+        ModelPhoneEntryFields.countryCode.name: countryCode0,
+        ModelPhoneEntryFields.numberWithoutCountryCode.name:
+            numberWithoutCountryCode0,
+        ModelPhoneEntryFields.fullNumber.name: fullNumber0,
+        ModelPhoneEntryFields.extension.name: extension0,
+        ModelPhoneEntryFields.type.name: type0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -309,75 +355,11 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelPhoneEntry.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelPhoneEntry.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelPhoneEntry.fromJson(otherData);
-      if (other.id != null) {
-        this.id = other.id!;
-      }
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
-      if (other.displayName != null) {
-        this.displayName = other.displayName!;
-      }
-      if (other.displayColor != null) {
-        this.displayColor = other.displayColor!;
-      }
-      if (other.description != null) {
-        this.description = other.description!;
-      }
-      if (other.archivedGReg != null) {
-        this.archivedGReg = other.archivedGReg!;
-      }
-      if (other.createdGReg != null) {
-        this.createdGReg = other.createdGReg!;
-      }
-      if (other.deletedGReg != null) {
-        this.deletedGReg = other.deletedGReg!;
-      }
-      if (other.updatedGReg != null) {
-        this.updatedGReg = other.updatedGReg!;
-      }
-      if (other.expiresAt != null) {
-        this.expiresAt = other.expiresAt!;
-      }
-      if (other.countryCode != null) {
-        this.countryCode = other.countryCode!;
-      }
-      if (other.numberWithoutCountryCode != null) {
-        this.numberWithoutCountryCode = other.numberWithoutCountryCode!;
-      }
-      if (other.fullNumber != null) {
-        this.fullNumber = other.fullNumber!;
-      }
-      if (other.extension != null) {
-        this.extension = other.extension!;
-      }
-      if (other.type != null) {
-        this.type = other.type!;
-      }
-    }
+  ModelPhoneEntry copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelPhoneEntry.fromJson(c);
   }
 
   //
@@ -386,148 +368,178 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
 
   // id.
   String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // ref.
   DataRefModel? get refField => this.ref;
-  set refField(DataRefModel? v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
 
   // displayName.
   ModelQueryable? get displayNameField => this.displayName;
-  set displayNameField(ModelQueryable? v) => this.displayName = v;
-  @protected
-  dynamic get $displayName => this.displayName?.toJson();
-  @protected
-  set $displayName(v) => this.displayName = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelQueryable.fromJson(a) : null;
-      }();
 
   // displayColor.
   Color? get displayColorField => this.displayColor;
-  set displayColorField(Color? v) => this.displayColor = v;
-  @protected
-  dynamic get $displayColor => this.displayColor?.value;
-  @protected
-  set $displayColor(v) => this.displayColor = () {
-        final a = letAs<int>(v);
-        return a is int ? Color(a) : null;
-      }();
 
   // description.
   String? get descriptionField => this.description;
-  set descriptionField(String? v) => this.description = v;
-  @protected
-  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
-  @protected
-  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
   // archivedGReg.
   ModelRegistration? get archivedGRegField => this.archivedGReg;
-  set archivedGRegField(ModelRegistration? v) => this.archivedGReg = v;
-  @protected
-  dynamic get $archivedGReg => this.archivedGReg?.toJson();
-  @protected
-  set $archivedGReg(v) => this.archivedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // createdGReg.
   ModelRegistration? get createdGRegField => this.createdGReg;
-  set createdGRegField(ModelRegistration? v) => this.createdGReg = v;
-  @protected
-  dynamic get $createdGReg => this.createdGReg?.toJson();
-  @protected
-  set $createdGReg(v) => this.createdGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // deletedGReg.
   ModelRegistration? get deletedGRegField => this.deletedGReg;
-  set deletedGRegField(ModelRegistration? v) => this.deletedGReg = v;
-  @protected
-  dynamic get $deletedGReg => this.deletedGReg?.toJson();
-  @protected
-  set $deletedGReg(v) => this.deletedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // updatedGReg.
   ModelRegistration? get updatedGRegField => this.updatedGReg;
-  set updatedGRegField(ModelRegistration? v) => this.updatedGReg = v;
-  @protected
-  dynamic get $updatedGReg => this.updatedGReg?.toJson();
-  @protected
-  set $updatedGReg(v) => this.updatedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // expiresAt.
   DateTime? get expiresAtField => this.expiresAt;
-  set expiresAtField(DateTime? v) => this.expiresAt = v;
-  @protected
-  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
-  @protected
-  set $expiresAt(v) => this.expiresAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
 
   // countryCode.
   String? get countryCodeField => this.countryCode;
-  set countryCodeField(String? v) => this.countryCode = v;
-  @protected
-  dynamic get $countryCode => this.countryCode?.toString().trim().nullIfEmpty;
-  @protected
-  set $countryCode(v) => this.countryCode = v?.toString().trim().nullIfEmpty;
 
   // numberWithoutCountryCode.
   String? get numberWithoutCountryCodeField => this.numberWithoutCountryCode;
-  set numberWithoutCountryCodeField(String? v) =>
-      this.numberWithoutCountryCode = v;
-  @protected
-  dynamic get $numberWithoutCountryCode =>
-      this.numberWithoutCountryCode?.toString().trim().nullIfEmpty;
-  @protected
-  set $numberWithoutCountryCode(v) =>
-      this.numberWithoutCountryCode = v?.toString().trim().nullIfEmpty;
 
   // fullNumber.
   String? get fullNumberField => this.fullNumber;
-  set fullNumberField(String? v) => this.fullNumber = v;
-  @protected
-  dynamic get $fullNumber => this.fullNumber?.toString().trim().nullIfEmpty;
-  @protected
-  set $fullNumber(v) => this.fullNumber = v?.toString().trim().nullIfEmpty;
 
   // extension.
   String? get extensionField => this.extension;
-  set extensionField(String? v) => this.extension = v;
-  @protected
-  dynamic get $extension => this.extension?.toString().trim().nullIfEmpty;
-  @protected
-  set $extension(v) => this.extension = v?.toString().trim().nullIfEmpty;
 
   // type.
   String? get typeField => this.type;
-  set typeField(String? v) => this.type = v;
-  @protected
-  dynamic get $type => this.type?.toString().trim().nullIfEmpty;
-  @protected
-  set $type(v) => this.type = v?.toString().trim().nullIfEmpty;
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelPhoneEntryFields {
+  //
+  //
+  //
+
+  id(
+    const Field(
+      fieldName: 'id',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  ref(
+    const Field(
+      fieldName: 'ref',
+      fieldType: 'DataRefModel',
+      nullable: true,
+    ),
+  ),
+  displayName(
+    const Field(
+      fieldName: 'displayName',
+      fieldType: 'ModelQueryable',
+      nullable: true,
+    ),
+  ),
+  displayColor(
+    const Field(
+      fieldName: 'displayColor',
+      fieldType: 'Color',
+      nullable: true,
+    ),
+  ),
+  description(
+    const Field(
+      fieldName: 'description',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  archivedGReg(
+    const Field(
+      fieldName: 'archivedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  createdGReg(
+    const Field(
+      fieldName: 'createdGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  deletedGReg(
+    const Field(
+      fieldName: 'deletedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  updatedGReg(
+    const Field(
+      fieldName: 'updatedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  expiresAt(
+    const Field(
+      fieldName: 'expiresAt',
+      fieldType: 'DateTime',
+      nullable: true,
+    ),
+  ),
+  countryCode(
+    const Field(
+      fieldName: 'countryCode',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  numberWithoutCountryCode(
+    const Field(
+      fieldName: 'numberWithoutCountryCode',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  fullNumber(
+    const Field(
+      fieldName: 'fullNumber',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  extension(
+    const Field(
+      fieldName: 'extension',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  type(
+    const Field(
+      fieldName: 'type',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelPhoneEntryFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

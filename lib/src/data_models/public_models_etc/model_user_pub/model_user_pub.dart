@@ -20,4 +20,6 @@ part '_model_user_pub.g.dart';
     ...PUBLIC_MODEL_FIELDS,
   },
 )
-abstract class _ModelUserPub extends Model implements PublicModel {}
+abstract class _ModelUserPub extends Model implements PublicModel {
+  const _ModelUserPub();
+}

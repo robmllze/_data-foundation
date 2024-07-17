@@ -14,7 +14,7 @@ part '_job_status_type.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@GenerateTypeUtils()
+//@GenerateTypeUtils()
 
 /// Represents the various status types for a construction job.
 enum JobStatusType {

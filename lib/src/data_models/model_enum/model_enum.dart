@@ -25,6 +25,12 @@ abstract class _ModelEnum extends ThisModel<ModelEnum> {
   //
   //
 
+  const _ModelEnum();
+
+  //
+  //
+  //
+
   bool operator ==(Object other) => this.equals(other);
 
   //

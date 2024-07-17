@@ -24,38 +24,41 @@ class ModelMessageContent extends Model {
   //
   //
 
-  static const K_RELATIONSHIP_ID = 'relationshipId';
-  static const K_SENDER_PID = 'senderPid';
-  static const K_RECEIVER_PID = 'receiverPid';
-  static const K_MESSAGE = 'message';
-
-  static const CLASS = 'ModelMessageContent';
+  static const CLASS_NAME = 'ModelMessageContent';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  String? relationshipId;
-  String? senderPid;
-  String? receiverPid;
-  String? message;
-
-  //
-  //
-  //
-
-  ModelMessageContent.empty();
+  final String? relationshipId;
+  final String? senderPid;
+  final String? receiverPid;
+  final String? message;
 
   //
   //
   //
 
-  factory ModelMessageContent({
+  const ModelMessageContent({
+    this.relationshipId,
+    this.senderPid,
+    this.receiverPid,
+    this.message,
+  });
+
+  const ModelMessageContent.c2({
+    this.relationshipId,
+    this.senderPid,
+    this.receiverPid,
+    this.message,
+  });
+
+  factory ModelMessageContent.c3({
     String? relationshipId,
     String? senderPid,
     String? receiverPid,
     String? message,
   }) {
-    return ModelMessageContent.b(
+    return ModelMessageContent(
       relationshipId: relationshipId,
       senderPid: senderPid,
       receiverPid: receiverPid,
@@ -63,23 +66,8 @@ class ModelMessageContent extends Model {
     );
   }
 
-  //
-  //
-  //
-
-  ModelMessageContent.b({
-    this.relationshipId,
-    this.senderPid,
-    this.receiverPid,
-    this.message,
-  }) {}
-
-  //
-  //
-  //
-
   factory ModelMessageContent.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -90,14 +78,10 @@ class ModelMessageContent extends Model {
   }
 
   static ModelMessageContent? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelMessageContent.of(
     ModelMessageContent other,
@@ -115,10 +99,6 @@ class ModelMessageContent extends Model {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelMessageContent.fromJsonString(
     String source,
@@ -139,16 +119,12 @@ class ModelMessageContent extends Model {
         final decoded = jsonDecode(source);
         return ModelMessageContent.fromJson(decoded);
       } else {
-        return ModelMessageContent.empty();
+        return const ModelMessageContent.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelMessageContent.fromJson(
     Map<String, dynamic>? otherData,
@@ -165,19 +141,26 @@ class ModelMessageContent extends Model {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelMessageContent.empty()
-        ..$relationshipId = otherData?[K_RELATIONSHIP_ID]
-        ..$senderPid = otherData?[K_SENDER_PID]
-        ..$receiverPid = otherData?[K_RECEIVER_PID]
-        ..$message = otherData?[K_MESSAGE];
+      final relationshipId0 =
+          otherData?[ModelMessageContentFields.relationshipId.name];
+      final relationshipId = relationshipId0?.toString().trim().nullIfEmpty;
+      final senderPid0 = otherData?[ModelMessageContentFields.senderPid.name];
+      final senderPid = senderPid0?.toString().trim().nullIfEmpty;
+      final receiverPid0 =
+          otherData?[ModelMessageContentFields.receiverPid.name];
+      final receiverPid = receiverPid0?.toString().trim().nullIfEmpty;
+      final message0 = otherData?[ModelMessageContentFields.message.name];
+      final message = message0?.toString().trim().nullIfEmpty;
+      return ModelMessageContent(
+        relationshipId: relationshipId,
+        senderPid: senderPid,
+        receiverPid: receiverPid,
+        message: message,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelMessageContent.fromUri(
     Uri? uri,
@@ -194,10 +177,10 @@ class ModelMessageContent extends Model {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelMessageContent.fromJson(uri.queryParameters);
       } else {
-        return ModelMessageContent.empty();
+        return const ModelMessageContent.c2();
       }
     } catch (_) {
       return null;
@@ -214,11 +197,15 @@ class ModelMessageContent extends Model {
     bool includeNulls = false,
   }) {
     try {
+      final relationshipId0 = this.relationshipId?.trim().nullIfEmpty;
+      final senderPid0 = this.senderPid?.trim().nullIfEmpty;
+      final receiverPid0 = this.receiverPid?.trim().nullIfEmpty;
+      final message0 = this.message?.trim().nullIfEmpty;
       final withNulls = <String, dynamic>{
-        K_RELATIONSHIP_ID: this.$relationshipId,
-        K_SENDER_PID: this.$senderPid,
-        K_RECEIVER_PID: this.$receiverPid,
-        K_MESSAGE: this.$message,
+        ModelMessageContentFields.relationshipId.name: relationshipId0,
+        ModelMessageContentFields.senderPid.name: senderPid0,
+        ModelMessageContentFields.receiverPid.name: receiverPid0,
+        ModelMessageContentFields.message.name: message0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -232,42 +219,11 @@ class ModelMessageContent extends Model {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelMessageContent.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelMessageContent.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelMessageContent.fromJson(otherData);
-      if (other.relationshipId != null) {
-        this.relationshipId = other.relationshipId!;
-      }
-      if (other.senderPid != null) {
-        this.senderPid = other.senderPid!;
-      }
-      if (other.receiverPid != null) {
-        this.receiverPid = other.receiverPid!;
-      }
-      if (other.message != null) {
-        this.message = other.message!;
-      }
-    }
+  ModelMessageContent copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelMessageContent.fromJson(c);
   }
 
   //
@@ -276,35 +232,68 @@ class ModelMessageContent extends Model {
 
   // relationshipId.
   String? get relationshipIdField => this.relationshipId;
-  set relationshipIdField(String? v) => this.relationshipId = v;
-  @protected
-  dynamic get $relationshipId =>
-      this.relationshipId?.toString().trim().nullIfEmpty;
-  @protected
-  set $relationshipId(v) =>
-      this.relationshipId = v?.toString().trim().nullIfEmpty;
 
   // senderPid.
   String? get senderPidField => this.senderPid;
-  set senderPidField(String? v) => this.senderPid = v;
-  @protected
-  dynamic get $senderPid => this.senderPid?.toString().trim().nullIfEmpty;
-  @protected
-  set $senderPid(v) => this.senderPid = v?.toString().trim().nullIfEmpty;
 
   // receiverPid.
   String? get receiverPidField => this.receiverPid;
-  set receiverPidField(String? v) => this.receiverPid = v;
-  @protected
-  dynamic get $receiverPid => this.receiverPid?.toString().trim().nullIfEmpty;
-  @protected
-  set $receiverPid(v) => this.receiverPid = v?.toString().trim().nullIfEmpty;
 
   // message.
   String? get messageField => this.message;
-  set messageField(String? v) => this.message = v;
-  @protected
-  dynamic get $message => this.message?.toString().trim().nullIfEmpty;
-  @protected
-  set $message(v) => this.message = v?.toString().trim().nullIfEmpty;
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelMessageContentFields {
+  //
+  //
+  //
+
+  relationshipId(
+    const Field(
+      fieldName: 'relationshipId',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  senderPid(
+    const Field(
+      fieldName: 'senderPid',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  receiverPid(
+    const Field(
+      fieldName: 'receiverPid',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  message(
+    const Field(
+      fieldName: 'message',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelMessageContentFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

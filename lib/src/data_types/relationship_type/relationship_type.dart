@@ -14,7 +14,7 @@ part '_relationship_type.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@GenerateTypeUtils()
+//@GenerateTypeUtils()
 enum RelationshipType {
   //
   //

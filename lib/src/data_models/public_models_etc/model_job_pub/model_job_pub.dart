@@ -25,7 +25,9 @@ part '_model_job_pub.g.dart';
     ('status?', JobStatusType),
   },
 )
-abstract class _ModelJobPub extends Model implements PublicModel {}
+abstract class _ModelJobPub extends Model implements PublicModel {
+  const _ModelJobPub();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

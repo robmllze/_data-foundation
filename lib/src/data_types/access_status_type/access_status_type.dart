@@ -14,7 +14,7 @@ part '_access_status_type.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@GenerateTypeUtils()
+//@GenerateTypeUtils()
 enum AccessStatusType {
   ACCESS_ACCEPTED,
   ACCESS_REJECTED,

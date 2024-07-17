@@ -26,7 +26,9 @@ const MODEL_ENTRY_FIELDS = {
   shouldInherit: true,
   fields: MODEL_ENTRY_FIELDS,
 )
-abstract class _ModelEntry extends Model implements ModelDisplay {}
+abstract class _ModelEntry extends Model implements ModelDisplay {
+  const _ModelEntry();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

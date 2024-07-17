@@ -24,4 +24,6 @@ part '_model_device_registration.g.dart';
     ('device_info?', ModelBasicDeviceInfo),
   },
 )
-abstract class _ModelDeviceRegistration extends Model implements ModelRegistration {}
+abstract class _ModelDeviceRegistration extends Model implements ModelRegistration {
+  const _ModelDeviceRegistration();
+}

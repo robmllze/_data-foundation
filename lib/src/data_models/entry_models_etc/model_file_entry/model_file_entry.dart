@@ -25,7 +25,9 @@ part '_model_file_entry.g.dart';
     ('extension?', T_LOWER_CASE_STRING),
   },
 )
-abstract class _ModelFileEntry extends Model implements ModelEntry {}
+abstract class _ModelFileEntry extends Model implements ModelEntry {
+  const _ModelFileEntry();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

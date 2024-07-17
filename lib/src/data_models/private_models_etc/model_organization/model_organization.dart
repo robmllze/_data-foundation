@@ -19,4 +19,6 @@ part '_model_organization.g.dart';
     ...PRIVATE_MODEL_FIELDS,
   },
 )
-abstract class _ModelOrganization extends Model implements PrivateModel {}
+abstract class _ModelOrganization extends Model implements PrivateModel {
+  const _ModelOrganization();
+}

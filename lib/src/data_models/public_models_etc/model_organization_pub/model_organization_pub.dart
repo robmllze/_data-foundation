@@ -19,4 +19,6 @@ part '_model_organization_pub.g.dart';
     ...PUBLIC_MODEL_FIELDS,
   },
 )
-abstract class _ModelOrganizationPub extends Model implements PublicModel {}
+abstract class _ModelOrganizationPub extends Model implements PublicModel {
+  const _ModelOrganizationPub();
+}

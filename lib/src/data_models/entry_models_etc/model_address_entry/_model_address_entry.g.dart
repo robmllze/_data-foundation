@@ -24,56 +24,71 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
   //
 
-  static const K_ID = 'id';
-  static const K_REF = 'ref';
-  static const K_DISPLAY_NAME = 'displayName';
-  static const K_DISPLAY_COLOR = 'displayColor';
-  static const K_DESCRIPTION = 'description';
-  static const K_ARCHIVED_G_REG = 'archivedGReg';
-  static const K_CREATED_G_REG = 'createdGReg';
-  static const K_DELETED_G_REG = 'deletedGReg';
-  static const K_UPDATED_G_REG = 'updatedGReg';
-  static const K_EXPIRES_AT = 'expiresAt';
-  static const K_ADDRESS_LINE_1 = 'addressLine1';
-  static const K_ADDRESS_LINE_2 = 'addressLine2';
-  static const K_CITY = 'city';
-  static const K_STATE_OR_PROVINCE = 'stateOrProvince';
-  static const K_POSTAL_CODE = 'postalCode';
-  static const K_COUNTRY = 'country';
-
-  static const CLASS = 'ModelAddressEntry';
+  static const CLASS_NAME = 'ModelAddressEntry';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  String? id;
-  DataRefModel? ref;
-  ModelQueryable? displayName;
-  Color? displayColor;
-  String? description;
-  ModelRegistration? archivedGReg;
-  ModelRegistration? createdGReg;
-  ModelRegistration? deletedGReg;
-  ModelRegistration? updatedGReg;
-  DateTime? expiresAt;
-  String? addressLine1;
-  String? addressLine2;
-  String? city;
-  String? stateOrProvince;
-  String? postalCode;
-  String? country;
-
-  //
-  //
-  //
-
-  ModelAddressEntry.empty();
+  final String? id;
+  final DataRefModel? ref;
+  final ModelQueryable? displayName;
+  final Color? displayColor;
+  final String? description;
+  final ModelRegistration? archivedGReg;
+  final ModelRegistration? createdGReg;
+  final ModelRegistration? deletedGReg;
+  final ModelRegistration? updatedGReg;
+  final DateTime? expiresAt;
+  final String? addressLine1;
+  final String? addressLine2;
+  final String? city;
+  final String? stateOrProvince;
+  final String? postalCode;
+  final String? country;
 
   //
   //
   //
 
-  factory ModelAddressEntry({
+  const ModelAddressEntry({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.addressLine1,
+    this.addressLine2,
+    this.city,
+    this.stateOrProvince,
+    this.postalCode,
+    this.country,
+  });
+
+  const ModelAddressEntry.c2({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.addressLine1,
+    this.addressLine2,
+    this.city,
+    this.stateOrProvince,
+    this.postalCode,
+    this.country,
+  });
+
+  factory ModelAddressEntry.c3({
     String? id,
     DataRefModel? ref,
     ModelQueryable? displayName,
@@ -91,7 +106,7 @@ class ModelAddressEntry extends _ModelAddressEntry {
     String? postalCode,
     String? country,
   }) {
-    return ModelAddressEntry.b(
+    return ModelAddressEntry(
       id: id,
       ref: ref,
       displayName: displayName,
@@ -111,35 +126,8 @@ class ModelAddressEntry extends _ModelAddressEntry {
     );
   }
 
-  //
-  //
-  //
-
-  ModelAddressEntry.b({
-    this.id,
-    this.ref,
-    this.displayName,
-    this.displayColor,
-    this.description,
-    this.archivedGReg,
-    this.createdGReg,
-    this.deletedGReg,
-    this.updatedGReg,
-    this.expiresAt,
-    this.addressLine1,
-    this.addressLine2,
-    this.city,
-    this.stateOrProvince,
-    this.postalCode,
-    this.country,
-  }) {}
-
-  //
-  //
-  //
-
   factory ModelAddressEntry.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -150,14 +138,10 @@ class ModelAddressEntry extends _ModelAddressEntry {
   }
 
   static ModelAddressEntry? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelAddressEntry.of(
     ModelAddressEntry other,
@@ -175,10 +159,6 @@ class ModelAddressEntry extends _ModelAddressEntry {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelAddressEntry.fromJsonString(
     String source,
@@ -199,16 +179,12 @@ class ModelAddressEntry extends _ModelAddressEntry {
         final decoded = jsonDecode(source);
         return ModelAddressEntry.fromJson(decoded);
       } else {
-        return ModelAddressEntry.empty();
+        return const ModelAddressEntry.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelAddressEntry.fromJson(
     Map<String, dynamic>? otherData,
@@ -225,31 +201,89 @@ class ModelAddressEntry extends _ModelAddressEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelAddressEntry.empty()
-        ..$id = otherData?[K_ID]
-        ..$ref = otherData?[K_REF]
-        ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$displayColor = otherData?[K_DISPLAY_COLOR]
-        ..$description = otherData?[K_DESCRIPTION]
-        ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
-        ..$createdGReg = otherData?[K_CREATED_G_REG]
-        ..$deletedGReg = otherData?[K_DELETED_G_REG]
-        ..$updatedGReg = otherData?[K_UPDATED_G_REG]
-        ..$expiresAt = otherData?[K_EXPIRES_AT]
-        ..$addressLine1 = otherData?[K_ADDRESS_LINE_1]
-        ..$addressLine2 = otherData?[K_ADDRESS_LINE_2]
-        ..$city = otherData?[K_CITY]
-        ..$stateOrProvince = otherData?[K_STATE_OR_PROVINCE]
-        ..$postalCode = otherData?[K_POSTAL_CODE]
-        ..$country = otherData?[K_COUNTRY];
+      final id0 = otherData?[ModelAddressEntryFields.id.name];
+      final id = id0?.toString().trim().nullIfEmpty;
+      final ref0 = otherData?[ModelAddressEntryFields.ref.name];
+      final ref = () {
+        final a = letMap<String, dynamic>(ref0);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+      final displayName0 = otherData?[ModelAddressEntryFields.displayName.name];
+      final displayName = () {
+        final a = letMap<String, dynamic>(displayName0);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
+      final displayColor0 =
+          otherData?[ModelAddressEntryFields.displayColor.name];
+      final displayColor = () {
+        final a = letAs<int>(displayColor0);
+        return a is int ? Color(a) : null;
+      }();
+      final description0 = otherData?[ModelAddressEntryFields.description.name];
+      final description = description0?.toString().trim().nullIfEmpty;
+      final archivedGReg0 =
+          otherData?[ModelAddressEntryFields.archivedGReg.name];
+      final archivedGReg = () {
+        final a = letMap<String, dynamic>(archivedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final createdGReg0 = otherData?[ModelAddressEntryFields.createdGReg.name];
+      final createdGReg = () {
+        final a = letMap<String, dynamic>(createdGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final deletedGReg0 = otherData?[ModelAddressEntryFields.deletedGReg.name];
+      final deletedGReg = () {
+        final a = letMap<String, dynamic>(deletedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final updatedGReg0 = otherData?[ModelAddressEntryFields.updatedGReg.name];
+      final updatedGReg = () {
+        final a = letMap<String, dynamic>(updatedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final expiresAt0 = otherData?[ModelAddressEntryFields.expiresAt.name];
+      final expiresAt = () {
+        final a = expiresAt0;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+      final addressLine10 =
+          otherData?[ModelAddressEntryFields.addressLine1.name];
+      final addressLine1 = addressLine10?.toString().trim().nullIfEmpty;
+      final addressLine20 =
+          otherData?[ModelAddressEntryFields.addressLine2.name];
+      final addressLine2 = addressLine20?.toString().trim().nullIfEmpty;
+      final city0 = otherData?[ModelAddressEntryFields.city.name];
+      final city = city0?.toString().trim().nullIfEmpty;
+      final stateOrProvince0 =
+          otherData?[ModelAddressEntryFields.stateOrProvince.name];
+      final stateOrProvince = stateOrProvince0?.toString().trim().nullIfEmpty;
+      final postalCode0 = otherData?[ModelAddressEntryFields.postalCode.name];
+      final postalCode = postalCode0?.toString().trim().nullIfEmpty;
+      final country0 = otherData?[ModelAddressEntryFields.country.name];
+      final country = country0?.toString().trim().nullIfEmpty;
+      return ModelAddressEntry(
+        id: id,
+        ref: ref,
+        displayName: displayName,
+        displayColor: displayColor,
+        description: description,
+        archivedGReg: archivedGReg,
+        createdGReg: createdGReg,
+        deletedGReg: deletedGReg,
+        updatedGReg: updatedGReg,
+        expiresAt: expiresAt,
+        addressLine1: addressLine1,
+        addressLine2: addressLine2,
+        city: city,
+        stateOrProvince: stateOrProvince,
+        postalCode: postalCode,
+        country: country,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelAddressEntry.fromUri(
     Uri? uri,
@@ -266,10 +300,10 @@ class ModelAddressEntry extends _ModelAddressEntry {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelAddressEntry.fromJson(uri.queryParameters);
       } else {
-        return ModelAddressEntry.empty();
+        return const ModelAddressEntry.c2();
       }
     } catch (_) {
       return null;
@@ -286,23 +320,39 @@ class ModelAddressEntry extends _ModelAddressEntry {
     bool includeNulls = false,
   }) {
     try {
+      final id0 = this.id?.trim().nullIfEmpty;
+      final ref0 = this.ref?.toJson();
+      final displayName0 = this.displayName?.toJson();
+      final displayColor0 = this.displayColor?.value;
+      final description0 = this.description?.trim().nullIfEmpty;
+      final archivedGReg0 = this.archivedGReg?.toJson();
+      final createdGReg0 = this.createdGReg?.toJson();
+      final deletedGReg0 = this.deletedGReg?.toJson();
+      final updatedGReg0 = this.updatedGReg?.toJson();
+      final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
+      final addressLine10 = this.addressLine1?.trim().nullIfEmpty;
+      final addressLine20 = this.addressLine2?.trim().nullIfEmpty;
+      final city0 = this.city?.trim().nullIfEmpty;
+      final stateOrProvince0 = this.stateOrProvince?.trim().nullIfEmpty;
+      final postalCode0 = this.postalCode?.trim().nullIfEmpty;
+      final country0 = this.country?.trim().nullIfEmpty;
       final withNulls = <String, dynamic>{
-        K_ID: this.$id,
-        K_REF: this.$ref,
-        K_DISPLAY_NAME: this.$displayName,
-        K_DISPLAY_COLOR: this.$displayColor,
-        K_DESCRIPTION: this.$description,
-        K_ARCHIVED_G_REG: this.$archivedGReg,
-        K_CREATED_G_REG: this.$createdGReg,
-        K_DELETED_G_REG: this.$deletedGReg,
-        K_UPDATED_G_REG: this.$updatedGReg,
-        K_EXPIRES_AT: this.$expiresAt,
-        K_ADDRESS_LINE_1: this.$addressLine1,
-        K_ADDRESS_LINE_2: this.$addressLine2,
-        K_CITY: this.$city,
-        K_STATE_OR_PROVINCE: this.$stateOrProvince,
-        K_POSTAL_CODE: this.$postalCode,
-        K_COUNTRY: this.$country,
+        ModelAddressEntryFields.id.name: id0,
+        ModelAddressEntryFields.ref.name: ref0,
+        ModelAddressEntryFields.displayName.name: displayName0,
+        ModelAddressEntryFields.displayColor.name: displayColor0,
+        ModelAddressEntryFields.description.name: description0,
+        ModelAddressEntryFields.archivedGReg.name: archivedGReg0,
+        ModelAddressEntryFields.createdGReg.name: createdGReg0,
+        ModelAddressEntryFields.deletedGReg.name: deletedGReg0,
+        ModelAddressEntryFields.updatedGReg.name: updatedGReg0,
+        ModelAddressEntryFields.expiresAt.name: expiresAt0,
+        ModelAddressEntryFields.addressLine1.name: addressLine10,
+        ModelAddressEntryFields.addressLine2.name: addressLine20,
+        ModelAddressEntryFields.city.name: city0,
+        ModelAddressEntryFields.stateOrProvince.name: stateOrProvince0,
+        ModelAddressEntryFields.postalCode.name: postalCode0,
+        ModelAddressEntryFields.country.name: country0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -316,78 +366,11 @@ class ModelAddressEntry extends _ModelAddressEntry {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelAddressEntry.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelAddressEntry.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelAddressEntry.fromJson(otherData);
-      if (other.id != null) {
-        this.id = other.id!;
-      }
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
-      if (other.displayName != null) {
-        this.displayName = other.displayName!;
-      }
-      if (other.displayColor != null) {
-        this.displayColor = other.displayColor!;
-      }
-      if (other.description != null) {
-        this.description = other.description!;
-      }
-      if (other.archivedGReg != null) {
-        this.archivedGReg = other.archivedGReg!;
-      }
-      if (other.createdGReg != null) {
-        this.createdGReg = other.createdGReg!;
-      }
-      if (other.deletedGReg != null) {
-        this.deletedGReg = other.deletedGReg!;
-      }
-      if (other.updatedGReg != null) {
-        this.updatedGReg = other.updatedGReg!;
-      }
-      if (other.expiresAt != null) {
-        this.expiresAt = other.expiresAt!;
-      }
-      if (other.addressLine1 != null) {
-        this.addressLine1 = other.addressLine1!;
-      }
-      if (other.addressLine2 != null) {
-        this.addressLine2 = other.addressLine2!;
-      }
-      if (other.city != null) {
-        this.city = other.city!;
-      }
-      if (other.stateOrProvince != null) {
-        this.stateOrProvince = other.stateOrProvince!;
-      }
-      if (other.postalCode != null) {
-        this.postalCode = other.postalCode!;
-      }
-      if (other.country != null) {
-        this.country = other.country!;
-      }
-    }
+  ModelAddressEntry copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelAddressEntry.fromJson(c);
   }
 
   //
@@ -396,155 +379,188 @@ class ModelAddressEntry extends _ModelAddressEntry {
 
   // id.
   String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // ref.
   DataRefModel? get refField => this.ref;
-  set refField(DataRefModel? v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
 
   // displayName.
   ModelQueryable? get displayNameField => this.displayName;
-  set displayNameField(ModelQueryable? v) => this.displayName = v;
-  @protected
-  dynamic get $displayName => this.displayName?.toJson();
-  @protected
-  set $displayName(v) => this.displayName = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelQueryable.fromJson(a) : null;
-      }();
 
   // displayColor.
   Color? get displayColorField => this.displayColor;
-  set displayColorField(Color? v) => this.displayColor = v;
-  @protected
-  dynamic get $displayColor => this.displayColor?.value;
-  @protected
-  set $displayColor(v) => this.displayColor = () {
-        final a = letAs<int>(v);
-        return a is int ? Color(a) : null;
-      }();
 
   // description.
   String? get descriptionField => this.description;
-  set descriptionField(String? v) => this.description = v;
-  @protected
-  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
-  @protected
-  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
   // archivedGReg.
   ModelRegistration? get archivedGRegField => this.archivedGReg;
-  set archivedGRegField(ModelRegistration? v) => this.archivedGReg = v;
-  @protected
-  dynamic get $archivedGReg => this.archivedGReg?.toJson();
-  @protected
-  set $archivedGReg(v) => this.archivedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // createdGReg.
   ModelRegistration? get createdGRegField => this.createdGReg;
-  set createdGRegField(ModelRegistration? v) => this.createdGReg = v;
-  @protected
-  dynamic get $createdGReg => this.createdGReg?.toJson();
-  @protected
-  set $createdGReg(v) => this.createdGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // deletedGReg.
   ModelRegistration? get deletedGRegField => this.deletedGReg;
-  set deletedGRegField(ModelRegistration? v) => this.deletedGReg = v;
-  @protected
-  dynamic get $deletedGReg => this.deletedGReg?.toJson();
-  @protected
-  set $deletedGReg(v) => this.deletedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // updatedGReg.
   ModelRegistration? get updatedGRegField => this.updatedGReg;
-  set updatedGRegField(ModelRegistration? v) => this.updatedGReg = v;
-  @protected
-  dynamic get $updatedGReg => this.updatedGReg?.toJson();
-  @protected
-  set $updatedGReg(v) => this.updatedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // expiresAt.
   DateTime? get expiresAtField => this.expiresAt;
-  set expiresAtField(DateTime? v) => this.expiresAt = v;
-  @protected
-  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
-  @protected
-  set $expiresAt(v) => this.expiresAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
 
   // addressLine1.
   String? get addressLine1Field => this.addressLine1;
-  set addressLine1Field(String? v) => this.addressLine1 = v;
-  @protected
-  dynamic get $addressLine1 => this.addressLine1?.toString().trim().nullIfEmpty;
-  @protected
-  set $addressLine1(v) => this.addressLine1 = v?.toString().trim().nullIfEmpty;
 
   // addressLine2.
   String? get addressLine2Field => this.addressLine2;
-  set addressLine2Field(String? v) => this.addressLine2 = v;
-  @protected
-  dynamic get $addressLine2 => this.addressLine2?.toString().trim().nullIfEmpty;
-  @protected
-  set $addressLine2(v) => this.addressLine2 = v?.toString().trim().nullIfEmpty;
 
   // city.
   String? get cityField => this.city;
-  set cityField(String? v) => this.city = v;
-  @protected
-  dynamic get $city => this.city?.toString().trim().nullIfEmpty;
-  @protected
-  set $city(v) => this.city = v?.toString().trim().nullIfEmpty;
 
   // stateOrProvince.
   String? get stateOrProvinceField => this.stateOrProvince;
-  set stateOrProvinceField(String? v) => this.stateOrProvince = v;
-  @protected
-  dynamic get $stateOrProvince =>
-      this.stateOrProvince?.toString().trim().nullIfEmpty;
-  @protected
-  set $stateOrProvince(v) =>
-      this.stateOrProvince = v?.toString().trim().nullIfEmpty;
 
   // postalCode.
   String? get postalCodeField => this.postalCode;
-  set postalCodeField(String? v) => this.postalCode = v;
-  @protected
-  dynamic get $postalCode => this.postalCode?.toString().trim().nullIfEmpty;
-  @protected
-  set $postalCode(v) => this.postalCode = v?.toString().trim().nullIfEmpty;
 
   // country.
   String? get countryField => this.country;
-  set countryField(String? v) => this.country = v;
-  @protected
-  dynamic get $country => this.country?.toString().trim().nullIfEmpty;
-  @protected
-  set $country(v) => this.country = v?.toString().trim().nullIfEmpty;
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelAddressEntryFields {
+  //
+  //
+  //
+
+  id(
+    const Field(
+      fieldName: 'id',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  ref(
+    const Field(
+      fieldName: 'ref',
+      fieldType: 'DataRefModel',
+      nullable: true,
+    ),
+  ),
+  displayName(
+    const Field(
+      fieldName: 'displayName',
+      fieldType: 'ModelQueryable',
+      nullable: true,
+    ),
+  ),
+  displayColor(
+    const Field(
+      fieldName: 'displayColor',
+      fieldType: 'Color',
+      nullable: true,
+    ),
+  ),
+  description(
+    const Field(
+      fieldName: 'description',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  archivedGReg(
+    const Field(
+      fieldName: 'archivedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  createdGReg(
+    const Field(
+      fieldName: 'createdGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  deletedGReg(
+    const Field(
+      fieldName: 'deletedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  updatedGReg(
+    const Field(
+      fieldName: 'updatedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  expiresAt(
+    const Field(
+      fieldName: 'expiresAt',
+      fieldType: 'DateTime',
+      nullable: true,
+    ),
+  ),
+  addressLine1(
+    const Field(
+      fieldName: 'addressLine1',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  addressLine2(
+    const Field(
+      fieldName: 'addressLine2',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  city(
+    const Field(
+      fieldName: 'city',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  stateOrProvince(
+    const Field(
+      fieldName: 'stateOrProvince',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  postalCode(
+    const Field(
+      fieldName: 'postalCode',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  country(
+    const Field(
+      fieldName: 'country',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelAddressEntryFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

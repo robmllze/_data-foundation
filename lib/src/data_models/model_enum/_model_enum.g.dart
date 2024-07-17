@@ -24,49 +24,36 @@ class ModelEnum extends _ModelEnum {
   //
   //
 
-  static const K_NAME = 'name';
-
-  static const CLASS = 'ModelEnum';
+  static const CLASS_NAME = 'ModelEnum';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  String? name;
-
-  //
-  //
-  //
-
-  ModelEnum.empty();
+  final String? name;
 
   //
   //
   //
 
-  factory ModelEnum({
-    required String name,
+  const ModelEnum({
+    required this.name,
+  });
+
+  const ModelEnum.c2({
+    this.name,
+  });
+
+  factory ModelEnum.c3({
+    String? name,
   }) {
-    return ModelEnum.b(
+    assert(name != null);
+    return ModelEnum(
       name: name,
     );
   }
 
-  //
-  //
-  //
-
-  ModelEnum.b({
-    this.name,
-  }) {
-    assert(this.name != null);
-  }
-
-  //
-  //
-  //
-
   factory ModelEnum.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -77,14 +64,10 @@ class ModelEnum extends _ModelEnum {
   }
 
   static ModelEnum? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelEnum.of(
     ModelEnum other,
@@ -102,10 +85,6 @@ class ModelEnum extends _ModelEnum {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelEnum.fromJsonString(
     String source,
@@ -126,16 +105,12 @@ class ModelEnum extends _ModelEnum {
         final decoded = jsonDecode(source);
         return ModelEnum.fromJson(decoded);
       } else {
-        return ModelEnum.empty();
+        return const ModelEnum.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelEnum.fromJson(
     Map<String, dynamic>? otherData,
@@ -152,15 +127,15 @@ class ModelEnum extends _ModelEnum {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelEnum.empty()..$name = otherData?[K_NAME];
+      final name0 = otherData?[ModelEnumFields.name.name];
+      final name = name0?.toString().trim().nullIfEmpty;
+      return ModelEnum(
+        name: name,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelEnum.fromUri(
     Uri? uri,
@@ -177,10 +152,10 @@ class ModelEnum extends _ModelEnum {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelEnum.fromJson(uri.queryParameters);
       } else {
-        return ModelEnum.empty();
+        return const ModelEnum.c2();
       }
     } catch (_) {
       return null;
@@ -197,8 +172,9 @@ class ModelEnum extends _ModelEnum {
     bool includeNulls = false,
   }) {
     try {
+      final name0 = this.name?.trim().nullIfEmpty;
       final withNulls = <String, dynamic>{
-        K_NAME: this.$name,
+        ModelEnumFields.name.name: name0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -212,33 +188,11 @@ class ModelEnum extends _ModelEnum {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelEnum.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelEnum.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelEnum.fromJson(otherData);
-      if (other.name != null) {
-        this.name = other.name!;
-      }
-    }
+  ModelEnum copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelEnum.fromJson(c);
   }
 
   //
@@ -247,9 +201,38 @@ class ModelEnum extends _ModelEnum {
 
   // name.
   String get nameField => this.name!;
-  set nameField(String v) => this.name = v;
-  @protected
-  dynamic get $name => this.name?.toString().trim().nullIfEmpty;
-  @protected
-  set $name(v) => this.name = v?.toString().trim().nullIfEmpty;
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelEnumFields {
+  //
+  //
+  //
+
+  name(
+    const Field(
+      fieldName: 'name',
+      fieldType: 'String',
+      nullable: false,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelEnumFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

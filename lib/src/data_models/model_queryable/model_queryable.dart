@@ -20,7 +20,9 @@ part '_model_queryable.g.dart';
     ('queryable_value', T_SEARCHABLE_STRING),
   },
 )
-abstract class _ModelQueryable extends Model {}
+abstract class _ModelQueryable extends Model {
+  const _ModelQueryable();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

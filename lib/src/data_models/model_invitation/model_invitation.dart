@@ -18,11 +18,13 @@ part '_model_invitation.g.dart';
   fields: {
     ...MODEL_ENTRY_FIELDS,
     ('content_type?', ModelEnum),
-    ('content?', DataModel),
+    ('content?', Model),
     ('invitation_link?', Uri),
     ('invitee_emails?', 'Set<ModelQueryable>'),
     ('invitee_accepted_emails?', 'Set<ModelQueryable>'),
     ('invitee_rejected_emails?', 'Set<ModelQueryable>'),
   },
 )
-abstract class _ModelInvitation extends Model implements ModelEntry {}
+abstract class _ModelInvitation extends Model implements ModelEntry {
+  const _ModelInvitation();
+}

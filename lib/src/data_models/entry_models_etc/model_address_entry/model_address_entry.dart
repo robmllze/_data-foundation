@@ -25,4 +25,6 @@ part '_model_address_entry.g.dart';
     ('country?', String),
   },
 )
-abstract class _ModelAddressEntry extends Model implements ModelEntry {}
+abstract class _ModelAddressEntry extends Model implements ModelEntry {
+  const _ModelAddressEntry();
+}

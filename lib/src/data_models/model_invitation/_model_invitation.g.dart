@@ -24,56 +24,71 @@ class ModelInvitation extends _ModelInvitation {
   //
   //
 
-  static const K_ID = 'id';
-  static const K_REF = 'ref';
-  static const K_DISPLAY_NAME = 'displayName';
-  static const K_DISPLAY_COLOR = 'displayColor';
-  static const K_DESCRIPTION = 'description';
-  static const K_ARCHIVED_G_REG = 'archivedGReg';
-  static const K_CREATED_G_REG = 'createdGReg';
-  static const K_DELETED_G_REG = 'deletedGReg';
-  static const K_UPDATED_G_REG = 'updatedGReg';
-  static const K_EXPIRES_AT = 'expiresAt';
-  static const K_CONTENT_TYPE = 'contentType';
-  static const K_CONTENT = 'content';
-  static const K_INVITATION_LINK = 'invitationLink';
-  static const K_INVITEE_EMAILS = 'inviteeEmails';
-  static const K_INVITEE_ACCEPTED_EMAILS = 'inviteeAcceptedEmails';
-  static const K_INVITEE_REJECTED_EMAILS = 'inviteeRejectedEmails';
-
-  static const CLASS = 'ModelInvitation';
+  static const CLASS_NAME = 'ModelInvitation';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  String? id;
-  DataRefModel? ref;
-  ModelQueryable? displayName;
-  Color? displayColor;
-  String? description;
-  ModelRegistration? archivedGReg;
-  ModelRegistration? createdGReg;
-  ModelRegistration? deletedGReg;
-  ModelRegistration? updatedGReg;
-  DateTime? expiresAt;
-  ModelEnum? contentType;
-  DataModel? content;
-  Uri? invitationLink;
-  Set<ModelQueryable>? inviteeEmails;
-  Set<ModelQueryable>? inviteeAcceptedEmails;
-  Set<ModelQueryable>? inviteeRejectedEmails;
-
-  //
-  //
-  //
-
-  ModelInvitation.empty();
+  final String? id;
+  final DataRefModel? ref;
+  final ModelQueryable? displayName;
+  final Color? displayColor;
+  final String? description;
+  final ModelRegistration? archivedGReg;
+  final ModelRegistration? createdGReg;
+  final ModelRegistration? deletedGReg;
+  final ModelRegistration? updatedGReg;
+  final DateTime? expiresAt;
+  final ModelEnum? contentType;
+  final Model? content;
+  final Uri? invitationLink;
+  final Set<ModelQueryable>? inviteeEmails;
+  final Set<ModelQueryable>? inviteeAcceptedEmails;
+  final Set<ModelQueryable>? inviteeRejectedEmails;
 
   //
   //
   //
 
-  factory ModelInvitation({
+  const ModelInvitation({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.contentType,
+    this.content,
+    this.invitationLink,
+    this.inviteeEmails,
+    this.inviteeAcceptedEmails,
+    this.inviteeRejectedEmails,
+  });
+
+  const ModelInvitation.c2({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.contentType,
+    this.content,
+    this.invitationLink,
+    this.inviteeEmails,
+    this.inviteeAcceptedEmails,
+    this.inviteeRejectedEmails,
+  });
+
+  factory ModelInvitation.c3({
     String? id,
     DataRefModel? ref,
     ModelQueryable? displayName,
@@ -85,13 +100,13 @@ class ModelInvitation extends _ModelInvitation {
     ModelRegistration? updatedGReg,
     DateTime? expiresAt,
     ModelEnum? contentType,
-    DataModel? content,
+    Model? content,
     Uri? invitationLink,
     Set<ModelQueryable>? inviteeEmails,
     Set<ModelQueryable>? inviteeAcceptedEmails,
     Set<ModelQueryable>? inviteeRejectedEmails,
   }) {
-    return ModelInvitation.b(
+    return ModelInvitation(
       id: id,
       ref: ref,
       displayName: displayName,
@@ -111,35 +126,8 @@ class ModelInvitation extends _ModelInvitation {
     );
   }
 
-  //
-  //
-  //
-
-  ModelInvitation.b({
-    this.id,
-    this.ref,
-    this.displayName,
-    this.displayColor,
-    this.description,
-    this.archivedGReg,
-    this.createdGReg,
-    this.deletedGReg,
-    this.updatedGReg,
-    this.expiresAt,
-    this.contentType,
-    this.content,
-    this.invitationLink,
-    this.inviteeEmails,
-    this.inviteeAcceptedEmails,
-    this.inviteeRejectedEmails,
-  }) {}
-
-  //
-  //
-  //
-
   factory ModelInvitation.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -150,14 +138,10 @@ class ModelInvitation extends _ModelInvitation {
   }
 
   static ModelInvitation? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelInvitation.of(
     ModelInvitation other,
@@ -175,10 +159,6 @@ class ModelInvitation extends _ModelInvitation {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelInvitation.fromJsonString(
     String source,
@@ -199,16 +179,12 @@ class ModelInvitation extends _ModelInvitation {
         final decoded = jsonDecode(source);
         return ModelInvitation.fromJson(decoded);
       } else {
-        return ModelInvitation.empty();
+        return const ModelInvitation.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelInvitation.fromJson(
     Map<String, dynamic>? otherData,
@@ -225,31 +201,124 @@ class ModelInvitation extends _ModelInvitation {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelInvitation.empty()
-        ..$id = otherData?[K_ID]
-        ..$ref = otherData?[K_REF]
-        ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$displayColor = otherData?[K_DISPLAY_COLOR]
-        ..$description = otherData?[K_DESCRIPTION]
-        ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
-        ..$createdGReg = otherData?[K_CREATED_G_REG]
-        ..$deletedGReg = otherData?[K_DELETED_G_REG]
-        ..$updatedGReg = otherData?[K_UPDATED_G_REG]
-        ..$expiresAt = otherData?[K_EXPIRES_AT]
-        ..$contentType = otherData?[K_CONTENT_TYPE]
-        ..$content = otherData?[K_CONTENT]
-        ..$invitationLink = otherData?[K_INVITATION_LINK]
-        ..$inviteeEmails = otherData?[K_INVITEE_EMAILS]
-        ..$inviteeAcceptedEmails = otherData?[K_INVITEE_ACCEPTED_EMAILS]
-        ..$inviteeRejectedEmails = otherData?[K_INVITEE_REJECTED_EMAILS];
+      final id0 = otherData?[ModelInvitationFields.id.name];
+      final id = id0?.toString().trim().nullIfEmpty;
+      final ref0 = otherData?[ModelInvitationFields.ref.name];
+      final ref = () {
+        final a = letMap<String, dynamic>(ref0);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+      final displayName0 = otherData?[ModelInvitationFields.displayName.name];
+      final displayName = () {
+        final a = letMap<String, dynamic>(displayName0);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
+      final displayColor0 = otherData?[ModelInvitationFields.displayColor.name];
+      final displayColor = () {
+        final a = letAs<int>(displayColor0);
+        return a is int ? Color(a) : null;
+      }();
+      final description0 = otherData?[ModelInvitationFields.description.name];
+      final description = description0?.toString().trim().nullIfEmpty;
+      final archivedGReg0 = otherData?[ModelInvitationFields.archivedGReg.name];
+      final archivedGReg = () {
+        final a = letMap<String, dynamic>(archivedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final createdGReg0 = otherData?[ModelInvitationFields.createdGReg.name];
+      final createdGReg = () {
+        final a = letMap<String, dynamic>(createdGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final deletedGReg0 = otherData?[ModelInvitationFields.deletedGReg.name];
+      final deletedGReg = () {
+        final a = letMap<String, dynamic>(deletedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final updatedGReg0 = otherData?[ModelInvitationFields.updatedGReg.name];
+      final updatedGReg = () {
+        final a = letMap<String, dynamic>(updatedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final expiresAt0 = otherData?[ModelInvitationFields.expiresAt.name];
+      final expiresAt = () {
+        final a = expiresAt0;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+      final contentType0 = otherData?[ModelInvitationFields.contentType.name];
+      final contentType = () {
+        final a = letMap<String, dynamic>(contentType0);
+        return a != null ? ModelEnum.fromJson(a) : null;
+      }();
+      final content0 = otherData?[ModelInvitationFields.content.name];
+      final content = () {
+        final a = letMap<String, dynamic>(content0);
+        return a != null ? Model.fromJson(a) : null;
+      }();
+      final invitationLink0 =
+          otherData?[ModelInvitationFields.invitationLink.name];
+      final invitationLink = () {
+        final a = invitationLink0;
+        return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
+      }();
+      final inviteeEmails0 =
+          otherData?[ModelInvitationFields.inviteeEmails.name];
+      final inviteeEmails = letSet(inviteeEmails0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelQueryable.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toSet();
+      final inviteeAcceptedEmails0 =
+          otherData?[ModelInvitationFields.inviteeAcceptedEmails.name];
+      final inviteeAcceptedEmails = letSet(inviteeAcceptedEmails0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelQueryable.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toSet();
+      final inviteeRejectedEmails0 =
+          otherData?[ModelInvitationFields.inviteeRejectedEmails.name];
+      final inviteeRejectedEmails = letSet(inviteeRejectedEmails0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelQueryable.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toSet();
+      return ModelInvitation(
+        id: id,
+        ref: ref,
+        displayName: displayName,
+        displayColor: displayColor,
+        description: description,
+        archivedGReg: archivedGReg,
+        createdGReg: createdGReg,
+        deletedGReg: deletedGReg,
+        updatedGReg: updatedGReg,
+        expiresAt: expiresAt,
+        contentType: contentType,
+        content: content,
+        invitationLink: invitationLink,
+        inviteeEmails: inviteeEmails,
+        inviteeAcceptedEmails: inviteeAcceptedEmails,
+        inviteeRejectedEmails: inviteeRejectedEmails,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelInvitation.fromUri(
     Uri? uri,
@@ -266,10 +335,10 @@ class ModelInvitation extends _ModelInvitation {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelInvitation.fromJson(uri.queryParameters);
       } else {
-        return ModelInvitation.empty();
+        return const ModelInvitation.c2();
       }
     } catch (_) {
       return null;
@@ -286,23 +355,62 @@ class ModelInvitation extends _ModelInvitation {
     bool includeNulls = false,
   }) {
     try {
+      final id0 = this.id?.trim().nullIfEmpty;
+      final ref0 = this.ref?.toJson();
+      final displayName0 = this.displayName?.toJson();
+      final displayColor0 = this.displayColor?.value;
+      final description0 = this.description?.trim().nullIfEmpty;
+      final archivedGReg0 = this.archivedGReg?.toJson();
+      final createdGReg0 = this.createdGReg?.toJson();
+      final deletedGReg0 = this.deletedGReg?.toJson();
+      final updatedGReg0 = this.updatedGReg?.toJson();
+      final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
+      final contentType0 = this.contentType?.toJson();
+      final content0 = this.content?.toJson();
+      final invitationLink0 = this.invitationLink?.toString();
+      final inviteeEmails0 = this
+          .inviteeEmails
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final inviteeAcceptedEmails0 = this
+          .inviteeAcceptedEmails
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final inviteeRejectedEmails0 = this
+          .inviteeRejectedEmails
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
       final withNulls = <String, dynamic>{
-        K_ID: this.$id,
-        K_REF: this.$ref,
-        K_DISPLAY_NAME: this.$displayName,
-        K_DISPLAY_COLOR: this.$displayColor,
-        K_DESCRIPTION: this.$description,
-        K_ARCHIVED_G_REG: this.$archivedGReg,
-        K_CREATED_G_REG: this.$createdGReg,
-        K_DELETED_G_REG: this.$deletedGReg,
-        K_UPDATED_G_REG: this.$updatedGReg,
-        K_EXPIRES_AT: this.$expiresAt,
-        K_CONTENT_TYPE: this.$contentType,
-        K_CONTENT: this.$content,
-        K_INVITATION_LINK: this.$invitationLink,
-        K_INVITEE_EMAILS: this.$inviteeEmails,
-        K_INVITEE_ACCEPTED_EMAILS: this.$inviteeAcceptedEmails,
-        K_INVITEE_REJECTED_EMAILS: this.$inviteeRejectedEmails,
+        ModelInvitationFields.id.name: id0,
+        ModelInvitationFields.ref.name: ref0,
+        ModelInvitationFields.displayName.name: displayName0,
+        ModelInvitationFields.displayColor.name: displayColor0,
+        ModelInvitationFields.description.name: description0,
+        ModelInvitationFields.archivedGReg.name: archivedGReg0,
+        ModelInvitationFields.createdGReg.name: createdGReg0,
+        ModelInvitationFields.deletedGReg.name: deletedGReg0,
+        ModelInvitationFields.updatedGReg.name: updatedGReg0,
+        ModelInvitationFields.expiresAt.name: expiresAt0,
+        ModelInvitationFields.contentType.name: contentType0,
+        ModelInvitationFields.content.name: content0,
+        ModelInvitationFields.invitationLink.name: invitationLink0,
+        ModelInvitationFields.inviteeEmails.name: inviteeEmails0,
+        ModelInvitationFields.inviteeAcceptedEmails.name:
+            inviteeAcceptedEmails0,
+        ModelInvitationFields.inviteeRejectedEmails.name:
+            inviteeRejectedEmails0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -316,78 +424,11 @@ class ModelInvitation extends _ModelInvitation {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelInvitation.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelInvitation.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelInvitation.fromJson(otherData);
-      if (other.id != null) {
-        this.id = other.id!;
-      }
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
-      if (other.displayName != null) {
-        this.displayName = other.displayName!;
-      }
-      if (other.displayColor != null) {
-        this.displayColor = other.displayColor!;
-      }
-      if (other.description != null) {
-        this.description = other.description!;
-      }
-      if (other.archivedGReg != null) {
-        this.archivedGReg = other.archivedGReg!;
-      }
-      if (other.createdGReg != null) {
-        this.createdGReg = other.createdGReg!;
-      }
-      if (other.deletedGReg != null) {
-        this.deletedGReg = other.deletedGReg!;
-      }
-      if (other.updatedGReg != null) {
-        this.updatedGReg = other.updatedGReg!;
-      }
-      if (other.expiresAt != null) {
-        this.expiresAt = other.expiresAt!;
-      }
-      if (other.contentType != null) {
-        this.contentType = other.contentType!;
-      }
-      if (other.content != null) {
-        this.content = other.content!;
-      }
-      if (other.invitationLink != null) {
-        this.invitationLink = other.invitationLink!;
-      }
-      if (other.inviteeEmails != null) {
-        this.inviteeEmails = other.inviteeEmails!;
-      }
-      if (other.inviteeAcceptedEmails != null) {
-        this.inviteeAcceptedEmails = other.inviteeAcceptedEmails!;
-      }
-      if (other.inviteeRejectedEmails != null) {
-        this.inviteeRejectedEmails = other.inviteeRejectedEmails!;
-      }
-    }
+  ModelInvitation copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelInvitation.fromJson(c);
   }
 
   //
@@ -396,217 +437,190 @@ class ModelInvitation extends _ModelInvitation {
 
   // id.
   String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // ref.
   DataRefModel? get refField => this.ref;
-  set refField(DataRefModel? v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
 
   // displayName.
   ModelQueryable? get displayNameField => this.displayName;
-  set displayNameField(ModelQueryable? v) => this.displayName = v;
-  @protected
-  dynamic get $displayName => this.displayName?.toJson();
-  @protected
-  set $displayName(v) => this.displayName = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelQueryable.fromJson(a) : null;
-      }();
 
   // displayColor.
   Color? get displayColorField => this.displayColor;
-  set displayColorField(Color? v) => this.displayColor = v;
-  @protected
-  dynamic get $displayColor => this.displayColor?.value;
-  @protected
-  set $displayColor(v) => this.displayColor = () {
-        final a = letAs<int>(v);
-        return a is int ? Color(a) : null;
-      }();
 
   // description.
   String? get descriptionField => this.description;
-  set descriptionField(String? v) => this.description = v;
-  @protected
-  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
-  @protected
-  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
   // archivedGReg.
   ModelRegistration? get archivedGRegField => this.archivedGReg;
-  set archivedGRegField(ModelRegistration? v) => this.archivedGReg = v;
-  @protected
-  dynamic get $archivedGReg => this.archivedGReg?.toJson();
-  @protected
-  set $archivedGReg(v) => this.archivedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // createdGReg.
   ModelRegistration? get createdGRegField => this.createdGReg;
-  set createdGRegField(ModelRegistration? v) => this.createdGReg = v;
-  @protected
-  dynamic get $createdGReg => this.createdGReg?.toJson();
-  @protected
-  set $createdGReg(v) => this.createdGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // deletedGReg.
   ModelRegistration? get deletedGRegField => this.deletedGReg;
-  set deletedGRegField(ModelRegistration? v) => this.deletedGReg = v;
-  @protected
-  dynamic get $deletedGReg => this.deletedGReg?.toJson();
-  @protected
-  set $deletedGReg(v) => this.deletedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // updatedGReg.
   ModelRegistration? get updatedGRegField => this.updatedGReg;
-  set updatedGRegField(ModelRegistration? v) => this.updatedGReg = v;
-  @protected
-  dynamic get $updatedGReg => this.updatedGReg?.toJson();
-  @protected
-  set $updatedGReg(v) => this.updatedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // expiresAt.
   DateTime? get expiresAtField => this.expiresAt;
-  set expiresAtField(DateTime? v) => this.expiresAt = v;
-  @protected
-  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
-  @protected
-  set $expiresAt(v) => this.expiresAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
 
   // contentType.
   ModelEnum? get contentTypeField => this.contentType;
-  set contentTypeField(ModelEnum? v) => this.contentType = v;
-  @protected
-  dynamic get $contentType => this.contentType?.toJson();
-  @protected
-  set $contentType(v) => this.contentType = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelEnum.fromJson(a) : null;
-      }();
 
   // content.
-  DataModel? get contentField => this.content;
-  set contentField(DataModel? v) => this.content = v;
-  @protected
-  dynamic get $content => this.content?.data;
-  @protected
-  set $content(v) => this.content = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataModel(data: a) : null;
-      }();
+  Model? get contentField => this.content;
 
   // invitationLink.
   Uri? get invitationLinkField => this.invitationLink;
-  set invitationLinkField(Uri? v) => this.invitationLink = v;
-  @protected
-  dynamic get $invitationLink => this.invitationLink?.toString();
-  @protected
-  set $invitationLink(v) => this.invitationLink = () {
-        final a = v;
-        return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
-      }();
 
   // inviteeEmails.
   Set<ModelQueryable>? get inviteeEmailsField => this.inviteeEmails;
-  set inviteeEmailsField(Set<ModelQueryable>? v) => this.inviteeEmails = v;
-  @protected
-  dynamic get $inviteeEmails => this
-      .inviteeEmails
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $inviteeEmails(v) => this.inviteeEmails = letSet(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelQueryable.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
 
   // inviteeAcceptedEmails.
   Set<ModelQueryable>? get inviteeAcceptedEmailsField =>
       this.inviteeAcceptedEmails;
-  set inviteeAcceptedEmailsField(Set<ModelQueryable>? v) =>
-      this.inviteeAcceptedEmails = v;
-  @protected
-  dynamic get $inviteeAcceptedEmails => this
-      .inviteeAcceptedEmails
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $inviteeAcceptedEmails(v) => this.inviteeAcceptedEmails = letSet(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelQueryable.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
 
   // inviteeRejectedEmails.
   Set<ModelQueryable>? get inviteeRejectedEmailsField =>
       this.inviteeRejectedEmails;
-  set inviteeRejectedEmailsField(Set<ModelQueryable>? v) =>
-      this.inviteeRejectedEmails = v;
-  @protected
-  dynamic get $inviteeRejectedEmails => this
-      .inviteeRejectedEmails
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $inviteeRejectedEmails(v) => this.inviteeRejectedEmails = letSet(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelQueryable.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelInvitationFields {
+  //
+  //
+  //
+
+  id(
+    const Field(
+      fieldName: 'id',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  ref(
+    const Field(
+      fieldName: 'ref',
+      fieldType: 'DataRefModel',
+      nullable: true,
+    ),
+  ),
+  displayName(
+    const Field(
+      fieldName: 'displayName',
+      fieldType: 'ModelQueryable',
+      nullable: true,
+    ),
+  ),
+  displayColor(
+    const Field(
+      fieldName: 'displayColor',
+      fieldType: 'Color',
+      nullable: true,
+    ),
+  ),
+  description(
+    const Field(
+      fieldName: 'description',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  archivedGReg(
+    const Field(
+      fieldName: 'archivedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  createdGReg(
+    const Field(
+      fieldName: 'createdGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  deletedGReg(
+    const Field(
+      fieldName: 'deletedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  updatedGReg(
+    const Field(
+      fieldName: 'updatedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  expiresAt(
+    const Field(
+      fieldName: 'expiresAt',
+      fieldType: 'DateTime',
+      nullable: true,
+    ),
+  ),
+  contentType(
+    const Field(
+      fieldName: 'contentType',
+      fieldType: 'ModelEnum',
+      nullable: true,
+    ),
+  ),
+  content(
+    const Field(
+      fieldName: 'content',
+      fieldType: 'Model',
+      nullable: true,
+    ),
+  ),
+  invitationLink(
+    const Field(
+      fieldName: 'invitationLink',
+      fieldType: 'Uri',
+      nullable: true,
+    ),
+  ),
+  inviteeEmails(
+    const Field(
+      fieldName: 'inviteeEmails',
+      fieldType: 'Set<ModelQueryable>',
+      nullable: true,
+    ),
+  ),
+  inviteeAcceptedEmails(
+    const Field(
+      fieldName: 'inviteeAcceptedEmails',
+      fieldType: 'Set<ModelQueryable>',
+      nullable: true,
+    ),
+  ),
+  inviteeRejectedEmails(
+    const Field(
+      fieldName: 'inviteeRejectedEmails',
+      fieldType: 'Set<ModelQueryable>',
+      nullable: true,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelInvitationFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

@@ -24,64 +24,83 @@ class ModelRelationship extends _ModelRelationship {
   //
   //
 
-  static const K_ID = 'id';
-  static const K_REF = 'ref';
-  static const K_DISPLAY_NAME = 'displayName';
-  static const K_DISPLAY_COLOR = 'displayColor';
-  static const K_DESCRIPTION = 'description';
-  static const K_ARCHIVED_G_REG = 'archivedGReg';
-  static const K_CREATED_G_REG = 'createdGReg';
-  static const K_DELETED_G_REG = 'deletedGReg';
-  static const K_UPDATED_G_REG = 'updatedGReg';
-  static const K_EXPIRES_AT = 'expiresAt';
-  static const K_MEMBER_PIDS = 'memberPids';
-  static const K_TAGS = 'tags';
-  static const K_CONTENT_TYPE = 'contentType';
-  static const K_CONTENT = 'content';
-  static const K_READ_REGS = 'readRegs';
-  static const K_ARCHIVED_REGS = 'archivedRegs';
-  static const K_HIDDEN_REGS = 'hiddenRegs';
-  static const K_LIKED_REGS = 'likedRegs';
-  static const K_RECEIVED_REGS = 'receivedRegs';
-  static const K_TYPE = 'type';
-
-  static const CLASS = 'ModelRelationship';
+  static const CLASS_NAME = 'ModelRelationship';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  String? id;
-  DataRefModel? ref;
-  ModelQueryable? displayName;
-  Color? displayColor;
-  String? description;
-  ModelRegistration? archivedGReg;
-  ModelRegistration? createdGReg;
-  ModelRegistration? deletedGReg;
-  ModelRegistration? updatedGReg;
-  DateTime? expiresAt;
-  Set<String>? memberPids;
-  Set<String>? tags;
-  ModelEnum? contentType;
-  DataModel? content;
-  List<ModelRegistration>? readRegs;
-  List<ModelRegistration>? archivedRegs;
-  List<ModelRegistration>? hiddenRegs;
-  List<ModelRegistration>? likedRegs;
-  List<ModelRegistration>? receivedRegs;
-  RelationshipType? type;
-
-  //
-  //
-  //
-
-  ModelRelationship.empty();
+  final String? id;
+  final DataRefModel? ref;
+  final ModelQueryable? displayName;
+  final Color? displayColor;
+  final String? description;
+  final ModelRegistration? archivedGReg;
+  final ModelRegistration? createdGReg;
+  final ModelRegistration? deletedGReg;
+  final ModelRegistration? updatedGReg;
+  final DateTime? expiresAt;
+  final Set<String>? memberPids;
+  final Set<String>? tags;
+  final ModelEnum? contentType;
+  final Model? content;
+  final List<ModelRegistration>? readRegs;
+  final List<ModelRegistration>? archivedRegs;
+  final List<ModelRegistration>? hiddenRegs;
+  final List<ModelRegistration>? likedRegs;
+  final List<ModelRegistration>? receivedRegs;
+  final RelationshipType? type;
 
   //
   //
   //
 
-  factory ModelRelationship({
+  const ModelRelationship({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.memberPids,
+    this.tags,
+    this.contentType,
+    this.content,
+    this.readRegs,
+    this.archivedRegs,
+    this.hiddenRegs,
+    this.likedRegs,
+    this.receivedRegs,
+    this.type,
+  });
+
+  const ModelRelationship.c2({
+    this.id,
+    this.ref,
+    this.displayName,
+    this.displayColor,
+    this.description,
+    this.archivedGReg,
+    this.createdGReg,
+    this.deletedGReg,
+    this.updatedGReg,
+    this.expiresAt,
+    this.memberPids,
+    this.tags,
+    this.contentType,
+    this.content,
+    this.readRegs,
+    this.archivedRegs,
+    this.hiddenRegs,
+    this.likedRegs,
+    this.receivedRegs,
+    this.type,
+  });
+
+  factory ModelRelationship.c3({
     String? id,
     DataRefModel? ref,
     ModelQueryable? displayName,
@@ -95,7 +114,7 @@ class ModelRelationship extends _ModelRelationship {
     Set<String>? memberPids,
     Set<String>? tags,
     ModelEnum? contentType,
-    DataModel? content,
+    Model? content,
     List<ModelRegistration>? readRegs,
     List<ModelRegistration>? archivedRegs,
     List<ModelRegistration>? hiddenRegs,
@@ -103,7 +122,7 @@ class ModelRelationship extends _ModelRelationship {
     List<ModelRegistration>? receivedRegs,
     RelationshipType? type,
   }) {
-    return ModelRelationship.b(
+    return ModelRelationship(
       id: id,
       ref: ref,
       displayName: displayName,
@@ -127,39 +146,8 @@ class ModelRelationship extends _ModelRelationship {
     );
   }
 
-  //
-  //
-  //
-
-  ModelRelationship.b({
-    this.id,
-    this.ref,
-    this.displayName,
-    this.displayColor,
-    this.description,
-    this.archivedGReg,
-    this.createdGReg,
-    this.deletedGReg,
-    this.updatedGReg,
-    this.expiresAt,
-    this.memberPids,
-    this.tags,
-    this.contentType,
-    this.content,
-    this.readRegs,
-    this.archivedRegs,
-    this.hiddenRegs,
-    this.likedRegs,
-    this.receivedRegs,
-    this.type,
-  }) {}
-
-  //
-  //
-  //
-
   factory ModelRelationship.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -170,14 +158,10 @@ class ModelRelationship extends _ModelRelationship {
   }
 
   static ModelRelationship? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelRelationship.of(
     ModelRelationship other,
@@ -195,10 +179,6 @@ class ModelRelationship extends _ModelRelationship {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelRelationship.fromJsonString(
     String source,
@@ -219,16 +199,12 @@ class ModelRelationship extends _ModelRelationship {
         final decoded = jsonDecode(source);
         return ModelRelationship.fromJson(decoded);
       } else {
-        return ModelRelationship.empty();
+        return const ModelRelationship.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelRelationship.fromJson(
     Map<String, dynamic>? otherData,
@@ -245,35 +221,163 @@ class ModelRelationship extends _ModelRelationship {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelRelationship.empty()
-        ..$id = otherData?[K_ID]
-        ..$ref = otherData?[K_REF]
-        ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$displayColor = otherData?[K_DISPLAY_COLOR]
-        ..$description = otherData?[K_DESCRIPTION]
-        ..$archivedGReg = otherData?[K_ARCHIVED_G_REG]
-        ..$createdGReg = otherData?[K_CREATED_G_REG]
-        ..$deletedGReg = otherData?[K_DELETED_G_REG]
-        ..$updatedGReg = otherData?[K_UPDATED_G_REG]
-        ..$expiresAt = otherData?[K_EXPIRES_AT]
-        ..$memberPids = otherData?[K_MEMBER_PIDS]
-        ..$tags = otherData?[K_TAGS]
-        ..$contentType = otherData?[K_CONTENT_TYPE]
-        ..$content = otherData?[K_CONTENT]
-        ..$readRegs = otherData?[K_READ_REGS]
-        ..$archivedRegs = otherData?[K_ARCHIVED_REGS]
-        ..$hiddenRegs = otherData?[K_HIDDEN_REGS]
-        ..$likedRegs = otherData?[K_LIKED_REGS]
-        ..$receivedRegs = otherData?[K_RECEIVED_REGS]
-        ..$type = otherData?[K_TYPE];
+      final id0 = otherData?[ModelRelationshipFields.id.name];
+      final id = id0?.toString().trim().nullIfEmpty;
+      final ref0 = otherData?[ModelRelationshipFields.ref.name];
+      final ref = () {
+        final a = letMap<String, dynamic>(ref0);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+      final displayName0 = otherData?[ModelRelationshipFields.displayName.name];
+      final displayName = () {
+        final a = letMap<String, dynamic>(displayName0);
+        return a != null ? ModelQueryable.fromJson(a) : null;
+      }();
+      final displayColor0 =
+          otherData?[ModelRelationshipFields.displayColor.name];
+      final displayColor = () {
+        final a = letAs<int>(displayColor0);
+        return a is int ? Color(a) : null;
+      }();
+      final description0 = otherData?[ModelRelationshipFields.description.name];
+      final description = description0?.toString().trim().nullIfEmpty;
+      final archivedGReg0 =
+          otherData?[ModelRelationshipFields.archivedGReg.name];
+      final archivedGReg = () {
+        final a = letMap<String, dynamic>(archivedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final createdGReg0 = otherData?[ModelRelationshipFields.createdGReg.name];
+      final createdGReg = () {
+        final a = letMap<String, dynamic>(createdGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final deletedGReg0 = otherData?[ModelRelationshipFields.deletedGReg.name];
+      final deletedGReg = () {
+        final a = letMap<String, dynamic>(deletedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final updatedGReg0 = otherData?[ModelRelationshipFields.updatedGReg.name];
+      final updatedGReg = () {
+        final a = letMap<String, dynamic>(updatedGReg0);
+        return a != null ? ModelRegistration.fromJson(a) : null;
+      }();
+      final expiresAt0 = otherData?[ModelRelationshipFields.expiresAt.name];
+      final expiresAt = () {
+        final a = expiresAt0;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+      final memberPids0 = otherData?[ModelRelationshipFields.memberPids.name];
+      final memberPids = letSet(memberPids0)
+          ?.map(
+            (p0) => p0?.toString().trim().nullIfEmpty,
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toSet();
+      final tags0 = otherData?[ModelRelationshipFields.tags.name];
+      final tags = letSet(tags0)
+          ?.map(
+            (p0) => p0?.toString().trim().nullIfEmpty,
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toSet();
+      final contentType0 = otherData?[ModelRelationshipFields.contentType.name];
+      final contentType = () {
+        final a = letMap<String, dynamic>(contentType0);
+        return a != null ? ModelEnum.fromJson(a) : null;
+      }();
+      final content0 = otherData?[ModelRelationshipFields.content.name];
+      final content = () {
+        final a = letMap<String, dynamic>(content0);
+        return a != null ? Model.fromJson(a) : null;
+      }();
+      final readRegs0 = otherData?[ModelRelationshipFields.readRegs.name];
+      final readRegs = letList(readRegs0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelRegistration.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final archivedRegs0 =
+          otherData?[ModelRelationshipFields.archivedRegs.name];
+      final archivedRegs = letList(archivedRegs0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelRegistration.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final hiddenRegs0 = otherData?[ModelRelationshipFields.hiddenRegs.name];
+      final hiddenRegs = letList(hiddenRegs0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelRegistration.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final likedRegs0 = otherData?[ModelRelationshipFields.likedRegs.name];
+      final likedRegs = letList(likedRegs0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelRegistration.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final receivedRegs0 =
+          otherData?[ModelRelationshipFields.receivedRegs.name];
+      final receivedRegs = letList(receivedRegs0)
+          ?.map(
+            (p0) => () {
+              final a = letMap<String, dynamic>(p0);
+              return a != null ? ModelRegistration.fromJson(a) : null;
+            }(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final type0 = otherData?[ModelRelationshipFields.type.name];
+      final type = RelationshipType.values.valueOf(letAs<String>(type0));
+      return ModelRelationship(
+        id: id,
+        ref: ref,
+        displayName: displayName,
+        displayColor: displayColor,
+        description: description,
+        archivedGReg: archivedGReg,
+        createdGReg: createdGReg,
+        deletedGReg: deletedGReg,
+        updatedGReg: updatedGReg,
+        expiresAt: expiresAt,
+        memberPids: memberPids,
+        tags: tags,
+        contentType: contentType,
+        content: content,
+        readRegs: readRegs,
+        archivedRegs: archivedRegs,
+        hiddenRegs: hiddenRegs,
+        likedRegs: likedRegs,
+        receivedRegs: receivedRegs,
+        type: type,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelRelationship.fromUri(
     Uri? uri,
@@ -290,10 +394,10 @@ class ModelRelationship extends _ModelRelationship {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelRelationship.fromJson(uri.queryParameters);
       } else {
-        return ModelRelationship.empty();
+        return const ModelRelationship.c2();
       }
     } catch (_) {
       return null;
@@ -310,27 +414,96 @@ class ModelRelationship extends _ModelRelationship {
     bool includeNulls = false,
   }) {
     try {
+      final id0 = this.id?.trim().nullIfEmpty;
+      final ref0 = this.ref?.toJson();
+      final displayName0 = this.displayName?.toJson();
+      final displayColor0 = this.displayColor?.value;
+      final description0 = this.description?.trim().nullIfEmpty;
+      final archivedGReg0 = this.archivedGReg?.toJson();
+      final createdGReg0 = this.createdGReg?.toJson();
+      final deletedGReg0 = this.deletedGReg?.toJson();
+      final updatedGReg0 = this.updatedGReg?.toJson();
+      final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
+      final memberPids0 = this
+          .memberPids
+          ?.map(
+            (p0) => p0?.trim().nullIfEmpty,
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final tags0 = this
+          .tags
+          ?.map(
+            (p0) => p0?.trim().nullIfEmpty,
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final contentType0 = this.contentType?.toJson();
+      final content0 = this.content?.toJson();
+      final readRegs0 = this
+          .readRegs
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final archivedRegs0 = this
+          .archivedRegs
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final hiddenRegs0 = this
+          .hiddenRegs
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final likedRegs0 = this
+          .likedRegs
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final receivedRegs0 = this
+          .receivedRegs
+          ?.map(
+            (p0) => p0?.toJson(),
+          )
+          .nonNulls
+          .nullIfEmpty
+          ?.toList();
+      final type0 = this.type?.name;
       final withNulls = <String, dynamic>{
-        K_ID: this.$id,
-        K_REF: this.$ref,
-        K_DISPLAY_NAME: this.$displayName,
-        K_DISPLAY_COLOR: this.$displayColor,
-        K_DESCRIPTION: this.$description,
-        K_ARCHIVED_G_REG: this.$archivedGReg,
-        K_CREATED_G_REG: this.$createdGReg,
-        K_DELETED_G_REG: this.$deletedGReg,
-        K_UPDATED_G_REG: this.$updatedGReg,
-        K_EXPIRES_AT: this.$expiresAt,
-        K_MEMBER_PIDS: this.$memberPids,
-        K_TAGS: this.$tags,
-        K_CONTENT_TYPE: this.$contentType,
-        K_CONTENT: this.$content,
-        K_READ_REGS: this.$readRegs,
-        K_ARCHIVED_REGS: this.$archivedRegs,
-        K_HIDDEN_REGS: this.$hiddenRegs,
-        K_LIKED_REGS: this.$likedRegs,
-        K_RECEIVED_REGS: this.$receivedRegs,
-        K_TYPE: this.$type,
+        ModelRelationshipFields.id.name: id0,
+        ModelRelationshipFields.ref.name: ref0,
+        ModelRelationshipFields.displayName.name: displayName0,
+        ModelRelationshipFields.displayColor.name: displayColor0,
+        ModelRelationshipFields.description.name: description0,
+        ModelRelationshipFields.archivedGReg.name: archivedGReg0,
+        ModelRelationshipFields.createdGReg.name: createdGReg0,
+        ModelRelationshipFields.deletedGReg.name: deletedGReg0,
+        ModelRelationshipFields.updatedGReg.name: updatedGReg0,
+        ModelRelationshipFields.expiresAt.name: expiresAt0,
+        ModelRelationshipFields.memberPids.name: memberPids0,
+        ModelRelationshipFields.tags.name: tags0,
+        ModelRelationshipFields.contentType.name: contentType0,
+        ModelRelationshipFields.content.name: content0,
+        ModelRelationshipFields.readRegs.name: readRegs0,
+        ModelRelationshipFields.archivedRegs.name: archivedRegs0,
+        ModelRelationshipFields.hiddenRegs.name: hiddenRegs0,
+        ModelRelationshipFields.likedRegs.name: likedRegs0,
+        ModelRelationshipFields.receivedRegs.name: receivedRegs0,
+        ModelRelationshipFields.type.name: type0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -344,90 +517,11 @@ class ModelRelationship extends _ModelRelationship {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelRelationship.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelRelationship.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelRelationship.fromJson(otherData);
-      if (other.id != null) {
-        this.id = other.id!;
-      }
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
-      if (other.displayName != null) {
-        this.displayName = other.displayName!;
-      }
-      if (other.displayColor != null) {
-        this.displayColor = other.displayColor!;
-      }
-      if (other.description != null) {
-        this.description = other.description!;
-      }
-      if (other.archivedGReg != null) {
-        this.archivedGReg = other.archivedGReg!;
-      }
-      if (other.createdGReg != null) {
-        this.createdGReg = other.createdGReg!;
-      }
-      if (other.deletedGReg != null) {
-        this.deletedGReg = other.deletedGReg!;
-      }
-      if (other.updatedGReg != null) {
-        this.updatedGReg = other.updatedGReg!;
-      }
-      if (other.expiresAt != null) {
-        this.expiresAt = other.expiresAt!;
-      }
-      if (other.memberPids != null) {
-        this.memberPids = other.memberPids!;
-      }
-      if (other.tags != null) {
-        this.tags = other.tags!;
-      }
-      if (other.contentType != null) {
-        this.contentType = other.contentType!;
-      }
-      if (other.content != null) {
-        this.content = other.content!;
-      }
-      if (other.readRegs != null) {
-        this.readRegs = other.readRegs!;
-      }
-      if (other.archivedRegs != null) {
-        this.archivedRegs = other.archivedRegs!;
-      }
-      if (other.hiddenRegs != null) {
-        this.hiddenRegs = other.hiddenRegs!;
-      }
-      if (other.likedRegs != null) {
-        this.likedRegs = other.likedRegs!;
-      }
-      if (other.receivedRegs != null) {
-        this.receivedRegs = other.receivedRegs!;
-      }
-      if (other.type != null) {
-        this.type = other.type!;
-      }
-    }
+  ModelRelationship copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelRelationship.fromJson(c);
   }
 
   //
@@ -436,304 +530,228 @@ class ModelRelationship extends _ModelRelationship {
 
   // id.
   String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // ref.
   DataRefModel? get refField => this.ref;
-  set refField(DataRefModel? v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
 
   // displayName.
   ModelQueryable? get displayNameField => this.displayName;
-  set displayNameField(ModelQueryable? v) => this.displayName = v;
-  @protected
-  dynamic get $displayName => this.displayName?.toJson();
-  @protected
-  set $displayName(v) => this.displayName = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelQueryable.fromJson(a) : null;
-      }();
 
   // displayColor.
   Color? get displayColorField => this.displayColor;
-  set displayColorField(Color? v) => this.displayColor = v;
-  @protected
-  dynamic get $displayColor => this.displayColor?.value;
-  @protected
-  set $displayColor(v) => this.displayColor = () {
-        final a = letAs<int>(v);
-        return a is int ? Color(a) : null;
-      }();
 
   // description.
   String? get descriptionField => this.description;
-  set descriptionField(String? v) => this.description = v;
-  @protected
-  dynamic get $description => this.description?.toString().trim().nullIfEmpty;
-  @protected
-  set $description(v) => this.description = v?.toString().trim().nullIfEmpty;
 
   // archivedGReg.
   ModelRegistration? get archivedGRegField => this.archivedGReg;
-  set archivedGRegField(ModelRegistration? v) => this.archivedGReg = v;
-  @protected
-  dynamic get $archivedGReg => this.archivedGReg?.toJson();
-  @protected
-  set $archivedGReg(v) => this.archivedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // createdGReg.
   ModelRegistration? get createdGRegField => this.createdGReg;
-  set createdGRegField(ModelRegistration? v) => this.createdGReg = v;
-  @protected
-  dynamic get $createdGReg => this.createdGReg?.toJson();
-  @protected
-  set $createdGReg(v) => this.createdGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // deletedGReg.
   ModelRegistration? get deletedGRegField => this.deletedGReg;
-  set deletedGRegField(ModelRegistration? v) => this.deletedGReg = v;
-  @protected
-  dynamic get $deletedGReg => this.deletedGReg?.toJson();
-  @protected
-  set $deletedGReg(v) => this.deletedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // updatedGReg.
   ModelRegistration? get updatedGRegField => this.updatedGReg;
-  set updatedGRegField(ModelRegistration? v) => this.updatedGReg = v;
-  @protected
-  dynamic get $updatedGReg => this.updatedGReg?.toJson();
-  @protected
-  set $updatedGReg(v) => this.updatedGReg = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelRegistration.fromJson(a) : null;
-      }();
 
   // expiresAt.
   DateTime? get expiresAtField => this.expiresAt;
-  set expiresAtField(DateTime? v) => this.expiresAt = v;
-  @protected
-  dynamic get $expiresAt => this.expiresAt?.toUtc()?.toIso8601String();
-  @protected
-  set $expiresAt(v) => this.expiresAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
 
   // memberPids.
   Set<String>? get memberPidsField => this.memberPids;
-  set memberPidsField(Set<String>? v) => this.memberPids = v;
-  @protected
-  dynamic get $memberPids => this
-      .memberPids
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $memberPids(v) => this.memberPids = letSet(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
 
   // tags.
   Set<String>? get tagsField => this.tags;
-  set tagsField(Set<String>? v) => this.tags = v;
-  @protected
-  dynamic get $tags => this
-      .tags
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $tags(v) => this.tags = letSet(v)
-      ?.map(
-        (p0) => p0?.toString().trim().nullIfEmpty,
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toSet()
-      .cast();
 
   // contentType.
   ModelEnum? get contentTypeField => this.contentType;
-  set contentTypeField(ModelEnum? v) => this.contentType = v;
-  @protected
-  dynamic get $contentType => this.contentType?.toJson();
-  @protected
-  set $contentType(v) => this.contentType = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelEnum.fromJson(a) : null;
-      }();
 
   // content.
-  DataModel? get contentField => this.content;
-  set contentField(DataModel? v) => this.content = v;
-  @protected
-  dynamic get $content => this.content?.data;
-  @protected
-  set $content(v) => this.content = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataModel(data: a) : null;
-      }();
+  Model? get contentField => this.content;
 
   // readRegs.
   List<ModelRegistration>? get readRegsField => this.readRegs;
-  set readRegsField(List<ModelRegistration>? v) => this.readRegs = v;
-  @protected
-  dynamic get $readRegs => this
-      .readRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $readRegs(v) => this.readRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
 
   // archivedRegs.
   List<ModelRegistration>? get archivedRegsField => this.archivedRegs;
-  set archivedRegsField(List<ModelRegistration>? v) => this.archivedRegs = v;
-  @protected
-  dynamic get $archivedRegs => this
-      .archivedRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $archivedRegs(v) => this.archivedRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
 
   // hiddenRegs.
   List<ModelRegistration>? get hiddenRegsField => this.hiddenRegs;
-  set hiddenRegsField(List<ModelRegistration>? v) => this.hiddenRegs = v;
-  @protected
-  dynamic get $hiddenRegs => this
-      .hiddenRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $hiddenRegs(v) => this.hiddenRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
 
   // likedRegs.
   List<ModelRegistration>? get likedRegsField => this.likedRegs;
-  set likedRegsField(List<ModelRegistration>? v) => this.likedRegs = v;
-  @protected
-  dynamic get $likedRegs => this
-      .likedRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $likedRegs(v) => this.likedRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
 
   // receivedRegs.
   List<ModelRegistration>? get receivedRegsField => this.receivedRegs;
-  set receivedRegsField(List<ModelRegistration>? v) => this.receivedRegs = v;
-  @protected
-  dynamic get $receivedRegs => this
-      .receivedRegs
-      ?.map(
-        (p0) => p0?.toJson(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList();
-  @protected
-  set $receivedRegs(v) => this.receivedRegs = letList(v)
-      ?.map(
-        (p0) => () {
-          final a = letMap<String, dynamic>(p0);
-          return a != null ? ModelRegistration.fromJson(a) : null;
-        }(),
-      )
-      .nonNulls
-      .nullIfEmpty
-      ?.toList()
-      .cast();
 
   // type.
   RelationshipType? get typeField => this.type;
-  set typeField(RelationshipType? v) => this.type = v;
-  @protected
-  dynamic get $type => this.type?.name;
-  @protected
-  set $type(v) => this.type = RelationshipType.values.valueOf(letAs<String>(v));
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelRelationshipFields {
+  //
+  //
+  //
+
+  id(
+    const Field(
+      fieldName: 'id',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  ref(
+    const Field(
+      fieldName: 'ref',
+      fieldType: 'DataRefModel',
+      nullable: true,
+    ),
+  ),
+  displayName(
+    const Field(
+      fieldName: 'displayName',
+      fieldType: 'ModelQueryable',
+      nullable: true,
+    ),
+  ),
+  displayColor(
+    const Field(
+      fieldName: 'displayColor',
+      fieldType: 'Color',
+      nullable: true,
+    ),
+  ),
+  description(
+    const Field(
+      fieldName: 'description',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  archivedGReg(
+    const Field(
+      fieldName: 'archivedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  createdGReg(
+    const Field(
+      fieldName: 'createdGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  deletedGReg(
+    const Field(
+      fieldName: 'deletedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  updatedGReg(
+    const Field(
+      fieldName: 'updatedGReg',
+      fieldType: 'ModelRegistration',
+      nullable: true,
+    ),
+  ),
+  expiresAt(
+    const Field(
+      fieldName: 'expiresAt',
+      fieldType: 'DateTime',
+      nullable: true,
+    ),
+  ),
+  memberPids(
+    const Field(
+      fieldName: 'memberPids',
+      fieldType: 'Set<String>',
+      nullable: true,
+    ),
+  ),
+  tags(
+    const Field(
+      fieldName: 'tags',
+      fieldType: 'Set<String>',
+      nullable: true,
+    ),
+  ),
+  contentType(
+    const Field(
+      fieldName: 'contentType',
+      fieldType: 'ModelEnum',
+      nullable: true,
+    ),
+  ),
+  content(
+    const Field(
+      fieldName: 'content',
+      fieldType: 'Model',
+      nullable: true,
+    ),
+  ),
+  readRegs(
+    const Field(
+      fieldName: 'readRegs',
+      fieldType: 'List<ModelRegistration>',
+      nullable: true,
+    ),
+  ),
+  archivedRegs(
+    const Field(
+      fieldName: 'archivedRegs',
+      fieldType: 'List<ModelRegistration>',
+      nullable: true,
+    ),
+  ),
+  hiddenRegs(
+    const Field(
+      fieldName: 'hiddenRegs',
+      fieldType: 'List<ModelRegistration>',
+      nullable: true,
+    ),
+  ),
+  likedRegs(
+    const Field(
+      fieldName: 'likedRegs',
+      fieldType: 'List<ModelRegistration>',
+      nullable: true,
+    ),
+  ),
+  receivedRegs(
+    const Field(
+      fieldName: 'receivedRegs',
+      fieldType: 'List<ModelRegistration>',
+      nullable: true,
+    ),
+  ),
+  type(
+    const Field(
+      fieldName: 'type',
+      fieldType: 'RelationshipType',
+      nullable: true,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelRelationshipFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

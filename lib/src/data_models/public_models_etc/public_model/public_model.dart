@@ -27,7 +27,9 @@ const PUBLIC_MODEL_FIELDS = {
   shouldInherit: true,
   fields: PUBLIC_MODEL_FIELDS,
 )
-abstract class _PublicModel extends Model implements ModelEntry, ModelDisplay {}
+abstract class _PublicModel extends Model implements ModelEntry, ModelDisplay {
+  const _PublicModel();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

@@ -14,7 +14,7 @@ part '_topic_type.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@GenerateTypeUtils()
+//@GenerateTypeUtils()
 enum TopicType {
   CONNECTION_REQUEST_ACCEPTED,
   CONNECTION_REQUEST_REJECTED,

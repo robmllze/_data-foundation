@@ -20,4 +20,6 @@ part '_model_todo_entry.g.dart';
     ('status?', Map<DateTime, String>),
   },
 )
-abstract class _ModelTodoEntry extends Model implements ModelEntry {}
+abstract class _ModelTodoEntry extends Model implements ModelEntry {
+  const _ModelTodoEntry();
+}

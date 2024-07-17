@@ -22,4 +22,6 @@ const MODEL_MESSAGE_CONTENT_FIELDS = {
 
 @GenerateModel(fields: MODEL_MESSAGE_CONTENT_FIELDS)
 // ignore: unused_element
-abstract class _ModelMessageContent {}
+abstract class _ModelMessageContent {
+  const _ModelMessageContent();
+}

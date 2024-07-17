@@ -21,7 +21,9 @@ part '_model_data_collection.g.dart';
     ('documents?', Set<DataRefModel>),
   },
 )
-abstract class _ModelDataCollection extends Model {}
+abstract class _ModelDataCollection extends Model {
+  const _ModelDataCollection();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

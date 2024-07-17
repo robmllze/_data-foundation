@@ -21,7 +21,9 @@ part '_model_relationship.g.dart';
     ('type?', RelationshipType),
   },
 )
-abstract class _ModelRelationship extends Model implements ModelEvent {}
+abstract class _ModelRelationship extends Model implements ModelEvent {
+  const _ModelRelationship();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

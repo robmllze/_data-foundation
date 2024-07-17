@@ -24,4 +24,6 @@ part '_model_user.g.dart';
     ('sms_subscriptions?', Set<String>),
   },
 )
-abstract class _ModelUser extends Model implements PrivateModel {}
+abstract class _ModelUser extends Model implements PrivateModel {
+  const _ModelUser();
+}

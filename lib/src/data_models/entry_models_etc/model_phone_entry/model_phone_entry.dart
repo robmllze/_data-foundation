@@ -24,4 +24,6 @@ part '_model_phone_entry.g.dart';
     ('type?', String),
   },
 )
-abstract class _ModelPhoneEntry extends Model implements ModelEntry {}
+abstract class _ModelPhoneEntry extends Model implements ModelEntry {
+  const _ModelPhoneEntry();
+}

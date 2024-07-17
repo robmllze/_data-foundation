@@ -25,4 +25,6 @@ const MODEL_DISPLAY_FIELDS = {
   shouldInherit: true,
   fields: MODEL_DISPLAY_FIELDS,
 )
-abstract class _ModelDisplay extends Model {}
+abstract class _ModelDisplay extends Model {
+  const _ModelDisplay();
+}

@@ -19,8 +19,6 @@ extension ModelPoolExtension<TModel extends Model> on Iterable<TModel> {
 
   // --- Utils -----------------------------------------------------------------
 
-  Set<String> allIds() => this.map((e) => e.id).nonNulls.toSet();
-
   Set<DataRef> allDataRefs() => this.map((e) => e.ref).nonNulls.toSet();
 
   // --- Filtering -------------------------------------------------------------

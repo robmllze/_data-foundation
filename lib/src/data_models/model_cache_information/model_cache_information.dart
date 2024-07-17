@@ -20,7 +20,9 @@ part '_model_cache_information.g.dart';
     ('files', Set<ModelFileEntry>),
   },
 )
-abstract class _ModelCacheInformation extends Model {}
+abstract class _ModelCacheInformation extends Model {
+  const _ModelCacheInformation();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

@@ -24,40 +24,47 @@ class ModelRegistration extends _ModelRegistration {
   //
   //
 
-  static const K_ID = 'id';
-  static const K_REF = 'ref';
-  static const K_REGISTERED_BY = 'registeredBy';
-  static const K_REGISTERED_AT = 'registeredAt';
-  static const K_IP_V_4_ADDRESS = 'ipV4Address';
-  static const K_IP_V_6_ADDRESS = 'ipV6Address';
-  static const K_LOCATION = 'location';
-  static const K_ENABLED = 'enabled';
-
-  static const CLASS = 'ModelRegistration';
+  static const CLASS_NAME = 'ModelRegistration';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  String? id;
-  DataRefModel? ref;
-  String? registeredBy;
-  DateTime? registeredAt;
-  String? ipV4Address;
-  String? ipV6Address;
-  ModelLocation? location;
-  bool? enabled;
-
-  //
-  //
-  //
-
-  ModelRegistration.empty();
+  final String? id;
+  final DataRefModel? ref;
+  final String? registeredBy;
+  final DateTime? registeredAt;
+  final String? ipV4Address;
+  final String? ipV6Address;
+  final ModelLocation? location;
+  final bool? enabled;
 
   //
   //
   //
 
-  factory ModelRegistration({
+  const ModelRegistration({
+    this.id,
+    this.ref,
+    this.registeredBy,
+    this.registeredAt,
+    this.ipV4Address,
+    this.ipV6Address,
+    this.location,
+    this.enabled,
+  });
+
+  const ModelRegistration.c2({
+    this.id,
+    this.ref,
+    this.registeredBy,
+    this.registeredAt,
+    this.ipV4Address,
+    this.ipV6Address,
+    this.location,
+    this.enabled,
+  });
+
+  factory ModelRegistration.c3({
     String? id,
     DataRefModel? ref,
     String? registeredBy,
@@ -67,7 +74,7 @@ class ModelRegistration extends _ModelRegistration {
     ModelLocation? location,
     bool? enabled,
   }) {
-    return ModelRegistration.b(
+    return ModelRegistration(
       id: id,
       ref: ref,
       registeredBy: registeredBy,
@@ -79,27 +86,8 @@ class ModelRegistration extends _ModelRegistration {
     );
   }
 
-  //
-  //
-  //
-
-  ModelRegistration.b({
-    this.id,
-    this.ref,
-    this.registeredBy,
-    this.registeredAt,
-    this.ipV4Address,
-    this.ipV6Address,
-    this.location,
-    this.enabled,
-  }) {}
-
-  //
-  //
-  //
-
   factory ModelRegistration.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -110,14 +98,10 @@ class ModelRegistration extends _ModelRegistration {
   }
 
   static ModelRegistration? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelRegistration.of(
     ModelRegistration other,
@@ -135,10 +119,6 @@ class ModelRegistration extends _ModelRegistration {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelRegistration.fromJsonString(
     String source,
@@ -159,16 +139,12 @@ class ModelRegistration extends _ModelRegistration {
         final decoded = jsonDecode(source);
         return ModelRegistration.fromJson(decoded);
       } else {
-        return ModelRegistration.empty();
+        return const ModelRegistration.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelRegistration.fromJson(
     Map<String, dynamic>? otherData,
@@ -185,23 +161,47 @@ class ModelRegistration extends _ModelRegistration {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelRegistration.empty()
-        ..$id = otherData?[K_ID]
-        ..$ref = otherData?[K_REF]
-        ..$registeredBy = otherData?[K_REGISTERED_BY]
-        ..$registeredAt = otherData?[K_REGISTERED_AT]
-        ..$ipV4Address = otherData?[K_IP_V_4_ADDRESS]
-        ..$ipV6Address = otherData?[K_IP_V_6_ADDRESS]
-        ..$location = otherData?[K_LOCATION]
-        ..$enabled = otherData?[K_ENABLED];
+      final id0 = otherData?[ModelRegistrationFields.id.name];
+      final id = id0?.toString().trim().nullIfEmpty;
+      final ref0 = otherData?[ModelRegistrationFields.ref.name];
+      final ref = () {
+        final a = letMap<String, dynamic>(ref0);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+      final registeredBy0 =
+          otherData?[ModelRegistrationFields.registeredBy.name];
+      final registeredBy = registeredBy0?.toString().trim().nullIfEmpty;
+      final registeredAt0 =
+          otherData?[ModelRegistrationFields.registeredAt.name];
+      final registeredAt = () {
+        final a = registeredAt0;
+        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
+      }();
+      final ipV4Address0 = otherData?[ModelRegistrationFields.ipV4Address.name];
+      final ipV4Address = ipV4Address0?.toString().trim().nullIfEmpty;
+      final ipV6Address0 = otherData?[ModelRegistrationFields.ipV6Address.name];
+      final ipV6Address = ipV6Address0?.toString().trim().nullIfEmpty;
+      final location0 = otherData?[ModelRegistrationFields.location.name];
+      final location = () {
+        final a = letMap<String, dynamic>(location0);
+        return a != null ? ModelLocation.fromJson(a) : null;
+      }();
+      final enabled0 = otherData?[ModelRegistrationFields.enabled.name];
+      final enabled = letBool(enabled0);
+      return ModelRegistration(
+        id: id,
+        ref: ref,
+        registeredBy: registeredBy,
+        registeredAt: registeredAt,
+        ipV4Address: ipV4Address,
+        ipV6Address: ipV6Address,
+        location: location,
+        enabled: enabled,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelRegistration.fromUri(
     Uri? uri,
@@ -218,10 +218,10 @@ class ModelRegistration extends _ModelRegistration {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelRegistration.fromJson(uri.queryParameters);
       } else {
-        return ModelRegistration.empty();
+        return const ModelRegistration.c2();
       }
     } catch (_) {
       return null;
@@ -238,15 +238,23 @@ class ModelRegistration extends _ModelRegistration {
     bool includeNulls = false,
   }) {
     try {
+      final id0 = this.id?.trim().nullIfEmpty;
+      final ref0 = this.ref?.toJson();
+      final registeredBy0 = this.registeredBy?.trim().nullIfEmpty;
+      final registeredAt0 = this.registeredAt?.toUtc()?.toIso8601String();
+      final ipV4Address0 = this.ipV4Address?.trim().nullIfEmpty;
+      final ipV6Address0 = this.ipV6Address?.trim().nullIfEmpty;
+      final location0 = this.location?.toJson();
+      final enabled0 = this.enabled;
       final withNulls = <String, dynamic>{
-        K_ID: this.$id,
-        K_REF: this.$ref,
-        K_REGISTERED_BY: this.$registeredBy,
-        K_REGISTERED_AT: this.$registeredAt,
-        K_IP_V_4_ADDRESS: this.$ipV4Address,
-        K_IP_V_6_ADDRESS: this.$ipV6Address,
-        K_LOCATION: this.$location,
-        K_ENABLED: this.$enabled,
+        ModelRegistrationFields.id.name: id0,
+        ModelRegistrationFields.ref.name: ref0,
+        ModelRegistrationFields.registeredBy.name: registeredBy0,
+        ModelRegistrationFields.registeredAt.name: registeredAt0,
+        ModelRegistrationFields.ipV4Address.name: ipV4Address0,
+        ModelRegistrationFields.ipV6Address.name: ipV6Address0,
+        ModelRegistrationFields.location.name: location0,
+        ModelRegistrationFields.enabled.name: enabled0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -260,54 +268,11 @@ class ModelRegistration extends _ModelRegistration {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelRegistration.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelRegistration.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelRegistration.fromJson(otherData);
-      if (other.id != null) {
-        this.id = other.id!;
-      }
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
-      if (other.registeredBy != null) {
-        this.registeredBy = other.registeredBy!;
-      }
-      if (other.registeredAt != null) {
-        this.registeredAt = other.registeredAt!;
-      }
-      if (other.ipV4Address != null) {
-        this.ipV4Address = other.ipV4Address!;
-      }
-      if (other.ipV6Address != null) {
-        this.ipV6Address = other.ipV6Address!;
-      }
-      if (other.location != null) {
-        this.location = other.location!;
-      }
-      if (other.enabled != null) {
-        this.enabled = other.enabled!;
-      }
-    }
+  ModelRegistration copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelRegistration.fromJson(c);
   }
 
   //
@@ -316,74 +281,108 @@ class ModelRegistration extends _ModelRegistration {
 
   // id.
   String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // ref.
   DataRefModel? get refField => this.ref;
-  set refField(DataRefModel? v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
 
   // registeredBy.
   String? get registeredByField => this.registeredBy;
-  set registeredByField(String? v) => this.registeredBy = v;
-  @protected
-  dynamic get $registeredBy => this.registeredBy?.toString().trim().nullIfEmpty;
-  @protected
-  set $registeredBy(v) => this.registeredBy = v?.toString().trim().nullIfEmpty;
 
   // registeredAt.
   DateTime? get registeredAtField => this.registeredAt;
-  set registeredAtField(DateTime? v) => this.registeredAt = v;
-  @protected
-  dynamic get $registeredAt => this.registeredAt?.toUtc()?.toIso8601String();
-  @protected
-  set $registeredAt(v) => this.registeredAt = () {
-        final a = v;
-        return a != null ? DateTime.tryParse(a)?.toUtc() : null;
-      }();
 
   // ipV4Address.
   String? get ipV4AddressField => this.ipV4Address;
-  set ipV4AddressField(String? v) => this.ipV4Address = v;
-  @protected
-  dynamic get $ipV4Address => this.ipV4Address?.toString().trim().nullIfEmpty;
-  @protected
-  set $ipV4Address(v) => this.ipV4Address = v?.toString().trim().nullIfEmpty;
 
   // ipV6Address.
   String? get ipV6AddressField => this.ipV6Address;
-  set ipV6AddressField(String? v) => this.ipV6Address = v;
-  @protected
-  dynamic get $ipV6Address => this.ipV6Address?.toString().trim().nullIfEmpty;
-  @protected
-  set $ipV6Address(v) => this.ipV6Address = v?.toString().trim().nullIfEmpty;
 
   // location.
   ModelLocation? get locationField => this.location;
-  set locationField(ModelLocation? v) => this.location = v;
-  @protected
-  dynamic get $location => this.location?.toJson();
-  @protected
-  set $location(v) => this.location = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? ModelLocation.fromJson(a) : null;
-      }();
 
   // enabled.
   bool? get enabledField => this.enabled;
-  set enabledField(bool? v) => this.enabled = v;
-  @protected
-  dynamic get $enabled => this.enabled;
-  @protected
-  set $enabled(v) => this.enabled = letBool(v);
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelRegistrationFields {
+  //
+  //
+  //
+
+  id(
+    const Field(
+      fieldName: 'id',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  ref(
+    const Field(
+      fieldName: 'ref',
+      fieldType: 'DataRefModel',
+      nullable: true,
+    ),
+  ),
+  registeredBy(
+    const Field(
+      fieldName: 'registeredBy',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  registeredAt(
+    const Field(
+      fieldName: 'registeredAt',
+      fieldType: 'DateTime',
+      nullable: true,
+    ),
+  ),
+  ipV4Address(
+    const Field(
+      fieldName: 'ipV4Address',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  ipV6Address(
+    const Field(
+      fieldName: 'ipV6Address',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  location(
+    const Field(
+      fieldName: 'location',
+      fieldType: 'ModelLocation',
+      nullable: true,
+    ),
+  ),
+  enabled(
+    const Field(
+      fieldName: 'enabled',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelRegistrationFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }

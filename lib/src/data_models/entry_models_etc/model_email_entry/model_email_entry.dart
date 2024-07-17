@@ -20,4 +20,6 @@ part '_model_email_entry.g.dart';
     ('email?', ModelQueryable),
   },
 )
-abstract class _ModelEmailEntry extends Model implements ModelEntry {}
+abstract class _ModelEmailEntry extends Model implements ModelEntry {
+  const _ModelEmailEntry();
+}

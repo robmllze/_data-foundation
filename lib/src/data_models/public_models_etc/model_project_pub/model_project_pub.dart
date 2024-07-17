@@ -21,7 +21,9 @@ part '_model_project_pub.g.dart';
     ('regs_closed?', List<ModelRegistration>),
   },
 )
-abstract class _ModelProjectPub extends Model implements PublicModel {}
+abstract class _ModelProjectPub extends Model implements PublicModel {
+  const _ModelProjectPub();
+}
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

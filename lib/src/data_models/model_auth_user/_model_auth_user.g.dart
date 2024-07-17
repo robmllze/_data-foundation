@@ -24,40 +24,47 @@ class ModelAuthUser extends _ModelAuthUser {
   //
   //
 
-  static const K_REF = 'ref';
-  static const K_ID = 'id';
-  static const K_EMAIL = 'email';
-  static const K_PASSWORD = 'password';
-  static const K_ID_TOKEN = 'idToken';
-  static const K_DISPLAY_NAME = 'displayName';
-  static const K_PHOTO_URL = 'photoUrl';
-  static const K_EMAIL_VERIFIED = 'emailVerified';
-
-  static const CLASS = 'ModelAuthUser';
+  static const CLASS_NAME = 'ModelAuthUser';
 
   @override
-  String get $class => CLASS;
+  String get $className => CLASS_NAME;
 
-  DataRefModel? ref;
-  String? id;
-  String? email;
-  String? password;
-  String? idToken;
-  String? displayName;
-  String? photoUrl;
-  bool? emailVerified;
-
-  //
-  //
-  //
-
-  ModelAuthUser.empty();
+  final DataRefModel? ref;
+  final String? id;
+  final String? email;
+  final String? password;
+  final String? idToken;
+  final String? displayName;
+  final String? photoUrl;
+  final bool? emailVerified;
 
   //
   //
   //
 
-  factory ModelAuthUser({
+  const ModelAuthUser({
+    this.ref,
+    this.id,
+    this.email,
+    this.password,
+    this.idToken,
+    this.displayName,
+    this.photoUrl,
+    this.emailVerified,
+  });
+
+  const ModelAuthUser.c2({
+    this.ref,
+    this.id,
+    this.email,
+    this.password,
+    this.idToken,
+    this.displayName,
+    this.photoUrl,
+    this.emailVerified,
+  });
+
+  factory ModelAuthUser.c3({
     DataRefModel? ref,
     String? id,
     String? email,
@@ -67,7 +74,7 @@ class ModelAuthUser extends _ModelAuthUser {
     String? photoUrl,
     bool? emailVerified,
   }) {
-    return ModelAuthUser.b(
+    return ModelAuthUser(
       ref: ref,
       id: id,
       email: email,
@@ -79,27 +86,8 @@ class ModelAuthUser extends _ModelAuthUser {
     );
   }
 
-  //
-  //
-  //
-
-  ModelAuthUser.b({
-    this.ref,
-    this.id,
-    this.email,
-    this.password,
-    this.idToken,
-    this.displayName,
-    this.photoUrl,
-    this.emailVerified,
-  }) {}
-
-  //
-  //
-  //
-
   factory ModelAuthUser.from(
-    Model? other,
+    BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
@@ -110,14 +98,10 @@ class ModelAuthUser extends _ModelAuthUser {
   }
 
   static ModelAuthUser? fromOrNull(
-    Model? other,
+    BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
-
-  //
-  //
-  //
 
   factory ModelAuthUser.of(
     ModelAuthUser other,
@@ -135,10 +119,6 @@ class ModelAuthUser extends _ModelAuthUser {
   ) {
     return fromJsonOrNull(other?.toJson());
   }
-
-  //
-  //
-  //
 
   factory ModelAuthUser.fromJsonString(
     String source,
@@ -159,16 +139,12 @@ class ModelAuthUser extends _ModelAuthUser {
         final decoded = jsonDecode(source);
         return ModelAuthUser.fromJson(decoded);
       } else {
-        return ModelAuthUser.empty();
+        return const ModelAuthUser.c2();
       }
     } catch (_) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelAuthUser.fromJson(
     Map<String, dynamic>? otherData,
@@ -185,23 +161,39 @@ class ModelAuthUser extends _ModelAuthUser {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      return ModelAuthUser.empty()
-        ..$ref = otherData?[K_REF]
-        ..$id = otherData?[K_ID]
-        ..$email = otherData?[K_EMAIL]
-        ..$password = otherData?[K_PASSWORD]
-        ..$idToken = otherData?[K_ID_TOKEN]
-        ..$displayName = otherData?[K_DISPLAY_NAME]
-        ..$photoUrl = otherData?[K_PHOTO_URL]
-        ..$emailVerified = otherData?[K_EMAIL_VERIFIED];
+      final ref0 = otherData?[ModelAuthUserFields.ref.name];
+      final ref = () {
+        final a = letMap<String, dynamic>(ref0);
+        return a != null ? DataRefModel.fromJson(a) : null;
+      }();
+      final id0 = otherData?[ModelAuthUserFields.id.name];
+      final id = id0?.toString().trim().nullIfEmpty;
+      final email0 = otherData?[ModelAuthUserFields.email.name];
+      final email = email0?.toString().trim().nullIfEmpty;
+      final password0 = otherData?[ModelAuthUserFields.password.name];
+      final password = password0?.toString().trim().nullIfEmpty;
+      final idToken0 = otherData?[ModelAuthUserFields.idToken.name];
+      final idToken = idToken0?.toString().trim().nullIfEmpty;
+      final displayName0 = otherData?[ModelAuthUserFields.displayName.name];
+      final displayName = displayName0?.toString().trim().nullIfEmpty;
+      final photoUrl0 = otherData?[ModelAuthUserFields.photoUrl.name];
+      final photoUrl = photoUrl0?.toString().trim().nullIfEmpty;
+      final emailVerified0 = otherData?[ModelAuthUserFields.emailVerified.name];
+      final emailVerified = letBool(emailVerified0);
+      return ModelAuthUser(
+        ref: ref,
+        id: id,
+        email: email,
+        password: password,
+        idToken: idToken,
+        displayName: displayName,
+        photoUrl: photoUrl,
+        emailVerified: emailVerified,
+      );
     } catch (e) {
       return null;
     }
   }
-
-  //
-  //
-  //
 
   factory ModelAuthUser.fromUri(
     Uri? uri,
@@ -218,10 +210,10 @@ class ModelAuthUser extends _ModelAuthUser {
     Uri? uri,
   ) {
     try {
-      if (uri != null && uri.path == CLASS) {
+      if (uri != null && uri.path == CLASS_NAME) {
         return ModelAuthUser.fromJson(uri.queryParameters);
       } else {
-        return ModelAuthUser.empty();
+        return const ModelAuthUser.c2();
       }
     } catch (_) {
       return null;
@@ -238,15 +230,23 @@ class ModelAuthUser extends _ModelAuthUser {
     bool includeNulls = false,
   }) {
     try {
+      final ref0 = this.ref?.toJson();
+      final id0 = this.id?.trim().nullIfEmpty;
+      final email0 = this.email?.trim().nullIfEmpty;
+      final password0 = this.password?.trim().nullIfEmpty;
+      final idToken0 = this.idToken?.trim().nullIfEmpty;
+      final displayName0 = this.displayName?.trim().nullIfEmpty;
+      final photoUrl0 = this.photoUrl?.trim().nullIfEmpty;
+      final emailVerified0 = this.emailVerified;
       final withNulls = <String, dynamic>{
-        K_REF: this.$ref,
-        K_ID: this.$id,
-        K_EMAIL: this.$email,
-        K_PASSWORD: this.$password,
-        K_ID_TOKEN: this.$idToken,
-        K_DISPLAY_NAME: this.$displayName,
-        K_PHOTO_URL: this.$photoUrl,
-        K_EMAIL_VERIFIED: this.$emailVerified,
+        ModelAuthUserFields.ref.name: ref0,
+        ModelAuthUserFields.id.name: id0,
+        ModelAuthUserFields.email.name: email0,
+        ModelAuthUserFields.password.name: password0,
+        ModelAuthUserFields.idToken.name: idToken0,
+        ModelAuthUserFields.displayName.name: displayName0,
+        ModelAuthUserFields.photoUrl.name: photoUrl0,
+        ModelAuthUserFields.emailVerified.name: emailVerified0,
       }.mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
@@ -260,54 +260,11 @@ class ModelAuthUser extends _ModelAuthUser {
   //
 
   @override
-  T empty<T extends Model>() {
-    return ModelAuthUser.b() as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  T copy<T extends Model>() {
-    return (ModelAuthUser.b()..updateWith(this)) as T;
-  }
-
-  //
-  //
-  //
-
-  @override
-  void updateWithJson(
-    Map<String, dynamic>? otherData,
-  ) {
-    if (otherData != null && otherData.isNotEmpty) {
-      final other = ModelAuthUser.fromJson(otherData);
-      if (other.ref != null) {
-        this.ref = other.ref!;
-      }
-      if (other.id != null) {
-        this.id = other.id!;
-      }
-      if (other.email != null) {
-        this.email = other.email!;
-      }
-      if (other.password != null) {
-        this.password = other.password!;
-      }
-      if (other.idToken != null) {
-        this.idToken = other.idToken!;
-      }
-      if (other.displayName != null) {
-        this.displayName = other.displayName!;
-      }
-      if (other.photoUrl != null) {
-        this.photoUrl = other.photoUrl!;
-      }
-      if (other.emailVerified != null) {
-        this.emailVerified = other.emailVerified!;
-      }
-    }
+  ModelAuthUser copyWith(BaseModel? other) {
+    final a = this.toJson();
+    final b = other?.toJson();
+    final c = {...a, ...?b};
+    return ModelAuthUser.fromJson(c);
   }
 
   //
@@ -316,68 +273,108 @@ class ModelAuthUser extends _ModelAuthUser {
 
   // ref.
   DataRefModel? get refField => this.ref;
-  set refField(DataRefModel? v) => this.ref = v;
-  @protected
-  dynamic get $ref => this.ref?.toJson();
-  @protected
-  set $ref(v) => this.ref = () {
-        final a = letMap<String, dynamic>(v);
-        return a != null ? DataRefModel.fromJson(a) : null;
-      }();
 
   // id.
   String? get idField => this.id;
-  set idField(String? v) => this.id = v;
-  @protected
-  dynamic get $id => this.id?.toString().trim().nullIfEmpty;
-  @protected
-  set $id(v) => this.id = v?.toString().trim().nullIfEmpty;
 
   // email.
   String? get emailField => this.email;
-  set emailField(String? v) => this.email = v;
-  @protected
-  dynamic get $email => this.email?.toString().trim().nullIfEmpty;
-  @protected
-  set $email(v) => this.email = v?.toString().trim().nullIfEmpty;
 
   // password.
   String? get passwordField => this.password;
-  set passwordField(String? v) => this.password = v;
-  @protected
-  dynamic get $password => this.password?.toString().trim().nullIfEmpty;
-  @protected
-  set $password(v) => this.password = v?.toString().trim().nullIfEmpty;
 
   // idToken.
   String? get idTokenField => this.idToken;
-  set idTokenField(String? v) => this.idToken = v;
-  @protected
-  dynamic get $idToken => this.idToken?.toString().trim().nullIfEmpty;
-  @protected
-  set $idToken(v) => this.idToken = v?.toString().trim().nullIfEmpty;
 
   // displayName.
   String? get displayNameField => this.displayName;
-  set displayNameField(String? v) => this.displayName = v;
-  @protected
-  dynamic get $displayName => this.displayName?.toString().trim().nullIfEmpty;
-  @protected
-  set $displayName(v) => this.displayName = v?.toString().trim().nullIfEmpty;
 
   // photoUrl.
   String? get photoUrlField => this.photoUrl;
-  set photoUrlField(String? v) => this.photoUrl = v;
-  @protected
-  dynamic get $photoUrl => this.photoUrl?.toString().trim().nullIfEmpty;
-  @protected
-  set $photoUrl(v) => this.photoUrl = v?.toString().trim().nullIfEmpty;
 
   // emailVerified.
   bool? get emailVerifiedField => this.emailVerified;
-  set emailVerifiedField(bool? v) => this.emailVerified = v;
-  @protected
-  dynamic get $emailVerified => this.emailVerified;
-  @protected
-  set $emailVerified(v) => this.emailVerified = letBool(v);
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+enum ModelAuthUserFields {
+  //
+  //
+  //
+
+  ref(
+    const Field(
+      fieldName: 'ref',
+      fieldType: 'DataRefModel',
+      nullable: true,
+    ),
+  ),
+  id(
+    const Field(
+      fieldName: 'id',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  email(
+    const Field(
+      fieldName: 'email',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  password(
+    const Field(
+      fieldName: 'password',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  idToken(
+    const Field(
+      fieldName: 'idToken',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  displayName(
+    const Field(
+      fieldName: 'displayName',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  photoUrl(
+    const Field(
+      fieldName: 'photoUrl',
+      fieldType: 'String',
+      nullable: true,
+    ),
+  ),
+  emailVerified(
+    const Field(
+      fieldName: 'emailVerified',
+      fieldType: 'bool',
+      nullable: true,
+    ),
+  );
+
+  //
+  //
+  //
+
+  final Field field;
+
+  //
+  //
+  //
+
+  const ModelAuthUserFields(this.field);
+
+  //
+  //
+  //
+
+  String get fieldName => this.field.fieldName!;
 }
