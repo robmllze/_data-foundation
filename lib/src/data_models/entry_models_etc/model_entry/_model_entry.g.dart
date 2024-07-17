@@ -296,10 +296,6 @@ class ModelEntry extends _ModelEntry {
     }
   }
 
-  //
-  //
-  //
-
   @override
   ModelEntry copyWith(BaseModel? other) {
     final a = this.toJson();
