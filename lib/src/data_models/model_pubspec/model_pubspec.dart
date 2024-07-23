@@ -19,6 +19,7 @@ part '_model_pubspec.g.dart';
   fields: {
     Field(fieldName: 'name', fieldType: String),
     Field(fieldName: 'description', fieldType: String),
+    Field(fieldName: 'version', fieldType: String),
     Field(fieldName: 'publish_to', fieldType: String),
     Field(fieldName: 'environment', fieldType: Map<String, dynamic>),
     Field(fieldName: 'environment.sdk', fieldType: String),

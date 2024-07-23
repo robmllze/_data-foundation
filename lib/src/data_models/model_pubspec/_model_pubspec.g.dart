@@ -31,6 +31,7 @@ class ModelPubspec extends _ModelPubspec {
 
   final String? name;
   final String? description;
+  final String? version;
   final String? publishTo;
   final Map<String, dynamic>? environment;
   final String? environmentSdk;
@@ -46,6 +47,7 @@ class ModelPubspec extends _ModelPubspec {
   const ModelPubspec({
     required this.name,
     required this.description,
+    required this.version,
     required this.publishTo,
     required this.environment,
     required this.environmentSdk,
@@ -58,6 +60,7 @@ class ModelPubspec extends _ModelPubspec {
   const ModelPubspec.c2({
     this.name,
     this.description,
+    this.version,
     this.publishTo,
     this.environment,
     this.environmentSdk,
@@ -70,6 +73,7 @@ class ModelPubspec extends _ModelPubspec {
   factory ModelPubspec.c3({
     String? name,
     String? description,
+    String? version,
     String? publishTo,
     Map<String, dynamic>? environment,
     String? environmentSdk,
@@ -80,6 +84,7 @@ class ModelPubspec extends _ModelPubspec {
   }) {
     assert(name != null);
     assert(description != null);
+    assert(version != null);
     assert(publishTo != null);
     assert(environment != null);
     assert(environmentSdk != null);
@@ -90,6 +95,7 @@ class ModelPubspec extends _ModelPubspec {
     return ModelPubspec(
       name: name,
       description: description,
+      version: version,
       publishTo: publishTo,
       environment: environment,
       environmentSdk: environmentSdk,
@@ -179,6 +185,8 @@ class ModelPubspec extends _ModelPubspec {
       final name = name0?.toString().trim().nullIfEmpty;
       final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
+      final version0 = otherData?['version'];
+      final version = version0?.toString().trim().nullIfEmpty;
       final publishTo0 = otherData?['publish_to'];
       final publishTo = publishTo0?.toString().trim().nullIfEmpty;
       final environment0 = otherData?['environment'];
@@ -238,6 +246,7 @@ class ModelPubspec extends _ModelPubspec {
       return ModelPubspec(
         name: name,
         description: description,
+        version: version,
         publishTo: publishTo,
         environment: environment,
         environmentSdk: environmentSdk,
@@ -288,6 +297,7 @@ class ModelPubspec extends _ModelPubspec {
     try {
       final name0 = this.name?.trim().nullIfEmpty;
       final description0 = this.description?.trim().nullIfEmpty;
+      final version0 = this.version?.trim().nullIfEmpty;
       final publishTo0 = this.publishTo?.trim().nullIfEmpty;
       final environment0 = this
           .environment
@@ -348,6 +358,9 @@ class ModelPubspec extends _ModelPubspec {
           'description': description0,
         },
         {
+          'version': version0,
+        },
+        {
           'publish_to': publishTo0,
         },
         {
@@ -355,9 +368,7 @@ class ModelPubspec extends _ModelPubspec {
         },
         {
           'environment': {
-            {
-              'sdk': environmentSdk0,
-            },
+            'sdk': environmentSdk0,
           },
         },
         {
@@ -402,6 +413,9 @@ class ModelPubspec extends _ModelPubspec {
   // description.
   String get descriptionField => this.description!;
 
+  // version.
+  String get versionField => this.version!;
+
   // publishTo.
   String get publishToField => this.publishTo!;
 
@@ -434,6 +448,7 @@ final class ModelPubspecFieldNames {
 
   static const name = 'name';
   static const description = 'description';
+  static const version = 'version';
   static const publishTo = 'publish_to';
   static const environment = 'environment';
   static const environmentSdk = 'environment_sdk';

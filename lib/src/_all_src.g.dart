@@ -22,6 +22,7 @@ export 'data_models/model_data_collection/model_data_collection.dart';
 export 'data_models/model_device_registration/model_device_registration.dart';
 export 'data_models/model_display/model_display.dart';
 export 'data_models/model_message_content/model_message_content.dart';
+export 'data_models/model_pubspec/model_pubspec.dart';
 export 'data_models/model_event/model_event.dart';
 export 'data_models/model_invitation/model_invitation.dart';
 export 'data_models/model_location/model_location.dart';
