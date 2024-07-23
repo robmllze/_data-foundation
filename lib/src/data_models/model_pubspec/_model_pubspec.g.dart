@@ -199,9 +199,11 @@ class ModelPubspec extends _ModelPubspec {
           )
           .nonNulls
           .nullIfEmpty;
-      final environmentSdk0 = letMap<String, dynamic>(letMap<String, dynamic>(
-        otherData?['environment']?['sdk'],
-      ));
+      final environmentSdk0 = letMap<String, dynamic>(
+        letMap<String, dynamic>(
+          otherData?['environment']?['sdk'],
+        ),
+      );
       final environmentSdk = environmentSdk0?.toString().trim().nullIfEmpty;
       final dependencies0 = otherData?['dependencies'];
       final dependencies = letMap(dependencies0)
@@ -429,8 +431,7 @@ class ModelPubspec extends _ModelPubspec {
   Map<String, dynamic> get dependenciesField => this.dependencies!;
 
   // dependencyOverrides.
-  Map<String, dynamic> get dependencyOverridesField =>
-      this.dependencyOverrides!;
+  Map<String, dynamic> get dependencyOverridesField => this.dependencyOverrides!;
 
   // devDependencies.
   Map<String, dynamic> get devDependenciesField => this.devDependencies!;
