@@ -35,6 +35,7 @@ class ModelPubspec extends _ModelPubspec {
   final String? publishTo;
   final Map<String, dynamic>? environment;
   final String? environmentSdk;
+  final String? environmentFlutter;
   final Map<String, dynamic>? dependencies;
   final Map<String, dynamic>? dependencyOverrides;
   final Map<String, dynamic>? devDependencies;
@@ -51,6 +52,7 @@ class ModelPubspec extends _ModelPubspec {
     required this.publishTo,
     required this.environment,
     required this.environmentSdk,
+    required this.environmentFlutter,
     required this.dependencies,
     required this.dependencyOverrides,
     required this.devDependencies,
@@ -64,6 +66,7 @@ class ModelPubspec extends _ModelPubspec {
     this.publishTo,
     this.environment,
     this.environmentSdk,
+    this.environmentFlutter,
     this.dependencies,
     this.dependencyOverrides,
     this.devDependencies,
@@ -77,6 +80,7 @@ class ModelPubspec extends _ModelPubspec {
     String? publishTo,
     Map<String, dynamic>? environment,
     String? environmentSdk,
+    String? environmentFlutter,
     Map<String, dynamic>? dependencies,
     Map<String, dynamic>? dependencyOverrides,
     Map<String, dynamic>? devDependencies,
@@ -88,6 +92,7 @@ class ModelPubspec extends _ModelPubspec {
     assert(publishTo != null);
     assert(environment != null);
     assert(environmentSdk != null);
+    assert(environmentFlutter != null);
     assert(dependencies != null);
     assert(dependencyOverrides != null);
     assert(devDependencies != null);
@@ -99,6 +104,7 @@ class ModelPubspec extends _ModelPubspec {
       publishTo: publishTo,
       environment: environment,
       environmentSdk: environmentSdk,
+      environmentFlutter: environmentFlutter,
       dependencies: dependencies,
       dependencyOverrides: dependencyOverrides,
       devDependencies: devDependencies,
@@ -203,6 +209,11 @@ class ModelPubspec extends _ModelPubspec {
         otherData?['environment'],
       )?['sdk'];
       final environmentSdk = environmentSdk0?.toString().trim().nullIfEmpty;
+      final environmentFlutter0 = letMap<String, dynamic>(
+        otherData?['environment'],
+      )?['flutter'];
+      final environmentFlutter =
+          environmentFlutter0?.toString().trim().nullIfEmpty;
       final dependencies0 = otherData?['dependencies'];
       final dependencies = letMap(dependencies0)
           ?.map(
@@ -250,6 +261,7 @@ class ModelPubspec extends _ModelPubspec {
         publishTo: publishTo,
         environment: environment,
         environmentSdk: environmentSdk,
+        environmentFlutter: environmentFlutter,
         dependencies: dependencies,
         dependencyOverrides: dependencyOverrides,
         devDependencies: devDependencies,
@@ -310,6 +322,7 @@ class ModelPubspec extends _ModelPubspec {
           .nonNulls
           .nullIfEmpty;
       final environmentSdk0 = this.environmentSdk?.trim().nullIfEmpty;
+      final environmentFlutter0 = this.environmentFlutter?.trim().nullIfEmpty;
       final dependencies0 = this
           .dependencies
           ?.map(
@@ -372,6 +385,11 @@ class ModelPubspec extends _ModelPubspec {
           },
         },
         {
+          'environment': {
+            'flutter': environmentFlutter0,
+          },
+        },
+        {
           'dependencies': dependencies0,
         },
         {
@@ -425,6 +443,9 @@ class ModelPubspec extends _ModelPubspec {
   // environmentSdk.
   String get environmentSdkField => this.environmentSdk!;
 
+  // environmentFlutter.
+  String get environmentFlutterField => this.environmentFlutter!;
+
   // dependencies.
   Map<String, dynamic> get dependenciesField => this.dependencies!;
 
@@ -452,6 +473,7 @@ final class ModelPubspecFieldNames {
   static const publishTo = 'publish_to';
   static const environment = 'environment';
   static const environmentSdk = 'environment_sdk';
+  static const environmentFlutter = 'environment_flutter';
   static const dependencies = 'dependencies';
   static const dependencyOverrides = 'dependency_overrides';
   static const devDependencies = 'dev_dependencies';

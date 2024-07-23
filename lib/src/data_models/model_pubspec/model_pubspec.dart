@@ -23,6 +23,7 @@ part '_model_pubspec.g.dart';
     Field(fieldName: 'publish_to', fieldType: String),
     Field(fieldName: 'environment', fieldType: Map<String, dynamic>),
     Field(fieldName: 'environment.sdk', fieldType: String),
+    Field(fieldName: 'environment.flutter', fieldType: String),
     Field(fieldName: 'dependencies', fieldType: Map<String, dynamic>),
     Field(fieldName: 'dependency_overrides', fieldType: Map<String, dynamic>),
     Field(fieldName: 'dev_dependencies', fieldType: Map<String, dynamic>),
