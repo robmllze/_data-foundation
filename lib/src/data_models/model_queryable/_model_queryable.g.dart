@@ -133,10 +133,9 @@ class ModelQueryable extends _ModelQueryable {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final value0 = otherData?[ModelQueryableFieldNames.value];
+      final value0 = otherData?['value'];
       final value = value0?.toString().trim().nullIfEmpty;
-      final queryableValue0 =
-          otherData?[ModelQueryableFieldNames.queryableValue];
+      final queryableValue0 = otherData?['queryableValue'];
       final queryableValue = queryableValue0
           ?.toString()
           .trim()
@@ -194,10 +193,14 @@ class ModelQueryable extends _ModelQueryable {
           .nullIfEmpty
           ?.toLowerCase()
           .replaceAll(r'[^\w]', '');
-      final withNulls = <String, dynamic>{
-        ModelQueryableFieldNames.value: value0,
-        ModelQueryableFieldNames.queryableValue: queryableValue0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'value': value0,
+        },
+        {
+          'queryableValue': queryableValue0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelQueryable.toJson: $e');

@@ -201,56 +201,56 @@ class PublicModel extends _PublicModel {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[PublicModelFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[PublicModelFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[PublicModelFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[PublicModelFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[PublicModelFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[PublicModelFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[PublicModelFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[PublicModelFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[PublicModelFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[PublicModelFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final email0 = otherData?[PublicModelFieldNames.email];
+      final email0 = otherData?['email'];
       final email = () {
         final a = letMap<String, dynamic>(email0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final addressEntries0 = otherData?[PublicModelFieldNames.addressEntries];
+      final addressEntries0 = otherData?['addressEntries'];
       final addressEntries = letMap(addressEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -263,7 +263,7 @@ class PublicModel extends _PublicModel {
           )
           .nonNulls
           .nullIfEmpty;
-      final emailEntries0 = otherData?[PublicModelFieldNames.emailEntries];
+      final emailEntries0 = otherData?['emailEntries'];
       final emailEntries = letMap(emailEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -276,7 +276,7 @@ class PublicModel extends _PublicModel {
           )
           .nonNulls
           .nullIfEmpty;
-      final fileEntries0 = otherData?[PublicModelFieldNames.fileEntries];
+      final fileEntries0 = otherData?['fileEntries'];
       final fileEntries = letMap(fileEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -289,7 +289,7 @@ class PublicModel extends _PublicModel {
           )
           .nonNulls
           .nullIfEmpty;
-      final phoneEntries0 = otherData?[PublicModelFieldNames.phoneEntries];
+      final phoneEntries0 = otherData?['phoneEntries'];
       final phoneEntries = letMap(phoneEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -302,7 +302,7 @@ class PublicModel extends _PublicModel {
           )
           .nonNulls
           .nullIfEmpty;
-      final deviceRegs0 = otherData?[PublicModelFieldNames.deviceRegs];
+      final deviceRegs0 = otherData?['deviceRegs'];
       final deviceRegs = letList(deviceRegs0)
           ?.map(
             (p0) => () {
@@ -430,24 +430,56 @@ class PublicModel extends _PublicModel {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final withNulls = <String, dynamic>{
-        PublicModelFieldNames.id: id0,
-        PublicModelFieldNames.ref: ref0,
-        PublicModelFieldNames.displayName: displayName0,
-        PublicModelFieldNames.displayColor: displayColor0,
-        PublicModelFieldNames.description: description0,
-        PublicModelFieldNames.archivedGReg: archivedGReg0,
-        PublicModelFieldNames.createdGReg: createdGReg0,
-        PublicModelFieldNames.deletedGReg: deletedGReg0,
-        PublicModelFieldNames.updatedGReg: updatedGReg0,
-        PublicModelFieldNames.expiresAt: expiresAt0,
-        PublicModelFieldNames.email: email0,
-        PublicModelFieldNames.addressEntries: addressEntries0,
-        PublicModelFieldNames.emailEntries: emailEntries0,
-        PublicModelFieldNames.fileEntries: fileEntries0,
-        PublicModelFieldNames.phoneEntries: phoneEntries0,
-        PublicModelFieldNames.deviceRegs: deviceRegs0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'email': email0,
+        },
+        {
+          'addressEntries': addressEntries0,
+        },
+        {
+          'emailEntries': emailEntries0,
+        },
+        {
+          'fileEntries': fileEntries0,
+        },
+        {
+          'phoneEntries': phoneEntries0,
+        },
+        {
+          'deviceRegs': deviceRegs0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'PublicModel.toJson: $e');

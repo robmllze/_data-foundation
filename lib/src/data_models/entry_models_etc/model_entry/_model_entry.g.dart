@@ -171,46 +171,46 @@ class ModelEntry extends _ModelEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelEntryFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelEntryFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelEntryFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelEntryFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelEntryFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelEntryFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelEntryFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelEntryFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelEntryFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelEntryFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
@@ -277,24 +277,48 @@ class ModelEntry extends _ModelEntry {
       final deletedGReg0 = this.deletedGReg?.toJson();
       final updatedGReg0 = this.updatedGReg?.toJson();
       final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
-      final withNulls = <String, dynamic>{
-        ModelEntryFieldNames.id: id0,
-        ModelEntryFieldNames.ref: ref0,
-        ModelEntryFieldNames.displayName: displayName0,
-        ModelEntryFieldNames.displayColor: displayColor0,
-        ModelEntryFieldNames.description: description0,
-        ModelEntryFieldNames.archivedGReg: archivedGReg0,
-        ModelEntryFieldNames.createdGReg: createdGReg0,
-        ModelEntryFieldNames.deletedGReg: deletedGReg0,
-        ModelEntryFieldNames.updatedGReg: updatedGReg0,
-        ModelEntryFieldNames.expiresAt: expiresAt0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelEntry.toJson: $e');
       rethrow;
     }
   }
+
+  //
+  //
+  //
 
   @override
   ModelEntry copyWith(BaseModel? other) {

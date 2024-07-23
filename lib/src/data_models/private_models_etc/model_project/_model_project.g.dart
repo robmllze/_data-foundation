@@ -181,53 +181,53 @@ class ModelProject extends _ModelProject {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelProjectFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelProjectFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelProjectFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelProjectFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelProjectFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelProjectFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelProjectFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelProjectFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelProjectFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelProjectFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final pid0 = otherData?[ModelProjectFieldNames.pid];
+      final pid0 = otherData?['pid'];
       final pid = pid0?.toString().trim().nullIfEmpty;
-      final seed0 = otherData?[ModelProjectFieldNames.seed];
+      final seed0 = otherData?['seed'];
       final seed = seed0?.toString().trim().nullIfEmpty;
       return ModelProject(
         id: id,
@@ -295,20 +295,44 @@ class ModelProject extends _ModelProject {
       final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
       final pid0 = this.pid?.trim().nullIfEmpty;
       final seed0 = this.seed?.trim().nullIfEmpty;
-      final withNulls = <String, dynamic>{
-        ModelProjectFieldNames.id: id0,
-        ModelProjectFieldNames.ref: ref0,
-        ModelProjectFieldNames.displayName: displayName0,
-        ModelProjectFieldNames.displayColor: displayColor0,
-        ModelProjectFieldNames.description: description0,
-        ModelProjectFieldNames.archivedGReg: archivedGReg0,
-        ModelProjectFieldNames.createdGReg: createdGReg0,
-        ModelProjectFieldNames.deletedGReg: deletedGReg0,
-        ModelProjectFieldNames.updatedGReg: updatedGReg0,
-        ModelProjectFieldNames.expiresAt: expiresAt0,
-        ModelProjectFieldNames.pid: pid0,
-        ModelProjectFieldNames.seed: seed0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'pid': pid0,
+        },
+        {
+          'seed': seed0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelProject.toJson: $e');

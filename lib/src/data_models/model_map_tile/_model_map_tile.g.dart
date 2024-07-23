@@ -177,25 +177,25 @@ class ModelMapTile extends Model {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final source0 = otherData?[ModelMapTileFieldNames.source];
+      final source0 = otherData?['source'];
       final source = source0?.toString().trim().nullIfEmpty;
-      final username0 = otherData?[ModelMapTileFieldNames.username];
+      final username0 = otherData?['username'];
       final username = username0?.toString().trim().nullIfEmpty;
-      final lightStyleId0 = otherData?[ModelMapTileFieldNames.lightStyleId];
+      final lightStyleId0 = otherData?['lightStyleId'];
       final lightStyleId = lightStyleId0?.toString().trim().nullIfEmpty;
-      final darkStyleId0 = otherData?[ModelMapTileFieldNames.darkStyleId];
+      final darkStyleId0 = otherData?['darkStyleId'];
       final darkStyleId = darkStyleId0?.toString().trim().nullIfEmpty;
-      final accessToken0 = otherData?[ModelMapTileFieldNames.accessToken];
+      final accessToken0 = otherData?['accessToken'];
       final accessToken = accessToken0?.toString().trim().nullIfEmpty;
-      final tileSize0 = otherData?[ModelMapTileFieldNames.tileSize];
+      final tileSize0 = otherData?['tileSize'];
       final tileSize = letInt(tileSize0);
-      final z0 = otherData?[ModelMapTileFieldNames.z];
+      final z0 = otherData?['z'];
       final z = letInt(z0);
-      final x0 = otherData?[ModelMapTileFieldNames.x];
+      final x0 = otherData?['x'];
       final x = letInt(x0);
-      final y0 = otherData?[ModelMapTileFieldNames.y];
+      final y0 = otherData?['y'];
       final y = letInt(y0);
-      final isHighDpi0 = otherData?[ModelMapTileFieldNames.isHighDpi];
+      final isHighDpi0 = otherData?['isHighDpi'];
       final isHighDpi = letBool(isHighDpi0);
       return ModelMapTile(
         source: source,
@@ -259,18 +259,38 @@ class ModelMapTile extends Model {
       final x0 = this.x;
       final y0 = this.y;
       final isHighDpi0 = this.isHighDpi;
-      final withNulls = <String, dynamic>{
-        ModelMapTileFieldNames.source: source0,
-        ModelMapTileFieldNames.username: username0,
-        ModelMapTileFieldNames.lightStyleId: lightStyleId0,
-        ModelMapTileFieldNames.darkStyleId: darkStyleId0,
-        ModelMapTileFieldNames.accessToken: accessToken0,
-        ModelMapTileFieldNames.tileSize: tileSize0,
-        ModelMapTileFieldNames.z: z0,
-        ModelMapTileFieldNames.x: x0,
-        ModelMapTileFieldNames.y: y0,
-        ModelMapTileFieldNames.isHighDpi: isHighDpi0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'source': source0,
+        },
+        {
+          'username': username0,
+        },
+        {
+          'lightStyleId': lightStyleId0,
+        },
+        {
+          'darkStyleId': darkStyleId0,
+        },
+        {
+          'accessToken': accessToken0,
+        },
+        {
+          'tileSize': tileSize0,
+        },
+        {
+          'z': z0,
+        },
+        {
+          'x': x0,
+        },
+        {
+          'y': y0,
+        },
+        {
+          'isHighDpi': isHighDpi0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelMapTile.toJson: $e');

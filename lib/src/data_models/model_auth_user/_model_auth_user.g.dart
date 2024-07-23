@@ -161,24 +161,24 @@ class ModelAuthUser extends _ModelAuthUser {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final ref0 = otherData?[ModelAuthUserFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final id0 = otherData?[ModelAuthUserFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final email0 = otherData?[ModelAuthUserFieldNames.email];
+      final email0 = otherData?['email'];
       final email = email0?.toString().trim().nullIfEmpty;
-      final password0 = otherData?[ModelAuthUserFieldNames.password];
+      final password0 = otherData?['password'];
       final password = password0?.toString().trim().nullIfEmpty;
-      final idToken0 = otherData?[ModelAuthUserFieldNames.idToken];
+      final idToken0 = otherData?['idToken'];
       final idToken = idToken0?.toString().trim().nullIfEmpty;
-      final displayName0 = otherData?[ModelAuthUserFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = displayName0?.toString().trim().nullIfEmpty;
-      final photoUrl0 = otherData?[ModelAuthUserFieldNames.photoUrl];
+      final photoUrl0 = otherData?['photoUrl'];
       final photoUrl = photoUrl0?.toString().trim().nullIfEmpty;
-      final emailVerified0 = otherData?[ModelAuthUserFieldNames.emailVerified];
+      final emailVerified0 = otherData?['emailVerified'];
       final emailVerified = letBool(emailVerified0);
       return ModelAuthUser(
         ref: ref,
@@ -238,16 +238,32 @@ class ModelAuthUser extends _ModelAuthUser {
       final displayName0 = this.displayName?.trim().nullIfEmpty;
       final photoUrl0 = this.photoUrl?.trim().nullIfEmpty;
       final emailVerified0 = this.emailVerified;
-      final withNulls = <String, dynamic>{
-        ModelAuthUserFieldNames.ref: ref0,
-        ModelAuthUserFieldNames.id: id0,
-        ModelAuthUserFieldNames.email: email0,
-        ModelAuthUserFieldNames.password: password0,
-        ModelAuthUserFieldNames.idToken: idToken0,
-        ModelAuthUserFieldNames.displayName: displayName0,
-        ModelAuthUserFieldNames.photoUrl: photoUrl0,
-        ModelAuthUserFieldNames.emailVerified: emailVerified0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'ref': ref0,
+        },
+        {
+          'id': id0,
+        },
+        {
+          'email': email0,
+        },
+        {
+          'password': password0,
+        },
+        {
+          'idToken': idToken0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'photoUrl': photoUrl0,
+        },
+        {
+          'emailVerified': emailVerified0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelAuthUser.toJson: $e');

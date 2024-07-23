@@ -211,57 +211,56 @@ class ModelProjectPub extends _ModelProjectPub {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelProjectPubFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelProjectPubFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelProjectPubFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelProjectPubFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelProjectPubFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelProjectPubFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelProjectPubFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelProjectPubFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelProjectPubFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelProjectPubFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final email0 = otherData?[ModelProjectPubFieldNames.email];
+      final email0 = otherData?['email'];
       final email = () {
         final a = letMap<String, dynamic>(email0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final addressEntries0 =
-          otherData?[ModelProjectPubFieldNames.addressEntries];
+      final addressEntries0 = otherData?['addressEntries'];
       final addressEntries = letMap(addressEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -274,7 +273,7 @@ class ModelProjectPub extends _ModelProjectPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final emailEntries0 = otherData?[ModelProjectPubFieldNames.emailEntries];
+      final emailEntries0 = otherData?['emailEntries'];
       final emailEntries = letMap(emailEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -287,7 +286,7 @@ class ModelProjectPub extends _ModelProjectPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final fileEntries0 = otherData?[ModelProjectPubFieldNames.fileEntries];
+      final fileEntries0 = otherData?['fileEntries'];
       final fileEntries = letMap(fileEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -300,7 +299,7 @@ class ModelProjectPub extends _ModelProjectPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final phoneEntries0 = otherData?[ModelProjectPubFieldNames.phoneEntries];
+      final phoneEntries0 = otherData?['phoneEntries'];
       final phoneEntries = letMap(phoneEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -313,7 +312,7 @@ class ModelProjectPub extends _ModelProjectPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final deviceRegs0 = otherData?[ModelProjectPubFieldNames.deviceRegs];
+      final deviceRegs0 = otherData?['deviceRegs'];
       final deviceRegs = letList(deviceRegs0)
           ?.map(
             (p0) => () {
@@ -324,7 +323,7 @@ class ModelProjectPub extends _ModelProjectPub {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final regsOpened0 = otherData?[ModelProjectPubFieldNames.regsOpened];
+      final regsOpened0 = otherData?['regsOpened'];
       final regsOpened = letList(regsOpened0)
           ?.map(
             (p0) => () {
@@ -335,7 +334,7 @@ class ModelProjectPub extends _ModelProjectPub {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final regsClosed0 = otherData?[ModelProjectPubFieldNames.regsClosed];
+      final regsClosed0 = otherData?['regsClosed'];
       final regsClosed = letList(regsClosed0)
           ?.map(
             (p0) => () {
@@ -481,26 +480,62 @@ class ModelProjectPub extends _ModelProjectPub {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final withNulls = <String, dynamic>{
-        ModelProjectPubFieldNames.id: id0,
-        ModelProjectPubFieldNames.ref: ref0,
-        ModelProjectPubFieldNames.displayName: displayName0,
-        ModelProjectPubFieldNames.displayColor: displayColor0,
-        ModelProjectPubFieldNames.description: description0,
-        ModelProjectPubFieldNames.archivedGReg: archivedGReg0,
-        ModelProjectPubFieldNames.createdGReg: createdGReg0,
-        ModelProjectPubFieldNames.deletedGReg: deletedGReg0,
-        ModelProjectPubFieldNames.updatedGReg: updatedGReg0,
-        ModelProjectPubFieldNames.expiresAt: expiresAt0,
-        ModelProjectPubFieldNames.email: email0,
-        ModelProjectPubFieldNames.addressEntries: addressEntries0,
-        ModelProjectPubFieldNames.emailEntries: emailEntries0,
-        ModelProjectPubFieldNames.fileEntries: fileEntries0,
-        ModelProjectPubFieldNames.phoneEntries: phoneEntries0,
-        ModelProjectPubFieldNames.deviceRegs: deviceRegs0,
-        ModelProjectPubFieldNames.regsOpened: regsOpened0,
-        ModelProjectPubFieldNames.regsClosed: regsClosed0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'email': email0,
+        },
+        {
+          'addressEntries': addressEntries0,
+        },
+        {
+          'emailEntries': emailEntries0,
+        },
+        {
+          'fileEntries': fileEntries0,
+        },
+        {
+          'phoneEntries': phoneEntries0,
+        },
+        {
+          'deviceRegs': deviceRegs0,
+        },
+        {
+          'regsOpened': regsOpened0,
+        },
+        {
+          'regsClosed': regsClosed0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelProjectPub.toJson: $e');

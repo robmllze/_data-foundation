@@ -171,35 +171,25 @@ class ModelConnectionPermissions extends Model {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final minimalPermit0 =
-          otherData?[ModelConnectionPermissionsFieldNames.minimalPermit];
+      final minimalPermit0 = otherData?['minimalPermit'];
       final minimalPermit = letBool(minimalPermit0);
-      final minimalRequest0 =
-          otherData?[ModelConnectionPermissionsFieldNames.minimalRequest];
+      final minimalRequest0 = otherData?['minimalRequest'];
       final minimalRequest = letBool(minimalRequest0);
-      final editorPermit0 =
-          otherData?[ModelConnectionPermissionsFieldNames.editorPermit];
+      final editorPermit0 = otherData?['editorPermit'];
       final editorPermit = letBool(editorPermit0);
-      final editorRequest0 =
-          otherData?[ModelConnectionPermissionsFieldNames.editorRequest];
+      final editorRequest0 = otherData?['editorRequest'];
       final editorRequest = letBool(editorRequest0);
-      final messagingPermit0 =
-          otherData?[ModelConnectionPermissionsFieldNames.messagingPermit];
+      final messagingPermit0 = otherData?['messagingPermit'];
       final messagingPermit = letBool(messagingPermit0);
-      final messagingRequest0 =
-          otherData?[ModelConnectionPermissionsFieldNames.messagingRequest];
+      final messagingRequest0 = otherData?['messagingRequest'];
       final messagingRequest = letBool(messagingRequest0);
-      final notificationPermit0 =
-          otherData?[ModelConnectionPermissionsFieldNames.notificationPermit];
+      final notificationPermit0 = otherData?['notificationPermit'];
       final notificationPermit = letBool(notificationPermit0);
-      final notificationRequest0 =
-          otherData?[ModelConnectionPermissionsFieldNames.notificationRequest];
+      final notificationRequest0 = otherData?['notificationRequest'];
       final notificationRequest = letBool(notificationRequest0);
-      final readOnlyPermit0 =
-          otherData?[ModelConnectionPermissionsFieldNames.readOnlyPermit];
+      final readOnlyPermit0 = otherData?['readOnlyPermit'];
       final readOnlyPermit = letBool(readOnlyPermit0);
-      final readOnlyRequest0 =
-          otherData?[ModelConnectionPermissionsFieldNames.readOnlyRequest];
+      final readOnlyRequest0 = otherData?['readOnlyRequest'];
       final readOnlyRequest = letBool(readOnlyRequest0);
       return ModelConnectionPermissions(
         minimalPermit: minimalPermit,
@@ -263,21 +253,38 @@ class ModelConnectionPermissions extends Model {
       final notificationRequest0 = this.notificationRequest;
       final readOnlyPermit0 = this.readOnlyPermit;
       final readOnlyRequest0 = this.readOnlyRequest;
-      final withNulls = <String, dynamic>{
-        ModelConnectionPermissionsFieldNames.minimalPermit: minimalPermit0,
-        ModelConnectionPermissionsFieldNames.minimalRequest: minimalRequest0,
-        ModelConnectionPermissionsFieldNames.editorPermit: editorPermit0,
-        ModelConnectionPermissionsFieldNames.editorRequest: editorRequest0,
-        ModelConnectionPermissionsFieldNames.messagingPermit: messagingPermit0,
-        ModelConnectionPermissionsFieldNames.messagingRequest:
-            messagingRequest0,
-        ModelConnectionPermissionsFieldNames.notificationPermit:
-            notificationPermit0,
-        ModelConnectionPermissionsFieldNames.notificationRequest:
-            notificationRequest0,
-        ModelConnectionPermissionsFieldNames.readOnlyPermit: readOnlyPermit0,
-        ModelConnectionPermissionsFieldNames.readOnlyRequest: readOnlyRequest0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'minimalPermit': minimalPermit0,
+        },
+        {
+          'minimalRequest': minimalRequest0,
+        },
+        {
+          'editorPermit': editorPermit0,
+        },
+        {
+          'editorRequest': editorRequest0,
+        },
+        {
+          'messagingPermit': messagingPermit0,
+        },
+        {
+          'messagingRequest': messagingRequest0,
+        },
+        {
+          'notificationPermit': notificationPermit0,
+        },
+        {
+          'notificationRequest': notificationRequest0,
+        },
+        {
+          'readOnlyPermit': readOnlyPermit0,
+        },
+        {
+          'readOnlyRequest': readOnlyRequest0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelConnectionPermissions.toJson: $e');

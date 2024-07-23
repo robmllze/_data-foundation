@@ -196,61 +196,60 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelPhoneEntryFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelPhoneEntryFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelPhoneEntryFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelPhoneEntryFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelPhoneEntryFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelPhoneEntryFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelPhoneEntryFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelPhoneEntryFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelPhoneEntryFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelPhoneEntryFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final countryCode0 = otherData?[ModelPhoneEntryFieldNames.countryCode];
+      final countryCode0 = otherData?['countryCode'];
       final countryCode = countryCode0?.toString().trim().nullIfEmpty;
-      final numberWithoutCountryCode0 =
-          otherData?[ModelPhoneEntryFieldNames.numberWithoutCountryCode];
+      final numberWithoutCountryCode0 = otherData?['numberWithoutCountryCode'];
       final numberWithoutCountryCode =
           numberWithoutCountryCode0?.toString().trim().nullIfEmpty;
-      final fullNumber0 = otherData?[ModelPhoneEntryFieldNames.fullNumber];
+      final fullNumber0 = otherData?['fullNumber'];
       final fullNumber = fullNumber0?.toString().trim().nullIfEmpty;
-      final extension0 = otherData?[ModelPhoneEntryFieldNames.extension];
+      final extension0 = otherData?['extension'];
       final extension = extension0?.toString().trim().nullIfEmpty;
-      final type0 = otherData?[ModelPhoneEntryFieldNames.type];
+      final type0 = otherData?['type'];
       final type = type0?.toString().trim().nullIfEmpty;
       return ModelPhoneEntry(
         id: id,
@@ -325,24 +324,53 @@ class ModelPhoneEntry extends _ModelPhoneEntry {
       final fullNumber0 = this.fullNumber?.trim().nullIfEmpty;
       final extension0 = this.extension?.trim().nullIfEmpty;
       final type0 = this.type?.trim().nullIfEmpty;
-      final withNulls = <String, dynamic>{
-        ModelPhoneEntryFieldNames.id: id0,
-        ModelPhoneEntryFieldNames.ref: ref0,
-        ModelPhoneEntryFieldNames.displayName: displayName0,
-        ModelPhoneEntryFieldNames.displayColor: displayColor0,
-        ModelPhoneEntryFieldNames.description: description0,
-        ModelPhoneEntryFieldNames.archivedGReg: archivedGReg0,
-        ModelPhoneEntryFieldNames.createdGReg: createdGReg0,
-        ModelPhoneEntryFieldNames.deletedGReg: deletedGReg0,
-        ModelPhoneEntryFieldNames.updatedGReg: updatedGReg0,
-        ModelPhoneEntryFieldNames.expiresAt: expiresAt0,
-        ModelPhoneEntryFieldNames.countryCode: countryCode0,
-        ModelPhoneEntryFieldNames.numberWithoutCountryCode:
-            numberWithoutCountryCode0,
-        ModelPhoneEntryFieldNames.fullNumber: fullNumber0,
-        ModelPhoneEntryFieldNames.extension: extension0,
-        ModelPhoneEntryFieldNames.type: type0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'countryCode': countryCode0,
+        },
+        {
+          'numberWithoutCountryCode': numberWithoutCountryCode0,
+        },
+        {
+          'fullNumber': fullNumber0,
+        },
+        {
+          'extension': extension0,
+        },
+        {
+          'type': type0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelPhoneEntry.toJson: $e');

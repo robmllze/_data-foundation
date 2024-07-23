@@ -139,11 +139,11 @@ class ModelLocation extends Model {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final altitude0 = otherData?[ModelLocationFieldNames.altitude];
+      final altitude0 = otherData?['altitude'];
       final altitude = letDouble(altitude0);
-      final latitude0 = otherData?[ModelLocationFieldNames.latitude];
+      final latitude0 = otherData?['latitude'];
       final latitude = letDouble(latitude0);
-      final longitude0 = otherData?[ModelLocationFieldNames.longitude];
+      final longitude0 = otherData?['longitude'];
       final longitude = letDouble(longitude0);
       return ModelLocation(
         altitude: altitude,
@@ -193,11 +193,17 @@ class ModelLocation extends Model {
       final altitude0 = this.altitude;
       final latitude0 = this.latitude;
       final longitude0 = this.longitude;
-      final withNulls = <String, dynamic>{
-        ModelLocationFieldNames.altitude: altitude0,
-        ModelLocationFieldNames.latitude: latitude0,
-        ModelLocationFieldNames.longitude: longitude0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'altitude': altitude0,
+        },
+        {
+          'latitude': latitude0,
+        },
+        {
+          'longitude': longitude0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelLocation.toJson: $e');

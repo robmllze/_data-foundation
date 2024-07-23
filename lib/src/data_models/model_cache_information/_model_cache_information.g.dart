@@ -127,7 +127,7 @@ class ModelCacheInformation extends _ModelCacheInformation {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final files0 = otherData?[ModelCacheInformationFieldNames.files];
+      final files0 = otherData?['files'];
       final files = letSet(files0)
           ?.map(
             (p0) => () {
@@ -189,9 +189,11 @@ class ModelCacheInformation extends _ModelCacheInformation {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final withNulls = <String, dynamic>{
-        ModelCacheInformationFieldNames.files: files0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'files': files0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelCacheInformation.toJson: $e');

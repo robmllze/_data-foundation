@@ -146,24 +146,24 @@ class ModelDisplay extends _ModelDisplay {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelDisplayFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelDisplayFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelDisplayFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelDisplayFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelDisplayFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
       return ModelDisplay(
         id: id,
@@ -217,13 +217,23 @@ class ModelDisplay extends _ModelDisplay {
       final displayName0 = this.displayName?.toJson();
       final displayColor0 = this.displayColor?.value;
       final description0 = this.description?.trim().nullIfEmpty;
-      final withNulls = <String, dynamic>{
-        ModelDisplayFieldNames.id: id0,
-        ModelDisplayFieldNames.ref: ref0,
-        ModelDisplayFieldNames.displayName: displayName0,
-        ModelDisplayFieldNames.displayColor: displayColor0,
-        ModelDisplayFieldNames.description: description0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelDisplay.toJson: $e');

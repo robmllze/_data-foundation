@@ -216,51 +216,51 @@ class ModelEvent extends _ModelEvent {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelEventFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelEventFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelEventFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelEventFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelEventFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelEventFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelEventFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelEventFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelEventFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelEventFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final memberPids0 = otherData?[ModelEventFieldNames.memberPids];
+      final memberPids0 = otherData?['memberPids'];
       final memberPids = letSet(memberPids0)
           ?.map(
             (p0) => p0?.toString().trim().nullIfEmpty,
@@ -268,7 +268,7 @@ class ModelEvent extends _ModelEvent {
           .nonNulls
           .nullIfEmpty
           ?.toSet();
-      final tags0 = otherData?[ModelEventFieldNames.tags];
+      final tags0 = otherData?['tags'];
       final tags = letSet(tags0)
           ?.map(
             (p0) => p0?.toString().trim().nullIfEmpty,
@@ -276,17 +276,17 @@ class ModelEvent extends _ModelEvent {
           .nonNulls
           .nullIfEmpty
           ?.toSet();
-      final contentType0 = otherData?[ModelEventFieldNames.contentType];
+      final contentType0 = otherData?['contentType'];
       final contentType = () {
         final a = letMap<String, dynamic>(contentType0);
         return a != null ? ModelEnum.fromJson(a) : null;
       }();
-      final content0 = otherData?[ModelEventFieldNames.content];
+      final content0 = otherData?['content'];
       final content = () {
         final a = letMap<String, dynamic>(content0);
         return a != null ? Model.fromJson(a) : null;
       }();
-      final readRegs0 = otherData?[ModelEventFieldNames.readRegs];
+      final readRegs0 = otherData?['readRegs'];
       final readRegs = letList(readRegs0)
           ?.map(
             (p0) => () {
@@ -297,7 +297,7 @@ class ModelEvent extends _ModelEvent {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final archivedRegs0 = otherData?[ModelEventFieldNames.archivedRegs];
+      final archivedRegs0 = otherData?['archivedRegs'];
       final archivedRegs = letList(archivedRegs0)
           ?.map(
             (p0) => () {
@@ -308,7 +308,7 @@ class ModelEvent extends _ModelEvent {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final hiddenRegs0 = otherData?[ModelEventFieldNames.hiddenRegs];
+      final hiddenRegs0 = otherData?['hiddenRegs'];
       final hiddenRegs = letList(hiddenRegs0)
           ?.map(
             (p0) => () {
@@ -319,7 +319,7 @@ class ModelEvent extends _ModelEvent {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final likedRegs0 = otherData?[ModelEventFieldNames.likedRegs];
+      final likedRegs0 = otherData?['likedRegs'];
       final likedRegs = letList(likedRegs0)
           ?.map(
             (p0) => () {
@@ -330,7 +330,7 @@ class ModelEvent extends _ModelEvent {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final receivedRegs0 = otherData?[ModelEventFieldNames.receivedRegs];
+      final receivedRegs0 = otherData?['receivedRegs'];
       final receivedRegs = letList(receivedRegs0)
           ?.map(
             (p0) => () {
@@ -470,27 +470,65 @@ class ModelEvent extends _ModelEvent {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final withNulls = <String, dynamic>{
-        ModelEventFieldNames.id: id0,
-        ModelEventFieldNames.ref: ref0,
-        ModelEventFieldNames.displayName: displayName0,
-        ModelEventFieldNames.displayColor: displayColor0,
-        ModelEventFieldNames.description: description0,
-        ModelEventFieldNames.archivedGReg: archivedGReg0,
-        ModelEventFieldNames.createdGReg: createdGReg0,
-        ModelEventFieldNames.deletedGReg: deletedGReg0,
-        ModelEventFieldNames.updatedGReg: updatedGReg0,
-        ModelEventFieldNames.expiresAt: expiresAt0,
-        ModelEventFieldNames.memberPids: memberPids0,
-        ModelEventFieldNames.tags: tags0,
-        ModelEventFieldNames.contentType: contentType0,
-        ModelEventFieldNames.content: content0,
-        ModelEventFieldNames.readRegs: readRegs0,
-        ModelEventFieldNames.archivedRegs: archivedRegs0,
-        ModelEventFieldNames.hiddenRegs: hiddenRegs0,
-        ModelEventFieldNames.likedRegs: likedRegs0,
-        ModelEventFieldNames.receivedRegs: receivedRegs0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'memberPids': memberPids0,
+        },
+        {
+          'tags': tags0,
+        },
+        {
+          'contentType': contentType0,
+        },
+        {
+          'content': content0,
+        },
+        {
+          'readRegs': readRegs0,
+        },
+        {
+          'archivedRegs': archivedRegs0,
+        },
+        {
+          'hiddenRegs': hiddenRegs0,
+        },
+        {
+          'likedRegs': likedRegs0,
+        },
+        {
+          'receivedRegs': receivedRegs0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelEvent.toJson: $e');

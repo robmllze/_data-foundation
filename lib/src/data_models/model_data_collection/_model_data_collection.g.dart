@@ -133,12 +133,12 @@ class ModelDataCollection extends _ModelDataCollection {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final ref0 = otherData?[ModelDataCollectionFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final documents0 = otherData?[ModelDataCollectionFieldNames.documents];
+      final documents0 = otherData?['documents'];
       final documents = letSet(documents0)
           ?.map(
             (p0) => () {
@@ -202,10 +202,14 @@ class ModelDataCollection extends _ModelDataCollection {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final withNulls = <String, dynamic>{
-        ModelDataCollectionFieldNames.ref: ref0,
-        ModelDataCollectionFieldNames.documents: documents0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'ref': ref0,
+        },
+        {
+          'documents': documents0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelDataCollection.toJson: $e');

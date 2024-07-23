@@ -201,59 +201,57 @@ class ModelUser extends _ModelUser {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelUserFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelUserFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelUserFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelUserFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelUserFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelUserFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelUserFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelUserFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelUserFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelUserFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final pid0 = otherData?[ModelUserFieldNames.pid];
+      final pid0 = otherData?['pid'];
       final pid = pid0?.toString().trim().nullIfEmpty;
-      final seed0 = otherData?[ModelUserFieldNames.seed];
+      final seed0 = otherData?['seed'];
       final seed = seed0?.toString().trim().nullIfEmpty;
-      final didSendWelcomeEmail0 =
-          otherData?[ModelUserFieldNames.didSendWelcomeEmail];
+      final didSendWelcomeEmail0 = otherData?['didSendWelcomeEmail'];
       final didSendWelcomeEmail = letBool(didSendWelcomeEmail0);
-      final emailSubscriptions0 =
-          otherData?[ModelUserFieldNames.emailSubscriptions];
+      final emailSubscriptions0 = otherData?['emailSubscriptions'];
       final emailSubscriptions = letSet(emailSubscriptions0)
           ?.map(
             (p0) => p0?.toString().trim().nullIfEmpty,
@@ -261,8 +259,7 @@ class ModelUser extends _ModelUser {
           .nonNulls
           .nullIfEmpty
           ?.toSet();
-      final pushSubscriptions0 =
-          otherData?[ModelUserFieldNames.pushSubscriptions];
+      final pushSubscriptions0 = otherData?['pushSubscriptions'];
       final pushSubscriptions = letSet(pushSubscriptions0)
           ?.map(
             (p0) => p0?.toString().trim().nullIfEmpty,
@@ -270,8 +267,7 @@ class ModelUser extends _ModelUser {
           .nonNulls
           .nullIfEmpty
           ?.toSet();
-      final smsSubscriptions0 =
-          otherData?[ModelUserFieldNames.smsSubscriptions];
+      final smsSubscriptions0 = otherData?['smsSubscriptions'];
       final smsSubscriptions = letSet(smsSubscriptions0)
           ?.map(
             (p0) => p0?.toString().trim().nullIfEmpty,
@@ -374,24 +370,56 @@ class ModelUser extends _ModelUser {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final withNulls = <String, dynamic>{
-        ModelUserFieldNames.id: id0,
-        ModelUserFieldNames.ref: ref0,
-        ModelUserFieldNames.displayName: displayName0,
-        ModelUserFieldNames.displayColor: displayColor0,
-        ModelUserFieldNames.description: description0,
-        ModelUserFieldNames.archivedGReg: archivedGReg0,
-        ModelUserFieldNames.createdGReg: createdGReg0,
-        ModelUserFieldNames.deletedGReg: deletedGReg0,
-        ModelUserFieldNames.updatedGReg: updatedGReg0,
-        ModelUserFieldNames.expiresAt: expiresAt0,
-        ModelUserFieldNames.pid: pid0,
-        ModelUserFieldNames.seed: seed0,
-        ModelUserFieldNames.didSendWelcomeEmail: didSendWelcomeEmail0,
-        ModelUserFieldNames.emailSubscriptions: emailSubscriptions0,
-        ModelUserFieldNames.pushSubscriptions: pushSubscriptions0,
-        ModelUserFieldNames.smsSubscriptions: smsSubscriptions0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'pid': pid0,
+        },
+        {
+          'seed': seed0,
+        },
+        {
+          'didSendWelcomeEmail': didSendWelcomeEmail0,
+        },
+        {
+          'emailSubscriptions': emailSubscriptions0,
+        },
+        {
+          'pushSubscriptions': pushSubscriptions0,
+        },
+        {
+          'smsSubscriptions': smsSubscriptions0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelUser.toJson: $e');

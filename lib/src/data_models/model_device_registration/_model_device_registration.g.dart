@@ -176,47 +176,40 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelDeviceRegistrationFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelDeviceRegistrationFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final registeredBy0 =
-          otherData?[ModelDeviceRegistrationFieldNames.registeredBy];
+      final registeredBy0 = otherData?['registeredBy'];
       final registeredBy = registeredBy0?.toString().trim().nullIfEmpty;
-      final registeredAt0 =
-          otherData?[ModelDeviceRegistrationFieldNames.registeredAt];
+      final registeredAt0 = otherData?['registeredAt'];
       final registeredAt = () {
         final a = registeredAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final ipV4Address0 =
-          otherData?[ModelDeviceRegistrationFieldNames.ipV4Address];
+      final ipV4Address0 = otherData?['ipV4Address'];
       final ipV4Address = ipV4Address0?.toString().trim().nullIfEmpty;
-      final ipV6Address0 =
-          otherData?[ModelDeviceRegistrationFieldNames.ipV6Address];
+      final ipV6Address0 = otherData?['ipV6Address'];
       final ipV6Address = ipV6Address0?.toString().trim().nullIfEmpty;
-      final location0 = otherData?[ModelDeviceRegistrationFieldNames.location];
+      final location0 = otherData?['location'];
       final location = () {
         final a = letMap<String, dynamic>(location0);
         return a != null ? ModelLocation.fromJson(a) : null;
       }();
-      final enabled0 = otherData?[ModelDeviceRegistrationFieldNames.enabled];
+      final enabled0 = otherData?['enabled'];
       final enabled = letBool(enabled0);
-      final lastLoggedInAt0 =
-          otherData?[ModelDeviceRegistrationFieldNames.lastLoggedInAt];
+      final lastLoggedInAt0 = otherData?['lastLoggedInAt'];
       final lastLoggedInAt = () {
         final a = lastLoggedInAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final notificationToken0 =
-          otherData?[ModelDeviceRegistrationFieldNames.notificationToken];
+      final notificationToken0 = otherData?['notificationToken'];
       final notificationToken =
           notificationToken0?.toString().trim().nullIfEmpty;
-      final deviceInfo0 =
-          otherData?[ModelDeviceRegistrationFieldNames.deviceInfo];
+      final deviceInfo0 = otherData?['deviceInfo'];
       final deviceInfo = () {
         final a = letMap<String, dynamic>(deviceInfo0);
         return a != null ? ModelBasicDeviceInfo.fromJson(a) : null;
@@ -285,19 +278,41 @@ class ModelDeviceRegistration extends _ModelDeviceRegistration {
       final lastLoggedInAt0 = this.lastLoggedInAt?.toUtc()?.toIso8601String();
       final notificationToken0 = this.notificationToken?.trim().nullIfEmpty;
       final deviceInfo0 = this.deviceInfo?.toJson();
-      final withNulls = <String, dynamic>{
-        ModelDeviceRegistrationFieldNames.id: id0,
-        ModelDeviceRegistrationFieldNames.ref: ref0,
-        ModelDeviceRegistrationFieldNames.registeredBy: registeredBy0,
-        ModelDeviceRegistrationFieldNames.registeredAt: registeredAt0,
-        ModelDeviceRegistrationFieldNames.ipV4Address: ipV4Address0,
-        ModelDeviceRegistrationFieldNames.ipV6Address: ipV6Address0,
-        ModelDeviceRegistrationFieldNames.location: location0,
-        ModelDeviceRegistrationFieldNames.enabled: enabled0,
-        ModelDeviceRegistrationFieldNames.lastLoggedInAt: lastLoggedInAt0,
-        ModelDeviceRegistrationFieldNames.notificationToken: notificationToken0,
-        ModelDeviceRegistrationFieldNames.deviceInfo: deviceInfo0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'registeredBy': registeredBy0,
+        },
+        {
+          'registeredAt': registeredAt0,
+        },
+        {
+          'ipV4Address': ipV4Address0,
+        },
+        {
+          'ipV6Address': ipV6Address0,
+        },
+        {
+          'location': location0,
+        },
+        {
+          'enabled': enabled0,
+        },
+        {
+          'lastLoggedInAt': lastLoggedInAt0,
+        },
+        {
+          'notificationToken': notificationToken0,
+        },
+        {
+          'deviceInfo': deviceInfo0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelDeviceRegistration.toJson: $e');

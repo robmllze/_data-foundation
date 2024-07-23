@@ -221,56 +221,56 @@ class ModelJobPub extends _ModelJobPub {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelJobPubFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelJobPubFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelJobPubFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelJobPubFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelJobPubFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelJobPubFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelJobPubFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelJobPubFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelJobPubFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelJobPubFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final email0 = otherData?[ModelJobPubFieldNames.email];
+      final email0 = otherData?['email'];
       final email = () {
         final a = letMap<String, dynamic>(email0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final addressEntries0 = otherData?[ModelJobPubFieldNames.addressEntries];
+      final addressEntries0 = otherData?['addressEntries'];
       final addressEntries = letMap(addressEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -283,7 +283,7 @@ class ModelJobPub extends _ModelJobPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final emailEntries0 = otherData?[ModelJobPubFieldNames.emailEntries];
+      final emailEntries0 = otherData?['emailEntries'];
       final emailEntries = letMap(emailEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -296,7 +296,7 @@ class ModelJobPub extends _ModelJobPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final fileEntries0 = otherData?[ModelJobPubFieldNames.fileEntries];
+      final fileEntries0 = otherData?['fileEntries'];
       final fileEntries = letMap(fileEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -309,7 +309,7 @@ class ModelJobPub extends _ModelJobPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final phoneEntries0 = otherData?[ModelJobPubFieldNames.phoneEntries];
+      final phoneEntries0 = otherData?['phoneEntries'];
       final phoneEntries = letMap(phoneEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -322,7 +322,7 @@ class ModelJobPub extends _ModelJobPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final deviceRegs0 = otherData?[ModelJobPubFieldNames.deviceRegs];
+      final deviceRegs0 = otherData?['deviceRegs'];
       final deviceRegs = letList(deviceRegs0)
           ?.map(
             (p0) => () {
@@ -333,7 +333,7 @@ class ModelJobPub extends _ModelJobPub {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final clockInRegs0 = otherData?[ModelJobPubFieldNames.clockInRegs];
+      final clockInRegs0 = otherData?['clockInRegs'];
       final clockInRegs = letList(clockInRegs0)
           ?.map(
             (p0) => () {
@@ -344,7 +344,7 @@ class ModelJobPub extends _ModelJobPub {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final clockOutRegs0 = otherData?[ModelJobPubFieldNames.clockOutRegs];
+      final clockOutRegs0 = otherData?['clockOutRegs'];
       final clockOutRegs = letList(clockOutRegs0)
           ?.map(
             (p0) => () {
@@ -355,7 +355,7 @@ class ModelJobPub extends _ModelJobPub {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final todoEntries0 = otherData?[ModelJobPubFieldNames.todoEntries];
+      final todoEntries0 = otherData?['todoEntries'];
       final todoEntries = letMap(todoEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -371,7 +371,7 @@ class ModelJobPub extends _ModelJobPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final status0 = otherData?[ModelJobPubFieldNames.status];
+      final status0 = otherData?['status'];
       final status = JobStatusType.values.valueOf(letAs<String>(status0));
       return ModelJobPub(
         id: id,
@@ -521,28 +521,68 @@ class ModelJobPub extends _ModelJobPub {
           .nonNulls
           .nullIfEmpty;
       final status0 = this.status?.name;
-      final withNulls = <String, dynamic>{
-        ModelJobPubFieldNames.id: id0,
-        ModelJobPubFieldNames.ref: ref0,
-        ModelJobPubFieldNames.displayName: displayName0,
-        ModelJobPubFieldNames.displayColor: displayColor0,
-        ModelJobPubFieldNames.description: description0,
-        ModelJobPubFieldNames.archivedGReg: archivedGReg0,
-        ModelJobPubFieldNames.createdGReg: createdGReg0,
-        ModelJobPubFieldNames.deletedGReg: deletedGReg0,
-        ModelJobPubFieldNames.updatedGReg: updatedGReg0,
-        ModelJobPubFieldNames.expiresAt: expiresAt0,
-        ModelJobPubFieldNames.email: email0,
-        ModelJobPubFieldNames.addressEntries: addressEntries0,
-        ModelJobPubFieldNames.emailEntries: emailEntries0,
-        ModelJobPubFieldNames.fileEntries: fileEntries0,
-        ModelJobPubFieldNames.phoneEntries: phoneEntries0,
-        ModelJobPubFieldNames.deviceRegs: deviceRegs0,
-        ModelJobPubFieldNames.clockInRegs: clockInRegs0,
-        ModelJobPubFieldNames.clockOutRegs: clockOutRegs0,
-        ModelJobPubFieldNames.todoEntries: todoEntries0,
-        ModelJobPubFieldNames.status: status0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'email': email0,
+        },
+        {
+          'addressEntries': addressEntries0,
+        },
+        {
+          'emailEntries': emailEntries0,
+        },
+        {
+          'fileEntries': fileEntries0,
+        },
+        {
+          'phoneEntries': phoneEntries0,
+        },
+        {
+          'deviceRegs': deviceRegs0,
+        },
+        {
+          'clockInRegs': clockInRegs0,
+        },
+        {
+          'clockOutRegs': clockOutRegs0,
+        },
+        {
+          'todoEntries': todoEntries0,
+        },
+        {
+          'status': status0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelJobPub.toJson: $e');

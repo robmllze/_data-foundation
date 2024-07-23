@@ -181,53 +181,53 @@ class ModelJob extends _ModelJob {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelJobFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelJobFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelJobFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelJobFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelJobFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelJobFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelJobFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelJobFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelJobFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelJobFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final pid0 = otherData?[ModelJobFieldNames.pid];
+      final pid0 = otherData?['pid'];
       final pid = pid0?.toString().trim().nullIfEmpty;
-      final seed0 = otherData?[ModelJobFieldNames.seed];
+      final seed0 = otherData?['seed'];
       final seed = seed0?.toString().trim().nullIfEmpty;
       return ModelJob(
         id: id,
@@ -295,20 +295,44 @@ class ModelJob extends _ModelJob {
       final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
       final pid0 = this.pid?.trim().nullIfEmpty;
       final seed0 = this.seed?.trim().nullIfEmpty;
-      final withNulls = <String, dynamic>{
-        ModelJobFieldNames.id: id0,
-        ModelJobFieldNames.ref: ref0,
-        ModelJobFieldNames.displayName: displayName0,
-        ModelJobFieldNames.displayColor: displayColor0,
-        ModelJobFieldNames.description: description0,
-        ModelJobFieldNames.archivedGReg: archivedGReg0,
-        ModelJobFieldNames.createdGReg: createdGReg0,
-        ModelJobFieldNames.deletedGReg: deletedGReg0,
-        ModelJobFieldNames.updatedGReg: updatedGReg0,
-        ModelJobFieldNames.expiresAt: expiresAt0,
-        ModelJobFieldNames.pid: pid0,
-        ModelJobFieldNames.seed: seed0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'pid': pid0,
+        },
+        {
+          'seed': seed0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelJob.toJson: $e');

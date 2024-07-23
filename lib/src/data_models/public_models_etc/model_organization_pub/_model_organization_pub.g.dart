@@ -201,64 +201,56 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelOrganizationPubFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelOrganizationPubFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 =
-          otherData?[ModelOrganizationPubFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 =
-          otherData?[ModelOrganizationPubFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 =
-          otherData?[ModelOrganizationPubFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 =
-          otherData?[ModelOrganizationPubFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 =
-          otherData?[ModelOrganizationPubFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 =
-          otherData?[ModelOrganizationPubFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 =
-          otherData?[ModelOrganizationPubFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelOrganizationPubFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final email0 = otherData?[ModelOrganizationPubFieldNames.email];
+      final email0 = otherData?['email'];
       final email = () {
         final a = letMap<String, dynamic>(email0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final addressEntries0 =
-          otherData?[ModelOrganizationPubFieldNames.addressEntries];
+      final addressEntries0 = otherData?['addressEntries'];
       final addressEntries = letMap(addressEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -271,8 +263,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final emailEntries0 =
-          otherData?[ModelOrganizationPubFieldNames.emailEntries];
+      final emailEntries0 = otherData?['emailEntries'];
       final emailEntries = letMap(emailEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -285,8 +276,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final fileEntries0 =
-          otherData?[ModelOrganizationPubFieldNames.fileEntries];
+      final fileEntries0 = otherData?['fileEntries'];
       final fileEntries = letMap(fileEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -299,8 +289,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final phoneEntries0 =
-          otherData?[ModelOrganizationPubFieldNames.phoneEntries];
+      final phoneEntries0 = otherData?['phoneEntries'];
       final phoneEntries = letMap(phoneEntries0)
           ?.map(
             (p0, p1) => MapEntry(
@@ -313,7 +302,7 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           )
           .nonNulls
           .nullIfEmpty;
-      final deviceRegs0 = otherData?[ModelOrganizationPubFieldNames.deviceRegs];
+      final deviceRegs0 = otherData?['deviceRegs'];
       final deviceRegs = letList(deviceRegs0)
           ?.map(
             (p0) => () {
@@ -441,24 +430,56 @@ class ModelOrganizationPub extends _ModelOrganizationPub {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final withNulls = <String, dynamic>{
-        ModelOrganizationPubFieldNames.id: id0,
-        ModelOrganizationPubFieldNames.ref: ref0,
-        ModelOrganizationPubFieldNames.displayName: displayName0,
-        ModelOrganizationPubFieldNames.displayColor: displayColor0,
-        ModelOrganizationPubFieldNames.description: description0,
-        ModelOrganizationPubFieldNames.archivedGReg: archivedGReg0,
-        ModelOrganizationPubFieldNames.createdGReg: createdGReg0,
-        ModelOrganizationPubFieldNames.deletedGReg: deletedGReg0,
-        ModelOrganizationPubFieldNames.updatedGReg: updatedGReg0,
-        ModelOrganizationPubFieldNames.expiresAt: expiresAt0,
-        ModelOrganizationPubFieldNames.email: email0,
-        ModelOrganizationPubFieldNames.addressEntries: addressEntries0,
-        ModelOrganizationPubFieldNames.emailEntries: emailEntries0,
-        ModelOrganizationPubFieldNames.fileEntries: fileEntries0,
-        ModelOrganizationPubFieldNames.phoneEntries: phoneEntries0,
-        ModelOrganizationPubFieldNames.deviceRegs: deviceRegs0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'email': email0,
+        },
+        {
+          'addressEntries': addressEntries0,
+        },
+        {
+          'emailEntries': emailEntries0,
+        },
+        {
+          'fileEntries': fileEntries0,
+        },
+        {
+          'phoneEntries': phoneEntries0,
+        },
+        {
+          'deviceRegs': deviceRegs0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelOrganizationPub.toJson: $e');

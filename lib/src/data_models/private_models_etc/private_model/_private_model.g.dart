@@ -181,53 +181,53 @@ class PrivateModel extends _PrivateModel {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[PrivateModelFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[PrivateModelFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[PrivateModelFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[PrivateModelFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[PrivateModelFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[PrivateModelFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[PrivateModelFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[PrivateModelFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[PrivateModelFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[PrivateModelFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final pid0 = otherData?[PrivateModelFieldNames.pid];
+      final pid0 = otherData?['pid'];
       final pid = pid0?.toString().trim().nullIfEmpty;
-      final seed0 = otherData?[PrivateModelFieldNames.seed];
+      final seed0 = otherData?['seed'];
       final seed = seed0?.toString().trim().nullIfEmpty;
       return PrivateModel(
         id: id,
@@ -295,20 +295,44 @@ class PrivateModel extends _PrivateModel {
       final expiresAt0 = this.expiresAt?.toUtc()?.toIso8601String();
       final pid0 = this.pid?.trim().nullIfEmpty;
       final seed0 = this.seed?.trim().nullIfEmpty;
-      final withNulls = <String, dynamic>{
-        PrivateModelFieldNames.id: id0,
-        PrivateModelFieldNames.ref: ref0,
-        PrivateModelFieldNames.displayName: displayName0,
-        PrivateModelFieldNames.displayColor: displayColor0,
-        PrivateModelFieldNames.description: description0,
-        PrivateModelFieldNames.archivedGReg: archivedGReg0,
-        PrivateModelFieldNames.createdGReg: createdGReg0,
-        PrivateModelFieldNames.deletedGReg: deletedGReg0,
-        PrivateModelFieldNames.updatedGReg: updatedGReg0,
-        PrivateModelFieldNames.expiresAt: expiresAt0,
-        PrivateModelFieldNames.pid: pid0,
-        PrivateModelFieldNames.seed: seed0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'pid': pid0,
+        },
+        {
+          'seed': seed0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'PrivateModel.toJson: $e');

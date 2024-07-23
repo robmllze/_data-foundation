@@ -141,15 +141,13 @@ class ModelMessageContent extends Model {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final relationshipId0 =
-          otherData?[ModelMessageContentFieldNames.relationshipId];
+      final relationshipId0 = otherData?['relationshipId'];
       final relationshipId = relationshipId0?.toString().trim().nullIfEmpty;
-      final senderPid0 = otherData?[ModelMessageContentFieldNames.senderPid];
+      final senderPid0 = otherData?['senderPid'];
       final senderPid = senderPid0?.toString().trim().nullIfEmpty;
-      final receiverPid0 =
-          otherData?[ModelMessageContentFieldNames.receiverPid];
+      final receiverPid0 = otherData?['receiverPid'];
       final receiverPid = receiverPid0?.toString().trim().nullIfEmpty;
-      final message0 = otherData?[ModelMessageContentFieldNames.message];
+      final message0 = otherData?['message'];
       final message = message0?.toString().trim().nullIfEmpty;
       return ModelMessageContent(
         relationshipId: relationshipId,
@@ -201,12 +199,20 @@ class ModelMessageContent extends Model {
       final senderPid0 = this.senderPid?.trim().nullIfEmpty;
       final receiverPid0 = this.receiverPid?.trim().nullIfEmpty;
       final message0 = this.message?.trim().nullIfEmpty;
-      final withNulls = <String, dynamic>{
-        ModelMessageContentFieldNames.relationshipId: relationshipId0,
-        ModelMessageContentFieldNames.senderPid: senderPid0,
-        ModelMessageContentFieldNames.receiverPid: receiverPid0,
-        ModelMessageContentFieldNames.message: message0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'relationshipId': relationshipId0,
+        },
+        {
+          'senderPid': senderPid0,
+        },
+        {
+          'receiverPid': receiverPid0,
+        },
+        {
+          'message': message0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelMessageContent.toJson: $e');

@@ -161,32 +161,30 @@ class ModelRegistration extends _ModelRegistration {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelRegistrationFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelRegistrationFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final registeredBy0 =
-          otherData?[ModelRegistrationFieldNames.registeredBy];
+      final registeredBy0 = otherData?['registeredBy'];
       final registeredBy = registeredBy0?.toString().trim().nullIfEmpty;
-      final registeredAt0 =
-          otherData?[ModelRegistrationFieldNames.registeredAt];
+      final registeredAt0 = otherData?['registeredAt'];
       final registeredAt = () {
         final a = registeredAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final ipV4Address0 = otherData?[ModelRegistrationFieldNames.ipV4Address];
+      final ipV4Address0 = otherData?['ipV4Address'];
       final ipV4Address = ipV4Address0?.toString().trim().nullIfEmpty;
-      final ipV6Address0 = otherData?[ModelRegistrationFieldNames.ipV6Address];
+      final ipV6Address0 = otherData?['ipV6Address'];
       final ipV6Address = ipV6Address0?.toString().trim().nullIfEmpty;
-      final location0 = otherData?[ModelRegistrationFieldNames.location];
+      final location0 = otherData?['location'];
       final location = () {
         final a = letMap<String, dynamic>(location0);
         return a != null ? ModelLocation.fromJson(a) : null;
       }();
-      final enabled0 = otherData?[ModelRegistrationFieldNames.enabled];
+      final enabled0 = otherData?['enabled'];
       final enabled = letBool(enabled0);
       return ModelRegistration(
         id: id,
@@ -246,16 +244,32 @@ class ModelRegistration extends _ModelRegistration {
       final ipV6Address0 = this.ipV6Address?.trim().nullIfEmpty;
       final location0 = this.location?.toJson();
       final enabled0 = this.enabled;
-      final withNulls = <String, dynamic>{
-        ModelRegistrationFieldNames.id: id0,
-        ModelRegistrationFieldNames.ref: ref0,
-        ModelRegistrationFieldNames.registeredBy: registeredBy0,
-        ModelRegistrationFieldNames.registeredAt: registeredAt0,
-        ModelRegistrationFieldNames.ipV4Address: ipV4Address0,
-        ModelRegistrationFieldNames.ipV6Address: ipV6Address0,
-        ModelRegistrationFieldNames.location: location0,
-        ModelRegistrationFieldNames.enabled: enabled0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'registeredBy': registeredBy0,
+        },
+        {
+          'registeredAt': registeredAt0,
+        },
+        {
+          'ipV4Address': ipV4Address0,
+        },
+        {
+          'ipV6Address': ipV6Address0,
+        },
+        {
+          'location': location0,
+        },
+        {
+          'enabled': enabled0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelRegistration.toJson: $e');

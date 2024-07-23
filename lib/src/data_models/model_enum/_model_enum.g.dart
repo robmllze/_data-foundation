@@ -127,7 +127,7 @@ class ModelEnum extends _ModelEnum {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final name0 = otherData?[ModelEnumFieldNames.name];
+      final name0 = otherData?['name'];
       final name = name0?.toString().trim().nullIfEmpty;
       return ModelEnum(
         name: name,
@@ -173,9 +173,11 @@ class ModelEnum extends _ModelEnum {
   }) {
     try {
       final name0 = this.name?.trim().nullIfEmpty;
-      final withNulls = <String, dynamic>{
-        ModelEnumFieldNames.name: name0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'name': name0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelEnum.toJson: $e');

@@ -201,68 +201,66 @@ class ModelInvitation extends _ModelInvitation {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelInvitationFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelInvitationFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelInvitationFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 = otherData?[ModelInvitationFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelInvitationFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 = otherData?[ModelInvitationFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelInvitationFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelInvitationFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelInvitationFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelInvitationFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final contentType0 = otherData?[ModelInvitationFieldNames.contentType];
+      final contentType0 = otherData?['contentType'];
       final contentType = () {
         final a = letMap<String, dynamic>(contentType0);
         return a != null ? ModelEnum.fromJson(a) : null;
       }();
-      final content0 = otherData?[ModelInvitationFieldNames.content];
+      final content0 = otherData?['content'];
       final content = () {
         final a = letMap<String, dynamic>(content0);
         return a != null ? Model.fromJson(a) : null;
       }();
-      final invitationLink0 =
-          otherData?[ModelInvitationFieldNames.invitationLink];
+      final invitationLink0 = otherData?['invitationLink'];
       final invitationLink = () {
         final a = invitationLink0;
         return a is String ? a.trim().nullIfEmpty?.toUriOrNull() : null;
       }();
-      final inviteeEmails0 =
-          otherData?[ModelInvitationFieldNames.inviteeEmails];
+      final inviteeEmails0 = otherData?['inviteeEmails'];
       final inviteeEmails = letSet(inviteeEmails0)
           ?.map(
             (p0) => () {
@@ -273,8 +271,7 @@ class ModelInvitation extends _ModelInvitation {
           .nonNulls
           .nullIfEmpty
           ?.toSet();
-      final inviteeAcceptedEmails0 =
-          otherData?[ModelInvitationFieldNames.inviteeAcceptedEmails];
+      final inviteeAcceptedEmails0 = otherData?['inviteeAcceptedEmails'];
       final inviteeAcceptedEmails = letSet(inviteeAcceptedEmails0)
           ?.map(
             (p0) => () {
@@ -285,8 +282,7 @@ class ModelInvitation extends _ModelInvitation {
           .nonNulls
           .nullIfEmpty
           ?.toSet();
-      final inviteeRejectedEmails0 =
-          otherData?[ModelInvitationFieldNames.inviteeRejectedEmails];
+      final inviteeRejectedEmails0 = otherData?['inviteeRejectedEmails'];
       final inviteeRejectedEmails = letSet(inviteeRejectedEmails0)
           ?.map(
             (p0) => () {
@@ -392,24 +388,56 @@ class ModelInvitation extends _ModelInvitation {
           .nonNulls
           .nullIfEmpty
           ?.toList();
-      final withNulls = <String, dynamic>{
-        ModelInvitationFieldNames.id: id0,
-        ModelInvitationFieldNames.ref: ref0,
-        ModelInvitationFieldNames.displayName: displayName0,
-        ModelInvitationFieldNames.displayColor: displayColor0,
-        ModelInvitationFieldNames.description: description0,
-        ModelInvitationFieldNames.archivedGReg: archivedGReg0,
-        ModelInvitationFieldNames.createdGReg: createdGReg0,
-        ModelInvitationFieldNames.deletedGReg: deletedGReg0,
-        ModelInvitationFieldNames.updatedGReg: updatedGReg0,
-        ModelInvitationFieldNames.expiresAt: expiresAt0,
-        ModelInvitationFieldNames.contentType: contentType0,
-        ModelInvitationFieldNames.content: content0,
-        ModelInvitationFieldNames.invitationLink: invitationLink0,
-        ModelInvitationFieldNames.inviteeEmails: inviteeEmails0,
-        ModelInvitationFieldNames.inviteeAcceptedEmails: inviteeAcceptedEmails0,
-        ModelInvitationFieldNames.inviteeRejectedEmails: inviteeRejectedEmails0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'contentType': contentType0,
+        },
+        {
+          'content': content0,
+        },
+        {
+          'invitationLink': invitationLink0,
+        },
+        {
+          'inviteeEmails': inviteeEmails0,
+        },
+        {
+          'inviteeAcceptedEmails': inviteeAcceptedEmails0,
+        },
+        {
+          'inviteeRejectedEmails': inviteeRejectedEmails0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelInvitation.toJson: $e');

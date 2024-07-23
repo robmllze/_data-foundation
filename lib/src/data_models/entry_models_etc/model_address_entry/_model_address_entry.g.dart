@@ -201,66 +201,61 @@ class ModelAddressEntry extends _ModelAddressEntry {
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final id0 = otherData?[ModelAddressEntryFieldNames.id];
+      final id0 = otherData?['id'];
       final id = id0?.toString().trim().nullIfEmpty;
-      final ref0 = otherData?[ModelAddressEntryFieldNames.ref];
+      final ref0 = otherData?['ref'];
       final ref = () {
         final a = letMap<String, dynamic>(ref0);
         return a != null ? DataRefModel.fromJson(a) : null;
       }();
-      final displayName0 = otherData?[ModelAddressEntryFieldNames.displayName];
+      final displayName0 = otherData?['displayName'];
       final displayName = () {
         final a = letMap<String, dynamic>(displayName0);
         return a != null ? ModelQueryable.fromJson(a) : null;
       }();
-      final displayColor0 =
-          otherData?[ModelAddressEntryFieldNames.displayColor];
+      final displayColor0 = otherData?['displayColor'];
       final displayColor = () {
         final a = letAs<int>(displayColor0);
         return a is int ? Color(a) : null;
       }();
-      final description0 = otherData?[ModelAddressEntryFieldNames.description];
+      final description0 = otherData?['description'];
       final description = description0?.toString().trim().nullIfEmpty;
-      final archivedGReg0 =
-          otherData?[ModelAddressEntryFieldNames.archivedGReg];
+      final archivedGReg0 = otherData?['archivedGReg'];
       final archivedGReg = () {
         final a = letMap<String, dynamic>(archivedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final createdGReg0 = otherData?[ModelAddressEntryFieldNames.createdGReg];
+      final createdGReg0 = otherData?['createdGReg'];
       final createdGReg = () {
         final a = letMap<String, dynamic>(createdGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final deletedGReg0 = otherData?[ModelAddressEntryFieldNames.deletedGReg];
+      final deletedGReg0 = otherData?['deletedGReg'];
       final deletedGReg = () {
         final a = letMap<String, dynamic>(deletedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final updatedGReg0 = otherData?[ModelAddressEntryFieldNames.updatedGReg];
+      final updatedGReg0 = otherData?['updatedGReg'];
       final updatedGReg = () {
         final a = letMap<String, dynamic>(updatedGReg0);
         return a != null ? ModelRegistration.fromJson(a) : null;
       }();
-      final expiresAt0 = otherData?[ModelAddressEntryFieldNames.expiresAt];
+      final expiresAt0 = otherData?['expiresAt'];
       final expiresAt = () {
         final a = expiresAt0;
         return a != null ? DateTime.tryParse(a)?.toUtc() : null;
       }();
-      final addressLine10 =
-          otherData?[ModelAddressEntryFieldNames.addressLine1];
+      final addressLine10 = otherData?['addressLine1'];
       final addressLine1 = addressLine10?.toString().trim().nullIfEmpty;
-      final addressLine20 =
-          otherData?[ModelAddressEntryFieldNames.addressLine2];
+      final addressLine20 = otherData?['addressLine2'];
       final addressLine2 = addressLine20?.toString().trim().nullIfEmpty;
-      final city0 = otherData?[ModelAddressEntryFieldNames.city];
+      final city0 = otherData?['city'];
       final city = city0?.toString().trim().nullIfEmpty;
-      final stateOrProvince0 =
-          otherData?[ModelAddressEntryFieldNames.stateOrProvince];
+      final stateOrProvince0 = otherData?['stateOrProvince'];
       final stateOrProvince = stateOrProvince0?.toString().trim().nullIfEmpty;
-      final postalCode0 = otherData?[ModelAddressEntryFieldNames.postalCode];
+      final postalCode0 = otherData?['postalCode'];
       final postalCode = postalCode0?.toString().trim().nullIfEmpty;
-      final country0 = otherData?[ModelAddressEntryFieldNames.country];
+      final country0 = otherData?['country'];
       final country = country0?.toString().trim().nullIfEmpty;
       return ModelAddressEntry(
         id: id,
@@ -336,24 +331,56 @@ class ModelAddressEntry extends _ModelAddressEntry {
       final stateOrProvince0 = this.stateOrProvince?.trim().nullIfEmpty;
       final postalCode0 = this.postalCode?.trim().nullIfEmpty;
       final country0 = this.country?.trim().nullIfEmpty;
-      final withNulls = <String, dynamic>{
-        ModelAddressEntryFieldNames.id: id0,
-        ModelAddressEntryFieldNames.ref: ref0,
-        ModelAddressEntryFieldNames.displayName: displayName0,
-        ModelAddressEntryFieldNames.displayColor: displayColor0,
-        ModelAddressEntryFieldNames.description: description0,
-        ModelAddressEntryFieldNames.archivedGReg: archivedGReg0,
-        ModelAddressEntryFieldNames.createdGReg: createdGReg0,
-        ModelAddressEntryFieldNames.deletedGReg: deletedGReg0,
-        ModelAddressEntryFieldNames.updatedGReg: updatedGReg0,
-        ModelAddressEntryFieldNames.expiresAt: expiresAt0,
-        ModelAddressEntryFieldNames.addressLine1: addressLine10,
-        ModelAddressEntryFieldNames.addressLine2: addressLine20,
-        ModelAddressEntryFieldNames.city: city0,
-        ModelAddressEntryFieldNames.stateOrProvince: stateOrProvince0,
-        ModelAddressEntryFieldNames.postalCode: postalCode0,
-        ModelAddressEntryFieldNames.country: country0,
-      }.mapWithDefault(defaultValue);
+      final withNulls = mergeMapsDeep([
+        {
+          'id': id0,
+        },
+        {
+          'ref': ref0,
+        },
+        {
+          'displayName': displayName0,
+        },
+        {
+          'displayColor': displayColor0,
+        },
+        {
+          'description': description0,
+        },
+        {
+          'archivedGReg': archivedGReg0,
+        },
+        {
+          'createdGReg': createdGReg0,
+        },
+        {
+          'deletedGReg': deletedGReg0,
+        },
+        {
+          'updatedGReg': updatedGReg0,
+        },
+        {
+          'expiresAt': expiresAt0,
+        },
+        {
+          'addressLine1': addressLine10,
+        },
+        {
+          'addressLine2': addressLine20,
+        },
+        {
+          'city': city0,
+        },
+        {
+          'stateOrProvince': stateOrProvince0,
+        },
+        {
+          'postalCode': postalCode0,
+        },
+        {
+          'country': country0,
+        },
+      ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
       assert(false, 'ModelAddressEntry.toJson: $e');
