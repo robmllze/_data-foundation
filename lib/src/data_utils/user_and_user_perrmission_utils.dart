@@ -18,7 +18,7 @@ abstract final class UserAndUserPermissionUtils {
   //
 
   static ModelConnectionPermissions get _false {
-    return ModelConnectionPermissions(
+    return const ModelConnectionPermissions(
       editorPermit: false,
       editorRequest: false,
       minimalPermit: false,
@@ -33,55 +33,55 @@ abstract final class UserAndUserPermissionUtils {
   }
 
   static ModelConnectionPermissions get empty {
-    return ModelConnectionPermissions();
+    return const ModelConnectionPermissions();
   }
 
   static ModelConnectionPermissions get addMinimal {
-    return ModelConnectionPermissions(minimalPermit: true, minimalRequest: true);
+    return const ModelConnectionPermissions(minimalPermit: true, minimalRequest: true);
   }
 
   static ModelConnectionPermissions get removeMinimal {
-    return ModelConnectionPermissions(minimalPermit: false, minimalRequest: false);
+    return const ModelConnectionPermissions(minimalPermit: false, minimalRequest: false);
   }
 
   static ModelConnectionPermissions get addMessaging {
-    return ModelConnectionPermissions(messagingPermit: true, messagingRequest: true);
+    return const ModelConnectionPermissions(messagingPermit: true, messagingRequest: true);
   }
 
   static ModelConnectionPermissions get removeMessaging {
-    return ModelConnectionPermissions(messagingPermit: false, messagingRequest: false);
+    return const ModelConnectionPermissions(messagingPermit: false, messagingRequest: false);
   }
 
   static ModelConnectionPermissions get addReadOnlyPermit {
-    return ModelConnectionPermissions(readOnlyPermit: true);
+    return const ModelConnectionPermissions(readOnlyPermit: true);
   }
 
   static ModelConnectionPermissions get removeReadOnlyPermit {
-    return ModelConnectionPermissions(readOnlyPermit: false);
+    return const ModelConnectionPermissions(readOnlyPermit: false);
   }
 
   static ModelConnectionPermissions get addReadOnlyRequest {
-    return ModelConnectionPermissions(readOnlyRequest: true);
+    return const ModelConnectionPermissions(readOnlyRequest: true);
   }
 
   static ModelConnectionPermissions get removeReadOnlyRequest {
-    return ModelConnectionPermissions(readOnlyRequest: false);
+    return const ModelConnectionPermissions(readOnlyRequest: false);
   }
 
   static ModelConnectionPermissions get addEditorPermit {
-    return ModelConnectionPermissions(readOnlyPermit: true, editorPermit: true);
+    return const ModelConnectionPermissions(readOnlyPermit: true, editorPermit: true);
   }
 
   static ModelConnectionPermissions get removeEditorPermit {
-    return ModelConnectionPermissions(readOnlyPermit: false, editorPermit: false);
+    return const ModelConnectionPermissions(readOnlyPermit: false, editorPermit: false);
   }
 
   static ModelConnectionPermissions get addEditorRequest {
-    return ModelConnectionPermissions(readOnlyRequest: true, editorRequest: true);
+    return const ModelConnectionPermissions(readOnlyRequest: true, editorRequest: true);
   }
 
   static ModelConnectionPermissions get removeEditorRequest {
-    return ModelConnectionPermissions(readOnlyRequest: false, editorRequest: false);
+    return const ModelConnectionPermissions(readOnlyRequest: false, editorRequest: false);
   }
 
   //
@@ -89,11 +89,11 @@ abstract final class UserAndUserPermissionUtils {
   //
 
   static ModelConnectionPermissions get addNotificationPermit {
-    return ModelConnectionPermissions(notificationPermit: true);
+    return const ModelConnectionPermissions(notificationPermit: true);
   }
 
   static ModelConnectionPermissions get addNotificationRequest {
-    return ModelConnectionPermissions(notificationRequest: true);
+    return const ModelConnectionPermissions(notificationRequest: true);
   }
 
   static ModelConnectionPermissions get blocked {
