@@ -17,17 +17,50 @@ part '_model_pubspec.g.dart';
   shouldInherit: true,
   keyStringCase: LOWER_SNAKE_CASE,
   fields: {
-    Field(fieldName: 'name', fieldType: String),
-    Field(fieldName: 'description', fieldType: String),
-    Field(fieldName: 'version', fieldType: String),
-    Field(fieldName: 'publish_to', fieldType: String),
-    Field(fieldName: 'environment', fieldType: Map<String, dynamic>),
-    Field(fieldName: 'environment.sdk', fieldType: String),
-    Field(fieldName: 'environment.flutter', fieldType: String),
-    Field(fieldName: 'dependencies', fieldType: Map<String, dynamic>),
-    Field(fieldName: 'dependency_overrides', fieldType: Map<String, dynamic>),
-    Field(fieldName: 'dev_dependencies', fieldType: Map<String, dynamic>),
-    Field(fieldName: 'flutter', fieldType: Map<String, dynamic>),
+    Field(
+      fieldPath: ['name'],
+      fieldType: String,
+    ),
+    Field(
+      fieldPath: ['description'],
+      fieldType: String,
+    ),
+    Field(
+      fieldPath: ['version'],
+      fieldType: String,
+    ),
+    Field(
+      fieldPath: ['publish_to'],
+      fieldType: String,
+    ),
+    Field(
+      fieldPath: ['environment'],
+      fieldType: Map<String, dynamic>,
+    ),
+    Field(
+      fieldPath: ['environment', 'sdk'],
+      fieldType: String,
+    ),
+    Field(
+      fieldPath: ['environment.flutter'],
+      fieldType: String,
+    ),
+    Field(
+      fieldPath: ['dependencies'],
+      fieldType: Map<String, dynamic>,
+    ),
+    Field(
+      fieldPath: ['dependency_overrides'],
+      fieldType: Map<String, dynamic>,
+    ),
+    Field(
+      fieldPath: ['dev_dependencies'],
+      fieldType: Map<String, dynamic>,
+    ),
+    Field(
+      fieldPath: ['flutter'],
+      fieldType: Map<String, dynamic>,
+    ),
   },
 )
 abstract class _ModelPubspec extends Model {
