@@ -19,6 +19,7 @@ part '_model_relationship.g.dart';
   fields: {
     ...MODEL_EVENT_FIELDS,
     ('type?', RelationshipType),
+    ('member_unsubs?', Map<String, Set<String>>),
   },
 )
 abstract class _ModelRelationship extends Model implements ModelEvent {
@@ -31,6 +32,14 @@ extension ModelRelationshipExtension on ModelRelationship {
   //
   //
   //
+
+  bool isSubscribedToMember(String currentUserPid, String memberPid) {
+    final unsubs = this.memberUnsubs?[currentUserPid];
+    if (unsubs == null) {
+      return true; // subscribed by default.
+    }
+    return !unsubs.contains(memberPid);
+  }
 
   // /// Whether this relationship is marked as "enabled" by any Member.
   // bool get isEnabled {

@@ -8,11 +8,11 @@
 //.title~
 
 // ignore_for_file: annotate_overrides
-// ignore_for_file: empty_constructor_bodies
 // ignore_for_file: invalid_null_aware_operator
 // ignore_for_file: overridden_fields
 // ignore_for_file: unnecessary_non_null_assertion
 // ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: unnecessary_question_mark
 // ignore_for_file: unnecessary_this
 
 part of 'model_relationship.dart';
@@ -49,6 +49,7 @@ class ModelRelationship extends _ModelRelationship {
   final List<ModelRegistration>? likedRegs;
   final List<ModelRegistration>? receivedRegs;
   final RelationshipType? type;
+  final Map<String, Set<String>>? memberUnsubs;
 
   //
   //
@@ -75,6 +76,7 @@ class ModelRelationship extends _ModelRelationship {
     this.likedRegs,
     this.receivedRegs,
     this.type,
+    this.memberUnsubs,
   });
 
   const ModelRelationship.c2({
@@ -98,6 +100,7 @@ class ModelRelationship extends _ModelRelationship {
     this.likedRegs,
     this.receivedRegs,
     this.type,
+    this.memberUnsubs,
   });
 
   factory ModelRelationship.c3({
@@ -121,6 +124,7 @@ class ModelRelationship extends _ModelRelationship {
     List<ModelRegistration>? likedRegs,
     List<ModelRegistration>? receivedRegs,
     RelationshipType? type,
+    Map<String, Set<String>>? memberUnsubs,
   }) {
     return ModelRelationship(
       id: id,
@@ -143,6 +147,7 @@ class ModelRelationship extends _ModelRelationship {
       likedRegs: likedRegs,
       receivedRegs: receivedRegs,
       type: type,
+      memberUnsubs: memberUnsubs,
     );
   }
 
@@ -348,6 +353,22 @@ class ModelRelationship extends _ModelRelationship {
           ?.toList();
       final type0 = otherData?['type'];
       final type = RelationshipType.values.valueOf(letAs<String>(type0));
+      final memberUnsubs0 = otherData?['memberUnsubs'];
+      final memberUnsubs = letMap(memberUnsubs0)
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.toString().trim().nullIfEmpty,
+              letSet(p1)
+                  ?.map(
+                    (p0) => p0?.toString().trim().nullIfEmpty,
+                  )
+                  .nonNulls
+                  .nullIfEmpty
+                  ?.toSet(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
       return ModelRelationship(
         id: id,
         ref: ref,
@@ -369,6 +390,7 @@ class ModelRelationship extends _ModelRelationship {
         likedRegs: likedRegs,
         receivedRegs: receivedRegs,
         type: type,
+        memberUnsubs: memberUnsubs,
       );
     } catch (e) {
       return null;
@@ -479,6 +501,22 @@ class ModelRelationship extends _ModelRelationship {
           .nullIfEmpty
           ?.toList();
       final type0 = this.type?.name;
+      final memberUnsubs0 = this
+          .memberUnsubs
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.trim().nullIfEmpty,
+              p1
+                  ?.map(
+                    (p0) => p0?.trim().nullIfEmpty,
+                  )
+                  .nonNulls
+                  .nullIfEmpty
+                  ?.toList(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
       final withNulls = mergeMapsDeep([
         {
           'id': id0,
@@ -539,6 +577,9 @@ class ModelRelationship extends _ModelRelationship {
         },
         {
           'type': type0,
+        },
+        {
+          'memberUnsubs': memberUnsubs0,
         },
       ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -623,6 +664,9 @@ class ModelRelationship extends _ModelRelationship {
 
   // type.
   RelationshipType? get typeField => this.type;
+
+  // memberUnsubs.
+  Map<String, Set<String>>? get memberUnsubsField => this.memberUnsubs;
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -652,6 +696,7 @@ final class ModelRelationshipFieldNames {
   static const likedRegs = 'likedRegs';
   static const receivedRegs = 'receivedRegs';
   static const type = 'type';
+  static const memberUnsubs = 'memberUnsubs';
 
   //
   //
