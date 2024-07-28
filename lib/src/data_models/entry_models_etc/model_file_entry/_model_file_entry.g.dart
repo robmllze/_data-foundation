@@ -8,11 +8,11 @@
 //.title~
 
 // ignore_for_file: annotate_overrides
-// ignore_for_file: empty_constructor_bodies
 // ignore_for_file: invalid_null_aware_operator
 // ignore_for_file: overridden_fields
 // ignore_for_file: unnecessary_non_null_assertion
 // ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: unnecessary_question_mark
 // ignore_for_file: unnecessary_this
 
 part of 'model_file_entry.dart';
@@ -265,8 +265,7 @@ class ModelFileEntry extends _ModelFileEntry {
       final size0 = otherData?['size'];
       final size = letInt(size0);
       final extension0 = otherData?['extension'];
-      final extension =
-          extension0?.toString().trim().nullIfEmpty?.toLowerCase();
+      final extension = extension0?.toString().trim().nullIfEmpty;
       return ModelFileEntry(
         id: id,
         ref: ref,
@@ -347,7 +346,7 @@ class ModelFileEntry extends _ModelFileEntry {
           .nullIfEmpty
           ?.toList();
       final size0 = this.size;
-      final extension0 = this.extension?.trim().nullIfEmpty?.toLowerCase();
+      final extension0 = this.extension?.trim().nullIfEmpty;
       final withNulls = mergeMapsDeep([
         {
           'id': id0,

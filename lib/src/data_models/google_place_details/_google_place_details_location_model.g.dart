@@ -15,156 +15,156 @@
 // ignore_for_file: unnecessary_question_mark
 // ignore_for_file: unnecessary_this
 
-part of 'model_cache_information.dart';
+part of 'google_place_details.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class ModelCacheInformation extends _ModelCacheInformation {
+class GooglePlaceDetailsLocationModel extends _GooglePlaceDetailsLocationModel {
   //
   //
   //
 
-  static const CLASS_NAME = 'ModelCacheInformation';
+  static const CLASS_NAME = 'GooglePlaceDetailsLocationModel';
 
   @override
   String get $className => CLASS_NAME;
 
-  final Set<ModelFileEntry>? files;
+  final double? lat;
+  final double? lng;
 
   //
   //
   //
 
-  const ModelCacheInformation({
-    required this.files,
+  const GooglePlaceDetailsLocationModel({
+    required this.lat,
+    required this.lng,
   });
 
-  const ModelCacheInformation.c2({
-    this.files,
+  const GooglePlaceDetailsLocationModel.c2({
+    this.lat,
+    this.lng,
   });
 
-  factory ModelCacheInformation.c3({
-    Set<ModelFileEntry>? files,
+  factory GooglePlaceDetailsLocationModel.c3({
+    double? lat,
+    double? lng,
   }) {
-    assert(files != null);
-    return ModelCacheInformation(
-      files: files,
+    assert(lat != null);
+    assert(lng != null);
+    return GooglePlaceDetailsLocationModel(
+      lat: lat,
+      lng: lng,
     );
   }
 
-  factory ModelCacheInformation.from(
+  factory GooglePlaceDetailsLocationModel.from(
     BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelCacheInformation.from: $e');
+      assert(false, 'GooglePlaceDetailsLocationModel.from: $e');
       rethrow;
     }
   }
 
-  static ModelCacheInformation? fromOrNull(
+  static GooglePlaceDetailsLocationModel? fromOrNull(
     BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
 
-  factory ModelCacheInformation.of(
-    ModelCacheInformation other,
+  factory GooglePlaceDetailsLocationModel.of(
+    GooglePlaceDetailsLocationModel other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'ModelCacheInformation.of: $e');
+      assert(false, 'GooglePlaceDetailsLocationModel.of: $e');
       rethrow;
     }
   }
 
-  static ModelCacheInformation? ofOrNull(
-    ModelCacheInformation? other,
+  static GooglePlaceDetailsLocationModel? ofOrNull(
+    GooglePlaceDetailsLocationModel? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
 
-  factory ModelCacheInformation.fromJsonString(
+  factory GooglePlaceDetailsLocationModel.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'ModelCacheInformation.fromJsonString: $e');
+      assert(false, 'GooglePlaceDetailsLocationModel.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static ModelCacheInformation? fromJsonStringOrNull(
+  static GooglePlaceDetailsLocationModel? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return ModelCacheInformation.fromJson(decoded);
+        return GooglePlaceDetailsLocationModel.fromJson(decoded);
       } else {
-        return const ModelCacheInformation.c2();
+        return const GooglePlaceDetailsLocationModel.c2();
       }
     } catch (_) {
       return null;
     }
   }
 
-  factory ModelCacheInformation.fromJson(
+  factory GooglePlaceDetailsLocationModel.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'ModelCacheInformation.fromJson: $e');
+      assert(false, 'GooglePlaceDetailsLocationModel.fromJson: $e');
       rethrow;
     }
   }
 
-  static ModelCacheInformation? fromJsonOrNull(
+  static GooglePlaceDetailsLocationModel? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final files0 = otherData?['files'];
-      final files = letSet(files0)
-          ?.map(
-            (p0) => () {
-              final a = letMap<String, dynamic>(p0);
-              return a != null ? ModelFileEntry.fromJson(a) : null;
-            }(),
-          )
-          .nonNulls
-          .nullIfEmpty
-          ?.toSet();
-      return ModelCacheInformation(
-        files: files,
+      final lat0 = otherData?['lat'];
+      final lat = letDouble(lat0);
+      final lng0 = otherData?['lng'];
+      final lng = letDouble(lng0);
+      return GooglePlaceDetailsLocationModel(
+        lat: lat,
+        lng: lng,
       );
     } catch (e) {
       return null;
     }
   }
 
-  factory ModelCacheInformation.fromUri(
+  factory GooglePlaceDetailsLocationModel.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'ModelCacheInformation.fromUri: $e');
+      assert(false, 'GooglePlaceDetailsLocationModel.fromUri: $e');
       rethrow;
     }
   }
 
-  static ModelCacheInformation? fromUriOrNull(
+  static GooglePlaceDetailsLocationModel? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS_NAME) {
-        return ModelCacheInformation.fromJson(uri.queryParameters);
+        return GooglePlaceDetailsLocationModel.fromJson(uri.queryParameters);
       } else {
-        return const ModelCacheInformation.c2();
+        return const GooglePlaceDetailsLocationModel.c2();
       }
     } catch (_) {
       return null;
@@ -181,22 +181,19 @@ class ModelCacheInformation extends _ModelCacheInformation {
     bool includeNulls = false,
   }) {
     try {
-      final files0 = this
-          .files
-          ?.map(
-            (p0) => p0?.toJson(),
-          )
-          .nonNulls
-          .nullIfEmpty
-          ?.toList();
+      final lat0 = this.lat;
+      final lng0 = this.lng;
       final withNulls = mergeMapsDeep([
         {
-          'files': files0,
+          'lat': lat0,
+        },
+        {
+          'lng': lng0,
         },
       ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'ModelCacheInformation.toJson: $e');
+      assert(false, 'GooglePlaceDetailsLocationModel.toJson: $e');
       rethrow;
     }
   }
@@ -206,33 +203,37 @@ class ModelCacheInformation extends _ModelCacheInformation {
   //
 
   @override
-  ModelCacheInformation copyWith(BaseModel? other) {
+  GooglePlaceDetailsLocationModel copyWith(BaseModel? other) {
     final a = this.toJson();
     final b = other?.toJson();
     final c = {...a, ...?b};
-    return ModelCacheInformation.fromJson(c);
+    return GooglePlaceDetailsLocationModel.fromJson(c);
   }
 
   //
   //
   //
 
-  // files.
-  Set<ModelFileEntry> get filesField => this.files!;
+  // lat.
+  double get latField => this.lat!;
+
+  // lng.
+  double get lngField => this.lng!;
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class ModelCacheInformationFieldNames {
+final class GooglePlaceDetailsLocationModelFieldNames {
   //
   //
   //
 
-  static const files = 'files';
+  static const lat = 'lat';
+  static const lng = 'lng';
 
   //
   //
   //
 
-  const ModelCacheInformationFieldNames._();
+  const GooglePlaceDetailsLocationModelFieldNames._();
 }

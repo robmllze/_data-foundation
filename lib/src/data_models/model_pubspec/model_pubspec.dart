@@ -42,7 +42,7 @@ part '_model_pubspec.g.dart';
       fieldType: String,
     ),
     Field(
-      fieldPath: ['environment.flutter'],
+      fieldPath: ['environment', 'flutter'],
       fieldType: String,
     ),
     Field(

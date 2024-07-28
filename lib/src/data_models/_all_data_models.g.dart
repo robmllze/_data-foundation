@@ -23,6 +23,8 @@ export 'model_device_registration/model_device_registration.dart';
 export 'model_message_content/model_message_content.dart';
 export 'model_event/model_event.dart';
 export 'model_invitation/model_invitation.dart';
+export 'google_places/google_places.dart';
+export 'google_place_details/google_place_details.dart';
 export 'model_location/model_location.dart';
 export 'model_map_tile/model_map_tile.dart';
 export 'model_registration/model_registration.dart';

@@ -15,139 +15,148 @@
 // ignore_for_file: unnecessary_question_mark
 // ignore_for_file: unnecessary_this
 
-part of 'google_places.dart';
+part of 'google_place_details.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class GooglePlacesDataModel extends _GooglePlacesDataModel {
+class GooglePlaceDetailsDataModel extends _GooglePlaceDetailsDataModel {
   //
   //
   //
 
-  static const CLASS_NAME = 'GooglePlacesDataModel';
+  static const CLASS_NAME = 'GooglePlaceDetailsDataModel';
 
   @override
   String get $className => CLASS_NAME;
 
-  final List<GooglePlacesPredictionModel>? predictions;
+  final List<String>? htmlAttributions;
+  final GooglePlaceDetailsResultModel? result;
   final String? status;
 
   //
   //
   //
 
-  const GooglePlacesDataModel({
-    required this.predictions,
+  const GooglePlaceDetailsDataModel({
+    required this.htmlAttributions,
+    required this.result,
     required this.status,
   });
 
-  const GooglePlacesDataModel.c2({
-    this.predictions,
+  const GooglePlaceDetailsDataModel.c2({
+    this.htmlAttributions,
+    this.result,
     this.status,
   });
 
-  factory GooglePlacesDataModel.c3({
-    List<GooglePlacesPredictionModel>? predictions,
+  factory GooglePlaceDetailsDataModel.c3({
+    List<String>? htmlAttributions,
+    GooglePlaceDetailsResultModel? result,
     String? status,
   }) {
-    assert(predictions != null);
+    assert(htmlAttributions != null);
+    assert(result != null);
     assert(status != null);
-    return GooglePlacesDataModel(
-      predictions: predictions,
+    return GooglePlaceDetailsDataModel(
+      htmlAttributions: htmlAttributions,
+      result: result,
       status: status,
     );
   }
 
-  factory GooglePlacesDataModel.from(
+  factory GooglePlaceDetailsDataModel.from(
     BaseModel? other,
   ) {
     try {
       return fromOrNull(other)!;
     } catch (e) {
-      assert(false, 'GooglePlacesDataModel.from: $e');
+      assert(false, 'GooglePlaceDetailsDataModel.from: $e');
       rethrow;
     }
   }
 
-  static GooglePlacesDataModel? fromOrNull(
+  static GooglePlaceDetailsDataModel? fromOrNull(
     BaseModel? other,
   ) {
     return fromJsonOrNull(other?.toJson())!;
   }
 
-  factory GooglePlacesDataModel.of(
-    GooglePlacesDataModel other,
+  factory GooglePlaceDetailsDataModel.of(
+    GooglePlaceDetailsDataModel other,
   ) {
     try {
       return ofOrNull(other)!;
     } catch (e) {
-      assert(false, 'GooglePlacesDataModel.of: $e');
+      assert(false, 'GooglePlaceDetailsDataModel.of: $e');
       rethrow;
     }
   }
 
-  static GooglePlacesDataModel? ofOrNull(
-    GooglePlacesDataModel? other,
+  static GooglePlaceDetailsDataModel? ofOrNull(
+    GooglePlaceDetailsDataModel? other,
   ) {
     return fromJsonOrNull(other?.toJson());
   }
 
-  factory GooglePlacesDataModel.fromJsonString(
+  factory GooglePlaceDetailsDataModel.fromJsonString(
     String source,
   ) {
     try {
       return fromJsonStringOrNull(source)!;
     } catch (e) {
-      assert(false, 'GooglePlacesDataModel.fromJsonString: $e');
+      assert(false, 'GooglePlaceDetailsDataModel.fromJsonString: $e');
       rethrow;
     }
   }
 
-  static GooglePlacesDataModel? fromJsonStringOrNull(
+  static GooglePlaceDetailsDataModel? fromJsonStringOrNull(
     String? source,
   ) {
     try {
       if (source!.isNotEmpty) {
         final decoded = jsonDecode(source);
-        return GooglePlacesDataModel.fromJson(decoded);
+        return GooglePlaceDetailsDataModel.fromJson(decoded);
       } else {
-        return const GooglePlacesDataModel.c2();
+        return const GooglePlaceDetailsDataModel.c2();
       }
     } catch (_) {
       return null;
     }
   }
 
-  factory GooglePlacesDataModel.fromJson(
+  factory GooglePlaceDetailsDataModel.fromJson(
     Map<String, dynamic>? otherData,
   ) {
     try {
       return fromJsonOrNull(otherData)!;
     } catch (e) {
-      assert(false, 'GooglePlacesDataModel.fromJson: $e');
+      assert(false, 'GooglePlaceDetailsDataModel.fromJson: $e');
       rethrow;
     }
   }
 
-  static GooglePlacesDataModel? fromJsonOrNull(
+  static GooglePlaceDetailsDataModel? fromJsonOrNull(
     Map<String, dynamic>? otherData,
   ) {
     try {
-      final predictions0 = otherData?['predictions'];
-      final predictions = letList(predictions0)
+      final htmlAttributions0 = otherData?['html_attributions'];
+      final htmlAttributions = letList(htmlAttributions0)
           ?.map(
-            (p0) => () {
-              final a = letMap<String, dynamic>(p0);
-              return a != null ? GooglePlacesPredictionModel.fromJson(a) : null;
-            }(),
+            (p0) => p0?.toString().trim().nullIfEmpty,
           )
           .nonNulls
           .nullIfEmpty
           ?.toList();
+      final result0 = otherData?['result'];
+      final result = () {
+        final a = letMap<String, dynamic>(result0);
+        return a != null ? GooglePlaceDetailsResultModel.fromJson(a) : null;
+      }();
       final status0 = otherData?['status'];
       final status = status0?.toString().trim().nullIfEmpty;
-      return GooglePlacesDataModel(
-        predictions: predictions,
+      return GooglePlaceDetailsDataModel(
+        htmlAttributions: htmlAttributions,
+        result: result,
         status: status,
       );
     } catch (e) {
@@ -155,25 +164,25 @@ class GooglePlacesDataModel extends _GooglePlacesDataModel {
     }
   }
 
-  factory GooglePlacesDataModel.fromUri(
+  factory GooglePlaceDetailsDataModel.fromUri(
     Uri? uri,
   ) {
     try {
       return fromUriOrNull(uri)!;
     } catch (e) {
-      assert(false, 'GooglePlacesDataModel.fromUri: $e');
+      assert(false, 'GooglePlaceDetailsDataModel.fromUri: $e');
       rethrow;
     }
   }
 
-  static GooglePlacesDataModel? fromUriOrNull(
+  static GooglePlaceDetailsDataModel? fromUriOrNull(
     Uri? uri,
   ) {
     try {
       if (uri != null && uri.path == CLASS_NAME) {
-        return GooglePlacesDataModel.fromJson(uri.queryParameters);
+        return GooglePlaceDetailsDataModel.fromJson(uri.queryParameters);
       } else {
-        return const GooglePlacesDataModel.c2();
+        return const GooglePlaceDetailsDataModel.c2();
       }
     } catch (_) {
       return null;
@@ -190,18 +199,22 @@ class GooglePlacesDataModel extends _GooglePlacesDataModel {
     bool includeNulls = false,
   }) {
     try {
-      final predictions0 = this
-          .predictions
+      final htmlAttributions0 = this
+          .htmlAttributions
           ?.map(
-            (p0) => p0?.toJson(),
+            (p0) => p0?.trim().nullIfEmpty,
           )
           .nonNulls
           .nullIfEmpty
           ?.toList();
+      final result0 = this.result?.toJson();
       final status0 = this.status?.trim().nullIfEmpty;
       final withNulls = mergeMapsDeep([
         {
-          'predictions': predictions0,
+          'html_attributions': htmlAttributions0,
+        },
+        {
+          'result': result0,
         },
         {
           'status': status0,
@@ -209,7 +222,7 @@ class GooglePlacesDataModel extends _GooglePlacesDataModel {
       ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
     } catch (e) {
-      assert(false, 'GooglePlacesDataModel.toJson: $e');
+      assert(false, 'GooglePlaceDetailsDataModel.toJson: $e');
       rethrow;
     }
   }
@@ -219,19 +232,22 @@ class GooglePlacesDataModel extends _GooglePlacesDataModel {
   //
 
   @override
-  GooglePlacesDataModel copyWith(BaseModel? other) {
+  GooglePlaceDetailsDataModel copyWith(BaseModel? other) {
     final a = this.toJson();
     final b = other?.toJson();
     final c = {...a, ...?b};
-    return GooglePlacesDataModel.fromJson(c);
+    return GooglePlaceDetailsDataModel.fromJson(c);
   }
 
   //
   //
   //
 
-  // predictions.
-  List<GooglePlacesPredictionModel> get predictionsField => this.predictions!;
+  // htmlAttributions.
+  List<String> get htmlAttributionsField => this.htmlAttributions!;
+
+  // result.
+  GooglePlaceDetailsResultModel get resultField => this.result!;
 
   // status.
   String get statusField => this.status!;
@@ -239,17 +255,18 @@ class GooglePlacesDataModel extends _GooglePlacesDataModel {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class GooglePlacesDataModelFieldNames {
+final class GooglePlaceDetailsDataModelFieldNames {
   //
   //
   //
 
-  static const predictions = 'predictions';
+  static const htmlAttributions = 'html_attributions';
+  static const result = 'result';
   static const status = 'status';
 
   //
   //
   //
 
-  const GooglePlacesDataModelFieldNames._();
+  const GooglePlaceDetailsDataModelFieldNames._();
 }

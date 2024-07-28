@@ -27,6 +27,8 @@ export 'data_models/model_event/model_event.dart';
 export 'data_models/model_invitation/model_invitation.dart';
 export 'data_models/model_location/model_location.dart';
 export 'data_models/model_map_tile/model_map_tile.dart';
+export 'data_models/google_places/google_places.dart';
+export 'data_models/google_place_details/google_place_details.dart';
 export 'data_models/model_queryable/model_queryable.dart';
 export 'data_models/model_registration/model_registration.dart';
 export 'data_models/private_models_etc/model_job/model_job.dart';
