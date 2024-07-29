@@ -49,7 +49,8 @@ class ModelRelationship extends _ModelRelationship {
   final List<ModelRegistration>? likedRegs;
   final List<ModelRegistration>? receivedRegs;
   final RelationshipType? type;
-  final Map<String, Set<String>>? memberUnsubs;
+  final Map<String, Set<String>>? denyDeviceNotifications;
+  final Map<String, Set<String>>? denyEmailNotifications;
 
   //
   //
@@ -76,7 +77,8 @@ class ModelRelationship extends _ModelRelationship {
     this.likedRegs,
     this.receivedRegs,
     this.type,
-    this.memberUnsubs,
+    this.denyDeviceNotifications,
+    this.denyEmailNotifications,
   });
 
   const ModelRelationship.c2({
@@ -100,7 +102,8 @@ class ModelRelationship extends _ModelRelationship {
     this.likedRegs,
     this.receivedRegs,
     this.type,
-    this.memberUnsubs,
+    this.denyDeviceNotifications,
+    this.denyEmailNotifications,
   });
 
   factory ModelRelationship.c3({
@@ -124,7 +127,8 @@ class ModelRelationship extends _ModelRelationship {
     List<ModelRegistration>? likedRegs,
     List<ModelRegistration>? receivedRegs,
     RelationshipType? type,
-    Map<String, Set<String>>? memberUnsubs,
+    Map<String, Set<String>>? denyDeviceNotifications,
+    Map<String, Set<String>>? denyEmailNotifications,
   }) {
     return ModelRelationship(
       id: id,
@@ -147,7 +151,8 @@ class ModelRelationship extends _ModelRelationship {
       likedRegs: likedRegs,
       receivedRegs: receivedRegs,
       type: type,
-      memberUnsubs: memberUnsubs,
+      denyDeviceNotifications: denyDeviceNotifications,
+      denyEmailNotifications: denyEmailNotifications,
     );
   }
 
@@ -353,8 +358,24 @@ class ModelRelationship extends _ModelRelationship {
           ?.toList();
       final type0 = otherData?['type'];
       final type = RelationshipType.values.valueOf(letAs<String>(type0));
-      final memberUnsubs0 = otherData?['memberUnsubs'];
-      final memberUnsubs = letMap(memberUnsubs0)
+      final denyDeviceNotifications0 = otherData?['denyDeviceNotifications'];
+      final denyDeviceNotifications = letMap(denyDeviceNotifications0)
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.toString().trim().nullIfEmpty,
+              letSet(p1)
+                  ?.map(
+                    (p0) => p0?.toString().trim().nullIfEmpty,
+                  )
+                  .nonNulls
+                  .nullIfEmpty
+                  ?.toSet(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final denyEmailNotifications0 = otherData?['denyEmailNotifications'];
+      final denyEmailNotifications = letMap(denyEmailNotifications0)
           ?.map(
             (p0, p1) => MapEntry(
               p0?.toString().trim().nullIfEmpty,
@@ -390,7 +411,8 @@ class ModelRelationship extends _ModelRelationship {
         likedRegs: likedRegs,
         receivedRegs: receivedRegs,
         type: type,
-        memberUnsubs: memberUnsubs,
+        denyDeviceNotifications: denyDeviceNotifications,
+        denyEmailNotifications: denyEmailNotifications,
       );
     } catch (e) {
       return null;
@@ -501,8 +523,24 @@ class ModelRelationship extends _ModelRelationship {
           .nullIfEmpty
           ?.toList();
       final type0 = this.type?.name;
-      final memberUnsubs0 = this
-          .memberUnsubs
+      final denyDeviceNotifications0 = this
+          .denyDeviceNotifications
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.trim().nullIfEmpty,
+              p1
+                  ?.map(
+                    (p0) => p0?.trim().nullIfEmpty,
+                  )
+                  .nonNulls
+                  .nullIfEmpty
+                  ?.toList(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
+      final denyEmailNotifications0 = this
+          .denyEmailNotifications
           ?.map(
             (p0, p1) => MapEntry(
               p0?.trim().nullIfEmpty,
@@ -579,7 +617,10 @@ class ModelRelationship extends _ModelRelationship {
           'type': type0,
         },
         {
-          'memberUnsubs': memberUnsubs0,
+          'denyDeviceNotifications': denyDeviceNotifications0,
+        },
+        {
+          'denyEmailNotifications': denyEmailNotifications0,
         },
       ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -665,8 +706,13 @@ class ModelRelationship extends _ModelRelationship {
   // type.
   RelationshipType? get typeField => this.type;
 
-  // memberUnsubs.
-  Map<String, Set<String>>? get memberUnsubsField => this.memberUnsubs;
+  // denyDeviceNotifications.
+  Map<String, Set<String>>? get denyDeviceNotificationsField =>
+      this.denyDeviceNotifications;
+
+  // denyEmailNotifications.
+  Map<String, Set<String>>? get denyEmailNotificationsField =>
+      this.denyEmailNotifications;
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -696,7 +742,8 @@ final class ModelRelationshipFieldNames {
   static const likedRegs = 'likedRegs';
   static const receivedRegs = 'receivedRegs';
   static const type = 'type';
-  static const memberUnsubs = 'memberUnsubs';
+  static const denyDeviceNotifications = 'denyDeviceNotifications';
+  static const denyEmailNotifications = 'denyEmailNotifications';
 
   //
   //

@@ -23,7 +23,7 @@ dependencies:
     sdk: flutter
 
   xyz_config: ^0.30.2
-  xyz_device_info: ^0.6.0
+  xyz_device_info: ^0.7.0
   xyz_gen_annotations: ^0.50.0
   xyz_security: ^0.1.2
   xyz_utils: ^0.63.2

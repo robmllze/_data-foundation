@@ -19,7 +19,8 @@ part '_model_relationship.g.dart';
   fields: {
     ...MODEL_EVENT_FIELDS,
     ('type?', RelationshipType),
-    ('member_unsubs?', Map<String, Set<String>>),
+    ('deny_device_notifications?', Map<String, Set<String>>),
+    ('deny_email_notifications?', Map<String, Set<String>>),
   },
 )
 abstract class _ModelRelationship extends Model implements ModelEvent {
@@ -33,12 +34,22 @@ extension ModelRelationshipExtension on ModelRelationship {
   //
   //
 
-  bool isSubscribedToMember(String currentUserPid, String memberPid) {
-    final unsubs = this.memberUnsubs?[currentUserPid];
-    if (unsubs == null) {
-      return true; // subscribed by default.
+  bool isDeviceNotificationsDeniedFor(String currentUserPid, String memberPid) {
+    final deniedMembers = this.denyDeviceNotifications?[memberPid];
+    if (deniedMembers == null) {
+      return false;
     }
-    return !unsubs.contains(memberPid);
+    final currentUserIsDenied = deniedMembers.contains(currentUserPid);
+    return currentUserIsDenied;
+  }
+
+  bool isEmailNotificationsDeniedFor(String currentUserPid, String memberPid) {
+    final deniedMembers = this.denyEmailNotifications?[memberPid];
+    if (deniedMembers == null) {
+      return false;
+    }
+    final currentUserIsDenied = deniedMembers.contains(currentUserPid);
+    return currentUserIsDenied;
   }
 
   // /// Whether this relationship is marked as "enabled" by any Member.
