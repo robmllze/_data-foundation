@@ -51,6 +51,7 @@ class ModelRelationship extends _ModelRelationship {
   final RelationshipType? type;
   final Map<String, Set<String>>? denyDeviceNotifications;
   final Map<String, Set<String>>? denyEmailNotifications;
+  final Map<String, Set<String>>? denyTextNotifications;
 
   //
   //
@@ -79,6 +80,7 @@ class ModelRelationship extends _ModelRelationship {
     this.type,
     this.denyDeviceNotifications,
     this.denyEmailNotifications,
+    this.denyTextNotifications,
   });
 
   const ModelRelationship.c2({
@@ -104,6 +106,7 @@ class ModelRelationship extends _ModelRelationship {
     this.type,
     this.denyDeviceNotifications,
     this.denyEmailNotifications,
+    this.denyTextNotifications,
   });
 
   factory ModelRelationship.c3({
@@ -129,6 +132,7 @@ class ModelRelationship extends _ModelRelationship {
     RelationshipType? type,
     Map<String, Set<String>>? denyDeviceNotifications,
     Map<String, Set<String>>? denyEmailNotifications,
+    Map<String, Set<String>>? denyTextNotifications,
   }) {
     return ModelRelationship(
       id: id,
@@ -153,6 +157,7 @@ class ModelRelationship extends _ModelRelationship {
       type: type,
       denyDeviceNotifications: denyDeviceNotifications,
       denyEmailNotifications: denyEmailNotifications,
+      denyTextNotifications: denyTextNotifications,
     );
   }
 
@@ -390,6 +395,22 @@ class ModelRelationship extends _ModelRelationship {
           )
           .nonNulls
           .nullIfEmpty;
+      final denyTextNotifications0 = otherData?['denyTextNotifications'];
+      final denyTextNotifications = letMap(denyTextNotifications0)
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.toString().trim().nullIfEmpty,
+              letSet(p1)
+                  ?.map(
+                    (p0) => p0?.toString().trim().nullIfEmpty,
+                  )
+                  .nonNulls
+                  .nullIfEmpty
+                  ?.toSet(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
       return ModelRelationship(
         id: id,
         ref: ref,
@@ -413,6 +434,7 @@ class ModelRelationship extends _ModelRelationship {
         type: type,
         denyDeviceNotifications: denyDeviceNotifications,
         denyEmailNotifications: denyEmailNotifications,
+        denyTextNotifications: denyTextNotifications,
       );
     } catch (e) {
       return null;
@@ -555,6 +577,22 @@ class ModelRelationship extends _ModelRelationship {
           )
           .nonNulls
           .nullIfEmpty;
+      final denyTextNotifications0 = this
+          .denyTextNotifications
+          ?.map(
+            (p0, p1) => MapEntry(
+              p0?.trim().nullIfEmpty,
+              p1
+                  ?.map(
+                    (p0) => p0?.trim().nullIfEmpty,
+                  )
+                  .nonNulls
+                  .nullIfEmpty
+                  ?.toList(),
+            ),
+          )
+          .nonNulls
+          .nullIfEmpty;
       final withNulls = mergeMapsDeep([
         {
           'id': id0,
@@ -621,6 +659,9 @@ class ModelRelationship extends _ModelRelationship {
         },
         {
           'denyEmailNotifications': denyEmailNotifications0,
+        },
+        {
+          'denyTextNotifications': denyTextNotifications0,
         },
       ]).mapWithDefault(defaultValue);
       return includeNulls ? withNulls : withNulls.nonNulls;
@@ -713,6 +754,10 @@ class ModelRelationship extends _ModelRelationship {
   // denyEmailNotifications.
   Map<String, Set<String>>? get denyEmailNotificationsField =>
       this.denyEmailNotifications;
+
+  // denyTextNotifications.
+  Map<String, Set<String>>? get denyTextNotificationsField =>
+      this.denyTextNotifications;
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -744,6 +789,7 @@ final class ModelRelationshipFieldNames {
   static const type = 'type';
   static const denyDeviceNotifications = 'denyDeviceNotifications';
   static const denyEmailNotifications = 'denyEmailNotifications';
+  static const denyTextNotifications = 'denyTextNotifications';
 
   //
   //

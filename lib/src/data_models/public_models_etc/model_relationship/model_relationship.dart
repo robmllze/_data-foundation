@@ -21,6 +21,7 @@ part '_model_relationship.g.dart';
     ('type?', RelationshipType),
     ('deny_device_notifications?', Map<String, Set<String>>),
     ('deny_email_notifications?', Map<String, Set<String>>),
+    ('deny_text_notifications?', Map<String, Set<String>>),
   },
 )
 abstract class _ModelRelationship extends Model implements ModelEvent {
@@ -34,22 +35,31 @@ extension ModelRelationshipExtension on ModelRelationship {
   //
   //
 
-  bool isDeviceNotificationsDeniedFor(String currentUserPid, String memberPid) {
-    final deniedMembers = this.denyDeviceNotifications?[memberPid];
-    if (deniedMembers == null) {
-      return false;
-    }
-    final currentUserIsDenied = deniedMembers.contains(currentUserPid);
-    return currentUserIsDenied;
+  bool doesADenyDeviceNotificationsFromB({
+    required String pidA,
+    required String pidB,
+  }) {
+    final members = this.denyDeviceNotifications?[pidA];
+    final bDenied = members?.contains(pidB) == true;
+    return bDenied;
   }
 
-  bool isEmailNotificationsDeniedFor(String currentUserPid, String memberPid) {
-    final deniedMembers = this.denyEmailNotifications?[memberPid];
-    if (deniedMembers == null) {
-      return false;
-    }
-    final currentUserIsDenied = deniedMembers.contains(currentUserPid);
-    return currentUserIsDenied;
+  bool doesADenyEmailNotificationsFromB({
+    required String pidA,
+    required String pidB,
+  }) {
+    final members = this.denyEmailNotifications?[pidA];
+    final bDenied = members?.contains(pidB) == true;
+    return bDenied;
+  }
+
+  bool doesADenyTextNotificationsFromB({
+    required String pidA,
+    required String pidB,
+  }) {
+    final members = this.denyTextNotifications?[pidA];
+    final bDenied = members?.contains(pidB) == true;
+    return bDenied;
   }
 
   // /// Whether this relationship is marked as "enabled" by any Member.
