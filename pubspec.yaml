@@ -22,11 +22,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  xyz_config: ^0.29.1
+  xyz_config: ^0.30.2
   xyz_device_info: ^0.6.0
-  xyz_gen_annotations: ^0.49.0
+  xyz_gen_annotations: ^0.50.0
   xyz_security: ^0.1.2
-  xyz_utils: ^0.62.0
+  xyz_utils: ^0.63.2
 
   uuid: 4.4.0
   crypto: 3.0.3
@@ -39,16 +39,16 @@ dependency_overrides:
   # TODO: Comment out these lines if you don't have these packages at their
   # respective paths. They are included for development purposes to allow
   # simultaneous work on this package and its dependencies.
-  xyz_config:
-    path: ../../xyz_config
-  xyz_gen_annotations:
-    path: ../../xyz_gen/xyz_gen_annotations
-  xyz_security:
-    path: ../../xyz_security
-  xyz_utils:
-    path: ../../xyz_utils
-  xyz_device_info:
-    path: ../../xyz_device_info
+  # xyz_config:
+  #   path: ../../xyz_config
+  # xyz_gen_annotations:
+  #   path: ../../xyz_gen/xyz_gen_annotations
+  # xyz_security:
+  #   path: ../../xyz_security
+  # xyz_utils:
+  #   path: ../../xyz_utils
+  # xyz_device_info:
+  #   path: ../../xyz_device_info
 
 ## -----------------------------------------------------------------------------
 
